@@ -1,0 +1,18 @@
+/**
+ *
+ * Layout
+ *
+ */
+
+ import styled, { css } from 'styled-components';
+ import { Layout } from 'antd';
+
+ const StyledLayout = styled(Layout).withConfig({
+     shouldForwardProp: prop => ![].includes(prop),
+ })`
+    width: 100%;
+    height: 100vh;
+    background-color: #fffff;
+ `;
+
+export default StyledLayout;
