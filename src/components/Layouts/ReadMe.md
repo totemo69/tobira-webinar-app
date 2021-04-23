@@ -1,0 +1,1 @@
+Layout that will wrap the templates.
