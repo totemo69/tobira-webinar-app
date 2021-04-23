@@ -1,4 +1,4 @@
-import Button from '../../components/SampleButton'
+import Button from '@/components/Elements/SampleButton'
 
 export default function StoryBook() {
   return (
