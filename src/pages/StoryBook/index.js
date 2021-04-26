@@ -17,13 +17,14 @@ export default function StoryBook() {
   return (
     <>
       <Layout>
+      
         <Sidebar>Side Bar</Sidebar>
         <Layout>
-          <Header>This is the header</Header>
+        <Header>This is the header</Header>
           <Content>
               <Card>
                 <br />
-                <Input placeholder="Sample Input" disabled="true"></Input>
+                <Input placeholder="Sample Input" disabled={true}></Input>
                 <Input placeholder="Sample Input"></Input>
                 <br />
                 <label>Text Area</label>
@@ -51,11 +52,14 @@ export default function StoryBook() {
                 <br />
                 <Checkbox defaultChecked={false}>Unchecked</Checkbox>
                 <Checkbox defaultChecked>Checked</Checkbox>
-              </Card>
 
-              <Button type="primary" htmlType="submit">
+                <br />
+                <Button disabled Isdisabled  htmlType="submit">
                 Test Button
               </Button>
+              </Card>
+
+             
           </Content>
           <Footer>This is the footer</Footer>
         </Layout>
