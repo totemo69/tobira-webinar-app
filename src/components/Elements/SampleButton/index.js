@@ -41,6 +41,7 @@
    border: 0px;
    margin: 0 auto 10px;
    height: 40px;
+   font-family: Poppins;
    &:hover {
      background-color: #a8b4ae;
    }

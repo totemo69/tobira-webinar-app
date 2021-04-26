@@ -14,7 +14,7 @@
  })`
     padding: 1rem 0.75rem;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f3f3f3;
  `;
 
 export default StyledContent;
