@@ -57,6 +57,9 @@ export default function StoryBook() {
                 <Button disabled Isdisabled  htmlType="submit">
                 Test Button
               </Button>
+              <Button primary htmlType="submit">
+                Test Button
+              </Button>
               </Card>
 
              
