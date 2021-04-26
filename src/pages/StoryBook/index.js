@@ -16,11 +16,13 @@ import Radio from '@/components/Elements/SampleRadioButton'
 export default function StoryBook() {
   return (
     <>
-      <Layout>
       
-        <Sidebar>Side Bar</Sidebar>
-        <Layout>
+      <Layout>
+       
         <Header>This is the header</Header>
+        <Layout>
+       
+        <Sidebar>Side Bar</Sidebar>
           <Content>
               <Card>
                 <br />
@@ -62,10 +64,12 @@ export default function StoryBook() {
               </Button>
               </Card>
 
-             
+            
           </Content>
-          <Footer>This is the footer</Footer>
+          
+          
         </Layout>
+        <Footer>This is the footer</Footer>
       </Layout>
     </>
   )

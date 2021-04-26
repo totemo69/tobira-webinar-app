@@ -43,8 +43,10 @@
    margin: 0 auto 10px;
    height: 40px;
    font-family: Poppins;
+   color: white;
    &:hover {
      background-color: #4678B5 ;
+     color: white;
    } &:disabled {
     background-color: #ABC9EE
    }
