@@ -14,8 +14,8 @@
  })`
     padding: 1rem 0.75rem;
     width: auto;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: #f3f3f3;
+    border-right: 1px solid #f3f4f6;
  `;
 
 export default StyledSidebar;

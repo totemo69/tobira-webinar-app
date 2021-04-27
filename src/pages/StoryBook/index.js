@@ -1,16 +1,28 @@
+import Layout from '@/components/Elements/Layout';
+import Header from '@/components/Elements/Header';
+import Footer from '@/components/Elements/Footer';
+import Sidebar from '@/components/Elements/Sidebar';
+import Content from '@/components/Elements/Content';
+import Button from '@/components/Elements/Button';
+import Input from '@/components/Elements/Input';
+import Textarea from '@/components/Elements/Textarea';
+import Checkbox from '@/components/Elements/Checkbox';
+import Radio from '@/components/Elements/Radio';
+import Select from '@/components/Elements/Select';
+import Option from '@/components/Elements/Option';
 import Layout from '@/components/Layouts/SampleLayout';
 import Content from '@/components/Templates/SampleContent';
 import Select from '@/components/Templates/SampleSelectContent'
-import Header from '@/components/Modules/SampleHeader';
-import Footer from '@/components/Modules/SampleFooter';
-import Sidebar from '@/components/Modules/SampleSidebar';
-import Button from '@/components/Elements/SampleButton';
-import Card from '@/components/Elements/SampleCard';
-import Input from '@/components/Elements/SampleInput';
-import TextArea from '@/components/Elements/SampleTextArea'
-import Checkbox from '@/components/Elements/SampleCheckBox'
-import Option from '@/components/Elements/SampleDropDown'
-import Radio from '@/components/Elements/SampleRadioButton'
+import SampleHeader from '@/components/Modules/SampleHeader';
+import SampleFooter from '@/components/Modules/SampleFooter';
+import SampleSidebar from '@/components/Modules/SampleSidebar';
+import SampleButton from '@/components/Elements/SampleButton';
+import SampleCard from '@/components/Elements/SampleCard';
+import SampleInput from '@/components/Elements/SampleInput';
+import SampleTextArea from '@/components/Elements/SampleTextArea'
+import SampleCheckBox from '@/components/Elements/SampleCheckBox'
+import SampleDropDown from '@/components/Elements/SampleDropDown'
+import SampleRadioButton from '@/components/Elements/SampleRadioButton'
 
 
 export default function StoryBook() {
@@ -18,58 +30,57 @@ export default function StoryBook() {
     <>
       
       <Layout>
-       
-        <Header>This is the header</Header>
+        <Header>This is the Header.</Header>
         <Layout>
-       
-        <Sidebar>Side Bar</Sidebar>
+          <Sidebar>This is the Sidebar.</Sidebar>
           <Content>
-              <Card>
-                <br />
-                <Input placeholder="Sample Input" disabled={true}></Input>
-                <Input placeholder="Sample Input"></Input>
-                <br />
-                <label>Text Area</label>
-                <br />
-                <TextArea placeholder="Placeholder"></TextArea>
-                <br />
-                <label>Drop Down</label>
-                <br />
-                <Select placeholder="Placeholder">
-                  <Option value="jack">1st item</Option>
-                  <Option value="lucy">2nd item</Option>
-                  <Option value="tom">3rd item</Option>
-                </Select>
-
-                <br />
-                <label>Radio Button</label>
-                <br />
-                <Radio.Group>
-                  <Radio value={1}>A</Radio>
-                  <Radio value={2}>B</Radio>
-                </Radio.Group>
-
-                <br />
-                <label>Checkbox</label>
-                <br />
-                <Checkbox defaultChecked={false}>Unchecked</Checkbox>
-                <Checkbox defaultChecked>Checked</Checkbox>
-
-                <br />
-                <Button disabled Isdisabled  htmlType="submit">
-                Test Button
-              </Button>
-              <Button primary htmlType="submit">
-                Test Button
-              </Button>
-              </Card>
-
-            
+            <Button type="primary" htmlType="submit">
+              Default
+            </Button>
+            <Button type="disabled" disabled htmlType="submit">
+              Disabled
+            </Button>
+            <Input placeholder="Placeholder"></Input>
+            <Input placeholder="tobirauser" disabled></Input>
+            <Input placeholder="tobira^&*" error></Input>
+            <Textarea placeholder="Placeholder"></Textarea>
+            <Textarea placeholder="Placeholder" disabled></Textarea>
+            <Textarea placeholder="Placeholder" error></Textarea>
+            <Checkbox>Checkbox A</Checkbox>
+            <Checkbox checked>Checkbox B</Checkbox>
+            <Checkbox disabled>Checkbox Disabled</Checkbox>
+            <div style={{ marginTop: '1rem', }}>
+              <Radio.Group>
+                <Radio value={1}>Option A</Radio>
+                <Radio value={2}>Option B</Radio>
+              </Radio.Group>
+              <Radio.Group>
+                <Radio disabled value={3}>Option Disabled 1</Radio>
+                <Radio disabled checked>Option Disabled 2</Radio>
+              </Radio.Group>
+            </div>
+            <div style={{marginTop: '1rem',}}>
+              <Select defaultValue="initial">
+                <Option value="initial" disabled hidden>Select option</Option>
+                <Option value="A">Option A</Option>
+                <Option value="B">Option B</Option>
+              </Select>
+            </div>
+            <div>
+              <Select defaultValue="initial" disabled>
+                <Option value="initial" disabled hidden>Select option</Option>
+                <Option value="A">Option A</Option>
+                <Option value="B">Option B</Option>
+              </Select>
+              <Select defaultValue="initial" error>
+                <Option value="initial" disabled hidden>Select option</Option>
+                <Option value="A">Option A</Option>
+                <Option value="B">Option B</Option>
+              </Select>
+            </div>
           </Content>
-          
-          
         </Layout>
-        <Footer>This is the footer</Footer>
+        <Footer>This is the Footer.</Footer>
       </Layout>
     </>
   )
