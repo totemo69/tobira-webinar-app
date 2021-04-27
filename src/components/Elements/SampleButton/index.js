@@ -34,6 +34,7 @@
        'autoWidth',
        'secondary',
        'quarterFullWidth',
+       'Isdisabled'
      ].includes(prop),
  })`
    width: 80%;
@@ -41,8 +42,13 @@
    border: 0px;
    margin: 0 auto 10px;
    height: 40px;
+   font-family: Poppins;
+   color: white;
    &:hover {
-     background-color: #a8b4ae;
+     background-color: #4678B5 ;
+     color: white;
+   } &:disabled {
+    background-color: #ABC9EE
    }
  
    ${props =>
@@ -51,6 +57,13 @@
        background-color: #2675fc;
      `};
  
+  ${props => 
+    props.Isdisabled &&
+    css`
+      background-color: #ABC9EE
+    `
+  };
+
    ${props =>
      props.square &&
      css`
@@ -248,6 +261,9 @@
        animation: fadein 1.6s;
      `};
  `;
+
+
+  
  
  StyledButton.propTypes = {
    square: PropTypes.any,
