@@ -1,9 +1,10 @@
 import 'antd/dist/antd.css'
 import '../styles/globals.css'
 import '../styles/vars.css'
+import { wrapper } from '../states/configureStore'
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default wrapper.withRedux(App)
