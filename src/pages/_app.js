@@ -1,5 +1,4 @@
 import 'antd/dist/antd.css'
-import { wrapper } from 'src/store/store'
 import '../styles/globals.css'
 import '../styles/vars.css'
 import { wrapper } from '../states/configureStore'
