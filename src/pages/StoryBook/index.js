@@ -1,3 +1,7 @@
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import message from '@/messages/storybook';
+import globalMessage from '@/messages/global';
 import Layout from '@/components/Elements/Layout';
 import Header from '@/components/Elements/Header';
 import Footer from '@/components/Elements/Footer';
@@ -10,17 +14,29 @@ import Checkbox from '@/components/Elements/Checkbox';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
+import SampleSelectContent from '@/components/Templates/SampleSelectContent'
+import SampleButton from '@/components/Elements/SampleButton';
+import SampleCard from '@/components/Elements/SampleCard';
+import SampleInput from '@/components/Elements/SampleInput';
+import SampleTextArea from '@/components/Elements/SampleTextArea'
+import SampleCheckBox from '@/components/Elements/SampleCheckBox'
+import SampleDropDown from '@/components/Elements/SampleDropDown'
+import SampleRadioButton from '@/components/Elements/SampleRadioButton'
+
 
 export default function StoryBook() {
+  const { t } = useTranslation();
+  console.log(globalMessage.header);
+  console.log(message.title);
   return (
     <>
       <Layout>
-        <Header>This is the Header.</Header>
+        <Header>{t(globalMessage.header)}</Header>
         <Layout>
           <Sidebar>This is the Sidebar.</Sidebar>
           <Content>
             <Button type="primary" htmlType="submit">
-              Default
+              {t(message.title)}
             </Button>
             <Button type="disabled" disabled htmlType="submit">
               Disabled
@@ -70,3 +86,9 @@ export default function StoryBook() {
     </>
   )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['translation']),
+  },
+})
