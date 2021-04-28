@@ -1,0 +1,8 @@
+{
+  "global" : {
+    "h1": "A simple example"
+  },
+  "storybook" : {
+    "title": "Title"
+  }
+}
