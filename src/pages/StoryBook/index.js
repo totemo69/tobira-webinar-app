@@ -14,15 +14,7 @@ import Checkbox from '@/components/Elements/Checkbox';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
-import SampleSelectContent from '@/components/Templates/SampleSelectContent'
-import SampleButton from '@/components/Elements/SampleButton';
-import SampleCard from '@/components/Elements/SampleCard';
-import SampleInput from '@/components/Elements/SampleInput';
-import SampleTextArea from '@/components/Elements/SampleTextArea'
-import SampleCheckBox from '@/components/Elements/SampleCheckBox'
-import SampleDropDown from '@/components/Elements/SampleDropDown'
-import SampleRadioButton from '@/components/Elements/SampleRadioButton'
-
+import Link from '@/components/Elements/Link'
 
 export default function StoryBook() {
   const { t } = useTranslation();
@@ -30,10 +22,16 @@ export default function StoryBook() {
   console.log(message.title);
   return (
     <>
+      
       <Layout>
         <Header>{t(globalMessage.header)}</Header>
         <Layout>
-          <Sidebar>This is the Sidebar.</Sidebar>
+          <Sidebar>
+            <ul>
+              <li><Link href="/" name="Home"></Link></li>
+              <li><Link href="/StoryBook/redux" name="Redux Sample"></Link></li>
+            </ul>
+          </Sidebar>
           <Content>
             <Button type="primary" htmlType="submit">
               {t(message.title)}
@@ -81,7 +79,7 @@ export default function StoryBook() {
             </div>
           </Content>
         </Layout>
-        <Footer>This is the Footer.</Footer>
+        <Footer>This is the footer</Footer>
       </Layout>
     </>
   )
