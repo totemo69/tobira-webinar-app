@@ -9,7 +9,7 @@
 
  const StyledInput = styled(Input).withConfig({
      shouldForwardProp: prop => ![
-         'error'
+         'error',
      ].includes(prop),
  })`
     margin: 0 auto 10px;

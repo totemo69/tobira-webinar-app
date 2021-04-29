@@ -14,12 +14,12 @@
     margin: 0 auto 10px;
     width: 80%;
     height: 40px;
-    background-color: #0e71eb;
+    background-color: #0E71EB;
     border-radius: 5px;
     border: 0px;
     color: #ffffff;
     &:hover {
-      background-color: #4678b5;
+      background-color: #4678B5;
       color: #ffffff;
     }
     &:focus {
