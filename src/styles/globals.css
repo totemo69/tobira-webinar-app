@@ -15,3 +15,20 @@ a {
 * {
 	box-sizing: border-box;
 }
+.Form{
+	
+	margin-left: 139px;
+	text-align: left;
+	width: 444px;
+}
+.Policy{
+	font-size: 12px;
+	font-family: Poppins;
+	padding: 10px;
+}
+.LoginLink{
+	margin-top: 50px;
+	margin-left: 100px;
+	font: normal normal normal 12px/18px Poppins;
+}
+
