@@ -9,48 +9,36 @@ const { Title } = Typography;
 
 const SampleTitle = styled(Title).withConfig({
     shouldForwardProp: prop => ![
-        'SignUp',
-        'Webinar',
+        'logo',
+        'marginBottom',
     ].includes(prop),
 })
 `
     font-family: Poppins;
-    color: #4E4E4E;
-    opacity: 1;
-    font-size: 40px;
     &.ant-typography {
-        color: #4E4E4E;
-    }
+        color: #4e4e4e;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        
+    };
 
     ${props => 
-        props.SignUp && 
-        css `
-        font-family: Poppins;
-        width: 158px;
-        height: 56px;
-        font-weigth: Bold;
-        text-align: left;
-        font: normal normal bold 40px/60px Poppins;
-        letter-spacing: 0.8px;
-        color: #4E4E4E;
-        opacity: 1;
-        font-size: 40px;
-        &.ant-typography {
-            color: #4E4E4E;
-        }
-        
+        props.logo && 
+        css`
+            font-family: Segoe UI;
+            &.ant-typography {
+                color: #0e71eb;
+                letter-spacing: 0.72px;
+            }
+           
         `
     };
 
     ${props => 
-        props.Webinar && 
+        props.marginBottom && 
         css`
-            margin-right: 146px;
-            text-align: right;
-            margin-top: 68px;
-            font: normal normal bold 36px/48px Segoe UI;
-            &.ant-typography {
-                color: #0E71EB;
+            &.ant-typography{
+                margin-bottom: 3rem;
             }
            
         `

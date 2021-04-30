@@ -11,7 +11,7 @@
 
  const StyledContent = styled(Content).withConfig({
      shouldForwardProp: prop => ![
-         'SignUp'
+         'bgNone',
      ].includes(prop),
  })`
     padding: 1rem 0.75rem;
@@ -20,9 +20,9 @@
     background-color: #ffffff;
 
     ${props => 
-        props.SignUp && 
-        css `
-            background-color: #F3F3F3;
+        props.bgNone &&
+        css`
+            background-color: transparent;
         `
     };
  `;

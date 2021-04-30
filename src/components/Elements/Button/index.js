@@ -9,58 +9,32 @@
  import { Button } from 'antd';
 
  const StyledButton = styled(Button).withConfig({
-     shouldForwardProp: prop => ![
-       'BtnSignUp'
-     ].includes(prop),
+     shouldForwardProp: prop => ![].includes(prop),
  })`
     margin: 0 auto 10px;
     width: 80%;
     height: 40px;
-    background-color: #0E71EB;
-    border-radius: 5px;
-    border: 0px;
+    border-radius: 8px;
+    font-size: 12px;
     color: #ffffff;
-    &:hover {
-      background-color: #4678B5;
-      color: #ffffff;
-    }
-    &:focus {
-      background-color: #0e71eb;
-      border: 2px solid #4678b5;
-      color: #ffffff;
-      outline: none;
-    }
+    letter-spacing: 0.24px;
+    box-shadow: 0px 2px 4px #00000029;
     
-    ${props =>
-      props.type === "disabled" &&
+    ${ props =>
+      props.type === 'primary' &&
       css`
-        background-color: #abc9ee;
-        cursor: not-allowed;
-    `};
-
-    ${props =>
-      props.BtnSignUp &&
-      css`
-      margin: 0 auto 10px;
-      width: 441px;
-      height: 40px;
-      top: 31px;
-      background-color: #0E71EB;
-      border-radius: 5px;
-      border: 0px;
-      color: #ffffff;
-      &:hover {
-        background-color: #4678B5;
-        color: #ffffff;
-      }
-      &:focus {
         background-color: #0e71eb;
-        border: 2px solid #4678b5;
-        color: #ffffff;
-        outline: none;
-      }
-      
-    `};
+        &:hover {
+          background-color: #4678B5;
+          color: #ffffff;
+        }
+        &:focus {
+          background-color: #0e71eb;
+          color: #ffffff;
+          outline: none;
+        }
+      `
+    };
 `;
  
 export default StyledButton;
