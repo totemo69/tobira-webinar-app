@@ -36,7 +36,7 @@ export default function SignUpSample(){
                             </span>
                         </div>
                         <div>
-                            <Button BtnSignUp>Sig Up</Button>
+                            <Button BtnSignUp>Sign Up</Button>
                         </div>
                         <div className="LoginLink">
                             
