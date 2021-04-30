@@ -13,8 +13,6 @@ export default function SignUpSample(){
             <Content SignUp>
             <Title Webinar>WEBINAR</Title>
             <div className="Form">
-                
-
                 <Title SignUp>Sign up</Title>
                         
                         <label style={{marginTop: '43px'}}>Email Address<span style={{color: 'red'}}>*</span></label>
@@ -43,7 +41,6 @@ export default function SignUpSample(){
                         <div className="LoginLink">
                             
                                 Already have an account? <Link href="#" name="Log In here"></Link>
-                           
                         </div>
             </div>
             </Content>
