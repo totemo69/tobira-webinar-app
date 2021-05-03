@@ -1,21 +1,31 @@
 {
   "global" : {
-    "h1": "A simple example"
+    "h1": "A simple example",
+    "email":  "Email",
+    "enterEmail":  "Enter your email",
+    "password":  "Password",
+    "enterPassword":  "Enter your password",
+    "username":  "Username",
+    "enterUsername":  "Enter your username",
+    "confirmPassword":  "Confirm password"
   },
   "storybook" : {
     "title": "Title"
   },
-  "SampleSignup" : {
-    "And":  "And",
-    "AgreeMessage":  "By signing up, you agree to the",
-    "ConfirmPassword":  "Confirm Password",
-    "EmailAddress": "Email Address",
-    "LoginHere":  "Log in here",
-    "PrivacyPolicy": "Privacy Policy",
-    "Password":  "Password",
-    "SignUp":  "Sign Up",
-    "TermsOfService":  "Terms of Service",
-    "Username":  "Username",
-    "HaveAccount":  "Already have an account?"
+  "samplesignup" : {
+    "signUp":  "Sign Up",
+    "agreeMessage":  "By signing up, you agree to the",
+    "termsOfService":  "Terms of Service",
+    "and":  "and",
+    "privacyPolicy":  "Privacy Policy",
+    "haveAccount":  "Already have an account?",
+    "loginHere":  "Log in here"
+  },
+  "loginsample" : {
+    "login":  "Log in",
+    "rememberMe":  "Remember Me",
+    "forgotPassword":  "Forgot password?",
+    "createAccount":  "Create an account?",
+    "signHere":  "Sign up here"
   }
 }

@@ -13,7 +13,7 @@
      ].includes(prop),
  })`
     margin: 0 auto 10px;
-    width: 80%;
+    width: 100%;
     height: 40px;
     background-color: #ffffff;
     border-radius: 8px;

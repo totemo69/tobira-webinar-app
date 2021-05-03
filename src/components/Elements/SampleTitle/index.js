@@ -1,6 +1,3 @@
-
-
-
 import styled, {css} from 'styled-components'
 import  { Typography } from 'antd'
 
