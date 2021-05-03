@@ -3,50 +3,51 @@ export const scope = 'SampleSignup';
 const message = {
     And: Object.values({
         key: `${scope}.paragraph`,
-        default: 'そして'
+        default: 'And'
     }),
 
     AgreeMessage: Object.values({
         key: `${scope}.paragraph`,
-        default: 'サインアップすると、'
+        default: 'By signing up, you agree to the'
     }),
     ConfirmPassword: Object.values({
         key: `${scope}.Label`,
-        default: 'パスワードを認証する'
+        default: 'Confirm Password'
     }),
     EmailAddress: Object.values({
         key: `${scope}.Label`,
-        default: '電子メールアドレス'
+        default: 'Email Address'
     }),
     LoginHere: Object.values({
         key: `${scope}.Link`,
-        default: 'ここでログイン',
+        default: 'Log in here',
     }),
     PrivacyPolicy: Object.values({
         key: `${scope}.Label`,
-        default: '個人情報保護方針。',
+        default: 'Privacy Policy',
     }),
     Password: Object.values({
         key: `${scope}.Label`,
-        default: 'パスワード'
+        default: 'Password'
     }),
     SignUp: Object.values({
         key: `${scope}.button`,
-        default: 'サインアップ'
+        default: 'Sign Up'
     }),
     TermsOfService: Object.values({
         key: `${scope}.Label`,
-        default: '利用規約'
+        default: 'Terms of Service'
     }),
     Username: Object.values({
         key: `${scope}.Label`,
-        default: 'ユーザー名'
+        default: 'Username'
     }),
 
     HaveAccount: Object.values({
         key: `${scope}.paragraph`,
-        default: 'すでにアカウントをお持ちですか？'
+        default: 'Already have an account?'
     }),
+
 
 }
 

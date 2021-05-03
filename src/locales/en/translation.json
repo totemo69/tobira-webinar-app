@@ -4,5 +4,18 @@
   },
   "storybook" : {
     "title": "Title"
+  },
+  "SampleSignup" : {
+    "And":  "And",
+    "AgreeMessage":  "By signing up, you agree to the",
+    "ConfirmPassword":  "Confirm Password",
+    "EmailAddress": "Email Address",
+    "LoginHere":  "Log in here",
+    "PrivacyPolicy": "Privacy Policy",
+    "Password":  "Password",
+    "SignUp":  "Sign Up",
+    "TermsOfService":  "Terms of Service",
+    "Username":  "Username",
+    "HaveAccount":  "Already have an account?"
   }
 }
