@@ -10,7 +10,7 @@
  const BlueLink = styled.a`
     color: #0e71eb;
     font-weight: 600;
-    font-size: 12px;
+    font: normal normal normal 12px/18px Poppins;
     letter-spacing: 0.24px;
     text-decoration: none;
     &:hover {
