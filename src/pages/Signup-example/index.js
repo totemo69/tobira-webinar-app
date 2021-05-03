@@ -1,4 +1,6 @@
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import globalMessage from '@/messages/global';
 import Layout from '@/components/Elements/Layout'
 import Content from '@/components/Elements/Content'
 import Title from '@/components/Elements/SampleTitle'
@@ -9,11 +11,11 @@ import Link from '@/components/Elements/Link'
 import Button from '@/components/Elements/Button'
 import Label from '@/components/Elements/Label'
 import Div from '@/components/Elements/Div'
-import message from '@/messages/SampleSignup'
+import message from '@/messages/samplesignup'
 import { Row, Col } from 'antd'
 
 export default function SignupSample() {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     return (
         <>
             <Layout bgGray>
@@ -59,3 +61,9 @@ export default function SignupSample() {
         </>
     )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ['translation']),
+    },
+  })
