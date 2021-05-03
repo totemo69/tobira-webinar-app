@@ -1,6 +1,6 @@
 import Layout from '@/components/Elements/Layout'
 import Content from '@/components/Elements/Content'
-import Title from '@/components/Elements/Title'
+import Title from '@/components/Elements/SampleTitle'
 import Form from '@/components/Elements/Form'
 import Input from '@/components/Elements/Input'
 import CheckBox from '@/components/Elements/CheckBox'
@@ -37,7 +37,7 @@ export default function LoginSample() {
                                     <Button type="primary">Log in</Button>
                                 </div>
                                 <div style={{ marginTop: '1rem', width: '80%', fontSize: '12px', textAlign: 'center', }}>
-                                    Create an account? <Link href="#" name="Sign up here"></Link>
+                                    Create an account? <Link href="/Signup-example" name="Sign up here"></Link>
                                 </div>
                             </Form>
                         </Col>
