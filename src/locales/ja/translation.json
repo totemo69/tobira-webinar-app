@@ -1,21 +1,31 @@
 {
   "global" : {
-    "h1": "簡単な例"
+    "h1": "簡単な例",
+    "email":  "電子メールアドレス",
+    "enterEmail":  "メールアドレスを入力",
+    "password":  "パスワード",
+    "enterPassword":  "パスワードを入力してください",
+    "username":  "ユーザー名",
+    "enterUsername":  "ユーザー名を入力して下さい",
+    "confirmPassword":  "パスワードを認証する"
   },
   "storybook" : {
     "title": "題名"
   },
-  "SampleSignup" : {
-    "And":  "そして",
-    "AgreeMessage":  "サインアップすると、",
-    "ConfirmPassword":  "パスワードを認証する",
-    "EmailAddress": "電子メールアドレス",
-    "LoginHere":  "ここでログイン",
-    "PrivacyPolicy": "個人情報保護方針。",
-    "Password":  "パスワード",
-    "SignUp":  "サインアップ",
-    "TermsOfService":  "利用規約",
-    "Username":  "ユーザー名",
-    "HaveAccount":  "すでにアカウントをお持ちですか？"
+  "samplesignup" : {
+    "signUp":  "サインアップ",
+    "agreeMessage":  "サインアップすると、",
+    "termsOfService":  "利用規約",
+    "and":  "そして",
+    "privacyPolicy":  "個人情報保護方針",
+    "haveAccount":  "すでにアカウントをお持ちですか？",
+    "loginHere":  "ここでログイン"
+  },
+  "loginsample" : {
+    "login":  "ログイン",
+    "rememberMe":  "私を覚えてますか",
+    "forgotPassword":  "パスワードをお忘れですか？",
+    "createAccount":  "アカウントを作成する？",
+    "signHere":  "ここでサインアップ"
   }
 }

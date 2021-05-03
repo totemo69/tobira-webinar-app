@@ -1,44 +1,50 @@
-import Layout from '@/components/Elements/Layout'
-import Content from '@/components/Elements/Content'
-import Title from '@/components/Elements/SampleTitle'
-import Form from '@/components/Elements/Form'
-import Input from '@/components/Elements/Input'
-import CheckBox from '@/components/Elements/CheckBox'
-import Link from '@/components/Elements/Link'
-import Button from '@/components/Elements/Button'
-import { Row, Col } from 'antd'
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import globalMessage from '@/messages/global';
+import message from '@/messages/loginsample';
+
+import Layout from '@/components/Elements/Layout';
+import Content from '@/components/Elements/Content';
+import { Row, Col } from 'antd';
+import Form from '@/components/Elements/Form';
+import Title from '@/components/Elements/SampleTitle';
+import Div from '@/components/Elements/Div';
+import Labels from '@/components/Elements/Labels';
+import Input from '@/components/Elements/Input';
+import CheckBox from '@/components/Elements/CheckBox';
+import Link from '@/components/Elements/Link';
+import Button from '@/components/Elements/Button';
 
 export default function LoginSample() {
+    const { t } = useTranslation();
+    console.log(message.login);
+    console.log(globalMessage.email);
     return (
         <>
             <Layout bgGray>
                 <Content bgNone>
                     <Row>
                         <Col span={12}>
-                            <Form>
-                                <Title marginBottom>Login</Title>
-                                <div style={{ marginTop: '1rem', }}>
-                                    <label style={{ fontSize: '12px', fontWeight: '600', }}>Email Address<span style={{color: 'red'}}>*</span></label>
-                                    <br/>
-                                    <Input id="email" type="email" placeholder="Enter your email address"></Input>
-                                </div>
-                                <div style={{ marginTop: '1rem', }}>
-                                    <label style={{ fontSize: '12px', fontWeight: '600', }}>Password<span style={{color: 'red'}}>*</span></label>
-                                    <br/>
-                                    <Input id="password" type="password" placeholder="Enter your password"></Input>
-                                </div>
-                                <div style={{ marginTop: '1rem', width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-                                    <CheckBox>
-                                        <span style={{ color: '#4e4e4e', fontSize: '12px', letterSpacing: '0.24px', }}>Remember me</span>
-                                    </CheckBox>
-                                    <Link href="#" name="Forgot password?"></Link>
-                                </div>
-                                <div style={{ marginTop: '1rem', }}>
-                                    <Button type="primary">Log in</Button>
-                                </div>
-                                <div style={{ marginTop: '1rem', width: '80%', fontSize: '12px', textAlign: 'center', }}>
-                                    Create an account? <Link href="/Signup-example" name="Sign up here"></Link>
-                                </div>
+                            <Form
+                                layout="vertical"
+                            >
+                                <Title marginBottom>{t(message.login)}</Title>
+                                <Div>
+                                    <Labels asterisk>{t(globalMessage.email)}</Labels>
+                                    <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                                </Div>
+                                <Div>
+                                    <Labels asterisk>{t(globalMessage.password)}</Labels>
+                                    <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
+                                </Div>
+                                <Div marginY betweenCenter>
+                                    <CheckBox content={t(message.rememberMe)}></CheckBox>
+                                    <Link href="#" name={t(message.forgotPassword)}></Link>
+                                </Div>
+                                <Button type="primary">{t(message.login)}</Button>
+                                <Div center>
+                                    {t(message.createAccount)} <Link href="/Signup-example" name={t(message.signHere)}></Link>
+                                </Div>
                             </Form>
                         </Col>
                         <Col span={12}>
@@ -50,3 +56,9 @@ export default function LoginSample() {
         </>
     )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+      ...await serverSideTranslations(locale, ['translation']),
+    },
+  })

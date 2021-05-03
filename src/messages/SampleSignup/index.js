@@ -1,54 +1,34 @@
-export const scope = 'SampleSignup';
+export const scope = 'samplesignup';
 
 const message = {
-    And: Object.values({
-        key: `${scope}.paragraph`,
-        default: 'And'
-    }),
-
-    AgreeMessage: Object.values({
-        key: `${scope}.paragraph`,
-        default: 'By signing up, you agree to the'
-    }),
-    ConfirmPassword: Object.values({
-        key: `${scope}.Label`,
-        default: 'Confirm Password'
-    }),
-    EmailAddress: Object.values({
-        key: `${scope}.Label`,
-        default: 'Email Address'
-    }),
-    LoginHere: Object.values({
-        key: `${scope}.Link`,
-        default: 'Log in here',
-    }),
-    PrivacyPolicy: Object.values({
-        key: `${scope}.Label`,
-        default: 'Privacy Policy',
-    }),
-    Password: Object.values({
-        key: `${scope}.Label`,
-        default: 'Password'
-    }),
-    SignUp: Object.values({
-        key: `${scope}.button`,
+    signUp: Object.values({
+        key: `${scope}.signUp`,
         default: 'Sign Up'
     }),
-    TermsOfService: Object.values({
-        key: `${scope}.Label`,
+    agreeMessage: Object.values({
+        key: `${scope}.agreeMessage`,
+        default: 'By signing up, you agree to the'
+    }),
+    termsOfService: Object.values({
+        key: `${scope}.termsOfService`,
         default: 'Terms of Service'
     }),
-    Username: Object.values({
-        key: `${scope}.Label`,
-        default: 'Username'
+    and: Object.values({
+        key: `${scope}.and`,
+        default: 'and'
     }),
-
-    HaveAccount: Object.values({
-        key: `${scope}.paragraph`,
+    privacyPolicy: Object.values({
+        key: `${scope}.privacyPolicy`,
+        default: 'Privacy Policy'
+    }),
+    haveAccount: Object.values({
+        key: `${scope}.haveAccount`,
         default: 'Already have an account?'
     }),
-
-
+    loginHere: Object.values({
+        key: `${scope}.loginHere`,
+        default: 'Log in here',
+    }),
 }
 
 export default message;
