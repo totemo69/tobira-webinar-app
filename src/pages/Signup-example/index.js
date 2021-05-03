@@ -1,7 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
-<<<<<<< HEAD
 import message from '@/messages/samplesignup';
 
 import Layout from '@/components/Elements/Layout';
@@ -19,23 +18,6 @@ export default function SignupSample() {
     const { t } = useTranslation();
     console.log(message.signUp);
     console.log(globalMessage.email);
-=======
-import Layout from '@/components/Elements/Layout'
-import Content from '@/components/Elements/Content'
-import Title from '@/components/Elements/SampleTitle'
-import Form from '@/components/Elements/Form'
-import Input from '@/components/Elements/Input'
-import CheckBox from '@/components/Elements/CheckBox'
-import Link from '@/components/Elements/Link'
-import Button from '@/components/Elements/Button'
-import Label from '@/components/Elements/Label'
-import Div from '@/components/Elements/Div'
-import message from '@/messages/samplesignup'
-import { Row, Col } from 'antd'
-
-export default function SignupSample() {
-    const { t } = useTranslation();
->>>>>>> 77870e6163db60950bbef6304ad88f682c8a7716
     return (
         <>
             <Layout bgGray>
