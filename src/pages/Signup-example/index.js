@@ -2,7 +2,6 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
 import message from '@/messages/samplesignup';
-
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
 import { Row, Col } from 'antd';
