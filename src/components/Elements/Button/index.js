@@ -9,7 +9,9 @@
  import { Button } from 'antd';
 
  const StyledButton = styled(Button).withConfig({
-     shouldForwardProp: prop => ![].includes(prop),
+     shouldForwardProp: prop => ![
+       'marginTop',
+     ].includes(prop),
  })`
     margin: 0 auto 10px;
     width: 80%;
@@ -33,6 +35,13 @@
           color: #ffffff;
           outline: none;
         }
+      `
+    };
+
+    ${ props =>
+      props.marginTop &&
+      css`
+        margin-top: 1.75rem;
       `
     };
 `;

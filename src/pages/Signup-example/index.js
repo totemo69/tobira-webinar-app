@@ -1,55 +1,56 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
-import Layout from '@/components/Elements/Layout'
-import Content from '@/components/Elements/Content'
-import Title from '@/components/Elements/SampleTitle'
-import Form from '@/components/Elements/Form'
-import Input from '@/components/Elements/Input'
-import CheckBox from '@/components/Elements/CheckBox'
-import Link from '@/components/Elements/Link'
-import Button from '@/components/Elements/Button'
-import Label from '@/components/Elements/Label'
-import Div from '@/components/Elements/Div'
-import message from '@/messages/samplesignup'
-import { Row, Col } from 'antd'
+import message from '@/messages/samplesignup';
+
+import Layout from '@/components/Elements/Layout';
+import Content from '@/components/Elements/Content';
+import { Row, Col } from 'antd';
+import Form from '@/components/Elements/Form';
+import Title from '@/components/Elements/SampleTitle';
+import Div from '@/components/Elements/Div';
+import Labels from '@/components/Elements/Labels';
+import Input from '@/components/Elements/Input';
+import Link from '@/components/Elements/Link';
+import Button from '@/components/Elements/Button';
 
 export default function SignupSample() {
     const { t } = useTranslation();
+    console.log(message.signUp);
+    console.log(globalMessage.email);
     return (
         <>
             <Layout bgGray>
                 <Content bgNone>
                     <Row>
                         <Col span={12}>
-                            <Form>
-                                <Title marginBottom>{t(message.SignUp)}</Title>
-                                
-                                    <Label>{t(message.EmailAddress)}<span style={{color: 'red'}}>*</span></Label>
-                                    <Input id="email" type="email" placeholder={t(message.EmailAddress)}></Input>
-                               
-                                
-                                    <Label>{t(message.Username)}<span style={{color: 'red'}}>*</span></Label>
-                                    <Input id="email" type="email" placeholder={t(message.Username)}></Input>
-                               
-                                
-                                    <Label>{t(message.Password)}<span style={{color: 'red'}}>*</span></Label>
-                                    <Input id="password" type="password" placeholder={t(message.Password)}></Input>
-                                
-                                
-                                    <Label>{t(message.ConfirmPassword)}<span style={{color: 'red'}}>*</span></Label>
-                                    <Input id="password_confirm" type="password" placeholder={t(message.ConfirmPassword)}></Input>
-                               
-                                    <Div SignUp>
-                                    {t(message.AgreeMessage)} <Link href="#" name={t(message.TermsOfService)}></Link> {t(message.And)} <Link href="#" name={t(message.PrivacyPolicy)}></Link>
-                                    </Div>
-                                   
-                                    <Button type="primary">{t(message.SignUp)}</Button>
-                                
-                                    <Div LoginHere>
-                                        {t(message.HaveAccount)} <Link href="/Login-example" name={t(message.LoginHere)}></Link>
-                                    </Div>
-                                   
+                            <Form
+                                layout="vertical"
+                            >
+                                <Title marginBottom>{t(message.signUp)}</Title>
+                                <Div>
+                                    <Labels asterisk>{t(globalMessage.email)}</Labels>
+                                    <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                                </Div>
+                                <Div>
+                                    <Labels asterisk>{t(globalMessage.username)}</Labels>
+                                    <Input type="text" placeholder={t(globalMessage.enterUsername)}></Input>
+                                </Div>
+                                <Div>
+                                    <Labels asterisk>{t(globalMessage.password)}</Labels>
+                                    <Input type="password" placeholder={t(globalMessage.enterPassword)}></Input>
+                                </Div>
+                                <Div>
+                                    <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
+                                    <Input type="password" placeholder={t(globalMessage.confirmPassword)}></Input>
+                                </Div>
+                                <Div marginTop center>
+                                    {t(message.agreeMessage)} <Link href="#" name={t(message.termsOfService)}></Link> {t(message.and)} <Link href="#" name={t(message.privacyPolicy)}></Link>.
+                                </Div>
+                                <Button type="primary" marginTop>{t(message.signUp)}</Button>
+                                <Div center>
+                                    {t(message.haveAccount)} <Link href="/Login-example" name={t(message.loginHere)}></Link>
+                                </Div>
                             </Form>
                         </Col>
                         <Col span={12}>

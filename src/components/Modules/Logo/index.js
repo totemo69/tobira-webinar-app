@@ -1,5 +1,3 @@
-
-
 import styled from 'styled-components'
 import LogoImage from 'Images/logo.svg'
 
