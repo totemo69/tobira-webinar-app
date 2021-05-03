@@ -13,6 +13,7 @@ import Label from '@/components/Elements/Label'
 import Div from '@/components/Elements/Div'
 import message from '@/messages/samplesignup'
 import { Row, Col } from 'antd'
+import Logo from '../../images/svg/logo.svg'
 
 export default function SignupSample() {
     const { t } = useTranslation();
@@ -54,6 +55,7 @@ export default function SignupSample() {
                         </Col>
                         <Col span={12}>
                             <Title logo>WEBINAR</Title>
+                            <Logo></Logo>
                         </Col>
                     </Row>
                 </Content>
