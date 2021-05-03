@@ -4,5 +4,18 @@
   },
   "storybook" : {
     "title": "題名"
+  },
+  "SampleSignup" : {
+    "And":  "そして",
+    "AgreeMessage":  "サインアップすると、",
+    "ConfirmPassword":  "パスワードを認証する",
+    "EmailAddress": "電子メールアドレス",
+    "LoginHere":  "ここでログイン",
+    "PrivacyPolicy": "個人情報保護方針。",
+    "Password":  "パスワード",
+    "SignUp":  "サインアップ",
+    "TermsOfService":  "利用規約",
+    "Username":  "ユーザー名",
+    "HaveAccount":  "すでにアカウントをお持ちですか？"
   }
 }

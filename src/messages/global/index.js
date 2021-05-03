@@ -6,10 +6,7 @@ const message = {
     default: 'This is header'
   }),
 
-  SignUp: Object.values({
-    key: `${scope}.Button`,
-    default: 'Sign Up'
-  })
+  
 }
 
 export default message;
