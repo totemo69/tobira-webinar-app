@@ -8,12 +8,41 @@ import  { Typography } from 'antd'
 const { Title } = Typography;
 
 const SampleTitle = styled(Title).withConfig({
-    shouldForwardProp: prop => ![].includes(prop),
+    shouldForwardProp: prop => ![
+        'logo',
+        'marginBottom',
+    ].includes(prop),
 })
 `
     font-family: Poppins;
-    font-weigth: Bold;
-    color: red;
+    &.ant-typography {
+        color: #4e4e4e;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        
+    };
+
+    ${props => 
+        props.logo && 
+        css`
+            font-family: Segoe UI;
+            &.ant-typography {
+                color: #0e71eb;
+                letter-spacing: 0.72px;
+            }
+           
+        `
+    };
+
+    ${props => 
+        props.marginBottom && 
+        css`
+            &.ant-typography{
+                margin-bottom: 3rem;
+            }
+           
+        `
+    };
     
 `;
 

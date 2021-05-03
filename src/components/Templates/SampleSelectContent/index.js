@@ -1,8 +1,5 @@
 import styled, {css} from 'styled-components'
-
 import { Select } from 'antd'
-
-
 
 
 const StyledSelect = styled(Select).withConfig({

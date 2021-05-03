@@ -8,11 +8,20 @@
  import { Layout } from 'antd';
 
  const StyledLayout = styled(Layout).withConfig({
-     shouldForwardProp: prop => ![].includes(prop),
+     shouldForwardProp: prop => ![
+         'bgGray',
+     ].includes(prop),
  })`
     width: 100%;
     height: 100%;
-    background-color: #fffff;
+    background-color: #ffffff;
+
+    ${props =>
+        props.bgGray &&
+        css`
+            background-color: #f3f3f3;
+        `
+    };
  `;
 
 export default StyledLayout;

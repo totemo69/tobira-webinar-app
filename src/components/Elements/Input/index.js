@@ -15,19 +15,22 @@
     margin: 0 auto 10px;
     width: 80%;
     height: 40px;
-    border-radius: 5px;
-    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #b0b0b0;
+    font-size: 12px;
     &:hover {
         border-color: #0e71eb;
     }
     &:focus {
-        border: 2px solid #0e71eb;
+        border: 1px solid #0e71eb;
+        box-shadow: 0px 1px 1px #0E71EB;
     }
 
     ${props =>
         props.error &&
         css`
-            border: 2px solid #ef4444;
+            border: 1px solid #ff0033;
     `};
 `;
  
