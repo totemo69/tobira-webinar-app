@@ -6,7 +6,16 @@
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./src --ignore-path .gitignore --ext ts --ext tsx --ext js"
+    "lint": "eslint ./src --ignore-path .gitignore --ext ts --ext tsx --ext js",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": "npm run lint"
+  },
+  "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
@@ -37,6 +46,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.23.2",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "redux-devtools-extension": "^2.13.9"
   }
 }
