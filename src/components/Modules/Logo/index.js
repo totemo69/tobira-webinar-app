@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import LogoImage from 'Images/logo.svg'
+import styled from 'styled-components';
+import LogoImage from 'Images/logo.svg';
 
 
 const StyledImage = styled.img`
@@ -10,9 +10,9 @@ const StyledImage = styled.img`
 `;
 
 function Logo(){
-    return <StyledImage src={LogoImage} alt="Tobira Logo" />;
+  return <StyledImage src={LogoImage} alt="Tobira Logo" />;
 }
 
-Logo.propTypes = {}
+Logo.propTypes = {};
 
 export default Logo;

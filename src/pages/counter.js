@@ -27,7 +27,7 @@ export function Counter({ count, doIncrement, doDecrement, doReset }) {
       <button onClick={() => doReset()}>Reset</button>
     </div>
   );
-};
+}
 
 Counter.propTypes = {
   count: PropTypes.any,

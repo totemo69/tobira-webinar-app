@@ -4,14 +4,14 @@
  *
  */
 
- import styled, { css } from 'styled-components';
- import { Input } from 'antd';
+import styled, { css } from 'styled-components';
+import { Input } from 'antd';
 
- const StyledInput = styled(Input).withConfig({
-     shouldForwardProp: prop => ![
-         'error',
-     ].includes(prop),
- })`
+const StyledInput = styled(Input).withConfig({
+  shouldForwardProp: prop => ![
+    'error',
+  ].includes(prop),
+})`
     margin: 0 auto 10px;
     width: 100%;
     height: 40px;
@@ -28,7 +28,7 @@
     }
 
     ${props =>
-        props.error &&
+    props.error &&
         css`
             border: 1px solid #ff0033;
     `};

@@ -4,14 +4,14 @@
  *
  */
 
- import styled, { css } from 'styled-components';
- import { Select } from 'antd';
+import styled, { css } from 'styled-components';
+import { Select } from 'antd';
 
- const StyledSelect = styled(Select).withConfig({
-     shouldForwardProp: prop => ![
-         'error'
-     ].includes(prop),
- })`
+const StyledSelect = styled(Select).withConfig({
+  shouldForwardProp: prop => ![
+    'error'
+  ].includes(prop),
+})`
     margin: 0 auto 10px;
     width: 80%;
     border-radius: 5px;
@@ -24,7 +24,7 @@
     }
 
     ${props =>
-        props.error &&
+    props.error &&
         css`
             border: 2px solid #ef4444;
     `};

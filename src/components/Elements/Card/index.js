@@ -4,16 +4,16 @@
  *
  */
 
- import PropTypes from 'prop-types';
- import styled, { css } from 'styled-components';
- import { Card } from 'antd';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
+import { Card } from 'antd';
  
- const StyledCard = styled(Card).withConfig({
-   shouldForwardProp: prop => ![
-     'PaddingTop',
-     'SignUp'
+const StyledCard = styled(Card).withConfig({
+  shouldForwardProp: prop => ![
+    'PaddingTop',
+    'SignUp'
   ].includes(prop),
- })`
+})`
    .ant-card-head-title {
      padding: 10px 0 0 0;
    }
@@ -26,21 +26,21 @@
    
  
    ${props =>
-     props.PaddingTop &&
+    props.PaddingTop &&
      css`
        padding-top: 20px;
      `};
      
  `;
  
- const StyledMeta = styled(Card.Meta)`
+const StyledMeta = styled(Card.Meta)`
    padding: 10px;
  `;
  
- StyledCard.propTypes = {
-   PaddingTop: PropTypes.any,
- };
- StyledMeta.propTypes = {};
+StyledCard.propTypes = {
+  PaddingTop: PropTypes.any,
+};
+StyledMeta.propTypes = {};
  
- export default StyledCard;
+export default StyledCard;
  

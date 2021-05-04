@@ -4,39 +4,39 @@
  *
  */
 
- import PropTypes from 'prop-types';
- import styled, { css } from 'styled-components';
- import { Button } from 'antd';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
+import { Button } from 'antd';
  
- /* istanbul ignore next */
- const StyledButton = styled(Button).withConfig({
-   shouldForwardProp: prop =>
-     ![
-       'square',
-       'hazard',
-       'round',
-       'circle',
-       'underline',
-       'noPaddingTop',
-       'noMarginTop',
-       'noMargin',
-       'noPadding',
-       'facebook',
-       'twitter',
-       'line',
-       'google',
-       'fullWidth',
-       'mini',
-       'addFadeTransition',
-       'semiFullWidth',
-       'primary',
-       'active',
-       'autoWidth',
-       'secondary',
-       'quarterFullWidth',
-       'Isdisabled'
-     ].includes(prop),
- })`
+/* istanbul ignore next */
+const StyledButton = styled(Button).withConfig({
+  shouldForwardProp: prop =>
+    ![
+      'square',
+      'hazard',
+      'round',
+      'circle',
+      'underline',
+      'noPaddingTop',
+      'noMarginTop',
+      'noMargin',
+      'noPadding',
+      'facebook',
+      'twitter',
+      'line',
+      'google',
+      'fullWidth',
+      'mini',
+      'addFadeTransition',
+      'semiFullWidth',
+      'primary',
+      'active',
+      'autoWidth',
+      'secondary',
+      'quarterFullWidth',
+      'Isdisabled'
+    ].includes(prop),
+})`
    width: 80%;
    border-radius: 5px;
    border: 0px;
@@ -52,7 +52,7 @@
    }
  
    ${props =>
-     props.primary &&
+    props.primary &&
      css`
        background-color: #2675fc;
      `};
@@ -62,10 +62,10 @@
     css`
       background-color: #ABC9EE
     `
-  };
+};
 
    ${props =>
-     props.square &&
+    props.square &&
      css`
        border: 2px solid #494737;
        border-radius: 5px;
@@ -74,7 +74,7 @@
      `};
  
    ${props =>
-     props.round &&
+    props.round &&
      css`
        border: 1px solid #494737;
        border-radius: 50px;
@@ -84,7 +84,7 @@
      `};
  
    ${props =>
-     props.circle &&
+    props.circle &&
      css`
        border: 1px solid black;
        border-radius: 50px;
@@ -93,7 +93,7 @@
      `};
  
    ${props =>
-     props.hazard &&
+    props.hazard &&
      css`
        color: #ff4d4f;
        background: #fff;
@@ -104,7 +104,7 @@
      `};
  
    ${props =>
-     props.size === 'large' ||
+    props.size === 'large' ||
      (props.autoWidth &&
        css`
          height: auto;
@@ -112,37 +112,37 @@
        `)};
  
    ${props =>
-     props.semiFullWidth &&
+    props.semiFullWidth &&
      css`
        min-width: 70% !important;
      `};
  
    ${props =>
-     props.quarterFullWidth &&
+    props.quarterFullWidth &&
      css`
        min-width: 40% !important;
      `};
  
    ${props =>
-     props.fullWidth &&
+    props.fullWidth &&
      css`
        min-width: 100%;
      `};
  
    ${props =>
-     props.noMargin &&
+    props.noMargin &&
      css`
        margin: 0px;
      `};
  
    ${props =>
-     props.noPadding &&
+    props.noPadding &&
      css`
        padding: 0px;
      `};
  
    ${props =>
-     props.ghost &&
+    props.ghost &&
      css`
        border: 1px solid black;
        ${props.secondary &&
@@ -156,49 +156,49 @@
      `};
  
    ${props =>
-     props.underline &&
+    props.underline &&
      css`
        span {
          text-decoration: underline;
        }
      `};
    ${props =>
-     props.noMarginTop &&
+    props.noMarginTop &&
      css`
        margin-top: 0px;
      `};
    ${props =>
-     props.noPaddingTop &&
+    props.noPaddingTop &&
      css`
        padding-top: 0px;
      `};
  
    ${props =>
-     props.facebook &&
+    props.facebook &&
      css`
        background-color: #4963a0;
      `};
  
    ${props =>
-     props.google &&
+    props.google &&
      css`
        background-color: #dd4337;
      `};
  
    ${props =>
-     props.line &&
+    props.line &&
      css`
        background-color: #00b900;
      `};
  
    ${props =>
-     props.twitter &&
+    props.twitter &&
      css`
        background-color: #1da1f3;
      `};
  
    ${props =>
-     props.type === 'text' &&
+    props.type === 'text' &&
      css`
        &:hover {
          background-color: transparent;
@@ -206,7 +206,7 @@
      `};
  
    ${props =>
-     props.mini &&
+    props.mini &&
      css`
        width: auto;
        height: auto;
@@ -226,7 +226,7 @@
      `};
  
    ${props =>
-     props.mini &&
+    props.mini &&
      props.active &&
      css`
        color: #fffc1c;
@@ -238,7 +238,7 @@
      `};
  
    ${props =>
-     props.mini &&
+    props.mini &&
      props.secondary &&
      props.active &&
      css`
@@ -256,7 +256,7 @@
    }
  
    ${props =>
-     props.addFadeTransition &&
+    props.addFadeTransition &&
      css`
        animation: fadein 1.6s;
      `};
@@ -265,25 +265,25 @@
 
   
  
- StyledButton.propTypes = {
-   square: PropTypes.any,
-   hazard: PropTypes.any,
-   round: PropTypes.any,
-   circle: PropTypes.bool,
-   underline: PropTypes.bool,
-   facebook: PropTypes.bool,
-   google: PropTypes.bool,
-   line: PropTypes.bool,
-   twitter: PropTypes.bool,
-   noMarginTop: PropTypes.any,
-   noPaddingTop: PropTypes.any,
-   noMargin: PropTypes.any,
-   noPadding: PropTypes.any,
-   type: PropTypes.string,
-   fullWidth: PropTypes.bool,
-   active: PropTypes.bool,
-   autoWidth: PropTypes.bool,
-   secondary: PropTypes.bool,
- };
- export default StyledButton;
+StyledButton.propTypes = {
+  square: PropTypes.any,
+  hazard: PropTypes.any,
+  round: PropTypes.any,
+  circle: PropTypes.bool,
+  underline: PropTypes.bool,
+  facebook: PropTypes.bool,
+  google: PropTypes.bool,
+  line: PropTypes.bool,
+  twitter: PropTypes.bool,
+  noMarginTop: PropTypes.any,
+  noPaddingTop: PropTypes.any,
+  noMargin: PropTypes.any,
+  noPadding: PropTypes.any,
+  type: PropTypes.string,
+  fullWidth: PropTypes.bool,
+  active: PropTypes.bool,
+  autoWidth: PropTypes.bool,
+  secondary: PropTypes.bool,
+};
+export default StyledButton;
  

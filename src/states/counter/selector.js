@@ -7,20 +7,20 @@ const selectCounterDomain = state => state.counter || initialState;
  * Default selector used by Counter
  */
 
- const makeSelectCounter = () =>
- createSelector(
-  selectCounterDomain,
-   substate => substate,
- );
+const makeSelectCounter = () =>
+  createSelector(
+    selectCounterDomain,
+    substate => substate,
+  );
 
- const makeSelectCount = () =>
+const makeSelectCount = () =>
   createSelector(
     selectCounterDomain,
     substate => substate.count,
   );
 
- export default makeSelectCounter;
+export default makeSelectCounter;
 
- export {
+export {
   makeSelectCount,
 };

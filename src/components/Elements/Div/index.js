@@ -1,4 +1,4 @@
-import style, {css} from 'styled-components'
+import style, {css} from 'styled-components';
 
 const StyledDiv = style.div`
     margin: 0.25rem 0 0;
@@ -8,14 +8,14 @@ const StyledDiv = style.div`
     letter-spacing: 0.24px;
 
     ${props => 
-        props.marginTop && 
+    props.marginTop && 
         css`
             margin-top: 1rem;
         `
     };
 
     ${props => 
-        props.marginY && 
+    props.marginY && 
         css`
             margin-top: 1rem;
             margin-bottom: 1rem;
@@ -23,19 +23,19 @@ const StyledDiv = style.div`
     };
 
     ${props => 
-        props.center && 
+    props.center && 
         css`
             text-align: center;
         `
     };
 
     ${props => 
-        props.betweenCenter && 
+    props.betweenCenter && 
         css`
             display: flex;
             justify-content: space-between;
             align-items: center;
         `
     };
-`
+`;
 export default StyledDiv;

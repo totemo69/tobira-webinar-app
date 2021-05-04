@@ -4,15 +4,14 @@
  *
  */
 
- import PropTypes from 'prop-types';
- import styled, { css } from 'styled-components';
- import { Button } from 'antd';
+import styled, { css } from 'styled-components';
+import { Button } from 'antd';
 
- const StyledButton = styled(Button).withConfig({
-     shouldForwardProp: prop => ![
-       'marginTop',
-     ].includes(prop),
- })`
+const StyledButton = styled(Button).withConfig({
+  shouldForwardProp: prop => ![
+    'marginTop',
+  ].includes(prop),
+})`
     margin: 0 auto 10px;
     width: 80%;
     height: 40px;
@@ -23,7 +22,7 @@
     box-shadow: 0px 2px 4px #00000029;
     
     ${ props =>
-      props.type === 'primary' &&
+    props.type === 'primary' &&
       css`
         background-color: #0e71eb;
         &:hover {
@@ -36,14 +35,14 @@
           outline: none;
         }
       `
-    };
+};
 
     ${ props =>
-      props.marginTop &&
+    props.marginTop &&
       css`
         margin-top: 1.75rem;
       `
-    };
+};
 `;
  
 export default StyledButton;
