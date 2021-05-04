@@ -12,6 +12,8 @@ import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
+import Logo from '@/components/Elements/Logo';
+
 
 export default function SignupSample() {
   const { t } = useTranslation();
@@ -26,6 +28,7 @@ export default function SignupSample() {
               <Form
                 layout="vertical"
               >
+                 
                 <Title marginBottom>{t(message.signUp)}</Title>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
@@ -53,8 +56,10 @@ export default function SignupSample() {
               </Form>
             </Col>
             <Col span={12}>
-              <Title logo>WEBINAR</Title>
+              <Logo src={"Images/logo.svg"}/>
+              <Logo path1 src={"Images/illustration1.svg"}/>
             </Col>
+            
           </Row>
         </Content>
       </Layout>

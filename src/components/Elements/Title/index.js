@@ -20,14 +20,15 @@ const SampleTitle = styled(Title).withConfig({
 
     ${props => 
     props.logo && 
-        css`
-            font-family: Segoe UI;
-            &.ant-typography {
-                color: #0e71eb;
-                letter-spacing: 0.72px;
-            }
-        `
-};
+    css`
+        font-family: Segoe UI;
+        &.ant-typography {
+            color: #0e71eb;
+            letter-spacing: 0.72px;
+        }
+           
+    `
+    };
 
     ${props => 
     props.marginBottom && 

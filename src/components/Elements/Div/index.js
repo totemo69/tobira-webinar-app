@@ -12,7 +12,7 @@ const StyledDiv = style.div`
         css`
             margin-top: 1rem;
         `
-    };
+};
 
     ${props => 
     props.marginBottom && 
@@ -27,14 +27,14 @@ const StyledDiv = style.div`
             margin-top: 1rem;
             margin-bottom: 1rem;
         `
-    };
+};
 
     ${props => 
     props.center && 
         css`
             text-align: center;
         `
-    };
+};
 
     ${props => 
     props.betweenCenter && 
