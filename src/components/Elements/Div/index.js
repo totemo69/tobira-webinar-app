@@ -15,6 +15,13 @@ const StyledDiv = style.div`
     };
 
     ${props => 
+    props.marginBottom && 
+        css`
+            margin-bottom: 1rem;
+        `
+    };
+
+    ${props => 
     props.marginY && 
         css`
             margin-top: 1rem;
@@ -35,6 +42,13 @@ const StyledDiv = style.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
+        `
+    };
+
+    ${props => 
+    props.lightText && 
+        css`
+            color: #b0b0b0;
         `
     };
 `;

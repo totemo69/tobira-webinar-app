@@ -40,7 +40,7 @@ export default function LoginSample() {
                 </Div>
                 <Div marginY betweenCenter>
                   <CheckBox content={t(message.rememberMe)}></CheckBox>
-                  <Link href="#" name={t(message.forgotPassword)}></Link>
+                  <Link href="/ForgotPassword-example" name={t(message.forgotPassword)}></Link>
                 </Div>
                 <Button type="primary">{t(message.login)}</Button>
                 <Div center>
@@ -49,7 +49,9 @@ export default function LoginSample() {
               </Form>
             </Col>
             <Col span={12}>
-              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+              <Div marginBottom>
+                <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+              </Div>
               <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
             </Col>
           </Row>
