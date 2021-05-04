@@ -28,12 +28,12 @@ const StyledTabPane = style(TabPane)`
 
 `;
 
-const TabsList = (content) =>{
+const TabsList = () =>{
     return (
         <>
             <StyledTab defaultActiveKey="1">
                 <StyledTabPane tab="Tab 1" key="1">
-                   {content}
+                  Content 1
                 </StyledTabPane>
                 <StyledTabPane tab="Tab 2" key="2">
                     Content 2
