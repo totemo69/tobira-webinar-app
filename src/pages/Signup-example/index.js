@@ -14,6 +14,7 @@ import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Logo from '@/components/Elements/Logo';
 
+
 export default function SignupSample() {
   const { t } = useTranslation();
   console.log(message.signUp);
