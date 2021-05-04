@@ -15,15 +15,31 @@ import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import Link from '@/components/Elements/Link';
+import DatePicker from '@/components/Elements/SampleDatePicker';
+import Modal from '@/components/Elements/SampleModal';
+import Tab from '@/components/Elements/SampleTab';
+import { useState } from 'react';
+
 
 export default function StoryBook() {
   const { t } = useTranslation();
   console.log(globalMessage.header);
   console.log(message.title);
+
+  const [ isModalVisible , setIsmModalVisible] = useState(false);
+
+  const ShowModal = () => {
+    setIsmModalVisible(true);
+  }
+
+  const handleOk = () => {
+    setIsmModalVisible(false);
+  }
   return (
     <>
       
       <Layout>
+       <Tab />
         <Header>{t(globalMessage.header)}</Header>
         <Layout>
           <Sidebar>
@@ -76,6 +92,15 @@ export default function StoryBook() {
                 <Option value="A">Option A</Option>
                 <Option value="B">Option B</Option>
               </Select>
+              
+            </div>
+            <div>
+            <DatePicker></DatePicker>
+            </div>
+
+            <div>
+              <Button onClick={ShowModal} type="primary">Show modal</Button>
+              <Modal visible={isModalVisible} onOk={handleOk}>this is a modal</Modal>
             </div>
           </Content>
         </Layout>
