@@ -11,7 +11,7 @@ const bindMiddleware = (middleware) => {
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
-}
+};
 
 export const makeStore = (context) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -20,6 +20,6 @@ export const makeStore = (context) => {
   store.sagaTask = sagaMiddleware.run(rootSaga);
 
   return store;
-}
+};
 
 export const wrapper = createWrapper(makeStore, { debug: true });

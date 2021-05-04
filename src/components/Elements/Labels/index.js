@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components'
+import styled, {css} from 'styled-components';
 
 const StyledLabels = styled.label`
     margin-bottom: 0.25rem;
@@ -10,7 +10,7 @@ const StyledLabels = styled.label`
     letter-spacing: 0.24px;
 
     ${ props =>
-        props.asterisk &&
+    props.asterisk &&
         css`
             &::after {
                 content: "*";
@@ -18,7 +18,7 @@ const StyledLabels = styled.label`
                 color: #ff0033;
             }
         `
-    }
+}
 `;
 
 

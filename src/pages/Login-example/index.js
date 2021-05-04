@@ -16,49 +16,49 @@ import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 
 export default function LoginSample() {
-    const { t } = useTranslation();
-    console.log(message.login);
-    console.log(globalMessage.email);
-    return (
-        <>
-            <Layout bgGray>
-                <Content bgNone>
-                    <Row>
-                        <Col span={12}>
-                            <Form
-                                layout="vertical"
-                            >
-                                <Title marginBottom>{t(message.login)}</Title>
-                                <Div>
-                                    <Labels asterisk>{t(globalMessage.email)}</Labels>
-                                    <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
-                                </Div>
-                                <Div>
-                                    <Labels asterisk>{t(globalMessage.password)}</Labels>
-                                    <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
-                                </Div>
-                                <Div marginY betweenCenter>
-                                    <CheckBox content={t(message.rememberMe)}></CheckBox>
-                                    <Link href="#" name={t(message.forgotPassword)}></Link>
-                                </Div>
-                                <Button type="primary">{t(message.login)}</Button>
-                                <Div center>
-                                    {t(message.createAccount)} <Link href="/Signup-example" name={t(message.signHere)}></Link>
-                                </Div>
-                            </Form>
-                        </Col>
-                        <Col span={12}>
-                            <Title logo>WEBINAR</Title>
-                        </Col>
-                    </Row>
-                </Content>
-            </Layout>
-        </>
-    )
+  const { t } = useTranslation();
+  console.log(message.login);
+  console.log(globalMessage.email);
+  return (
+    <>
+      <Layout bgGray>
+        <Content bgNone>
+          <Row>
+            <Col span={12}>
+              <Form
+                layout="vertical"
+              >
+                <Title marginBottom>{t(message.login)}</Title>
+                <Div>
+                  <Labels asterisk>{t(globalMessage.email)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                </Div>
+                <Div>
+                  <Labels asterisk>{t(globalMessage.password)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
+                </Div>
+                <Div marginY betweenCenter>
+                  <CheckBox content={t(message.rememberMe)}></CheckBox>
+                  <Link href="#" name={t(message.forgotPassword)}></Link>
+                </Div>
+                <Button type="primary">{t(message.login)}</Button>
+                <Div center>
+                  {t(message.createAccount)} <Link href="/Signup-example" name={t(message.signHere)}></Link>
+                </Div>
+              </Form>
+            </Col>
+            <Col span={12}>
+              <Title logo>WEBINAR</Title>
+            </Col>
+          </Row>
+        </Content>
+      </Layout>
+    </>
+  );
 }
 
 export const getStaticProps = async ({ locale }) => ({
-    props: {
-      ...await serverSideTranslations(locale, ['translation']),
-    },
-  })
+  props: {
+    ...await serverSideTranslations(locale, ['translation']),
+  },
+});

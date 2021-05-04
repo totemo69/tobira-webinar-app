@@ -1,12 +1,12 @@
 
 
-import styled, {css} from 'styled-components'
-import { Input } from 'antd'
+import styled from 'styled-components';
+import { Input } from 'antd';
 
 const { TextArea } = Input;
 
 const StyleTextArea = styled(TextArea).withConfig({
-    shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: prop => ![].includes(prop),
 })
 `
     width: 80%;

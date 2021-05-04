@@ -1,20 +1,20 @@
-import Page from '../components/page'
-import { initializeStore } from '../store'
+import Page from '../components/page';
+import { initializeStore } from '../store';
 
 export default function SSR(){
-    return <Page />
+  return <Page />;
 }
 
 
 export function getServerSideProps() {
-    const reduxeStore = initializeStore()
-    const { dispatch } = reduxeStore
+  const reduxeStore = initializeStore();
+  const { dispatch } = reduxeStore;
 
-    dispatch({
-        type: 'TICK',
-        light: false,
-        lastUpdate: Date.now(),
-    })
+  dispatch({
+    type: 'TICK',
+    light: false,
+    lastUpdate: Date.now(),
+  });
 
-    return { props: {initialReduxState: reduxeStore.getState() }}
+  return { props: {initialReduxState: reduxeStore.getState() }};
 }

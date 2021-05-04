@@ -4,16 +4,16 @@
  *
  */
 
- import styled, { css } from 'styled-components';
- import { Input } from 'antd';
+import styled, { css } from 'styled-components';
+import { Input } from 'antd';
 
- const { TextArea } = Input;
+const { TextArea } = Input;
 
- const StyledTextArea = styled(TextArea).withConfig({
-     shouldForwardProp: prop => ![
-         'error'
-     ].includes(prop),
- })`
+const StyledTextArea = styled(TextArea).withConfig({
+  shouldForwardProp: prop => ![
+    'error'
+  ].includes(prop),
+})`
     margin: 0 auto 10px;
     border-radius: 5px;
     border: 1px solid #d1d5db;
@@ -25,7 +25,7 @@
     }
 
     ${props =>
-        props.error &&
+    props.error &&
         css`
             border: 2px solid #ef4444;
     `};

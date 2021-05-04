@@ -6,6 +6,6 @@ const message = {
     default: 'This is a title'
   }),
 
-}
+};
 
 export default message;

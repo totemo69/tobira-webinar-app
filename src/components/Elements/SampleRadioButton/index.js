@@ -1,11 +1,9 @@
-
-
-import styled, {css} from 'styled-components'
-import { Radio } from 'antd'
+import styled from 'styled-components';
+import { Radio } from 'antd';
 
 
 const StyledRadioButton = styled(Radio).withConfig({
-    shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: prop => ![].includes(prop),
 })
 `
 `;

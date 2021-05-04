@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { connect } from 'react-redux'
-import Clock from './Clock'
-import AddCount from './AddCount'
+import Link from 'next/link';
+import { connect } from 'react-redux';
+import Clock from './Clock';
+import AddCount from './AddCount';
 
 const Page = ({ title, linkTo, tick }) => (
   <div>
@@ -14,6 +14,6 @@ const Page = ({ title, linkTo, tick }) => (
       </Link>
     </nav>
   </div>
-)
+);
 
-export default connect((state) => state)(Page)
+export default connect((state) => state)(Page);

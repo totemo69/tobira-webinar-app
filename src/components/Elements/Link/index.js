@@ -4,10 +4,10 @@
  *
  */
 
- import Link from 'next/link'
- import styled, { css } from 'styled-components';
+import Link from 'next/link';
+import styled from 'styled-components';
 
- const BlueLink = styled.a`
+const BlueLink = styled.a`
     color: #0e71eb;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -17,14 +17,14 @@
     &:hover {
         color: #0e71eb;
     }
- `
+ `;
 
- const NavLink = ({ href, name }) => {
-     return (
-         <Link href={href} passHref>
-            <BlueLink>{name}</BlueLink>
-         </Link>
-     );
- }
+const NavLink = ({ href, name }) => {
+  return (
+    <Link href={href} passHref>
+      <BlueLink>{name}</BlueLink>
+    </Link>
+  );
+};
   
- export default NavLink;
+export default NavLink;
