@@ -14,7 +14,7 @@ import Checkbox from '@/components/Elements/Checkbox';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
-import Link from '@/components/Elements/Link'
+import Link from '@/components/Elements/Link';
 
 export default function StoryBook() {
   const { t } = useTranslation();
@@ -82,11 +82,11 @@ export default function StoryBook() {
         <Footer>This is the footer</Footer>
       </Layout>
     </>
-  )
+  );
 }
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
     ...await serverSideTranslations(locale, ['translation']),
   },
-})
+});

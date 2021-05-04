@@ -4,14 +4,14 @@
  *
  */
 
- import styled, { css } from 'styled-components';
- import { Select } from 'antd';
+import styled from 'styled-components';
+import { Select } from 'antd';
 
 const { Option } = Select;
 
- const StyledOption = styled(Option).withConfig({
-     shouldForwardProp: prop => ![].includes(prop),
- })`
+const StyledOption = styled(Option).withConfig({
+  shouldForwardProp: prop => ![].includes(prop),
+})`
     /***type here**/
  `;
  

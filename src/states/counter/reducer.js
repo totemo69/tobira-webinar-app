@@ -12,17 +12,17 @@ export const initialState = {
 const counter = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case INCREMENT:
-        draft.count = draft.count + 1;
-        break;
-      case DECREMENT:
-        draft.count = draft.count - 1;
-        break;
-      case RESET:
-        draft.count = 0;
-        break;
-      default:
-        draft.count;
+    case INCREMENT:
+      draft.count = draft.count + 1;
+      break;
+    case DECREMENT:
+      draft.count = draft.count - 1;
+      break;
+    case RESET:
+      draft.count = 0;
+      break;
+    default:
+      draft.count;
     }
   });
 

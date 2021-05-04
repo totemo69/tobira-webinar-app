@@ -1,14 +1,14 @@
-import styled, {css} from 'styled-components'
-import  { Typography } from 'antd'
+import styled, {css} from 'styled-components';
+import  { Typography } from 'antd';
 
 
 const { Title } = Typography;
 
 const SampleTitle = styled(Title).withConfig({
-    shouldForwardProp: prop => ![
-        'logo',
-        'marginBottom',
-    ].includes(prop),
+  shouldForwardProp: prop => ![
+    'logo',
+    'marginBottom',
+  ].includes(prop),
 })
 `
     font-family: Poppins;
@@ -20,19 +20,19 @@ const SampleTitle = styled(Title).withConfig({
     };
 
     ${props => 
-        props.logo && 
-        css`
-            font-family: Segoe UI;
-            &.ant-typography {
-                color: #0e71eb;
-                letter-spacing: 0.72px;
-            }
+    props.logo && 
+    css`
+        font-family: Segoe UI;
+        &.ant-typography {
+            color: #0e71eb;
+            letter-spacing: 0.72px;
+        }
            
-        `
+    `
     };
 
     ${props => 
-        props.marginBottom && 
+    props.marginBottom && 
         css`
             &.ant-typography{
                 margin-bottom: 3rem;

@@ -13,9 +13,9 @@
     "src/**/*.{ts,tsx}": "npm run lint"
   },
   "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged"
-      }
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",

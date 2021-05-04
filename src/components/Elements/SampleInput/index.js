@@ -1,11 +1,9 @@
-
-
-import styled, {css} from 'styled-components'
-import { Input } from 'antd'
+import styled from 'styled-components';
+import { Input } from 'antd';
 
 
 const StyledInput = styled(Input).withConfig({
-    shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: prop => ![].includes(prop),
 })
 `
     border-radius: 10px;

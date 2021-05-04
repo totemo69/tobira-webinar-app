@@ -4,12 +4,12 @@
  *
  */
 
- import styled, { css } from 'styled-components';
- import { Radio } from 'antd';
+import styled from 'styled-components';
+import { Radio } from 'antd';
 
- const StyledRadio = styled(Radio).withConfig({
-     shouldForwardProp: prop => ![].includes(prop),
- })`
+const StyledRadio = styled(Radio).withConfig({
+  shouldForwardProp: prop => ![].includes(prop),
+})`
     /***type here**/
  `;
  
