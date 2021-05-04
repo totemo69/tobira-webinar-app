@@ -7,7 +7,9 @@
     "enterPassword":  "パスワードを入力してください",
     "username":  "ユーザー名",
     "enterUsername":  "ユーザー名を入力して下さい",
-    "confirmPassword":  "パスワードを認証する"
+    "confirmPassword":  "パスワードを認証する",
+    "forgotPassword":  "パスワードをお忘れですか？",
+    "sendEmail":  "メールを送る"
   },
   "storybook" : {
     "title": "題名"
@@ -24,8 +26,11 @@
   "loginsample" : {
     "login":  "ログイン",
     "rememberMe":  "私を覚えてますか",
-    "forgotPassword":  "パスワードをお忘れですか？",
     "createAccount":  "アカウントを作成する？",
     "signHere":  "ここでサインアップ"
+  },
+  "forgotpasswordsample" : {
+    "forgotPasswordText":  "メールアドレスを入力すると、新しいアドレスを設定する手順が記載されたメールが送信されます",
+    "goToLogin":  "ログインに戻る"
   }
 }

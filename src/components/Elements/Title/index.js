@@ -1,7 +1,6 @@
 import styled, {css} from 'styled-components';
 import  { Typography } from 'antd';
 
-
 const { Title } = Typography;
 
 const SampleTitle = styled(Title).withConfig({
@@ -37,9 +36,8 @@ const SampleTitle = styled(Title).withConfig({
             &.ant-typography{
                 margin-bottom: 3rem;
             }
-           
         `
-    };
+};
     
 `;
 

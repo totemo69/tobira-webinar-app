@@ -9,10 +9,6 @@ const message = {
     key: `${scope}.rememberMe`,
     default: 'Remember Me'
   }),
-  forgotPassword: Object.values({
-    key: `${scope}.forgotPassword`,
-    default: 'Forgot password?'
-  }),
   createAccount: Object.values({
     key: `${scope}.createAccount`,
     default: 'Create an account?'
