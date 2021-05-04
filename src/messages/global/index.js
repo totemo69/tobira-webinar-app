@@ -33,7 +33,14 @@ const message = {
     key: `${scope}.confirmPassword`,
     default: 'Confirm password'
   }),
-  
+  forgotPassword: Object.values({
+    key: `${scope}.forgotPassword`,
+    default: 'Forgot Password?'
+  }),
+  sendEmail: Object.values({
+    key: `${scope}.sendEmail`,
+    default: 'Send email'
+  }),
 };
 
 export default message;

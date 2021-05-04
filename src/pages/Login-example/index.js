@@ -40,7 +40,7 @@ export default function LoginSample() {
                 </Div>
                 <Div marginY betweenCenter>
                   <CheckBox content={t(message.rememberMe)}></CheckBox>
-                  <Link href="/ForgotPassword-example" name={t(message.forgotPassword)}></Link>
+                  <Link href="/ForgotPassword-example" name={t(globalMessage.forgotPassword)}></Link>
                 </Div>
                 <Button type="primary">{t(message.login)}</Button>
                 <Div center>

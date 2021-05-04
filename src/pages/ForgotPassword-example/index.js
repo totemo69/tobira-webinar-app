@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
-import message from '@/messages/loginsample';
+import message from '@/messages/forgotpasswordsample';
 
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
@@ -26,15 +26,15 @@ export default function LoginSample() {
               <Form
                 layout="vertical"
               >
-                <Title>Forgot Password?</Title>
-                <Div marginY lightText>Enter your email address and we'll send you an email with instructions for setting a new one.</Div>
+                <Title>{t(globalMessage.forgotPassword)}</Title>
+                <Div marginY lightText>{t(message.forgotPasswordText)}.</Div>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
                   <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
                 </Div>
-                <Button type="primary" marginTop>{t(message.login)}</Button>
+                <Button type="primary" marginTop>{t(globalMessage.sendEmail)}</Button>
                 <Div marginTop center>
-                    <Link href="/Login-example" name="Go back to Log in"></Link>
+                    <Link href="/Login-example" name={t(message.goToLogin)}></Link>
                 </Div>
               </Form>
             </Col>
