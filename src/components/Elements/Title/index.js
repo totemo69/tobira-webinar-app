@@ -8,6 +8,7 @@ const SampleTitle = styled(Title).withConfig({
     'logo',
     'marginBottom',
     'TermsOfService',
+    'privacypolicyHeader',
   ].includes(prop),
 })
 `
@@ -50,11 +51,28 @@ const SampleTitle = styled(Title).withConfig({
                     color: #0E71EB;
                     opacity: 1;
                     text-align: center;
+                    margin-top: 45.84px;
+                    
                 }
                
             `
         };
-};
+
+        ${props => 
+            props.privacypolicyHeader &&
+            css`
+            &.ant-typography{
+                color: #0E71EB;
+                font: normal normal 600 20px/30px Poppins;
+                letter-spacing: 0.4px;
+                color: #0E71EB;
+                opacity: 1;
+                text-align: center;
+                margin-top: 45.84px;
+             }
+            
+         `
+        };
     
 `;
 

@@ -44,7 +44,6 @@ const StyledDiv = style.div`
             align-items: center;
         `
 };
-<<<<<<< HEAD
     ${props => 
     props.TermsOfService && 
             css`
@@ -54,30 +53,66 @@ const StyledDiv = style.div`
                 height: 377px;
                 margin-left: auto;
                 margin-right: auto;
-                margin-top: 140px;
-                
+                margin-top: 50px;
+                margin-bottom: 84.96px;
+                font: normal normal normal 12px/18px Poppins;
+                letter-spacing: 0.48px;
+                color: #000000;
+                opacity: 1;
             `
 };
 
-        ${props => 
-    props.contentTOS &&
-                css`
-                  width: 960px;
-                  height: 675px;
-                  margin-left: auto;
-                  margin-right: auto;
-                  margin-top: 42.16px;
-                  backgroun-color: #FFFFFF;
-                `
-};
-=======
+    ${props => 
+        props.contentTOS &&
+        css`
+            width: 960px;
+            height: 675px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 42.16px;
+            backgroun-color: #FFFFFF;
+            padding: 10px;
+        `
+    };
 
     ${props => 
-    props.lightText && 
+        props.lightText && 
         css`
             color: #b0b0b0;
+            `
+    };
+
+    ${props => 
+        props.privacyPolicyContent && 
+        css`
+            width: 879px;
+            height: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 42.16px;
+            backgroun-color: #FFFFFF;
+            font: normal normal normal 12px/18px Poppins;
+            letter-spacing: 0.48px;
+            color: #000000;
+            opacity: 1;
         `
-};
->>>>>>> 0d60e2e15a95c9213f3d9a7da0126d1543d5ffb2
+    };
+
+    ${props => 
+        props.Triangle && 
+        css`
+            border: 1px solid #0E71EB;
+            width: 879px;
+            height: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 26.16px;
+            border-left: none;
+            border-right: none;
+            opacity: .5;
+
+            
+        `
+    }
 `;
 export default StyledDiv;
