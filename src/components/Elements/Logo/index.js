@@ -5,7 +5,8 @@ import styled, {css} from 'styled-components';
 
 const StyledImage = styled.img.withConfig({
   shouldForwardProp: prop => ![
-    'path1'
+    'path1',
+    'TermsOfService'
   ].includes(prop)
 })`
     width: 500px;
@@ -22,7 +23,16 @@ const StyledImage = styled.img.withConfig({
         margin-bottom: 1vh;
   
       `
-};
+    };
+
+    ${props => 
+      props.TermsOfService && 
+      css`
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      `
+    };
 `;
 
 

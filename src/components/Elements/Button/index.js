@@ -10,6 +10,7 @@ import { Button } from 'antd';
 const StyledButton = styled(Button).withConfig({
   shouldForwardProp: prop => ![
     'marginTop',
+    'TermsOfService',
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -35,14 +36,27 @@ const StyledButton = styled(Button).withConfig({
           outline: none;
         }
       `
-};
+  };
 
     ${ props =>
     props.marginTop &&
       css`
         margin-top: 1.75rem;
       `
-};
+  };
+
+  ${ props =>
+    props.TermsOfService &&
+      css`
+        width: 387.5px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 86.4px;
+        
+      `
+  };
 `;
  
 export default StyledButton;

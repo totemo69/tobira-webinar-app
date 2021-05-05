@@ -8,6 +8,7 @@ const SampleTitle = styled(Title).withConfig({
   shouldForwardProp: prop => ![
     'logo',
     'marginBottom',
+    'TermsOfService',
   ].includes(prop),
 })
 `
@@ -40,6 +41,21 @@ const SampleTitle = styled(Title).withConfig({
            
         `
     };
+
+    ${props => 
+        props.TermsOfService && 
+            css`
+                &.ant-typography{
+                   color: #0E71EB;
+                   font: normal normal 600 20px/30px Poppins;
+                    letter-spacing: 0.4px;
+                    color: #0E71EB;
+                    opacity: 1;
+                    text-align: center;
+                }
+               
+            `
+        };
     
 `;
 
