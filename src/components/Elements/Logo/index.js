@@ -23,16 +23,16 @@ const StyledImage = styled.img.withConfig({
         margin-bottom: 1vh;
   
       `
-    };
+};
 
     ${props => 
-      props.TermsOfService && 
+    props.TermsOfService && 
       css`
         display: block;
         margin-left: auto;
         margin-right: auto;
       `
-    };
+};
 `;
 
 

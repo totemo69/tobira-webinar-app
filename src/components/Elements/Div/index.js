@@ -12,7 +12,14 @@ const StyledDiv = style.div`
         css`
             margin-top: 1rem;
         `
-    };
+};
+
+    ${props => 
+    props.marginBottom && 
+        css`
+            margin-bottom: 1rem;
+        `
+};
 
     ${props => 
     props.marginY && 
@@ -20,14 +27,14 @@ const StyledDiv = style.div`
             margin-top: 1rem;
             margin-bottom: 1rem;
         `
-    };
+};
 
     ${props => 
     props.center && 
         css`
             text-align: center;
         `
-    };
+};
 
     ${props => 
     props.betweenCenter && 
@@ -36,9 +43,10 @@ const StyledDiv = style.div`
             justify-content: space-between;
             align-items: center;
         `
-    };
+};
+<<<<<<< HEAD
     ${props => 
-        props.TermsOfService && 
+    props.TermsOfService && 
             css`
                 background: #FFFFFF 0% 0% no-repeat padding-box;
                 opacity: 1;
@@ -49,10 +57,10 @@ const StyledDiv = style.div`
                 margin-top: 140px;
                 
             `
-        };
+};
 
         ${props => 
-            props.contentTOS &&
+    props.contentTOS &&
                 css`
                   width: 960px;
                   height: 675px;
@@ -61,6 +69,15 @@ const StyledDiv = style.div`
                   margin-top: 42.16px;
                   backgroun-color: #FFFFFF;
                 `
-            };
+};
+=======
+
+    ${props => 
+    props.lightText && 
+        css`
+            color: #b0b0b0;
+        `
+};
+>>>>>>> 0d60e2e15a95c9213f3d9a7da0126d1543d5ffb2
 `;
 export default StyledDiv;

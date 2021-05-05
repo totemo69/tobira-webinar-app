@@ -36,14 +36,14 @@ const StyledButton = styled(Button).withConfig({
           outline: none;
         }
       `
-  };
+};
 
     ${ props =>
     props.marginTop &&
       css`
         margin-top: 1.75rem;
       `
-  };
+};
 
   ${ props =>
     props.TermsOfService &&
@@ -56,7 +56,7 @@ const StyledButton = styled(Button).withConfig({
         margin-top: 86.4px;
         
       `
-  };
+};
 `;
  
 export default StyledButton;

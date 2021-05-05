@@ -26,10 +26,10 @@ const StyledContent = styled(Content).withConfig({
         css`
             background-color: transparent;
         `
-    };
+};
 
     ${props => 
-      props.contentTOS &&
+    props.contentTOS &&
           css`
             width: 960px;
             height: 100vh;
@@ -39,14 +39,14 @@ const StyledContent = styled(Content).withConfig({
             margin-bottom: 50px;
             box-shadow: 0px 1px 2px #00000029;
           `
-      };
+};
 
       ${props => 
-        props.contentTOSgray &&
+    props.contentTOSgray &&
             css`
             background-color: #f3f3f3;
             `
-        };
+};
  `;
 
 export default StyledContent;

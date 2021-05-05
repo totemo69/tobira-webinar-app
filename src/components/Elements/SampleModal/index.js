@@ -9,7 +9,7 @@ import { Modal } from 'antd';
 
 
 const StyledModal = style(Modal).withConfig({
-    shouldForwardProp: prop => !['noPadding'].includes(prop),
+  shouldForwardProp: prop => !['noPadding'].includes(prop),
 })`
 
 .ant-modal-header {

@@ -16,11 +16,11 @@ const StyledFooter = styled(Footer).withConfig({
     background-color: #b0b0b0;
 
     ${props => 
-      props.TermsOfService && 
+    props.TermsOfService && 
       css`
         text-align: center;
       `
-    }
+}
  `;
 
 export default StyledFooter;

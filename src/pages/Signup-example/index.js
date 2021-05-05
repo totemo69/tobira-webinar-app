@@ -6,7 +6,7 @@ import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
 import { Row, Col } from 'antd';
 import Form from '@/components/Elements/Form';
-import Title from '@/components/Elements/SampleTitle';
+import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';

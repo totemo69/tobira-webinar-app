@@ -7,7 +7,9 @@
     "enterPassword":  "Enter your password",
     "username":  "Username",
     "enterUsername":  "Enter your username",
-    "confirmPassword":  "Confirm password"
+    "confirmPassword":  "Confirm password",
+    "forgotPassword":  "Forgot Password?",
+    "sendEmail":  "Send email"
   },
   "storybook" : {
     "title": "Title"
@@ -24,8 +26,11 @@
   "loginsample" : {
     "login":  "Log in",
     "rememberMe":  "Remember Me",
-    "forgotPassword":  "Forgot password?",
     "createAccount":  "Create an account?",
     "signHere":  "Sign up here"
+  },
+  "forgotpasswordsample" : {
+    "forgotPasswordText":  "Enter your email address and we'll send you an email with instructions for setting a new one",
+    "goToLogin":  "Go Back To Log in"
   }
 }

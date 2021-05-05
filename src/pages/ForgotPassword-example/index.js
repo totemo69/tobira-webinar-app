@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
-import message from '@/messages/loginsample';
+import message from '@/messages/forgotpasswordsample';
 
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
@@ -11,15 +11,12 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
-import CheckBox from '@/components/Elements/CheckBox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
 export default function LoginSample() {
   const { t } = useTranslation();
-  console.log(message.login);
-  console.log(globalMessage.email);
   return (
     <>
       <Layout bgGray>
@@ -29,30 +26,23 @@ export default function LoginSample() {
               <Form
                 layout="vertical"
               >
-                <Title marginBottom>{t(message.login)}</Title>
+                <Title>{t(globalMessage.forgotPassword)}</Title>
+                <Div marginY lightText>{t(message.forgotPasswordText)}.</Div>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
                   <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
                 </Div>
-                <Div>
-                  <Labels asterisk>{t(globalMessage.password)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
-                </Div>
-                <Div marginY betweenCenter>
-                  <CheckBox content={t(message.rememberMe)}></CheckBox>
-                  <Link href="/ForgotPassword-example" name={t(globalMessage.forgotPassword)}></Link>
-                </Div>
-                <Button type="primary">{t(message.login)}</Button>
-                <Div center>
-                  {t(message.createAccount)} <Link href="/Signup-example" name={t(message.signHere)}></Link>
+                <Button type="primary" marginTop>{t(globalMessage.sendEmail)}</Button>
+                <Div marginTop center>
+                  <Link href="/Login-example" name={t(message.goToLogin)}></Link>
                 </Div>
               </Form>
             </Col>
             <Col span={12}>
-              <Div marginBottom>
+              <Div marginBottom center>
                 <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
               </Div>
-              <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
+              <Image src={"Images/illustration2.svg"} alt="Forgot password Illustration" larger />
             </Col>
           </Row>
         </Content>
