@@ -30,16 +30,16 @@ export default function StoryBook() {
 
   const ShowModal = () => {
     setIsmModalVisible(true);
-  }
+  };
 
   const handleOk = () => {
     setIsmModalVisible(false);
-  }
+  };
   return (
     <>
       
       <Layout>
-       <Tab />
+        <Tab />
         <Header>{t(globalMessage.header)}</Header>
         <Layout>
           <Sidebar>
@@ -95,7 +95,7 @@ export default function StoryBook() {
               
             </div>
             <div>
-            <DatePicker></DatePicker>
+              <DatePicker></DatePicker>
             </div>
 
             <div>

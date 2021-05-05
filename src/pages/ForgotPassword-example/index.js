@@ -34,13 +34,13 @@ export default function LoginSample() {
                 </Div>
                 <Button type="primary" marginTop>{t(globalMessage.sendEmail)}</Button>
                 <Div marginTop center>
-                    <Link href="/Login-example" name={t(message.goToLogin)}></Link>
+                  <Link href="/Login-example" name={t(message.goToLogin)}></Link>
                 </Div>
               </Form>
             </Col>
             <Col span={12}>
               <Div marginBottom center>
-                  <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+                <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
               </Div>
               <Image src={"Images/illustration2.svg"} alt="Forgot password Illustration" larger />
             </Col>

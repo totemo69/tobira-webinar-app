@@ -5,8 +5,8 @@
  *  
  * */ 
 
-import style, {css} from 'styled-components'
-import { Tabs } from 'antd'
+import style, {css} from 'styled-components';
+import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
@@ -29,17 +29,17 @@ const StyledTabPane = style(TabPane)`
 `;
 
 const TabsList = () =>{
-    return (
-        <>
-            <StyledTab defaultActiveKey="1">
-                <StyledTabPane tab="Tab 1" key="1">
+  return (
+    <>
+      <StyledTab defaultActiveKey="1">
+        <StyledTabPane tab="Tab 1" key="1">
                   Content 1
-                </StyledTabPane>
-                <StyledTabPane tab="Tab 2" key="2">
+        </StyledTabPane>
+        <StyledTabPane tab="Tab 2" key="2">
                     Content 2
-                </StyledTabPane>
-            </StyledTab>
-        </>
-    )
-}
+        </StyledTabPane>
+      </StyledTab>
+    </>
+  );
+};
 export default TabsList;

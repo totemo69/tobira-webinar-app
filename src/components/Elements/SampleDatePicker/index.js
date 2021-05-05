@@ -5,11 +5,11 @@
  */
 
 import style, {css} from 'styled-components';
-import { DatePicker } from 'antd'
+import { DatePicker } from 'antd';
 
 
 const StyledDatePicker = style(DatePicker).withConfig({
-    shouldForwardProp: prop => ![].includes(prop)
+  shouldForwardProp: prop => ![].includes(prop)
 })`
 
     // css here

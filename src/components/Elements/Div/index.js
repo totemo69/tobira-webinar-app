@@ -19,7 +19,7 @@ const StyledDiv = style.div`
         css`
             margin-bottom: 1rem;
         `
-    };
+};
 
     ${props => 
     props.marginY && 
@@ -43,13 +43,76 @@ const StyledDiv = style.div`
             justify-content: space-between;
             align-items: center;
         `
+};
+    ${props => 
+    props.TermsOfService && 
+            css`
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                opacity: 1;
+                width: 879px;
+                height: 377px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 50px;
+                margin-bottom: 84.96px;
+                font: normal normal normal 12px/18px Poppins;
+                letter-spacing: 0.48px;
+                color: #000000;
+                opacity: 1;
+            `
+};
+
+    ${props => 
+        props.contentTOS &&
+        css`
+            width: 960px;
+            height: 675px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 42.16px;
+            backgroun-color: #FFFFFF;
+            padding: 10px;
+        `
     };
 
     ${props => 
-    props.lightText && 
+        props.lightText && 
         css`
             color: #b0b0b0;
+            `
+    };
+
+    ${props => 
+        props.privacyPolicyContent && 
+        css`
+            width: 879px;
+            height: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 42.16px;
+            backgroun-color: #FFFFFF;
+            font: normal normal normal 12px/18px Poppins;
+            letter-spacing: 0.48px;
+            color: #000000;
+            opacity: 1;
         `
     };
+
+    ${props => 
+        props.Triangle && 
+        css`
+            border: 1px solid #0E71EB;
+            width: 879px;
+            height: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 26.16px;
+            border-left: none;
+            border-right: none;
+            opacity: .5;
+
+            
+        `
+    }
 `;
 export default StyledDiv;
