@@ -8,6 +8,7 @@ import styled, { css } from 'styled-components';
  
 const StyledImg = styled.img`
    width: 33.6%;
+   z-index: -10;
    
    ${props => 
     props.logo &&
@@ -42,6 +43,15 @@ const StyledImg = styled.img`
         margin: 1.50rem 0 auto;
         width: 675px;
         height: 621px;
+      `
+};
+
+   ${props => 
+    props.twoLarger &&
+      css`
+        margin: 1.50rem 0 0 -18%;
+        width: 791px;
+        height: 514px;
       `
 };
  `;

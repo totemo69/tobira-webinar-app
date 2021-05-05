@@ -44,6 +44,14 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.marginY2x && 
+        css`
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        `
+};
+
+    ${props => 
     props.widthLong && 
         css`
             width: 85%;
@@ -86,6 +94,7 @@ const StyledDiv = style.div`
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         `
 };
 
