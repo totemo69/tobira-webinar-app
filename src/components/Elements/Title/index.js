@@ -38,7 +38,6 @@ const SampleTitle = styled(Title).withConfig({
                 margin-bottom: 3rem;
             }
         `
-<<<<<<< HEAD:src/components/Elements/SampleTitle/index.js
     };
 
     ${props => 
@@ -55,9 +54,7 @@ const SampleTitle = styled(Title).withConfig({
                
             `
         };
-=======
 };
->>>>>>> 0d60e2e15a95c9213f3d9a7da0126d1543d5ffb2:src/components/Elements/Title/index.js
     
 `;
 
