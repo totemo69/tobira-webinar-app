@@ -1,6 +1,7 @@
 {
   "global" : {
     "h1": "A simple example",
+    "login":  "Log in",
     "email":  "Email",
     "enterEmail":  "Enter your email",
     "password":  "Password",
@@ -24,7 +25,6 @@
     "loginHere":  "Log in here"
   },
   "loginsample" : {
-    "login":  "Log in",
     "rememberMe":  "Remember Me",
     "createAccount":  "Create an account?",
     "signHere":  "Sign up here"

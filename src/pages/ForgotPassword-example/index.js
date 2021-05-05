@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useState } from 'react';
 import globalMessage from '@/messages/global';
 import message from '@/messages/forgotpasswordsample';
 
@@ -14,9 +15,21 @@ import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
+import Modal from '@/components/Elements/Modal'
+import ButtonLink from '@/components/Elements/ButtonLink';
 
-export default function LoginSample() {
+export default function ForgotPasswordSample() {
   const { t } = useTranslation();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const openModal = () => {
+    setIsOpenModal(true);
+  }
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  }
+
   return (
     <>
       <Layout bgGray>
@@ -27,16 +40,37 @@ export default function LoginSample() {
                 layout="vertical"
               >
                 <Title>{t(globalMessage.forgotPassword)}</Title>
-                <Div marginY lightText>{t(message.forgotPasswordText)}.</Div>
+                <Div marginY widthLong lightText>{t(message.forgotPasswordText)}.</Div>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
                   <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
                 </Div>
-                <Button type="primary" marginTop>{t(globalMessage.sendEmail)}</Button>
+                <Button type="primary" marginTop onClick={openModal}>{t(globalMessage.sendEmail)}</Button>
                 <Div marginTop center>
                   <Link href="/Login-example" name={t(message.goToLogin)}></Link>
                 </Div>
               </Form>
+              <Modal isOpen={isOpenModal}
+                  onRequestClose={closeModal}
+                  ariaHideApp={false} overlayClassName="Overlay"
+                  marginTop noPadding
+              >
+                <Row>
+                  <Col span={24}>
+                    <Div widthFull flexCol noMargin>
+                      <Div modal noMargin center>
+                        <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
+                        <Title modalTitle>Check your mail!</Title>
+                      </Div>
+                      <Div withPadding noMargin widthFull heightFull center>
+                        <p>We have sent a password recover instructions to your email.</p>
+                        <p>If you don't see the email in your inbox, please check your spam folder.</p>
+                        <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                      </Div>
+                    </Div>
+                  </Col>
+                </Row>
+              </Modal>
             </Col>
             <Col span={12}>
               <Div marginBottom center>

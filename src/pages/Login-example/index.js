@@ -29,7 +29,7 @@ export default function LoginSample() {
               <Form
                 layout="vertical"
               >
-                <Title marginBottom>{t(message.login)}</Title>
+                <Title marginBottom>{t(globalMessage.login)}</Title>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
                   <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>

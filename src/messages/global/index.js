@@ -5,6 +5,10 @@ const message = {
     key: `${scope}.h1`,
     default: 'This is header'
   }),
+  login: Object.values({
+    key: `${scope}.login`,
+    default: 'Log in'
+  }),
   email: Object.values({
     key: `${scope}.email`,
     default: 'Email'

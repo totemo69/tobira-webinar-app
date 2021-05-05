@@ -19,6 +19,15 @@ const StyledImg = styled.img`
 };
 
    ${props => 
+    props.modalIcon &&
+      css`
+        margin: 1.50rem 0 auto;
+        width: 85px;
+        height: 85px;
+      `
+};
+
+   ${props => 
     props.large &&
       css`
         margin: 1.50rem 0 auto;

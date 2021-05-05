@@ -5,7 +5,7 @@ const { Title } = Typography;
 
 const SampleTitle = styled(Title).withConfig({
   shouldForwardProp: prop => ![
-    'logo',
+    'modalTitle',
     'marginBottom',
     'TermsOfService',
     'privacypolicyHeader',
@@ -21,14 +21,15 @@ const SampleTitle = styled(Title).withConfig({
     };
 
     ${props => 
-    props.logo && 
+    props.modalTitle && 
     css`
-        font-family: Segoe UI;
-        &.ant-typography {
-            color: #0e71eb;
-            letter-spacing: 0.72px;
+        &.ant-typography {  
+            margin-top: 1rem;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4E4E4E;
+            letter-spacing: 0.32px;
         }
-           
     `
     };
 
