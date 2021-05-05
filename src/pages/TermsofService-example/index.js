@@ -2,7 +2,7 @@ import Logo from '@/components/Elements/Logo';
 import Content from '@/components/Elements/Content';
 import Layout from '@/components/Elements/Layout';
 import Div from '@/components/Elements/Div';
-import Title from '@/components/Elements/SampleTitle';
+import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 import Footer from '@/components/Elements/Footer';
 import Link from '@/components/Elements/Link';
