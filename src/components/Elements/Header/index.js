@@ -10,7 +10,10 @@ import { Layout } from 'antd';
 const { Header } = Layout;
 
 const StyledHeader = styled(Header).withConfig({
-  shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: prop => ![
+    'noPadding',
+    'noMargin'
+  ].includes(prop),
 })`
     width: 100%;
     height: 65px;
