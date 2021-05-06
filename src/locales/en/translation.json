@@ -10,7 +10,11 @@
     "enterUsername":  "Enter your username",
     "confirmPassword":  "Confirm password",
     "forgotPassword":  "Forgot Password?",
-    "sendEmail":  "Send email"
+    "goToLogin":  "Go Back To Log in",
+    "sendEmail":  "Send email",
+    "checkMail":  "Check your Mail",
+    "newPassword":  "New password",
+    "success":  "Success"
   },
   "storybook" : {
     "title": "Title"
@@ -31,6 +35,11 @@
   },
   "forgotpasswordsample" : {
     "forgotPasswordText":  "Enter your email address and we'll send you an email with instructions for setting a new one",
-    "goToLogin":  "Go Back To Log in"
+    "recoverInstructions":  "We have sent a password recover instructions to your email",
+    "checkSpam":  "If you don't see the email in your inbox, please check your spam folder"
+  },
+  "resetpasswordsample" : {
+    "resetPassword":  "Reset Password",
+    "resetSuccess":  "Password has been reset successfully"
   }
 }

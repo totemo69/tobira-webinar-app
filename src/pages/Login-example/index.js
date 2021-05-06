@@ -42,7 +42,7 @@ export default function LoginSample() {
                   <CheckBox content={t(message.rememberMe)}></CheckBox>
                   <Link href="/ForgotPassword-example" name={t(globalMessage.forgotPassword)}></Link>
                 </Div>
-                <Button type="primary">{t(message.login)}</Button>
+                <Button type="primary">{t(globalMessage.login)}</Button>
                 <Div center>
                   {t(message.createAccount)} <Link href="/Signup-example" name={t(message.signHere)}></Link>
                 </Div>

@@ -45,6 +45,22 @@ const message = {
     key: `${scope}.sendEmail`,
     default: 'Send email'
   }),
+  checkMail: Object.values({
+    key: `${scope}.checkMail`,
+    default: 'Check your mail!'
+  }),
+  goToLogin: Object.values({
+    key: `${scope}.goToLogin`,
+    default: "Go Back To Log in"
+  }),
+  newPassword: Object.values({
+    key: `${scope}.newPassword`,
+    default: "New password"
+  }),
+  success: Object.values({
+    key: `${scope}.success`,
+    default: "Success"
+  }),
 };
 
 export default message;

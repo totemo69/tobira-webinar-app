@@ -10,7 +10,11 @@
     "enterUsername":  "ユーザー名を入力して下さい",
     "confirmPassword":  "パスワードを認証する",
     "forgotPassword":  "パスワードをお忘れですか？",
-    "sendEmail":  "メールを送る"
+    "goToLogin":  "ログインに戻る",
+    "sendEmail":  "メールを送る",
+    "checkMail":  "メールをチェックして下さい",
+    "newPassword":  "新しいパスワード",
+    "success":  "成功"
   },
   "storybook" : {
     "title": "題名"
@@ -31,6 +35,11 @@
   },
   "forgotpasswordsample" : {
     "forgotPasswordText":  "メールアドレスを入力すると、新しいアドレスを設定する手順が記載されたメールが送信されます",
-    "goToLogin":  "ログインに戻る"
+    "recoverInstructions":  "パスワード回復の手順をメールで送信しました",
+    "checkSpam":  "受信トレイにメールが表示されない場合は、スパムフォルダを確認してください"
+  },
+  "resetpasswordsample" : {
+    "resetPassword":  "パスワードを再設定する",
+    "resetSuccess":  "パスワードは正常にリセットされました"
   }
 }
