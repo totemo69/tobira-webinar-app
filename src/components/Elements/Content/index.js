@@ -14,13 +14,13 @@ const StyledContent = styled(Content).withConfig({
     'bgNone',
     'contentTOS',
     'contentTOSgray',
-    'privacypolicyContent'
-  ].includes(prop),
+    'privacypolicyContent',
+      ].includes(prop),
 })`
     padding: 1rem 0.75rem;
     width: 100%;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #F3F3F3;
 
     ${props => 
     props.bgNone &&
