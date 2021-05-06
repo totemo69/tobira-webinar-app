@@ -176,6 +176,29 @@ const StyledDiv = style.div`
 
             
         `
+    };
+
+    ${props => 
+        props.registerComplete &&
+        css`
+            background: #ABC9EE 0% 0% no-repeat padding-box;
+            width: 400px;
+            height: 178px;
+            text-align: center;
+            
+        `
+    };
+
+    ${props => 
+        props.verificationMessage && 
+        css`
+            margin-left: 32px;
+            margin-right: 29px;
+            margin-top: 45px;
+            text-align: center;
+            width: 341px;
+            height: 70px;
+        `
     }
 `;
 export default StyledDiv;

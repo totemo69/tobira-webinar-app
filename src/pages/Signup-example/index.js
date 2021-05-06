@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useState } from 'react';
 import globalMessage from '@/messages/global';
 import message from '@/messages/samplesignup';
 import Layout from '@/components/Elements/Layout';
@@ -13,12 +14,24 @@ import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Logo from '@/components/Elements/Logo';
+import Modal from '@/components/Elements/Modal'
+import Paragraph from '@/components/Elements/SampleParagraph';
+import Span from '@/components/Elements/Span'
+
 
 
 export default function SignupSample() {
   const { t } = useTranslation();
   console.log(message.signUp);
   console.log(globalMessage.email);
+
+  const [showModal, isShowModal] = useState(false);
+
+
+  const modalShow = () => {
+    isShowModal(true);
+  }
+
   return (
     <>
       <Layout bgGray>
@@ -49,7 +62,19 @@ export default function SignupSample() {
                 <Div marginTop center>
                   {t(message.agreeMessage)} <Link href="#" name={t(message.termsOfService)}></Link> {t(message.and)} <Link href="#" name={t(message.privacyPolicy)}></Link>.
                 </Div>
-                <Button type="primary" marginTop>{t(message.signUp)}</Button>
+                <Button type="primary" onClick={modalShow} marginTop>{t(message.signUp)}</Button>
+                <Modal marginTop isOpen={showModal}>
+                  <Div registerComplete>
+                    <Logo registerCompleteLogo src={"Images/email-sent-icon.svg"}></Logo>
+                    <Paragraph content={'Email sent!'}></Paragraph>
+                  </Div>
+
+                  <Div verificationMessage>
+                      A verification mail has been sent to your email account. Please check your email and click the link to confirm.
+                  </Div>
+
+                  <Button modalLoginButton >Log in</Button>
+                </Modal>
                 <Div center>
                   {t(message.haveAccount)} <Link href="/Login-example" name={t(message.loginHere)}></Link>
                 </Div>
@@ -59,7 +84,6 @@ export default function SignupSample() {
               <Logo src={"Images/logo.svg"}/>
               <Logo path1 src={"Images/illustration1.svg"}/>
             </Col>
-            
           </Row>
         </Content>
       </Layout>
