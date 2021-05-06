@@ -36,7 +36,7 @@ export default function StoryBook() {
         <Tab />
         <Header>{t(globalMessage.header)}</Header>
         <Layout>
-          <Content>
+          <Content heightScreen>
             <Button type="primary" htmlType="submit">
               {t(message.title)}
             </Button>

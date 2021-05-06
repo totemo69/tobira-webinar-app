@@ -11,7 +11,7 @@ export default function SampleComponent(){
   return(
     <>
       <Layout>
-        <Content>
+        <Content heightScreen>
           <Title >StoryBook B</Title>
           <br/>
           <label>Email</label>

@@ -35,7 +35,7 @@ export default function SignupSample() {
   return (
     <>
       <Layout bgGray>
-        <Content bgNone>
+        <Content heightScreen bgNone>
           <Row>
             <Col span={12}>
               <Form
