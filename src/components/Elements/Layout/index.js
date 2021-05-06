@@ -14,8 +14,8 @@ const StyledLayout = styled(Layout).withConfig({
 })`
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
-
+    background-color: #F3F3F3;
+    
     ${props =>
     props.bgGray &&
       css`

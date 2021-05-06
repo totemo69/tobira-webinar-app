@@ -15,8 +15,8 @@ const StyledContent = styled(Content).withConfig({
     'heightScreen',
     'contentTOS',
     'contentTOSgray',
-    'privacypolicyContent'
-  ].includes(prop),
+    'privacypolicyContent',
+      ].includes(prop),
 })`
     padding: 1rem 0.75rem;
     width: 100%;

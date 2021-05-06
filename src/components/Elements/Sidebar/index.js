@@ -1,20 +1,26 @@
 /**
- *
+ * 
+ * 
  * Sidebar
- *
- */
+ * 
+ * */ 
 
- import styled, { css } from 'styled-components';
- import { Layout } from 'antd';
+import style, {css} from 'styled-components';
+import { Layout } from 'antd';
 
- const { Sider } = Layout;
 
- const StyledSidebar = styled(Sider).withConfig({
-   shouldForwardProp: prop => ![
-     'bgGray',
-   ].includes(prop),
- })`
-     background-color: #FFFFFF;
+const { Sider } = Layout;
+
+const StyledSidbar = style(Sider).withConfig({
+  shouldForwardProp: prop => ![].includes(prop),
+})`
+  background-color: #FFFFFF;
+  padding: 0;
+
+  .ant-layout-sider{
+    width: 303px !important;
+  }
 `;
 
- export default StyledSidebar; 
+
+export default StyledSidbar;

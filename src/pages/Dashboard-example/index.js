@@ -17,7 +17,7 @@ export default function DashboardSample() {
   return (
     <>
       <Layout bgGray>
-        <Sidebar width={250}>
+        <Sidebar>
             <Div paddingSmall noMargin widthFull yellowBg>
                 <Image src={"Images/logo.svg"} alt="Tobira Logo" logoSmall />
             </Div>

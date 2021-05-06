@@ -13,7 +13,7 @@ export default function SuccessTemplate() {
           <Div successLogo>
            <Logo successLogo src={'Images/success.svg'}/>
           </Div>
-            <Div ThankYouMessage style={{textAlign: 'center', width: '100%', marginTop: '-80px', font: 'normal normal bold 30px/46px Poppins'}}>
+            <Div ThankYouMessage>
               Thank you!
             </Div>
             <Div successMessage >

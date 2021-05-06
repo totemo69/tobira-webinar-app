@@ -8,7 +8,9 @@ const StyledImage = styled.img.withConfig({
     'path1',
     'TermsOfService',
     'registerCompleteLogo',
-    'successLogo'
+    'successLogo',
+    'sideBarLogo',
+    'dropdownLogo'
   ].includes(prop)
 })`
     width: 500px;
@@ -53,7 +55,26 @@ const StyledImage = styled.img.withConfig({
         height: 400px;
         margin-top: -50.14px;
       `
+    };
+
+    ${props => 
+      props.sideBarLogo && 
+      css`
+        width: 100%;
+        margin-top: 0;
+        padding: 5px;
+        background: #FFFC1C;
+      `
     }
+
+    ${props => 
+      props.dropdownLogo && 
+      css`
+        width: 12px;
+        height: 12px;
+      `
+    }
+    
 `;
 
 
