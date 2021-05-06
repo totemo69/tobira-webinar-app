@@ -23,9 +23,11 @@ export default function DashboardSample() {
             </Div>
         </Sidebar>
         <Layout>
-            <Header noMargin>Header</Header>
+          <Header noMargin>Header</Header>
+          <Div>
             <Content>Content</Content>
-            <Footer>Footer</Footer>
+          </Div>
+          <Footer>Footer</Footer>
         </Layout>
       </Layout>
     </>
