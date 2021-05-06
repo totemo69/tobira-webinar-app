@@ -11,6 +11,7 @@ const StyledButton = styled(Button).withConfig({
   shouldForwardProp: prop => ![
     'marginTop',
     'TermsOfService',
+    'modalLoginButton',
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -56,7 +57,29 @@ const StyledButton = styled(Button).withConfig({
         margin-top: 86.4px;
         
       `
-};
+  };
+
+  ${props => 
+    props.modalLoginButton &&
+    css`
+      width: 279px;
+      height: 40px;
+      margin-left: auto;
+      margin-rigth: auto;
+      margin-top: 40px;
+      display: block;
+      background-color: #0e71eb;
+        &:hover {
+          background-color: #4678B5;
+          color: #ffffff;
+        }
+        &:focus {
+          background-color: #0e71eb;
+          color: #ffffff;
+          outline: none;
+        }
+    `
+  }
 `;
  
 export default StyledButton;

@@ -6,7 +6,9 @@ import styled, {css} from 'styled-components';
 const StyledImage = styled.img.withConfig({
   shouldForwardProp: prop => ![
     'path1',
-    'TermsOfService'
+    'TermsOfService',
+    'registerCompleteLogo',
+    'successLogo'
   ].includes(prop)
 })`
     width: 500px;
@@ -33,6 +35,25 @@ const StyledImage = styled.img.withConfig({
         margin-right: auto;
       `
 };
+    ${props => 
+      props.registerCompleteLogo && 
+      css`
+        width: 85px;
+        height: 47px;
+        display: absolute;
+        margin-top: 63.84px;
+       
+      `
+    }
+
+    ${props => 
+      props.successLogo && 
+      css`
+        width: 400px;
+        height: 400px;
+        margin-top: -50.14px;
+      `
+    }
 `;
 
 
