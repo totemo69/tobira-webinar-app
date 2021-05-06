@@ -5,7 +5,6 @@ import globalMessage from '@/messages/global';
 import Layout from '@/components/Elements/Layout';
 import Header from '@/components/Elements/Header';
 import Footer from '@/components/Elements/Footer';
-import Sidebar from '@/components/Elements/Sidebar';
 import Content from '@/components/Elements/Content';
 import Button from '@/components/Elements/Button';
 import Input from '@/components/Elements/Input';
@@ -14,9 +13,8 @@ import Checkbox from '@/components/Elements/Checkbox';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
-import Link from '@/components/Elements/Link';
 import DatePicker from '@/components/Elements/SampleDatePicker';
-import Modal from '@/components/Elements/SampleModal';
+import Modal from '@/components/Elements/Modal';
 import Tab from '@/components/Elements/SampleTab';
 import { useState } from 'react';
 
@@ -31,10 +29,6 @@ export default function StoryBook() {
   const ShowModal = () => {
     setIsmModalVisible(true);
   };
-
-  const handleOk = () => {
-    setIsmModalVisible(false);
-  };
   return (
     <>
       
@@ -42,12 +36,6 @@ export default function StoryBook() {
         <Tab />
         <Header>{t(globalMessage.header)}</Header>
         <Layout>
-          <Sidebar>
-            <ul>
-              <li><Link href="/" name="Home"></Link></li>
-              <li><Link href="/StoryBook/redux" name="Redux Sample"></Link></li>
-            </ul>
-          </Sidebar>
           <Content>
             <Button type="primary" htmlType="submit">
               {t(message.title)}
@@ -97,10 +85,9 @@ export default function StoryBook() {
             <div>
               <DatePicker></DatePicker>
             </div>
-
             <div>
               <Button onClick={ShowModal} type="primary">Show modal</Button>
-              <Modal visible={isModalVisible} onOk={handleOk}>this is a modal</Modal>
+              <Modal visible={isModalVisible} footer={null} >this is a modal</Modal>
             </div>
           </Content>
         </Layout>

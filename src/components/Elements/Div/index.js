@@ -8,6 +8,20 @@ const StyledDiv = style.div`
     letter-spacing: 0.24px;
 
     ${props => 
+    props.withPadding && 
+        css`
+            padding: 1.5rem;
+        `
+};
+
+    ${props => 
+    props.noMargin && 
+        css`
+            margin: 0;
+        `
+};
+
+    ${props => 
     props.marginTop && 
         css`
             margin-top: 1rem;
@@ -30,6 +44,35 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.marginY2x && 
+        css`
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        `
+};
+
+    ${props => 
+    props.widthLong && 
+        css`
+            width: 85%;
+        `
+};
+
+    ${props => 
+    props.widthFull && 
+        css`
+            width: 100%;
+        `
+};
+
+    ${props => 
+    props.heightFull && 
+        css`
+            height: 100%;
+        `
+};
+
+    ${props => 
     props.center && 
         css`
             text-align: center;
@@ -44,6 +87,17 @@ const StyledDiv = style.div`
             align-items: center;
         `
 };
+
+    ${props => 
+    props.flexColCenter && 
+        css`
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        `
+};
+
     ${props => 
     props.TermsOfService && 
             css`
@@ -72,6 +126,15 @@ const StyledDiv = style.div`
             margin-top: 42.16px;
             backgroun-color: #FFFFFF;
             padding: 10px;
+        `
+    };
+
+    ${props => 
+        props.modal &&
+        css`
+            height: 178px;
+            width: 100%;
+            background-color: #ABC9EE;
         `
     };
 

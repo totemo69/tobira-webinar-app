@@ -2,7 +2,6 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import globalMessage from '@/messages/global';
-import message from '@/messages/forgotpasswordsample';
 
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
@@ -39,15 +38,18 @@ export default function ForgotPasswordSample() {
               <Form
                 layout="vertical"
               >
-                <Title>{t(globalMessage.forgotPassword)}</Title>
-                <Div marginY widthLong lightText>{t(message.forgotPasswordText)}.</Div>
+                <Title marginBottom>Reset Password</Title>
                 <Div>
-                  <Labels asterisk>{t(globalMessage.email)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                  <Labels asterisk>New Password</Labels>
+                  <Input type="email" placeholder="New Password"></Input>
                 </Div>
-                <Button type="primary" marginTop onClick={openModal}>{t(globalMessage.sendEmail)}</Button>
+                <Div>
+                  <Labels asterisk>Confirm Password</Labels>
+                  <Input type="email" placeholder="Confirm Password"></Input>
+                </Div>
+                <Button type="primary" marginTop onClick={openModal}>Reset Password</Button>
                 <Div marginTop center>
-                  <Link href="/Login-example" name={t(message.goToLogin)}></Link>
+                  <Link href="/Login-example" name="Go Back To Log in"></Link>
                 </Div>
               </Form>
               <Modal isOpen={isOpenModal}
@@ -59,12 +61,11 @@ export default function ForgotPasswordSample() {
                   <Col span={24}>
                     <Div widthFull flexCol noMargin>
                       <Div modal noMargin center>
-                        <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
-                        <Title modalTitle>Check your mail!</Title>
+                        <Image src={"Images/success-icon.svg"} alt="email sent icon" modalIcon/>
+                        <Title modalTitle>Success!</Title>
                       </Div>
-                      <Div withPadding noMargin widthFull heightFull center>
-                        <p>We have sent a password recover instructions to your email.</p>
-                        <p>If you don't see the email in your inbox, please check your spam folder.</p>
+                      <Div flexColCenter noMargin widthFull heightFull>
+                        <Div center marginY2x>Password has been reset successfully.</Div>
                         <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                       </Div>
                     </Div>
@@ -76,7 +77,7 @@ export default function ForgotPasswordSample() {
               <Div marginBottom center>
                 <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
               </Div>
-              <Image src={"Images/illustration2.svg"} alt="Forgot password Illustration" larger />
+              <Image src={"Images/illustration3.svg"} alt="Forgot password Illustration" twoLarger />
             </Col>
           </Row>
         </Content>
