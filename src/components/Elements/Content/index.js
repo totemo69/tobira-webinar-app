@@ -12,6 +12,7 @@ const { Content } = Layout;
 const StyledContent = styled(Content).withConfig({
   shouldForwardProp: prop => ![
     'bgNone',
+    'heightScreen',
     'contentTOS',
     'contentTOSgray',
     'privacypolicyContent'
@@ -19,13 +20,20 @@ const StyledContent = styled(Content).withConfig({
 })`
     padding: 1rem 0.75rem;
     width: 100%;
-    height: 100vh;
-    background-color: #ffffff;
+    height: auto;
+    background-color: #F3F3F3;
 
     ${props => 
     props.bgNone &&
         css`
             background-color: transparent;
+        `
+};
+
+    ${props => 
+    props.heightScreen &&
+        css`
+            height: 100vh;
         `
 };
 
