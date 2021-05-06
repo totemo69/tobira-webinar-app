@@ -199,6 +199,51 @@ const StyledDiv = style.div`
             width: 341px;
             height: 70px;
         `
+    };
+
+    ${props => 
+        props.registerSuccesfull &&
+        css`
+           
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+        `
+    }
+
+    ${props => 
+        props.successLogo &&
+        css`
+            text-align: center;
+            width: 100%;
+        `
+    }
+
+    ${props => 
+        props.LoginSuccesButton &&
+        css`
+            margin: 0 auto;
+            margin-top: 100px;
+            width: 100%;
+        `
+    }
+
+    ${props => 
+        props.successMessage &&
+        css`
+        text-align: center;
+        width: 100%;
+        margin-top: 33px;
+        `
+    }
+
+    ${props => 
+        props.ThankYouMessage && 
+        css`
+        text-align: center;
+        width: 100%; margin-top: -80px; 
+        font: normal normal bold 30px/46px Poppins;
+        `
     }
 `;
 export default StyledDiv;
