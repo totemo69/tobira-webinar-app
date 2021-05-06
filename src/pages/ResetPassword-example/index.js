@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import globalMessage from '@/messages/global';
+import message from '@/messages/resetpasswordsample';
 
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
@@ -17,7 +18,7 @@ import Image from '@/components/Elements/Image';
 import Modal from '@/components/Elements/Modal'
 import ButtonLink from '@/components/Elements/ButtonLink';
 
-export default function ForgotPasswordSample() {
+export default function ResetPasswordSample() {
   const { t } = useTranslation();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -38,18 +39,18 @@ export default function ForgotPasswordSample() {
               <Form
                 layout="vertical"
               >
-                <Title marginBottom>Reset Password</Title>
+                <Title marginBottom>{t(message.resetPassword)}</Title>
                 <Div>
-                  <Labels asterisk>New Password</Labels>
-                  <Input type="email" placeholder="New Password"></Input>
+                  <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
                 </Div>
                 <Div>
-                  <Labels asterisk>Confirm Password</Labels>
-                  <Input type="email" placeholder="Confirm Password"></Input>
+                  <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
                 </Div>
-                <Button type="primary" marginTop onClick={openModal}>Reset Password</Button>
+                <Button type="primary" marginTop onClick={openModal}>{t(message.resetPassword)}</Button>
                 <Div marginTop center>
-                  <Link href="/Login-example" name="Go Back To Log in"></Link>
+                  <Link href="/Login-example" name={t(globalMessage.goToLogin)}></Link>
                 </Div>
               </Form>
               <Modal isOpen={isOpenModal}
@@ -61,11 +62,11 @@ export default function ForgotPasswordSample() {
                   <Col span={24}>
                     <Div widthFull flexCol noMargin>
                       <Div modal noMargin center>
-                        <Image src={"Images/success-icon.svg"} alt="email sent icon" modalIcon/>
-                        <Title modalTitle>Success!</Title>
+                        <Image src={"Images/success-icon.svg"} alt="success icon" modalIcon/>
+                        <Title modalTitle>{t(globalMessage.success)}!</Title>
                       </Div>
                       <Div flexColCenter noMargin widthFull heightFull>
-                        <Div center marginY2x>Password has been reset successfully.</Div>
+                        <Div center marginY2x>{t(message.resetSuccess)}</Div>
                         <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                       </Div>
                     </Div>

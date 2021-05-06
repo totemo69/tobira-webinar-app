@@ -47,7 +47,7 @@ export default function ForgotPasswordSample() {
                 </Div>
                 <Button type="primary" marginTop onClick={openModal}>{t(globalMessage.sendEmail)}</Button>
                 <Div marginTop center>
-                  <Link href="/Login-example" name={t(message.goToLogin)}></Link>
+                  <Link href="/Login-example" name={t(globalMessage.goToLogin)}></Link>
                 </Div>
               </Form>
               <Modal isOpen={isOpenModal}
@@ -60,11 +60,11 @@ export default function ForgotPasswordSample() {
                     <Div widthFull flexCol noMargin>
                       <Div modal noMargin center>
                         <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
-                        <Title modalTitle>Check your mail!</Title>
+                        <Title modalTitle>{t(globalMessage.checkMail)}</Title>
                       </Div>
                       <Div withPadding noMargin widthFull heightFull center>
-                        <p>We have sent a password recover instructions to your email.</p>
-                        <p>If you don't see the email in your inbox, please check your spam folder.</p>
+                        <p>{t(message.recoverInstructions)}</p>
+                        <p>{t(message.checkSpam)}</p>
                         <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                       </Div>
                     </Div>
