@@ -33,7 +33,7 @@ export default function ResetPasswordSample() {
   return (
     <>
       <Layout bgGray>
-        <Content bgNone>
+        <Content heightScreen bgNone>
           <Row>
             <Col span={12}>
               <Form

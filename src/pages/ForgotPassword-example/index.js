@@ -33,7 +33,7 @@ export default function ForgotPasswordSample() {
   return (
     <>
       <Layout bgGray>
-        <Content bgNone>
+        <Content bgNone heightScreen>
           <Row>
             <Col span={12}>
               <Form

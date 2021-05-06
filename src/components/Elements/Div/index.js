@@ -14,6 +14,13 @@ const StyledDiv = style.div`
         `
 };
 
+${props => 
+    props.paddingSmall && 
+        css`
+            padding: 1rem;
+        `
+};
+
     ${props => 
     props.noMargin && 
         css`
@@ -142,6 +149,19 @@ const StyledDiv = style.div`
         props.lightText && 
         css`
             color: #b0b0b0;
+            `
+    };
+
+    ${props => 
+        props.yellowBg && 
+        css`
+            background-color: #FFFC1C;
+            `
+    };
+    ${props => 
+        props.withShadow && 
+        css`
+            box-shadow: 0px 2px 4px #00000029;
             `
     };
 
