@@ -38,11 +38,23 @@ const StyledImg = styled.img`
 };
 
    ${props => 
-    props.large &&
+    props.userImg &&
       css`
-        margin: 1.50rem 0 auto;
-        width: 675px;
-        height: 500px;
+        margin: auto;
+        margin-right: 0.75rem;
+        width: 26px;
+        height: 26px;
+        z-index: 10;
+      `
+};
+
+   ${props => 
+    props.profileImg &&
+      css`
+        margin: auto;
+        margin-bottom: 1rem;
+        width: 100px;
+        height: 100px;
       `
 };
    

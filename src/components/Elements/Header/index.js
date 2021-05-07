@@ -12,7 +12,7 @@ const { Header } = Layout;
 const StyledHeader = styled(Header).withConfig({
   shouldForwardProp: prop => ![
     'noPadding',
-    'noMargin'
+    'noMargin',
   ].includes(prop),
 })`
     width: 100%;
@@ -25,13 +25,14 @@ const StyledHeader = styled(Header).withConfig({
       css`
         padding: 0;
       `
-    }
+    };
+
     ${ props =>
       props.noMargin &&
       css`
         margin: 0;
       `
-    }
+    };
  `;
 
 export default StyledHeader;
