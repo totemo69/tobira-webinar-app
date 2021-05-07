@@ -24,3 +24,7 @@ a {
 	bottom: 0;
 	background-color: rgba(78, 78, 78, 0.5);
 }
+
+.customSelect{
+	border-radius: 8px;
+}

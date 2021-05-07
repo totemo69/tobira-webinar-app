@@ -12,6 +12,8 @@ const StyledButton = styled(Button).withConfig({
     'marginTop',
     'TermsOfService',
     'modalLoginButton',
+    'BackButton',
+    'NextButton',
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -78,6 +80,27 @@ const StyledButton = styled(Button).withConfig({
           color: #ffffff;
           outline: none;
         }
+    `
+  };
+
+  ${props => 
+    props.BackButton &&
+    css`
+      width: 140px;
+      color: #0E71EB;
+      float: right;
+      margin-top: 55px;
+    `
+  }
+
+  ${props => 
+    props.NextButton &&
+    css`
+      width: 140px;
+      float: right;
+      margin-left: 30.52px;
+      margin-top: 55px;
+      
     `
   }
 `;

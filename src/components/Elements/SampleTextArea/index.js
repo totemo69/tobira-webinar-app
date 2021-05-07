@@ -8,8 +8,10 @@ const StyleTextArea = styled(TextArea).withConfig({
 })
 `
     width: 80%;
-    border-radius: 10px
     heigth: 50%;
+    .ant-input{
+      border-radius: 8px;
+    }
 `;
 
 export default StyleTextArea;

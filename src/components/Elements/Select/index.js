@@ -13,9 +13,8 @@ const StyledSelect = styled(Select).withConfig({
   ].includes(prop),
 })`
     margin: 0 auto 10px;
-    width: 80%;
-    border-radius: 5px;
-    border: 1px solid #d1d5db;
+    width: 100%;
+    height: 40px;
     &:hover {
         border-color: #0e71eb;
     }
