@@ -13,6 +13,7 @@ const StyledHeader = styled(Header).withConfig({
   shouldForwardProp: prop => ![
     'noPadding',
     'noMargin',
+    'frontRegistration'
   ].includes(prop),
 })`
     width: 100%;
@@ -32,7 +33,14 @@ const StyledHeader = styled(Header).withConfig({
       css`
         margin: 0;
       `
-    };
+    }
+
+    ${ props =>
+      props.frontRegistration &&
+      css`
+        margin: 0;
+      `
+    }
  `;
 
 export default StyledHeader;

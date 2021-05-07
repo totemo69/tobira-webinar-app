@@ -10,7 +10,8 @@ const StyledImage = styled.img.withConfig({
     'registerCompleteLogo',
     'successLogo',
     'sideBarLogo',
-    'dropdownLogo'
+    'dropdownLogo',
+    'frontRegistrationLogo',
   ].includes(prop)
 })`
     width: 500px;
@@ -72,6 +73,15 @@ const StyledImage = styled.img.withConfig({
       css`
         width: 12px;
         height: 12px;
+      `
+    };
+
+    ${ props =>
+      props.frontRegistrationLogo &&
+      css`
+        margin: 0;
+        width: 200px;
+        height: 35.77px;
       `
     }
     
