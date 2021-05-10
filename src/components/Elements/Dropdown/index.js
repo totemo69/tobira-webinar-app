@@ -15,7 +15,9 @@ import {
 const StyledDropdown = styled(Dropdown).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
+
   /***css here**/
+  float: right;
 `;
 
 const StyledATag = styled.a`
@@ -54,4 +56,4 @@ const Drop = ({ username }) =>{
 
 Drop.prototype = {}
 
-export default Drop;
+export default StyledDropdown;
