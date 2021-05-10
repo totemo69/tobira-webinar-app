@@ -14,10 +14,24 @@ const StyledDiv = style.div`
         `
 };
 
-${props => 
+    ${props => 
     props.paddingSmall && 
         css`
             padding: 1rem;
+        `
+};
+
+    ${props => 
+    props.paddingBottom && 
+        css`
+            padding-bottom: 1rem;
+        `
+};
+
+    ${props => 
+    props.paddingCard && 
+        css`
+            padding: 20px;
         `
 };
 
@@ -36,9 +50,23 @@ ${props =>
 };
 
     ${props => 
+    props.cardInfo && 
+        css`
+            margin-top: 1.5rem;
+        `
+};
+
+    ${props => 
     props.marginBottom && 
         css`
             margin-bottom: 1rem;
+        `
+};
+
+    ${props => 
+    props.marginBottom2x && 
+        css`
+            margin-bottom: 2rem;
         `
 };
 
@@ -66,6 +94,13 @@ ${props =>
 };
 
     ${props => 
+    props.widthXLong && 
+        css`
+            width: 97.666667%;
+        `
+};
+
+    ${props => 
     props.widthFull && 
         css`
             width: 100%;
@@ -87,6 +122,13 @@ ${props =>
 };
 
     ${props => 
+    props.right && 
+        css`
+            text-align: right;
+        `
+};
+
+    ${props => 
     props.betweenCenter && 
         css`
             display: flex;
@@ -101,6 +143,14 @@ ${props =>
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+        `
+};
+
+    ${props => 
+    props.cardContainer && 
+        css`
+            display: flex;
             align-items: center;
         `
 };
@@ -158,10 +208,18 @@ ${props =>
             background-color: #FFFC1C;
             `
     };
+
     ${props => 
         props.withShadow && 
         css`
             box-shadow: 0px 2px 4px #00000029;
+            `
+    };
+
+    ${props => 
+        props.borderBreak && 
+        css`
+            border-bottom: 1px solid #00000029;
             `
     };
 

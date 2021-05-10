@@ -9,6 +9,8 @@ const SampleTitle = styled(Title).withConfig({
     'marginBottom',
     'TermsOfService',
     'privacypolicyHeader',
+    'secondary',
+    'profileName',
   ].includes(prop),
 })
 `
@@ -29,6 +31,33 @@ const SampleTitle = styled(Title).withConfig({
             font-weight: 600;
             color: #4E4E4E;
             letter-spacing: 0.32px;
+        }
+    `
+    };
+
+    ${props => 
+    props.secondary && 
+    css`
+        &.ant-typography {  
+            font-size: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #0E71EB;
+            letter-spacing: 0.80px;
+            line-height: 0.30px;
+        }
+    `
+    };
+
+    ${props => 
+    props.profileName && 
+    css`
+        &.ant-typography {  
+            font-size: 14px;
+            font-weight: 700;
+            color: #4e4e4e;
+            letter-spacing: 0.20px;
+            line-height: 0.21px;
         }
     `
     };

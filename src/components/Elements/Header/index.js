@@ -26,7 +26,8 @@ const StyledHeader = styled(Header).withConfig({
       css`
         padding: 0;
       `
-    }
+    };
+
     ${ props =>
       props.noMargin &&
       css`

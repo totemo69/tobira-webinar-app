@@ -4,7 +4,7 @@
  * 
  * */ 
 
-import style, {css} from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Menu, Dropdown, Icon} from 'antd';
 import {
   DownOutlined,
@@ -12,11 +12,15 @@ import {
   ProfileFilled
 } from '@ant-design/icons'
 
-const StyledDropdown = style(Dropdown).withConfig({
+const StyledDropdown = styled(Dropdown).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
-  float: right;
+  /***css here**/
 `;
+
+const StyledATag = styled.a`
+  font-weight: 600;
+`
 
 const menu = (
   <Menu>
@@ -40,10 +44,10 @@ const menu = (
 )
 
 
-const Drop = () =>{
+const Drop = ({ username }) =>{
   return(
-      <StyledDropdown overlay={menu} trigger={['click']}>
-        <a>tobirauser <DownOutlined/></a>
+      <StyledDropdown overlay={menu} placement="bottomRight" trigger={['click']}>
+        <StyledATag>{username} <DownOutlined/></StyledATag>
       </StyledDropdown>
   )
 };

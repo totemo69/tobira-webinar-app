@@ -11,7 +11,8 @@ import { Card } from 'antd';
 const StyledCard = styled(Card).withConfig({
   shouldForwardProp: prop => ![
     'PaddingTop',
-    'SignUp'
+    'ProfileCard',
+    'ProfileSettings',
   ].includes(prop),
 })`
    .ant-card-head-title {
@@ -23,14 +24,38 @@ const StyledCard = styled(Card).withConfig({
    width: 100%;
    margin-top: 4px;
 
-   
- 
    ${props =>
     props.PaddingTop &&
      css`
        padding-top: 20px;
      `};
-     
+
+   ${props =>
+    props.ProfileCard &&
+     css`
+       margin-right: 1.50rem;
+       width: 41.666667%;
+       height: 565px;
+       border-radius: 10px;
+       box-shadow: 0px 2px 4px #00000029;
+
+       .ant-card-body {
+          padding: 0;
+        }
+     `};
+
+   ${props =>
+    props.ProfileSettings &&
+     css`
+       width: 100%;
+       height: 565px;
+       border-radius: 10px;
+       box-shadow: 0px 2px 4px #00000029;
+
+       .ant-card-body {
+          padding: 0;
+        }
+     `};
  `;
  
 const StyledMeta = styled(Card.Meta)`
