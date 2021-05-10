@@ -20,7 +20,7 @@ const StyledContent = styled(Content).withConfig({
 })`
     padding: 1rem 0.75rem;
     width: 100%;
-    height: auto;
+    height: 100vh;
     background-color: #F3F3F3;
 
     ${props => 
