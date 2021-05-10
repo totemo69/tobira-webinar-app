@@ -10,6 +10,7 @@ import Menu from '@/components/Elements/Menu';
 import Submenu from '@/components/Elements/Submenu';
 import Profile from './Pages/EditProfile';
 import WebinarListPage from './Pages/ListOfWebinar';
+import  Link  from '@/components/Elements/Link';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {
@@ -96,7 +97,7 @@ export default function ListOfWebinar(){
             <Content> 
               {ActiveRoute[selectedRoute].Content}
             </Content>
-          <Footer>This is a Footer</Footer>
+          <Footer>Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved. <Link href="/TermsofService-example" name=" Terms of Service"></Link> {" "} and {" "} <Link href="/PrivacyPolicy-example" name=" Privacy Policy"></Link></Footer>
         </Layout>
       </Layout>
     </>

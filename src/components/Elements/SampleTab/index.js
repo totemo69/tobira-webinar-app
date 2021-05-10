@@ -28,18 +28,5 @@ const StyledTabPane = style(TabPane)`
 
 `;
 
-const TabsList = () =>{
-  return (
-    <>
-      <StyledTab defaultActiveKey="1">
-        <StyledTabPane tab="Tab 1" key="1">
-                  Content 1
-        </StyledTabPane>
-        <StyledTabPane tab="Tab 2" key="2">
-                    Content 2
-        </StyledTabPane>
-      </StyledTab>
-    </>
-  );
-};
-export default TabsList;
+
+export default StyledTabPane;
