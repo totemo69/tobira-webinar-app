@@ -19,6 +19,17 @@ const StyledLabels = styled.label`
             }
         `
 }
+
+    ${ props =>
+    props.light &&
+        css`
+        font-size: 10px;
+        font-weight: 400;
+        color: #b0b0b0;
+        letter-spacing: 0.20px;
+        line-height: 0.16px;
+        `
+}
 `;
 
 
