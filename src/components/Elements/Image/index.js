@@ -59,6 +59,15 @@ const StyledImg = styled.img`
 };
    
    ${props => 
+    props.large &&
+      css`
+        margin: 1.50rem 0 auto;
+        width: 675px;
+        height: 500px;
+      `
+};
+
+   ${props => 
     props.larger &&
       css`
         margin: 1.50rem 0 auto;

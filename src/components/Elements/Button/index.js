@@ -10,6 +10,8 @@ import { Button } from 'antd';
 const StyledButton = styled(Button).withConfig({
   shouldForwardProp: prop => ![
     'marginTop',
+    'marginTop2x',
+    'smallBtn',
     'TermsOfService',
     'modalLoginButton',
     'BackButton',
@@ -45,6 +47,20 @@ const StyledButton = styled(Button).withConfig({
     props.marginTop &&
       css`
         margin-top: 1.75rem;
+      `
+};
+
+    ${ props =>
+    props.marginTop2x &&
+      css`
+        margin-top: 3.5rem;
+      `
+};
+
+    ${ props =>
+    props.smallBtn &&
+      css`
+        width: 35%;
       `
 };
 

@@ -13,8 +13,11 @@ import Dropdown from '@/components/Elements/Dropdown'
 import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Labels from '@/components/Elements/Labels';
+import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
-import { Row, Col } from 'antd';
+import TabPane from '@/components/Elements/TabPane';
+import Button from '@/components/Elements/Button';
+import { Tabs } from 'antd';
 
 export default function DashboardSample() {
   const { t } = useTranslation();
@@ -62,7 +65,32 @@ export default function DashboardSample() {
                     </Card>
                     <Card ProfileSettings>
                         <Div widthFull paddingCard noMargin>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam labore sapiente, illum ad obcaecati saepe necessitatibus! Ad, asperiores. Aperiam, suscipit. MORE CONTENT HERE
+                          <Tabs defaultActiveKey="1">
+                            <TabPane tab="Tab 1" key="1">
+                              <Div widthFull>
+                                <Labels asterisk>Username</Labels>
+                                <Input type="text" disabled value="tobirauser"></Input>
+                              </Div>
+                              <Div widthFull marginTop>
+                                <Labels asterisk>Email Address</Labels>
+                                <Input type="text" disabled value="sample@tobira.com"></Input>
+                              </Div>
+                              <Div widthFull marginTop>
+                                <Labels asterisk>Full Name</Labels>
+                                <Input type="text" value="Yamazaki Kento"></Input>
+                              </Div>
+                              <Div widthFull marginTop>
+                                <Labels asterisk>Contact Number</Labels>
+                                <Input type="text" value="090-9725-3264"></Input>
+                              </Div>
+                              <Div right widthFull marginTop>
+                                <Button type="primary" marginTop2x smallBtn>Save Changes</Button>
+                              </Div>
+                            </TabPane>
+                            <TabPane tab="Tab 2" key="2">
+                              Change Password
+                            </TabPane>
+                          </Tabs>
                         </Div>
                     </Card>
                 </Div>
