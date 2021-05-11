@@ -45,9 +45,9 @@ const menu = (
 )
 
 
-const Drop = ({ username }) =>{
+const Drop = ({ username , items}) =>{
   return(
-      <StyledDropdown overlay={menu} placement="bottomRight" trigger={['click']}>
+      <StyledDropdown overlay={items} placement="bottomRight" trigger={['click']}>
         <StyledATag>{username} <DownOutlined/></StyledATag>
       </StyledDropdown>
   )

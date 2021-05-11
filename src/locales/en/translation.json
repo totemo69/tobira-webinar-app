@@ -41,5 +41,16 @@
   "resetpasswordsample" : {
     "resetPassword":  "Reset Password",
     "resetSuccess":  "Password has been reset successfully"
+  },
+  "editprofile" : {
+    "Username":  "Hi there",
+    "Emailaddress" : "Email Address",
+    "Fullname" : "Full Name",
+    "Contactnumber" : "Contact Number",
+    "Newpassword" : "New Password",
+    "Confirmpassword" : "Confirm Password",
+    "Savechanges" : "Save Changes",
+    "Editprofile" : "Edit Profile",
+    "ChangePassword": "Change Password"
   }
 }
