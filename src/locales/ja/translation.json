@@ -52,5 +52,15 @@
     "Savechanges" : "変更を保存する",
     "Editprofile" : "プロファイルの編集",
     "ChangePassword": "パスワードの変更"
+  },
+  "listofwebinar": {
+    "Tittle": "ティトル",
+    "Listofwebinar" : "ウェビナー一覧",
+    "Schedule" :  "スケジュール",
+    "Attendees": "参加者の数",
+    "Status": "状態",
+    "Action" :  "アクション",
+    "Search":  "捜索",
+    "SearchPlaceholder":  "検索ウェビナーのタイトル"
   }
 }

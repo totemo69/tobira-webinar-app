@@ -52,5 +52,15 @@
     "Savechanges" : "Save Changes",
     "Editprofile" : "Edit Profile",
     "ChangePassword": "Change Password"
+  },
+  "listofwebinar": {
+    "Tittle": "Tittle",
+    "Listofwebinar" : "LIST OF WEBINAR",
+    "Schedule" :  "Schedule",
+    "Attendees": "No. of Attendees",
+    "Status": "Status",
+    "Action" :  "Action",
+    "Search":  "Search",
+    "SearchPlaceholder":  "Search webinar title"
   }
 }
