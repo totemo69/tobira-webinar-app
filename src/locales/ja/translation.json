@@ -41,5 +41,16 @@
   "resetpasswordsample" : {
     "resetPassword":  "パスワードを再設定する",
     "resetSuccess":  "パスワードは正常にリセットされました"
+  },
+  "editprofile" : {
+    "Username":  "ユーザー名",
+    "Emailaddress" : "電子メールアドレス",
+    "Fullname" : "フルネーム",
+    "Contactnumber" : "連絡先番号",
+    "Newpassword" : "新しいパスワード",
+    "Confirmpassword" : "パスワードを認証する",
+    "Savechanges" : "変更を保存する",
+    "Editprofile" : "プロファイルの編集",
+    "ChangePassword": "パスワードの変更"
   }
 }
