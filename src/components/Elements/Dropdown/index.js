@@ -17,7 +17,6 @@ const StyledDropdown = styled(Dropdown).withConfig({
 })`
 
   /***css here**/
-  float: right;
 `;
 
 const StyledATag = styled.a`
@@ -54,6 +53,4 @@ const Drop = ({ username }) =>{
   )
 };
 
-Drop.prototype = {}
-
-export default StyledDropdown;
+export default Drop;
