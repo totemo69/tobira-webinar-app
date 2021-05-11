@@ -34,7 +34,7 @@ export default function DashboardSample() {
           <Header noMargin>
             <Div widthFull noMargin right>
                 <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
-                <Dropdown username="tobirauser" />  
+                <Dropdown username="tobirauser" />
             </Div>
           </Header>
           <Div widthXLong paddingSmall marginBottom2x>

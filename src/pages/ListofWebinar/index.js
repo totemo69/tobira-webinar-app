@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
 import Header from '@/components/Elements/Header';
+import Div from '@/components/Elements/Div';
+import Image from '@/components/Elements/Image';
 import Logo from '@/components/Elements/Logo';
 import Dropdown from '@/components/Elements/Dropdown'
 import Footer from '@/components/Elements/Footer'
@@ -90,9 +92,10 @@ export default function ListOfWebinar(){
         </Sidebar>
        <Layout>
           <Header>
-            <Dropdown overlay={menu} trigger={['click']}>
-              <a>Tobirauser <DownOutlined/></a>
-            </Dropdown>
+            <Div widthFull noMargin right>
+                <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
+                <Dropdown username="tobirauser" />
+            </Div>
           </Header>
             <Content> 
               {ActiveRoute[selectedRoute].Content}
