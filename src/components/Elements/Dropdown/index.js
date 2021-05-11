@@ -4,18 +4,13 @@
  * 
  * */ 
 
-import styled, {css} from 'styled-components';
-import {Menu, Dropdown, Icon} from 'antd';
-import {
-  DownOutlined,
-  UserOutlined,
-  ProfileFilled
-} from '@ant-design/icons'
+import styled, { css } from 'styled-components';
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons'
 
 const StyledDropdown = styled(Dropdown).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
-
   /***css here**/
 `;
 
@@ -42,12 +37,11 @@ const menu = (
       Log out
     </Menu.Item>
   </Menu>
-)
+);
 
-
-const Drop = ({ username , items}) =>{
+const Drop = ({ username , items }) =>{
   return(
-      <StyledDropdown overlay={items} placement="bottomRight" trigger={['click']}>
+      <StyledDropdown overlay={items && menu} placement="bottomRight" trigger={['click']}>
         <StyledATag>{username} <DownOutlined/></StyledATag>
       </StyledDropdown>
   )
