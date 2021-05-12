@@ -14,7 +14,11 @@
     "sendEmail":  "Send email",
     "checkMail":  "Check your Mail",
     "newPassword":  "New password",
-    "success":  "Success"
+    "success":  "Success",
+    "profile":  "Profile",
+    "fullName":  "Full Name",
+    "contactNo":  "Contact Number",
+    "saveChanges":  "Save Changes"
   },
   "storybook" : {
     "title": "Title"
@@ -41,6 +45,10 @@
   "resetpasswordsample" : {
     "resetPassword":  "Reset Password",
     "resetSuccess":  "Password has been reset successfully"
+  },
+  "profilesample" : {
+    "editProfile":  "Edit Profile",
+    "changePassword":  "Change Password"
   },
   "editprofile" : {
     "Username":  "Hi there",

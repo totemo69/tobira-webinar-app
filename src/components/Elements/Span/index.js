@@ -10,7 +10,7 @@ const StyledSpan = styled.span`
     ${ props => 
         props.breadCrumbs &&
         css `
-            color: #4678b5
+            color: #4678b5;
         `
     };
 `;
