@@ -240,6 +240,16 @@ const StyledDiv = style.div`
     };
 
     ${props => 
+        props.CreateWebinarBrakline && 
+        css`
+            width: 65rem;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #DAE9FB;
+            `
+    };
+
+    ${props => 
         props.Triangle && 
         css`
             border: 1px solid #0E71EB;

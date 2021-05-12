@@ -11,6 +11,16 @@ const StyledParagraph = style.p`
             font: normal normal 600 16px/25px Poppins;
         `
     }
+
+    ${props => 
+        props.colorBlue &&
+        css`
+            color: #0E71EB;
+            font-weight: SemiBold;
+            font-size: 12px;
+            character-spacing: 20;
+        `
+    }
 `;
 
 
@@ -22,4 +32,7 @@ const Paragraph = ({content}) => {
     )
 }
 
-export default Paragraph;
+export {
+    Paragraph,
+    StyledParagraph
+}

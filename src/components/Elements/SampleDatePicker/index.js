@@ -12,7 +12,8 @@ const StyledDatePicker = style(DatePicker).withConfig({
   shouldForwardProp: prop => ![].includes(prop)
 })`
 
-    // css here
+    border-radius: 8px;
+    width: 100%;
 `;
 
 export default StyledDatePicker;
