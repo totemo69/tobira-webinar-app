@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Sidebar from '@/components/Elements/Sidebar';
 import { useState } from 'react'
 import Layout from '@/components/Elements/Layout';
@@ -70,10 +72,6 @@ export default function ListOfWebinar(){
     </Menu>
   );
 
-
-
- 
-  
   return(
     <>
       <Layout>
@@ -94,7 +92,7 @@ export default function ListOfWebinar(){
           <Header>
             <Div widthFull noMargin right>
                 <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
-                <Dropdown username="tobirauser" />
+                <Dropdown username="tobirauser" items={menu}/>
             </Div>
           </Header>
             <Content> 
@@ -106,3 +104,8 @@ export default function ListOfWebinar(){
     </>
   )
 }
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['translation']),
+  },
+});
