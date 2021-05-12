@@ -14,6 +14,7 @@ import Menu from '@/components/Elements/Menu';
 import Submenu from '@/components/Elements/Submenu';
 import Profile from './Pages/EditProfile';
 import WebinarListPage from './Pages/ListOfWebinar';
+import CreateWebinar from './Pages/CreateWebinar';
 import  Link  from '@/components/Elements/Link';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -22,6 +23,7 @@ import {
   UserOutlined,
   ProfileFilled
 } from '@ant-design/icons'
+
 
 
 export default function ListOfWebinar(){
@@ -37,6 +39,9 @@ export default function ListOfWebinar(){
     },
     {
       Content: <WebinarListPage />
+    },
+    {
+      Content: <CreateWebinar />
     }
   ]
 
@@ -49,6 +54,10 @@ export default function ListOfWebinar(){
   }
   const selectListOfWebinar = () =>{
     setRoute(2);
+  }
+
+  const selectCreateWebinar = () =>{
+    setRoute(3);
   }
 
   const menu = (
@@ -79,7 +88,7 @@ export default function ListOfWebinar(){
             <Logo sideBarLogo src={'Images/logo.svg'}/>
             <Menu mode="inline">
               <Submenu title="Webinars">
-                <Menu.Item>
+                <Menu.Item onClick={() => selectCreateWebinar()}>
                   Create Webinar
                 </Menu.Item>
                 <Menu.Item onClick={() => selectListOfWebinar()}>
