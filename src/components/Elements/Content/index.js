@@ -20,7 +20,7 @@ const StyledContent = styled(Content).withConfig({
 })`
     padding: 1rem 0.75rem;
     width: 100%;
-    height: 100%;
+    height: auto;
     background-color: #F3F3F3;
 
     ${props => 
@@ -34,6 +34,13 @@ const StyledContent = styled(Content).withConfig({
     props.heightScreen &&
         css`
             height: 100vh;
+        `
+};
+
+    ${props => 
+    props.heightFull &&
+        css`
+            height: 100%;
         `
 };
 

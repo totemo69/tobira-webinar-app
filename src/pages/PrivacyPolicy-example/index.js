@@ -7,7 +7,7 @@ import Button from '@/components/Elements/Button';
 import Footer from '@/components/Elements/Footer';
 import Link from '@/components/Elements/Link';
 import List from '@/components/Elements/SampleListing'
-import Paragraph from '@/components/Elements/SampleParagraph'
+import { Paragraph   } from '@/components/Elements/SampleParagraph'
 
 export default function PrivacyPolicy(){
   return(
@@ -39,7 +39,9 @@ export default function PrivacyPolicy(){
             
             <Paragraph content={'What information we collect about you We collect information about you when you provide it to us, when you use our Services, and when other sources provide it to us, as further described below.'}></Paragraph>
             
-            <Button TermsOfService type="primary">Go back to previous page</Button>
+            <Div center widthFull>
+              <Button mediumBtn type="primary">Go back to previous page</Button>
+            </Div>
           </Div>
                             
         </Content>

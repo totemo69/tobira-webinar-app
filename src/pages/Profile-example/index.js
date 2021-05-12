@@ -19,6 +19,7 @@ import Link from '@/components/Elements/Link';
 import Tabs from '@/components/Elements/Tabs';
 import TabPane from '@/components/Elements/TabPane';
 import Button from '@/components/Elements/Button';
+import Span from '@/components/Elements/Span';
 
 export default function ProfileSample() {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ export default function ProfileSample() {
           <Div widthXLong paddingSmall marginBottom2x>
             <Content>
                 <Div marginBottom2x>
-                    <Title secondary>{"Profile >"}</Title>
+                    <Title secondary>{"Profile >"} <Span breadCrumbs>Edit Profile</Span></Title>
                 </Div>
                 <Div widthFull noMargin cardContainer>
                     <Card ProfileCard>

@@ -1,11 +1,18 @@
+import styled, { css } from 'styled-components'
 
 
-import style from 'styled-components'
+const StyledSpan = styled.span`
+    color: #4e4e4e;
+    font-size: 12px;
+    letter-spacing: 0.20px;
+    line-height: 0.18px;
 
-
-const StyledSpan = style.span`
-
-
+    ${ props => 
+        props.breadCrumbs &&
+        css `
+            color: #4678b5
+        `
+    };
 `;
 
 

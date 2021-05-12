@@ -15,7 +15,7 @@ import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Logo from '@/components/Elements/Logo';
 import Modal from '@/components/Elements/Modal'
-import Paragraph from '@/components/Elements/SampleParagraph';
+import { Paragraph } from '@/components/Elements/SampleParagraph';
 import Span from '@/components/Elements/Span'
 
 
@@ -41,7 +41,6 @@ export default function SignupSample() {
               <Form
                 layout="vertical"
               >
-                 
                 <Title marginBottom>{t(message.signUp)}</Title>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>

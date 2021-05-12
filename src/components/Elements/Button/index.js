@@ -12,8 +12,10 @@ const StyledButton = styled(Button).withConfig({
     'marginTop',
     'marginTop2x',
     'marginBottom',
+    'marginBottom2x',
     'marginLeftAuto',
     'smallBtn',
+    'mediumBtn',
     'TermsOfService',
     'modalLoginButton',
     'BackButton',
@@ -85,6 +87,13 @@ const StyledButton = styled(Button).withConfig({
     props.smallBtn &&
       css`
         width: 35%;
+      `
+};
+
+    ${ props =>
+    props.mediumBtn &&
+      css`
+        width: 388px;
       `
 };
 

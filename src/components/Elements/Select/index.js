@@ -15,15 +15,17 @@ const StyledSelect = styled(Select).withConfig({
     margin: 0 auto 10px;
     width: 100%;
     height: 40px;
-    .ant-select-selection.ant-select-selection--single[aria-expanded="true"]
-    > div > div > div > div + div {
-        margin-top: -15px;
-    }
+    
     &:hover {
         border-color: #0e71eb;
     }
     &:focus {
         border: 2px solid #0e71eb;
+    }
+
+    .ant-select-selection.ant-select-selection--single[aria-expanded="true"]
+    > div > div > div > div + div {
+        margin-top: -15px;
     }
 
     ${props =>

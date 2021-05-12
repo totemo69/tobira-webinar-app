@@ -6,7 +6,7 @@ import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 import Footer from '@/components/Elements/Footer';
 import Link from '@/components/Elements/Link';
-import Paragraph from '@/components/Elements/SampleParagraph';
+import { Paragraph } from '@/components/Elements/SampleParagraph';
 import List from '@/components/Elements/SampleListing';
 
 export default function TermsOfService(){
@@ -38,7 +38,9 @@ export default function TermsOfService(){
             <List message="Limit your liability"></List>
             <List message="Disclaim warranties"></List>
 
-            <Button TermsOfService type="primary">Go back to previous page</Button>
+            <Div center widthFull>
+              <Button mediumBtn type="primary">Go back to previous page</Button>
+            </Div>
           </Div>
                             
         </Content>
