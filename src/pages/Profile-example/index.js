@@ -14,10 +14,11 @@ import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import PhoneInput from '@/components/Elements/PhoneInput';
 import Link from '@/components/Elements/Link';
+import Tabs from '@/components/Elements/Tabs';
 import TabPane from '@/components/Elements/TabPane';
 import Button from '@/components/Elements/Button';
-import { Tabs } from 'antd';
 
 export default function DashboardSample() {
   const { t } = useTranslation();
@@ -64,9 +65,9 @@ export default function DashboardSample() {
                         </Div>
                     </Card>
                     <Card ProfileSettings>
-                        <Div widthFull paddingCard noMargin>
+                        <Div widthFull paddingCard2 noMargin>
                           <Tabs defaultActiveKey="1">
-                            <TabPane tab="Tab 1" key="1">
+                            <TabPane tab="Edit Profile" key="1">
                               <Div widthFull>
                                 <Labels asterisk>Username</Labels>
                                 <Input type="text" disabled value="tobirauser"></Input>
@@ -79,18 +80,25 @@ export default function DashboardSample() {
                                 <Labels asterisk>Full Name</Labels>
                                 <Input type="text" value="Yamazaki Kento"></Input>
                               </Div>
-                              <Div widthFull marginTop>
+                              <Div widthFull marginY>
                                 <Labels asterisk>Contact Number</Labels>
-                                <Input type="text" value="090-9725-3264"></Input>
-                              </Div>
-                              <Div right widthFull marginTop>
-                                <Button type="primary" marginTop2x smallBtn>Save Changes</Button>
+                                <PhoneInput country={'jp'} />
                               </Div>
                             </TabPane>
-                            <TabPane tab="Tab 2" key="2">
-                              Change Password
+                            <TabPane tab="Change Password" key="2">
+                              <Div widthFull>
+                                <Labels asterisk>New Password</Labels>
+                                <Input type="email" placeholder="Enter new password"></Input>
+                              </Div>
+                              <Div widthFull marginY>
+                                <Labels asterisk>Confirm Password</Labels>
+                                <Input type="email" placeholder="Confirm new password"></Input>
+                              </Div>
                             </TabPane>
                           </Tabs>
+                        </Div>
+                        <Div widthFull paddingCard2 flexHeight noMargin bottomRight>
+                          <Button type="primary" smallBtn marginLeftAuto marginBottom2x>Save Changes</Button>
                         </Div>
                     </Card>
                 </Div>

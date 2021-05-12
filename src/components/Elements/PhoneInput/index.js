@@ -1,22 +1,17 @@
+/**
+ *
+ * PhoneInput
+ *
+ */
 
-
-import style, {css} from 'styled-components';
-import ReactPhoneInput from "react-phone-input-2";
-import 'react-phone-input-2/lib/style.css'
-
-
-const MyStyle = {
-  width: "100%",
-  height: "40px",
-  borderRadius: "8px",
-}
-
-
-
-const InputPhone = () => {
-  return(
-    <ReactPhoneInput inputStyle={MyStyle} />
-  )
-}
-
-export default InputPhone;
+ import styled, { css } from 'styled-components';
+ import PhoneInput from "react-phone-input-2";
+ import 'react-phone-input-2/lib/material.css'
+  
+  const StyledPhoneInput = styled(PhoneInput).withConfig({
+    shouldForwardProp: prop => ![].includes(prop),
+  })`
+    /***CSS here**/
+  `;
+  
+  export default StyledPhoneInput;

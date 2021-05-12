@@ -51,7 +51,7 @@ export default function EditProfile(){
                 <Input type="text" placeholder="User Name" value="Yamazaki Kento"></Input>
 
                 <Label >Contact Number</Label>
-                <PhoneInput />
+                <PhoneInput country={'jp'} />
                 
                 <Div style={{float: "right", marginTop: "28%"}}>
                   <Button style={{float: "right", width: "50%"}} type="primary">Save Changes</Button>
