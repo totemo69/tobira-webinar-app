@@ -219,7 +219,7 @@ const StyledDiv = style.div`
     ${props => 
         props.borderBreak && 
         css`
-            border-bottom: 1px solid #00000029;
+            border-bottom: 2px solid rgba(176, 176, 176, 0.1);
             `
     };
 

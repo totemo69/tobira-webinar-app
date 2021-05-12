@@ -16,7 +16,7 @@ import Labels from '@/components/Elements/Labels';
 import Link from '@/components/Elements/Link';
 import { Row, Col } from 'antd';
 
-export default function DashboardSample() {
+export default function ProfileSample() {
   const { t } = useTranslation();
   
   return (
@@ -31,7 +31,7 @@ export default function DashboardSample() {
           <Header noMargin>
             <Div widthFull noMargin right>
                 <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
-                <Dropdown username="tobirauser" />  
+                <Dropdown username="tobirauser" items />
             </Div>
           </Header>
           <Div widthXLong paddingSmall marginBottom2x>
