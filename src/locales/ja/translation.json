@@ -14,7 +14,11 @@
     "sendEmail":  "メールを送る",
     "checkMail":  "メールをチェックして下さい",
     "newPassword":  "新しいパスワード",
-    "success":  "成功"
+    "success":  "成功",
+    "profile":  "プロフィール",
+    "fullName":  "フルネーム",
+    "contactNo":  "連絡先番号",
+    "saveChanges":  "変更内容を保存"
   },
   "storybook" : {
     "title": "題名"
@@ -41,6 +45,10 @@
   "resetpasswordsample" : {
     "resetPassword":  "パスワードを再設定する",
     "resetSuccess":  "パスワードは正常にリセットされました"
+  },
+  "profilesample" : {
+    "editProfile":  "プロファイル編集",
+    "changePassword":  "パスワードを変更する"
   },
   "editprofile" : {
     "Username":  "ユーザー名",

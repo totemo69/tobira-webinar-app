@@ -61,6 +61,22 @@ const message = {
     key: `${scope}.success`,
     default: "Success"
   }),
+  profile: Object.values({
+    key: `${scope}.profile`,
+    default: "Profile"
+  }),
+  fullName: Object.values({
+    key: `${scope}.fullName`,
+    default: "Full Name"
+  }),
+  contactNo: Object.values({
+    key: `${scope}.contactNo`,
+    default: "Contact Number"
+  }),
+  saveChanges: Object.values({
+    key: `${scope}.saveChanges`,
+    default: "Save Changes"
+  }),
 };
 
 export default message;
