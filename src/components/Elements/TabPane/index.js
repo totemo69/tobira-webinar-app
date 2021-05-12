@@ -1,7 +1,7 @@
 /***
  * 
  * 
- * Tabs
+ * TabPane
  * 
  * 
  */
@@ -15,16 +15,6 @@
  const StyledTabpane = style(TabPane).withConfig({
    shouldForwardProp: prop => ![].includes(prop),
  })`
-    font-size: 14px;
-    font-size: 600;
-    color: #0e71eb;
-    letter-spacing: 0.20px;
-    line-height: 0.21px
-
-    &:hover{
-        opacity: 1;
-        color: #0e71eb;
-    }
  `;
  
  

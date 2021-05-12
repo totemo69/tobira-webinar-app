@@ -53,6 +53,9 @@ const StyledCard = styled(Card).withConfig({
        box-shadow: 0px 2px 4px #00000029;
 
        .ant-card-body {
+          display: flex;
+          flex-flow: column;
+          height: 100%;
           padding: 0;
         }
      `};

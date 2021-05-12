@@ -36,6 +36,13 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.paddingCard2 && 
+        css`
+            padding: 14px 20px 0;
+        `
+};
+
+    ${props => 
     props.noMargin && 
         css`
             margin: 0;
@@ -46,6 +53,13 @@ const StyledDiv = style.div`
     props.marginTop && 
         css`
             margin-top: 1rem;
+        `
+};
+
+    ${props => 
+    props.marginTop2x && 
+        css`
+            margin-top: 2rem;
         `
 };
 
@@ -152,6 +166,22 @@ const StyledDiv = style.div`
         css`
             display: flex;
             align-items: center;
+        `
+};
+
+    ${props => 
+    props.flexHeight && 
+        css`
+            flex: 1 1 auto;
+        `
+};
+
+    ${props => 
+    props.bottomRight && 
+        css`
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
         `
 };
 

@@ -11,6 +11,8 @@ const StyledButton = styled(Button).withConfig({
   shouldForwardProp: prop => ![
     'marginTop',
     'marginTop2x',
+    'marginBottom',
+    'marginLeftAuto',
     'smallBtn',
     'TermsOfService',
     'modalLoginButton',
@@ -54,6 +56,28 @@ const StyledButton = styled(Button).withConfig({
     props.marginTop2x &&
       css`
         margin-top: 3.5rem;
+      `
+};
+
+    ${ props =>
+    props.marginBottom &&
+      css`
+        margin-bottom: 1rem;
+      `
+};
+
+    ${ props =>
+    props.marginBottom2x &&
+      css`
+        margin-bottom: 2rem;
+      `
+};
+
+    ${ props =>
+    props.marginLeftAuto &&
+      css`
+        margin-right: 0;
+        margin-left: auto;
       `
 };
 
