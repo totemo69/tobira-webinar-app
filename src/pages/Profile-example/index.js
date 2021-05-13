@@ -42,10 +42,11 @@ export default function ProfileSample() {
           </Header>
           <Div widthXLong paddingSmall marginBottom2x>
             <Content>
-                <Div marginBottom2x>
-                    <Title secondary>{t(globalMessage.profile)} {">"} <Span breadCrumbs>{t(message.editProfile)}</Span></Title>
+                <Div marginBottom2x flexTop>
+                    <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
+                    <Span breadCrumbs>{t(message.editProfile)}</Span>
                 </Div>
-                <Div widthFull noMargin cardContainer>
+                <Div widthFull noMargin flexCenter>
                     <Card ProfileCard>
                         <Div widthFull noMargin paddingCard center borderBreak>
                             <Image src={"Images/avatar.svg"} alt="Tobira Logo" profileImg/>

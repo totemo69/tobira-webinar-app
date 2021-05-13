@@ -6,6 +6,7 @@ const { Title } = Typography;
 const SampleTitle = styled(Title).withConfig({
   shouldForwardProp: prop => ![
     'modalTitle',
+    'marginRight',
     'marginBottom',
     'TermsOfService',
     'privacypolicyHeader',
@@ -60,6 +61,15 @@ const SampleTitle = styled(Title).withConfig({
             line-height: 0.21px;
         }
     `
+    };
+
+    ${props => 
+    props.marginRight && 
+        css`
+            &.ant-typography{
+                margin-right: 0.25rem;
+            }
+        `
     };
 
     ${props => 
