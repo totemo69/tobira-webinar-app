@@ -11,6 +11,7 @@ const StyledSpan = styled.span`
         props.breadCrumbs &&
         css `
             color: #4678b5;
+            text-transform: capitalize;
         `
     };
 `;

@@ -54,3 +54,17 @@ a {
 .react-tel-input .flag-dropdown {
 	z-index: 10;
 }
+
+.ant-menu-submenu-title:hover > .ant-menu-submenu-arrow {
+	color: #0e71eb !important;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+	border-style: none;
+}
+
+.ant-menu-submenu-open > .ant-menu-submenu-title,
+.ant-menu-submenu-open > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+	background-color: #0e71eb;
+	color: #ffffff !important;
+}

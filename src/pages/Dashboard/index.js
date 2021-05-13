@@ -104,7 +104,7 @@ export default function ListOfWebinar(){
                 <Dropdown username="tobirauser" items={menu}/>
             </Div>
           </Header>
-            <Content> 
+            <Content heightFull>
               {ActiveRoute[selectedRoute].Content}
             </Content>
           <Footer>Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved. <Link href="/TermsofService-example" name=" Terms of Service"></Link> {" "} and {" "} <Link href="/PrivacyPolicy-example" name=" Privacy Policy"></Link></Footer>

@@ -13,6 +13,7 @@ const StyledContent = styled(Content).withConfig({
   shouldForwardProp: prop => ![
     'bgNone',
     'heightScreen',
+    'heightFull',
     'contentTOS',
     'contentTOSgray',
     'privacypolicyContent',

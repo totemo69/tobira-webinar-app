@@ -129,6 +129,13 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.heightScreen &&
+    css`
+        height: 100vh;
+    `
+};
+
+    ${props => 
     props.center && 
         css`
             text-align: center;
@@ -162,10 +169,18 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.cardContainer && 
+    props.flexCenter && 
         css`
             display: flex;
             align-items: center;
+        `
+};
+
+    ${props => 
+    props.flexTop && 
+        css`
+            display: flex;
+            align-items: flex-start;
         `
 };
 
