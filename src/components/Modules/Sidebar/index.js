@@ -17,7 +17,7 @@ export default function Sider() {
 
   return (
     <>
-      <Sidebar width={250}>
+      <SideBar width={250}>
         <Div paddingSmall noMargin widthFull yellowBg>
           <Image src={"Images/logo.svg"} alt="Tobira Logo" logoSmall />
         </Div>
@@ -34,13 +34,13 @@ export default function Sider() {
               </Link>
             </Menu.Item>
             <Menu.Item icon={<ProfileFilled style={{ fontSize: "18px"}} />} key="listWebinar">
-              <Link href="/Dashboard-example">
+              <Link href="/dashboard-example">
                 <a>List of Webinar</a>
               </Link>
             </Menu.Item>
           </SubMenu>
         </Menu>
-      </Sidebar>
+      </SideBar>
     </>
   );
 }

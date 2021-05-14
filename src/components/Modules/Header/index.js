@@ -21,7 +21,7 @@ export default function Header() {
   const MenuItems = (
     <Menu>
       <Menu.Item key="0">
-        <Link href="/Profile-example">
+        <Link href="/profile">
           <a><UserOutlined /> Profile</a>
         </Link>
       </Menu.Item>
@@ -42,7 +42,7 @@ export default function Header() {
       </Menu.Item>
       <Menu.Divider></Menu.Divider>
       <Menu.Item key="4">
-        <Link href="/Login-example">
+        <Link href="/login">
           <a><LogoutOutlined /> Log out</a>
         </Link>
       </Menu.Item>

@@ -63,7 +63,7 @@ export default function ForgotPassword() {
                     <Div withPadding noMargin widthFull heightFull center>
                       <p>{t(message.recoverInstructions)}</p>
                       <p>{t(message.checkSpam)}</p>
-                      <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                      <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                     </Div>
                   </Div>
                 </Col>

@@ -76,14 +76,14 @@ export default function SignUp() {
                       </Div>
                       <Div flexColCenter noMargin widthFull heightFull>
                         <Div marginY2x center>{t(message.verificationMsg)}</Div>
-                        <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                        <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                       </Div>
                     </Div>
                   </Col>
                 </Row>
               </Modal>
               <Div center>
-                {t(message.haveAccount)} <Link href="/Login-example" name={t(message.loginHere)}></Link>
+                {t(message.haveAccount)} <Link href="/login" name={t(message.loginHere)}></Link>
               </Div>
             </Form>
           </Col>

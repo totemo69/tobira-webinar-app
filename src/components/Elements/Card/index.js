@@ -45,6 +45,22 @@ const StyledCard = styled(Card).withConfig({
      `};
 
    ${props =>
+    props.TermsAndPrivacy &&
+     css`
+       width: 960px;
+       height: 675px;
+       border-radius: 8px;
+       box-shadow: 0px 1px 2px #00000029;
+
+       .ant-card-body {
+          display: flex;
+          flex-flow: column;
+          height: 100%;
+          padding: 0;
+        }
+     `};
+
+   ${props =>
     props.ProfileSettings &&
      css`
        width: 100%;

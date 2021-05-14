@@ -31,7 +31,8 @@
     "and":  "and",
     "privacyPolicy":  "Privacy Policy",
     "haveAccount":  "Already have an account?",
-    "loginHere":  "Log in here"
+    "loginHere":  "Log in here",
+    "verificationMsg":  "A verification mail has been sent to your email account. Please check your email and click the link to confirm."
   },
   "login" : {
     "rememberMe":  "Remember Me",

@@ -1,7 +1,8 @@
-import Logo from '@/components/Elements/Logo';
-import Content from '@/components/Elements/Content';
-import Layout from '@/components/Elements/Layout';
+import Layout from '@/components/Layouts/Guest';
 import Div from '@/components/Elements/Div';
+import Image from '@/components/Elements/Image';
+import Card from '@/components/Elements/Card';
+import Content from '@/components/Elements/Content';
 import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 import Footer from '@/components/Elements/Footer';
@@ -12,7 +13,16 @@ import { Paragraph   } from '@/components/Elements/SampleParagraph';
 export default function PrivacyPolicy(){
   return(
     <>
-      <Layout bgGray>
+      <Layout>
+        <Div widthFull center noMargin marginBottom2x>
+          <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+        </Div>
+        <Card>
+          <Title marginBottom>PRIVACY POLICY</Title>
+        </Card>
+      </Layout>
+      
+      {/* <Layout bgGray>
         <Logo TermsOfService src={"Images/logo.svg"}/>
         <Content privacypolicyContent>
           <Title privacypolicyHeader>PRIVACY POLICY</Title>
@@ -46,7 +56,7 @@ export default function PrivacyPolicy(){
                             
         </Content>
         <Footer TermsOfService >Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved. <Link href="/TermsofService-example" name="Terms of Service"></Link> and  <Link href="/PrivacyPolicy-example" name="Privacy Policy"></Link> </Footer>
-      </Layout>
+      </Layout> */}
     </>
   );
 }
