@@ -53,7 +53,7 @@ export default function CreateWebinar(){
         {current === step.length - 1 && (
           <Button onClick={() => message.success('Processing complete')} NextButton type="primary">Done</Button>
         )}
-         {current > 0 && (
+        {current > 0 && (
           <Button onClick={() => prev()} BackButton > {"<"} Back</Button>
         )}
       </Card>
