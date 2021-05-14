@@ -25,13 +25,13 @@ const StyledCard = styled(Card).withConfig({
    margin-top: 4px;
 
    ${props =>
-    props.PaddingTop &&
+    props.paddingTop &&
      css`
        padding-top: 20px;
      `};
 
    ${props =>
-    props.ProfileCard &&
+    props.profileCard &&
      css`
        margin-right: 1.50rem;
        width: 41.666667%;
@@ -45,7 +45,7 @@ const StyledCard = styled(Card).withConfig({
      `};
 
    ${props =>
-    props.ProfileSettings &&
+    props.profileSettings &&
      css`
        width: 100%;
        height: 565px;

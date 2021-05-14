@@ -201,7 +201,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.TermsOfService && 
+    props.termsofService && 
             css`
                 background: #FFFFFF 0% 0% no-repeat padding-box;
                 opacity: 1;
@@ -219,7 +219,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.contentTOS &&
+    props.contentTos &&
         css`
             width: 960px;
             height: 675px;
@@ -269,7 +269,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.privacyPolicyContent && 
+    props.privacyPolicycontent && 
         css`
             width: 879px;
             height: 640px;
@@ -285,7 +285,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.CreateWebinarBrakline && 
+    props.createWebinarBrakline && 
         css`
             width: 65rem;
             margin-top: 30px;
@@ -371,7 +371,7 @@ const StyledDiv = style.div`
 }
 
     ${props => 
-    props.ThankYouMessage && 
+    props.thankyouMessage && 
         css`
         text-align: center;
         width: 100%; margin-top: -80px; 

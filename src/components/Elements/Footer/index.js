@@ -25,7 +25,7 @@ const StyledFooter = styled(Footer).withConfig({
     line-height: 0.18px;
 
     ${props => 
-    props.TermsOfService && 
+    props.termsofService && 
       css`
         text-align: center;
       `

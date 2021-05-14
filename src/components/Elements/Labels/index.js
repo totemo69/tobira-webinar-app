@@ -10,7 +10,7 @@ const StyledLabels = styled.label`
     letter-spacing: 0.24px;
 
     ${ props =>
-    props.asterisk &&
+    props.asteRisk &&
         css`
             &::after {
                 content: "*";

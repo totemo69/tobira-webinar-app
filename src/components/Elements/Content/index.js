@@ -46,7 +46,7 @@ const StyledContent = styled(Content).withConfig({
 };
 
     ${props => 
-    props.contentTOS &&
+    props.contentTos &&
           css`
             width: 960px;
             height: 100vh;
@@ -59,7 +59,7 @@ const StyledContent = styled(Content).withConfig({
 };
 
     ${props => 
-    props.contentTOSgray &&
+    props.contentTosgray &&
             css`
             background-color: #f3f3f3;
             `

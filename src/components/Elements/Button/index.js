@@ -76,7 +76,7 @@ const StyledButton = styled(Button).withConfig({
 };
 
     ${ props =>
-    props.marginLeftAuto &&
+    props.marginLeftauto &&
       css`
         margin-right: 0;
         margin-left: auto;
@@ -98,7 +98,7 @@ const StyledButton = styled(Button).withConfig({
 };
 
   ${ props =>
-    props.TermsOfService &&
+    props.termsOfService &&
       css`
         width: 387.5px;
         height: 40px;
@@ -133,7 +133,7 @@ const StyledButton = styled(Button).withConfig({
 };
 
   ${props => 
-    props.BackButton &&
+    props.backButton &&
     css`
       width: 140px;
       color: #0E71EB;
@@ -143,7 +143,7 @@ const StyledButton = styled(Button).withConfig({
 }
 
   ${props => 
-    props.NextButton &&
+    props.nextButton &&
     css`
       width: 140px;
       float: right;
