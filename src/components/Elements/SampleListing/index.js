@@ -1,6 +1,6 @@
 
 
-import style, {css} from 'styled-components'
+import style from 'styled-components';
 
 
 const StyledList = style.li`
@@ -18,15 +18,15 @@ const StyledUl = style.ul`
 `;
 
 const List = ({message}) => {
-    return(
-        <div>
-            <StyledUl >
-                <StyledList>{message}</StyledList>
-            </StyledUl>
+  return(
+    <div>
+      <StyledUl >
+        <StyledList>{message}</StyledList>
+      </StyledUl>
             
-        </div>
+    </div>
        
-    )
-}
+  );
+};
 
 export default List;

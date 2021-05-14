@@ -108,7 +108,7 @@ const StyledButton = styled(Button).withConfig({
         margin-top: 86.4px;
         
       `
-  };
+};
 
   ${props => 
     props.modalLoginButton &&
@@ -130,7 +130,7 @@ const StyledButton = styled(Button).withConfig({
           outline: none;
         }
     `
-  };
+};
 
   ${props => 
     props.BackButton &&
@@ -140,7 +140,7 @@ const StyledButton = styled(Button).withConfig({
       float: right;
       margin-top: 55px;
     `
-  }
+}
 
   ${props => 
     props.NextButton &&
@@ -151,7 +151,7 @@ const StyledButton = styled(Button).withConfig({
       margin-top: 55px;
       
     `
-  }
+}
 `;
  
 export default StyledButton;

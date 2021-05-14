@@ -5,7 +5,7 @@
  */
 
 
-import style, {css} from 'styled-components';
+import style from 'styled-components';
 import {TimePicker} from 'antd';
 
 const StyleTimePicker = style(TimePicker).withConfig({

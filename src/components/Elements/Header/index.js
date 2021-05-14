@@ -22,25 +22,25 @@ const StyledHeader = styled(Header).withConfig({
     box-shadow: 0px 2px 4px #00000029;
 
     ${ props =>
-      props.noPadding &&
+    props.noPadding &&
       css`
         padding: 0;
       `
-    };
+};
 
     ${ props =>
-      props.noMargin &&
+    props.noMargin &&
       css`
         margin: 0;
       `
-    }
+}
 
     ${ props =>
-      props.frontRegistration &&
+    props.frontRegistration &&
       css`
         margin: 0;
       `
-    }
+}
  `;
 
 export default StyledHeader;

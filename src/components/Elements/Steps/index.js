@@ -1,7 +1,7 @@
 
 
 
-import style, {css} from 'styled-components';
+import style from 'styled-components';
 import { Steps } from 'antd';
 
 const { Step } = Steps;
@@ -23,4 +23,4 @@ const StyledSteps = style(Steps).withConfig({
 export {
   StyledStep,
   StyledSteps,
-}
+};

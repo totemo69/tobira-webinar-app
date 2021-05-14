@@ -1,6 +1,6 @@
 import Registration from './Pages/Register';
 import TicketSummary from './Pages/TicketSummary';
-import CompletePage from './Pages/CompletePage'
+import CompletePage from './Pages/CompletePage';
 import Header from '@/components/Elements/Header';
 import Logo from '@/components/Elements/Logo';
 import Footer from '@/components/Elements/Footer';
@@ -49,8 +49,8 @@ export default function FrontWebinar(){
         <Steps style={{backgroundColor: 'transparent', marginTop: '20px', width: '50%', 
           margin: '0 auto', }}  current={current}>
           {steps.map(item => (
-              <Step style={{marginTop: '90px'}}  key={item.title} title={item.title} />
-            ))}
+            <Step style={{marginTop: '90px'}}  key={item.title} title={item.title} />
+          ))}
         </Steps>
         <Layout>
           <Content>
@@ -62,5 +62,5 @@ export default function FrontWebinar(){
       </Layout>
       <Footer>Footer</Footer>
     </>
-  )
+  );
 }

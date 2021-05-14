@@ -5,16 +5,12 @@
  * 
  * 
  */
-
-
-import style, {css} from 'styled-components';
+import style from 'styled-components';
 import { Table } from 'antd';
 
 const StyledTable = style(Table).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
-})
-`
-  
+})`
   thead > tr > th{
     background-color: #0E71EB;
     color: white;

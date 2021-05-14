@@ -219,7 +219,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-        props.contentTOS &&
+    props.contentTOS &&
         css`
             width: 960px;
             height: 675px;
@@ -229,47 +229,47 @@ const StyledDiv = style.div`
             backgroun-color: #FFFFFF;
             padding: 10px;
         `
-    };
+};
 
     ${props => 
-        props.modal &&
+    props.modal &&
         css`
             height: 178px;
             width: 100%;
             background-color: #ABC9EE;
         `
-    };
+};
 
     ${props => 
-        props.lightText && 
+    props.lightText && 
         css`
             color: #b0b0b0;
             `
-    };
+};
 
     ${props => 
-        props.yellowBg && 
+    props.yellowBg && 
         css`
             background-color: #FFFC1C;
             `
-    };
+};
 
     ${props => 
-        props.withShadow && 
+    props.withShadow && 
         css`
             box-shadow: 0px 2px 4px #00000029;
             `
-    };
+};
 
     ${props => 
-        props.borderBreak && 
+    props.borderBreak && 
         css`
             border-bottom: 2px solid rgba(176, 176, 176, 0.1);
             `
-    };
+};
 
     ${props => 
-        props.privacyPolicyContent && 
+    props.privacyPolicyContent && 
         css`
             width: 879px;
             height: 640px;
@@ -282,20 +282,20 @@ const StyledDiv = style.div`
             color: #000000;
             opacity: 1;
         `
-    };
+};
 
     ${props => 
-        props.CreateWebinarBrakline && 
+    props.CreateWebinarBrakline && 
         css`
             width: 65rem;
             margin-top: 30px;
             margin-bottom: 30px;
             border-bottom: 1px solid #DAE9FB;
             `
-    };
+};
 
     ${props => 
-        props.Triangle && 
+    props.Triangle && 
         css`
             border: 1px solid #0E71EB;
             width: 879px;
@@ -309,10 +309,10 @@ const StyledDiv = style.div`
 
             
         `
-    };
+};
 
     ${props => 
-        props.registerComplete &&
+    props.registerComplete &&
         css`
             background: #ABC9EE 0% 0% no-repeat padding-box;
             width: 400px;
@@ -320,10 +320,10 @@ const StyledDiv = style.div`
             text-align: center;
             
         `
-    };
+};
 
     ${props => 
-        props.verificationMessage && 
+    props.verificationMessage && 
         css`
             margin-left: 32px;
             margin-right: 29px;
@@ -332,51 +332,51 @@ const StyledDiv = style.div`
             width: 341px;
             height: 70px;
         `
-    };
+};
 
     ${props => 
-        props.registerSuccesfull &&
+    props.registerSuccesfull &&
         css`
            
             text-align: center;
             width: 100%;
             margin-top: 20px;
         `
-    }
+}
 
     ${props => 
-        props.successLogo &&
+    props.successLogo &&
         css`
             text-align: center;
             width: 100%;
         `
-    }
+}
 
     ${props => 
-        props.LoginSuccesButton &&
+    props.LoginSuccesButton &&
         css`
             margin: 0 auto;
             margin-top: 100px;
             width: 100%;
         `
-    }
+}
 
     ${props => 
-        props.successMessage &&
+    props.successMessage &&
         css`
         text-align: center;
         width: 100%;
         margin-top: 33px;
         `
-    }
+}
 
     ${props => 
-        props.ThankYouMessage && 
+    props.ThankYouMessage && 
         css`
         text-align: center;
         width: 100%; margin-top: -80px; 
         font: normal normal bold 30px/46px Poppins;
         `
-    }
+}
 `;
 export default StyledDiv;
