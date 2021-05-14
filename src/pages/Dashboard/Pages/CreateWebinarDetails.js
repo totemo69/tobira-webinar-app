@@ -87,9 +87,6 @@ export default function CreateWebinarPage1(){
             
         </Col>
       </Row>
-
-     
-
     </>
   );
 }
