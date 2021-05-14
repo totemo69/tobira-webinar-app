@@ -6,8 +6,8 @@ import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 import Footer from '@/components/Elements/Footer';
 import Link from '@/components/Elements/Link';
-import List from '@/components/Elements/SampleListing'
-import { Paragraph   } from '@/components/Elements/SampleParagraph'
+import List from '@/components/Elements/SampleListing';
+import { Paragraph   } from '@/components/Elements/SampleParagraph';
 
 export default function PrivacyPolicy(){
   return(
@@ -18,17 +18,17 @@ export default function PrivacyPolicy(){
           <Title privacypolicyHeader>PRIVACY POLICY</Title>
           <Div Triangle></Div>
           <Div privacyPolicyContent>
-          <Paragraph content="
+            <Paragraph content="
           Your privacy is important to us, and so is being transparent about how we collect, use, and share information about you. This policy is intended to help you understand:
           "></Paragraph>
           
            
-              <List message="How we use information we collect"></List>
-              <List message="How we share information we collect"></List>
-              <List message="How we store and secure information we collect"></List>
-              <List message="How to access and control your information"></List>
-              <List message="How we transfer information we collect internationally"></List>
-              <List message="Other important privacy information"></List>
+            <List message="How we use information we collect"></List>
+            <List message="How we share information we collect"></List>
+            <List message="How we store and secure information we collect"></List>
+            <List message="How to access and control your information"></List>
+            <List message="How we transfer information we collect internationally"></List>
+            <List message="Other important privacy information"></List>
             
 
             <Paragraph content={'This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed. Atlassian, we and us refers to Atlassian Pty Ltd, Atlassian, Inc. and any of our corporate affiliates. We offer a wide range of products, including our cloud, server and data center products. We refer to all of these products, together with our other services and websites as "Services" in this policy.'}></Paragraph>

@@ -13,8 +13,7 @@ const SampleTitle = styled(Title).withConfig({
     'secondary',
     'profileName',
   ].includes(prop),
-})
-`
+})`
     font-family: Poppins;
     &.ant-typography {
         color: #4e4e4e;
@@ -34,7 +33,7 @@ const SampleTitle = styled(Title).withConfig({
             letter-spacing: 0.32px;
         }
     `
-    };
+};
 
     ${props => 
     props.secondary && 
@@ -48,7 +47,7 @@ const SampleTitle = styled(Title).withConfig({
             line-height: 0.30px;
         }
     `
-    };
+};
 
     ${props => 
     props.profileName && 
@@ -61,7 +60,7 @@ const SampleTitle = styled(Title).withConfig({
             line-height: 0.21px;
         }
     `
-    };
+};
 
     ${props => 
     props.marginRight && 
@@ -70,7 +69,7 @@ const SampleTitle = styled(Title).withConfig({
                 margin-right: 0.25rem;
             }
         `
-    };
+};
 
     ${props => 
     props.marginBottom && 
@@ -79,10 +78,10 @@ const SampleTitle = styled(Title).withConfig({
                 margin-bottom: 3rem;
             }
         `
-    };
+};
 
     ${props => 
-        props.TermsOfService && 
+    props.TermsOfService && 
             css`
                 &.ant-typography{
                    color: #0E71EB;
@@ -96,10 +95,10 @@ const SampleTitle = styled(Title).withConfig({
                 }
                
             `
-        };
+};
 
         ${props => 
-            props.privacypolicyHeader &&
+    props.privacypolicyHeader &&
             css`
             &.ant-typography{
                 color: #0E71EB;
@@ -112,7 +111,7 @@ const SampleTitle = styled(Title).withConfig({
              }
             
          `
-        };
+};
     
 `;
 

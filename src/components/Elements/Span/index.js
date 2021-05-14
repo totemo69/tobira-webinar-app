@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 
 const StyledSpan = styled.span`
@@ -8,14 +8,14 @@ const StyledSpan = styled.span`
     line-height: 0.18px;
 
     ${ props => 
-        props.breadCrumbs &&
+    props.breadCrumbs &&
         css `
             color: #4678b5;
             font-size: 14px;
             font-weight: 500;
             text-transform: capitalize;
         `
-    };
+};
 `;
 
 

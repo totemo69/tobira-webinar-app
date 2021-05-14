@@ -15,7 +15,7 @@ import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
-import Modal from '@/components/Elements/Modal'
+import Modal from '@/components/Elements/Modal';
 import ButtonLink from '@/components/Elements/ButtonLink';
 
 export default function ResetPasswordSample() {
@@ -24,11 +24,11 @@ export default function ResetPasswordSample() {
 
   const openModal = () => {
     setIsOpenModal(true);
-  }
+  };
 
   const closeModal = () => {
     setIsOpenModal(false);
-  }
+  };
 
   return (
     <>
@@ -54,9 +54,9 @@ export default function ResetPasswordSample() {
                 </Div>
               </Form>
               <Modal isOpen={isOpenModal}
-                  onRequestClose={closeModal}
-                  ariaHideApp={false} overlayClassName="Overlay"
-                  marginTop noPadding
+                onRequestClose={closeModal}
+                ariaHideApp={false} overlayClassName="Overlay"
+                marginTop noPadding
               >
                 <Row>
                   <Col span={24}>

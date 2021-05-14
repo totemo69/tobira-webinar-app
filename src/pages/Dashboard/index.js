@@ -1,30 +1,20 @@
-import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Sidebar from '@/components/Elements/Sidebar';
-import { useState } from 'react'
+import { useState } from 'react';
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
 import Header from '@/components/Elements/Header';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Logo from '@/components/Elements/Logo';
-import Dropdown from '@/components/Elements/Dropdown'
-import Footer from '@/components/Elements/Footer'
+import Dropdown from '@/components/Elements/Dropdown';
+import Footer from '@/components/Elements/Footer';
 import Menu from '@/components/Elements/Menu';
 import Submenu from '@/components/Elements/Submenu';
 import Profile from './Pages/EditProfile';
 import WebinarListPage from './Pages/ListOfWebinar';
 import CreateWebinar from './Pages/CreateWebinar';
 import  Link  from '@/components/Elements/Link';
-
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {
-  DownOutlined,
-  UserOutlined,
-  ProfileFilled
-} from '@ant-design/icons'
-
-
 
 export default function ListOfWebinar(){
 
@@ -43,22 +33,22 @@ export default function ListOfWebinar(){
     {
       Content: <CreateWebinar />
     }
-  ]
+  ];
 
   const selectProfile = () =>{
     setRoute(0);
-  }
+  };
 
   const selectAccount = () =>{
     setRoute(1);
-  }
+  };
   const selectListOfWebinar = () =>{
     setRoute(2);
-  }
+  };
 
   const selectCreateWebinar = () =>{
     setRoute(3);
-  }
+  };
 
   const menu = (
     <Menu>
@@ -85,33 +75,33 @@ export default function ListOfWebinar(){
     <>
       <Layout>
         <Sidebar>
-            <Logo sideBarLogo src={'Images/logo.svg'}/>
-            <Menu mode="inline">
-              <Submenu title="Webinars">
-                <Menu.Item onClick={() => selectCreateWebinar()}>
+          <Logo sideBarLogo src={'Images/logo.svg'}/>
+          <Menu mode="inline">
+            <Submenu title="Webinars">
+              <Menu.Item onClick={() => selectCreateWebinar()}>
                   Create Webinar
-                </Menu.Item>
-                <Menu.Item onClick={() => selectListOfWebinar()}>
+              </Menu.Item>
+              <Menu.Item onClick={() => selectListOfWebinar()}>
                   List of Webinar
-                </Menu.Item>
-              </Submenu>
-            </Menu>
+              </Menu.Item>
+            </Submenu>
+          </Menu>
         </Sidebar>
-       <Layout>
+        <Layout>
           <Header>
             <Div widthFull noMargin right>
-                <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
-                <Dropdown username="tobirauser" items={menu}/>
+              <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
+              <Dropdown username="tobirauser" items={menu}/>
             </Div>
           </Header>
-            <Content heightFull>
-              {ActiveRoute[selectedRoute].Content}
-            </Content>
+          <Content heightFull>
+            {ActiveRoute[selectedRoute].Content}
+          </Content>
           <Footer>Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved. <Link href="/TermsofService-example" name=" Terms of Service"></Link> {" "} and {" "} <Link href="/PrivacyPolicy-example" name=" Privacy Policy"></Link></Footer>
         </Layout>
       </Layout>
     </>
-  )
+  );
 }
 export const getStaticProps = async ({ locale }) => ({
   props: {

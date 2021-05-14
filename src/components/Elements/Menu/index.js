@@ -17,7 +17,7 @@ const StyledMenu = styled(Menu).withConfig({
     css`
       margin-top: 1rem;
     `
-  }
+}
 `;
 
 export default StyledMenu;

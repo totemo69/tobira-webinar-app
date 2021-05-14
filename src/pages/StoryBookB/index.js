@@ -1,4 +1,4 @@
-import Title from '@/components/Elements/SampleTitle';
+import Title from '@/components/Elements/Title';
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
 import Input from '@/components/Elements/Input';

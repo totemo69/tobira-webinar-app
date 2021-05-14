@@ -17,7 +17,7 @@ const StyledContent = styled(Content).withConfig({
     'contentTOS',
     'contentTOSgray',
     'privacypolicyContent',
-      ].includes(prop),
+  ].includes(prop),
 })`
     padding: 1rem 0.75rem;
     width: 100%;
@@ -63,10 +63,10 @@ const StyledContent = styled(Content).withConfig({
             css`
             background-color: #f3f3f3;
             `
-    };
+};
 
     ${props => 
-      props.privacypolicyContent && 
+    props.privacypolicyContent && 
       css`
       width: 960px;
       height: auto;
@@ -77,7 +77,7 @@ const StyledContent = styled(Content).withConfig({
       margin-bottom: 50px;
       box-shadow: 0px 1px 2px #00000029;
       `
-    };
+};
  `;
 
 export default StyledContent;
