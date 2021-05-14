@@ -34,6 +34,6 @@ const message = {
     default: "Search webinar title"
   }),
   
-}
+};
 
 export default message;

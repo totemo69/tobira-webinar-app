@@ -4,14 +4,14 @@
  *
  */
 
- import Link from 'next/link';
+import Link from 'next/link';
  
- const ButtonLink = ({ href, element }) => {
-   return (
-     <Link href={href} passHref>
-       {element}
-     </Link>
-   );
- };
+const ButtonLink = ({ href, element }) => {
+  return (
+    <Link href={href} passHref>
+      {element}
+    </Link>
+  );
+};
    
- export default ButtonLink;
+export default ButtonLink;

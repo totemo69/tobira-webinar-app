@@ -7,15 +7,15 @@
  */
 
 
- import style, { css } from 'styled-components';
- import { Tabs } from 'antd';
+import style, { css } from 'styled-components';
+import { Tabs } from 'antd';
 
- const StyledTabs = style(Tabs).withConfig({
-   shouldForwardProp: prop => ![
-       'heightFull',
-       'widthFull',
-   ].includes(prop),
- })`
+const StyledTabs = style(Tabs).withConfig({
+  shouldForwardProp: prop => ![
+    'heightFull',
+    'widthFull',
+  ].includes(prop),
+})`
     .ant-tabs-nav {
         padding: 0;
         margin-top: 0;
@@ -53,19 +53,19 @@
     }
 
     ${props => 
-        props.heightFull && 
+    props.heightFull && 
         css`
             height: 100%;
         `
-    };
+};
 
     ${props => 
-        props.widthFull && 
+    props.widthFull && 
         css`
             height: 100%;
         `
-    };
+};
  `;
  
  
- export default StyledTabs;
+export default StyledTabs;

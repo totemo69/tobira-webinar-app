@@ -4,9 +4,9 @@
  * 
  * */ 
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined } from '@ant-design/icons';
 
 const StyledDropdown = styled(Dropdown).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
@@ -16,7 +16,7 @@ const StyledDropdown = styled(Dropdown).withConfig({
 
 const StyledATag = styled.a`
   font-weight: 600;
-`
+`;
 
 const menu = (
   <Menu>
@@ -41,10 +41,10 @@ const menu = (
 
 const Drop = ({ username , items }) =>{
   return(
-      <StyledDropdown overlay={items && menu} placement="bottomRight" trigger={['click']}>
-        <StyledATag>{username} <DownOutlined/></StyledATag>
-      </StyledDropdown>
-  )
+    <StyledDropdown overlay={items && menu} placement="bottomRight" trigger={['click']}>
+      <StyledATag>{username} <DownOutlined/></StyledATag>
+    </StyledDropdown>
+  );
 };
 
 export default Drop;

@@ -14,11 +14,8 @@ import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Logo from '@/components/Elements/Logo';
-import Modal from '@/components/Elements/Modal'
+import Modal from '@/components/Elements/Modal';
 import { Paragraph } from '@/components/Elements/SampleParagraph';
-import Span from '@/components/Elements/Span'
-
-
 
 export default function SignupSample() {
   const { t } = useTranslation();
@@ -30,7 +27,7 @@ export default function SignupSample() {
 
   const modalShow = () => {
     isShowModal(true);
-  }
+  };
 
   return (
     <>

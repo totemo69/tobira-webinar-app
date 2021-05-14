@@ -3,20 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "husky install",
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./src --ignore-path .gitignore --ext ts --ext tsx --ext js",
-    "lint:fix": "npm run lint -- --fix"
-  },
-  "lint-staged": {
-    "*.@(ts|tsx)": "npm run lint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",

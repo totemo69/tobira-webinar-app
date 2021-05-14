@@ -7,15 +7,15 @@
  */
 
 
- import style, { css } from 'styled-components';
- import { Tabs } from 'antd';
+import style from 'styled-components';
+import { Tabs } from 'antd';
 
- const { TabPane } = Tabs;
+const { TabPane } = Tabs;
  
- const StyledTabpane = style(TabPane).withConfig({
-   shouldForwardProp: prop => ![].includes(prop),
- })`
+const StyledTabpane = style(TabPane).withConfig({
+  shouldForwardProp: prop => ![].includes(prop),
+})`
  `;
  
  
- export default StyledTabpane;
+export default StyledTabpane;

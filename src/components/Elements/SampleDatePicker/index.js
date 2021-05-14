@@ -4,7 +4,7 @@
  *
  */
 
-import style, {css} from 'styled-components';
+import style from 'styled-components';
 import { DatePicker } from 'antd';
 
 
