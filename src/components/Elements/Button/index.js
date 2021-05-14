@@ -155,6 +155,19 @@ const StyledButton = styled(Button).withConfig({
 };
 
   ${props => 
+    props.BackButton &&
+      css`
+        width: 140px;
+        float: right;
+        margin-left: 30.52px;
+        margin-top: 55px;
+        
+      `
+};
+
+
+
+  ${props => 
     props.UpDownButton && 
     css`
       background: #4678B5;

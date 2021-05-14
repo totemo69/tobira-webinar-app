@@ -5,6 +5,7 @@ import Registration from './CreateWebinarRegistration';
 import Div from '@/components/Elements/Div';
 import Button from '@/components/Elements/Button';
 import { useState } from 'react';
+import { message } from 'antd';
 
 
 const step = [
@@ -29,6 +30,10 @@ export default function CreateWebinar(){
   const next = () => {
     setCurrent(current + 1);
   };
+
+  const prev = () => {
+    setCurrent(current - 1);
+  };
   return(
     <>
       Create Webinar
@@ -42,7 +47,15 @@ export default function CreateWebinar(){
           {step[current].Content}
         </Div>
 
-        <Button onClick={() => next()} NextButton type="primary">Next {">"}</Button>
+        {current < step.length - 1 && (
+          <Button onClick={() => next()} NextButton type="primary">Next {">"}</Button>
+        )}
+        {current === step.length - 1 && (
+          <Button onClick={() => message.success('Processing complete')} NextButton type="primary">Done</Button>
+        )}
+         {current > 0 && (
+          <Button onClick={() => prev()} BackButton > {"<"} Back</Button>
+        )}
       </Card>
     </>
   );
