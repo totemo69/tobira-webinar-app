@@ -7,7 +7,7 @@ import Button from '@/components/Elements/Button';
 import Textarea from '@/components/Elements/SampleTextArea';
 import DatePicker from '@/components/Elements/SampleDatePicker';
 import TimrePicker from '@/components/Elements/TimePicker';
-import Radio from '@/components/Elements/Radio';
+import Radio from '@/components/Elements/RadioButton';
 import {Row, Col} from 'antd';
 import { PlusSquareFilled  } from '@ant-design/icons';
 

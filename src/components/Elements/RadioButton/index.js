@@ -7,10 +7,10 @@
 import styled from 'styled-components';
 import { Radio } from 'antd';
 
-const StyledRadio = styled(Radio).withConfig({
+const StyledRadioButton = styled(Radio).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
     /***type here**/
  `;
  
-export default StyledRadio;
+export default StyledRadioButton;
