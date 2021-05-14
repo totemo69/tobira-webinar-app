@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const StyledDropdown = styled(Dropdown).withConfig({
+const StyledDropDown = styled(Dropdown).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
   font-size: 14px;
@@ -19,11 +19,11 @@ const StyledDropdown = styled(Dropdown).withConfig({
 
 const Drop = ({ username , items }) =>{
   return(
-    <StyledDropdown overlay={items} placement="bottomRight" trigger={['click']}>
+    <StyledDropDown overlay={items} placement="bottomRight" trigger={['click']}>
       <a className="ant-dropdown-link">
         {username} <DownOutlined />
       </a>
-    </StyledDropdown>
+    </StyledDropDown>
   );
 };
 
