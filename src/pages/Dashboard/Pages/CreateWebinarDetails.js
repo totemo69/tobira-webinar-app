@@ -88,7 +88,7 @@ export default function CreateWebinarPage1(){
         </Col>
       </Row>
 
-      <Button style={{left: '100%', width: "150px", marginTop: "40%",position: "relative"}} type="primary">Next {">"}</Button>
+      
 
     </>
   );

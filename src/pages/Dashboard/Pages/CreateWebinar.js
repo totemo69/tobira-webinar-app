@@ -2,7 +2,9 @@ import Card from '@/components/Elements/Card';
 import {StyledSteps, StyledStep} from '@/components/Elements/Steps';
 import CreateWebinarPage1 from './CreateWebinarDetails';
 import Div from '@/components/Elements/Div';
+import Button from '@/components/Elements/Button';
 import { useState } from 'react';
+import { message } from 'antd';
 
 
 const step = [
@@ -22,7 +24,15 @@ const step = [
 
 export default function CreateWebinar(){
 
-  const [current] = useState(0);
+  const [current, setCurrent] = useState(0);
+
+  const next = () => {
+    setCurrent(current + 1);
+  }
+
+  const prev = () => {
+    setCurrent(current - 1)
+  }
   return(
     <>
       Create Webinar
@@ -35,6 +45,17 @@ export default function CreateWebinar(){
         <Div>
           {step[current].Content}
         </Div>
+        {current < step.length - 1 && (
+           <Button onClick={() => next()} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Next {">"}</Button>
+        )}
+        {current === step.length - 1 && (
+           <Button onClick={() => message.success("Process completed")} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Done</Button>
+        )}
+        {current > 0 && (
+          <Button onClick={() => prev()} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">{"<"} Back</Button>
+        )}
+       
+
       </Card>
     </>
   );
