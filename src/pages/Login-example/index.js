@@ -11,7 +11,7 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
-import CheckBox from '@/components/Elements/CheckBox';
+import CheckBox from '@/components/Elements/Checkbox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
