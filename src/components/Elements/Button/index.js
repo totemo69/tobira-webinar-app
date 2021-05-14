@@ -20,6 +20,7 @@ const StyledButton = styled(Button).withConfig({
     'modalLoginButton',
     'BackButton',
     'NextButton',
+    'UpDownButton'
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -151,7 +152,29 @@ const StyledButton = styled(Button).withConfig({
       margin-top: 55px;
       
     `
-}
+};
+
+  ${props => 
+    props.UpDownButton && 
+    css`
+      background: #4678B5;
+      width: 50px;
+      margin-top: 20px;
+    `
+};
+
+ ${props => 
+    props.addField && 
+    css`
+      color: #0E71EB;
+      width: 20%;
+      text-align: left;
+      font-size: medium;
+      border: none;
+      box-shadow: none;
+      margin-top: 20px;
+    `
+};
 `;
  
 export default StyledButton;
