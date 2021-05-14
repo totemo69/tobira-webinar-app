@@ -42,7 +42,7 @@ export default function Sider() {
         </Menu>
       </Sidebar>
     </>
-  )
+  );
 }
 
 // export const getStaticProps = async ({ locale }) => ({

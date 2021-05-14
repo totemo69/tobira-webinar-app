@@ -23,67 +23,67 @@ export default function ProfileSample() {
     <>
       <Home>
         <Div marginBottom2x flexTop>
-            <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
-            <Span breadCrumbs>{t(message.editProfile)}</Span>
+          <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
+          <Span breadCrumbs>{t(message.editProfile)}</Span>
         </Div>
         <Div widthFull noMargin flexCenter>
-            <Card ProfileCard>
-                <Div widthFull noMargin paddingCard center borderBreak>
-                    <Image src={"Images/avatar.svg"} alt="Tobira Logo" profileImg/>
-                    <Title profileName>tobirauser</Title>
-                </Div>
-                <Div widthFull paddingCard noMargin>
-                    <Div widthFull>
-                        <Labels light>{t(globalMessage.email)}</Labels>
+          <Card ProfileCard>
+            <Div widthFull noMargin paddingCard center borderBreak>
+              <Image src={"Images/avatar.svg"} alt="Tobira Logo" profileImg/>
+              <Title profileName>tobirauser</Title>
+            </Div>
+            <Div widthFull paddingCard noMargin>
+              <Div widthFull>
+                <Labels light>{t(globalMessage.email)}</Labels>
                         sample@tobira.com
-                    </Div>
-                    <Div widthFull cardInfo>
-                        <Labels light>{t(globalMessage.fullName)}</Labels>
+              </Div>
+              <Div widthFull cardInfo>
+                <Labels light>{t(globalMessage.fullName)}</Labels>
                         Yamazaki Kento
-                    </Div>
-                    <Div widthFull cardInfo>
-                        <Labels light>{t(globalMessage.contactNo)}</Labels>
+              </Div>
+              <Div widthFull cardInfo>
+                <Labels light>{t(globalMessage.contactNo)}</Labels>
                         090-9725-3264
-                    </Div>
-                </Div>
-            </Card>
-            <Card ProfileSettings>
-                <Div widthFull paddingCard2 noMargin>
-                  <Tabs defaultActiveKey="1">
-                    <TabPane tab={t(message.editProfile)} key="1">
-                      <Div widthFull>
-                        <Labels asterisk>{t(globalMessage.username)}</Labels>
-                        <Input type="text" disabled value="tobirauser"></Input>
-                      </Div>
-                      <Div widthFull marginTop>
-                        <Labels asterisk>{t(globalMessage.email)}</Labels>
-                        <Input type="text" disabled value="sample@tobira.com"></Input>
-                      </Div>
-                      <Div widthFull marginTop>
-                        <Labels asterisk>{t(globalMessage.fullName)}</Labels>
-                        <Input type="text" value="Yamazaki Kento"></Input>
-                      </Div>
-                      <Div widthFull marginY>
-                        <Labels asterisk>{t(globalMessage.contactNo)}</Labels>
-                        <PhoneInput country={'jp'} />
-                      </Div>
-                    </TabPane>
-                    <TabPane tab={t(message.changePassword)} key="2">
-                      <Div widthFull>
-                        <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
-                        <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
-                      </Div>
-                      <Div widthFull marginY>
-                        <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                        <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
-                      </Div>
-                    </TabPane>
-                  </Tabs>
-                </Div>
-                <Div widthFull paddingCard2 flexHeight noMargin bottomRight>
-                  <Button type="primary" smallBtn marginLeftAuto marginBottom2x>{t(globalMessage.saveChanges)}</Button>
-                </Div>
-            </Card>
+              </Div>
+            </Div>
+          </Card>
+          <Card ProfileSettings>
+            <Div widthFull paddingCard2 noMargin>
+              <Tabs defaultActiveKey="1">
+                <TabPane tab={t(message.editProfile)} key="1">
+                  <Div widthFull>
+                    <Labels asterisk>{t(globalMessage.username)}</Labels>
+                    <Input type="text" disabled value="tobirauser"></Input>
+                  </Div>
+                  <Div widthFull marginTop>
+                    <Labels asterisk>{t(globalMessage.email)}</Labels>
+                    <Input type="text" disabled value="sample@tobira.com"></Input>
+                  </Div>
+                  <Div widthFull marginTop>
+                    <Labels asterisk>{t(globalMessage.fullName)}</Labels>
+                    <Input type="text" value="Yamazaki Kento"></Input>
+                  </Div>
+                  <Div widthFull marginY>
+                    <Labels asterisk>{t(globalMessage.contactNo)}</Labels>
+                    <PhoneInput country={'jp'} />
+                  </Div>
+                </TabPane>
+                <TabPane tab={t(message.changePassword)} key="2">
+                  <Div widthFull>
+                    <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
+                    <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
+                  </Div>
+                  <Div widthFull marginY>
+                    <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
+                    <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
+                  </Div>
+                </TabPane>
+              </Tabs>
+            </Div>
+            <Div widthFull paddingCard2 flexHeight noMargin bottomRight>
+              <Button type="primary" smallBtn marginLeftAuto marginBottom2x>{t(globalMessage.saveChanges)}</Button>
+            </Div>
+          </Card>
         </Div>
       </Home>
     </>

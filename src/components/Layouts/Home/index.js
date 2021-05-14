@@ -7,20 +7,20 @@ import Footer from '@/components/Modules/Footer';
 
 
 export default function Home({ children }) {
-    return (
-        <>
-            <Layout bgGray>
-                <Sidebar />
-                <Layout>
-                    <Header />
-                    <Div widthXLong paddingSmall marginBottom2x>
-                        <Content>
-                            {children}
-                        </Content>
-                    </Div>
-                    <Footer />
-                </Layout>
-            </Layout>
-        </>
-    )
+  return (
+    <>
+      <Layout bgGray>
+        <Sidebar />
+        <Layout>
+          <Header />
+          <Div widthXLong paddingSmall marginBottom2x>
+            <Content>
+              {children}
+            </Content>
+          </Div>
+          <Footer />
+        </Layout>
+      </Layout>
+    </>
+  );
 }

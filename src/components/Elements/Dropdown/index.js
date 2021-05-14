@@ -4,9 +4,9 @@
  * 
  * */ 
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined } from '@ant-design/icons';
 
 const StyledDropdown = styled(Dropdown).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
@@ -24,7 +24,7 @@ const Drop = ({ username , items }) =>{
         {username} <DownOutlined />
       </a>
     </StyledDropdown>
-  )
+  );
 };
 
 export default Drop;
