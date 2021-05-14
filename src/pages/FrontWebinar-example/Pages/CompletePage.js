@@ -1,5 +1,5 @@
 import Div from '@/components/Elements/Div';
-import Paragraph from '@/components/Elements/SampleParagraph';
+import { Paragraph }  from '@/components/Elements/SampleParagraph';
 
 
 export default function CompletePage(){
