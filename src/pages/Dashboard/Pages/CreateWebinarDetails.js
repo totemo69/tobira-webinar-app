@@ -29,7 +29,7 @@ export default function CreateWebinarPage1(){
         <Button style={{height: "30px",width: "20%", color: "#0E71EB",border: "none",boxShadow: "none"}}><PlusSquareFilled /> Add Account</Button>
       </Div>
 
-      <Div CreateWebinarBrakline />
+      <Div BrakeLine />
          
       <StyledParagraph colorBlue  >
           Basic Details
@@ -49,7 +49,7 @@ export default function CreateWebinarPage1(){
         </Col>
       </Row>
        
-      <Div CreateWebinarBrakline />
+      <Div BrakeLine />
          
       <StyledParagraph colorBlue  >
           Schedule
@@ -87,9 +87,6 @@ export default function CreateWebinarPage1(){
             
         </Col>
       </Row>
-
-      
-
     </>
   );
 }

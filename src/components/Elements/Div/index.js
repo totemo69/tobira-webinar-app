@@ -285,7 +285,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.CreateWebinarBrakline && 
+    props.BrakeLine && 
         css`
             width: 65rem;
             margin-top: 30px;
