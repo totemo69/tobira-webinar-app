@@ -3,8 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
 import message from '@/messages/LoginSample';
 
-import Layout from '@/components/Elements/Layout';
-import Content from '@/components/Elements/Content';
+import Layout from '@/components/Layouts/Guest';
 import { Row, Col } from 'antd';
 import Form from '@/components/Elements/Form';
 import Title from '@/components/Elements/Title';
@@ -22,9 +21,8 @@ export default function LoginSample() {
   console.log(globalMessage.email);
   return (
     <>
-      <Layout bgGray>
-        <Content bgNone heightScreen>
-          <Row>
+      <Layout>
+        <Row>
             <Col span={12}>
               <Form
                 layout="vertical"
@@ -55,7 +53,6 @@ export default function LoginSample() {
               <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
             </Col>
           </Row>
-        </Content>
       </Layout>
     </>
   );

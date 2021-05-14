@@ -1,11 +1,11 @@
-import Home from '@/components/Layouts/Home';
+import Layout from '@/components/Layouts/Home';
 
 export default function DashboardSample() {
   return (
     <>
-      <Home>
+      <Layout>
         Content here...
-      </Home>
+      </Layout>
     </>
   );
 }

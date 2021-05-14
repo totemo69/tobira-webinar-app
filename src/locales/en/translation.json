@@ -18,7 +18,8 @@
     "profile":  "Profile",
     "fullName":  "Full Name",
     "contactNo":  "Contact Number",
-    "saveChanges":  "Save Changes"
+    "saveChanges":  "Save Changes",
+    "emailSent":  "Email sent!"
   },
   "storybook" : {
     "title": "Title"

@@ -18,7 +18,8 @@
     "profile":  "プロフィール",
     "fullName":  "フルネーム",
     "contactNo":  "連絡先番号",
-    "saveChanges":  "変更内容を保存"
+    "saveChanges":  "変更内容を保存",
+    "emailSent":  "送信された電子メール!"
   },
   "storybook" : {
     "title": "題名"
