@@ -77,6 +77,10 @@ const message = {
     key: `${scope}.saveChanges`,
     default: "Save Changes"
   }),
+  emailSent: Object.values({
+    key: `${scope}.emailSent`,
+    default: "Email sent!"
+  }),
 };
 
 export default message;

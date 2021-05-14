@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
 import message from '@/messages/profilesample';
 
-import Home from '@/components/Layouts/Home';
+import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Title from '@/components/Elements/Title';
@@ -21,7 +21,7 @@ export default function ProfileSample() {
   
   return (
     <>
-      <Home>
+      <Layout>
         <Div marginBottom2x flexTop>
             <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
             <Span breadCrumbs>{t(message.editProfile)}</Span>
@@ -85,7 +85,7 @@ export default function ProfileSample() {
                 </Div>
             </Card>
         </Div>
-      </Home>
+      </Layout>
     </>
   );
 }

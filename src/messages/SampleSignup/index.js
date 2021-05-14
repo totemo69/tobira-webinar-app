@@ -29,6 +29,10 @@ const message = {
     key: `${scope}.loginHere`,
     default: 'Log in here',
   }),
+  verificationMsg: Object.values({
+    key: `${scope}.verificationMsg`,
+    default: 'A verification mail has been sent to your email account. Please check your email and click the link to confirm.',
+  }),
 };
 
 export default message;
