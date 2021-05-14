@@ -9,7 +9,6 @@ import styled from 'styled-components';
 
 const BlueLink = styled.a`
     color: #0e71eb;
-    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.24px;
