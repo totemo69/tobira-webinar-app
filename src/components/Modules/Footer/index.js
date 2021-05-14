@@ -6,15 +6,15 @@ import Ftr from '@/components/Elements/Footer';
 import Link from '@/components/Elements/Link';
 
 export default function Footer() {
-    // const { t } = useTranslation();
+  // const { t } = useTranslation();
     
-    return (
-        <>
-            <Ftr>
+  return (
+    <>
+      <Ftr>
                 Copyright &#169; 2021 Tobira Webinar Video Communications, Inc. All rights reserved. <Link href="#" name="Terms of Service" /> and <Link href="#" name="Privacy Policy" />
-            </Ftr>
-        </>
-    )
+      </Ftr>
+    </>
+  );
 }
 
 // export const getStaticProps = async ({ locale }) => ({
