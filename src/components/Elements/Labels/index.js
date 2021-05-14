@@ -30,6 +30,13 @@ const StyledLabels = styled.label`
         line-height: 0.16px;
         `
 }
+
+    ${props => 
+    props.textCenter &&
+        css`
+        margin: 0 auto;
+        `
+}
 `;
 
 
