@@ -4,7 +4,7 @@ import Content from '@/components/Elements/Content';
 import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 import Link from '@/components/Elements/Link';
-import CheckBox from '@/components/Elements/CheckBox';
+import CheckBox from '@/components/Elements/Checkbox';
 
 export default function SampleComponent(){
    
