@@ -14,7 +14,9 @@ const StyledContent = styled(Content).withConfig({
     'bgNone',
     'heightScreen',
     'heightFull',
+    'paddingNone',
     'contentTOS',
+    'TermsAndPolicy',
     'contentTOSgray',
     'privacypolicyContent',
   ].includes(prop),
@@ -42,6 +44,22 @@ const StyledContent = styled(Content).withConfig({
     props.heightFull &&
         css`
             height: 100%;
+        `
+};
+
+    ${props => 
+    props.paddingNone &&
+        css`
+            padding: 0;
+        `
+};
+
+    ${props => 
+    props.TermsAndPolicy &&
+        css`
+            padding: 0;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
         `
 };
 

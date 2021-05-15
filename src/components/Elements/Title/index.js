@@ -8,6 +8,7 @@ const SampleTitle = styled(Title).withConfig({
     'modalTitle',
     'marginRight',
     'marginBottom',
+    'center',
     'TermsOfService',
     'privacypolicyHeader',
     'secondary',
@@ -76,6 +77,15 @@ const SampleTitle = styled(Title).withConfig({
         css`
             &.ant-typography{
                 margin-bottom: 3rem;
+            }
+        `
+};
+
+    ${props => 
+    props.center && 
+        css`
+            &.ant-typography{
+                text-align: center;
             }
         `
 };

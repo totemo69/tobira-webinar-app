@@ -13,6 +13,7 @@ const StyledCard = styled(Card).withConfig({
     'PaddingTop',
     'ProfileCard',
     'ProfileSettings',
+    'TermsAndPrivacy',
   ].includes(prop),
 })`
    .ant-card-head-title {
@@ -47,16 +48,15 @@ const StyledCard = styled(Card).withConfig({
    ${props =>
     props.TermsAndPrivacy &&
      css`
-       width: 960px;
-       height: 675px;
+       margin-left: auto;
+       margin-right: auto;
+       width: 840px;
+       height: auto;
        border-radius: 8px;
        box-shadow: 0px 1px 2px #00000029;
 
        .ant-card-body {
-          display: flex;
-          flex-flow: column;
-          height: 100%;
-          padding: 0;
+          padding: 1.5rem 1.5rem 0;
         }
      `};
 
