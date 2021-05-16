@@ -23,36 +23,36 @@ export default function Login() {
     <>
       <Layout>
         <Row>
-            <Col span={12}>
-              <Form
-                layout="vertical"
-              >
-                <Title marginBottom>{t(globalMessage.login)}</Title>
-                <Div>
-                  <Labels asterisk>{t(globalMessage.email)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
-                </Div>
-                <Div>
-                  <Labels asterisk>{t(globalMessage.password)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
-                </Div>
-                <Div marginY betweenCenter>
-                  <CheckBox content={t(message.rememberMe)}></CheckBox>
-                  <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
-                </Div>
-                <Button type="primary">{t(globalMessage.login)}</Button>
-                <Div center>
-                  {t(message.createAccount)} <Link href="/sign-up" name={t(message.signHere)}></Link>
-                </Div>
-              </Form>
-            </Col>
-            <Col span={12}>
-              <Div marginBottom>
-                <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+          <Col span={12}>
+            <Form
+              layout="vertical"
+            >
+              <Title marginBottom>{t(globalMessage.login)}</Title>
+              <Div>
+                <Labels asterisk>{t(globalMessage.email)}</Labels>
+                <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
               </Div>
-              <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
-            </Col>
-          </Row>
+              <Div>
+                <Labels asterisk>{t(globalMessage.password)}</Labels>
+                <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
+              </Div>
+              <Div marginY betweenCenter>
+                <CheckBox content={t(message.rememberMe)}></CheckBox>
+                <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
+              </Div>
+              <Button type="primary">{t(globalMessage.login)}</Button>
+              <Div center>
+                {t(message.createAccount)} <Link href="/sign-up" name={t(message.signHere)}></Link>
+              </Div>
+            </Form>
+          </Col>
+          <Col span={12}>
+            <Div marginBottom>
+              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+            </Div>
+            <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
+          </Col>
+        </Row>
       </Layout>
     </>
   );

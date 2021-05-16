@@ -7,11 +7,11 @@ const StyledUl = styled.ul`
     list-style-type: none;
 
     ${ props =>
-       props.paddingTop &&
+    props.paddingTop &&
        css`
         padding-top: 1rem;
        `
-    };
+};
 `;
 
 export default StyledUl;

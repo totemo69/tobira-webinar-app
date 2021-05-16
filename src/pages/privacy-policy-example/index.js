@@ -9,8 +9,6 @@ import UnorderedList from '@/components/Elements/UnorderedList';
 import List from '@/components/Elements/List';
 import ButtonLink from '@/components/Elements/ButtonLink';
 import Button from '@/components/Elements/Button';
-import Link from '@/components/Elements/Link';
-import { Paragraph   } from '@/components/Elements/SampleParagraph';
 
 export default function PrivacyPolicy(){
   return(
@@ -36,7 +34,7 @@ export default function PrivacyPolicy(){
                 <List asterisk>Other important privacy information</List>
               </UnorderedList>
               <p>
-                This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed. Atlassian, we and us refers to Atlassian Pty Ltd, Atlassian, Inc. and any of our corporate affiliates. We offer a wide range of products, including our cloud, server and data center products. We refer to all of these products, together with our other services and websites as "Services" in this policy.
+                This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed. Atlassian, we and us refers to Atlassian Pty Ltd, Atlassian, Inc. and any of our corporate affiliates. We offer a wide range of products, including our cloud, server and data center products. We refer to all of these products, together with our other services and websites as &quot;Services&quot; in this policy.
               </p>
               <p>
                 This policy also explains your choices surrounding how we use information about you, which include how you can object to certain uses of information about you and how you can access and update certain information about you. If you do not agree with this policy, do not access or use our Services or interact with any other aspect of our business.

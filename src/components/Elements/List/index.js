@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const StyledLi = styled.li`
     ${ props =>
-       props.asterisk &&
+    props.asterisk &&
        css`
         padding-left: .25rem;
         &::before {
@@ -11,7 +11,7 @@ const StyledLi = styled.li`
             left: -12px;
         }
        `
-    };
+};
 `;
 
 export default StyledLi;
