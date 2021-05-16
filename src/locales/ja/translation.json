@@ -18,57 +18,59 @@
     "profile":  "プロフィール",
     "fullName":  "フルネーム",
     "contactNo":  "連絡先番号",
-    "saveChanges":  "変更内容を保存"
+    "saveChanges":  "変更内容を保存",
+    "emailSent":  "送信された電子メール!"
   },
-  "storybook" : {
+  "storyBook" : {
     "title": "題名"
   },
-  "samplesignup" : {
+  "signUp" : {
     "signUp":  "サインアップ",
     "agreeMessage":  "サインアップすると、",
     "termsOfService":  "利用規約",
     "and":  "そして",
     "privacyPolicy":  "個人情報保護方針",
     "haveAccount":  "すでにアカウントをお持ちですか？",
-    "loginHere":  "ここでログイン"
+    "loginHere":  "ここでログイン",
+    "verificationMsg":  "確認メールがメールアカウントに送信されました。 メールを確認し、リンクをクリックして確認してください"
   },
-  "loginsample" : {
+  "login" : {
     "rememberMe":  "私を覚えてますか",
     "createAccount":  "アカウントを作成する？",
     "signHere":  "ここでサインアップ"
   },
-  "forgotpasswordsample" : {
+  "forgotPassword" : {
     "forgotPasswordText":  "メールアドレスを入力すると、新しいアドレスを設定する手順が記載されたメールが送信されます",
     "recoverInstructions":  "パスワード回復の手順をメールで送信しました",
     "checkSpam":  "受信トレイにメールが表示されない場合は、スパムフォルダを確認してください"
   },
-  "resetpasswordsample" : {
+  "resetPassword" : {
     "resetPassword":  "パスワードを再設定する",
     "resetSuccess":  "パスワードは正常にリセットされました"
   },
-  "profilesample" : {
+  "profile" : {
     "editProfile":  "プロファイル編集",
     "changePassword":  "パスワードを変更する"
   },
-  "editprofile" : {
-    "Username":  "ユーザー名",
-    "Emailaddress" : "電子メールアドレス",
-    "Fullname" : "フルネーム",
-    "Contactnumber" : "連絡先番号",
-    "Newpassword" : "新しいパスワード",
-    "Confirmpassword" : "パスワードを認証する",
-    "Savechanges" : "変更を保存する",
-    "Editprofile" : "プロファイルの編集",
-    "ChangePassword": "パスワードの変更"
+  "editProfile" : {
+    "username":  "ユーザー名",
+    "emailAddress" : "電子メールアドレス",
+    "fullName" : "フルネーム",
+    "contactNumber" : "連絡先番号",
+    "newPassword" : "新しいパスワード",
+    "confirmPassword" : "パスワードを認証する",
+    "saveChanges" : "変更を保存する",
+    "editProfile" : "プロファイルの編集",
+    "changePassword": "パスワードの変更"
   },
-  "listofwebinar": {
-    "Tittle": "ティトル",
-    "Listofwebinar" : "ウェビナー一覧",
-    "Schedule" :  "スケジュール",
-    "Attendees": "参加者の数",
-    "Status": "状態",
-    "Action" :  "アクション",
-    "Search":  "捜索",
-    "SearchPlaceholder":  "検索ウェビナーのタイトル"
+  "listOfWebinar": {
+    "title": "ティトル",
+    "listOfWebinar" : "ウェビナー一覧",
+    "schedule" :  "スケジュール",
+    "attendees": "参加者の数",
+    "status": "状態",
+    "action" :  "アクション",
+    "search":  "捜索",
+    "searchPlaceholder":  "検索ウェビナーのタイトル"
   }
 }

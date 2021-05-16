@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <>
       <Ftr>
-                Copyright &#169; 2021 Tobira Webinar Video Communications, Inc. All rights reserved. <Link href="#" name="Terms of Service" /> and <Link href="#" name="Privacy Policy" />
+        {"Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved."} <Link href="#" name="Terms of Service" /> {"and"} <Link href="#" name="Privacy Policy" />.
       </Ftr>
     </>
   );

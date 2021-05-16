@@ -18,57 +18,59 @@
     "profile":  "Profile",
     "fullName":  "Full Name",
     "contactNo":  "Contact Number",
-    "saveChanges":  "Save Changes"
+    "saveChanges":  "Save Changes",
+    "emailSent":  "Email sent!"
   },
-  "storybook" : {
+  "storyBook" : {
     "title": "Title"
   },
-  "samplesignup" : {
+  "signUp" : {
     "signUp":  "Sign Up",
     "agreeMessage":  "By signing up, you agree to the",
     "termsOfService":  "Terms of Service",
     "and":  "and",
     "privacyPolicy":  "Privacy Policy",
     "haveAccount":  "Already have an account?",
-    "loginHere":  "Log in here"
+    "loginHere":  "Log in here",
+    "verificationMsg":  "A verification mail has been sent to your email account. Please check your email and click the link to confirm."
   },
-  "loginsample" : {
+  "login" : {
     "rememberMe":  "Remember Me",
     "createAccount":  "Create an account?",
     "signHere":  "Sign up here"
   },
-  "forgotpasswordsample" : {
+  "forgotPassword" : {
     "forgotPasswordText":  "Enter your email address and we'll send you an email with instructions for setting a new one",
     "recoverInstructions":  "We have sent a password recover instructions to your email",
     "checkSpam":  "If you don't see the email in your inbox, please check your spam folder"
   },
-  "resetpasswordsample" : {
+  "resetPassword" : {
     "resetPassword":  "Reset Password",
     "resetSuccess":  "Password has been reset successfully"
   },
-  "profilesample" : {
+  "profile" : {
     "editProfile":  "Edit Profile",
     "changePassword":  "Change Password"
   },
-  "editprofile" : {
-    "Username":  "Hi there",
-    "Emailaddress" : "Email Address",
-    "Fullname" : "Full Name",
-    "Contactnumber" : "Contact Number",
-    "Newpassword" : "New Password",
-    "Confirmpassword" : "Confirm Password",
-    "Savechanges" : "Save Changes",
-    "Editprofile" : "Edit Profile",
-    "ChangePassword": "Change Password"
+  "editProfile" : {
+    "username":  "Hi there",
+    "emailAddress" : "Email Address",
+    "fullName" : "Full Name",
+    "contactNumber" : "Contact Number",
+    "newPassword" : "New Password",
+    "confirmPassword" : "Confirm Password",
+    "saveChanges" : "Save Changes",
+    "editProfile" : "Edit Profile",
+    "changePassword": "Change Password"
   },
-  "listofwebinar": {
-    "Tittle": "Tittle",
-    "Listofwebinar" : "LIST OF WEBINAR",
-    "Schedule" :  "Schedule",
-    "Attendees": "No. of Attendees",
-    "Status": "Status",
-    "Action" :  "Action",
-    "Search":  "Search",
-    "SearchPlaceholder":  "Search webinar title"
+  "listOfWebinar": {
+    "title": "Title",
+    "listOfWebinar" : "LIST OF WEBINAR",
+    "schedule" :  "Schedule",
+    "attendees": "No. of Attendees",
+    "status": "Status",
+    "action" :  "Action",
+    "search":  "Search",
+    "searchPlaceholder":  "Search webinar title"
   }
 }

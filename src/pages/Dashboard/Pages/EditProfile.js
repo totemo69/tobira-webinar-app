@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import message from '@/messages/EditProfile';
+import message from '@/messages/edit-profile';
 import Tittle from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Div from '@/components/Elements/Div';

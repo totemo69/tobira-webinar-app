@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Hdr from '@/components/Elements/Header';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
-import Dropdown from '@/components/Elements/Dropdown';
+import DropDown from '@/components/Elements/DropDown';
 import Menu from '@/components/Elements/Menu';
 
 import {
@@ -18,10 +18,10 @@ import {
 export default function Header() {
   // const { t } = useTranslation();
 
-  const menu = (
+  const MenuItems = (
     <Menu>
       <Menu.Item key="0">
-        <Link href="/Profile-example">
+        <Link href="/profile">
           <a><UserOutlined /> Profile</a>
         </Link>
       </Menu.Item>
@@ -42,7 +42,7 @@ export default function Header() {
       </Menu.Item>
       <Menu.Divider></Menu.Divider>
       <Menu.Item key="4">
-        <Link href="/Login-example">
+        <Link href="/login">
           <a><LogoutOutlined /> Log out</a>
         </Link>
       </Menu.Item>
@@ -54,7 +54,7 @@ export default function Header() {
       <Hdr noMargin>
         <Div widthFull noMargin right>
           <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
-          <Dropdown username="tobirauser" items={menu} />
+          <DropDown username="tobirauser" items={MenuItems} />
         </Div>
       </Hdr>
     </>

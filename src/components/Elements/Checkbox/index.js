@@ -13,7 +13,7 @@ const StyledSpan = styled.span`
     letter-spacing: 0.24px;
  `;
  
-const StyledCheckbox = ({content}) => {
+const StyledCheckBox = ({content}) => {
   return (
     <Checkbox>
       <StyledSpan>{content}</StyledSpan>
@@ -21,4 +21,4 @@ const StyledCheckbox = ({content}) => {
   );
 };
 
-export default StyledCheckbox;
+export default StyledCheckBox;

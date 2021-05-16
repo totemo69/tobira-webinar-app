@@ -15,6 +15,21 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.paddingYLg && 
+        css`
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        `
+};
+
+    ${props => 
+    props.paddingTop && 
+        css`
+            padding-top: 1.5rem;
+        `
+};
+
+    ${props => 
     props.paddingSmall && 
         css`
             padding: 1rem;
@@ -248,6 +263,13 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.black && 
+        css`
+            color: #111827;
+            `
+};
+
+    ${props => 
     props.yellowBg && 
         css`
             background-color: #FFFC1C;
@@ -265,6 +287,18 @@ const StyledDiv = style.div`
     props.borderBreak && 
         css`
             border-bottom: 2px solid rgba(176, 176, 176, 0.1);
+            `
+};
+
+    ${props => 
+    props.doubleDividerBlue && 
+        css`
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: calc(6px * calc(1 - 0));
+            border-left-width: 0px;
+            border-color: rgba(14, 113, 235, 0.1);
+            border-style: double;
             `
 };
 

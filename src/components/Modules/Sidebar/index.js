@@ -4,11 +4,11 @@
 
 import Link from 'next/link';
 
-import Sidebar from '@/components/Elements/Sidebar';
+import SideBar from '@/components/Elements/SideBar';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Menu from '@/components/Elements/Menu';
-import Submenu from '@/components/Elements/Submenu';
+import SubMenu from '@/components/Elements/SubMenu';
 
 import { ShopFilled, PlusSquareFilled, ProfileFilled } from '@ant-design/icons';
 
@@ -17,7 +17,7 @@ export default function Sider() {
 
   return (
     <>
-      <Sidebar width={250}>
+      <SideBar width={250}>
         <Div paddingSmall noMargin widthFull yellowBg>
           <Image src={"Images/logo.svg"} alt="Tobira Logo" logoSmall />
         </Div>
@@ -27,20 +27,20 @@ export default function Sider() {
           mode="inline"
           marginTop
         >
-          <Submenu key="webinars" icon={<ShopFilled style={{ fontSize: "18px"}} />} title="Webinars">
+          <SubMenu key="webinars" icon={<ShopFilled style={{ fontSize: "18px"}} />} title="Webinars">
             <Menu.Item icon={<PlusSquareFilled style={{ fontSize: "18px"}} />} key="createWebinar">
               <Link href="#">
                 <a>Create Webinar</a>
               </Link>
             </Menu.Item>
             <Menu.Item icon={<ProfileFilled style={{ fontSize: "18px"}} />} key="listWebinar">
-              <Link href="/Dashboard-example">
+              <Link href="/dashboard-example">
                 <a>List of Webinar</a>
               </Link>
             </Menu.Item>
-          </Submenu>
+          </SubMenu>
         </Menu>
-      </Sidebar>
+      </SideBar>
     </>
   );
 }
