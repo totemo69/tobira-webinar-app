@@ -4,7 +4,7 @@ import Label from '@/components/Elements/Labels';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
-import Textarea from '@/components/Elements/Textarea';
+import Textarea from '@/components/Elements/TextArea';
 import { Paragraph } from '@/components/Elements/SampleParagraph';
 
 
