@@ -8,7 +8,7 @@ import Footer from '@/components/Elements/Footer';
 import Content from '@/components/Elements/Content';
 import Button from '@/components/Elements/Button';
 import Input from '@/components/Elements/Input';
-import Textarea from '@/components/Elements/TextArea';
+import TextArea from '@/components/Elements/TextArea';
 import Checkbox from '@/components/Elements/Checkbox';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
@@ -46,9 +46,9 @@ export default function StoryBook() {
             <Input placeholder="Placeholder"></Input>
             <Input placeholder="tobirauser" disabled></Input>
             <Input placeholder="tobira^&*" error></Input>
-            <Textarea placeholder="Placeholder"></Textarea>
-            <Textarea placeholder="Placeholder" disabled></Textarea>
-            <Textarea placeholder="Placeholder" error></Textarea>
+            <TextArea placeholder="Placeholder"></TextArea>
+            <TextArea placeholder="Placeholder" disabled></TextArea>
+            <TextArea placeholder="Placeholder" error></TextArea>
             <Checkbox>Checkbox A</Checkbox>
             <Checkbox checked>Checkbox B</Checkbox>
             <Checkbox disabled>Checkbox Disabled</Checkbox>
