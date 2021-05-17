@@ -5,6 +5,8 @@ import Registration from './CreateWebinarRegistration';
 import PaymentOption from './PaymenOption';
 import Div from '@/components/Elements/Div';
 import Button from '@/components/Elements/Button';
+import Title from '@/components/Elements/Title';
+import Span from '@/components/Elements/Span';
 import { useState } from 'react';
 import { message } from 'antd';
 
@@ -38,7 +40,11 @@ export default function CreateWebinar(){
 
   return(
     <>
-      Create Webinar
+      <Div marginBottom2x flexTop>
+        <Title secondary marginRight>Create Webinar {">"} </Title>
+        <Span breadCrumbs>{step[current].title}</Span>
+      </Div>
+        
       <Card style={{padding: "20px", margin: "0 auto", width: "95%"}}>
         <StyledSteps current={current}>
           {step.map(item => 
