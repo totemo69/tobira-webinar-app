@@ -4,7 +4,7 @@ import Content from '@/components/Elements/Content';
 import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 import Link from '@/components/Elements/Link';
-import CheckBox from '@/components/Elements/CheckBox';
+import Checkbox from '@/components/Elements/Checkbox';
 
 export default function SampleComponent(){
    
@@ -23,7 +23,7 @@ export default function SampleComponent(){
           <Input type="password" placeholder="Password"></Input>
           <br/>
           <div style={{ margin: '1rem 0', width: '80%', display: 'flex', justifyContent: 'space-between', }}>
-            <CheckBox>Check this</CheckBox>
+            <Checkbox>Check this</Checkbox>
             <Link href="#" name="Link here"></Link>
           </div>
           <Button>Login</Button>
