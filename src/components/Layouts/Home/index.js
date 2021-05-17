@@ -5,7 +5,6 @@ import Div from '@/components/Elements/Div';
 import Content from '@/components/Elements/Content';
 import Footer from '@/components/Modules/Footer';
 
-
 export default function Home({ children }) {
   return (
     <>
