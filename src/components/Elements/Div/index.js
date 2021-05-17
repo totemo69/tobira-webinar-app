@@ -430,6 +430,9 @@ const StyledDiv = style.div`
         &:hover{
             border: 1px solid #0E71EB;
         }
+        &:{
+            border: 1px solid #0E71EB;
+        }
         `
     
 }
