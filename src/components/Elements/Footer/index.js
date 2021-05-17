@@ -10,7 +10,7 @@ import { Layout } from 'antd';
 const { Footer } = Layout;
 
 const StyledFooter = styled(Footer).withConfig({
-  shouldForwardProp: prop => !['TermsOfService'].includes(prop),
+  shouldForwardProp: prop => ![].includes(prop),
 })`
     width: 100%;
     height: 60px;
@@ -23,13 +23,6 @@ const StyledFooter = styled(Footer).withConfig({
     color: #4e4e4e;
     letter-spacing: 0.20px;
     line-height: 0.18px;
-
-    ${props => 
-    props.TermsOfService && 
-      css`
-        text-align: center;
-      `
-}
  `;
 
 export default StyledFooter;
