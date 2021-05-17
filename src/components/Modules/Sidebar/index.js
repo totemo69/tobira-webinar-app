@@ -12,7 +12,7 @@ import Submenu from '@/components/Elements/Submenu';
 
 import { ShopFilled, PlusSquareFilled, ProfileFilled } from '@ant-design/icons';
 
-export default function Sider() {
+export default function Sider() { 
   // const { t } = useTranslation();
 
   return (
@@ -34,7 +34,7 @@ export default function Sider() {
               </Link>
             </Menu.Item>
             <Menu.Item icon={<ProfileFilled style={{ fontSize: "18px"}} />} key="listWebinar">
-              <Link href="/dashboard-example">
+              <Link href="/list-webinar">
                 <a>List of Webinar</a>
               </Link>
             </Menu.Item>
