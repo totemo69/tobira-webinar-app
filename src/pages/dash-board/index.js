@@ -8,7 +8,7 @@ import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Logo from '@/components/Elements/Logo';
 import Dropdown from '@/components/Elements/DropDown';
-import Footer from '@/components/Modules/Footer';
+import Footer from '@/components/Elements/Footer';
 import Menu from '@/components/Elements/Menu';
 import SubMenu from '@/components/Elements/Submenu';
 import Profile from './Pages/EditProfile';

@@ -48,7 +48,7 @@ export default function ResetPassword() {
               </Div>
               <Button type="primary" marginTop onClick={openModal}>{t(message.resetPassword)}</Button>
               <Div marginTop center>
-                <Link href="/Login-example" name={t(globalMessage.goToLogin)}></Link>
+                <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
               </Div>
             </Form>
             <Modal isOpen={isOpenModal}
@@ -58,14 +58,14 @@ export default function ResetPassword() {
             >
               <Row>
                 <Col span={24}>
-                  <Div widthFull flexCol noMargin>
+                  <Div widthFull noMargin>
                     <Div modal noMargin center>
                       <Image src={"Images/success-icon.svg"} alt="success icon" modalIcon/>
                       <Title modalTitle>{t(globalMessage.success)}!</Title>
                     </Div>
                     <Div flexColCenter noMargin widthFull heightFull>
                       <Div center marginY2x>{t(message.resetSuccess)}</Div>
-                      <ButtonLink href="/Login-example" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                      <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                     </Div>
                   </Div>
                 </Col>

@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Hdr from '@/components/Elements/Header';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
-import DropDown from '@/components/Elements/DropDown';
+import Dropdown from '@/components/Elements/DropDown';
 import Menu from '@/components/Elements/Menu';
 
 import {
@@ -54,7 +54,7 @@ export default function Header() {
       <Hdr noMargin>
         <Div widthFull noMargin right>
           <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
-          <DropDown username="tobirauser" items={MenuItems} />
+          <Dropdown username="tobirauser" items={MenuItems} />
         </Div>
       </Hdr>
     </>

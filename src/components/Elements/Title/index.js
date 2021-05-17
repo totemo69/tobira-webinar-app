@@ -12,6 +12,7 @@ const SampleTitle = styled(Title).withConfig({
     'TermsOfService',
     'privacypolicyHeader',
     'secondary',
+    'secondary2',
     'profileName',
   ].includes(prop),
 })`
@@ -46,6 +47,17 @@ const SampleTitle = styled(Title).withConfig({
             color: #0E71EB;
             letter-spacing: 0.80px;
             line-height: 0.30px;
+        }
+    `
+};
+
+    ${props => 
+    props.secondary2 && 
+    css`
+        &.ant-typography {  
+            font-size: 30px;
+            color: #4e4e4e;
+            letter-spacing: 0.6px;
         }
     `
 };
