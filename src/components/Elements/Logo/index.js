@@ -6,7 +6,6 @@ import styled, {css} from 'styled-components';
 const StyledImage = styled.img.withConfig({
   shouldForwardProp: prop => ![
     'path1',
-    'TermsOfService',
     'registerCompleteLogo',
     'successLogo',
     'sideBarLogo',
@@ -30,14 +29,6 @@ const StyledImage = styled.img.withConfig({
       `
 };
 
-    ${props => 
-    props.TermsOfService && 
-      css`
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      `
-};
     ${props => 
     props.registerCompleteLogo && 
       css`

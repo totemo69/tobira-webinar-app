@@ -223,24 +223,6 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.TermsOfService && 
-            css`
-                background: #FFFFFF 0% 0% no-repeat padding-box;
-                opacity: 1;
-                width: 879px;
-                height: 377px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 50px;
-                margin-bottom: 84.96px;
-                font: normal normal normal 12px/18px Poppins;
-                letter-spacing: 0.48px;
-                color: #000000;
-                opacity: 1;
-            `
-};
-
-    ${props => 
     props.contentTOS &&
         css`
             width: 960px;

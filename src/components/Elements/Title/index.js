@@ -9,7 +9,6 @@ const SampleTitle = styled(Title).withConfig({
     'marginRight',
     'marginBottom',
     'center',
-    'TermsOfService',
     'privacypolicyHeader',
     'secondary',
     'secondary2',
@@ -40,7 +39,7 @@ const SampleTitle = styled(Title).withConfig({
     ${props => 
     props.secondary && 
     css`
-        &.ant-typography {  
+        &.ant-typography {
             font-size: 20px;
             text-transform: uppercase;
             font-weight: 600;
@@ -100,23 +99,6 @@ const SampleTitle = styled(Title).withConfig({
                 text-align: center;
             }
         `
-};
-
-    ${props => 
-    props.TermsOfService && 
-            css`
-                &.ant-typography{
-                   color: #0E71EB;
-                   font: normal normal 600 20px/30px Poppins;
-                    letter-spacing: 0.4px;
-                    color: #0E71EB;
-                    opacity: 1;
-                    text-align: center;
-                    margin-top: 45.84px;
-                    
-                }
-               
-            `
 };
 
         ${props => 
