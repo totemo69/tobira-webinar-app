@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Hdr from '@/components/Elements/Header';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
-import Dropdown from '@/components/Elements/Dropdown';
+import Dropdown from '@/components/Elements/DropDown';
 import Menu from '@/components/Elements/Menu';
 
 import {

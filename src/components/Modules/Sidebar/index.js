@@ -4,19 +4,11 @@
 
 import Link from 'next/link';
 
-<<<<<<< HEAD
-import SideBar from '@/components/Elements/Sidebar';
-import Div from '@/components/Elements/Div';
-import Image from '@/components/Elements/Image';
-import Menu from '@/components/Elements/Menu';
-import SubMenu from '@/components/Elements/Submenu';
-=======
 import Sidebar from '@/components/Elements/Sidebar';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Menu from '@/components/Elements/Menu';
 import Submenu from '@/components/Elements/Submenu';
->>>>>>> 1c72e242d1ff569cfb86f2bc75f6176020db919e
 
 import { ShopFilled, PlusSquareFilled, ProfileFilled } from '@ant-design/icons';
 
