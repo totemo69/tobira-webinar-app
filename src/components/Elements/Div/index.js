@@ -72,9 +72,16 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.marginTop2x && 
+    props.marginTopLarge && 
         css`
             margin-top: 2rem;
+        `
+};
+
+    ${props => 
+    props.marginTopXLarge && 
+        css`
+            margin-top: 3rem;
         `
 };
 
@@ -93,7 +100,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.marginBottom2x && 
+    props.marginBottomLarge && 
         css`
             margin-bottom: 2rem;
         `

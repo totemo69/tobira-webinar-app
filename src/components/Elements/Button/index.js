@@ -10,9 +10,10 @@ import { Button } from 'antd';
 const StyledButton = styled(Button).withConfig({
   shouldForwardProp: prop => ![
     'marginTop',
-    'marginTop2x',
+    'marginTopMedium',
+    'marginTopLarge',
     'marginBottom',
-    'marginBottom2x',
+    'marginBottomLarge',
     'marginLeftAuto',
     'smallBtn',
     'mediumBtn',
@@ -56,7 +57,14 @@ const StyledButton = styled(Button).withConfig({
 };
 
     ${ props =>
-    props.marginTop2x &&
+    props.marginTopMedium &&
+      css`
+        margin-top: 2.25rem;
+      `
+};
+
+    ${ props =>
+    props.marginTopLarge &&
       css`
         margin-top: 3.5rem;
       `
@@ -70,7 +78,7 @@ const StyledButton = styled(Button).withConfig({
 };
 
     ${ props =>
-    props.marginBottom2x &&
+    props.marginBottomLarge &&
       css`
         margin-bottom: 2rem;
       `

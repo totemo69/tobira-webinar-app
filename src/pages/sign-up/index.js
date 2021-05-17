@@ -59,7 +59,7 @@ export default function SignUp() {
                 <Input type="password" placeholder={t(globalMessage.confirmPassword)}></Input>
               </Div>
               <Div marginTop center>
-                {t(message.agreeMessage)} <Link href="#" name={t(message.termsOfService)}></Link> {t(message.and)} <Link href="#" name={t(message.privacyPolicy)}></Link>.
+                {t(message.agreeMessage)} <Link href="#" name={t(message.termsOfService)}></Link> {t(message.and)} <Link href="/privacy-policy-example" name={t(message.privacyPolicy)}></Link>.
               </Div>
               <Button type="primary" onClick={openModal} marginTop>{t(message.signUp)}</Button>
               <Modal isOpen={isOpenModal}
@@ -69,7 +69,7 @@ export default function SignUp() {
               >
                 <Row>
                   <Col span={24}>
-                    <Div widthFull flexCol noMargin>
+                    <Div widthFull noMargin>
                       <Div modal noMargin center>
                         <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
                         <Title modalTitle>{t(globalMessage.emailSent)}</Title>

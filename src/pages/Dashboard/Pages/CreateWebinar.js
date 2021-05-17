@@ -55,10 +55,10 @@ export default function CreateWebinar(){
           {step[current].Content}
         </Div>
         {current < step.length - 1 && (
-          <Button onClick={() => next()} NextButton type="primary">Next {">"}</Button>
+          <Button onClick={() => next()} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Next {">"}</Button>
         )}
         {current === step.length - 1 && (
-          <Button onClick={() => message.success("Process completed")} NextButton type="primary">Create</Button>
+          <Button onClick={() => message.success("Process completed")} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Done</Button>
         )}
         {current > 0 && (
           <Button onClick={() => prev()} BackButton>{"<"} Back</Button>
