@@ -69,7 +69,7 @@ export default function SignUp() {
               >
                 <Row>
                   <Col span={24}>
-                    <Div widthFull flexCol noMargin>
+                    <Div widthFull noMargin>
                       <Div modal noMargin center>
                         <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
                         <Title modalTitle>{t(globalMessage.emailSent)}</Title>

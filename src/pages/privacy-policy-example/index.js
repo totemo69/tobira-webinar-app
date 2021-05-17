@@ -15,7 +15,7 @@ export default function PrivacyPolicy(){
   return(
     <>
       <Layout>
-        <Div widthFull center noMargin marginBottom2x>
+        <Div widthFull center noMargin marginBottomLarge>
           <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
         </Div>
         <Card TermsAndPrivacy>

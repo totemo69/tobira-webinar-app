@@ -22,7 +22,7 @@ export default function Profile() {
   return (
     <>
       <Layout>
-        <Div marginBottom2x flexTop>
+        <Div marginBottomLarge flexTop>
           <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
           <Span breadCrumbs>{t(message.editProfile)}</Span>
         </Div>
@@ -81,7 +81,7 @@ export default function Profile() {
               </Tabs>
             </Div>
             <Div widthFull paddingCard2 flexHeight noMargin bottomRight>
-              <Button type="primary" smallBtn marginLeftAuto marginBottom2x>{t(globalMessage.saveChanges)}</Button>
+              <Button type="primary" smallBtn marginLeftAuto marginBottomLarge>{t(globalMessage.saveChanges)}</Button>
             </Div>
           </Card>
         </Div>

@@ -84,6 +84,15 @@ const StyledImg = styled.img`
         height: 514px;
       `
 };
+
+   ${props => 
+    props.successImg &&
+      css`
+        margin: 1.50rem auto;
+        width: 408px;
+        height: 243px;
+      `
+};
  `;
  
 export default StyledImg;

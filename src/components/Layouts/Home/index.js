@@ -13,7 +13,7 @@ export default function Home({ children }) {
         <Sidebar />
         <Layout>
           <Header />
-          <Div widthXLong paddingSmall marginBottom2x>
+          <Div widthXLong paddingSmall marginBottomLarge>
             <Content>
               {children}
             </Content>
