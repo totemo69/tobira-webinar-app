@@ -53,7 +53,7 @@
     "changePassword":  "Change Password"
   },
   "editProfile" : {
-    "username":  "Hi there",
+    "username":  "Username",
     "emailAddress" : "Email Address",
     "fullName" : "Full Name",
     "contactNumber" : "Contact Number",

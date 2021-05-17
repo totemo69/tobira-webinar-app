@@ -419,5 +419,19 @@ const StyledDiv = style.div`
         font: normal normal bold 30px/46px Poppins;
         `
 }
+
+    ${props => 
+    props.paymentOption && 
+        css`
+        border-radius: 10px;
+        padding: 10px;  
+        background: #F3F3F3; 
+        text-align: center;
+        &:hover{
+            border: 1px solid #0E71EB;
+        }
+        `
+    
+}
 `;
 export default StyledDiv;

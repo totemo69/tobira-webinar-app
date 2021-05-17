@@ -3,14 +3,14 @@ import Sidebar from '@/components/Elements/Sidebar';
 import { useState } from 'react';
 import Layout from '@/components/Elements/Layout';
 import Content from '@/components/Elements/Content';
-import Header from '@/components/Elements/Header';
+import Header from '@/components/Modules/Header';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Logo from '@/components/Elements/Logo';
 import Dropdown from '@/components/Elements/Dropdown';
 import Footer from '@/components/Elements/Footer';
 import Menu from '@/components/Elements/Menu';
-import Submenu from '@/components/Elements/Submenu';
+import SubMenu from '@/components/Elements/Submenu';
 import Profile from './Pages/EditProfile';
 import WebinarListPage from './Pages/ListOfWebinar';
 import CreateWebinar from './Pages/CreateWebinar';
@@ -77,14 +77,14 @@ export default function ListOfWebinar(){
         <Sidebar>
           <Logo sideBarLogo src={'Images/logo.svg'}/>
           <Menu mode="inline">
-            <Submenu title="Webinars">
+            <SubMenu title="Webinars">
               <Menu.Item onClick={() => selectCreateWebinar()}>
                   Create Webinar
               </Menu.Item>
               <Menu.Item onClick={() => selectListOfWebinar()}>
                   List of Webinar
               </Menu.Item>
-            </Submenu>
+            </SubMenu>
           </Menu>
         </Sidebar>
         <Layout>

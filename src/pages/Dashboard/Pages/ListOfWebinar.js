@@ -14,35 +14,35 @@ export default function ListOfWebinar(){
   const { t } = useTranslation();
   const column = [
     {
-      title: t(message.Tittle),
+      title: t(message.title),
       dataIndex: 'tittle',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.Schedule),
+      title: t(message.schedule),
       dataIndex: 'Sched',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.Attendees),
+      title: t(message.attendees),
       dataIndex: 'Atendies',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.Status),
+      title: t(message.status),
       dataIndex: 'Status',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.Action),
+      title: t(message.action),
       dataIndex: 'Action',
       
     },
@@ -50,12 +50,12 @@ export default function ListOfWebinar(){
   
   return(
     <>
-      <Tittle level={4} style={{color: '#0E71EB'}}>{t(message.Listofwebinar)}</Tittle>
+      <Tittle level={4} style={{color: '#0E71EB'}}>{t(message.listOfWebinar)}</Tittle>
       <Card>
         <Form style={{marginTop: '20px'}}>
-          <Form.Item style={{float: 'right'}} label={t(message.Search)}>
+          <Form.Item style={{float: 'right'}} label={t(message.search)}>
             <Search
-              placeholder={t(message.SearchPlaceholder)}
+              placeholder={t(message.searchPlaceholder)}
               onSearch={value => console.log(value)}
             />
           </Form.Item>
