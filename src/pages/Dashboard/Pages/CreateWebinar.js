@@ -2,7 +2,7 @@ import Card from '@/components/Elements/Card';
 import {StyledSteps, StyledStep} from '@/components/Elements/Steps';
 import CreateWebinarPage1 from './CreateWebinarDetails';
 import Registration from './CreateWebinarRegistration';
-import PaymentOption from './PaymenOption';
+import PaymentOption from './PaymentOption';
 import Div from '@/components/Elements/Div';
 import Button from '@/components/Elements/Button';
 import Title from '@/components/Elements/Title';
