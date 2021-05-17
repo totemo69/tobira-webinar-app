@@ -10,7 +10,7 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
-import CheckBox from '@/components/Elements/CheckBox';
+import Checkbox from '@/components/Elements/Checkbox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
@@ -37,7 +37,7 @@ export default function Login() {
                 <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
               </Div>
               <Div marginY betweenCenter>
-                <CheckBox content={t(message.rememberMe)}></CheckBox>
+                <Checkbox content={t(message.rememberMe)}></Checkbox>
                 <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
               </Div>
               <Button type="primary">{t(globalMessage.login)}</Button>

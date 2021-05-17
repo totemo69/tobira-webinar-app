@@ -29,11 +29,11 @@ export default function CreateWebinar(){
 
   const next = () => {
     setCurrent(current + 1);
-  }
+  };
 
   const prev = () => {
-    setCurrent(current - 1)
-  }
+    setCurrent(current - 1);
+  };
 
   return(
     <>
@@ -48,10 +48,10 @@ export default function CreateWebinar(){
           {step[current].Content}
         </Div>
         {current < step.length - 1 && (
-           <Button onClick={() => next()} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Next {">"}</Button>
+          <Button onClick={() => next()} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Next {">"}</Button>
         )}
         {current === step.length - 1 && (
-           <Button onClick={() => message.success("Process completed")} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Done</Button>
+          <Button onClick={() => message.success("Process completed")} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">Done</Button>
         )}
         {current > 0 && (
           <Button onClick={() => prev()} style={{float: "right", width: "150px", marginTop: "40%",position: "relative"}} type="primary">{"<"} Back</Button>
