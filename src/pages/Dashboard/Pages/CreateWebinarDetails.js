@@ -38,7 +38,7 @@ export default function CreateWebinarPage1(){
       <Row gutter={[5]}>
         <Col span={10} >
           <Label asterisk>Webinar Image</Label>
-          <img style={{width: "20rem"}} src="Images/image.svg"></img>
+          <img style={{width: "20rem", border: '1px dotted #B0B0B0'}} src="Images/image.svg"></img>
         </Col>
         <Col span={14}>
           <Label  asterisk>Webinar Image</Label>

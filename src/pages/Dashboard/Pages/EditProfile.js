@@ -1,7 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import message from '@/messages/edit-profile';
-import Tittle from '@/components/Elements/Title';
+import globalMessage from '@/messages/global';
+
+import Span from '@/components/Elements/Span';
+import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Div from '@/components/Elements/Div';
 import Logo from '@/components/Elements/Logo';
@@ -18,14 +21,18 @@ export default function EditProfile(){
   const { t } = useTranslation();
   return(
     <>
-      Profile {">"} {t(message.Editprofile)}
+      
+      <Div marginBottomLarge flexTop>
+        <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
+        <Span breadCrumbs>{t(message.editProfile)}</Span>
+      </Div>
       <Div style={{margin: '0 auto', width: '100%'}}>
         <Row gutter={16} >
           <Col >
             <Card>
              
               <Logo style={{marginLeft: 'auto', marginRight: 'auto',width: '250px'}}  src={'Images/avatar.svg'}></Logo>
-              <Tittle style={{textAlign: 'center'}} level={5}>Tobirauser</Tittle>
+              <Title style={{textAlign: 'center'}} level={5}>Tobirauser</Title>
               <Div style={{marginTop: '50%', marginBottom: '100%'}}>
                 <Label style={{color: '#B0B0B0'}}>{t(message.emailAddress)}</Label>
                 <Label>sample@tobira.com</Label>
@@ -67,7 +74,7 @@ export default function EditProfile(){
                   <Input type="email"  placeholder={t(message.confirmPassword)} ></Input>
 
                   <Div style={{float: "right", marginTop: "55%"}}>
-                    <Button style={{float: "right", width: "50%"}} type="primary">{t(message.Savechanges)}</Button>
+                    <Button style={{float: "right", width: "50%"}} type="primary">{t(message.saveChanges)}</Button>
                   </Div>
                 </TabPane>
               </Tabs>

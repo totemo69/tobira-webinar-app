@@ -4,6 +4,7 @@ import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 import Div from '@/components/Elements/Div';
 import Switch from '@/components/Elements/Switch';
+
 import {Row, Col} from 'antd';
 import { 
   DownOutlined,
@@ -30,7 +31,7 @@ export default function CreateWebinarRegistration(){
 
         Please set up your registration form fields.
 
-      <Row gutter={[10]}>
+      <Row className="paymentRow" gutter={[10]}>
         <Col style={{display: "flex"}}>
           <Button UpDownButton ><DownOutlined /></Button>
           <Button UpDownButton ><UpOutlined /></Button>
