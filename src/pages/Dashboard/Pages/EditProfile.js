@@ -27,13 +27,13 @@ export default function EditProfile(){
               <Logo style={{marginLeft: 'auto', marginRight: 'auto',width: '250px'}}  src={'Images/avatar.svg'}></Logo>
               <Tittle style={{textAlign: 'center'}} level={5}>Tobirauser</Tittle>
               <Div style={{marginTop: '50%', marginBottom: '100%'}}>
-                <Label style={{color: '#B0B0B0'}}>{t(message.Emailaddress)}</Label>
+                <Label style={{color: '#B0B0B0'}}>{t(message.emailAddress)}</Label>
                 <Label>sample@tobira.com</Label>
 
-                <Label style={{color: '#B0B0B0'}}>{t(message.Fullname)}</Label>
+                <Label style={{color: '#B0B0B0'}}>{t(message.fullName)}</Label>
                 <Label>Yamazaki Kento</Label>
 
-                <Label style={{color: '#B0B0B0'}}>{t(message.Contactnumber)}</Label>
+                <Label style={{color: '#B0B0B0'}}>{t(message.contactNumber)}</Label>
                 <Label>090-9725-3264</Label>
               </Div> 
             </Card>
@@ -41,30 +41,30 @@ export default function EditProfile(){
           <Col style={{width:'60%'}}>
             <Card style={{height: '100%'}}>
               <Tabs>
-                <TabPane key="1" tab={t(message.Editprofile)}>
-                  <Label asterisk>{t(message.Username)}</Label>
-                  <Input disabled placeholder={t(message.Username)} value="Tobirauser"></Input>
+                <TabPane key="1" tab={t(message.editProfile)}>
+                  <Label asterisk>{t(message.username)}</Label>
+                  <Input disabled placeholder={t(message.username)} value="Tobirauser"></Input>
 
-                  <Label asterisk>{t(message.Emailaddress)}</Label>
-                  <Input type="email" disabled placeholder={t(message.Emailaddress)} value="sample@tobira.com"></Input>
+                  <Label asterisk>{t(message.emailAddress)}</Label>
+                  <Input type="email" disabled placeholder={t(message.emailAddress)} value="sample@tobira.com"></Input>
 
-                  <Label >{t(message.Fullname)}</Label>
+                  <Label >{t(message.fullName)}</Label>
                   <Input type="text" placeholder="User Name" value="Yamazaki Kento"></Input>
 
-                  <Label >{t(message.Contactnumber)}</Label>
+                  <Label >{t(message.contactNumber)}</Label>
                   <PhoneInput />
                 
                   <Div style={{float: "right", marginTop: "28%"}}>
-                    <Button style={{float: "right", width: "50%"}} type="primary">{t(message.Savechanges)}</Button>
+                    <Button style={{float: "right", width: "50%"}} type="primary">{t(message.saveChanges)}</Button>
                   </Div>
                 </TabPane>
 
-                <TabPane key="2" tab={t(message.ChangePassword)}>
-                  <Label asterisk>{t(message.Newpassword)}</Label>
-                  <Input type="email"  placeholder={t(message.Newpassword)} ></Input>
+                <TabPane key="2" tab={t(message.changePassword)}>
+                  <Label asterisk>{t(message.newPassword)}</Label>
+                  <Input type="email"  placeholder={t(message.newPassword)} ></Input>
 
-                  <Label asterisk>{t(message.Confirmpassword)}</Label>
-                  <Input type="email"  placeholder={t(message.Confirmpassword)} ></Input>
+                  <Label asterisk>{t(message.confirmPassword)}</Label>
+                  <Input type="email"  placeholder={t(message.confirmPassword)} ></Input>
 
                   <Div style={{float: "right", marginTop: "55%"}}>
                     <Button style={{float: "right", width: "50%"}} type="primary">{t(message.Savechanges)}</Button>

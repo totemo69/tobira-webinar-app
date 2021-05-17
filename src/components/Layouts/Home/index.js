@@ -1,5 +1,5 @@
 import Layout from '@/components/Elements/Layout';
-import SideBar from '@/components/Modules/SideBar';
+import SideBar from '@/components/Modules/Sidebar';
 import Header from '@/components/Modules/Header';
 import Div from '@/components/Elements/Div';
 import Content from '@/components/Elements/Content';
