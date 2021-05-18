@@ -1,3 +1,6 @@
+import message from '@/messages/create-webinar';
+import { useTranslation } from 'next-i18next';
+
 import {StyledParagraph} from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
@@ -14,43 +17,44 @@ import {
 
 
 export default function CreateWebinarRegistration(){
+
+  const { t } = useTranslation();
   return(
     <>
       <StyledParagraph colorBlue  >
-          Registration Form
+        {t(message.registrationForm)}
       </StyledParagraph>
 
-      <Label asterisk>Form Name</Label>
-      <Input placeholder="Enter registration form name"></Input>
+      <Label asterisk>{t(message.formName)}</Label>
+      <Input placeholder={t(message.enterRegistrationFomrName)}></Input>
         
       <Div BrakeLine></Div>
 
       <StyledParagraph colorBlue  >
-          Registration Form Fields
+        {t(message.registrationFormFields)}
       </StyledParagraph>
 
-        Please set up your registration form fields.
-
+      {t(message.setupRegistrationFormFields)}
       <Row className="paymentRow" gutter={[10]}>
         <Col style={{display: "flex"}}>
           <Button UpDownButton ><DownOutlined /></Button>
           <Button UpDownButton ><UpOutlined /></Button>
         </Col>
         <Col span={7}>
-          <Label textCenter asterisk>Field Name or Placeholder</Label>
-          <Input placeholder="Email Address"></Input>
+          <Label textCenter asterisk>{t(message.fieldNameOrPlaceholder)}</Label>
+          <Input placeholder={t*message.emailAddress}></Input>
         </Col>
         <Col span={10}>
-          <Label textCenter asterisk>Field Type</Label>
-          <Input placeholder="Email"></Input>
+          <Label textCenter asterisk>{t(message.fieldType)}</Label>
+          <Input placeholder={t(message.email)}></Input>
         </Col>
         <Col span={2}>
-          <Label textCenter>Required?</Label>
-          <Switch size="default" placeholder="Email" />
+          <Label textCenter>{t(message.required)}</Label>
+          <Switch size="default" />
         </Col>
       </Row>
 
-      <Button addField><PlusSquareFilled size="large"/> Add Account</Button>
+      <Button addField><PlusSquareFilled size="large"/>{t(message.addAccount)}</Button>
     </>
   );
 }
