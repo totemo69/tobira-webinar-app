@@ -25,11 +25,10 @@ a {
 	background-color: rgba(78, 78, 78, 0.5);
 }
 
-.paymentRow{
+.paymentRow {
 	margin-top: 30px;
 	padding: 20px;
 }
-
 
 .customSelect {
 	border-radius: 8px;
@@ -98,4 +97,14 @@ a {
 .ant-dropdown-menu > .ant-dropdown-menu-item:hover > a {
 	background-color: transparent;
 	color: #0e71eb !important;
+}
+
+.ant-select .ant-select-selector {
+	height: 40px !important;
+	border: 1px solid #b0b0b0 !important;
+	border-radius: 8px !important;
+}
+
+.ant-select .ant-select-selector:hover {
+	border-color: #0e71eb !important;
 }

@@ -9,20 +9,20 @@ import { Select } from 'antd';
 
 const StyledSelect = styled(Select).withConfig({
   shouldForwardProp: prop => ![
-    'error'
+    'error',
+    'showPages',
   ].includes(prop),
 })`
     margin: 0 auto 10px;
     width: 100%;
-    height: 40px;
-    
-    &:hover {
-        border-color: #0e71eb;
-    }
-    &:focus {
-        border: 2px solid #0e71eb;
-    }
+    background-color: #ffffff;
+    font-size: 12px;
 
+    &:focus {
+        border: 1px solid #0e71eb !important;
+        box-shadow: 0px 1px 1px #0e71eb !important;
+    }
+    
     .ant-select-selection.ant-select-selection--single[aria-expanded="true"]
     > div > div > div > div + div {
         margin-top: -15px;
@@ -32,6 +32,12 @@ const StyledSelect = styled(Select).withConfig({
     props.error &&
         css`
             border: 2px solid #ef4444;
+    `};
+
+    ${props =>
+    props.showPages &&
+        css`
+            width: 112px;
     `};
 `;
  

@@ -15,7 +15,7 @@ export default function ListOfWebinar(){
   const column = [
     {
       title: t(message.title),
-      dataIndex: 'tittle',
+      dataIndex: 'title',
       sorter: {
         multiple: 3,
       },
