@@ -19,6 +19,7 @@ const StyledInput = styled(Input).withConfig({
     border-radius: 8px;
     border: 1px solid #b0b0b0;
     font-size: 12px;
+    
     &:hover {
         border-color: #0e71eb;
     }
