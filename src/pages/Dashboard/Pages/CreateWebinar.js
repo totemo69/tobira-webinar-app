@@ -1,3 +1,6 @@
+import message from '@/messages/create-webinar';
+import { useTranslation } from 'next-i18next';
+
 import Card from '@/components/Elements/Card';
 import {StyledSteps, StyledStep} from '@/components/Elements/Steps';
 import CreateWebinarPage1 from './CreateWebinarDetails';
@@ -8,27 +11,29 @@ import Button from '@/components/Elements/Button';
 import Title from '@/components/Elements/Title';
 import Span from '@/components/Elements/Span';
 import { useState } from 'react';
-import { message } from 'antd';
 
 
-const step = [
-  {
-    title: 'Details',
-    Content: <CreateWebinarPage1 />
-  },
-  {
-    title: 'Registration',
-    Content: <Registration />
-  },
-  {
-    title: 'Payment Options',
-    Content: <PaymentOption />
-  }
-];
 
 export default function CreateWebinar(){
-
   const [current, setCurrent] = useState(0);
+  const { t } = useTranslation();
+  
+  const step = [
+    {
+      title: t(message.details),
+      Content: <CreateWebinarPage1 />
+    },
+    {
+      title: t(message.registration),
+      Content: <Registration />
+    },
+    {
+      title: t(message.paymentOptions),
+      Content: <PaymentOption />
+    }
+  ];
+
+  
 
   const next = () => {
     setCurrent(current + 1);
@@ -41,7 +46,7 @@ export default function CreateWebinar(){
   return(
     <>
       <Div marginBottom2x flexTop>
-        <Title secondary marginRight>Create Webinar {">"} </Title>
+        <Title secondary marginRight>{t(message.createWebinar)} {">"} </Title>
         <Span breadCrumbs>{step[current].title}</Span>
       </Div>
         
@@ -55,13 +60,13 @@ export default function CreateWebinar(){
           {step[current].Content}
         </Div>
         {current < step.length - 1 && (
-          <Button onClick={() => next()} NextButton type="primary">Next {">"}</Button>
+          <Button onClick={() => next()} NextButton type="primary">{t(message.next)} {">"}</Button>
         )}
         {current === step.length - 1 && (
-          <Button onClick={() => message.success("Process completed")} NextButton type="primary">Create</Button>
+          <Button onClick={() => message.success("Process completed")} NextButton type="primary">{t(message.create)}</Button>
         )}
         {current > 0 && (
-          <Button onClick={() => prev()} BackButton>{"<"} Back</Button>
+          <Button onClick={() => prev()} BackButton>{"<"} {t(message.back)}</Button>
         )}
       </Card>
     </>

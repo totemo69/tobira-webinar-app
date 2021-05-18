@@ -57,6 +57,14 @@ const message = {
     key: `${scope}.newPassword`,
     default: "New password"
   }),
+  next: Object.values({
+    key: `${scope}.next`,
+    default: "Next"
+  }),
+  back: Object.values({
+    key: `${scope}.back`,
+    default: "Back"
+  }),
   success: Object.values({
     key: `${scope}.success`,
     default: "Success"
