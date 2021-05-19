@@ -115,7 +115,7 @@ const StyledDiv = style.div`
 };
 
     ${props => 
-    props.marginY2x && 
+    props.marginYLarge && 
         css`
             margin-top: 2rem;
             margin-bottom: 2rem;

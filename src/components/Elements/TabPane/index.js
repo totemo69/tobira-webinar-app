@@ -7,12 +7,12 @@
  */
 
 
-import style from 'styled-components';
+import styled from 'styled-components';
 import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
  
-const StyledTabpane = style(TabPane).withConfig({
+const StyledTabpane = styled(TabPane).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
  `;

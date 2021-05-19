@@ -7,10 +7,10 @@
  */
 
 
-import style, { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Tabs } from 'antd';
 
-const StyledTabs = style(Tabs).withConfig({
+const StyledTabs = styled(Tabs).withConfig({
   shouldForwardProp: prop => ![
     'heightFull',
     'widthFull',

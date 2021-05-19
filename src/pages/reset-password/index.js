@@ -64,7 +64,7 @@ export default function ResetPassword() {
                       <Title modalTitle>{t(globalMessage.success)}!</Title>
                     </Div>
                     <Div flexColCenter noMargin widthFull heightFull>
-                      <Div center marginY2x>{t(message.resetSuccess)}</Div>
+                      <Div center marginYLarge>{t(message.resetSuccess)}</Div>
                       <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                     </Div>
                   </Div>

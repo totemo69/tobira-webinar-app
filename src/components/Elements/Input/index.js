@@ -23,6 +23,7 @@ const StyledInput = styled(Input).withConfig({
     &:hover {
         border-color: #0e71eb;
     }
+    
     &:focus {
         border: 1px solid #0e71eb;
         box-shadow: 0px 1px 1px #0E71EB;
