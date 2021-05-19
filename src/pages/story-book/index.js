@@ -14,8 +14,8 @@ import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import DatePicker from '@/components/Elements/SampleDatePicker';
-import Modal from '@/components/Elements/Modal';
 import Tab from '@/components/Elements/SampleTab';
+import { ProfessionalConfirm,AddOnsConfirm,ShareModal } from '@/components/Elements/Modals';
 import { useState } from 'react';
 
 
@@ -25,9 +25,19 @@ export default function StoryBook() {
   console.log(message.title);
 
   const [ isModalVisible , setIsmModalVisible] = useState(false);
+  const [ isModalVisibleConfirm , setIsmModalVisibleConfirm] = useState(false);
+  const [ isModalVisibleAdons , setIsmModalVisibleAdons] = useState(false);
 
   const ShowModal = () => {
     setIsmModalVisible(true);
+  };
+
+  const ShowModalProfessional = () => {
+    setIsmModalVisibleConfirm(true);
+  };
+
+  const ShowModalAdons = () => {
+    setIsmModalVisibleAdons(true);
   };
   return (
     <>
@@ -86,8 +96,12 @@ export default function StoryBook() {
               <DatePicker></DatePicker>
             </div>
             <div>
-              <Button onClick={ShowModal} type="primary">Show modal</Button>
-              <Modal visible={isModalVisible} footer={null} >this is a modal</Modal>
+              <Button onClick={ShowModal} type="primary">Show modal Share</Button>
+              <ShareModal close={() => setIsmModalVisible(false)} isVisible={isModalVisible} footer={null} />
+              <Button onClick={ShowModalProfessional} type="primary">Show modal Professional</Button>
+              <ProfessionalConfirm close={() => setIsmModalVisibleConfirm(false)} isVisible={isModalVisibleConfirm} footer={null} />
+              <Button onClick={ShowModalAdons} type="primary">Show modal Add-ons</Button>
+              <AddOnsConfirm close={() => setIsmModalVisibleAdons(false)} isVisible={isModalVisibleAdons} footer={null} />
             </div>
           </Content>
         </Layout>
