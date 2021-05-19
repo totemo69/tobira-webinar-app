@@ -7,7 +7,6 @@
 import styled, { css } from 'styled-components';
 import { Input } from 'antd';
 
-
 const { Search } = Input;
 
 const StyleSearch = styled(Search).withConfig({
@@ -72,7 +71,7 @@ const StyleSearch = styled(Search).withConfig({
     css`
       margin-left: .50rem;
     `
-  };
+};
 `;
 
 

@@ -5,7 +5,7 @@
  * 
  * 
  */
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Table } from 'antd';
 
 const StyledTable = styled(Table).withConfig({
