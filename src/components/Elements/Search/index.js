@@ -13,6 +13,7 @@ const StyleSearch = styled(Search).withConfig({
   shouldForwardProp: prop => ![
     'marginLeft',
     'widthMedium',
+    'bGray',
   ].includes(prop),
 })`
   width: 100%;
@@ -73,6 +74,14 @@ const StyleSearch = styled(Search).withConfig({
       margin-left: .50rem;
     `
 };
+
+  ${props => 
+    props.bGray && 
+    css`
+      background: #F3F3F3;
+    `
+};
+
 
   ${props => 
     props.widthMedium && 
