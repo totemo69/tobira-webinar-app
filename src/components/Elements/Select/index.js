@@ -16,6 +16,7 @@ const StyledSelect = styled(Select).withConfig({
     margin: 0 auto 10px;
     width: 100%;
     background-color: #ffffff;
+    font-weight: 600;
     font-size: 12px;
 
     &:focus {
@@ -28,6 +29,10 @@ const StyledSelect = styled(Select).withConfig({
         margin-top: -15px;
     }
 
+    .ant-select-arrow {
+        color: #4E4E4E;
+    }
+
     ${props =>
     props.error &&
         css`
@@ -37,7 +42,9 @@ const StyledSelect = styled(Select).withConfig({
     ${props =>
     props.showPages &&
         css`
-            width: 112px;
+            width: 100px;
+            margin-left: .50rem;
+            margin-right: .50rem;
     `};
 `;
  

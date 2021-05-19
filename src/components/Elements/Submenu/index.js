@@ -5,12 +5,12 @@
  */
 
 
-import style from 'styled-components';
+import styled from 'styled-components';
 import { Menu } from 'antd';
 
 const { SubMenu } = Menu;
 
-const StyleSubMenu = style(SubMenu).withConfig({
+const StyleSubMenu = styled(SubMenu).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
   width: 90%;

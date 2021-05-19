@@ -5,26 +5,16 @@
  * 
  * 
  */
-import style from 'styled-components';
+import styled from 'styled-components';
 import { Table } from 'antd';
 
-const StyledTable = style(Table).withConfig({
+const StyledTable = styled(Table).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
-  thead > tr > th{
-    background-color: #0E71EB;
-    color: white;
-  
+  .ant-table table thead > tr > th{
+    background-color: #0E71EB !important;
+    color: #ffffff;
   }
-  thead> tr > th:hover{
-    background-color: #0E71EB;
-  }
-  thead > tr > th:hover {
-    background-color: unset;
-    color: black;
-  }
-  
-  
 `;
 
 

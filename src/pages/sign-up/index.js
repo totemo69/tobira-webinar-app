@@ -75,7 +75,7 @@ export default function SignUp() {
                         <Title modalTitle>{t(globalMessage.emailSent)}</Title>
                       </Div>
                       <Div flexColCenter noMargin widthFull heightFull>
-                        <Div marginY2x center>{t(message.verificationMsg)}</Div>
+                        <Div marginYLarge center>{t(message.verificationMsg)}</Div>
                         <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
                       </Div>
                     </Div>

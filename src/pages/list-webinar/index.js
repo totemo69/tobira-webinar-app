@@ -5,6 +5,9 @@ import Card from '@/components/Elements/Card';
 import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
+import Search from '@/components/Elements/Search';
+
+import { CaretDownFilled } from '@ant-design/icons';
 
 export default function ListOfWebinar() {
   const columns = [
@@ -54,14 +57,21 @@ export default function ListOfWebinar() {
         </Div>
         <Div widthFull>
           <Card>
-            <Div>
-              <Select showPages defaultValue="10">
-                <Option value="10">10</Option>
-                <Option value="20">20</Option>
-                <Option value="30">30</Option>
-                <Option value="40">40</Option>
-                <Option value="50">50</Option>
-              </Select>
+            <Div marginY betweenCenter widthFull>
+              <Div noMargin>
+                Show
+                <Select showPages defaultValue="10" suffixIcon={<CaretDownFilled />} >
+                  <Option value="10">10</Option>
+                  <Option value="20">20</Option>
+                  <Option value="30">30</Option>
+                  <Option value="40">40</Option>
+                  <Option value="50">50</Option>
+                </Select>
+                entries
+              </Div>
+              <Div noMargin flexCenter>
+                Search <Search placeholder="Search webinar title" allowClear marginLeft />
+              </Div>
             </Div>
             <Table columns={columns} />
           </Card>

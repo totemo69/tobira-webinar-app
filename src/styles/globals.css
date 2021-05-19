@@ -108,3 +108,25 @@ a {
 .ant-select .ant-select-selector:hover {
 	border-color: #0e71eb !important;
 }
+
+.ant-select-selection-item {
+	padding-right: 18px;
+	padding-left: 18px !important;
+	display: flex;
+	align-items: center;
+}
+
+.ant-table table thead > tr > th:hover,
+.ant-table table thead > tr > th > div:hover {
+	background-color: #0e71eb !important;
+	color: #ffffff !important;
+}
+
+.ant-table-thead th.ant-table-column-sort {
+	background-color: #0e71eb;
+}
+
+.ant-table-column-sorter-up.active,
+.ant-table-column-sorter-down.active {
+	color: #ffffff;
+}
