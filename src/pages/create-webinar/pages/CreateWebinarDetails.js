@@ -1,6 +1,6 @@
 import message from '@/messages/createProfile';
 import { useTranslation } from 'next-i18next';
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Div from '@/components/Elements/Div';
 import {StyledParagraph} from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
@@ -95,3 +95,9 @@ export default function CreateWebinarPage1(){
     </>
   );
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['translation']),
+  },
+});

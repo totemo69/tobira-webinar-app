@@ -29,7 +29,7 @@ export default function Sider() {
         >
           <Submenu key="webinars" icon={<ShopFilled style={{ fontSize: "18px"}} />} title={t(message.webinars)}>
             <Menu.Item icon={<PlusSquareFilled style={{ fontSize: "18px"}} />} key="createWebinar">
-              <Link href="#">
+              <Link href="/create-webinar">
                 <a>{t(message.createWebinar)}</a>
               </Link>
             </Menu.Item>
