@@ -199,6 +199,15 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.flexCenterEnd && 
+        css`
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        `
+};
+
+    ${props => 
     props.flexTop && 
         css`
             display: flex;
