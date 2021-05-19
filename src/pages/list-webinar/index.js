@@ -69,8 +69,8 @@ export default function ListOfWebinar() {
                 </Select>
                 entries
               </Div>
-              <Div noMargin flexCenter>
-                Search <Search placeholder="Search webinar title" allowClear marginLeft />
+              <Div noMargin flexCenterEnd>
+                Search <Search placeholder="Search webinar title" allowClear marginLeft widthMedium />
               </Div>
             </Div>
             <Table columns={columns} />
