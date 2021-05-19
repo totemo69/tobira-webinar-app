@@ -19,7 +19,18 @@
     "fullName":  "Full Name",
     "contactNo":  "Contact Number",
     "saveChanges":  "Save Changes",
-    "emailSent":  "Email sent!"
+    "emailSent":  "Email sent!",
+    "termsOfService":  "Terms of Service",
+    "privacyPolicy":  "Privacy Policy",
+    "and":  "and",
+    "copyRight":  "Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved",
+    "listWebinar":  "List of Webinar",
+    "show":  "Show",
+    "entries":  "entries",
+    "search":  "Search",
+    "searchPlaceholder":  "Search webinar title",
+    "thankYou":  "Thank You",
+    "accountActivated":  "Your account has been successfully activated"
   },
   "storyBook" : {
     "title": "Title"
@@ -27,9 +38,6 @@
   "signUp" : {
     "signUp":  "Sign Up",
     "agreeMessage":  "By signing up, you agree to the",
-    "termsOfService":  "Terms of Service",
-    "and":  "and",
-    "privacyPolicy":  "Privacy Policy",
     "haveAccount":  "Already have an account?",
     "loginHere":  "Log in here",
     "verificationMsg":  "A verification mail has been sent to your email account. Please check your email and click the link to confirm."
@@ -52,26 +60,22 @@
     "editProfile":  "Edit Profile",
     "changePassword":  "Change Password"
   },
-  "editProfile" : {
-    "username":  "Username",
-    "emailAddress" : "Email Address",
-    "fullName" : "Full Name",
-    "contactNumber" : "Contact Number",
-    "newPassword" : "New Password",
-    "confirmPassword" : "Confirm Password",
-    "saveChanges" : "Save Changes",
-    "editProfile" : "Edit Profile",
-    "changePassword": "Change Password"
+  "sidebar" : {
+    "webinars":  "Webinars",
+    "createWebinar":  "Create Webinar"
+  },
+  "header" : {
+    "accounts":  "Accounts",
+    "purchaseLicense":  "Purchase License",
+    "wallet":  "Wallet",
+    "logOut":  "Log out"
   },
   "listOfWebinar": {
     "title": "Title",
-    "listOfWebinar" : "LIST OF WEBINAR",
     "schedule" :  "Schedule",
     "attendees": "No. of Attendees",
     "status": "Status",
-    "action" :  "Action",
-    "search":  "Search",
-    "searchPlaceholder":  "Search webinar title"
+    "action" :  "Action"
   },
   "createwebinar": {
     "addAccount":"Add Account",

@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import globalMessage from '@/messages/global';
-import message from '@/messages/sign-up';
+import message from '@/messages/signUp';
 
 import Layout from '@/components/Layouts/Guest';
 import { Row, Col } from 'antd';
@@ -58,7 +58,7 @@ export default function SignUp() {
                 <Input type="password" placeholder={t(globalMessage.confirmPassword)}></Input>
               </Div>
               <Div marginTop center>
-                {t(message.agreeMessage)} <Link href="/terms-of-service-example" name={t(message.termsOfService)}></Link> {t(message.and)} <Link href="/privacy-policy-example" name={t(message.privacyPolicy)}></Link>.
+                {t(message.agreeMessage)} <Link href="/terms-of-service-example" name={t(globalMessage.termsOfService)}></Link> {t(globalMessage.and)} <Link href="/privacy-policy-example" name={t(globalMessage.privacyPolicy)}></Link>.
               </Div>
               <Button type="primary" onClick={openModal} marginTop>{t(message.signUp)}</Button>
               <Modal isOpen={isOpenModal}

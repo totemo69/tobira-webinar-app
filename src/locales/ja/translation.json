@@ -19,7 +19,17 @@
     "fullName":  "フルネーム",
     "contactNo":  "連絡先番号",
     "saveChanges":  "変更内容を保存",
-    "emailSent":  "送信された電子メール!"
+    "emailSent":  "送信された電子メール!",
+    "termsOfService":  "利用規約",
+    "privacyPolicy":  "個人情報保護方針",
+    "and":  "そして",
+    "listWebinar":  "ウェビナーのリスト",
+    "show":  "公演",
+    "entries":  "エントリ",
+    "search":  "探す",
+    "searchPlaceholder":  "ウェビナーのタイトルを検索",
+    "thankYou":  "ありがとうございました",
+    "accountActivated":  "アカウントが正常にアクティブ化されました"
   },
   "storyBook" : {
     "title": "題名"
@@ -27,9 +37,6 @@
   "signUp" : {
     "signUp":  "サインアップ",
     "agreeMessage":  "サインアップすると、",
-    "termsOfService":  "利用規約",
-    "and":  "そして",
-    "privacyPolicy":  "個人情報保護方針",
     "haveAccount":  "すでにアカウントをお持ちですか？",
     "loginHere":  "ここでログイン",
     "verificationMsg":  "確認メールがメールアカウントに送信されました。 メールを確認し、リンクをクリックして確認してください"
@@ -52,16 +59,15 @@
     "editProfile":  "プロファイル編集",
     "changePassword":  "パスワードを変更する"
   },
-  "editProfile" : {
-    "username":  "ユーザー名",
-    "emailAddress" : "電子メールアドレス",
-    "fullName" : "フルネーム",
-    "contactNumber" : "連絡先番号",
-    "newPassword" : "新しいパスワード",
-    "confirmPassword" : "パスワードを認証する",
-    "saveChanges" : "変更を保存する",
-    "editProfile" : "プロファイルの編集",
-    "changePassword": "パスワードの変更"
+  "sidebar" : {
+    "webinars":  "ウェビナー",
+    "createWebinar":  "ウェビナーを作成する"
+  },
+  "header" : {
+    "accounts":  "アカウント",
+    "purchaseLicense":  "購入ライセンス",
+    "wallet":  "財布",
+    "logOut":  "ログアウト"
   },
   "listOfWebinar": {
     "title": "ティトル",

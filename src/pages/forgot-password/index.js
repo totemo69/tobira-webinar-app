@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import globalMessage from '@/messages/global';
-import message from '@/messages/forgot-password';
+import message from '@/messages/forgotPassword';
 
 import Layout from '@/components/Layouts/Guest';
 import { Row, Col } from 'antd';

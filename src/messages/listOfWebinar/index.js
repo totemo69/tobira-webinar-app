@@ -5,10 +5,6 @@ const message = {
     key: `${scope}.title`,
     default: "Title"
   }),
-  listOfWebinar: Object.values({
-    key: `${scope}.listOfWebinar`,
-    default: "LIST OF WEBINAR"
-  }),
   schedule: Object.values({
     key: `${scope}.schedule`,
     default: "Schedule"
@@ -24,14 +20,6 @@ const message = {
   action: Object.values({
     key: `${scope}.action`,
     default: "Action"
-  }),
-  search: Object.values({
-    key: `${scope}.search`,
-    default: "Search"
-  }),
-  searchPlaceholder: Object.values({
-    key: `${scope}.searchPlaceholder`,
-    default: "Search webinar title"
   }),
 };
 

@@ -1,6 +1,6 @@
-// import { useTranslation } from 'next-i18next';
-// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-// import globalMessage from '@/messages/global';
+import { useTranslation } from 'next-i18next';
+import globalMessage from '@/messages/global';
+import message from '@/messages/header';
 
 import Link from 'next/link';
 
@@ -16,34 +16,34 @@ import {
 } from '@ant-design/icons';
 
 export default function Header() {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const MenuItems = (
     <Menu>
       <Menu.Item key="0">
         <Link href="/profile">
-          <a><UserOutlined /> Profile</a>
+          <a><UserOutlined /> {t(globalMessage.profile)}</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="1">
         <Link href="#">
-          <a><AccountBookFilled /> Account</a>
+          <a><AccountBookFilled /> {t(message.accounts)}</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="2">
         <Link href="#">
-          <a><CreditCardFilled /> Purchase License</a>
+          <a><CreditCardFilled /> {t(message.purchaseLicense)}</a>
         </Link>
       </Menu.Item>
       <Menu.Item key="3">
         <Link href="#">
-          <a><WalletFilled /> Wallet</a>
+          <a><WalletFilled /> {t(message.wallet)}</a>
         </Link>
       </Menu.Item>
       <Menu.Divider></Menu.Divider>
       <Menu.Item key="4">
         <Link href="/login">
-          <a><LogoutOutlined /> Log out</a>
+          <a><LogoutOutlined /> {t(message.logOut)}</a>
         </Link>
       </Menu.Item>
     </Menu>
@@ -60,9 +60,3 @@ export default function Header() {
     </>
   );
 }
-
-// export const getStaticProps = async ({ locale }) => ({
-//   props: {
-//     ...await serverSideTranslations(locale, ['translation']),
-//   },
-// });
