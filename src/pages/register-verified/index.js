@@ -20,7 +20,7 @@ export default function RegisterVerified() {
         </Div>
         <Div marginTop widthFull center>
           <Image src={"Images/success.svg"} alt="Tobira Logo" successImg />
-          <Title secondary2 marginBottom>{t(globalMessage.t)}!</Title>
+          <Title secondary2 marginBottom>{t(globalMessage.thankYou)}!</Title>
           <p>{t(globalMessage.accountActivated)}.</p>
           <ButtonLink href="/login" element={<Button type="primary" mediumBtn marginTopMedium>{t(globalMessage.login)}</Button>} />
         </Div>
