@@ -11,7 +11,7 @@ import Dropdown from '@/components/Elements/Dropdown';
 import Footer from '@/components/Elements/Footer';
 import Menu from '@/components/Elements/Menu';
 import SubMenu from '@/components/Elements/Submenu';
-import Profile from './Pages/EditProfile';
+import Profile from '../profile';
 import WebinarListPage from './Pages/ListOfWebinar';
 import CreateWebinar from './Pages/CreateWebinar';
 import  Link  from '@/components/Elements/Link';

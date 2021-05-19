@@ -1,4 +1,4 @@
-import message from '@/messages/create-webinar';
+import message from '@/messages/createProfile';
 import { useTranslation } from 'next-i18next';
 
 import {StyledParagraph} from '@/components/Elements/SampleParagraph';

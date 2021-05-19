@@ -1,3 +1,8 @@
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import globalMessage from '@/messages/global';
+import message from '@/messages/listOfWebinar';
+
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -10,41 +15,43 @@ import Search from '@/components/Elements/Search';
 import { CaretDownFilled } from '@ant-design/icons';
 
 export default function ListOfWebinar() {
+  const { t } = useTranslation();
+  
   const columns = [
     {
       title: '',
       dataIndex: '',
     },
     {
-      title: 'Title',
+      title: t(message.title),
       dataIndex: 'title',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: 'Schedule',
+      title: t(message.schedule),
       dataIndex: 'schedule',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: 'No. of Attendees',
-      dataIndex: 'Attendees',
+      title: t(message.attendees),
+      dataIndex: 'attendees',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: 'Status',
+      title: t(message.status),
       dataIndex: 'status',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: 'Action',
+      title: t(message.action),
       dataIndex: 'action',
     },
   ];
@@ -53,13 +60,13 @@ export default function ListOfWebinar() {
     <>
       <Layout>
         <Div marginBottomLarge>
-          <Title secondary>List of Webinar</Title>
+          <Title secondary>{t(globalMessage.listWebinar)}</Title>
         </Div>
         <Div widthFull>
           <Card>
             <Div marginY betweenCenter widthFull>
               <Div noMargin>
-                Show
+                {t(globalMessage.show)}
                 <Select showPages defaultValue="10" suffixIcon={<CaretDownFilled />} >
                   <Option value="10">10</Option>
                   <Option value="20">20</Option>
@@ -67,10 +74,10 @@ export default function ListOfWebinar() {
                   <Option value="40">40</Option>
                   <Option value="50">50</Option>
                 </Select>
-                entries
+                {t(globalMessage.entries)}
               </Div>
               <Div noMargin flexCenterEnd>
-                Search <Search placeholder="Search webinar title" allowClear marginLeft widthMedium />
+                {t(globalMessage.search)} <Search placeholder={t(globalMessage.searchPlaceholder)} allowClear marginLeft widthMedium />
               </Div>
             </Div>
             <Table columns={columns} />
@@ -80,3 +87,9 @@ export default function ListOfWebinar() {
     </>
   );
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['translation']),
+  },
+});

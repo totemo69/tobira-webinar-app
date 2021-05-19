@@ -1,6 +1,6 @@
 import {useTranslation} from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import message from '@/messages/list-of-webinar';
+import message from '@/messages/listOfWebinar';
 import Card from '@/components/Elements/Card';
 import Search from '@/components/Elements/Search';
 import Select from '@/components/Elements/Select';

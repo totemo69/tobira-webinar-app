@@ -89,6 +89,50 @@ const message = {
     key: `${scope}.emailSent`,
     default: "Email sent!"
   }),
+  termsOfService: Object.values({
+    key: `${scope}.termsOfService`,
+    default: 'Terms of Service'
+  }),
+  privacyPolicy: Object.values({
+    key: `${scope}.privacyPolicy`,
+    default: 'Privacy Policy'
+  }),
+  and: Object.values({
+    key: `${scope}.and`,
+    default: 'and'
+  }),
+  copyRight: Object.values({
+    key: `${scope}.copyRight`,
+    default: 'Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved'
+  }),
+  listWebinar: Object.values({
+    key: `${scope}.listWebinar`,
+    default: 'List of Webinar'
+  }),
+  show: Object.values({
+    key: `${scope}.show`,
+    default: "Show"
+  }),
+  entries: Object.values({
+    key: `${scope}.entries`,
+    default: "entries"
+  }),
+  search: Object.values({
+    key: `${scope}.search`,
+    default: "Search"
+  }),
+  searchPlaceholder: Object.values({
+    key: `${scope}.searchPlaceholder`,
+    default: "Search webinar title"
+  }),
+  thankYou: Object.values({
+    key: `${scope}.thankYou`,
+    default: "Thank You"
+  }),
+  accountActivated: Object.values({
+    key: `${scope}.accountActivated`,
+    default: "Your account has been successfully activated"
+  }),
 };
 
 export default message;

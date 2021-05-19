@@ -1,6 +1,6 @@
-// import { useTranslation } from 'next-i18next';
-// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-// import globalMessage from '@/messages/global';
+import { useTranslation } from 'next-i18next';
+import globalMessage from '@/messages/global';
+import message from '@/messages/sidebar';
 
 import Link from 'next/link';
 
@@ -13,7 +13,7 @@ import Submenu from '@/components/Elements/Submenu';
 import { ShopFilled, PlusSquareFilled, ProfileFilled } from '@ant-design/icons';
 
 export default function Sider() { 
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -27,15 +27,15 @@ export default function Sider() {
           mode="inline"
           marginTop
         >
-          <Submenu key="webinars" icon={<ShopFilled style={{ fontSize: "18px"}} />} title="Webinars">
+          <Submenu key="webinars" icon={<ShopFilled style={{ fontSize: "18px"}} />} title={t(message.webinars)}>
             <Menu.Item icon={<PlusSquareFilled style={{ fontSize: "18px"}} />} key="createWebinar">
               <Link href="#">
-                <a>Create Webinar</a>
+                <a>{t(message.createWebinar)}</a>
               </Link>
             </Menu.Item>
             <Menu.Item icon={<ProfileFilled style={{ fontSize: "18px"}} />} key="listWebinar">
               <Link href="/list-webinar">
-                <a>List of Webinar</a>
+                <a>{t(globalMessage.listWebinar)}</a>
               </Link>
             </Menu.Item>
           </Submenu>
@@ -44,9 +44,3 @@ export default function Sider() {
     </>
   );
 }
-
-// export const getStaticProps = async ({ locale }) => ({
-//   props: {
-//     ...await serverSideTranslations(locale, ['translation']),
-//   },
-// });
