@@ -14,7 +14,6 @@ import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import ButtonLink from '@/components/Elements/ButtonLink';
-import Logo from '@/components/Elements/Logo';
 import Modal from '@/components/Elements/Modal';
 import Image from '@/components/Elements/Image';
 
@@ -88,8 +87,10 @@ export default function SignUp() {
             </Form>
           </Col>
           <Col span={12}>
-            <Logo src={"Images/logo.svg"}/>
-            <Logo path1 src={"Images/illustration1.svg"}/>
+            <Div marginBottom center>
+              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+            </Div>
+            <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
           </Col>
         </Row>
       </Layout>
