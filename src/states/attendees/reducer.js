@@ -1,4 +1,4 @@
-import { GET_ATENDEE, GET_ATENDEE_SUCCESS } from './action';
+import { GET_ATENDEE, GET_ATENDEE_SUCCESS } from './types';
 
 
 const initialState = {

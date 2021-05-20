@@ -1,11 +1,14 @@
 import { takeEvery, all, call, put} from 'redux-saga/effects';
-import { GET_ATENDEE,getAttendeeSuccess, getAttendeeFailed } from './action';
-import { getAttendees } from '../../pages/api/hello';
+import { GET_ATENDEE } from './types';
+import {getAttendeeSuccess, getAttendeeFailed} from './action';
+import { API } from '../../utils/constants';
+import request  from '../../utils/request';
+
 
 
 function* getAttendeeSaga() {
   try{
-    const data = yield call(getAttendees);
+    const data = yield call(request,API.AUTH_ATTENDEE);
     yield put(getAttendeeSuccess(data));
     console.log(data);
   } catch(error){

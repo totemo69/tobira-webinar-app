@@ -1,6 +1,8 @@
-export const GET_ATENDEE = 'GET_ATENDEE';
-export const GET_ATENDEE_SUCCESS = 'GET_ATENDEE_SUCCESS';
-export const GET_ATENDEE_FAILED = 'GET_ATENDEE_FAILED';
+import {
+  GET_ATENDEE,
+  GET_ATENDEE_SUCCESS,
+  GET_ATENDEE_FAILED
+} from './types';
 
 
 export const getAttendee = (payload) => ({
