@@ -133,6 +133,10 @@ const message = {
     key: `${scope}.accountActivated`,
     default: "Your account has been successfully activated"
   }),
+  goBackPrevious: Object.values({
+    key: `${scope}.goBackPrevious`,
+    default: "Go back to previous page"
+  }),
 };
 
 export default message;

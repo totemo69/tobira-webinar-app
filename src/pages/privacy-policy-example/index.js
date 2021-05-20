@@ -1,3 +1,8 @@
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import globalMessage from '@/messages/global';
+import message from '@/messages/termsAndPrivacy';
+
 import { useRouter } from 'next/router';
 
 import Layout from '@/components/Layouts/TermsAndPrivacy';
@@ -10,6 +15,7 @@ import List from '@/components/Elements/List';
 import Button from '@/components/Elements/Button';
 
 export default function PrivacyPolicy(){
+  const { t } = useTranslation();
   const router = useRouter();
   
   return(
@@ -20,37 +26,37 @@ export default function PrivacyPolicy(){
         </Div>
         <Card TermsAndPrivacy>
           <Div doubleDividerBlue withPadding widthFull>
-            <Title secondary center>PRIVACY POLICY</Title>
+            <Title secondary center>{t(globalMessage.privacyPolicy)}</Title>
           </Div>
           <Div paddingTop widthFull black>
-            Your privacy is important to us, and so is being transparent about how we collect, use, and share information about you. This policy is intended to help you understand:
+            {t(message.privacyContent1)}:
             <UnorderedList paddingTop>
-              <List asterisk>What information we collect about you</List>
-              <List asterisk>How we use information we collect</List>
-              <List asterisk>How we share information we collect</List>
-              <List asterisk>How we store and secure information we collect</List>
-              <List asterisk>How to access and control your information</List>
-              <List asterisk>How we transfer information we collect internationally</List>
-              <List asterisk>Other important privacy information</List>
+              <List asterisk>{t(message.privacyItem1)}</List>
+              <List asterisk>{t(message.privacyItem2)}</List>
+              <List asterisk>{t(message.privacyItem3)}</List>
+              <List asterisk>{t(message.privacyItem4)}</List>
+              <List asterisk>{t(message.privacyItem5)}</List>
+              <List asterisk>{t(message.privacyItem6)}</List>
+              <List asterisk>{t(message.privacyItem7)}</List>
             </UnorderedList>
             <p>
-              This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed. Atlassian, we and us refers to Atlassian Pty Ltd, Atlassian, Inc. and any of our corporate affiliates. We offer a wide range of products, including our cloud, server and data center products. We refer to all of these products, together with our other services and websites as &quot;Services&quot; in this policy.
+              {t(message.privacyContent2)}.
             </p>
             <p>
-              This policy also explains your choices surrounding how we use information about you, which include how you can object to certain uses of information about you and how you can access and update certain information about you. If you do not agree with this policy, do not access or use our Services or interact with any other aspect of our business.
+              {t(message.privacyContent3)}.
             </p>
             <p>
-              Where we provide the Services under contract with an organization (for example, your employer) that organization controls the information processed by the Services. For more information, please see Notice to End Users below. This policy does not apply to the extent we process personal information in the role of a processor on behalf of such organizations.
+              {t(message.privacyContent4)}.
             </p>
             <p>
-              What information we collect about you? We collect information about you when you provide it to us, when you use our Services, and when other sources provide it to us, as further described below.
+              {t(message.privacyContent5)}.
             </p>
           </Div>
           <Div paddingYLg widthFull center>
             <Button type="primary" onClick={() => router.back()}
               mediumBtn marginTop 
             >
-              Go back to previous page
+              {t(globalMessage.goBackPrevious)}
             </Button>
           </Div>
         </Card>
@@ -58,3 +64,9 @@ export default function PrivacyPolicy(){
     </>
   );
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['translation']),
+  },
+});
