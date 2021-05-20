@@ -17,9 +17,13 @@ import DatePicker from '@/components/Elements/SampleDatePicker';
 import Tab from '@/components/Elements/SampleTab';
 import { ProfessionalConfirm,AddOnsConfirm,ShareModal } from '@/components/Modules/Modals';
 import { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { getAttendee } from '../../states/attendees/action';
+ 
 
 export default function StoryBook() {
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
   console.log(globalMessage.header);
   console.log(message.title);
@@ -38,6 +42,10 @@ export default function StoryBook() {
 
   const ShowModalAdons = () => {
     setIsmModalVisibleAdons(true);
+  };
+
+  const checkApi = () => {
+    dispatch(getAttendee());
   };
   return (
     <>
@@ -102,6 +110,14 @@ export default function StoryBook() {
               <ProfessionalConfirm close={() => setIsmModalVisibleConfirm(false)} isVisible={isModalVisibleConfirm} footer={null} />
               <Button onClick={ShowModalAdons} type="primary">Show modal Add-ons</Button>
               <AddOnsConfirm close={() => setIsmModalVisibleAdons(false)} isVisible={isModalVisibleAdons} footer={null} />
+            </div>
+
+            <div>
+              <Button onClick={() => {
+                checkApi();
+              }}>
+                Check API
+              </Button>
             </div>
           </Content>
         </Layout>
