@@ -5,13 +5,13 @@ import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 
 import { useDispatch } from 'react-redux';
-import { getUser } from '../../states/users/action';
+import { getUseProfile } from '../../states/usersProfile/action';
 
 export default function SampleComponent(){
   const dispatch = useDispatch();
 
   const checkAPI = () => {
-    dispatch(getUser());
+    dispatch(getUseProfile());
   };
   
   return(
