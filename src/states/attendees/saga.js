@@ -4,8 +4,6 @@ import {getAttendeeSuccess, getAttendeeFailed} from './action';
 import { API } from '../../utils/constants';
 import request  from '../../utils/request';
 
-
-
 function* getAttendeeSaga() {
   try{
     const data = yield call(request,API.AUTH_ATTENDEE);
