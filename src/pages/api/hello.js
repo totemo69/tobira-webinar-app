@@ -4,15 +4,12 @@
 //   res.status(200).json({ name: 'John Doe' });
 // };
 
-
-
 export const getAttendeesCount = () => {
   return fetch('https://tobira-webinar-api.herokuapp.com/attendees/count')
     .then((response) => response.json())
     .then((json) => json)
     .catch((error) => Promise.reject(error));
 };
-
 
 export const getWebinars = () => {
   return fetch('https://tobira-webinar-api.herokuapp.com/webinars')
