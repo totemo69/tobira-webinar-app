@@ -21,7 +21,7 @@ const checkWebinar = (state = initialState, action) =>
       return {
         ...state,
         isLoading: false,
-        data: payload,
+        posts: payload,
       };
     default:
       return state;
