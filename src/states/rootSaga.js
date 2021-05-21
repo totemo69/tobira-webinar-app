@@ -1,11 +1,11 @@
 import { all } from 'redux-saga/effects';
 import attendeeSaga from '../states/attendees/saga';
-import userSaga from '../states/users/saga';
+import profileSaga from './profiles/saga';
 
 function* rootSaga() {
   yield all([
     attendeeSaga(),
-    userSaga()
+    profileSaga()
   ]);
 }
 

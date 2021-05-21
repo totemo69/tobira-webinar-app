@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import counter from './counter/reducer';
-import attendee from './attendees/reducer';
-import users from './users/reducer';
+import atendee from './attendees/reducer';
+import profile from './profiles/reducer';
 
 const rootReducer = combineReducers({
   counter,
-  attendee,
-  users,
+  atendee,
+  profile,
 });
 
 export default rootReducer;
