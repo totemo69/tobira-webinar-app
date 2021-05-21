@@ -4,7 +4,8 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/states/*": ["src/states/*"],
-      "@/messages/*": ["src/messages/*"]
+      "@/messages/*": ["src/messages/*"],
+      "@/utils/*": ["src/utils/*"]
     }
   }
 }
