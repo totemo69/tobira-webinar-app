@@ -1,18 +1,19 @@
+import React, { memo, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { getProfile } from '@/states/profiles/action';
+
 import Layout from '@/components/Layouts/Guest';
 import { Row, Col } from 'antd';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 
-import { useDispatch } from 'react-redux';
-import { getUseProfile } from '../../states/usersProfile/action';
-
-export default function SampleComponent(){
-  const dispatch = useDispatch();
-
-  const checkAPI = () => {
-    dispatch(getUseProfile());
-  };
+export function SampleComponent({ doCheck }){
+  useEffect(() => {
+    // code here
+  }, []);
   
   return(
     <>
@@ -22,9 +23,9 @@ export default function SampleComponent(){
             <Div widthFull center>
               <Title modalTitle>CHECK USER API</Title>
               <Button type="primary" marginTop
-                onClick={() => checkAPI()}
+                onClick={() => doCheck()}
               >
-                USER API
+                CHECK PROFILE API
               </Button>
             </Div>
           </Col>
@@ -33,3 +34,23 @@ export default function SampleComponent(){
     </>
   );
 }
+
+SampleComponent.propTypes = {
+  doCheck: PropTypes.func,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    doCheck: () => dispatch(getProfile()),
+  };
+}
+
+const withConnect = connect(
+  null,
+  mapDispatchToProps
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(SampleComponent);
