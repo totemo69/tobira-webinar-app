@@ -1,4 +1,4 @@
-import { GET_USER, GET_USER_SUCCESS } from './types';
+import { GET_USER_PROFILE, GET_USER_PROFILE_SUCCESS } from './types';
 
 const initialState = {
   isLoading: false,
@@ -6,14 +6,14 @@ const initialState = {
   error: null,
 };
 
-const userCheck = (state = initialState, {type, payload}) => {
+const userProfileCheck = (state = initialState, {type, payload}) => {
   switch(type) {
-  case GET_USER:
+  case GET_USER_PROFILE:
     return{
       ...state,
       isLoading: true,
     };
-  case GET_USER_SUCCESS:
+  case GET_USER_PROFILE_SUCCESS:
     return {
       ...state,
       isLoading: false,
@@ -24,4 +24,4 @@ const userCheck = (state = initialState, {type, payload}) => {
   }
 };
 
-export default userCheck;
+export default userProfileCheck;

@@ -4,5 +4,5 @@ const Url = process.env.TOBIRA_API
 
 export const API = {
   AUTH_ATTENDEE: `${Url}/attendees`,
-  AUTH_USER: `${Url}/user`,
+  AUTH_USER_PROFILE: `${Url}/users/profile`,
 };
