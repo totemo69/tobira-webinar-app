@@ -1,5 +1,6 @@
 import produce from 'immer';
 import {
+  PAYMENTS_GET,
   PAYMENTS_COUNT,
   PAYMENTS_SUCCESS
 } from './types';
@@ -14,6 +15,9 @@ const testPayment = (state = initialState, { type, payload }) =>
   produce(state, draft => {
     switch (type) {
     case PAYMENTS_COUNT:
+      draft.isLoading = true;
+      break;
+    case PAYMENTS_GET:
       draft.isLoading = true;
       break;
     case PAYMENTS_SUCCESS:
