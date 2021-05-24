@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   atendee,
   profile,
   plans,
-  payments
+  payments,
   webinar,
 });
 

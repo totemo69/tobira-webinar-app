@@ -2,12 +2,14 @@ import React, {memo} from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getAttendee } from '@/states/attendees/action';
+import { getAttendee, getAttendeeCount } from '@/states/attendees/action';
 import { getWebinar } from '@/states/webinar/action';
 import Button from '@/components/Elements/Button';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectAttendeeCount } from '@/states/attendees/selector';
-export function CheckApi({data, checkAttendee, checkWebinar}){
+
+
+export function CheckApi({data, checkAttendee, checkWebinar, checkAttendeeCount}){
 
   return(
     <div style={{textAlign: "center"}}>
@@ -15,6 +17,8 @@ export function CheckApi({data, checkAttendee, checkWebinar}){
       <Button type="primary" onClick={() => checkAttendee()}>Get Attendee</Button>
       <h2>Data: {data}</h2>
       <Button type="primary"  onClick={() => checkWebinar()}>Get Webinar</Button>
+
+      <Button type="primary"  onClick={() => checkAttendeeCount()}>Check Attendee Count</Button>
     </div>
   );
 }
@@ -22,6 +26,7 @@ export function CheckApi({data, checkAttendee, checkWebinar}){
 CheckApi.propTypes = {
   data: PropTypes.any,
   checkAttendee: PropTypes.func,
+  checkAttendeeCount: PropTypes.func,
   checkWebinar: PropTypes.func,
 };
 
@@ -30,6 +35,7 @@ const mapDispatchProps = (dispatch) => {
   return {
     checkAttendee: () => dispatch(getAttendee()),
     checkWebinar: () => dispatch(getWebinar()),
+    checkAttendeeCount: () => dispatch(getAttendeeCount()),
   };
 };
 
