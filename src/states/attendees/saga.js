@@ -1,8 +1,8 @@
 import { takeEvery, all, call, put} from 'redux-saga/effects';
 import { GET_ATENDEE } from './types';
 import {getAttendeeSuccess, getAttendeeFailed} from './action';
-import { API } from '../../utils/constants';
-import request  from '../../utils/request';
+import { API } from '@/utils/constants';
+import request  from '@/utils/request';
 
 function* getAttendeeSaga() {
   try{

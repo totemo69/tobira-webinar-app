@@ -8,4 +8,5 @@ export const API = {
   AUTH_PLANS_COUNT: `${Url}/plans/count`,
   AUTH_PLANS_GET: `${Url}/plans/get/{id}`,
   AUTH_PAYMENTS_COUNT: `${Url}/payments/count`,
+  AUTH_WEBINAR: `${Url}/webinars`,
 };
