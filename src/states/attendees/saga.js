@@ -1,8 +1,9 @@
-import { takeEvery, all, call, put} from 'redux-saga/effects';
-import { GET_ATENDEE, GET_ATENDEE_COUNT } from './types';
-import {getAttendeeSuccess, getAttendeeFailed, getAttendeeCountSuccess, getAttendeeCountFailed} from './action';
+import { takeEvery, all, call, put,takeLatest} from 'redux-saga/effects';
+import { GET_ATENDEE, GET_ATENDEE_COUNT, ADD_ATTENDEE } from './types';
+import {getAttendeeSuccess, getAttendeeFailed, getAttendeeCountSuccess, getAttendeeCountFailed,
+  addAtendeeSuccess, addAtendeeFailed} from './action';
 import { API } from '@/utils/constants';
-import request  from '@/utils/request';
+import {request , addData}  from '@/utils/request';
 
 function* getAttendeeSaga() {
   try{
@@ -31,6 +32,21 @@ function* getAttendeeWatcher() {
   yield takeEvery(GET_ATENDEE, getAttendeeSaga);
 }
 
+function* addAttendeeSaga(action) {
+  try{
+    const data = yield call(addData, API.AUTH_ATTENDEE, action.payload);
+    yield put(addAtendeeSuccess({...data,...action.payload}));
+    console.log(data);
+  } catch(error){
+    yield put(addAtendeeFailed(error.message));
+  }
+}
+
+
+function* addAtendeeWatcher() {
+  yield takeLatest(ADD_ATTENDEE, addAttendeeSaga);
+}
+
 export default function* attendeeSaga() {
-  yield all([getAttendeeWatcher(), getAttendeeCountWather()]);
+  yield all([getAttendeeWatcher(), getAttendeeCountWather(), addAtendeeWatcher()]);
 }
