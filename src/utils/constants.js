@@ -6,4 +6,5 @@ export const API = {
   AUTH_ATTENDEE: `${Url}/attendees`,
   AUTH_USER_PROFILE: `${Url}/users/profile`,
   AUTH_PLANS_COUNT: `${Url}/plans/count`,
+  AUTH_WEBINAR: `${Url}/webinars`,
 };
