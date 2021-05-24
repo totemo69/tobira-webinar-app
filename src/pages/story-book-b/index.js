@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { getProfile } from '@/states/profiles/action';
 import { getPlans } from '@/states/plans/action';
+import { getPayments } from '@/states/payments/action';
 
 import Layout from '@/components/Layouts/Guest';
 import { Row, Col } from 'antd';
@@ -11,7 +12,7 @@ import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 
-export function SampleComponent({ doCheckProfile, doCheckPlansCount }){
+export function SampleComponent({ doCheckProfile, doCheckPlansCount, doCheckPaymentsCount }){
   useEffect(() => {
     // code here
   }, []);
@@ -34,6 +35,12 @@ export function SampleComponent({ doCheckProfile, doCheckPlansCount }){
               >
                 TEST PLANS COUNT
               </Button>
+              <Title modalTitle>CHECK PAYMENTS COUNT API</Title>
+              <Button type="primary" marginTop
+                onClick={() => doCheckPaymentsCount()}
+              >
+                TEST PAYMENTS COUNT
+              </Button>
             </Div>
           </Col>
         </Row>
@@ -45,12 +52,14 @@ export function SampleComponent({ doCheckProfile, doCheckPlansCount }){
 SampleComponent.propTypes = {
   doCheckProfile: PropTypes.func,
   doCheckPlansCount: PropTypes.func,
+  doCheckPaymentsCount: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
     doCheckProfile: () => dispatch(getProfile()),
     doCheckPlansCount: () => dispatch(getPlans()),
+    doCheckPaymentsCount: () => dispatch(getPayments()),
   };
 }
 
