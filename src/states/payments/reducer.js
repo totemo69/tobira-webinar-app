@@ -1,7 +1,7 @@
 import produce from 'immer';
 import {
-  PLANS_COUNT,
-  PLANS_SUCCESS
+  PAYMENTS_COUNT,
+  PAYMENTS_SUCCESS
 } from './types';
 
 const initialState = {
@@ -10,13 +10,13 @@ const initialState = {
   error: null,
 };
 
-const testPlans = (state = initialState, { type, payload }) => 
+const testPayment = (state = initialState, { type, payload }) => 
   produce(state, draft => {
     switch (type) {
-    case PLANS_COUNT:
+    case PAYMENTS_COUNT:
       draft.isLoading = true;
       break;
-    case PLANS_SUCCESS:
+    case PAYMENTS_SUCCESS:
       draft.isLoading = false;
       draft.content = payload;
       break;
@@ -25,4 +25,4 @@ const testPlans = (state = initialState, { type, payload }) =>
     }
   });
 
-export default testPlans;
+export default testPayment;
