@@ -10,7 +10,7 @@ function* rootSaga() {
     attendeeSaga(),
     profileSaga(),
     planSaga(),
-    paymentSaga()
+    paymentSaga(),
     webinarSaga()
   ]);
 }
