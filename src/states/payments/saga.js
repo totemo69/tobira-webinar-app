@@ -2,7 +2,7 @@ import { takeEvery, all, call, put } from 'redux-saga/effects';
 import { PAYMENTS_COUNT, PAYMENTS_GET } from './types';
 import { paymentSuccess, paymentFailed } from './action';
 import { API } from '@/utils/constants';
-import request  from '@/utils/request';
+import {request}  from '@/utils/request';
 
 function* getPaymentSaga() {
   try{

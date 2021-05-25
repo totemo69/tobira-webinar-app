@@ -2,7 +2,7 @@ import { takeEvery, all, call, put } from 'redux-saga/effects';
 import { GET_PROFILE } from './types';
 import { profileSuccess, profileFailed } from './action';
 import { API } from '@/utils/constants';
-import request  from '@/utils/request';
+import {request}  from '@/utils/request';
 
 function* getProfileSaga() {
   try{

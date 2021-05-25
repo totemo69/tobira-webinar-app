@@ -2,7 +2,7 @@ import { takeEvery, call, all, put  } from 'redux-saga/effects';
 import { GET_WEBINAR } from './types';
 import { getWebinarSuccess, getWebinarFailed } from './action';
 import { API } from '@/utils/constants';
-import request from '@/utils/request';
+import {request} from '@/utils/request';
 
 function* getWebinarSaga(){
   try{
