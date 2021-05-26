@@ -12,4 +12,5 @@ export const API = {
   AUTH_PAYMENTS_GET: `${Url}/payments`,
   AUTH_WEBINAR: `${Url}/webinars`,
   AUTH_LOGIN: `${Url}/auth/login`,
+  AUTH_REGISTER: `${Url}/auth/register`,
 };

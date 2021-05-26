@@ -5,6 +5,7 @@ import planSaga from '@/states/plans/saga';
 import paymentSaga from '@/states/payments/saga';
 import webinarSaga from '@/states/webinar/saga';
 import loginSaga from '@/states/login/saga';
+import singupSaga from '@/states/sign-up/saga';
 
 function* rootSaga() {
   yield all([
@@ -14,6 +15,7 @@ function* rootSaga() {
     paymentSaga(),
     webinarSaga(),
     loginSaga(),
+    singupSaga(),
   ]);
 }
 
