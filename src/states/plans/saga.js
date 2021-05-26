@@ -1,10 +1,20 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
-import { PLANS_COUNT } from './types';
+import { PLANS_COUNT, PLANS_GET } from './types';
 import { plansSuccess, plansFailed } from './action';
 import { API } from '@/utils/constants';
 import {request}  from '@/utils/request';
 
 function* getPlanSaga() {
+  try{
+    const data = yield call(request, API.AUTH_PLANS_GET);
+    yield put(plansSuccess(data));
+    console.log(data);
+  } catch(error){
+    yield put(plansFailed(error.message));
+  }
+}
+
+function* getPlansCountSaga() {
   try{
     const data = yield call(request, API.AUTH_PLANS_COUNT);
     yield put(plansSuccess(data));
@@ -15,7 +25,8 @@ function* getPlanSaga() {
 }
 
 function* getPlanWatcher() {
-  yield takeEvery(PLANS_COUNT, getPlanSaga);
+  yield takeEvery(PLANS_GET, getPlanSaga);
+  yield takeEvery(PLANS_COUNT, getPlansCountSaga);
 }
 
 export default function* planSaga() {
