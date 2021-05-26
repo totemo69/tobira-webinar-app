@@ -427,5 +427,14 @@ const StyledDiv = style.div`
         `
     
 }
+
+    ${props => 
+    props.errorMessage && 
+        css`
+            color: red;
+            margin: 0 auto;
+        `
+    
+}
 `;
 export default StyledDiv;

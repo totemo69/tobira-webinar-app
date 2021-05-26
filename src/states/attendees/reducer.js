@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { GET_ATENDEE, GET_ATENDEE_SUCCESS, GET_ATENDEE_COUNT, GET_ATENDEE_COUNT_SUCCESS } from './types';
+import { GET_ATENDEE, GET_ATENDEE_SUCCESS} from './types';
 
 
 export const initialState = {
@@ -9,7 +9,7 @@ export const initialState = {
 };
 
 const atendeeCheck = (state = initialState, action) => 
-  produce(state, payload => {
+  produce(state, draft => {
     switch(action.type) {
     case GET_ATENDEE:
       return{
@@ -20,18 +20,7 @@ const atendeeCheck = (state = initialState, action) =>
       return {
         ...state,
         isLoading: false,
-        content: payload
-      };
-    case GET_ATENDEE_COUNT: 
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case GET_ATENDEE_COUNT_SUCCESS: 
-      return {
-        ...state,
-        isLoading: false,
-        count: payload
+        content: draft
       };
     default:
       return state;

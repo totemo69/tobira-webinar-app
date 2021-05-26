@@ -12,7 +12,7 @@ export const initialState = {
 
 
 const fetchSingup = (state = initialState, action) => 
-  produce(state, payload => {
+  produce(state, draft => {
     switch(action.type) {
     case POST_SIGNUP:
       return{
@@ -23,7 +23,7 @@ const fetchSingup = (state = initialState, action) =>
       return{
         ...state,
         isLoading: false,
-        posts: payload
+        posts: draft
       };
     default: 
       return state;
