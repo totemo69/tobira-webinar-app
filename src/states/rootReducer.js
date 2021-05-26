@@ -5,6 +5,7 @@ import profile from '@/states/profiles/reducer';
 import plans from '@/states/plans/reducer';
 import payments from '@/states/payments/reducer';
 import webinar from '@/states/webinar/reducer';
+import login from '@/states/login/reducer';
 
 const rootReducer = combineReducers({
   counter,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   plans,
   payments,
   webinar,
+  login,
 });
 
 export default rootReducer;

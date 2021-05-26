@@ -11,4 +11,5 @@ export const API = {
   AUTH_PAYMENTS_COUNT: `${Url}/payments/count`,
   AUTH_PAYMENTS_GET: `${Url}/payments`,
   AUTH_WEBINAR: `${Url}/webinars`,
+  AUTH_LOGIN: `${Url}/auth/login`,
 };

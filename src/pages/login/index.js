@@ -15,10 +15,24 @@ import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
-export default function Login() {
+import { useEffect, memo, useState } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { authenticateUser } from '@/states/login/action';
+
+export function Login({ doLogin }) {
   const { t } = useTranslation();
   console.log(message.login);
   console.log(globalMessage.email);
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  useEffect(() => {
+    // code here
+  }, []);
+
   return (
     <>
       <Layout>
@@ -30,17 +44,26 @@ export default function Login() {
               <Title marginBottom>{t(globalMessage.login)}</Title>
               <Div>
                 <Labels asterisk>{t(globalMessage.email)}</Labels>
-                <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                <Input type="email" placeholder={t(globalMessage.enterEmail)}
+                  value={email}
+                  onChange={(e) => setEmail(e.currentTarget.value)}
+                />
               </Div>
               <Div>
                 <Labels asterisk>{t(globalMessage.password)}</Labels>
-                <Input type="email" placeholder={t(globalMessage.enterPassword)}></Input>
+                <Input type="password" placeholder={t(globalMessage.enterPassword)}
+                  value={password}
+                  onChange={(e) => setPassword(e.currentTarget.value)}
+                />
               </Div>
               <Div marginY betweenCenter>
                 <Checkbox content={t(message.rememberMe)}></Checkbox>
                 <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
               </Div>
-              <Button type="primary">{t(globalMessage.login)}</Button>
+              <Button type="primary"
+                onClick={() => doLogin({email, password})}
+              >
+                {t(globalMessage.login)}</Button>
               <Div center>
                 {t(message.createAccount)} <Link href="/sign-up" name={t(message.signHere)}></Link>
               </Div>
@@ -57,6 +80,26 @@ export default function Login() {
     </>
   );
 }
+
+Login.propTypes = {
+  authenticateUser: PropTypes.func
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    doLogin: ({email, password}) => dispatch(authenticateUser({email, password}))
+  };
+}
+
+const withConnect = connect(
+  null,
+  mapDispatchToProps
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Login);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
