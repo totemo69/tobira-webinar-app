@@ -1,8 +1,7 @@
 import produce from 'immer';
 import {
-  PLANS_GET,
-  PLANS_COUNT,
-  PLANS_SUCCESS
+  AUTH_LOGIN_USER,
+  AUTH_LOGIN_SUCCESS
 } from './types';
 
 const initialState = {
@@ -11,16 +10,13 @@ const initialState = {
   error: null,
 };
 
-const testPlans = (state = initialState, { type, payload }) => 
+const authenticate = (state = initialState, { type, payload }) => 
   produce(state, draft => {
     switch (type) {
-    case PLANS_GET:
+    case AUTH_LOGIN_USER:
       draft.isLoading = true;
       break;
-    case PLANS_COUNT:
-      draft.isLoading = true;
-      break;
-    case PLANS_SUCCESS:
+    case AUTH_LOGIN_SUCCESS:
       draft.isLoading = false;
       draft.content = payload;
       break;
@@ -29,4 +25,4 @@ const testPlans = (state = initialState, { type, payload }) =>
     }
   });
 
-export default testPlans;
+export default authenticate;
