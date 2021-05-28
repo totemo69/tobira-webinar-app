@@ -93,6 +93,15 @@ const StyledImg = styled.img`
         height: 243px;
       `
 };
+
+    ${props => 
+    props.transferFunds &&
+        css`
+          
+          width: 50px;
+          
+        `
+};
  `;
  
 export default StyledImg;

@@ -23,7 +23,6 @@ const StyledCard = styled(Card).withConfig({
      padding: 0 24px 24px 24px;
    }
    width: 100%;
-   height: 565px;
    margin-top: 4px;
    border-radius: 10px;
    box-shadow: 0px 2px 4px #00000029;

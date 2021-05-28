@@ -16,7 +16,7 @@ const StyledParagraph = style.p`
     props.colorBlue &&
         css`
             color: #0E71EB;
-            font-weight: SemiBold;
+            font-weight: bold;
             font-size: 12px;
             character-spacing: 20;
         `

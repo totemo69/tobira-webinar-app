@@ -434,7 +434,44 @@ const StyledDiv = style.div`
             color: red;
             margin: 0 auto;
         `
-    
 }
+
+    ${props => 
+    props.walletBalance && 
+            css`
+            width: 100%; 
+            box-shadow: 0 1px 2px 0  #0E71EB; 
+            border-radius: 5px; 
+            padding: 20px;
+            marginTop: 20px; 
+            display: flex; 
+            justify-content: space-evenly;
+        `
+}
+    ${props => 
+    props.bankList && 
+            css`
+            width: 100%; 
+            box-shadow: 0 1px 2px 0  #0E71EB; 
+            border-radius: 5px; 
+            padding: 20px;
+            marginTop: 20px; 
+            margin: 0 5px;
+            
+        `
+}
+
+    ${props => 
+    props.addBankList && 
+            css`
+            border-radius: 5px; 
+            padding: 20px;
+            marginTop: 20px; 
+            width: 100%;
+            text-align: center;
+            
+        `
+}
+
 `;
 export default StyledDiv;
