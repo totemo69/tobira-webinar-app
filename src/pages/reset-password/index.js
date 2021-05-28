@@ -17,6 +17,8 @@ import Image from '@/components/Elements/Image';
 import Modal from '@/components/Elements/Modal';
 import ButtonLink from '@/components/Elements/ButtonLink';
 
+import { Formik } from 'formik';
+
 export default function ResetPassword() {
   const { t } = useTranslation();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -34,23 +36,23 @@ export default function ResetPassword() {
       <Layout>
         <Row>
           <Col span={12}>
-            <Form
-              layout="vertical"
-            >
-              <Title marginBottom>{t(message.resetPassword)}</Title>
-              <Div>
-                <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
-                <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
-              </Div>
-              <Div>
-                <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
-              </Div>
-              <Button type="primary" marginTop onClick={openModal}>{t(message.resetPassword)}</Button>
-              <Div marginTop center>
-                <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
-              </Div>
-            </Form>
+            <Formik>
+              <Form>
+                <Title marginBottom>{t(message.resetPassword)}</Title>
+                <Div>
+                  <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
+                </Div>
+                <Div>
+                  <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
+                </Div>
+                <Button type="primary" marginTop onClick={openModal}>{t(message.resetPassword)}</Button>
+                <Div marginTop center>
+                  <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
+                </Div>
+              </Form>
+            </Formik>
             <Modal isOpen={isOpenModal}
               onRequestClose={closeModal}
               ariaHideApp={false} overlayClassName="Overlay"

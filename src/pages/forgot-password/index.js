@@ -17,6 +17,8 @@ import Image from '@/components/Elements/Image';
 import Modal from '@/components/Elements/Modal';
 import ButtonLink from '@/components/Elements/ButtonLink';
 
+import { Formik } from 'formik';
+
 export default function ForgotPassword() {
   const { t } = useTranslation();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -34,20 +36,20 @@ export default function ForgotPassword() {
       <Layout>
         <Row>
           <Col span={12}>
-            <Form
-              layout="vertical"
-            >
-              <Title>{t(globalMessage.forgotPassword)}</Title>
-              <Div marginY widthLong lightText>{t(message.forgotPasswordText)}.</Div>
-              <Div>
-                <Labels asterisk>{t(globalMessage.email)}</Labels>
-                <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
-              </Div>
-              <Button type="primary" marginTop onClick={openModal}>{t(globalMessage.sendEmail)}</Button>
-              <Div marginTop center>
-                <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
-              </Div>
-            </Form>
+            <Formik>
+              <Form>
+                <Title>{t(globalMessage.forgotPassword)}</Title>
+                <Div marginY widthLong lightText>{t(message.forgotPasswordText)}.</Div>
+                <Div>
+                  <Labels asterisk>{t(globalMessage.email)}</Labels>
+                  <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                </Div>
+                <Button type="primary" marginTop onClick={openModal}>{t(globalMessage.sendEmail)}</Button>
+                <Div marginTop center>
+                  <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
+                </Div>
+              </Form>
+            </Formik>
             <Modal isOpen={isOpenModal}
               onRequestClose={closeModal}
               ariaHideApp={false} overlayClassName="Overlay"
