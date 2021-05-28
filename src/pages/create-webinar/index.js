@@ -10,8 +10,8 @@ import Button from '@/components/Elements/Button';
 import Title from '@/components/Elements/Title';
 import Span from '@/components/Elements/Span';
 import Layout from '@/components/Layouts/Home';
-import Content from '@/components/Elements/Content';
 import { useState } from 'react';
+import { Card } from 'antd';
 
 
 
@@ -54,7 +54,7 @@ export default function CreateWebinar(){
           <Span breadCrumbs>{step[current].title}</Span>
         </Div>
         
-        <Content style={{padding: "20px", margin: "0 auto", width: "100%", background: "#FFFFFF"}}>
+        <Card style={{padding: "20px", margin: "0 auto", width: "100%", background: "#FFFFFF"}}>
           <StyledSteps current={current}>
             {step.map(item => 
               (<StyledStep key={item.title} title={item.title} />)
@@ -71,7 +71,7 @@ export default function CreateWebinar(){
           {current > 0 && (
             <Button onClick={() => prev()} BackButton>{"<"} {t(message.back)}</Button>
           )}
-        </Content>
+        </Card>
       
       </Layout>
       
