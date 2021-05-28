@@ -9,7 +9,7 @@ export const initialState = {
 
 
 const checkWebinar = (state = initialState, action) => 
-  produce(state, payload =>
+  produce(state, draft =>
   {
     switch(action.type) {
     case GET_WEBINAR :
@@ -21,7 +21,7 @@ const checkWebinar = (state = initialState, action) =>
       return {
         ...state,
         isLoading: false,
-        posts: payload,
+        posts: draft.payload,
       };
     default:
       return state;

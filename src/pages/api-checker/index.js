@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect,useDispatch } from 'react-redux';
 import { getAttendee, getAttendeeCount, addAtendee } from '@/states/attendees/action';
+import { getProfile } from '@/states/profiles/action';
 import { getWebinar } from '@/states/webinar/action';
 import Button from '@/components/Elements/Button';
 import Input from '@/components/Elements/Input';
@@ -13,7 +14,7 @@ import { makeSelectAttendeeCount } from '@/states/attendees/selector';
 
 
 
-export function CheckApi({data, checkAttendee, checkWebinar, checkAttendeeCount}){
+export function CheckApi({data, checkAttendee, checkWebinar, checkAttendeeCount, profileCheck}){
 
   const dsptch = useDispatch(); 
   const [webinarId, setWebinarId] = useState('');
@@ -37,6 +38,7 @@ export function CheckApi({data, checkAttendee, checkWebinar, checkAttendeeCount}
       <Button type="primary"  onClick={() => checkWebinar()}>Get Webinar</Button>
 
       <Button type="primary"  onClick={() => checkAttendeeCount()}>Check Attendee Count</Button>
+      <Button type="primary"  onClick={() => profileCheck()}>Check profile</Button>
 
       <Button type="primary" onClick={() => openWebinar()}>Open create webinar tab</Button>
       <Button type="primary" onClick={() => openPaypal()}>Open paypal tab</Button>
@@ -65,6 +67,7 @@ CheckApi.propTypes = {
   checkAttendeeCount: PropTypes.func,
   checkWebinar: PropTypes.func,
   attendeeAdd: PropTypes.func,
+  profileCheck: PropTypes.func,
 };
 
 
@@ -74,7 +77,8 @@ const mapDispatchProps = (dispatch) => {
     checkAttendee: () => dispatch(getAttendee()),
     checkWebinar: () => dispatch(getWebinar()),
     checkAttendeeCount: () => dispatch(getAttendeeCount()),
-    attendeeAdd: () => dispatch(addAtendee())
+    attendeeAdd: () => dispatch(addAtendee()),
+    profileCheck: () => dispatch(getProfile()),
 
   };
 };

@@ -10,18 +10,22 @@ const initialState = {
   error: null,
 };
 
-const testProfile = (state = initialState, { type, payload }) => 
+const testProfile = (state = initialState,action) => 
   produce(state, draft => {
-    switch (type) {
+    switch (action.type) {
     case GET_PROFILE:
-      draft.isLoading = true;
-      break;
+      return {
+        ...state,
+        isLoading: true,
+      };
     case PROFILE_SUCCESS:
-      draft.isLoading = false;
-      draft.content = payload;
-      break;
+      return {
+        ...state,
+        isLoading: false,
+        posts: draft.payload
+      };
     default:
-      draft;
+      return state;
     }
   });
 
