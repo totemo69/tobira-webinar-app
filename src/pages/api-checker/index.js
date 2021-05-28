@@ -19,6 +19,16 @@ export function CheckApi({data, checkAttendee, checkWebinar, checkAttendeeCount}
   const [webinarId, setWebinarId] = useState('');
   const [attendeeId, setAttendeeId] = useState('');
   const [payment, setPayment] = useState(0);
+
+  const openWebinar = () => {
+    window.open("https://www.zoom.us/signin", "_blank", 'location=yes,height=1217,width=1229,scrollbars=yes,status=yes');
+  };
+
+  const openPaypal = () => {
+    const windowSize = 'location=yes,height=1217,width=1229,scrollbars=yes,status=yes';
+    const Url = "https://www.paypal.com/ph/signin";
+    window.open(Url, "_blank", windowSize);
+  };
   return(
     <div style={{textAlign: "center"}}>
       <h1>Checking API</h1>
@@ -27,6 +37,9 @@ export function CheckApi({data, checkAttendee, checkWebinar, checkAttendeeCount}
       <Button type="primary"  onClick={() => checkWebinar()}>Get Webinar</Button>
 
       <Button type="primary"  onClick={() => checkAttendeeCount()}>Check Attendee Count</Button>
+
+      <Button type="primary" onClick={() => openWebinar()}>Open create webinar tab</Button>
+      <Button type="primary" onClick={() => openPaypal()}>Open paypal tab</Button>
 
       <Input placeholder="WebinarId"
         value={webinarId}
