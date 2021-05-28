@@ -15,11 +15,14 @@ import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
-import { useEffect, memo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { authenticateUser } from '@/states/login/action';
+
+import { Formik, Field, ErrorMessage } from 'formik';
+import validationSchema from '@/states/login/validationSchema';
 
 export function Login({ doLogin }) {
   const { t } = useTranslation();
@@ -38,36 +41,51 @@ export function Login({ doLogin }) {
       <Layout>
         <Row>
           <Col span={12}>
-            <Form
-              layout="vertical"
+            <Formik
+              initialValues={{
+                email: '',
+                password: '',
+              }}
+              validationSchema={validationSchema}
             >
-              <Title marginBottom>{t(globalMessage.login)}</Title>
-              <Div>
+              <Form>
+                <Title marginBottom>{t(globalMessage.login)}</Title>
                 <Labels asterisk>{t(globalMessage.email)}</Labels>
-                <Input type="email" placeholder={t(globalMessage.enterEmail)}
-                  value={email}
-                  onChange={(e) => setEmail(e.currentTarget.value)}
+                <Field 
+                  type="email"
+                  id="email"
+                  name="email"
+                  component={Input}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t(globalMessage.enterEmail)}
                 />
-              </Div>
-              <Div>
+                <ErrorMessage name="email"
+                  render={ msg => <Div errorMessage>{msg}</Div> }
+                />
                 <Labels asterisk>{t(globalMessage.password)}</Labels>
-                <Input type="password" placeholder={t(globalMessage.enterPassword)}
+                <Field 
+                  id="password"
                   value={password}
-                  onChange={(e) => setPassword(e.currentTarget.value)}
+                  component={Input}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password" placeholder={t(globalMessage.enterPassword)}
                 />
-              </Div>
-              <Div marginY betweenCenter>
-                <Checkbox content={t(message.rememberMe)}></Checkbox>
-                <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
-              </Div>
-              <Button type="primary"
-                onClick={() => doLogin({email, password})}
-              >
-                {t(globalMessage.login)}</Button>
-              <Div center>
-                {t(message.createAccount)} <Link href="/sign-up" name={t(message.signHere)}></Link>
-              </Div>
-            </Form>
+                <ErrorMessage name="password"
+                  render={ msg => <Div errorMessage>{msg}</Div> }
+                />
+                <Div marginY betweenCenter>
+                  <Checkbox content={t(message.rememberMe)}></Checkbox>
+                  <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
+                </Div>
+                <Button type="primary" htmlType="submit"
+                  onClick={() => doLogin({email, password})}
+                >
+                  {t(globalMessage.login)}</Button>
+                <Div center>
+                  {t(message.createAccount)} <Link href="/sign-up" name={t(message.signHere)}></Link>
+                </Div>
+              </Form>
+            </Formik>
           </Col>
           <Col span={12}>
             <Div marginBottom center>
@@ -98,7 +116,6 @@ const withConnect = connect(
 
 export default compose(
   withConnect,
-  memo,
 )(Login);
 
 export const getStaticProps = async ({ locale }) => ({

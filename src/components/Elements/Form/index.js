@@ -4,7 +4,8 @@
  *
  */
 
-import { Form } from 'antd';
+// import { Form } from 'antd';
+import { Form } from 'formik';
 import styled from 'styled-components';
 
 const StyledForm = styled(Form).withConfig({
