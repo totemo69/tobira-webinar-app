@@ -6,6 +6,8 @@ import {Row, Col} from 'antd';
 import Button from '@/components/Elements/Button';
 import { CloseOutlined, FileOutlined } from '@ant-design/icons';
 import Search from '@/components/Elements/Search';
+import Label from '@/components/Elements/Labels';
+import Input from '@/components/Elements/Input';
 
 const StyledDiv = style.div`
 
@@ -449,10 +451,99 @@ const ShareModal = ({isVisible, close}) => {
 };
 
 
+const TransferFundRequestModal = ({isVisible, close}) => {
+  return(
+    <Modal onRequestClose={close} isOpen={isVisible} style={{
+      content: {
+        height: "500px",
+        width: "600px",
+        margin: "0 auto",
+        padding: "0",
+      }
+    }}>
+      <StyledDiv header>
+        Transfer Fund Request
+      </StyledDiv>
+      
+      <StyledDiv style={{padding: "20px"}}>
+        <Label asterisk>
+          Enter Amount to Transfer  <span style={{float: "right"}}>(Minimum required amount : 100 JPY)</span>
+        </Label>
+       
+        <Input type="number" placeholder="0" prefix="￥" suffix="JPY"></Input>
+
+      </StyledDiv>
+
+      <StyledDiv style={{padding: "20px"}}>
+        <Label >
+          Select Payment Gateway
+        </Label>
+      </StyledDiv>
+
+      <StyledDiv style={{padding: "20px"}}>
+        <StyledDiv style={{background: "#DAE9FB", textAlign: "center", padding: "10px", width: "200px"}}>
+          <img src="Images/paypal.svg" />
+        </StyledDiv>
+      </StyledDiv>
+
+      <StyledDiv style={{display: "flex", margin: "0 auto", width: "300px"}}>
+        <Button BackButton onClick={close}>Cancel</Button> <Button NextButton type="primary">Proceed</Button>
+      </StyledDiv>
+    </Modal>
+  );
+};
+
+
+const AddBankAccount = ({isVisible, close}) => {
+  return(
+    <Modal onRequestClose={close} isOpen={isVisible} style={{
+      overlay: {
+        background: "##4E4E4E 0% 0% no-repeat padding-box;",
+       
+      },
+      content: {
+        height: "500px",
+        width: "600px",
+        margin: "0 auto",
+        padding: "0",
+      }
+     
+    }}>
+      <StyledDiv header>
+        Add Bank Account
+      </StyledDiv>
+      
+      <StyledDiv style={{padding: "20px"}}>
+        <Label asterisk>
+          Bank Name
+        </Label>
+        <Input placeholder="Bank Name"></Input>
+
+        <Label asterisk>
+          Account Name
+        </Label>
+        <Input placeholder="Account Name"></Input>
+
+        <Label asterisk>
+          Account Number
+        </Label>
+        <Input placeholder="Account Number"></Input>
+      </StyledDiv>
+
+      <StyledDiv style={{display: "flex", margin: "0 auto", width: "300px"}}>
+        <Button BackButton onClick={close}>Cancel</Button> <Button NextButton type="primary">Add</Button>
+      </StyledDiv>
+    </Modal>
+  );
+};
+
+
 
 export {
   ProfessionalConfirm,
   AddOnsConfirm,
   UpgradePlanConfirm,
   ShareModal,
+  TransferFundRequestModal,
+  AddBankAccount,
 };
