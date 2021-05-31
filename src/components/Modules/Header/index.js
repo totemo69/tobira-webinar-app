@@ -26,7 +26,7 @@ export default function Header() {
         </Link>
       </Menu.Item>
       <Menu.Item key="1">
-        <Link href="#">
+        <Link href="/account">
           <a><AccountBookFilled /> {t(message.accounts)}</a>
         </Link>
       </Menu.Item>

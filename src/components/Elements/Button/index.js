@@ -20,7 +20,9 @@ const StyledButton = styled(Button).withConfig({
     'modalLoginButton',
     'BackButton',
     'NextButton',
-    'UpDownButton'
+    'UpDownButton',
+    'connectedButton',
+    "defaultButton",
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -155,6 +157,28 @@ const StyledButton = styled(Button).withConfig({
         float: right;
         margin-left: 30.52px;
         margin-top: 55px;
+        
+      `
+};
+
+  ${props => 
+    props.connectedButton &&
+      css`
+      width: 140px;
+      color: #4CAF50;
+      border: 1px solid #4CAF50;
+
+        
+      `
+};
+
+  ${props => 
+    props.defaultButton &&
+      css`
+      width: 140px;
+      color: #4678B5;
+      border: 1px solid #4678B5;
+      margin-left: 20px;
         
       `
 };
