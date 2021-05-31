@@ -10,6 +10,9 @@ import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import {StyledParagraph} from '@/components/Elements/SampleParagraph';
+import {TransferFundRequestModal} from '@/components/Modules/Modals';
+import {AddBankAccount} from '@/components/Modules/Modals';
+import { useState } from 'react';
 
 import { 
   EllipsisOutlined,
@@ -71,11 +74,21 @@ const dataTable = [
 
 export default function Wallet() {
 
-  
-  
+  const [visible, setVisible] = useState(false);
+  const [visibleAddBank, setVisbleAddBank] = useState(false);
+
+  const viewVisible = () => {
+    setVisible(true);
+  };
+  const viewVisibleAddBank = () => {
+    setVisbleAddBank(true);
+  };
+
   return(
     <>
       <Layout>
+        <TransferFundRequestModal close={() => setVisible(false)} isVisible={visible}/>
+        <AddBankAccount close={() => setVisbleAddBank(false)} isVisible={visibleAddBank}/>
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>WALLET</Title>
           
@@ -99,7 +112,9 @@ export default function Wallet() {
               </Row>
             </Div>
             <Div style={{margin: "auto 0"}}>
-              <Button style={{height: "50px", width: "50%"}} type="primary"><Image transferFunds src={"Images/transfer-funds.svg"} /> Transfer Funds</Button>
+              <Button  style={{height: "50px", width: "50%"}} type="primary" 
+                onClick={() => viewVisible()}
+              ><Image transferFunds src={"Images/transfer-funds.svg"} /> Transfer Funds</Button>
             </Div>
           </Div>
           <Div marginY>
@@ -154,7 +169,7 @@ export default function Wallet() {
             </Div>
             <Div bankList>
               <Div addBankList>
-                <Button style={{width: "50px", textAlign: "center"}} type="primary"><PlusSquareFilled style={{fontSize: "20px"}} /></Button>
+                <Button  onClick={() => viewVisibleAddBank()} style={{width: "50px", textAlign: "center"}} type="primary"><PlusSquareFilled style={{fontSize: "20px"}} /></Button>
                 <StyledParagraph colorBlue  >
                       Add bank account
                 </StyledParagraph>
@@ -186,3 +201,5 @@ export default function Wallet() {
     </>
   );
 }
+
+
