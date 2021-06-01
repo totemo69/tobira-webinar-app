@@ -56,6 +56,7 @@ export function Login({ doLogin }) {
                   <Field 
                     type="email"
                     id="email"
+                    value={email}
                     name="email"
                     component={Input}
                     onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +65,7 @@ export function Login({ doLogin }) {
                   <ErrorMessage name="email" />
                 </Div>
                 <Labels asterisk>{t(globalMessage.password)}</Labels>
-                <Div marginBottom>
+                <Div>
                   <Field 
                     id="password"
                     value={password}
@@ -106,7 +107,7 @@ Login.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    doLogin: ({email, password}) => dispatch(authenticateUser({email, password}))
+    doLogin: (email, password) => dispatch(authenticateUser(email, password))
   };
 }
 

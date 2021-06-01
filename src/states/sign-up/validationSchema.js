@@ -1,15 +1,19 @@
 import * as Yup from 'yup';
 
-
 const validationSchema = Yup.object({
   email: Yup.string()
-    .required('please insert your valid email')
-    .email('invalid Email format'),
+    // .required('Email address is a required field.')
+    .email('Invalid email format.'),
+  username: Yup.string()
+    // .required('Username is a required field.')
+    .min(6, 'Minimum of ${min} characters.')
+    .min(30, 'Max of ${max} characters.'),
   password: Yup.string()
-    .required('paswword is required')
-    .min(8, 'miniminum of 8 character'),
+    // .required('Password is a required field.')
+    .min(6, 'Minimum of ${min} characters.')
+    .min(30, 'Max of ${max} characters.'),
   confirmPassword: Yup.string()
-    .required('input confirm password')
+    // .required('Confirm password is a required field.')
     .oneOf([Yup.ref('password'), null], 'Password match'),
 });
 

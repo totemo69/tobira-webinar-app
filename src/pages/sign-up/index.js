@@ -19,9 +19,11 @@ import Button from '@/components/Elements/Button';
 import ButtonLink from '@/components/Elements/ButtonLink';
 import Modal from '@/components/Elements/Modal';
 import Image from '@/components/Elements/Image';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import validationSchema from '@/states/sign-up/validationSchema';
 
+import { Formik, Field } from 'formik';
+import Form from '@/components/Elements/Form';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
+import validationSchema from '@/states/sign-up/validationSchema';
 
 export function SignUp({registerUser}) {
   const { t } = useTranslation();
@@ -31,7 +33,7 @@ export function SignUp({registerUser}) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [firstName] = useState('Reymark');
   const [lastName] = useState('Victorino');
   // const openModal = () => {
@@ -47,8 +49,6 @@ export function SignUp({registerUser}) {
       <Layout>
         <Row>
           <Col span={12}>
-            
-               
             <Formik
               initialValues={{
                 email: '',
@@ -56,66 +56,60 @@ export function SignUp({registerUser}) {
                 confirmPassword: '',
               }}
               validationSchema={validationSchema}
-              
             >
-              <Form style={{margin: '5rem auto 0', width: '80%'}}>
+              <Form>
                 <Title marginBottom>{t(message.signUp)}</Title>
                 <Labels asterisk>{t(globalMessage.email)}</Labels>
-                <Field 
-                  type="email" 
-                  id="email"
-                  name="email"
-                  component={Input}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t(globalMessage.enterEmail)}
-                />
-                <ErrorMessage name="email" render={msg => <Div errorMessage>
-                  {msg}
-                </Div> 
-                }/>
+                <Div marginBottom>
+                  <Field 
+                    type="email" 
+                    id="email"
+                    name="email"
+                    component={Input}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={t(globalMessage.enterEmail)}
+                  />
+                  <ErrorMessage name="email" />
+                </Div>
                 <Labels asterisk>{t(globalMessage.username)}</Labels>
-                <Field 
-                  id="userName"
-                  value={userName}
-                  component={Input}
-                  onChange={(e) => setUserName(e.target.value)}
-                  placeholder={t(globalMessage.enterUsername)}
-                />
-                  
-
+                <Div marginBottom>
+                  <Field 
+                    id="username"
+                    value={username}
+                    component={Input}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder={t(globalMessage.enterUsername)}
+                  />
+                  <ErrorMessage name="username" />
+                </Div>
                 <Labels asterisk>{t(globalMessage.password)}</Labels>
-                <Field 
-                  id="password"
-                  value={password}
-                  component={Input}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password" placeholder={t(globalMessage.enterPassword)}
-                />
-
-                <ErrorMessage name="password" render={msg =><Div errorMessage>
-                  {msg}
-                </Div> }/>
-
-                <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                <Field 
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  component={Input}
-                  type="password"
-                  placeholder={t(globalMessage.confirmPassword)}
-                />
-
-                <ErrorMessage name="confirmPassword" render={msg => <Div errorMessage>
-                  {msg}
-                </Div> }/>
-
+                <Div marginBottom>
+                  <Field 
+                    id="password"
+                    value={password}
+                    component={Input}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password" placeholder={t(globalMessage.enterPassword)}
+                  />
+                  <ErrorMessage name="password" />
+                </Div>
+                <Div>
+                  <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
+                  <Field 
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    component={Input}
+                    type="password"
+                    placeholder={t(globalMessage.confirmPassword)}
+                  />
+                  <ErrorMessage name="confirmPassword" />
+                </Div>
                 <Div marginTop center>
                   {t(message.agreeMessage)} <Link href="/terms-of-service-example" name={t(globalMessage.termsOfService)}></Link> {t(globalMessage.and)} <Link href="/privacy-policy-example" name={t(globalMessage.privacyPolicy)}></Link>.
                 </Div>
                 <Button type="primary" htmlType="submit" onClick={() => registerUser({email, password, firstName, lastName})} marginTop>{t(message.signUp)}</Button>
               </Form>
             </Formik>
-              
             <Modal isOpen={isOpenModal}
               onRequestClose={closeModal}
               ariaHideApp={false} overlayClassName="Overlay"
