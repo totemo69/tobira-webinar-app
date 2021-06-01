@@ -4,13 +4,13 @@ import {
   PROFILE_SUCCESS,
 } from './types';
 
-const initialState = {
+export const initialState = {
   isLoading: false,
-  content: [],
+  posts: [],
   error: null,
 };
 
-const testProfile = (state = initialState,action) => 
+const testProfile = (state = initialState, action) => 
   produce(state, draft => {
     switch (action.type) {
     case GET_PROFILE:
