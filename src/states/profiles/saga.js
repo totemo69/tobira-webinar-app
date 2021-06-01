@@ -4,12 +4,13 @@ import { profileSuccess, profileFailed } from './action';
 import { API } from '@/utils/constants';
 import {request}  from '@/utils/request';
 
-function* getProfileSaga() {
+function* getProfileSaga(action) {
   try{
     const data = yield call(request, API.AUTH_USER_PROFILE, {
-      method: "GET",
-      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUmV5bWFyayBWaWN0b3Jpbm8iLCJpZCI6IjYwYWY0MzBjMTM4NDZkMDAyMGRiN2MwZiIsImVtYWlsIjoidmljdG9yaW5vcmV5bWFyMTk5MGtAZ21haWwuY29tIiwiaWF0IjoxNjIyMDk4NzYwLCJleHAiOjE2MjIxMjM5NjB9.1rS69GLhAj25q4-k1pjljqWdWz8Xzh50VdoLCS7U7J4',
-        'Content-Type': 'application/json'   }
+      method: "POST",
+      headers: { 'Authorization': 'Bearer',
+        'Content-Type': 'application/json'   },
+      body: JSON.stringify(action.payload)
     });
     yield put(profileSuccess(data));
     console.log(data);
