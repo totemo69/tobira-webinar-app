@@ -2,14 +2,14 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .required('REQUIRED ERROR')
-    .email('EMAIL ERROR'),
+    .required('Email address is a required field.')
+    .email('Invalid email format.'),
   // .required('email.required')
   // .email('email.invalidFormat'),
   password: Yup.string()
-    .required('REQUIRED ERROR')
-    .min(6, 'MIN MAX ERROR')
-    .max(30, 'MIN MAX ERROR')
+    .required('Password is a required field.')
+    .min(6, 'Minimum of ${min} characters.')
+    .min(30, 'Max of ${max} characters.')
     .matches(/^[a-z0-9]+$/i, 'MATCH ERROR'),
   // .required('password.required')
   // .min(6, 'passwordMinMax')

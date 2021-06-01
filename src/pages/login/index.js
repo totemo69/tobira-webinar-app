@@ -21,7 +21,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { authenticateUser } from '@/states/login/action';
 
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
 import validationSchema from '@/states/login/validationSchema';
 
 export function Login({ doLogin }) {
@@ -51,28 +52,29 @@ export function Login({ doLogin }) {
               <Form>
                 <Title marginBottom>{t(globalMessage.login)}</Title>
                 <Labels asterisk>{t(globalMessage.email)}</Labels>
-                <Field 
-                  type="email"
-                  id="email"
-                  name="email"
-                  component={Input}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t(globalMessage.enterEmail)}
-                />
-                <ErrorMessage name="email"
-                  render={ msg => <Div errorMessage>{msg}</Div> }
-                />
+                <Div marginBottom>
+                  <Field 
+                    type="email"
+                    id="email"
+                    value={email}
+                    name="email"
+                    component={Input}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={t(globalMessage.enterEmail)}
+                  />
+                  <ErrorMessage name="email" />
+                </Div>
                 <Labels asterisk>{t(globalMessage.password)}</Labels>
-                <Field 
-                  id="password"
-                  value={password}
-                  component={Input}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password" placeholder={t(globalMessage.enterPassword)}
-                />
-                <ErrorMessage name="password"
-                  render={ msg => <Div errorMessage>{msg}</Div> }
-                />
+                <Div>
+                  <Field 
+                    id="password"
+                    value={password}
+                    component={Input}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password" placeholder={t(globalMessage.enterPassword)}
+                  />
+                  <ErrorMessage name="password" />
+                </Div>
                 <Div marginY betweenCenter>
                   <Checkbox content={t(message.rememberMe)}></Checkbox>
                   <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
@@ -105,7 +107,7 @@ Login.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    doLogin: ({email, password}) => dispatch(authenticateUser({email, password}))
+    doLogin: (email, password) => dispatch(authenticateUser(email, password))
   };
 }
 

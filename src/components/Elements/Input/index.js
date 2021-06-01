@@ -12,7 +12,7 @@ const StyledInput = styled(Input).withConfig({
     'error',
   ].includes(prop),
 })`
-    margin: 0 auto 10px;
+    margin: 0 auto;
     width: 100%;
     height: 40px;
     background-color: #ffffff;
