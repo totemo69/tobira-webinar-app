@@ -2,6 +2,13 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
 import message from '@/messages/profile';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {memo} from 'react';
+import { compose } from 'redux';
+import { getProfile } from '@/states/profiles/action';
+import { createStructuredSelector } from 'reselect';
+import makeSelectProfile from '@/states/profiles/selector';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -16,9 +23,9 @@ import TabPane from '@/components/Elements/TabPane';
 import Button from '@/components/Elements/Button';
 import Span from '@/components/Elements/Span';
 
-export default function Profile() {
+export function Profile({fetchProfile, getUser}) {
   const { t } = useTranslation();
-  
+  console.log(getUser);
   return (
     <>
       <Layout>
@@ -39,7 +46,7 @@ export default function Profile() {
               </Div>
               <Div widthFull cardInfo>
                 <Labels light>{t(globalMessage.fullName)}</Labels>
-                        Yamazaki Kento
+                {getUser.name}
               </Div>
               <Div widthFull cardInfo>
                 <Labels light>{t(globalMessage.contactNo)}</Labels>
@@ -81,7 +88,7 @@ export default function Profile() {
               </Tabs>
             </Div>
             <Div widthFull paddingCard2 flexHeight noMargin bottomRight>
-              <Button type="primary" smallBtn marginLeftAuto marginBottomLarge>{t(globalMessage.saveChanges)}</Button>
+              <Button type="primary" onClick={() => fetchProfile()} smallBtn marginLeftAuto marginBottomLarge>{t(globalMessage.saveChanges)}</Button>
             </Div>
           </Card>
         </Div>
@@ -89,6 +96,31 @@ export default function Profile() {
     </>
   );
 }
+
+Profile.propTypes = {
+  fetchProfile: PropTypes.func,
+  getUser: PropTypes.any,
+};
+
+const mapDispatchProps = (dispatch) => {
+  return{
+    fetchProfile: () => dispatch(getProfile()),
+  };
+};
+
+const mapStateToProps = createStructuredSelector({
+  getUser: makeSelectProfile(),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchProps
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Profile);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
