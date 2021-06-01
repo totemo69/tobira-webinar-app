@@ -8,10 +8,11 @@ function* authenticateSaga(action) {
   try{
     const data = yield call(request, API.AUTH_LOGIN, {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+      headers: { 'Authorized' : `Bearer`,
+        'Content-type': 'application/json' },
       body: JSON.stringify(action.payload),
     });
-    yield put(loginSuccess({...action.payload, ...data}));
+    yield put(loginSuccess(data));
     console.log(data);
   } catch(error){
     yield put(loginFailed(error.message));
