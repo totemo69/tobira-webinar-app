@@ -4,6 +4,7 @@ import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Button from '@/components/Elements/Button';
 import Table from '@/components/Elements/Table';
+import { useState } from 'react';
 
 
 const column = [
@@ -177,6 +178,8 @@ const dataSource = [
 ];
 
 export default function LicenseInformation(){
+
+  const [paginationLength] = useState(5);
   return(
     <>
       <Layout>
@@ -188,7 +191,7 @@ export default function LicenseInformation(){
           <Button smallBtn type="primary">Purchase Add Ons</Button>
 
           <Div style={{width: "100%", marginTop: "20px"}}>
-            <Table pagination={{pageSize: 9}} rowSelection={10} columns={column} dataSource={dataSource}/>
+            <Table pagination={{pageSize: paginationLength}} columns={column} dataSource={dataSource}/>
           </Div>
         </Card>
 
