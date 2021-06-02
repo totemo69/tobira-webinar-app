@@ -1,5 +1,3 @@
-
-
 import style, {css} from 'styled-components';
 import Modal from 'react-modal';
 import {Row, Col} from 'antd';

@@ -1,22 +1,13 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectProfileDomain = state => state.profiles || initialState;
+const selectProfileDomain = state => state.profile || initialState;
 
-
-const makeSelectProfile = () => 
+const makeSelectProfile = () =>
   createSelector(
     selectProfileDomain,
     substate => substate,
   );
 
-const makeSelectAttendeeCount = () =>
-  createSelector(
-    selectProfileDomain,
-    substate => substate.posts,
-  );
-
 export default makeSelectProfile;
-export { selectProfileDomain,
-  makeSelectAttendeeCount,
-};
+export { selectProfileDomain };

@@ -1,28 +1,47 @@
-import message from '@/messages/createProfile';
 import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import message from '@/messages/createProfile';
+
+// import {StyledParagraph} from '@/components/Elements/SampleParagraph';
+// import Label from '@/components/Elements/Labels';
+// import Input from '@/components/Elements/Input';
+// import Select from '@/components/Elements/Select';
+// import Button from '@/components/Elements/Button';
+// import Textarea from '@/components/Elements/SampleTextArea';
+// import DatePicker from '@/components/Elements/SampleDatePicker';
+// import TimrePicker from '@/components/Elements/TimePicker';
+// import Radio from '@/components/Elements/Radio';
+// import {Row, Col} from 'antd';
+// import { PlusSquareFilled  } from '@ant-design/icons';
+import Labels from '@/components/Elements/Labels';
 import Div from '@/components/Elements/Div';
-import {StyledParagraph} from '@/components/Elements/SampleParagraph';
-import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Select from '@/components/Elements/Select';
-import Button from '@/components/Elements/Button';
-import Textarea from '@/components/Elements/SampleTextArea';
-import DatePicker from '@/components/Elements/SampleDatePicker';
-import TimrePicker from '@/components/Elements/TimePicker';
-import Radio from '@/components/Elements/Radio';
-import {Row, Col} from 'antd';
-import { PlusSquareFilled  } from '@ant-design/icons';
+import Option from '@/components/Elements/Option';
 
-import React from 'react';
+import { CaretDownFilled } from '@ant-design/icons';
 
-export default function CreateWebinarPage1(){
-
+export default function CreateWebinarPage1() {
   const { t } = useTranslation();
   return(
-    <>
-     
-      <StyledParagraph colorBlue  >
+  <>
+    <Div marginTop>
+      <Labels textBlue>Management Secion</Labels>
+    </Div>
+    <Div marginY widthFull>
+      <Labels asterisk>Webinar Title</Labels>
+      <Input type="text" />
+    </Div>
+    <Div marginY widthFull>
+      <Labels asterisk>Zoom Account</Labels>
+      <Select defaultValue="0" suffixIcon={<CaretDownFilled />} >
+        <Option value="0" disabled>Select an account</Option>
+        <Option value="1">User 1</Option>
+        <Option value="2">User 2</Option>
+        <Option value="3">User 3</Option>
+        <Option value="4">User 4</Option>
+      </Select>
+    </Div>
+    {/* <StyledParagraph colorBlue  >
         {t(message.managementSection)}
       </StyledParagraph>
         
@@ -91,13 +110,7 @@ export default function CreateWebinarPage1(){
             <Label asterisk>{t(message.minutes)}</Label>
           </Div> 
         </Col>
-      </Row>
-    </>
+      </Row> */}
+  </>
   );
 }
-
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale, ['translation']),
-  },
-});
