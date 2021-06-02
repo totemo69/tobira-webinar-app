@@ -10,7 +10,7 @@ export const initialState = {
   error: null,
 };
 
-const testProfile = (state = initialState, action) => 
+const profile = (state = initialState, action) => 
   produce(state, draft => {
     switch (action.type) {
     case GET_PROFILE:
@@ -29,4 +29,4 @@ const testProfile = (state = initialState, action) =>
     }
   });
 
-export default testProfile;
+export default profile;

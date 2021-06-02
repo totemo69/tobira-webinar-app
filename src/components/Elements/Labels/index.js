@@ -37,6 +37,13 @@ const StyledLabels = styled.label`
         margin: 0 auto;
         `
 }
+
+    ${props => 
+    props.textBlue &&
+        css`
+        color: #0E71EB;
+        `
+}
 `;
 
 

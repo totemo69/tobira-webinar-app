@@ -25,5 +25,4 @@ export const addData = (url, options) => {
     .then((response) => response.json())
     .then((json) => json)
     .catch((error) => Promise.reject(error));
-  
 };
