@@ -473,5 +473,101 @@ const StyledDiv = style.div`
         `
 }
 
+    ${props => 
+    props.textCenter && 
+                css`
+                text-align: center
+            `
+}
+
+    ${props => 
+    props.standardLayout &&
+        css`
+        height: 300px;
+        width: 170px; 
+        background-color: #FFFFFF; 
+        border: 1px solid #0E71EB;
+        border-radius: 10px;
+        margin-top: 30px;
+        padding: none;
+        `
+}
+
+
+    ${props => 
+    props.professionalLayout &&
+        css`
+        height: 350px;
+        width: 170px; 
+        background-color: #FFFFFF; 
+        border: 1px solid #0E71EB;
+        border-radius: 10px;
+        `
+}
+
+    ${props => 
+    props.banner &&
+        css`
+            background-color: #ABC9EE;
+            height: 50px;
+            width: 100%;
+            margin-top: 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+
+        `
+}
+
+    ${props => 
+    props.bannerPlain &&
+        css`
+            height: 50px;
+            width: 100%;
+            margin-top: 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+
+        `
+}
+
+    ${props => 
+    props.bannerBottom &&
+        css`
+            background-color: #ABC9EE;
+            height: 59.5%;
+            width: 100%;
+            margin-top: 20px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 5px;
+            text-align: left;
+
+        `
+}
+
+
+    ${props => 
+    props.bannerCenter &&
+        css`
+            height: 50px;
+            width: 100%;
+            padding: 10px;
+            background-color: #ABC9EE;
+            
+        `
+}
+
+    ${props => 
+    props.bannerCenterPlain &&
+        css`
+            height: 50px;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+        `
+}
+
 `;
 export default StyledDiv;

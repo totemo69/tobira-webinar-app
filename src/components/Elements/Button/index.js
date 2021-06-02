@@ -206,6 +206,40 @@ const StyledButton = styled(Button).withConfig({
       margin-top: 20px;
     `
 };
+
+
+  ${props => 
+    props.chooseAdvance &&
+      css`
+      width: 140px;
+      color: #0E71EB;
+      margin-top: 10px;
+      border: 1px solid #0E71EB;
+      `
+};
+
+  ${props => 
+    props.chooseStandard &&
+      css`
+      width: 140px;
+      color: #0E71EB;
+      margin-top: 50px;
+      border: 1px solid #0E71EB;
+      `
+};
+
+  ${props => 
+    props.chooseProfessional &&
+      css`
+      width: 140px;
+      color: #FFFFFF;
+      margin-top: 50px;
+      border: 1px solid #0E71EB;
+      background: #0E71EB;
+      `
+};
+
+
 `;
  
 export default StyledButton;

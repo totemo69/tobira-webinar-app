@@ -13,6 +13,7 @@ const SampleTitle = styled(Title).withConfig({
     'secondary',
     'secondary2',
     'profileName',
+    'textColorBlue',
   ].includes(prop),
 })`
     font-family: Poppins;
@@ -35,6 +36,15 @@ const SampleTitle = styled(Title).withConfig({
         }
     `
 };
+
+    ${props => 
+    props.textColorBlue && 
+                css`
+                &.ant-typography{
+                    color: #0E71EB;
+                }
+            `
+}
 
     ${props => 
     props.secondary && 

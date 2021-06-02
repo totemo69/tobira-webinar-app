@@ -130,3 +130,9 @@ a {
 .ant-table-column-sorter-down.active {
 	color: #ffffff;
 }
+
+
+.selectPlan{
+	text-align: center;
+	width: 100%;
+}
