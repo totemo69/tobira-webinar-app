@@ -32,9 +32,23 @@ const StyledLabels = styled.label`
 }
 
     ${props => 
-    props.textCenter &&
+    props.center &&
         css`
         margin: 0 auto;
+        `
+}
+
+    ${props => 
+    props.textCenter &&
+        css`
+        text-align: center;
+        `
+}
+
+    ${props => 
+    props.textLg &&
+        css`
+        font-size: 15px;
         `
 }
 
@@ -42,6 +56,13 @@ const StyledLabels = styled.label`
     props.textBlue &&
         css`
         color: #0E71EB;
+        `
+}
+
+    ${props => 
+    props.bold &&
+        css`
+        font-weight: 600;
         `
 }
 `;

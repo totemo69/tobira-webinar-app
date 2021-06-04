@@ -10,7 +10,7 @@ import { Radio } from 'antd';
 const StyledRadio = styled(Radio).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
-    /***type here**/
+    font-size: 12px;
  `;
  
 export default StyledRadio;

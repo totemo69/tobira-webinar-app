@@ -31,9 +31,17 @@ const StyledImg = styled.img`
    ${props => 
     props.modalIcon &&
       css`
-        margin: 1.50rem 0 auto;
+        margin: 1.50rem auto 0;
         width: 85px;
         height: 85px;
+      `
+};
+
+   ${props => 
+    props.iconLg &&
+      css`
+        width: 150px;
+        height: 150px;
       `
 };
 
@@ -61,7 +69,7 @@ const StyledImg = styled.img`
    ${props => 
     props.large &&
       css`
-        margin: 1.50rem 0 auto;
+        margin: 1.50rem auto 0;
         width: 675px;
         height: 500px;
       `
@@ -70,7 +78,7 @@ const StyledImg = styled.img`
    ${props => 
     props.larger &&
       css`
-        margin: 1.50rem 0 auto;
+        margin: 1.50rem auto 0;
         width: 675px;
         height: 621px;
       `

@@ -11,6 +11,7 @@ const StyledSelect = styled(Select).withConfig({
   shouldForwardProp: prop => ![
     'error',
     'showPages',
+    'paddingLeft',
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -37,6 +38,14 @@ const StyledSelect = styled(Select).withConfig({
     props.error &&
         css`
             border: 2px solid #ef4444;
+    `};
+
+    ${props =>
+    props.paddingLeft &&
+        css`
+        .ant-select-selection-item {
+            padding-left: 18px !important;
+        }
     `};
 
     ${props =>

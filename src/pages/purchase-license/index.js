@@ -18,7 +18,7 @@ export default function PurchaseLicense(){
           <Span breadCrumbs>Webinar Plan</Span>
         </Div>
 
-        <Div widthFull textCenter>
+        <Div widthFull center>
           <Title level={5} textColorBlue  marginRight>Select your plan</Title>
         </Div>
 
