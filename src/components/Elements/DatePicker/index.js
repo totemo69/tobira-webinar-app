@@ -1,25 +1,22 @@
 /**
  *
- * TextArea 
+ * DatePicker
  *
  */
 
-import styled, { css } from 'styled-components';
-import { Input } from 'antd';
+import style, { css } from 'styled-components';
+import { DatePicker } from 'antd';
 
-const { TextArea } = Input;
-
-const StyledTextArea = styled(TextArea).withConfig({
-  shouldForwardProp: prop => ![
-    'error'
-  ].includes(prop),
+const StyledDatePicker = style(DatePicker).withConfig({
+  shouldForwardProp: prop => ![].includes(prop)
 })`
     margin: 0 auto;
     width: 100%;
+    height: 40px;
     background-color: #ffffff;
     border-radius: 8px;
     border: 1px solid #b0b0b0;
-    font-size: 10px;
+    font-size: 12px;
     
     &:hover {
         border-color: #0e71eb;
@@ -36,5 +33,5 @@ const StyledTextArea = styled(TextArea).withConfig({
             border: 1px solid #ff0033;
     `};
 `;
- 
-export default StyledTextArea;
+
+export default StyledDatePicker;

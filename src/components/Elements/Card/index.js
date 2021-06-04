@@ -14,6 +14,7 @@ const StyledCard = styled(Card).withConfig({
     'ProfileCard',
     'ProfileSettings',
     'TermsAndPrivacy',
+    'webinarRegistrationCard',
   ].includes(prop),
 })`
    .ant-card-head-title {
@@ -31,6 +32,12 @@ const StyledCard = styled(Card).withConfig({
     props.PaddingTop &&
      css`
        padding-top: 20px;
+     `};
+
+   ${props =>
+    props.webinarRegistrationCard &&
+     css`
+       min-height: 565px;
      `};
 
    ${props =>

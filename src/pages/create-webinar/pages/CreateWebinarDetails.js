@@ -1,116 +1,109 @@
-import { useTranslation } from 'next-i18next';
-import message from '@/messages/createProfile';
+// import { useTranslation } from 'next-i18next';
+// import message from '@/messages/createProfile';
 
 // import {StyledParagraph} from '@/components/Elements/SampleParagraph';
 // import Label from '@/components/Elements/Labels';
 // import Input from '@/components/Elements/Input';
 // import Select from '@/components/Elements/Select';
-// import Button from '@/components/Elements/Button';
 // import Textarea from '@/components/Elements/SampleTextArea';
-// import DatePicker from '@/components/Elements/SampleDatePicker';
-// import TimrePicker from '@/components/Elements/TimePicker';
-// import Radio from '@/components/Elements/Radio';
 // import {Row, Col} from 'antd';
-// import { PlusSquareFilled  } from '@ant-design/icons';
-import Labels from '@/components/Elements/Labels';
+
 import Div from '@/components/Elements/Div';
+import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
+import Button from '@/components/Elements/Button';
+import Image from '@/components/Elements/Image';
+import Textarea from '@/components/Elements/Textarea';
+import Radio from '@/components/Elements/Radio';
+import DatePicker from '@/components/Elements/DatePicker';
+import TimePicker from '@/components/Elements/TimePicker';
 
-import { CaretDownFilled } from '@ant-design/icons';
+import { CaretDownFilled, PlusSquareFilled } from '@ant-design/icons';
 
 export default function CreateWebinarPage1() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   return(
-  <>
-    <Div marginTop>
-      <Labels textBlue>Management Secion</Labels>
-    </Div>
-    <Div marginY widthFull>
-      <Labels asterisk>Webinar Title</Labels>
-      <Input type="text" />
-    </Div>
-    <Div marginY widthFull>
-      <Labels asterisk>Zoom Account</Labels>
-      <Select defaultValue="0" suffixIcon={<CaretDownFilled />} >
-        <Option value="0" disabled>Select an account</Option>
-        <Option value="1">User 1</Option>
-        <Option value="2">User 2</Option>
-        <Option value="3">User 3</Option>
-        <Option value="4">User 4</Option>
-      </Select>
-    </Div>
-    {/* <StyledParagraph colorBlue  >
-        {t(message.managementSection)}
-      </StyledParagraph>
-        
-      <Label asterisk>{t(message.webinarTitle)}</Label>
-      <Input style={{width: "65rem"}} placeholder={t(message.enterWebinarTitle)}></Input>
-       
-      <Label asterisk>{t(message.zoomAccount)}</Label>
-      <Div style={{display: "flex", width: "67rem"}}>
-        <Select style={{width: "100%"}} placeholder={t(message.selectZoomAccount)}></Select>
-        <Button style={{height: "30px",width: "20%", color: "#0E71EB",border: "none",boxShadow: "none"}}><PlusSquareFilled /> {t(message.addAccount)}</Button>
+    <>
+      <Div marginTop>
+        <Labels textBlue bold>Management Secion</Labels>
       </Div>
-
-      <Div BrakeLine />
-         
-      <StyledParagraph colorBlue  >
-        {t(message.basicDetails)}
-      </StyledParagraph>
-
-      <Row gutter={[5]}>
-        <Col span={10} >
-          <Label asterisk>{t(message.webinarImage)}</Label>
-          <img style={{width: "20rem", border: '1px dotted #B0B0B0'}} src="Images/image.svg"></img>
-        </Col>
-        <Col span={14}>
-          <Label  asterisk>{t(message.webinarTitle)}</Label>
-          <Input style={{width: "40rem"}} placeholder={t(message.enterWebinarTitle)}></Input>
-          <Label  asterisk>{t(message.description)}</Label>
-          <Textarea style={{width: "40rem"}} autoSize={{ minRows: 8, maxRows: 8 }} showCount maxLength={5000} placeholder={t(message.enterWebinarDescription)}></Textarea>
-
-        </Col>
-      </Row>
-       
-      <Div BrakeLine />
-         
-      <StyledParagraph colorBlue  >
-        {t(message.schedule)}
-      </StyledParagraph> 
-
-      <Label asterisk>{t(message.webinarPlan)}</Label>
-      <Radio.Group style={{marginBottom: "20px"}}>
-        <Radio value={1}>
-          {t(message.oneTime)}
-        </Radio>
-        <Radio value={2}>
-          {t(message.recuring)}
-        </Radio>
-      </Radio.Group>
-
-      <Row gutter={[60]}>
-        <Col span={12} >
-          <Label asterisk>{t(message.date)}</Label>
-          <DatePicker></DatePicker>
-
-          <Label  style={{marginTop: "20px"}} asterisk>{t(message.timeZone)}</Label>
-        </Col>
-        <Col span={9}>
-          <Label asterisk>{t(message.startTime)}</Label>
-          <TimrePicker format="h:mm:ss A" ></TimrePicker>
-
-          <Label style={{marginTop: "20px"}} asterisk>{t(message.duration)}</Label>
-          <Div style={{display: "flex", width: "100%"}}>
-            <Select></Select>
-            <Label asterisk>{t(message.hour)}</Label>
-
-            <Select></Select>
-            <Label asterisk>{t(message.minutes)}</Label>
-          </Div> 
-        </Col>
-      </Row> */}
-  </>
+      <Div marginY widthFull>
+        <Labels asterisk>Webinar Title</Labels>
+        <Input type="text" placeholder="Enter webinar title" />
+      </Div>
+      <Div widthFull marginY paddingBottomXL betweenBottom doubleDividerBlue>
+        <Div>
+          <Labels asterisk>Zoom Account</Labels>
+          <Select defaultValue="0" suffixIcon={<CaretDownFilled />} >
+            <Option value="0" disabled>Select an account</Option>
+            <Option value="1">User 1</Option>
+            <Option value="2">User 2</Option>
+            <Option value="3">User 3</Option>
+            <Option value="4">User 4</Option>
+          </Select>
+        </Div>
+        <Button addBtn><PlusSquareFilled /> Add Account</Button>
+      </Div>
+      <Div marginTop marginBottomLarge>
+        <Labels textBlue bold>Basic Details</Labels>
+      </Div>
+      <Div marginY widthFull paddingBottomXL betweenBottom doubleDividerBlue flexTop>
+        <Div widthFull>
+          <Labels asterisk>Webinar Image</Labels>
+          <Div imageContainer flexColCenter>
+            <p><Image src={"Images/image.svg"} alt="Webinar image container" iconLg /></p>
+            <Labels textBlue textCenter bold textLg>Upload a photo</Labels>
+          </Div>
+        </Div>
+        <Div widthFull paddingX>
+          <Div widthFull marginBottomLarge>
+            <Labels asterisk>Webinar Title</Labels>
+            <Input type="text" placeholder="Enter webinar title" />
+          </Div>
+          <Div widthFull marginY>
+            <Labels asterisk>Description</Labels>
+            <Textarea rows={7} showCount maxLength={100} />
+          </Div>
+        </Div>
+      </Div>
+      <Div marginTop>
+        <Labels textBlue bold>Schedule</Labels>
+      </Div>
+      <Div marginTop widthFull>
+        <Labels asterisk>Webinar Plan</Labels>
+        <Radio.Group buttonStyle="solid">
+          <Radio value={1}>One-Time</Radio>
+          <Radio value={2}>Recurring</Radio>
+        </Radio.Group>
+      </Div>
+      <Div marginY flexTop widthFull>
+        <Div marginRight>
+          <Labels asterisk>Date</Labels>
+          <DatePicker format={'MM/DD/YYYY'} />
+        </Div>
+        <Div marginLeft>
+          <Labels asterisk>Start Time</Labels>
+          <TimePicker use12Hours format="h:mm a" />
+        </Div>
+      </Div>
+      <Div marginY flexTop widthFull>
+        <Div marginRight>
+          <Labels asterisk>Timezone</Labels>
+          <Select defaultValue="0" suffixIcon={<CaretDownFilled />} >
+            <Option value="0" disabled>Select a timezone</Option>
+            <Option value="1">Timezone 1</Option>
+            <Option value="2">Timezone 2</Option>
+            <Option value="3">Timezone 3</Option>
+            <Option value="4">Timezone 4</Option>
+          </Select>
+        </Div>
+        <Div marginLeft>
+          <Labels asterisk>Duration</Labels>
+          <TimePicker.RangePicker use12Hours format="h:mm a" />
+        </Div>
+      </Div>
+    </>
   );
 }

@@ -13,7 +13,7 @@ import Checkbox from '@/components/Elements/Checkbox';
 import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
-import DatePicker from '@/components/Elements/SampleDatePicker';
+import DatePicker from '@/components/Elements/DatePicker';
 import Tab from '@/components/Elements/SampleTab';
 import { ProfessionalConfirm,AddOnsConfirm,ShareModal } from '@/components/Modules/Modals';
 import { useState } from 'react';

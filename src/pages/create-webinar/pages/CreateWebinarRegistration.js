@@ -41,15 +41,15 @@ export default function CreateWebinarRegistration(){
           <Button UpDownButton ><UpOutlined /></Button>
         </Col>
         <Col span={7}>
-          <Label textCenter asterisk>{t(message.fieldNameOrPlaceholder)}</Label>
+          <Label center asterisk>{t(message.fieldNameOrPlaceholder)}</Label>
           <Input placeholder={t*message.emailAddress}></Input>
         </Col>
         <Col span={10}>
-          <Label textCenter asterisk>{t(message.fieldType)}</Label>
+          <Label center asterisk>{t(message.fieldType)}</Label>
           <Input placeholder={t(message.email)}></Input>
         </Col>
         <Col span={2}>
-          <Label textCenter>{t(message.required)}</Label>
+          <Label center>{t(message.required)}</Label>
           <Switch size="default" />
         </Col>
       </Row>

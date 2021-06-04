@@ -67,7 +67,7 @@ export default function ListOfWebinar() {
             <Div marginY betweenCenter widthFull>
               <Div noMargin>
                 {t(globalMessage.show)}
-                <Select showPages defaultValue="10" suffixIcon={<CaretDownFilled />} >
+                <Select showPages paddingLeft defaultValue="10" suffixIcon={<CaretDownFilled />} >
                   <Option value="10">10</Option>
                   <Option value="20">20</Option>
                   <Option value="30">30</Option>

@@ -15,6 +15,7 @@ const StyledButton = styled(Button).withConfig({
     'marginBottom',
     'marginBottomLarge',
     'marginLeftAuto',
+    'addBtn',
     'smallBtn',
     'mediumBtn',
     'modalLoginButton',
@@ -90,6 +91,31 @@ const StyledButton = styled(Button).withConfig({
       css`
         margin-right: 0;
         margin-left: auto;
+      `
+};
+
+    ${ props =>
+    props.addBtn &&
+      css`
+        margin: 0 0 10px 10px;
+        width: 20%;
+        background-color: transparent;
+        color: #0e71eb;
+        font-size: 15px;
+        font-weight: 500;
+        border-color: transparent;
+        box-shadow: none;
+
+        &:hover {
+          border-color: transparent;
+          color: #4678B5;
+
+        }
+        &:focus {
+          border-color: transparent;
+          color: #0e71eb;
+          outline: none;
+        }
       `
 };
 

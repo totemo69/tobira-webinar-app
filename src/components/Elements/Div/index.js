@@ -15,6 +15,14 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.paddingX && 
+        css`
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        `
+};
+
+    ${props => 
     props.paddingYLg && 
         css`
             padding-top: 2rem;
@@ -40,6 +48,13 @@ const StyledDiv = style.div`
     props.paddingBottom && 
         css`
             padding-bottom: 1rem;
+        `
+};
+
+    ${props => 
+    props.paddingBottomXL && 
+        css`
+            padding-bottom: 2rem;
         `
 };
 
@@ -96,6 +111,20 @@ const StyledDiv = style.div`
     props.marginBottom && 
         css`
             margin-bottom: 1rem;
+        `
+};
+
+    ${props => 
+    props.marginLeft && 
+        css`
+            margin-left: 1rem;
+        `
+};
+
+    ${props => 
+    props.marginRight && 
+        css`
+            margin-left: 1rem;
         `
 };
 
@@ -177,6 +206,15 @@ const StyledDiv = style.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
+        `
+};
+
+    ${props => 
+    props.betweenBottom && 
+        css`
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         `
 };
 
@@ -297,6 +335,17 @@ const StyledDiv = style.div`
             border-left-width: 0px;
             border-color: rgba(14, 113, 235, 0.1);
             border-style: double;
+            `
+};
+
+    ${props => 
+    props.imageContainer && 
+        css`
+            background-color: #E6E6E6;
+            width: 100%;
+            height: 20rem;
+            border: 2px dashed #B0B0B0;
+            border-radius: 8px;
             `
 };
 
@@ -474,18 +523,11 @@ const StyledDiv = style.div`
 }
 
     ${props => 
-    props.textCenter && 
-                css`
-                text-align: center
-            `
-}
-
-    ${props => 
     props.standardLayout &&
         css`
         height: 300px;
         width: 170px; 
-        background-color: #FFFFFF; 
+        background-color: #FFFFFF;
         border: 1px solid #0E71EB;
         border-radius: 10px;
         margin-top: 30px;
