@@ -44,7 +44,7 @@ export default function CreateWebinarPage1() {
             <Option value="4">User 4</Option>
           </Select>
         </Div>
-        <Button addBtn><PlusSquareFilled /> Add Account</Button>
+        <Button addBtn><PlusSquareFilled /> <a href="/account">Add Account</a></Button>
       </Div>
       <Div marginTop marginBottomLarge>
         <Labels textBlue bold>Basic Details</Labels>

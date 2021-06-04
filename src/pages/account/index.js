@@ -9,10 +9,17 @@ import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { getZoomAccount } from '@/states/accounts/actions';
 
-export default function Account() {
+
+export function Account({accountChecker}) {
+  {accountChecker();}
   return(
     <>
+      
       <Layout>
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>ACCOUNTS {">"} </Title>
@@ -47,3 +54,22 @@ export default function Account() {
     </>
   );
 }
+
+Account.propTypes = {
+  accountChecker: PropTypes.func,
+};
+
+const mapToDispatchToProps = (dispatch) => {
+  return {
+    accountChecker: () => dispatch(getZoomAccount()),
+  };
+};
+
+const withConnect = connect(
+  null,
+  mapToDispatchToProps
+);
+
+export default compose(
+  withConnect,
+)(Account);
