@@ -13,4 +13,5 @@ export const API = {
   AUTH_WEBINAR: `${Url}/webinars`,
   AUTH_LOGIN: `${Url}/auth/login`,
   AUTH_REGISTER: `${Url}/auth/register`,
+  AUTH_ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
 };

@@ -7,6 +7,7 @@ import payments from '@/states/payments/reducer';
 import webinar from '@/states/webinar/reducer';
 import login from '@/states/login/reducer';
 import signup from '@/states/sign-up/reducer';
+import account from '@/states/accounts/reducers';
 
 const rootReducer = combineReducers({
   counter,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   webinar,
   login,
   signup,
+  account,
 });
 
 export default rootReducer;
