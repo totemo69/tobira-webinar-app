@@ -2,6 +2,11 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import globalMessage from '@/messages/global';
 import message from '@/messages/listOfWebinar';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
+// import { createStructuredSelector } from 'reselect';
+import { getAttendee } from '@/states/attendees/action';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -14,8 +19,9 @@ import Search from '@/components/Elements/Search';
 
 import { CaretDownFilled } from '@ant-design/icons';
 
-export default function ListOfWebinar() {
+export function ListOfWebinar({listWebinar}) {
   const { t } = useTranslation();
+  console.log(listWebinar());
   
   const columns = [
     {
@@ -87,6 +93,26 @@ export default function ListOfWebinar() {
     </>
   );
 }
+
+
+ListOfWebinar.proptTypes = {
+  listWebinar: PropTypes.func
+};
+
+const mapPropsToDispatch = (dispatch) => {
+  return{
+    listWebinar: () => dispatch(getAttendee()),
+  };
+};
+
+const withConnect = connect(
+  null,
+  mapPropsToDispatch,
+);
+
+export default compose(
+  withConnect,
+)(ListOfWebinar);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
