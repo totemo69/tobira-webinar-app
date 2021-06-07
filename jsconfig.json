@@ -5,7 +5,9 @@
       "@/components/*": ["src/components/*"],
       "@/states/*": ["src/states/*"],
       "@/messages/*": ["src/messages/*"],
-      "@/utils/*": ["src/utils/*"]
+      "@/utils/*": ["src/utils/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/validations/*": ["src/validations/*"]
     }
   }
 }

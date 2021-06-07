@@ -13,5 +13,11 @@ const makeSelectLogin = () =>
     substate => substate,
   );
 
+const makeSelectIsLogin = () =>
+  createSelector(
+    selectLoginDomain,
+    substate => substate.isLoggedIn,
+  );
+
 export default makeSelectLogin;
-export { selectLoginDomain };
+export { makeSelectIsLogin };

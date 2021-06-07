@@ -1,27 +1,25 @@
-import { takeEvery, all, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import { AUTH_LOGIN_USER } from './types';
 import { loginSuccess, loginFailed } from './action';
-import { API } from '@/utils/constants';
-import { request }  from '@/utils/request';
+import { API, POST_REQUEST } from '@/utils/constants';
+import { request, RequestOptions }  from '@/utils/request';
+import Cookie from '@/lib/cookie';
 
-function* authenticateSaga(action) {
+function* authenticateSaga({ payload, errCallback }) {
   try{
-    const data = yield call(request, API.AUTH_LOGIN, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(action.payload),
-    });
-    yield put(loginSuccess({...action.payload, ...data}));
-    console.log(data);
+    const response = yield call(
+      request,
+      API.AUTH_LOGIN,
+      RequestOptions(POST_REQUEST, { ...payload }, false),
+    );
+    yield put(loginSuccess(response));
+    Cookie.saveAuth(response);
   } catch(error){
+    errCallback(error);
     yield put(loginFailed(error.message));
   }
 }
 
-function* authenticateSagaWatcher() {
-  yield takeEvery(AUTH_LOGIN_USER, authenticateSaga);
-}
-
 export default function* loginSaga() {
-  yield all([authenticateSagaWatcher()]);
+  yield takeEvery(AUTH_LOGIN_USER, authenticateSaga);
 }
