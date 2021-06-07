@@ -3,9 +3,10 @@
  * Input
  *
  */
-
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { Input } from 'antd';
+import PropTypes from 'prop-types';
 
 const StyledInput = styled(Input).withConfig({
   shouldForwardProp: prop => ![
@@ -36,4 +37,24 @@ const StyledInput = styled(Input).withConfig({
     `};
 `;
  
-export default StyledInput;
+const WrapInput = ({
+  field,
+  type,
+  ...props
+}) => {
+  const inputProps = { ...props };
+  return (
+    <StyledInput
+      {...field}
+      type={type}
+      {...inputProps}
+    />
+  );
+};
+
+WrapInput.propTypes = {
+  field: PropTypes.any,
+  type: PropTypes.string,
+};
+
+export default WrapInput;

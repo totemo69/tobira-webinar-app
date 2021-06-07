@@ -4,10 +4,11 @@ import {
   AUTH_LOGIN_SUCCESS
 } from './types';
 
-const initialState = {
+export const initialState = {
   isLoading: false,
-  content: [],
+  login: [],
   error: null,
+  isLoggedIn: false,
 };
 
 const authenticate = (state = initialState, { type, payload }) => 
@@ -16,10 +17,12 @@ const authenticate = (state = initialState, { type, payload }) =>
     case AUTH_LOGIN_USER:
       draft.isLoading = true;
       break;
-    case AUTH_LOGIN_SUCCESS:
+    case AUTH_LOGIN_SUCCESS: {
       draft.isLoading = false;
-      draft.content = payload;
+      draft.login = payload;
+      draft.isLoggedIn = true;
       break;
+    }
     default:
       draft;
     }
