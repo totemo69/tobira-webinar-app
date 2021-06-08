@@ -31,9 +31,10 @@ export const WEBINAR_ROUTE = {
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
-  ZOOM_ACCOUNT: '/zoom-account',
+  ZOOM_ACCOUNT: '/account',
   CREATE_WEBINAR: '/create-webinar',
   LIST_WEBINAR: '/list-webinar',
   WALLET: '/wallet',
   DASHBOARD: '/dashboard',
-}
+  PURCHASE_LICENSE: '/purchase-license',
+};
