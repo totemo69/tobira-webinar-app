@@ -36,7 +36,7 @@ export function Login({ doLogin, isLoggedIn }) {
   useEffect(() => {
     console.log(isLoggedIn);
     if (isLoggedIn) {
-      route.push(WEBINAR_ROUTE.PROFILE);
+      route.push(WEBINAR_ROUTE.LIST_WEBINAR);
     }
   }, [isLoggedIn]);
 
