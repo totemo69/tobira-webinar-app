@@ -8,6 +8,7 @@ import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Dropdown from '@/components/Elements/Dropdown';
 import Menu from '@/components/Elements/Menu';
+import { logout } from '@/lib/auth';
 
 import {
   UserOutlined, WalletFilled, AccountBookFilled,
@@ -42,7 +43,7 @@ export default function Header() {
       <Menu.Divider></Menu.Divider>
       <Menu.Item key="4">
         <Link href={WEBINAR_ROUTE.LOGIN}>
-          <a><LogoutOutlined /> {t(message.logOut)}</a>
+          <a onClick={logout}><LogoutOutlined /> {t(message.logOut)}</a>
         </Link>
       </Menu.Item>
     </Menu>
