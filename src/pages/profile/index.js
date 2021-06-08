@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {memo} from 'react';
 import { compose } from 'redux';
-import { getProfile } from '@/states/profiles/action';
 import { createStructuredSelector } from 'reselect';
 import makeSelectProfile from '@/states/profiles/selector';
-
+import { getProfile } from '@/states/profiles/action';
+import { withAuthSync } from '@/lib/auth';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
@@ -25,7 +25,7 @@ import Span from '@/components/Elements/Span';
 
 export function Profile({fetchProfile, getUser}) {
   const { t } = useTranslation();
-  console.log(getUser);
+
   return (
     <>
       <Layout>
@@ -120,7 +120,7 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(Profile);
+)(withAuthSync(Profile));
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
