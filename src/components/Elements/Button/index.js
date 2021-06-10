@@ -24,6 +24,7 @@ const StyledButton = styled(Button).withConfig({
     'UpDownButton',
     'connectedButton',
     "defaultButton",
+    'addField',
   ].includes(prop),
 })`
     margin: 0 auto 10px;

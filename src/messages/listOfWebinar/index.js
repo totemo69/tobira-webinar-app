@@ -21,6 +21,18 @@ const message = {
     key: `${scope}.action`,
     default: "Action"
   }),
+  setupMessage: Object.values({
+    key: `${scope}.setupMessage`,
+    default: 'You need to setup your zoom account first.'
+  }),
+  buttonLater: Object.values({
+    key: `${scope}.buttonLater`,
+    default: 'Later'
+  }),
+  buttonSetup: Object.values({
+    key: `${scope}.buttonSetup`,
+    default: 'Setup'
+  }),
 };
 
 export default message;

@@ -1,12 +1,21 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import globalMessage from '@/messages/global';
-import message from '@/messages/listOfWebinar';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-// import { createStructuredSelector } from 'reselect';
-import { getAttendee } from '@/states/attendees/action';
+import { createStructuredSelector } from 'reselect';
+import { useEffect, useState } from 'react';
+import { Row, Col } from 'antd';
+import { CaretDownFilled } from '@ant-design/icons';
+
+import { getZoomAccount } from '@/states/accounts/actions';
+import { makeSelectLoading } from '@/states/global/selector';
+import { makeSelectAccountList } from '@/states/accounts/selector';
+import { authRequest } from '@/lib/zoom';
+import { LOADING_PREFIX } from '@/utils/constants';
+
+import globalMessage from '@/messages/global';
+import message from '@/messages/listOfWebinar';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -16,13 +25,38 @@ import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import Search from '@/components/Elements/Search';
+import Modal from '@/components/Elements/Modal';
+import Button from '@/components/Elements/Button';
+import Image from '@/components/Elements/Image';
 
-import { CaretDownFilled } from '@ant-design/icons';
 
-export function ListOfWebinar({listWebinar}) {
+export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
   const { t } = useTranslation();
-  console.log(listWebinar());
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const openModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const connectToZoom = () => {
+    window.location = authRequest();
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
   
+  useEffect(() => {
+    getZoomAccount();
+  }, []);
+  
+  useEffect(() => {
+    if (zoomAccountList && zoomAccountList.length === 0) {
+      openModal();
+    }
+  }, [zoomAccountList]);
+
   const columns = [
     {
       title: '',
@@ -89,6 +123,35 @@ export function ListOfWebinar({listWebinar}) {
             <Table columns={columns} />
           </Card>
         </Div>
+        <Modal isOpen={isOpenModal}
+          onRequestClose={closeModal}
+          ariaHideApp={false} overlayClassName="Overlay"
+          marginTop noPadding
+        >
+          <Row>
+            <Col span={24}>
+              <Div widthFull noMargin>
+                <Div modal noMargin center>
+                  <Image src={"Images/warning.svg"} alt="success icon" modalIcon/>
+                  <Title modalTitle>{t(globalMessage.warning)}!</Title>
+                </Div>
+                <Div flexColCenter widthFull heightFull>
+                  <Div center marginYLarge>{t(message.setupMessage)}</Div>
+                </Div>
+                <Div widthFull marginTopLarge heightFull>
+                  <Row>
+                    <Col span={12}>
+                      <Button onClick={closeModal} defaultButton>{t(message.buttonLater)}</Button>
+                    </Col>
+                    <Col span={12}>
+                      <Button onClick={connectToZoom} type="primary">{t(message.buttonSetup)}</Button>
+                    </Col>
+                  </Row>
+                </Div>
+              </Div>
+            </Col>
+          </Row>
+        </Modal>
       </Layout>
     </>
   );
@@ -96,17 +159,24 @@ export function ListOfWebinar({listWebinar}) {
 
 
 ListOfWebinar.proptTypes = {
-  listWebinar: PropTypes.func
+  zoomAccountList: PropTypes.any,
+  getZoomAccount: PropTypes.func,
 };
+
+const mapStateToProps = createStructuredSelector({
+  isAccountLoading: makeSelectLoading(LOADING_PREFIX.ACCOUNT),
+  isListLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR_LIST),
+  zoomAccountList: makeSelectAccountList(),
+});
 
 const mapPropsToDispatch = (dispatch) => {
   return{
-    listWebinar: () => dispatch(getAttendee()),
+    getZoomAccount: () => dispatch(getZoomAccount()),
   };
 };
 
 const withConnect = connect(
-  null,
+  mapStateToProps,
   mapPropsToDispatch,
 );
 

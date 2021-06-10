@@ -69,6 +69,10 @@ const message = {
     key: `${scope}.success`,
     default: "Success"
   }),
+  warning: Object.values({
+    key: `${scope}.warning`,
+    default: "Warning!"
+  }),
   profile: Object.values({
     key: `${scope}.profile`,
     default: "Profile"

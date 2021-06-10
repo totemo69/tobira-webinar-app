@@ -1,22 +1,24 @@
 import { combineReducers } from 'redux';
-import atendee from '@/states/attendees/reducer';
+import global from '@/states/global/reducer';
+import attendees from '@/states/attendees/reducer';
 import profile from '@/states/profiles/reducer';
 import plans from '@/states/plans/reducer';
 import payments from '@/states/payments/reducer';
 import webinar from '@/states/webinar/reducer';
 import login from '@/states/login/reducer';
 import signup from '@/states/sign-up/reducer';
-import account from '@/states/accounts/reducers';
+import accounts from '@/states/accounts/reducer';
 
 const rootReducer = combineReducers({
-  atendee,
+  global,
+  attendees,
   profile,
   plans,
   payments,
   webinar,
   login,
   signup,
-  account,
+  accounts,
 });
 
 export default rootReducer;

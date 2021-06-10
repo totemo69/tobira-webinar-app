@@ -1,22 +1,26 @@
 import {
   GET_ZOOM_ACCOUNT,
-  GET_ZOOM_ACCOUNT_SUCCESS,
-  GET_ZOOM_ACCOUNT_FAILED
+  SUBMIT_ZOOM_CODE,
+  SET_ZOOM_ACCOUNT,
+  SET_ZOOM_ACCOUNT_LIST,
 } from './types';
-
 
 export const getZoomAccount = (payload) => ({
   type: GET_ZOOM_ACCOUNT,
   payload,
 });
 
-
-export const getZoomAccountSuccess = (payload) => ({
-  type: GET_ZOOM_ACCOUNT_SUCCESS,
+export const setZoomAccount = (payload) => ({
+  type: SET_ZOOM_ACCOUNT,
   payload,
 });
 
-export const getZoomAccountFailed = (payload) => ({
-  type: GET_ZOOM_ACCOUNT_FAILED,
+export const setZoomAccountList = (payload) => ({
+  type: SET_ZOOM_ACCOUNT_LIST,
+  payload,
+});
+
+export const submitZoomCode = (payload) => ({
+  type: SUBMIT_ZOOM_CODE,
   payload,
 });
