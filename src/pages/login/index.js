@@ -34,7 +34,6 @@ export function Login({ doLogin, isLoggedIn }) {
   const route = useRouter();
   
   useEffect(() => {
-    console.log(isLoggedIn);
     if (isLoggedIn) {
       route.push(WEBINAR_ROUTE.LIST_WEBINAR);
     }

@@ -4,10 +4,10 @@ import globalMessage from '@/messages/global';
 import message from '@/messages/profile';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {memo} from 'react';
+import { memo, useEffect } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import makeSelectProfile from '@/states/profiles/selector';
+import { makeSelectProfileDetails } from '@/states/profiles/selector';
 import { getProfile } from '@/states/profiles/action';
 import { withAuthSync } from '@/lib/auth';
 import Layout from '@/components/Layouts/Home';
@@ -23,8 +23,12 @@ import TabPane from '@/components/Elements/TabPane';
 import Button from '@/components/Elements/Button';
 import Span from '@/components/Elements/Span';
 
-export function Profile({fetchProfile, getUser}) {
+export function Profile({ fetchProfile, userDetails }) {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
   return (
     <>
@@ -42,15 +46,15 @@ export function Profile({fetchProfile, getUser}) {
             <Div widthFull paddingCard noMargin>
               <Div widthFull>
                 <Labels light>{t(globalMessage.email)}</Labels>
-                        sample@tobira.com
+                {userDetails && userDetails.email}
               </Div>
               <Div widthFull cardInfo>
                 <Labels light>{t(globalMessage.fullName)}</Labels>
-                {getUser.name}
+                {userDetails && userDetails.fullName}
               </Div>
               <Div widthFull cardInfo>
                 <Labels light>{t(globalMessage.contactNo)}</Labels>
-                        090-9725-3264
+                {userDetails && userDetails.contact}
               </Div>
             </Div>
           </Card>
@@ -60,19 +64,19 @@ export function Profile({fetchProfile, getUser}) {
                 <TabPane tab={t(message.editProfile)} key="1">
                   <Div widthFull>
                     <Labels asterisk>{t(globalMessage.username)}</Labels>
-                    <Input type="text" disabled value="tobirauser"></Input>
+                    <Input type="text" disabled value={userDetails && userDetails.username}></Input>
                   </Div>
                   <Div widthFull marginTop>
                     <Labels asterisk>{t(globalMessage.email)}</Labels>
-                    <Input type="text" disabled value="sample@tobira.com"></Input>
+                    <Input type="text" disabled value={userDetails && userDetails.email}></Input>
                   </Div>
                   <Div widthFull marginTop>
                     <Labels asterisk>{t(globalMessage.fullName)}</Labels>
-                    <Input type="text" value="Yamazaki Kento"></Input>
+                    <Input type="text" value={userDetails && userDetails.fullName}></Input>
                   </Div>
                   <Div widthFull marginY>
                     <Labels asterisk>{t(globalMessage.contactNo)}</Labels>
-                    <PhoneInput country={'jp'} />
+                    <PhoneInput country={'jp'} value={userDetails && userDetails.contact} />
                   </Div>
                 </TabPane>
                 <TabPane tab={t(message.changePassword)} key="2">
@@ -99,7 +103,7 @@ export function Profile({fetchProfile, getUser}) {
 
 Profile.propTypes = {
   fetchProfile: PropTypes.func,
-  getUser: PropTypes.any,
+  userDetails: PropTypes.any,
 };
 
 const mapDispatchProps = (dispatch) => {
@@ -109,7 +113,7 @@ const mapDispatchProps = (dispatch) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  getUser: makeSelectProfile(),
+  userDetails: makeSelectProfileDetails(),
 });
 
 const withConnect = connect(

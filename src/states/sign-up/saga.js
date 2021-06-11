@@ -1,29 +1,32 @@
-import {takeEvery, all, call, put} from 'redux-saga/effects';
-import {POST_SIGNUP } from './type';
-import {registerSuccess,registerFailed  } from './action';
-import { API } from '@/utils/constants';
-import {request} from '@/utils/request';
+import {takeLatest, call, put} from 'redux-saga/effects';
+import { API, POST_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import { request, RequestOptions }  from '@/utils/request';
+import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
+import { SIGNUP } from './type';
 
-
-function* registerSaga(action){
-  try{
-    const data = yield call(request, API.AUTH_REGISTER, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(action.payload),
-    });
-    yield put(registerSuccess({...action.payload, ...data}));
-  } catch(error) {
-    yield (put(registerFailed(error.message)));
+function* registerSaga({ payload }){
+  try {
+    // Set loading status to true
+    yield put(loading(LOADING_PREFIX.SIGNUP));
+    yield call(
+      request,
+      API.AUTH_REGISTER,
+      RequestOptions(POST_REQUEST, { ...payload }, false),
+    );
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.SIGNUP));
+  }
+  catch(error){
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.SIGNUP, false));
+    // Set the error
+    yield put(loadErrors(error));
+  } finally{
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.SIGNUP, false));
   }
 }
 
-
-function* registerDataWatcher() {
-  yield takeEvery(POST_SIGNUP, registerSaga);
-}
-
-
 export default function* sigunUpSage(){
-  yield all([registerDataWatcher()]);
+  yield takeLatest(SIGNUP, registerSaga);
 }
