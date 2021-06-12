@@ -2,6 +2,7 @@ import {
   LOAD_ERRORS,
   CLEAR_ERRORS,
   LOADING,
+  LOAD_SUCCESS,
 } from './types';
 
 
@@ -23,5 +24,13 @@ export function loading(key, isLoading = true) {
     type: LOADING,
     key,
     isLoading,
+  };
+}
+
+export function loadSuccess(key, status = true) {
+  return {
+    type: LOAD_SUCCESS,
+    key,
+    status,
   };
 }

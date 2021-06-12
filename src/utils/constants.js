@@ -56,4 +56,6 @@ export const WEBINAR_ROUTE = {
 export const LOADING_PREFIX = {
   ACCOUNT: 'account',
   WEBINAR_LIST: 'webinar-list',
+  SIGNUP: 'signup',
+  PROFILE: 'profile',
 };

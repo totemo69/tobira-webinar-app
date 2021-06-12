@@ -12,7 +12,7 @@ const makeSelectGlobal = () =>
 const makeSelectError = () =>
   createSelector(
     selectGlobalDomain,
-    globalState => (globalState != null ? globalState.get('error') : false),
+    globalState => (globalState != null ? globalState['error'] : false),
   );
 
 const makeSelectLoading = loadingKey =>
@@ -22,8 +22,16 @@ const makeSelectLoading = loadingKey =>
       globalState != null ? globalState['loading'][loadingKey] : false,
   );
 
+
+const makeSelectLoadingStatus = key =>
+  createSelector(
+    selectGlobalDomain,
+    globalState =>
+      globalState != null ? globalState['loadStatus'][key] : false,
+  );
 export default makeSelectGlobal;
 export {
   makeSelectError,
   makeSelectLoading,
+  makeSelectLoadingStatus,
 };

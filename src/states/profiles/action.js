@@ -1,20 +1,19 @@
 import {
   GET_PROFILE,
-  PROFILE_SUCCESS,
-  PROFILE_FAILED,
+  SET_PROFILE,
+  UPDATE_PROFILE,
 } from './types';
 
-export const getProfile = (payload) => ({
+export const getProfile = () => ({
   type: GET_PROFILE,
+});
+
+export const setProfile = (payload) => ({
+  type: SET_PROFILE,
   payload,
 });
 
-export const profileSuccess = (payload) => ({
-  type: PROFILE_SUCCESS,
-  payload,
-});
-
-export const profileFailed = (payload) => ({
-  type: PROFILE_FAILED,
+export const updateProfile = (payload) => ({
+  type: UPDATE_PROFILE,
   payload,
 });

@@ -9,5 +9,11 @@ const makeSelectProfile = () =>
     substate => substate,
   );
 
+const makeSelectProfileDetails = () =>
+  createSelector(
+    selectProfileDomain,
+    substate => substate.profileDetails,
+  );
+
 export default makeSelectProfile;
-export { selectProfileDomain };
+export { makeSelectProfileDetails };
