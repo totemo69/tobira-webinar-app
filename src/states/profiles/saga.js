@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { GET_PROFILE, UPDATE_PROFILE } from './types';
 import { setProfile } from './action';
-import { API, POST_REQUEST, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import { API, PATCH_REQUEST, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
 
@@ -36,7 +36,7 @@ function* updateProfileSaga({ payload }) {
     const response = yield call(
       request,
       API.AUTH_USER_PROFILE,
-      RequestOptions(POST_REQUEST, { ...payload }, true),
+      RequestOptions(PATCH_REQUEST, { ...payload }, true),
     );
     yield put(setProfile(response));
     // Set the status to success
