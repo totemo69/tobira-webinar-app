@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import globalMessage from '@/messages/global';
 import message from '@/messages/header';
 import { WEBINAR_ROUTE } from '@/utils/constants';
@@ -15,7 +16,7 @@ import {
   CreditCardFilled, LogoutOutlined
 } from '@ant-design/icons';
 
-export default function Header() {
+export default function Header({ withLogo = false }) {
   const { t } = useTranslation();
 
   const MenuItems = (
@@ -52,10 +53,19 @@ export default function Header() {
   return (
     <>
       <Hdr noMargin>
-        <Div widthFull noMargin right>
-          <Image src={"Images/avatar.svg"} alt="Tobira Logo" userImg />
+        <Div widthFull noMargin flexSpaceBetween={withLogo} flexCenterEnd={!withLogo}>
+          {withLogo && (
+            <NextImage
+              src="/Images/logo.svg"
+              alt="Tobira Webinar Logo"
+              width={200}
+              height={36}
+            /> 
+          )}
+          
+          <Image src={"/Images/avatar.svg"} alt="Picture of the user" userImg />
           <Dropdown username="tobirauser" items={MenuItems} />
-        </Div>
+        </Div> 
       </Hdr>
     </>
   );

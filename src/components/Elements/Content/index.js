@@ -21,10 +21,24 @@ const StyledContent = styled(Content).withConfig({
     'privacypolicyContent',
   ].includes(prop),
 })`
+    margin-top: 0.25em;
     padding: 1rem 0.75rem;
     width: 100%;
     height: auto;
     background-color: #F3F3F3;
+
+
+    ${props => 
+    props.defaultPadding &&
+        css`
+           padding:  1rem 50px;
+            @media screen and (max-width: 480px) {
+                padding: 1rem 10px;
+            }              
+        `
+};    
+ 
+
 
     ${props => 
     props.bgNone &&
