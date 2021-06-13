@@ -261,6 +261,16 @@ const StyledDiv = style.div`
 };
 
     ${props => 
+    props.flexSpaceBetween && 
+        css`
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        `
+};
+
+
+    ${props => 
     props.bottomRight && 
         css`
             display: flex;

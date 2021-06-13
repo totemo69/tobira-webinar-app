@@ -1,0 +1,17 @@
+
+.detailRow{
+  margin-top: 0.5em;
+}
+.detailRow, .detailCol{
+    min-height: 58%;
+}
+.heroImage{
+  border-radius: 8px;
+  object-fit: cover;
+}
+h1.title{
+  font-size: 2.2em;
+  font-weight: 500;
+  color: #4E4E4E;
+  letter-spacing: 0.48px;
+}

@@ -9,11 +9,18 @@ import { Layout } from 'antd';
 
 const StyledLayout = styled(Layout).withConfig({
   shouldForwardProp: prop => ![
-    'bgGray',
+    'bgGray', 'bgPrimary', 'defaultPadding'
   ].includes(prop),
 })`
     width: 100%;
     height: 100%;
+
+    ${props => 
+    props.bgPrimary &&
+      css`
+        background-color: #FFFFFF;
+      `
+};    
     
     ${props =>
     props.bgGray &&
