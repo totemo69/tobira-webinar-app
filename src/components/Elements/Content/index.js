@@ -20,6 +20,7 @@ const StyledContent = styled(Content).withConfig({
     'contentTOSgray',
     'privacypolicyContent',
     'defaultPadding',
+    'narrowPadding',
   ].includes(prop),
 })`
     margin-top: 0.25em;
@@ -28,6 +29,10 @@ const StyledContent = styled(Content).withConfig({
     height: auto;
     background-color: #F3F3F3;
 
+    @media screen and (min-width: 1920px) {
+        width: 78%;
+        margin: auto;
+    }      
 
     ${props => 
     props.defaultPadding &&
@@ -39,6 +44,16 @@ const StyledContent = styled(Content).withConfig({
         `
 };    
  
+    ${props => 
+    props.narrowPadding &&
+        css`
+           padding:  1rem 75px;
+            @media screen and (max-width: 480px) {
+                padding: 1rem 10px;
+            }              
+        `
+};    
+
 
 
     ${props => 

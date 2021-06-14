@@ -32,3 +32,17 @@
 .price{
     font-size: 1.25em;
 }
+.shareIconWrapper{
+    display: flex;
+    width: 60%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+}
+.shareInputWrapper{
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+

@@ -35,6 +35,22 @@ const StyledInput = styled(Input).withConfig({
         css`
             border: 1px solid #ff0033;
     `};
+    ${props =>
+    props.addonAfter &&
+        css`
+            border: none;
+            .ant-input-wrapper.ant-input-group input{
+               border-top-left-radius: 8px;
+               border-bottom-left-radius: 8px;
+            }
+            .ant-input-group-addon{
+              cursor: pointer;
+              opacity: 0.85;
+              border-top-right-radius: 8px;
+              border-bottom-right-radius: 8px;              
+              background-color: var(--backgroundColorAccent);
+            }
+    `};    
 `;
  
 const WrapInput = ({
