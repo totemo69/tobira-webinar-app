@@ -2,7 +2,7 @@
 import React from 'react';
 import Head from 'next/head';
 import DetailLayout from '@/components/Layouts/WebinarDetail';
-import Detail from '@/components/Modules/Detail';
+import Detail from '@/components/Templates/Detail';
 
 const WebinarDetail = () =>{
   return(

@@ -6,14 +6,12 @@ import Footer from '@/components/Modules/Footer';
 
 export default function WebinarDetail({ children }) {
   return (
-    <>
-      <Layout bgPrimary>
-        <Header withLogo/>
-        <Content bgNone defaultPadding>
-          {children}
-        </Content>
-        <Footer />
-      </Layout>
-    </>
+    <Layout bgPrimary>
+      <Header withLogo/>
+      <Content bgNone defaultPadding>
+        {children}
+      </Content>
+      <Footer />
+    </Layout>
   );
 }

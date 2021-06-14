@@ -18,6 +18,7 @@ const StyledButton = styled(Button).withConfig({
     'addBtn',
     'smallBtn',
     'mediumBtn',
+    'fullwidth',
     'modalLoginButton',
     'BackButton',
     'NextButton',
@@ -25,6 +26,8 @@ const StyledButton = styled(Button).withConfig({
     'connectedButton',
     "defaultButton",
     'addField',
+    'noBoxShadow',
+    'noMargin',
   ].includes(prop),
 })`
     margin: 0 auto 10px;
@@ -40,6 +43,7 @@ const StyledButton = styled(Button).withConfig({
     props.type === 'primary' &&
       css`
         background-color: #0e71eb;
+        font-size: 14px;
         &:hover {
           background-color: #4678B5;
           color: #ffffff;
@@ -51,6 +55,24 @@ const StyledButton = styled(Button).withConfig({
         }
       `
 };
+
+    ${ props =>
+    props.type === 'default' &&
+      css`
+        color: #828282;
+        border: 1px solid #828282;
+        &:hover {
+          color: #828282;
+        }
+        &:focus {
+          color: #828282;
+          outline: none;
+          border-color: #828282;
+        }
+        margin: 0;
+      `
+};
+
 
     ${ props =>
     props.marginTop &&
@@ -124,6 +146,9 @@ const StyledButton = styled(Button).withConfig({
     props.smallBtn &&
       css`
         width: 35%;
+        @media screen and (max-width: 480px) {
+            width: 48%;
+        }           
       `
 };
 
@@ -131,6 +156,13 @@ const StyledButton = styled(Button).withConfig({
     props.mediumBtn &&
       css`
         width: 388px;
+      `
+};
+
+    ${ props =>
+    props.fullwidth &&
+      css`
+        width: 100%;
       `
 };
 
@@ -266,7 +298,18 @@ const StyledButton = styled(Button).withConfig({
       `
 };
 
-
+  ${props => 
+    props.noBoxShadow &&
+      css`
+      box-shadow: none;
+      `
+};
+  ${props => 
+    props.noMargin &&
+      css`
+      margin:0;
+      `
+};
 `;
  
 export default StyledButton;

@@ -20,7 +20,7 @@ export default function Header({ withLogo = false }) {
   const { t } = useTranslation();
 
   const MenuItems = (
-    <Menu>
+    <Menu className="profile-dropdown">
       <Menu.Item key="0">
         <Link href={WEBINAR_ROUTE.PROFILE}>
           <a><UserOutlined /> {t(globalMessage.profile)}</a>

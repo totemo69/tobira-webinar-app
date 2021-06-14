@@ -1,0 +1,34 @@
+.scheduleList{
+    list-style: none;
+    margin:0;
+    padding:0;
+    color: var(--accentColor);
+}
+.activeSchedule{
+    color: var(--linkColor);
+} 
+.infoItem, .infoItemWrap{
+    display: flex;
+    margin-bottom: 0.35em;
+}
+.infoItem{
+    flex-direction: row;
+    align-items: flex-start;
+}
+.infoItem img {
+    padding-top: 0.25em;
+}
+.infoItemWrap{
+    flex-direction: column;
+    padding: 0 10px;
+}
+.infoLabel{
+    font-size: var(--smallFontSize);
+    color: var(--accentColor);
+}
+.addendum{
+    color: var(--accentColor);
+}
+.price{
+    font-size: 1.25em;
+}

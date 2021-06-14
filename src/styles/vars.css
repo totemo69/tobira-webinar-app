@@ -1,5 +1,9 @@
 :root {
   --backgroundColor: #0a0101;
   --primaryColor: #191a1b;
+  --accentColor: #585858;
+  --linkColor: #4678B5;
+  --textColorPrimary: #4E4E4E;
   --textColorSecondary: rgba(0, 0, 0, 0.45);
+  --smallFontSize: 0.85em;
 }
