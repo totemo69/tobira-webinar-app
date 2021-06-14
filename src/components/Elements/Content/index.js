@@ -19,6 +19,7 @@ const StyledContent = styled(Content).withConfig({
     'TermsAndPolicy',
     'contentTOSgray',
     'privacypolicyContent',
+    'defaultPadding',
   ].includes(prop),
 })`
     margin-top: 0.25em;

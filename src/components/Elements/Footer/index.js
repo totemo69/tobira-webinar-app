@@ -17,7 +17,7 @@ const StyledFooter = styled(Footer).withConfig({
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #b0b0b0;
+    background-color: #F3F3F3;
     font-size: 12px;
     font-weight: 600;
     color: #4e4e4e;
