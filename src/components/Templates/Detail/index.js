@@ -1,17 +1,19 @@
+import React, {useState} from 'react';
 import NextImage from 'next/image';
 import { Row, Col, Typography } from 'antd';
 import Button from '@/components/Elements/Button';
 import CustomIcon from '@/components/Elements/Icon';
 import Schedule from '@/components/Modules/Detail/Schedule';
 import Information from '@/components/Modules/Detail/Information';
+import ShareModal from '@/components/Modules/Detail/ShareModal';
 import classNames from './Detail.module.css';
 const {Title, Text, Paragraph} = Typography;
 
 export default function Detail() {
-    
+  const [isShareVisible, setShareVisible] = useState(false);
   return (
     <>
-      <Row className={classNames.detailRow} >
+      <Row className={classNames.detailRow}>
         <Col lg={11} className={classNames.detailCol} xs={24}>
           <NextImage 
             src="/Images/dummy.jpeg"
@@ -27,7 +29,9 @@ export default function Detail() {
 
           <Row align="middle">
             <Col span={12}  xs={16}>
-              <Button type="default" icon={<CustomIcon src={'/Images/share.svg'} />}  smallBtn noBoxShadow> Share</Button>
+              <Button type="default" icon={<CustomIcon src={'/Images/share.svg'} />}  smallBtn noBoxShadow
+                onClick={()=> setShareVisible(!isShareVisible)}
+              > Share</Button>
             </Col>
             <Col span={12}  xs={8}><Text className={classNames.authorBy} >by</Text> Yamazaki Kento</Col>
           </Row>
@@ -69,6 +73,8 @@ export default function Detail() {
           </Paragraph>
         </Col>
       </Row> 
+
+      <ShareModal visible={isShareVisible} onClose={()=> setShareVisible(!isShareVisible)}/>
     </>
   );
 }

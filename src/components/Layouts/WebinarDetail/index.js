@@ -8,7 +8,7 @@ export default function WebinarDetail({ children }) {
   return (
     <Layout bgPrimary>
       <Header withLogo/>
-      <Content bgNone defaultPadding>
+      <Content bgNone narrowPadding>
         {children}
       </Content>
       <Footer />
