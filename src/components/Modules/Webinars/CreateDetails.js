@@ -1,13 +1,3 @@
-// import { useTranslation } from 'next-i18next';
-// import message from '@/messages/createProfile';
-
-// import {StyledParagraph} from '@/components/Elements/SampleParagraph';
-// import Label from '@/components/Elements/Labels';
-// import Input from '@/components/Elements/Input';
-// import Select from '@/components/Elements/Select';
-// import Textarea from '@/components/Elements/SampleTextArea';
-// import {Row, Col} from 'antd';
-
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';

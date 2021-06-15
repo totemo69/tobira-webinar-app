@@ -1,5 +1,5 @@
 const Url = process.env.NEXT_PUBLIC_TOBIRA_API
-  ? `${process.env.NEXT_PUBLIC_TOBIRA_API}/`
+  ? `${process.env.NEXT_PUBLIC_TOBIRA_API}`
   : `https://tobira-webinar-api.herokuapp.com`;
 
 export const ZOOM_CLIENT_ID = process.env.NEXT_PUBLIC_ZOOM_CLIENT_ID
@@ -31,10 +31,10 @@ export const API = {
   AUTH_PLANS_GET: `${Url}/plans/`,
   AUTH_PAYMENTS_COUNT: `${Url}/payments/count`,
   AUTH_PAYMENTS_GET: `${Url}/payments`,
-  AUTH_WEBINAR: `${Url}/webinars`,
+  WEBINARS: `${Url}/webinars`,
   AUTH_LOGIN: `${Url}/auth/login`,
   AUTH_REGISTER: `${Url}/auth/register`,
-  AUTH_ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
+  ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
 };
 
 export const WEBINAR_ROUTE = {
@@ -46,8 +46,8 @@ export const WEBINAR_ROUTE = {
   ZOOM_ACCOUNT: '/account',
   ZOOM_ACCOUNT_CALLBACK: '/account/callback',
   ZOOM_ACCOUNT_COMPLETE: '/account/complete',
-  CREATE_WEBINAR: '/create-webinar',
-  LIST_WEBINAR: '/list-webinar',
+  CREATE_WEBINAR: '/webinars/create-webinar',
+  LIST_WEBINAR: '/webinars/list-webinar',
   WALLET: '/wallet',
   DASHBOARD: '/dashboard',
   PURCHASE_LICENSE: '/purchase-license',

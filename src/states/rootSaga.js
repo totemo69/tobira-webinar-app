@@ -5,7 +5,7 @@ import planSaga from '@/states/plans/saga';
 import paymentSaga from '@/states/payments/saga';
 import webinarSaga from '@/states/webinar/saga';
 import loginSaga from '@/states/login/saga';
-import singupSaga from '@/states/sign-up/saga';
+import signupSaga from '@/states/sign-up/saga';
 import accountSaga from '@/states/accounts/saga';
 
 function* rootSaga() {
@@ -16,7 +16,7 @@ function* rootSaga() {
     paymentSaga(),
     webinarSaga(),
     loginSaga(),
-    singupSaga(),
+    signupSaga(),
     accountSaga(),
   ]);
 }

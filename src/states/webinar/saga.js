@@ -1,22 +1,27 @@
-import { takeEvery, call, all, put  } from 'redux-saga/effects';
-import { GET_WEBINAR } from './types';
-import { getWebinarSuccess, getWebinarFailed } from './action';
-import { API } from '@/utils/constants';
-import {request} from '@/utils/request';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { GET_WEBINAR_LIST } from './types';
+import { setWebinarList } from './actions';
+import { API, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import { request, RequestOptions } from '@/utils/request';
+import { loading, loadErrors } from '@/states/global/actions';
 
-function* getWebinarSaga(){
-  try{
-    const data = yield call(request,API.AUTH_WEBINAR);
-    yield put(getWebinarSuccess(data));
-  } catch(error){
-    yield put(getWebinarFailed(error.message));
+function* webinarList(){
+  try {
+    yield put(loading(LOADING_PREFIX.LIST_WEBINAR));
+    const response = yield call(
+      request,
+      API.WEBINARS,
+      RequestOptions(GET_REQUEST, null, true),
+    );
+    yield put(setWebinarList(response));
+  }
+  catch(error){
+    yield put(loadErrors(error));
+  } finally{
+    yield put(loading(LOADING_PREFIX.LIST_WEBINAR, false));
   }
 }
 
-function* getWebinarWatcher(){
-  yield takeEvery(GET_WEBINAR, getWebinarSaga);
-}
-
 export default function* webinarSaga(){
-  yield all([getWebinarWatcher()]);
+  yield takeLatest(GET_WEBINAR_LIST, webinarList);
 }

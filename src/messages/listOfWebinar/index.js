@@ -33,6 +33,10 @@ const message = {
     key: `${scope}.buttonSetup`,
     default: 'Setup'
   }),
+  viewDetails: Object.values({
+    key: `${scope}.viewDetails`,
+    default: 'View Details'
+  }),
 };
 
 export default message;

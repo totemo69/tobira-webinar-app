@@ -11,9 +11,6 @@ import { Table } from 'antd';
 const StyledTable = styled(Table).withConfig({
   shouldForwardProp: prop => ![].includes(prop),
 })`
-  .ant-table table {
-    height: 480px;
-  }
 
   .ant-table table thead > tr > th{
     background-color: #0E71EB !important;
