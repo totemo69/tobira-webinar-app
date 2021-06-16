@@ -56,14 +56,14 @@ export default function Header({ withLogo = false }) {
         <Div widthFull noMargin flexSpaceBetween={withLogo} flexCenterEnd={!withLogo}>
           {withLogo && (
             <NextImage
-              src="/Images/logo.svg"
+              src="/images/logo.svg"
               alt="Tobira Webinar Logo"
               width={200}
               height={36}
             /> 
           )}
           
-          <Image src={"/Images/avatar.svg"} alt="Picture of the user" userImg />
+          <Image src={"/images/avatar.svg"} alt="Picture of the user" userImg />
           <Dropdown username="tobirauser" items={MenuItems} />
         </Div> 
       </Hdr>

@@ -16,7 +16,7 @@ export default function Detail() {
       <Row className={classNames.detailRow}>
         <Col lg={11} className={classNames.detailCol} xs={24}>
           <NextImage 
-            src="/Images/dummy.jpeg"
+            src="/images/dummy.jpeg"
             alt="Course Detail"
             layout="fill"
             loading="lazy"
@@ -29,7 +29,7 @@ export default function Detail() {
 
           <Row align="middle">
             <Col span={12}  xs={16}>
-              <Button type="default" icon={<CustomIcon src={'/Images/share.svg'} />}  smallBtn noBoxShadow
+              <Button type="default" icon={<CustomIcon src={'/images/share.svg'} />}  smallBtn noBoxShadow
                 onClick={()=> setShareVisible(!isShareVisible)}
               > Share</Button>
             </Col>

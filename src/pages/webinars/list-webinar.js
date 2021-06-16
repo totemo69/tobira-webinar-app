@@ -6,11 +6,13 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
-import { CaretDownFilled } from '@ant-design/icons';
+import { CaretDownFilled, EyeTwoTone, FileImageOutlined } from '@ant-design/icons';
 
 import { getZoomAccount } from '@/states/accounts/actions';
+import { getWebinarList } from '@/states/webinar/actions';
 import { makeSelectLoading } from '@/states/global/selector';
 import { makeSelectAccountList } from '@/states/accounts/selector';
+import { makeSelectWebinars } from '@/states/webinar/selector';
 import { authRequest } from '@/lib/zoom';
 import { LOADING_PREFIX } from '@/utils/constants';
 
@@ -30,9 +32,17 @@ import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
 
-export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
+export function ListOfWebinar({
+  getZoomAccounts,
+  zoomAccountList,
+  getWebinarLists,
+  webinarLists,
+}) {
   const { t } = useTranslation();
-
+  useEffect(() => {
+    getZoomAccounts();
+    getWebinarLists();
+  }, []);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openModal = () => {
@@ -46,21 +56,31 @@ export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
   const closeModal = () => {
     setIsOpenModal(false);
   };
+
+  const viewDetails = (id) => {
+    console.log(id);
+  };
+  
+
   
   useEffect(() => {
-    getZoomAccount();
-  }, []);
-  
-  useEffect(() => {
-    if (zoomAccountList && zoomAccountList.length === 0) {
-      openModal();
-    }
+    const timer = setTimeout(() => {
+      if (zoomAccountList.length === 0) {
+        openModal();
+      } else {
+        closeModal();
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
   }, [zoomAccountList]);
 
   const columns = [
     {
       title: '',
-      dataIndex: '',
+      dataIndex: 'image',
+      render: () => (
+        <FileImageOutlined />
+      ),
     },
     {
       title: t(message.title),
@@ -71,7 +91,7 @@ export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
     },
     {
       title: t(message.schedule),
-      dataIndex: 'schedule',
+      dataIndex: 'schedules[0]',
       sorter: {
         multiple: 3,
       },
@@ -93,6 +113,13 @@ export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
     {
       title: t(message.action),
       dataIndex: 'action',
+      align: 'center',
+      render: id => (
+        <Button noMargin noBoxShadow type='link' onClick={()=>viewDetails(id)}>
+          <EyeTwoTone />
+          {t(message.viewDetails)}
+        </Button>
+      ),
     },
   ];
   
@@ -120,7 +147,7 @@ export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
                 {t(globalMessage.search)} <Search placeholder={t(globalMessage.searchPlaceholder)} allowClear marginLeft widthMedium />
               </Div>
             </Div>
-            <Table columns={columns} />
+            <Table dataSource={webinarLists} columns={columns} />
           </Card>
         </Div>
         <Modal isOpen={isOpenModal}
@@ -160,18 +187,24 @@ export function ListOfWebinar({ getZoomAccount, zoomAccountList }) {
 
 ListOfWebinar.proptTypes = {
   zoomAccountList: PropTypes.any,
-  getZoomAccount: PropTypes.func,
+  getZoomAccounts: PropTypes.func,
+  getWebinarLists: PropTypes.func,
+  isAccountLoading: PropTypes.bool,
+  isListLoading: PropTypes.bool,
+  webinarLists: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
   isAccountLoading: makeSelectLoading(LOADING_PREFIX.ACCOUNT),
   isListLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR_LIST),
   zoomAccountList: makeSelectAccountList(),
+  webinarLists: makeSelectWebinars(),
 });
 
 const mapPropsToDispatch = (dispatch) => {
   return{
-    getZoomAccount: () => dispatch(getZoomAccount()),
+    getZoomAccounts: () => dispatch(getZoomAccount()),
+    getWebinarLists: () => dispatch(getWebinarList()),
   };
 };
 

@@ -6,10 +6,11 @@ import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors } from '@/states/global/actions';
 
 function* zoomAccountSaga(){
-  try{
+  try {
+    yield put(loading(LOADING_PREFIX.ACCOUNT));
     const response = yield call(
       request,
-      API.AUTH_ZOOM_ACCOUNT,
+      API.ZOOM_ACCOUNT,
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setZoomAccountList(response));
@@ -26,7 +27,7 @@ function* submitZoomCode({ payload }){
     yield put(loading(LOADING_PREFIX.ACCOUNT));
     const response = yield call(
       request,
-      API.AUTH_ZOOM_ACCOUNT,
+      API.ZOOM_ACCOUNT,
       RequestOptions(POST_REQUEST, { ...payload }, true),
     );
     yield put(setZoomAccount(response));

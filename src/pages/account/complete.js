@@ -45,10 +45,10 @@ export function Complete() {
         <Row>
           <Col span={24}>
             <Div widthFull marginBottom center>
-              <Image src={"../Images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src={"/images/logo.svg"} alt="Tobira Logo" logo />
             </Div>
             <Div widthFull marginBottom center>
-              <Image src={"../Images/success.svg"} alt="Tobira Logo" logo />
+              <Image src={"/images/success.svg"} alt="Tobira Logo" logo />
             </Div>
           </Col>
         </Row>

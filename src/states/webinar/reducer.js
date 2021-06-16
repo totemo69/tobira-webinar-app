@@ -1,32 +1,20 @@
 import produce from 'immer';
-import { GET_WEBINAR, GET_WEBINAR_SUCCESS } from './types';
+import { SET_WEBINAR_LIST } from './types';
 
 export const initialState = {
-  isLoading: false,
-  posts: [],
-  error: null,
+  webinarList: [],
 };
 
 
-const checkWebinar = (state = initialState, action) => 
+const webinarReducer = (state = initialState, action) => 
   produce(state, draft =>
   {
     switch(action.type) {
-    case GET_WEBINAR :
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case GET_WEBINAR_SUCCESS: 
-      return {
-        ...state,
-        isLoading: false,
-        posts: draft.payload,
-      };
-    default:
-      return state;
+    case SET_WEBINAR_LIST: {
+      draft.webinarList = action.payload;
+      break;
+    }
     }
   });
 
-
-export default checkWebinar;
+export default webinarReducer;

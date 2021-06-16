@@ -1,13 +1,12 @@
-import message from '@/messages/createProfile';
 import { useTranslation } from 'next-i18next';
+import {Row, Col} from 'antd';
 
+import message from '@/messages/createProfile';
 import {StyledParagraph} from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
-import {Row, Col} from 'antd';
-
 
 export default function PaymentOption(){
 
@@ -37,7 +36,7 @@ export default function PaymentOption(){
       <Row className="paymentRow" gutter={[50]}>
         <Col span={10} >
           <Div paymentOption>
-            <Image style={{width: "100%",}} src="Images/paypal.svg" alt="paypal image"/>
+            <Image style={{width: "100%",}} src="/images/paypal.svg" alt="paypal image"/>
             <StyledParagraph style={{textAlign: "center"}}>
               {t(message.payWithPaypal)}
             </StyledParagraph>
@@ -46,7 +45,7 @@ export default function PaymentOption(){
         </Col>
         <Col span={10}>
           <Div paymentOption>
-            <Image style={{width: "30%", marginLeft: "auto", marginRight: "auto"}} src="Images/other-payment.svg" alt="paypal image"/>
+            <Image style={{width: "30%", marginLeft: "auto", marginRight: "auto"}} src="/images/other-payment.svg" alt="paypal image"/>
             <StyledParagraph>
               {t(message.otherPaymentOptions)}
             </StyledParagraph>
