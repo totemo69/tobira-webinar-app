@@ -53,10 +53,10 @@ export function Callback({ doSubmitCode, isLoading, zoomAccount }) {
         <Row>
           <Col span={24}>
             <Div widthFull marginBottom center>
-              <Image src={"../Images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src={"/images/logo.svg"} alt="Tobira Logo" logo />
             </Div>
             <Div widthFull marginBottom center>
-              <Image src={"../Images/illustration1.svg"} alt="Tobira Logo" logo />
+              <Image src={"/images/illustration1.svg"} alt="Tobira Logo" logo />
             </Div>
             <Div widthFull marginBottom center>
               <Spin size="large" />

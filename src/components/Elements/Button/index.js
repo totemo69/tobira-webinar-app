@@ -76,7 +76,7 @@ const StyledButton = styled(Button).withConfig({
     ${ props =>
     props.type === 'link' &&
       css`
-        color: #0E71EB;
+        color: var(--linkColor);
         margin: 0;
         font-size: bold;
       `
