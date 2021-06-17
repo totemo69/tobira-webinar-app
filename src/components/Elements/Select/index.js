@@ -6,6 +6,7 @@
 
 import styled, { css } from 'styled-components';
 import { Select } from 'antd';
+import PropTypes from 'prop-types';
 
 const StyledSelect = styled(Select).withConfig({
   shouldForwardProp: prop => ![
@@ -57,4 +58,22 @@ const StyledSelect = styled(Select).withConfig({
     `};
 `;
  
-export default StyledSelect;
+const WrapSelect = ({
+  field,
+  children,
+  ...props
+}) => {
+  const inputProps = { ...props };
+  return (
+    <StyledSelect {...field} {...inputProps}>
+      {children}
+    </StyledSelect>
+  );
+};
+  
+WrapSelect.propTypes = {
+  field: PropTypes.any,
+  children: PropTypes.any,
+};
+  
+export default WrapSelect;

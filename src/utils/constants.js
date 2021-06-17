@@ -56,6 +56,12 @@ export const WEBINAR_ROUTE = {
 export const LOADING_PREFIX = {
   ACCOUNT: 'account',
   WEBINAR_LIST: 'webinar-list',
+  CREATE_WEBINAR: 'create-webinar',
   SIGNUP: 'signup',
   PROFILE: 'profile',
+};
+
+export const SCHEDULE_TYPE = {
+  ONETIME: 'one-time',
+  RECURRING: 'recurring',
 };

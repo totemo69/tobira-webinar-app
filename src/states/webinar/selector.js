@@ -19,6 +19,17 @@ const makeSelectWebinars = () =>
     substate => substate.webinarList,
   );
 
+const makeSelectWebinarDetails = () =>
+  createSelector(
+    selectWebinarsDomain,
+    substate => substate.webinarDetails,
+  );
+
+const makeSelectWebinarForm = () =>
+  createSelector(
+    selectWebinarsDomain,
+    substate => substate.webinar,
+  );
 
 export default makeSelectWebinar;
-export { makeSelectWebinars };
+export { makeSelectWebinars, makeSelectWebinarDetails, makeSelectWebinarForm };

@@ -8,7 +8,7 @@ import style, {css} from 'styled-components';
 import {TimePicker} from 'antd';
 
 const StyledTimePicker = style(TimePicker).withConfig({
-  shouldForwardProp: prop => ![].includes(prop)
+  shouldForwardProp: prop => !['small'].includes(prop)
 })`
   margin: 0 auto;
   width: 100%;
@@ -31,6 +31,12 @@ const StyledTimePicker = style(TimePicker).withConfig({
     props.error &&
       css`
           border: 1px solid #ff0033;
+  `};
+
+  ${props =>
+    props.small &&
+      css`
+        width: 80%;
   `};
 `;
 
