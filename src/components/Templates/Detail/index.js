@@ -9,14 +9,15 @@ import ShareModal from '@/components/Modules/Detail/ShareModal';
 import classNames from './Detail.module.css';
 const {Title, Text, Paragraph} = Typography;
 
-export default function Detail() {
+export default function Detail({postDetail}) {
   const [isShareVisible, setShareVisible] = useState(false);
+  console.log("postDetail", postDetail);
   return (
     <>
       <Row className={classNames.detailRow}>
         <Col lg={11} className={classNames.detailCol} xs={24}>
           <NextImage 
-            src="/images/dummy.jpeg"
+            src={postDetail.coverImage}
             alt="Course Detail"
             layout="fill"
             loading="lazy"
@@ -25,7 +26,7 @@ export default function Detail() {
 
         </Col>
         <Col lg={12} offset={1} xs={22}>
-          <Title level={1} className={classNames.title}>Wealth & Asset Management in Tough Times</Title>
+          <Title level={1} className={classNames.title}>{postDetail.title}</Title>
 
           <Row align="middle">
             <Col span={12}  xs={16}>
@@ -33,11 +34,11 @@ export default function Detail() {
                 onClick={()=> setShareVisible(!isShareVisible)}
               > Share</Button>
             </Col>
-            <Col span={12}  xs={8}><Text className={classNames.authorBy} >by</Text> Yamazaki Kento</Col>
+            <Col span={12}  xs={8}><Text className={classNames.authorBy} >by</Text> {postDetail.author}</Col>
           </Row>
 
           <Row className={classNames.rowSpacing}>
-            <Schedule />
+            <Schedule schedules={postDetail.schedules} />
           </Row>
           <Row>
             <Information/>

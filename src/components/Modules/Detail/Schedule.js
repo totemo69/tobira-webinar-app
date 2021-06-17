@@ -3,30 +3,27 @@ import { Menu, Dropdown, Typography } from 'antd';
 import classNames from './index.module.css';
 const {Link} = Typography;
 
-const menu = (
+const menu = (schedules)=> (
   <Menu>
     <Menu.Item>
       <ul className={classNames.scheduleList}>
-        <li>
-          <time>April 26 　Mon 　09:00 AM (GMT +9:00)</time>
-        </li>
-        <li className={classNames.activeSchedule}>
-          <time>April 26 　Mon 　10:00 AM (GMT +9:00)</time>
-        </li>
-        <li>
-          <time>April 26 　Mon 　11:00 AM (GMT +9:00)</time>
-        </li>
-        <li>
-          <time>April 26 　Mon 　12:00 PM (GMT +9:00)</time>
-        </li>                                    
+        {schedules.map((item, i)=>  
+          (
+            <li key={item} 
+              // For now 
+              className={i === 2 ? classNames.activeSchedule : ''}>
+              <time>{item}</time>
+            </li>          
+          )
+        )}
       </ul>
     </Menu.Item>
   </Menu>
 );
 
-const Schedule = () => (
-  <Dropdown overlay={menu} placement="bottomLeft">
-    <Link href="#" underline>Recurring Event</Link>
+const Schedule = ({schedules}) => (
+  <Dropdown overlay={menu(schedules)} placement="bottomLeft">
+    <Link href="#" underline onClick={(e)=> e.preventDefault()}>Recurring Event</Link>
   </Dropdown>
 );
 
