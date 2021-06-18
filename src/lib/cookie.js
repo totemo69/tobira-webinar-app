@@ -11,9 +11,7 @@ const Cookie = {
   clearAuth: () => {
     Cookies.remove(`${COOKIE_PREFIX}token`);
   },
-  getAccessToken: () => [
-    Cookies.get(`${COOKIE_PREFIX}token`),
-  ],
+  getAccessToken: () => [Cookies.get(`${COOKIE_PREFIX}token`)],
 };
 
 export default Cookie;

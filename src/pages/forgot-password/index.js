@@ -39,33 +39,54 @@ export default function ForgotPassword() {
             <Formik>
               <Form>
                 <Title>{t(globalMessage.forgotPassword)}</Title>
-                <Div marginY widthLong lightText>{t(message.forgotPasswordText)}.</Div>
+                <Div marginY widthLong lightText>
+                  {t(message.forgotPasswordText)}.
+                </Div>
                 <Div>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.enterEmail)}></Input>
+                  <Input
+                    type="email"
+                    placeholder={t(globalMessage.enterEmail)}
+                  />
                 </Div>
-                <Button type="primary" marginTop onClick={openModal}>{t(globalMessage.sendEmail)}</Button>
+                <Button type="primary" marginTop onClick={openModal}>
+                  {t(globalMessage.sendEmail)}
+                </Button>
                 <Div marginTop center>
-                  <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
+                  <Link href="/login" name={t(globalMessage.goToLogin)} />
                 </Div>
               </Form>
             </Formik>
-            <Modal isOpen={isOpenModal}
+            <Modal
+              isOpen={isOpenModal}
               onRequestClose={closeModal}
-              ariaHideApp={false} overlayClassName="Overlay"
-              marginTop noPadding
+              ariaHideApp={false}
+              overlayClassName="Overlay"
+              marginTop
+              noPadding
             >
               <Row>
                 <Col span={24}>
                   <Div widthFull noMargin>
                     <Div modal noMargin center>
-                      <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
+                      <Image
+                        src="Images/email-sent-icon.svg"
+                        alt="email sent icon"
+                        modalIcon
+                      />
                       <Title modalTitle>{t(globalMessage.checkMail)}</Title>
                     </Div>
                     <Div withPadding noMargin widthFull heightFull center>
                       <p>{t(message.recoverInstructions)}</p>
                       <p>{t(message.checkSpam)}</p>
-                      <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                      <ButtonLink
+                        href="/login"
+                        element={
+                          <Button type="primary" marginTop>
+                            {t(globalMessage.login)}
+                          </Button>
+                        }
+                      />
                     </Div>
                   </Div>
                 </Col>
@@ -74,9 +95,13 @@ export default function ForgotPassword() {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
             </Div>
-            <Image src={"Images/illustration2.svg"} alt="Forgot password Illustration" larger />
+            <Image
+              src="Images/illustration2.svg"
+              alt="Forgot password Illustration"
+              larger
+            />
           </Col>
         </Row>
       </Layout>
@@ -86,6 +111,6 @@ export default function ForgotPassword() {
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

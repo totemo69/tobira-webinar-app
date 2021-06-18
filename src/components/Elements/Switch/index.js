@@ -1,5 +1,3 @@
-
-
 import style from 'styled-components';
 import { Switch } from 'antd';
 

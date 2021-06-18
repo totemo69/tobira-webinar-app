@@ -1,6 +1,3 @@
-import Registration from './Pages/Register';
-import TicketSummary from './Pages/TicketSummary';
-import CompletePage from './Pages/CompletePage';
 import Header from '@/components/Elements/Header';
 import Logo from '@/components/Elements/Logo';
 import Footer from '@/components/Elements/Footer';
@@ -10,8 +7,11 @@ import Button from '@/components/Elements/Button';
 import { Steps } from 'antd';
 
 import { useState } from 'react';
+import CompletePage from './Pages/CompletePage';
+import TicketSummary from './Pages/TicketSummary';
+import Registration from './Pages/Register';
 
-const {Step} = Steps;
+const { Step } = Steps;
 
 const steps = [
   {
@@ -28,8 +28,7 @@ const steps = [
   },
 ];
 
-export default function FrontWebinar(){
-
+export default function FrontWebinar() {
   const [current, setCurrent] = useState(0);
 
   const next = () => {
@@ -39,24 +38,39 @@ export default function FrontWebinar(){
   const prev = () => {
     setCurrent(current - 1);
   };
-  
-  return(
+
+  return (
     <>
       <Header>
-        <Logo frontRegistrationLogo src={"Images/logo.svg"} />
+        <Logo frontRegistrationLogo src="Images/logo.svg" />
       </Header>
       <Layout>
-        <Steps style={{backgroundColor: 'transparent', marginTop: '20px', width: '50%', 
-          margin: '0 auto', }}  current={current}>
-          {steps.map(item => (
-            <Step style={{marginTop: '90px'}}  key={item.title} title={item.title} />
+        <Steps
+          style={{
+            backgroundColor: 'transparent',
+            marginTop: '20px',
+            width: '50%',
+            margin: '0 auto',
+          }}
+          current={current}
+        >
+          {steps.map((item) => (
+            <Step
+              style={{ marginTop: '90px' }}
+              key={item.title}
+              title={item.title}
+            />
           ))}
         </Steps>
         <Layout>
           <Content>
             {steps[current].content}
-            <Button NextButton type="primary" onClick={() => next()}>Next {">"}  </Button>
-            <Button BackButton onClick={() => prev()}>{"<"} Back</Button>
+            <Button NextButton type="primary" onClick={() => next()}>
+              Next {'>'}{' '}
+            </Button>
+            <Button BackButton onClick={() => prev()}>
+              {'<'} Back
+            </Button>
           </Content>
         </Layout>
       </Layout>

@@ -1,7 +1,4 @@
-
-
 import style from 'styled-components';
-
 
 const StyledList = style.li`
     list-style: none;
@@ -17,16 +14,12 @@ const StyledList = style.li`
 const StyledUl = style.ul`
 `;
 
-const List = ({message}) => {
-  return(
-    <div>
-      <StyledUl >
-        <StyledList>{message}</StyledList>
-      </StyledUl>
-            
-    </div>
-       
-  );
-};
+const List = ({ message }) => (
+  <div>
+    <StyledUl>
+      <StyledList>{message}</StyledList>
+    </StyledUl>
+  </div>
+);
 
 export default List;

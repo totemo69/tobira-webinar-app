@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { memo, useEffect, useCallback } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -11,7 +11,11 @@ import { message } from 'antd';
 import globalMessage from '@/messages/global';
 import localMessage from '@/messages/profile';
 import { LOADING_PREFIX } from '@/utils/constants';
-import { makeSelectLoading, makeSelectLoadingStatus, makeSelectError } from '@/states/global/selector';
+import {
+  makeSelectLoading,
+  makeSelectLoadingStatus,
+  makeSelectError,
+} from '@/states/global/selector';
 import { makeSelectProfileDetails } from '@/states/profiles/selector';
 import { getProfile, updateProfile } from '@/states/profiles/action';
 import { withAuthSync } from '@/lib/auth';
@@ -54,10 +58,8 @@ export function Profile({
       if (profileUpdateStatus) {
         // Temporary only
         message.success('Success!');
-      } else {
-        if(errorMessage) {
-          message.error(errorMessage);
-        }
+      } else if (errorMessage) {
+        message.error(errorMessage);
       }
     }
   }, [isLoading, profileUpdateStatus, errorMessage]);
@@ -66,13 +68,15 @@ export function Profile({
     <>
       <Layout>
         <Div marginBottomLarge flexTop>
-          <Title secondary marginRight>{t(globalMessage.profile)} {">"} </Title>
+          <Title secondary marginRight>
+            {t(globalMessage.profile)} {'>'}{' '}
+          </Title>
           <Span breadCrumbs>{t(localMessage.editProfile)}</Span>
         </Div>
         <Div widthFull noMargin flexCenter>
           <Card ProfileCard>
             <Div widthFull noMargin paddingCard center borderBreak>
-              <Image src={"Images/avatar.svg"} alt="Tobira Logo" profileImg/>
+              <Image src="Images/avatar.svg" alt="Tobira Logo" profileImg />
               <Title profileName>{userDetails && userDetails.username}</Title>
             </Div>
             <Div widthFull paddingCard noMargin>
@@ -107,15 +111,23 @@ export function Profile({
                       <>
                         <Div widthFull>
                           <Labels asterisk>{t(globalMessage.username)}</Labels>
-                          <Input type="text" disabled value={userDetails && userDetails.username}></Input>
+                          <Input
+                            type="text"
+                            disabled
+                            value={userDetails && userDetails.username}
+                          />
                         </Div>
                         <Div widthFull marginTop>
                           <Labels asterisk>{t(globalMessage.email)}</Labels>
-                          <Input type="text" disabled value={userDetails && userDetails.email}></Input>
+                          <Input
+                            type="text"
+                            disabled
+                            value={userDetails && userDetails.email}
+                          />
                         </Div>
                         <Div widthFull marginTop>
                           <Labels asterisk>{t(globalMessage.fullName)}</Labels>
-                          <Field 
+                          <Field
                             type="text"
                             name="fullName"
                             component={Input}
@@ -124,15 +136,29 @@ export function Profile({
                         </Div>
                         <Div widthFull marginY>
                           <Labels asterisk>{t(globalMessage.contactNo)}</Labels>
-                          <Field 
+                          <Field
                             name="contact"
-                            country={'jp'}
+                            country="jp"
                             component={PhoneInput}
                           />
                           <ErrorMessage name="contact" />
                         </Div>
-                        <Div widthFull paddingCard2 flexHeight noMargin bottomRight>
-                          <Button type="primary" onClick={handleSubmit} smallBtn marginLeftAuto marginBottomLarge>{t(globalMessage.saveChanges)}</Button>
+                        <Div
+                          widthFull
+                          paddingCard2
+                          flexHeight
+                          noMargin
+                          bottomRight
+                        >
+                          <Button
+                            type="primary"
+                            onClick={handleSubmit}
+                            smallBtn
+                            marginLeftAuto
+                            marginBottomLarge
+                          >
+                            {t(globalMessage.saveChanges)}
+                          </Button>
                         </Div>
                       </>
                     )}
@@ -141,11 +167,17 @@ export function Profile({
                 <TabPane tab={t(localMessage.changePassword)} key="2">
                   <Div widthFull>
                     <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
-                    <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
+                    <Input
+                      type="email"
+                      placeholder={t(globalMessage.newPassword)}
+                    />
                   </Div>
                   <Div widthFull marginY>
                     <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                    <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
+                    <Input
+                      type="email"
+                      placeholder={t(globalMessage.confirmPassword)}
+                    />
                   </Div>
                 </TabPane>
               </Tabs>
@@ -173,26 +205,17 @@ const mapStateToProps = createStructuredSelector({
   errorMessage: makeSelectError(),
 });
 
-const mapDispatchProps = (dispatch) => {
-  return{
-    fetchProfile: () => dispatch(getProfile()),
-    doUpdateProfile: (payload) => dispatch(updateProfile(payload))
-  };
-};
+const mapDispatchProps = (dispatch) => ({
+  fetchProfile: () => dispatch(getProfile()),
+  doUpdateProfile: (payload) => dispatch(updateProfile(payload)),
+});
 
+const withConnect = connect(mapStateToProps, mapDispatchProps);
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchProps
-);
-
-export default compose(
-  withConnect,
-  memo,
-)(withAuthSync(Profile));
+export default compose(withConnect, memo)(withAuthSync(Profile));
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

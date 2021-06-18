@@ -3,143 +3,144 @@ export const scope = 'global';
 const message = {
   header: Object.values({
     key: `${scope}.h1`,
-    default: 'This is header'
+    default: 'This is header',
   }),
   login: Object.values({
     key: `${scope}.login`,
-    default: 'Log in'
+    default: 'Log in',
   }),
   email: Object.values({
     key: `${scope}.email`,
-    default: 'Email'
+    default: 'Email',
   }),
   enterEmail: Object.values({
     key: `${scope}.enterEmail`,
-    default: 'Enter your email'
+    default: 'Enter your email',
   }),
   password: Object.values({
     key: `${scope}.password`,
-    default: 'Password'
+    default: 'Password',
   }),
   enterPassword: Object.values({
     key: `${scope}.enterPassword`,
-    default: 'Enter your password'
+    default: 'Enter your password',
   }),
   username: Object.values({
     key: `${scope}.username`,
-    default: 'Username'
+    default: 'Username',
   }),
   enterUsername: Object.values({
     key: `${scope}.enterUsername`,
-    default: 'Enter your username'
+    default: 'Enter your username',
   }),
   confirmPassword: Object.values({
     key: `${scope}.confirmPassword`,
-    default: 'Confirm password'
+    default: 'Confirm password',
   }),
   forgotPassword: Object.values({
     key: `${scope}.forgotPassword`,
-    default: 'Forgot Password?'
+    default: 'Forgot Password?',
   }),
   sendEmail: Object.values({
     key: `${scope}.sendEmail`,
-    default: 'Send email'
+    default: 'Send email',
   }),
   checkMail: Object.values({
     key: `${scope}.checkMail`,
-    default: 'Check your mail!'
+    default: 'Check your mail!',
   }),
   goToLogin: Object.values({
     key: `${scope}.goToLogin`,
-    default: "Go Back To Log in"
+    default: 'Go Back To Log in',
   }),
   newPassword: Object.values({
     key: `${scope}.newPassword`,
-    default: "New password"
+    default: 'New password',
   }),
   next: Object.values({
     key: `${scope}.next`,
-    default: "Next"
+    default: 'Next',
   }),
   back: Object.values({
     key: `${scope}.back`,
-    default: "Back"
+    default: 'Back',
   }),
   success: Object.values({
     key: `${scope}.success`,
-    default: "Success"
+    default: 'Success',
   }),
   warning: Object.values({
     key: `${scope}.warning`,
-    default: "Warning!"
+    default: 'Warning!',
   }),
   profile: Object.values({
     key: `${scope}.profile`,
-    default: "Profile"
+    default: 'Profile',
   }),
   fullName: Object.values({
     key: `${scope}.fullName`,
-    default: "Full Name"
+    default: 'Full Name',
   }),
   contactNo: Object.values({
     key: `${scope}.contactNo`,
-    default: "Contact Number"
+    default: 'Contact Number',
   }),
   saveChanges: Object.values({
     key: `${scope}.saveChanges`,
-    default: "Save Changes"
+    default: 'Save Changes',
   }),
   emailSent: Object.values({
     key: `${scope}.emailSent`,
-    default: "Email sent!"
+    default: 'Email sent!',
   }),
   termsOfService: Object.values({
     key: `${scope}.termsOfService`,
-    default: 'Terms of Service'
+    default: 'Terms of Service',
   }),
   privacyPolicy: Object.values({
     key: `${scope}.privacyPolicy`,
-    default: 'Privacy Policy'
+    default: 'Privacy Policy',
   }),
   and: Object.values({
     key: `${scope}.and`,
-    default: 'and'
+    default: 'and',
   }),
   copyRight: Object.values({
     key: `${scope}.copyRight`,
-    default: 'Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved'
+    default:
+      'Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved',
   }),
   listWebinar: Object.values({
     key: `${scope}.listWebinar`,
-    default: 'List of Webinar'
+    default: 'List of Webinar',
   }),
   show: Object.values({
     key: `${scope}.show`,
-    default: "Show"
+    default: 'Show',
   }),
   entries: Object.values({
     key: `${scope}.entries`,
-    default: "entries"
+    default: 'entries',
   }),
   search: Object.values({
     key: `${scope}.search`,
-    default: "Search"
+    default: 'Search',
   }),
   searchPlaceholder: Object.values({
     key: `${scope}.searchPlaceholder`,
-    default: "Search webinar title"
+    default: 'Search webinar title',
   }),
   thankYou: Object.values({
     key: `${scope}.thankYou`,
-    default: "Thank You"
+    default: 'Thank You',
   }),
   accountActivated: Object.values({
     key: `${scope}.accountActivated`,
-    default: "Your account has been successfully activated"
+    default: 'Your account has been successfully activated',
   }),
   goBackPrevious: Object.values({
     key: `${scope}.goBackPrevious`,
-    default: "Go back to previous page"
+    default: 'Go back to previous page',
   }),
 };
 

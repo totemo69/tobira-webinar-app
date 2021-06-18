@@ -13,9 +13,7 @@ export default function Home({ children }) {
         <Layout>
           <Header />
           <Div widthXLong paddingSmall marginBottomLarge>
-            <Content>
-              {children}
-            </Content>
+            <Content>{children}</Content>
           </Div>
           <Footer />
         </Layout>

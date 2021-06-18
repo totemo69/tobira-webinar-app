@@ -1,30 +1,34 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /**
- * 
+ *
  * Dropdown
- * 
- * */ 
+ *
+ * */
 
 import styled from 'styled-components';
 import { Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 const StyledDropDown = styled(Dropdown).withConfig({
-  shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: (prop) => ![].includes(prop),
 })`
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.28px;
-  color: #4E4E4E;
+  color: #4e4e4e;
 `;
 
-const Drop = ({ username , items }) =>{
-  return(
-    <StyledDropDown overlay={items} placement="bottomRight" trigger={['click']}>
-      <a className="ant-dropdown-link">
-        {username} <DownOutlined />
-      </a>
-    </StyledDropDown>
-  );
-};
+const Drop = ({ username, items }) => (
+  <StyledDropDown overlay={items} placement="bottomRight" trigger={['click']}>
+    <a
+      href="#"
+      role="button"
+      onClick={(e) => e.preventDefault()}
+      className="ant-dropdown-link"
+    >
+      {username} <DownOutlined />
+    </a>
+  </StyledDropDown>
+);
 
 export default Drop;

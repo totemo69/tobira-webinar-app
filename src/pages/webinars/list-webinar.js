@@ -6,7 +6,11 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
-import { CaretDownFilled, EyeTwoTone, FileImageOutlined } from '@ant-design/icons';
+import {
+  CaretDownFilled,
+  EyeTwoTone,
+  FileImageOutlined,
+} from '@ant-design/icons';
 
 import { getZoomAccount } from '@/states/accounts/actions';
 import { getWebinarList } from '@/states/webinar/actions';
@@ -30,7 +34,6 @@ import Search from '@/components/Elements/Search';
 import Modal from '@/components/Elements/Modal';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
-
 
 export function ListOfWebinar({
   getZoomAccounts,
@@ -60,9 +63,7 @@ export function ListOfWebinar({
   const viewDetails = (id) => {
     console.log(id);
   };
-  
 
-  
   useEffect(() => {
     const timer = setTimeout(() => {
       if (zoomAccountList.length === 0) {
@@ -78,9 +79,7 @@ export function ListOfWebinar({
     {
       title: '',
       dataIndex: 'image',
-      render: () => (
-        <FileImageOutlined />
-      ),
+      render: () => <FileImageOutlined />,
     },
     {
       title: t(message.title),
@@ -114,15 +113,20 @@ export function ListOfWebinar({
       title: t(message.action),
       dataIndex: 'action',
       align: 'center',
-      render: id => (
-        <Button noMargin noBoxShadow type='link' onClick={()=>viewDetails(id)}>
+      render: (id) => (
+        <Button
+          noMargin
+          noBoxShadow
+          type="link"
+          onClick={() => viewDetails(id)}
+        >
           <EyeTwoTone />
           {t(message.viewDetails)}
         </Button>
       ),
     },
   ];
-  
+
   return (
     <>
       <Layout>
@@ -134,7 +138,12 @@ export function ListOfWebinar({
             <Div marginY betweenCenter widthFull>
               <Div noMargin>
                 {t(globalMessage.show)}
-                <Select showPages paddingLeft defaultValue="10" suffixIcon={<CaretDownFilled />} >
+                <Select
+                  showPages
+                  paddingLeft
+                  defaultValue="10"
+                  suffixIcon={<CaretDownFilled />}
+                >
                   <Option value="10">10</Option>
                   <Option value="20">20</Option>
                   <Option value="30">30</Option>
@@ -144,34 +153,53 @@ export function ListOfWebinar({
                 {t(globalMessage.entries)}
               </Div>
               <Div noMargin flexCenterEnd>
-                {t(globalMessage.search)} <Search placeholder={t(globalMessage.searchPlaceholder)} allowClear marginLeft widthMedium />
+                {t(globalMessage.search)}{' '}
+                <Search
+                  placeholder={t(globalMessage.searchPlaceholder)}
+                  allowClear
+                  marginLeft
+                  widthMedium
+                />
               </Div>
             </Div>
             <Table dataSource={webinarLists} columns={columns} />
           </Card>
         </Div>
-        <Modal isOpen={isOpenModal}
+        <Modal
+          isOpen={isOpenModal}
           onRequestClose={closeModal}
-          ariaHideApp={false} overlayClassName="Overlay"
-          marginTop noPadding
+          ariaHideApp={false}
+          overlayClassName="Overlay"
+          marginTop
+          noPadding
         >
           <Row>
             <Col span={24}>
               <Div widthFull noMargin>
                 <Div modal noMargin center>
-                  <Image src={"Images/warning.svg"} alt="success icon" modalIcon/>
+                  <Image
+                    src="Images/warning.svg"
+                    alt="success icon"
+                    modalIcon
+                  />
                   <Title modalTitle>{t(globalMessage.warning)}!</Title>
                 </Div>
                 <Div flexColCenter widthFull heightFull>
-                  <Div center marginYLarge>{t(message.setupMessage)}</Div>
+                  <Div center marginYLarge>
+                    {t(message.setupMessage)}
+                  </Div>
                 </Div>
                 <Div widthFull marginTopLarge heightFull>
                   <Row>
                     <Col span={12}>
-                      <Button onClick={closeModal} defaultButton>{t(message.buttonLater)}</Button>
+                      <Button onClick={closeModal} defaultButton>
+                        {t(message.buttonLater)}
+                      </Button>
                     </Col>
                     <Col span={12}>
-                      <Button onClick={connectToZoom} type="primary">{t(message.buttonSetup)}</Button>
+                      <Button onClick={connectToZoom} type="primary">
+                        {t(message.buttonSetup)}
+                      </Button>
                     </Col>
                   </Row>
                 </Div>
@@ -183,7 +211,6 @@ export function ListOfWebinar({
     </>
   );
 }
-
 
 ListOfWebinar.proptTypes = {
   zoomAccountList: PropTypes.any,
@@ -201,24 +228,17 @@ const mapStateToProps = createStructuredSelector({
   webinarLists: makeSelectWebinars(),
 });
 
-const mapPropsToDispatch = (dispatch) => {
-  return{
-    getZoomAccounts: () => dispatch(getZoomAccount()),
-    getWebinarLists: () => dispatch(getWebinarList()),
-  };
-};
+const mapPropsToDispatch = (dispatch) => ({
+  getZoomAccounts: () => dispatch(getZoomAccount()),
+  getWebinarLists: () => dispatch(getWebinarList()),
+});
 
-const withConnect = connect(
-  mapStateToProps,
-  mapPropsToDispatch,
-);
+const withConnect = connect(mapStateToProps, mapPropsToDispatch);
 
-export default compose(
-  withConnect,
-)(ListOfWebinar);
+export default compose(withConnect)(ListOfWebinar);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

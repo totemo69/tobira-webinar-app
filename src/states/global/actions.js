@@ -1,10 +1,4 @@
-import {
-  LOAD_ERRORS,
-  CLEAR_ERRORS,
-  LOADING,
-  LOAD_SUCCESS,
-} from './types';
-
+import { LOAD_ERRORS, CLEAR_ERRORS, LOADING, LOAD_SUCCESS } from './types';
 
 export function loadErrors(error) {
   return {

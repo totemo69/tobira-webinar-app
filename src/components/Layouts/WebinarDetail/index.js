@@ -3,11 +3,10 @@ import Header from '@/components/Modules/Header';
 import Content from '@/components/Elements/Content';
 import Footer from '@/components/Modules/Footer';
 
-
 export default function WebinarDetail({ children }) {
   return (
     <Layout bgPrimary>
-      <Header withLogo/>
+      <Header withLogo />
       <Content bgNone narrowPadding>
         {children}
       </Content>

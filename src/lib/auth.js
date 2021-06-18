@@ -11,8 +11,8 @@ export const logout = () => {
   Cookie.clearAuth();
 };
 
-export const withAuthSync = WrappedComponent => {
-  const Wrapper = props => {
+export const withAuthSync = (WrappedComponent) => {
+  const Wrapper = (props) => {
     useEffect(() => {
       const [token] = Cookie.getAccessToken();
       // If there's no token, it means the user is not logged in.

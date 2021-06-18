@@ -3,15 +3,15 @@ export const scope = 'signUp';
 const message = {
   signUp: Object.values({
     key: `${scope}.signUp`,
-    default: 'Sign Up'
+    default: 'Sign Up',
   }),
   agreeMessage: Object.values({
     key: `${scope}.agreeMessage`,
-    default: 'By signing up, you agree to the'
+    default: 'By signing up, you agree to the',
   }),
   haveAccount: Object.values({
     key: `${scope}.haveAccount`,
-    default: 'Already have an account?'
+    default: 'Already have an account?',
   }),
   loginHere: Object.values({
     key: `${scope}.loginHere`,
@@ -19,7 +19,8 @@ const message = {
   }),
   verificationMsg: Object.values({
     key: `${scope}.verificationMsg`,
-    default: 'A verification mail has been sent to your email account. Please check your email and click the link to confirm.',
+    default:
+      'A verification mail has been sent to your email account. Please check your email and click the link to confirm.',
   }),
 };
 

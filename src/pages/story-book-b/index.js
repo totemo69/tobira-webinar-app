@@ -12,43 +12,47 @@ import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 
-export function SampleComponent({ doCheckProfile, doCheckPlans, doCheckPlansCount, doCheckPayment, doCheckPaymentsCount }){
+export function SampleComponent({
+  doCheckProfile,
+  doCheckPlans,
+  doCheckPlansCount,
+  doCheckPayment,
+  doCheckPaymentsCount,
+}) {
   useEffect(() => {
     // code here
   }, []);
-  
-  return(
+
+  return (
     <>
       <Layout>
         <Row>
           <Col span={24}>
             <Div widthFull center>
               <Title modalTitle>CHECK USER PROFILE API</Title>
-              <Button type="primary" marginTop
-                onClick={() => doCheckProfile()}
-              >
+              <Button type="primary" marginTop onClick={() => doCheckProfile()}>
                 TEST PROFILE
               </Button>
               <Title modalTitle>CHECK PLANS API</Title>
-              <Button type="primary" marginTop
-                onClick={() => doCheckPlans()}
-              >
+              <Button type="primary" marginTop onClick={() => doCheckPlans()}>
                 TEST PLANS
               </Button>
               <Title modalTitle>CHECK PLANS COUNT API</Title>
-              <Button type="primary" marginTop
+              <Button
+                type="primary"
+                marginTop
                 onClick={() => doCheckPlansCount()}
               >
                 TEST PLANS COUNT
               </Button>
               <Title modalTitle>CHECK PAYMENTS API</Title>
-              <Button type="primary" marginTop
-                onClick={() => doCheckPayment()}
-              >
+              <Button type="primary" marginTop onClick={() => doCheckPayment()}>
                 TEST PAYMENTS
               </Button>
               <Title modalTitle>CHECK PAYMENTS COUNT API</Title>
-              <Button type="primary" marginTop
+              <Button
+                type="primary"
+                marginTop
                 onClick={() => doCheckPaymentsCount()}
               >
                 TEST PAYMENTS COUNT
@@ -79,12 +83,6 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  null,
-  mapDispatchToProps
-);
+const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(SampleComponent);
+export default compose(withConnect, memo)(SampleComponent);

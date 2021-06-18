@@ -7,6 +7,7 @@ import rootSaga from './rootSaga';
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
+    /* eslint-disable default-case, global-require */
     const { composeWithDevTools } = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
   }

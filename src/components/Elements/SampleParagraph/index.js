@@ -1,38 +1,27 @@
-
-
-import style, {css} from 'styled-components';
+import style, { css } from 'styled-components';
 
 const StyledParagraph = style.p`
-
-    ${props => 
+  ${(props) =>
     props.emailSent &&
-        css`
-            margin-top: 19px;
-            font: normal normal 600 16px/25px Poppins;
-        `
-}
+    css`
+      margin-top: 19px;
+      font: normal normal 600 16px/25px Poppins;
+    `}
 
-    ${props => 
+  ${(props) =>
     props.colorBlue &&
-        css`
-            color: #0E71EB;
-            font-weight: bold;
-            font-size: 12px;
-            character-spacing: 20;
-        `
-}
+    css`
+      color: #0e71eb;
+      font-weight: bold;
+      font-size: 12px;
+      character-spacing: 20;
+    `}
 `;
 
+const Paragraph = ({ content }) => (
+  <>
+    <StyledParagraph emailSent>{content}</StyledParagraph>
+  </>
+);
 
-const Paragraph = ({content}) => {
-  return(
-    <>
-      <StyledParagraph emailSent>{content}</StyledParagraph>
-    </>
-  );
-};
-
-export {
-  Paragraph,
-  StyledParagraph
-};
+export { Paragraph, StyledParagraph };

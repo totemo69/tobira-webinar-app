@@ -14,19 +14,21 @@ import UnorderedList from '@/components/Elements/UnorderedList';
 import List from '@/components/Elements/List';
 import Button from '@/components/Elements/Button';
 
-export default function PrivacyPolicy(){
+export default function PrivacyPolicy() {
   const { t } = useTranslation();
   const router = useRouter();
-  
-  return(
+
+  return (
     <>
       <Layout>
         <Div widthFull center noMargin marginBottomLarge>
-          <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+          <Image src="Images/logo.svg" alt="Tobira Logo" logo />
         </Div>
         <Card TermsAndPrivacy>
           <Div doubleDividerBlue withPadding widthFull>
-            <Title secondary center>{t(globalMessage.privacyPolicy)}</Title>
+            <Title secondary center>
+              {t(globalMessage.privacyPolicy)}
+            </Title>
           </Div>
           <Div paddingTop widthFull black>
             {t(message.privacyContent1)}:
@@ -39,22 +41,17 @@ export default function PrivacyPolicy(){
               <List asterisk>{t(message.privacyItem6)}</List>
               <List asterisk>{t(message.privacyItem7)}</List>
             </UnorderedList>
-            <p>
-              {t(message.privacyContent2)}.
-            </p>
-            <p>
-              {t(message.privacyContent3)}.
-            </p>
-            <p>
-              {t(message.privacyContent4)}.
-            </p>
-            <p>
-              {t(message.privacyContent5)}.
-            </p>
+            <p>{t(message.privacyContent2)}.</p>
+            <p>{t(message.privacyContent3)}.</p>
+            <p>{t(message.privacyContent4)}.</p>
+            <p>{t(message.privacyContent5)}.</p>
           </Div>
           <Div paddingYLg widthFull center>
-            <Button type="primary" onClick={() => router.back()}
-              mediumBtn marginTop 
+            <Button
+              type="primary"
+              onClick={() => router.back()}
+              mediumBtn
+              marginTop
             >
               {t(globalMessage.goBackPrevious)}
             </Button>
@@ -67,6 +64,6 @@ export default function PrivacyPolicy(){
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

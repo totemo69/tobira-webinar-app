@@ -6,9 +6,7 @@ export default function TermsAndPolicy({ children }) {
   return (
     <>
       <Layout bgGray>
-        <Content TermsAndPolicy>
-          {children}
-        </Content>
+        <Content TermsAndPolicy>{children}</Content>
         <Footer />
       </Layout>
     </>

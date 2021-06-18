@@ -1,71 +1,63 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledLabels = styled.label`
-    margin-bottom: 0.25rem;
-    width: 80%;
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: #4e4e4e;
-    letter-spacing: 0.24px;
+  margin-bottom: 0.25rem;
+  width: 80%;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4e4e4e;
+  letter-spacing: 0.24px;
 
-    ${ props =>
+  ${(props) =>
     props.asterisk &&
-        css`
-            &::after {
-                content: "*";
-                font-size: 12px;
-                color: #ff0033;
-            }
-        `
-}
+    css`
+      &::after {
+        content: '*';
+        font-size: 12px;
+        color: #ff0033;
+      }
+    `}
 
-    ${ props =>
+  ${(props) =>
     props.light &&
-        css`
-        font-size: 10px;
-        font-weight: 400;
-        color: #b0b0b0;
-        letter-spacing: 0.20px;
-        line-height: 0.16px;
-        `
-}
+    css`
+      font-size: 10px;
+      font-weight: 400;
+      color: #b0b0b0;
+      letter-spacing: 0.2px;
+      line-height: 0.16px;
+    `}
 
-    ${props => 
+    ${(props) =>
     props.center &&
-        css`
-        margin: 0 auto;
-        `
-}
+    css`
+      margin: 0 auto;
+    `}
 
-    ${props => 
+    ${(props) =>
     props.textCenter &&
-        css`
-        text-align: center;
-        `
-}
+    css`
+      text-align: center;
+    `}
 
-    ${props => 
+    ${(props) =>
     props.textLg &&
-        css`
-        font-size: 15px;
-        `
-}
+    css`
+      font-size: 15px;
+    `}
 
-    ${props => 
+    ${(props) =>
     props.textBlue &&
-        css`
-        color: #0E71EB;
-        `
-}
+    css`
+      color: #0e71eb;
+    `}
 
-    ${props => 
+    ${(props) =>
     props.bold &&
-        css`
-        font-weight: 600;
-        `
-}
+    css`
+      font-weight: 600;
+    `}
 `;
-
 
 export default StyledLabels;

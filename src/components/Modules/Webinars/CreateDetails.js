@@ -19,9 +19,7 @@ import DatePicker from '@/components/Elements/DatePicker';
 import TimePicker from '@/components/Elements/TimePicker';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
-
 import { createWebinar } from '@/validations/webinar';
-
 
 export default function CreateWebinarDetails({
   zoomAccounts = [],
@@ -30,14 +28,14 @@ export default function CreateWebinarDetails({
   submitStatus,
 }) {
   const [selectedTimezone, setSelectedTimezone] = useState(
-    Intl.DateTimeFormat().resolvedOptions().timeZone
+    Intl.DateTimeFormat().resolvedOptions().timeZone,
   );
 
   const onSubmit = (e) => {
     console.log(e);
     submitStatus(true);
   };
-  return(
+  return (
     <>
       <Formik
         initialValues={{
@@ -50,10 +48,12 @@ export default function CreateWebinarDetails({
           durationHour: webinarForm.durationHour,
           durationMinute: webinarForm.durationMinute,
           image: '',
-          schedules: [{
-            scheduleDate: webinarForm.schedules[0].scheduleDate,
-            scheduleTime: webinarForm.schedules[0].scheduleTime,
-          }]
+          schedules: [
+            {
+              scheduleDate: webinarForm.schedules[0].scheduleDate,
+              scheduleTime: webinarForm.schedules[0].scheduleTime,
+            },
+          ],
         }}
         onSubmit={onSubmit}
         validationSchema={createWebinar}
@@ -62,13 +62,15 @@ export default function CreateWebinarDetails({
         {({ setFieldValue, submitForm, values }) => {
           setSubmitForm(submitForm);
           return (
-            <Form id="webinar" >
+            <Form id="webinar">
               <Div marginTop>
-                <Labels textBlue bold>Management Secion</Labels>
+                <Labels textBlue bold>
+                  Management Secion
+                </Labels>
               </Div>
               <Div marginY widthFull>
                 <Labels asterisk>Webinar Title</Labels>
-                <Field 
+                <Field
                   defaultValue={values.managementTitle}
                   type="text"
                   name="managementTitle"
@@ -77,7 +79,13 @@ export default function CreateWebinarDetails({
                 />
                 <ErrorMessage name="managementTitle" />
               </Div>
-              <Div widthFull marginY paddingBottomXL betweenBottom doubleDividerBlue>
+              <Div
+                widthFull
+                marginY
+                paddingBottomXL
+                betweenBottom
+                doubleDividerBlue
+              >
                 <Div>
                   <Labels asterisk>Zoom Account</Labels>
                   <Field
@@ -85,32 +93,55 @@ export default function CreateWebinarDetails({
                     component={Select}
                     suffixIcon={<CaretDownFilled />}
                     defaultValue={values.webinarAccount}
-                    onChange={val => setFieldValue('webinarAccount', val)}
+                    onChange={(val) => setFieldValue('webinarAccount', val)}
                   >
-                    <Option value="" disabled>Select an account</Option>
+                    <Option value="" disabled>
+                      Select an account
+                    </Option>
                     {zoomAccounts.map((option) => (
-                      <option key={option.id} value={option.id}>{option.zoomEmail}</option>
+                      <option key={option.id} value={option.id}>
+                        {option.zoomEmail}
+                      </option>
                     ))}
                   </Field>
                   <ErrorMessage name="webinarAccount" />
                 </Div>
-                <Button addBtn><PlusSquareFilled /> <a href="/account">Add Account</a></Button>
+                <Button addBtn>
+                  <PlusSquareFilled /> <a href="/account">Add Account</a>
+                </Button>
               </Div>
               <Div marginTop marginBottomLarge>
-                <Labels textBlue bold>Basic Details</Labels>
+                <Labels textBlue bold>
+                  Basic Details
+                </Labels>
               </Div>
-              <Div marginY widthFull paddingBottomXL betweenBottom doubleDividerBlue flexTop>
+              <Div
+                marginY
+                widthFull
+                paddingBottomXL
+                betweenBottom
+                doubleDividerBlue
+                flexTop
+              >
                 <Div widthFull>
                   <Labels asterisk>Webinar Image</Labels>
                   <Div imageContainer flexColCenter>
-                    <p><Image src={"/images/image.svg"} alt="Webinar image container" iconLg /></p>
-                    <Labels textBlue textCenter bold textLg>Upload a photo</Labels>
+                    <p>
+                      <Image
+                        src="/images/image.svg"
+                        alt="Webinar image container"
+                        iconLg
+                      />
+                    </p>
+                    <Labels textBlue textCenter bold textLg>
+                      Upload a photo
+                    </Labels>
                   </Div>
                 </Div>
                 <Div widthFull paddingX>
                   <Div widthFull marginBottomLarge>
                     <Labels asterisk>Webinar Title</Labels>
-                    <Field 
+                    <Field
                       type="text"
                       name="title"
                       placeholder="Enter webinar title"
@@ -133,7 +164,9 @@ export default function CreateWebinarDetails({
                 </Div>
               </Div>
               <Div marginTop>
-                <Labels textBlue bold>Schedule</Labels>
+                <Labels textBlue bold>
+                  Schedule
+                </Labels>
               </Div>
               <Div marginTop widthFull>
                 <Labels asterisk>Webinar Plan</Labels>
@@ -141,12 +174,14 @@ export default function CreateWebinarDetails({
                   buttonStyle="solid"
                   name="frequency"
                   defaultValue={values.frequency}
-                  onChange={e => {
+                  onChange={(e) => {
                     setFieldValue('frequency', e.target.value);
                   }}
                 >
                   <Radio value={SCHEDULE_TYPE.ONETIME}>One-Time</Radio>
-                  <Radio value={SCHEDULE_TYPE.RECURRING} disabled>Recurring</Radio>
+                  <Radio value={SCHEDULE_TYPE.RECURRING} disabled>
+                    Recurring
+                  </Radio>
                 </Radio.Group>
               </Div>
               <Div marginY flexTop widthFull>
@@ -155,8 +190,8 @@ export default function CreateWebinarDetails({
                   <DatePicker
                     name="schedules[0].scheduleDate"
                     defaultValue={values.schedules[0].scheduleDate}
-                    format={'MM/DD/YYYY'}
-                    onChange={e => {
+                    format="MM/DD/YYYY"
+                    onChange={(e) => {
                       console.log(e);
                       setFieldValue('schedules[0].scheduleDate', e);
                     }}
@@ -171,7 +206,7 @@ export default function CreateWebinarDetails({
                     use12Hours
                     minuteStep={30}
                     format="h:mm a"
-                    onChange={e => {
+                    onChange={(e) => {
                       console.log(e);
                       setFieldValue('schedules[0].scheduleTime', e);
                     }}
@@ -185,7 +220,7 @@ export default function CreateWebinarDetails({
                   <TimezoneSelect
                     name="timezone"
                     value={values.timezone}
-                    onChange={e => {
+                    onChange={(e) => {
                       console.log(e);
                       setSelectedTimezone(e);
                       setFieldValue('timezone', e);
@@ -202,14 +237,16 @@ export default function CreateWebinarDetails({
                         component={Select}
                         suffixIcon={<CaretDownFilled />}
                         defaultValue={values.durationHour}
-                        onChange={val => setFieldValue('durationHour', val)}
+                        onChange={(val) => setFieldValue('durationHour', val)}
                       >
-                        <Option value="" disabled>Hour</Option>
-                        {Array.from(Array(11), (_,i) => (
+                        <Option value="" disabled>
+                          Hour
+                        </Option>
+                        {Array.from(Array(11), (_, i) => (
                           <option value={i}>{i}</option>
                         ))}
-                      </Field> {' '} hr {' '}
-                      <ErrorMessage name="durationHour" />
+                      </Field>{' '}
+                      hr <ErrorMessage name="durationHour" />
                     </Col>
                     <Col span={12}>
                       <Field
@@ -217,20 +254,22 @@ export default function CreateWebinarDetails({
                         component={Select}
                         suffixIcon={<CaretDownFilled />}
                         defaultValue={values.durationMinute}
-                        onChange={val => setFieldValue('durationMinute', val)}
+                        onChange={(val) => setFieldValue('durationMinute', val)}
                       >
-                        <Option value="" disabled>Minutes</Option>
+                        <Option value="" disabled>
+                          Minutes
+                        </Option>
                         <Option value="00">00</Option>
                         <Option value="15">15</Option>
                         <Option value="30">30</Option>
                         <Option value="45">45</Option>
-                      </Field> {' '} mins {' '}
-                      <ErrorMessage name="durationMinute" />
+                      </Field>{' '}
+                      mins <ErrorMessage name="durationMinute" />
                     </Col>
                   </Row>
                 </Div>
               </Div>
-            </Form >
+            </Form>
           );
         }}
       </Formik>

@@ -1,35 +1,23 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectWebinarsDomain = state => state.webinar || initialState;
+const selectWebinarsDomain = (state) => state.webinar || initialState;
 
 /**
  * Default selector used by Counter
  */
 
 const makeSelectWebinar = () =>
-  createSelector(
-    selectWebinarsDomain,
-    substate => substate,
-  );
+  createSelector(selectWebinarsDomain, (substate) => substate);
 
 const makeSelectWebinars = () =>
-  createSelector(
-    selectWebinarsDomain,
-    substate => substate.webinarList,
-  );
+  createSelector(selectWebinarsDomain, (substate) => substate.webinarList);
 
 const makeSelectWebinarDetails = () =>
-  createSelector(
-    selectWebinarsDomain,
-    substate => substate.webinarDetails,
-  );
+  createSelector(selectWebinarsDomain, (substate) => substate.webinarDetails);
 
 const makeSelectWebinarForm = () =>
-  createSelector(
-    selectWebinarsDomain,
-    substate => substate.webinar,
-  );
+  createSelector(selectWebinarsDomain, (substate) => substate.webinar);
 
 export default makeSelectWebinar;
 export { makeSelectWebinars, makeSelectWebinarDetails, makeSelectWebinarForm };

@@ -17,7 +17,6 @@ import { submitZoomCode } from '@/states/accounts/actions';
 import { makeSelectLoading } from '@/states/global/selector';
 import { makeSelectAccount } from '@/states/accounts/selector';
 
-
 export function Callback({ doSubmitCode, isLoading, zoomAccount }) {
   // const { t } = useTranslation();
   const route = useRouter();
@@ -35,17 +34,13 @@ export function Callback({ doSubmitCode, isLoading, zoomAccount }) {
     }
   }, [isLoading, zoomAccount]);
 
-  const goToComplete = useCallback(
-    () => {
-      route.push(WEBINAR_ROUTE.ZOOM_ACCOUNT_COMPLETE);
-    },[],
-  );
+  const goToComplete = useCallback(() => {
+    route.push(WEBINAR_ROUTE.ZOOM_ACCOUNT_COMPLETE);
+  }, []);
 
-  const submitCode = useCallback(
-    async (code) => {
-      doSubmitCode({ zoomCode: code });
-    },[],
-  );
+  const submitCode = useCallback(async (zoomCode) => {
+    doSubmitCode({ zoomCode });
+  }, []);
 
   return (
     <>
@@ -53,10 +48,10 @@ export function Callback({ doSubmitCode, isLoading, zoomAccount }) {
         <Row>
           <Col span={24}>
             <Div widthFull marginBottom center>
-              <Image src={"/images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Div widthFull marginBottom center>
-              <Image src={"/images/illustration1.svg"} alt="Tobira Logo" logo />
+              <Image src="/images/illustration1.svg" alt="Tobira Logo" logo />
             </Div>
             <Div widthFull marginBottom center>
               <Spin size="large" />
@@ -85,18 +80,12 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
-
-export default compose(
-  withConnect,
-)(Callback);
+export default compose(withConnect)(Callback);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

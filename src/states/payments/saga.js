@@ -1,25 +1,25 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
+import { API } from '@/utils/constants';
+import { request } from '@/utils/request';
 import { PAYMENTS_COUNT, PAYMENTS_GET } from './types';
 import { paymentSuccess, paymentFailed } from './action';
-import { API } from '@/utils/constants';
-import {request}  from '@/utils/request';
 
 function* getPaymentSaga() {
-  try{
+  try {
     const data = yield call(request, API.AUTH_PAYMENTS_GET);
     yield put(paymentSuccess(data));
     console.log(data);
-  } catch(error){
+  } catch (error) {
     yield put(paymentFailed(error.message));
   }
 }
 
 function* getPaymentCountSaga() {
-  try{
+  try {
     const data = yield call(request, API.AUTH_PAYMENTS_COUNT);
     yield put(paymentSuccess(data));
     console.log(data);
-  } catch(error){
+  } catch (error) {
     yield put(paymentFailed(error.message));
   }
 }

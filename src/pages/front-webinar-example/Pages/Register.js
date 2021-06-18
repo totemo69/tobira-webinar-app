@@ -7,23 +7,36 @@ import Option from '@/components/Elements/Option';
 import Textarea from '@/components/Elements/Textarea';
 import { Paragraph } from '@/components/Elements/SampleParagraph';
 
-
-export default function FronRegistration(){
-  return(
+export default function FronRegistration() {
+  return (
     <>
-      
-      <Div style={{margin: '0 auto', textAlign: 'center', color: '#4E4E4E',font: "normal normal medium 20px/30px Poppins",marginTop: '58px'}}>
-        <Paragraph content={'Register'}></Paragraph>
+      <Div
+        style={{
+          margin: '0 auto',
+          textAlign: 'center',
+          color: '#4E4E4E',
+          font: 'normal normal medium 20px/30px Poppins',
+          marginTop: '58px',
+        }}
+      >
+        <Paragraph content="Register" />
       </Div>
-      <Div style={{alignSelf: 'center', width: '628px', margin: '0 auto', marginTop: '74px'}}>
+      <Div
+        style={{
+          alignSelf: 'center',
+          width: '628px',
+          margin: '0 auto',
+          marginTop: '74px',
+        }}
+      >
         <Label asterisk>Email Address</Label>
-        <Input placeholder="Email Address"></Input>
+        <Input placeholder="Email Address" />
 
         <Label asterisk>First Name</Label>
-        <Input placeholder="First Name"></Input>
+        <Input placeholder="First Name" />
 
         <Label asterisk>Last Name</Label>
-        <Input placeholder="Last Name"></Input>
+        <Input placeholder="Last Name" />
 
         <Label asterisk>Gender</Label>
         <Radio.Group>
@@ -33,14 +46,18 @@ export default function FronRegistration(){
         </Radio.Group>
 
         <Label asterisk>Industry Type</Label>
-        <Select placeholder="Industry Type"> 
+        <Select placeholder="Industry Type">
           <Option value="A">Option A</Option>
           <Option value="B">Option B</Option>
         </Select>
 
         <Label asterisk>Question & Comments</Label>
-        <Textarea autoSize={{ minRows: 8, maxRows: 8 }} showCount maxLength={5000} placeholder="Question & Comments"></Textarea>
-            
+        <Textarea
+          autoSize={{ minRows: 8, maxRows: 8 }}
+          showCount
+          maxLength={5000}
+          placeholder="Question & Comments"
+        />
       </Div>
     </>
   );

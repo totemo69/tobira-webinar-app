@@ -1,37 +1,62 @@
 {
-  "env": {
-    "node": true,
-    "commonjs": true,
-    "browser": true,
-    "es2021": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "react"
-  ],
-  "settings": {
-    "react": {
-      "version": "detect"
+    "extends": [
+        "airbnb",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "prettier",
+        "react"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {},
+            {
+                "usePrettierrc": true
+            }
+        ],
+        "indent": [
+            2,
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],        
+        "import/imports-first": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
+        "no-template-curly-in-string": "off",
+        "no-confusing-arrow": 0,
+        "no-use-before-define": 0,
+        "arrow-body-style": [2, "as-needed"],
+        "prefer-template": 2,
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": 0,
+        "react/jsx-filename-extension": "off",
+        "react/destructuring-assignment": 0,
+        "react/jsx-closing-tag-location": 0,
+        "react/forbid-prop-types": 0,
+        "react/jsx-first-prop-new-line": [2, "multiline"],
+        "react/jsx-no-target-blank": 0,
+        "react/jsx-uses-vars": 2,
+        "react/require-default-props": 0,
+        "react/require-extension": 0,
+        "react/self-closing-comp": 0,
+        "react/jsx-props-no-spreading": 0,
+        "react/sort-comp": 0     
     }
-  },
-  "rules": {
-    "react/react-in-jsx-scope": 0,
-    "react/display-name": 0,
-    "react/prop-types": 0,
-    "semi": "error",
-    "indent": ["error", 2]
-  },
-  "globals": {
-    "React": "writable"
-  }
 }
