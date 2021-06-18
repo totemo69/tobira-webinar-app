@@ -6,6 +6,7 @@
 
 import styled, { css } from 'styled-components';
 import { Input } from 'antd';
+import PropTypes from 'prop-types';
 
 const { TextArea } = Input;
 
@@ -37,4 +38,21 @@ const StyledTextArea = styled(TextArea).withConfig({
     `};
 `;
  
-export default StyledTextArea;
+const WrapTextArea = ({
+  field,
+  ...props
+}) => {
+  const inputProps = { ...props };
+  return (
+    <StyledTextArea
+      {...field}
+      {...inputProps}
+    />
+  );
+};
+
+WrapTextArea.propTypes = {
+  field: PropTypes.any,
+};
+
+export default WrapTextArea;
