@@ -41,33 +41,57 @@ export default function ResetPassword() {
                 <Title marginBottom>{t(message.resetPassword)}</Title>
                 <Div>
                   <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.newPassword)}></Input>
+                  <Input
+                    type="email"
+                    placeholder={t(globalMessage.newPassword)}
+                  />
                 </Div>
                 <Div>
                   <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                  <Input type="email" placeholder={t(globalMessage.confirmPassword)}></Input>
+                  <Input
+                    type="email"
+                    placeholder={t(globalMessage.confirmPassword)}
+                  />
                 </Div>
-                <Button type="primary" marginTop onClick={openModal}>{t(message.resetPassword)}</Button>
+                <Button type="primary" marginTop onClick={openModal}>
+                  {t(message.resetPassword)}
+                </Button>
                 <Div marginTop center>
-                  <Link href="/login" name={t(globalMessage.goToLogin)}></Link>
+                  <Link href="/login" name={t(globalMessage.goToLogin)} />
                 </Div>
               </Form>
             </Formik>
-            <Modal isOpen={isOpenModal}
+            <Modal
+              isOpen={isOpenModal}
               onRequestClose={closeModal}
-              ariaHideApp={false} overlayClassName="Overlay"
-              marginTop noPadding
+              ariaHideApp={false}
+              overlayClassName="Overlay"
+              marginTop
+              noPadding
             >
               <Row>
                 <Col span={24}>
                   <Div widthFull noMargin>
                     <Div modal noMargin center>
-                      <Image src={"Images/success-icon.svg"} alt="success icon" modalIcon/>
+                      <Image
+                        src="Images/success-icon.svg"
+                        alt="success icon"
+                        modalIcon
+                      />
                       <Title modalTitle>{t(globalMessage.success)}!</Title>
                     </Div>
                     <Div flexColCenter noMargin widthFull heightFull>
-                      <Div center marginYLarge>{t(message.resetSuccess)}</Div>
-                      <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                      <Div center marginYLarge>
+                        {t(message.resetSuccess)}
+                      </Div>
+                      <ButtonLink
+                        href="/login"
+                        element={
+                          <Button type="primary" marginTop>
+                            {t(globalMessage.login)}
+                          </Button>
+                        }
+                      />
                     </Div>
                   </Div>
                 </Col>
@@ -76,9 +100,13 @@ export default function ResetPassword() {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
             </Div>
-            <Image src={"Images/illustration3.svg"} alt="Forgot password Illustration" twoLarger />
+            <Image
+              src="Images/illustration3.svg"
+              alt="Forgot password Illustration"
+              twoLarger
+            />
           </Col>
         </Row>
       </Layout>
@@ -88,6 +116,6 @@ export default function ResetPassword() {
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

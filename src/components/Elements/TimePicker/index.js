@@ -1,14 +1,14 @@
 /**
- * 
+ *
  * TimePicker
- * 
+ *
  */
 
-import style, {css} from 'styled-components';
-import {TimePicker} from 'antd';
+import style, { css } from 'styled-components';
+import { TimePicker } from 'antd';
 
 const StyledTimePicker = style(TimePicker).withConfig({
-  shouldForwardProp: prop => !['small'].includes(prop)
+  shouldForwardProp: (prop) => !['small'].includes(prop),
 })`
   margin: 0 auto;
   width: 100%;
@@ -27,18 +27,17 @@ const StyledTimePicker = style(TimePicker).withConfig({
       box-shadow: 0px 1px 1px #0E71EB;
   }
 
-  ${props =>
+  ${(props) =>
     props.error &&
-      css`
-          border: 1px solid #ff0033;
-  `};
+    css`
+      border: 1px solid #ff0033;
+    `};
 
-  ${props =>
+  ${(props) =>
     props.small &&
-      css`
-        width: 80%;
-  `};
+    css`
+      width: 80%;
+    `};
 `;
-
 
 export default StyledTimePicker;

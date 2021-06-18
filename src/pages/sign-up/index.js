@@ -4,13 +4,17 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { compose  } from 'redux';
+import { compose } from 'redux';
 import { Row, Col, message } from 'antd';
 import { Formik, Field } from 'formik';
 
 import { LOADING_PREFIX } from '@/utils/constants';
 import { signUp } from '@/states/sign-up/action';
-import { makeSelectLoading, makeSelectLoadingStatus, makeSelectError } from '@/states/global/selector';
+import {
+  makeSelectLoading,
+  makeSelectLoadingStatus,
+  makeSelectError,
+} from '@/states/global/selector';
 
 import validationSchema from '@/validations/signup';
 import globalMessage from '@/messages/global';
@@ -29,13 +33,7 @@ import Image from '@/components/Elements/Image';
 import Form from '@/components/Elements/Form';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
-
-export function SignUp({
-  doSignUp,
-  isLoading,
-  signupStatus,
-  errorMessage,
-}) {
+export function SignUp({ doSignUp, isLoading, signupStatus, errorMessage }) {
   const { t } = useTranslation();
   const [successModal, setSuccessModal] = useState(false);
 
@@ -43,14 +41,13 @@ export function SignUp({
     if (!isLoading) {
       if (signupStatus) {
         setSuccessModal(true);
-      } else {
-        if(errorMessage) {
-          message.error(errorMessage);
-        }
+      } else if (errorMessage) {
+        message.error(errorMessage);
       }
     }
   }, [isLoading, signupStatus, errorMessage]);
 
+  /* eslint-disable no-param-reassign */
   const onSubmit = useCallback((values) => {
     delete values.confirmPassword;
     doSignUp(values);
@@ -76,8 +73,8 @@ export function SignUp({
                   <Title marginBottom>{t(localMessage.signUp)}</Title>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
                   <Div marginBottom>
-                    <Field 
-                      type="email" 
+                    <Field
+                      type="email"
                       id="email"
                       name="email"
                       component={Input}
@@ -87,7 +84,7 @@ export function SignUp({
                   </Div>
                   <Labels asterisk>{t(globalMessage.username)}</Labels>
                   <Div marginBottom>
-                    <Field 
+                    <Field
                       id="username"
                       name="username"
                       component={Input}
@@ -97,17 +94,18 @@ export function SignUp({
                   </Div>
                   <Labels asterisk>{t(globalMessage.password)}</Labels>
                   <Div marginBottom>
-                    <Field 
+                    <Field
                       id="password"
                       name="password"
                       component={Input}
-                      type="password" placeholder={t(globalMessage.enterPassword)}
+                      type="password"
+                      placeholder={t(globalMessage.enterPassword)}
                     />
                     <ErrorMessage name="password" />
                   </Div>
                   <Div>
                     <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                    <Field 
+                    <Field
                       id="confirmPassword"
                       name="confirmPassword"
                       component={Input}
@@ -117,38 +115,76 @@ export function SignUp({
                     <ErrorMessage name="confirmPassword" />
                   </Div>
                   <Div marginTop center>
-                    {t(message.agreeMessage)} <Link href="/terms-of-service-example" name={t(globalMessage.termsOfService)}></Link> {t(globalMessage.and)} <Link href="/privacy-policy-example" name={t(globalMessage.privacyPolicy)}></Link>.
+                    {t(message.agreeMessage)}{' '}
+                    <Link
+                      href="/terms-of-service-example"
+                      name={t(globalMessage.termsOfService)}
+                    />{' '}
+                    {t(globalMessage.and)}{' '}
+                    <Link
+                      href="/privacy-policy-example"
+                      name={t(globalMessage.privacyPolicy)}
+                    />
+                    .
                   </Div>
-                  <Button type="primary" htmlType="submit" onClick={handleSubmit} marginTop>{t(localMessage.signUp)}</Button>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    onClick={handleSubmit}
+                    marginTop
+                  >
+                    {t(localMessage.signUp)}
+                  </Button>
                 </Form>
               )}
             </Formik>
             <Div center>
-              {t(localMessage.haveAccount)} <Link href="/login" name={t(localMessage.loginHere)}></Link>
+              {t(localMessage.haveAccount)}{' '}
+              <Link href="/login" name={t(localMessage.loginHere)} />
             </Div>
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
             </Div>
-            <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
+            <Image
+              src="Images/illustration1.svg"
+              alt="Webinar Illustration"
+              large
+            />
           </Col>
         </Row>
-        <Modal isOpen={successModal}
-          onRequestClose={()=> setSuccessModal(false)}
-          ariaHideApp={false} overlayClassName="Overlay"
-          marginTop noPadding
+        <Modal
+          isOpen={successModal}
+          onRequestClose={() => setSuccessModal(false)}
+          ariaHideApp={false}
+          overlayClassName="Overlay"
+          marginTop
+          noPadding
         >
           <Row>
             <Col span={24}>
               <Div widthFull noMargin>
                 <Div modal noMargin center>
-                  <Image src={"Images/email-sent-icon.svg"} alt="email sent icon" modalIcon/>
+                  <Image
+                    src="Images/email-sent-icon.svg"
+                    alt="email sent icon"
+                    modalIcon
+                  />
                   <Title modalTitle>{t(globalMessage.emailSent)}</Title>
                 </Div>
                 <Div flexColCenter noMargin widthFull heightFull>
-                  <Div marginYLarge center>{t(localMessage.verificationMsg)}</Div>
-                  <ButtonLink href="/login" element={<Button type="primary" marginTop>{t(globalMessage.login)}</Button>} />
+                  <Div marginYLarge center>
+                    {t(localMessage.verificationMsg)}
+                  </Div>
+                  <ButtonLink
+                    href="/login"
+                    element={
+                      <Button type="primary" marginTop>
+                        {t(globalMessage.login)}
+                      </Button>
+                    }
+                  />
                 </Div>
               </Div>
             </Col>
@@ -172,23 +208,16 @@ const mapStateToProps = createStructuredSelector({
   errorMessage: makeSelectError(),
 });
 
-const mapDispatchProps = (dispatch ) => {
-  return {
-    doSignUp: (payload) => dispatch(signUp(payload)),
-  };
-};
+const mapDispatchProps = (dispatch) => ({
+  doSignUp: (payload) => dispatch(signUp(payload)),
+});
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchProps);
 
-export default compose (
-  withConnect,
-)(SignUp);
+export default compose(withConnect)(SignUp);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

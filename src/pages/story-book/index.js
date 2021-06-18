@@ -15,11 +15,14 @@ import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import DatePicker from '@/components/Elements/DatePicker';
 import Tab from '@/components/Elements/SampleTab';
-import { ProfessionalConfirm,AddOnsConfirm,ShareModal } from '@/components/Modules/Modals';
+import {
+  ProfessionalConfirm,
+  AddOnsConfirm,
+  ShareModal,
+} from '@/components/Modules/Modals';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAttendee } from '../../states/attendees/action';
- 
 
 export default function StoryBook() {
   const dispatch = useDispatch();
@@ -28,9 +31,9 @@ export default function StoryBook() {
   console.log(globalMessage.header);
   console.log(message.title);
 
-  const [ isModalVisible , setIsmModalVisible] = useState(false);
-  const [ isModalVisibleConfirm , setIsmModalVisibleConfirm] = useState(false);
-  const [ isModalVisibleAdons , setIsmModalVisibleAdons] = useState(false);
+  const [isModalVisible, setIsmModalVisible] = useState(false);
+  const [isModalVisibleConfirm, setIsmModalVisibleConfirm] = useState(false);
+  const [isModalVisibleAdons, setIsmModalVisibleAdons] = useState(false);
 
   const ShowModal = () => {
     setIsmModalVisible(true);
@@ -49,7 +52,6 @@ export default function StoryBook() {
   };
   return (
     <>
-      
       <Layout>
         <Tab />
         <Header>{t(globalMessage.header)}</Header>
@@ -61,61 +63,90 @@ export default function StoryBook() {
             <Button type="disabled" disabled htmlType="submit">
               Disabled
             </Button>
-            <Input placeholder="Placeholder"></Input>
-            <Input placeholder="tobirauser" disabled></Input>
-            <Input placeholder="tobira^&*" error></Input>
-            <TextArea placeholder="Placeholder"></TextArea>
-            <TextArea placeholder="Placeholder" disabled></TextArea>
-            <TextArea placeholder="Placeholder" error></TextArea>
+            <Input placeholder="Placeholder" />
+            <Input placeholder="tobirauser" disabled />
+            <Input placeholder="tobira^&*" error />
+            <TextArea placeholder="Placeholder" />
+            <TextArea placeholder="Placeholder" disabled />
+            <TextArea placeholder="Placeholder" error />
             <Checkbox>Checkbox A</Checkbox>
             <Checkbox checked>Checkbox B</Checkbox>
             <Checkbox disabled>Checkbox Disabled</Checkbox>
-            <div style={{ marginTop: '1rem', }}>
+            <div style={{ marginTop: '1rem' }}>
               <Radio.Group>
                 <Radio value={1}>Option A</Radio>
                 <Radio value={2}>Option B</Radio>
               </Radio.Group>
               <Radio.Group>
-                <Radio disabled value={3}>Option Disabled 1</Radio>
-                <Radio disabled checked>Option Disabled 2</Radio>
+                <Radio disabled value={3}>
+                  Option Disabled 1
+                </Radio>
+                <Radio disabled checked>
+                  Option Disabled 2
+                </Radio>
               </Radio.Group>
             </div>
-            <div style={{marginTop: '1rem',}}>
+            <div style={{ marginTop: '1rem' }}>
               <Select defaultValue="initial">
-                <Option value="initial" disabled hidden>Select option</Option>
+                <Option value="initial" disabled hidden>
+                  Select option
+                </Option>
                 <Option value="A">Option A</Option>
                 <Option value="B">Option B</Option>
               </Select>
             </div>
             <div>
               <Select defaultValue="initial" disabled>
-                <Option value="initial" disabled hidden>Select option</Option>
+                <Option value="initial" disabled hidden>
+                  Select option
+                </Option>
                 <Option value="A">Option A</Option>
                 <Option value="B">Option B</Option>
               </Select>
               <Select defaultValue="initial" error>
-                <Option value="initial" disabled hidden>Select option</Option>
+                <Option value="initial" disabled hidden>
+                  Select option
+                </Option>
                 <Option value="A">Option A</Option>
                 <Option value="B">Option B</Option>
               </Select>
-              
             </div>
             <div>
-              <DatePicker></DatePicker>
+              <DatePicker />
             </div>
             <div>
-              <Button onClick={ShowModal} type="primary">Show modal Share</Button>
-              <ShareModal close={() => setIsmModalVisible(false)} isVisible={isModalVisible} footer={null} />
-              <Button onClick={ShowModalProfessional} type="primary">Show modal Professional</Button>
-              <ProfessionalConfirm close={() => setIsmModalVisibleConfirm(false)} isVisible={isModalVisibleConfirm} footer={null} />
-              <Button onClick={ShowModalAdons} type="primary">Show modal Add-ons</Button>
-              <AddOnsConfirm close={() => setIsmModalVisibleAdons(false)} isVisible={isModalVisibleAdons} footer={null} />
+              <Button onClick={ShowModal} type="primary">
+                Show modal Share
+              </Button>
+              <ShareModal
+                close={() => setIsmModalVisible(false)}
+                isVisible={isModalVisible}
+                footer={null}
+              />
+              <Button onClick={ShowModalProfessional} type="primary">
+                Show modal Professional
+              </Button>
+              <ProfessionalConfirm
+                close={() => setIsmModalVisibleConfirm(false)}
+                isVisible={isModalVisibleConfirm}
+                footer={null}
+              />
+              <Button onClick={ShowModalAdons} type="primary">
+                Show modal Add-ons
+              </Button>
+              <AddOnsConfirm
+                close={() => setIsmModalVisibleAdons(false)}
+                isVisible={isModalVisibleAdons}
+                footer={null}
+              />
             </div>
 
             <div>
-              <Button onClick={() => {
-                checkApi();
-              }}>
+              <Button
+                onClick={() => {
+                  checkApi();
+                }}
+              >
                 Check API
               </Button>
             </div>
@@ -129,6 +160,6 @@ export default function StoryBook() {
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

@@ -3,7 +3,7 @@ import {
   SET_WEBINAR_LIST,
   CREATE_WEBINAR,
   WEBINAR_DETAILS,
-  SET_WEBINAR
+  SET_WEBINAR,
 } from './types';
 
 export const getWebinarList = (payload) => ({

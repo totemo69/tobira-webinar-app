@@ -4,48 +4,42 @@
  *
  */
 
-import styled, { css }  from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Layout } from 'antd';
 
 const { Header } = Layout;
 
 const StyledHeader = styled(Header).withConfig({
-  shouldForwardProp: prop => ![
-    'noPadding',
-    'noMargin',
-    'frontRegistration'
-  ].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['noPadding', 'noMargin', 'frontRegistration'].includes(prop),
 })`
-    width: 100%;
-    height: 65px;
-    background-color: #ffffff;
-    box-shadow: 0px 2px 4px #00000029;
+  width: 100%;
+  height: 65px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px #00000029;
 
-    @media screen and (max-width: 480px) {
-      padding: 10px;
-      height: auto;
-    }    
+  @media screen and (max-width: 480px) {
+    padding: 10px;
+    height: auto;
+  }
 
-    ${ props =>
+  ${(props) =>
     props.noPadding &&
-      css`
-        padding: 0;
-      `
-};
+    css`
+      padding: 0;
+    `};
 
-    ${ props =>
+  ${(props) =>
     props.noMargin &&
-      css`
-        margin: 0;
-      `
-}
+    css`
+      margin: 0;
+    `}
 
-    ${ props =>
+  ${(props) =>
     props.frontRegistration &&
-      css`
-        margin: 0;
-      `
-}
- `;
+    css`
+      margin: 0;
+    `}
+`;
 
 export default StyledHeader;

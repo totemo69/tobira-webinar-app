@@ -1,58 +1,53 @@
 import { useTranslation } from 'next-i18next';
-import {Row, Col} from 'antd';
+import { Row, Col } from 'antd';
 
 import message from '@/messages/createProfile';
-import {StyledParagraph} from '@/components/Elements/SampleParagraph';
+import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 
-export default function PaymentOption(){
-
+export default function PaymentOption() {
   const { t } = useTranslation();
-  return(
+  return (
     <>
-      <StyledParagraph colorBlue  >
-        {t(message.webinarPrice)}
-      </StyledParagraph>
+      <StyledParagraph colorBlue>{t(message.webinarPrice)}</StyledParagraph>
 
-      <Label asterisk>
-        {t(message.webinarPriceAttendee)}
-      </Label>
+      <Label asterisk>{t(message.webinarPriceAttendee)}</Label>
 
-      <Input type="number" placeholder="0" prefix="￥" suffix="JPY"></Input>
+      <Input type="number" placeholder="0" prefix="￥" suffix="JPY" />
 
-      <Div BrakeLine></Div>
+      <Div BrakeLine />
 
-      <StyledParagraph colorBlue  >
-        {t(message.paymentOptions)}
-      </StyledParagraph>
+      <StyledParagraph colorBlue>{t(message.paymentOptions)}</StyledParagraph>
 
-      <Div>
-        {t(message.selectPayment)}
-      </Div>
+      <Div>{t(message.selectPayment)}</Div>
 
       <Row className="paymentRow" gutter={[50]}>
-        <Col span={10} >
+        <Col span={10}>
           <Div paymentOption>
-            <Image style={{width: "100%",}} src="/images/paypal.svg" alt="paypal image"/>
-            <StyledParagraph style={{textAlign: "center"}}>
+            <Image
+              style={{ width: '100%' }}
+              src="/images/paypal.svg"
+              alt="paypal image"
+            />
+            <StyledParagraph style={{ textAlign: 'center' }}>
               {t(message.payWithPaypal)}
             </StyledParagraph>
           </Div>
-          
         </Col>
         <Col span={10}>
           <Div paymentOption>
-            <Image style={{width: "30%", marginLeft: "auto", marginRight: "auto"}} src="/images/other-payment.svg" alt="paypal image"/>
-            <StyledParagraph>
-              {t(message.otherPaymentOptions)}
-            </StyledParagraph>
+            <Image
+              style={{ width: '30%', marginLeft: 'auto', marginRight: 'auto' }}
+              src="/images/other-payment.svg"
+              alt="paypal image"
+            />
+            <StyledParagraph>{t(message.otherPaymentOptions)}</StyledParagraph>
           </Div>
         </Col>
       </Row>
-     
     </>
   );
 }

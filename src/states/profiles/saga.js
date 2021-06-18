@@ -1,9 +1,14 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { GET_PROFILE, UPDATE_PROFILE } from './types';
-import { setProfile } from './action';
-import { API, PATCH_REQUEST, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import {
+  API,
+  PATCH_REQUEST,
+  GET_REQUEST,
+  LOADING_PREFIX,
+} from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
+import { setProfile } from './action';
+import { GET_PROFILE, UPDATE_PROFILE } from './types';
 
 function* getProfileSaga() {
   try {
@@ -17,13 +22,12 @@ function* getProfileSaga() {
     yield put(setProfile(response));
     // Set the status to success
     yield put(loadSuccess(LOADING_PREFIX.PROFILE));
-  }
-  catch(error){
+  } catch (error) {
     // Set the status to failed
     yield put(loadSuccess(LOADING_PREFIX.PROFILE, false));
     // Set the error
     yield put(loadErrors(error));
-  } finally{
+  } finally {
     // Set loading status to false
     yield put(loading(LOADING_PREFIX.PROFILE, false));
   }
@@ -41,13 +45,12 @@ function* updateProfileSaga({ payload }) {
     yield put(setProfile(response));
     // Set the status to success
     yield put(loadSuccess(LOADING_PREFIX.PROFILE));
-  }
-  catch(error){
+  } catch (error) {
     // Set the status to failed
     yield put(loadSuccess(LOADING_PREFIX.PROFILE, false));
     // Set the error
     yield put(loadErrors(error));
-  } finally{
+  } finally {
     // Set loading status to false
     yield put(loading(LOADING_PREFIX.PROFILE, false));
   }

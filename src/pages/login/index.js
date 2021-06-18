@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
 import { Row, Col } from 'antd';
 import globalMessage from '@/messages/global';
@@ -33,7 +33,7 @@ export function Login({ doLogin }) {
   const onSubmit = useCallback((values) => {
     console.log(values);
     setIsLoading(true);
-    doLogin(values, errors => {
+    doLogin(values, (errors) => {
       console.log(errors);
       // translateApiError(errors, formikAction, intl);
       setIsLoading(false);
@@ -58,7 +58,7 @@ export function Login({ doLogin }) {
                   <Title marginBottom>{t(globalMessage.login)}</Title>
                   <Labels asterisk>{t(globalMessage.email)}</Labels>
                   <Div marginBottom>
-                    <Field 
+                    <Field
                       type="email"
                       name="email"
                       component={Input}
@@ -68,7 +68,7 @@ export function Login({ doLogin }) {
                   </Div>
                   <Labels asterisk>{t(globalMessage.password)}</Labels>
                   <Div>
-                    <Field 
+                    <Field
                       name="password"
                       component={Input}
                       type="password"
@@ -77,14 +77,23 @@ export function Login({ doLogin }) {
                     <ErrorMessage name="password" />
                   </Div>
                   <Div marginY betweenCenter>
-                    <Checkbox content={t(message.rememberMe)}></Checkbox>
-                    <Link href="/forgot-password" name={t(globalMessage.forgotPassword)}></Link>
+                    <Checkbox content={t(message.rememberMe)} />
+                    <Link
+                      href="/forgot-password"
+                      name={t(globalMessage.forgotPassword)}
+                    />
                   </Div>
-                  <Button loading={isLoading} type="primary" onClick={handleSubmit} htmlType="submit">
+                  <Button
+                    loading={isLoading}
+                    type="primary"
+                    onClick={handleSubmit}
+                    htmlType="submit"
+                  >
                     {t(globalMessage.login)}
                   </Button>
                   <Div center>
-                    {t(message.createAccount)} <Link href="/sign-up" name={t(message.signHere)}></Link>
+                    {t(message.createAccount)}{' '}
+                    <Link href="/sign-up" name={t(message.signHere)} />
                   </Div>
                 </Form>
               )}
@@ -92,9 +101,13 @@ export function Login({ doLogin }) {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src={"Images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
             </Div>
-            <Image src={"Images/illustration1.svg"} alt="Webinar Illustration" large />
+            <Image
+              src="Images/illustration1.svg"
+              alt="Webinar Illustration"
+              large
+            />
           </Col>
         </Row>
       </Layout>
@@ -103,8 +116,8 @@ export function Login({ doLogin }) {
 }
 
 Login.propTypes = {
-  authenticateUser: PropTypes.func,
-  isLoggedIn: PropTypes.bool,
+  // authenticateUser: PropTypes.func,
+  // isLoggedIn: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -113,22 +126,17 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    doLogin: (payload, errCallback) => dispatch(authenticateUser(payload, errCallback))
+    doLogin: (payload, errCallback) =>
+      dispatch(authenticateUser(payload, errCallback)),
   };
 }
 
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
-
-export default compose(
-  withConnect,
-)(Login);
+export default compose(withConnect)(Login);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

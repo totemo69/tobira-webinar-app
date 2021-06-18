@@ -3,19 +3,19 @@ export const scope = 'header';
 const message = {
   accounts: Object.values({
     key: `${scope}.accounts`,
-    default: 'Accounts'
+    default: 'Accounts',
   }),
   purchaseLicense: Object.values({
     key: `${scope}.purchaseLicense`,
-    default: 'Purchase License'
+    default: 'Purchase License',
   }),
   wallet: Object.values({
     key: `${scope}.wallet`,
-    default: 'Wallet'
+    default: 'Wallet',
   }),
   logOut: Object.values({
     key: `${scope}.logOut`,
-    default: 'Log out'
+    default: 'Log out',
   }),
 };
 

@@ -18,16 +18,13 @@ const validationSchema = Yup.object({
 });
 
 const createWebinar = Yup.object({
-  managementTitle: Yup.string()
-    .required('Management title is a required field.'),
-  webinarAccount: Yup.string()
-    .required('Zoom account is a required field.'),
-  title: Yup.string()
-    .required('Title is a required field.'),
-  description: Yup.string()
-    .required('Description is a required field.'),
-  frequency: Yup.string()
-    .required('Description is a required field.'),
+  managementTitle: Yup.string().required(
+    'Management title is a required field.',
+  ),
+  webinarAccount: Yup.string().required('Zoom account is a required field.'),
+  title: Yup.string().required('Title is a required field.'),
+  description: Yup.string().required('Description is a required field.'),
+  frequency: Yup.string().required('Description is a required field.'),
   // schedules: Yup.array().of(
   //   Yup.object().shape({
   //     scheduleDate: Yup.string().required('Date is a required field.'),
@@ -39,23 +36,22 @@ const createWebinar = Yup.object({
 });
 
 const registrationForm = Yup.object({
-  formName: Yup.string()
-    .required('Form Name is a required field.'),
-  formFields: Yup.array().of(
-    Yup.object().shape({
-      fieldName: Yup.string().required(),
-      fieldType: Yup.string().required(),
-      isRequired: Yup.boolean().required(),
-      options: Yup.array().of(Yup.string()),
-    })
-  ).required('Form Fields is required'),
+  formName: Yup.string().required('Form Name is a required field.'),
+  formFields: Yup.array()
+    .of(
+      Yup.object().shape({
+        fieldName: Yup.string().required(),
+        fieldType: Yup.string().required(),
+        isRequired: Yup.boolean().required(),
+        options: Yup.array().of(Yup.string()),
+      }),
+    )
+    .required('Form Fields is required'),
 });
 
 const paymentOptions = Yup.object({
-  price: Yup.number()
-    .required('Price is a required field.'),
-  paymentModes: Yup.string()
-    .required('Payment options is a required field.'),
+  price: Yup.number().required('Price is a required field.'),
+  paymentModes: Yup.string().required('Payment options is a required field.'),
 });
 
 export default validationSchema;

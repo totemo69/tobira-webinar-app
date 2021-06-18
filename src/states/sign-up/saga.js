@@ -1,10 +1,10 @@
-import {takeLatest, call, put} from 'redux-saga/effects';
+import { takeLatest, call, put } from 'redux-saga/effects';
 import { API, POST_REQUEST, LOADING_PREFIX } from '@/utils/constants';
-import { request, RequestOptions }  from '@/utils/request';
+import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
 import { SIGNUP } from './type';
 
-function* registerSaga({ payload }){
+function* registerSaga({ payload }) {
   try {
     // Set loading status to true
     yield put(loading(LOADING_PREFIX.SIGNUP));
@@ -15,18 +15,17 @@ function* registerSaga({ payload }){
     );
     // Set the status to success
     yield put(loadSuccess(LOADING_PREFIX.SIGNUP));
-  }
-  catch(error){
+  } catch (error) {
     // Set the status to failed
     yield put(loadSuccess(LOADING_PREFIX.SIGNUP, false));
     // Set the error
     yield put(loadErrors(error));
-  } finally{
+  } finally {
     // Set loading status to false
     yield put(loading(LOADING_PREFIX.SIGNUP, false));
   }
 }
 
-export default function* sigunUpSage(){
+export default function* sigunUpSage() {
   yield takeLatest(SIGNUP, registerSaga);
 }

@@ -3,11 +3,11 @@ export const scope = 'sidebar';
 const message = {
   webinars: Object.values({
     key: `${scope}.webinars`,
-    default: 'Webinars'
+    default: 'Webinars',
   }),
   createWebinar: Object.values({
     key: `${scope}.createWebinar`,
-    default: 'Create Webinar'
+    default: 'Create Webinar',
   }),
 };
 

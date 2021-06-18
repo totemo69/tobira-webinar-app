@@ -1,7 +1,7 @@
-/***
- * 
+/** *
+ *
  * Search
- * 
+ *
  */
 
 import styled, { css } from 'styled-components';
@@ -10,11 +10,8 @@ import { Input } from 'antd';
 const { Search } = Input;
 
 const StyleSearch = styled(Search).withConfig({
-  shouldForwardProp: prop => ![
-    'marginLeft',
-    'widthMedium',
-    'bGray',
-  ].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['marginLeft', 'widthMedium', 'bGray'].includes(prop),
 })`
   width: 100%;
 
@@ -28,10 +25,10 @@ const StyleSearch = styled(Search).withConfig({
 
     &:focus-within {
       border-color: #0e71eb !important;
-      box-shadow: 0px 1px 1px #0E71EB !important;
+      box-shadow: 0px 1px 1px #0e71eb !important;
     }
   }
-  
+
   .ant-input-affix-wrapper {
     height: 40px;
     border: none !important;
@@ -40,15 +37,16 @@ const StyleSearch = styled(Search).withConfig({
 
     &:hover {
       border: none !important;
-    };
+    }
   }
-  
+
   .ant-input-affix-wrapper-focused {
     border: none !important;
     box-shadow: none !important;
   }
-  
-  .ant-input-group-addon, .ant-btn {
+
+  .ant-input-group-addon,
+  .ant-btn {
     height: 40px;
     background-color: transparent;
     border: none !important;
@@ -56,7 +54,7 @@ const StyleSearch = styled(Search).withConfig({
 
     &:hover {
       border: none !important;
-    };
+    }
 
     &:focus {
       border: none !important;
@@ -68,28 +66,23 @@ const StyleSearch = styled(Search).withConfig({
     color: #4e4e4e;
   }
 
-  ${props => 
-    props.marginLeft && 
+  ${(props) =>
+    props.marginLeft &&
     css`
-      margin-left: .50rem;
-    `
-};
+      margin-left: 0.5rem;
+    `};
 
-  ${props => 
-    props.bGray && 
+  ${(props) =>
+    props.bGray &&
     css`
-      background: #F3F3F3;
-    `
-};
+      background: #f3f3f3;
+    `};
 
-
-  ${props => 
-    props.widthMedium && 
+  ${(props) =>
+    props.widthMedium &&
     css`
       width: 70%;
-    `
-};
+    `};
 `;
-
 
 export default StyleSearch;

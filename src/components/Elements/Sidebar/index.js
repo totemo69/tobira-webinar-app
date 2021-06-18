@@ -10,9 +10,9 @@ import { Layout } from 'antd';
 const { Sider } = Layout;
 
 const StyledSidebar = styled(Sider).withConfig({
-  shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: (prop) => ![].includes(prop),
 })`
-     background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
-export default StyledSidebar; 
+export default StyledSidebar;

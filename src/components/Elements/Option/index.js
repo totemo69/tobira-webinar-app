@@ -10,9 +10,9 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const StyledOption = styled(Option).withConfig({
-  shouldForwardProp: prop => ![].includes(prop),
+  shouldForwardProp: (prop) => ![].includes(prop),
 })`
-    /***type here**/
- `;
- 
+  /***type here**/
+`;
+
 export default StyledOption;

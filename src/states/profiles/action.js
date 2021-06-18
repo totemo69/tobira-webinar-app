@@ -1,8 +1,4 @@
-import {
-  GET_PROFILE,
-  SET_PROFILE,
-  UPDATE_PROFILE,
-} from './types';
+import { GET_PROFILE, SET_PROFILE, UPDATE_PROFILE } from './types';
 
 export const getProfile = () => ({
   type: GET_PROFILE,

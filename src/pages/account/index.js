@@ -25,7 +25,6 @@ import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
-
 export function Account({ getZoomAccounts, zoomAccountList }) {
   // const { t } = useTranslation();
 
@@ -33,31 +32,46 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
     getZoomAccounts();
   }, []);
 
-  return(
+  return (
     <>
-      
       <Layout>
         <Div marginBottomLarge flexTop>
-          <Title secondary marginRight>ACCOUNTS {">"} </Title>
+          <Title secondary marginRight>
+            ACCOUNTS {'>'}{' '}
+          </Title>
           <Span breadCrumbs>Zoom Accounts</Span>
         </Div>
         <Card>
           <Div>
             <Tabs defaultActiveKey="1">
               <TabPane tab="Zoom Account" key="1">
-                <Div style={{display: "flex", textAlign: "center", width: "100%", padding: "20px", justifyContent: "space-between"}}>
-                  <Label asterisk>
-                    Email Address or Contact Number
-                  </Label>
+                <Div
+                  style={{
+                    display: 'flex',
+                    textAlign: 'center',
+                    width: '100%',
+                    padding: '20px',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Label asterisk>Email Address or Contact Number</Label>
                   <Label>Status</Label>
                 </Div>
                 <List
                   itemLayout="horizontal"
                   dataSource={zoomAccountList}
-                  renderItem={item => (
+                  renderItem={(item) => (
                     <List.Item>
-                      <Div style={{display: "flex",width: "100%"}}>
-                        <Input style={{width: "60%", marginLeft: "50px", marginRight: "10px"}}  disabled placeholder={item.zoomEmail}></Input>
+                      <Div style={{ display: 'flex', width: '100%' }}>
+                        <Input
+                          style={{
+                            width: '60%',
+                            marginLeft: '50px',
+                            marginRight: '10px',
+                          }}
+                          disabled
+                          placeholder={item.zoomEmail}
+                        />
                         <Button connectedButton>Connected</Button>
                         <Button defaultButton>Default</Button>
                       </Div>
@@ -66,12 +80,20 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                 />
 
                 <Div>
-                  <Button addField><Image style={{width: "20px", borderRadius: "5px"}} src={"Images/material-add-box.svg"} />Add account</Button>
+                  <Button addField>
+                    <Image
+                      style={{ width: '20px', borderRadius: '5px' }}
+                      src="Images/material-add-box.svg"
+                    />
+                    Add account
+                  </Button>
                 </Div>
               </TabPane>
             </Tabs>
           </Div>
-          <Button type="primary" NextButton>Save Changes</Button>
+          <Button type="primary" NextButton>
+            Save Changes
+          </Button>
         </Card>
       </Layout>
     </>
@@ -81,7 +103,7 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
 Account.propTypes = {
   getZoomAccounts: PropTypes.func,
   zoomAccountList: PropTypes.any,
-  isAccountLoading: PropTypes.bool,
+  // isAccountLoading: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -89,23 +111,16 @@ const mapStateToProps = createStructuredSelector({
   zoomAccountList: makeSelectAccountList(),
 });
 
-const mapToDispatchToProps = (dispatch) => {
-  return {
-    getZoomAccounts: () => dispatch(getZoomAccount()),
-  };
-};
+const mapToDispatchToProps = (dispatch) => ({
+  getZoomAccounts: () => dispatch(getZoomAccount()),
+});
 
-const withConnect = connect(
-  mapStateToProps,
-  mapToDispatchToProps
-);
+const withConnect = connect(mapStateToProps, mapToDispatchToProps);
 
-export default compose(
-  withConnect,
-)(Account);
+export default compose(withConnect)(Account);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

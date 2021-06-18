@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // import { createStructuredSelector } from 'reselect';
-import { useEffect } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
@@ -18,26 +17,19 @@ import Label from '@/components/Elements/Labels';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
-
 export function Complete() {
   const { t } = useTranslation();
   const route = useRouter();
-  
-  useEffect(() => {
 
+  useEffect(() => {}, []);
+
+  const gotoAccount = useCallback(() => {
+    route.push(WEBINAR_ROUTE.ZOOM_ACCOUNT);
   }, []);
 
-  const gotoAccount = useCallback(
-    () => {
-      route.push(WEBINAR_ROUTE.ZOOM_ACCOUNT);
-    },[],
-  );
-
-  const createAccount = useCallback(
-    () => {
-      route.push(WEBINAR_ROUTE.CREATE_WEBINAR);
-    },[],
-  );
+  const createAccount = useCallback(() => {
+    route.push(WEBINAR_ROUTE.CREATE_WEBINAR);
+  }, []);
 
   return (
     <>
@@ -45,10 +37,10 @@ export function Complete() {
         <Row>
           <Col span={24}>
             <Div widthFull marginBottom center>
-              <Image src={"/images/logo.svg"} alt="Tobira Logo" logo />
+              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Div widthFull marginBottom center>
-              <Image src={"/images/success.svg"} alt="Tobira Logo" logo />
+              <Image src="/images/success.svg" alt="Tobira Logo" logo />
             </Div>
           </Col>
         </Row>
@@ -61,11 +53,21 @@ export function Complete() {
               <Label center>{t(message.completedMessage)}</Label>
             </Div>
             <Div widthFull center>
-              <Button style={{ width: '50%'}} onClick={createAccount} type="primary">{t(message.createNewWebinar)}</Button>
+              <Button
+                style={{ width: '50%' }}
+                onClick={createAccount}
+                type="primary"
+              >
+                {t(message.createNewWebinar)}
+              </Button>
             </Div>
             <Div widthFull center>
               <Button
-                style={{ width: '50%', color: '#4678B5', border: '1px solid #4678B5' }}
+                style={{
+                  width: '50%',
+                  color: '#4678B5',
+                  border: '1px solid #4678B5',
+                }}
                 onClick={gotoAccount}
               >
                 {t(message.gotoAccounts)}
@@ -92,18 +94,12 @@ export function Complete() {
 //   };
 // }
 
+const withConnect = connect(null, null);
 
-const withConnect = connect(
-  null,
-  null
-);
-
-export default compose(
-  withConnect,
-)(Complete);
+export default compose(withConnect)(Complete);
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['translation']),
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });

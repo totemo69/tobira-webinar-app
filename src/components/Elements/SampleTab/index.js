@@ -1,9 +1,9 @@
 /**
- * 
- * 
+ *
+ *
  * Tab
- *  
- * */ 
+ *
+ * */
 
 import style from 'styled-components';
 import { Tabs } from 'antd';

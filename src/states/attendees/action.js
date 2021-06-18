@@ -7,22 +7,20 @@ import {
   GET_ATENDEE_COUNT_FAILED,
   ADD_ATTENDEE,
   ADD_ATTENDEE_SUCCESS,
-  ADD_ATTENDEE_FAILED
+  ADD_ATTENDEE_FAILED,
 } from './types';
 
-
-
-export const addAtendee = (payload)  => ({
+export const addAtendee = (payload) => ({
   type: ADD_ATTENDEE,
   payload,
 });
 
-export const addAtendeeSuccess = (payload)  => ({
+export const addAtendeeSuccess = (payload) => ({
   type: ADD_ATTENDEE_SUCCESS,
   payload,
 });
 
-export const addAtendeeFailed = (payload)  => ({
+export const addAtendeeFailed = (payload) => ({
   type: ADD_ATTENDEE_FAILED,
   payload,
 });

@@ -1,11 +1,16 @@
-import {takeEvery, call, put, takeLatest } from 'redux-saga/effects';
-import { GET_ZOOM_ACCOUNT, SUBMIT_ZOOM_CODE } from './types';
-import { setZoomAccountList, setZoomAccount } from './actions';
-import { API, POST_REQUEST, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import { takeEvery, call, put, takeLatest } from 'redux-saga/effects';
+import {
+  API,
+  POST_REQUEST,
+  GET_REQUEST,
+  LOADING_PREFIX,
+} from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors } from '@/states/global/actions';
+import { setZoomAccountList, setZoomAccount } from './actions';
+import { GET_ZOOM_ACCOUNT, SUBMIT_ZOOM_CODE } from './types';
 
-function* zoomAccountSaga(){
+function* zoomAccountSaga() {
   try {
     yield put(loading(LOADING_PREFIX.ACCOUNT));
     const response = yield call(
@@ -14,16 +19,15 @@ function* zoomAccountSaga(){
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setZoomAccountList(response));
-  }
-  catch(error){
+  } catch (error) {
     yield put(loadErrors(error));
-  } finally{
+  } finally {
     yield put(loading(LOADING_PREFIX.ACCOUNT, false));
   }
 }
 
-function* submitZoomCode({ payload }){
-  try{
+function* submitZoomCode({ payload }) {
+  try {
     yield put(loading(LOADING_PREFIX.ACCOUNT));
     const response = yield call(
       request,
@@ -31,10 +35,9 @@ function* submitZoomCode({ payload }){
       RequestOptions(POST_REQUEST, { ...payload }, true),
     );
     yield put(setZoomAccount(response));
-  }
-  catch(error){
+  } catch (error) {
     yield put(loadErrors(error));
-  } finally{
+  } finally {
     yield put(loading(LOADING_PREFIX.ACCOUNT, false));
   }
 }
