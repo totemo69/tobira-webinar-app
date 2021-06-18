@@ -65,3 +65,7 @@ export const SCHEDULE_TYPE = {
   ONETIME: 'one-time',
   RECURRING: 'recurring',
 };
+
+export const PAYMENT_METHOD = {
+  PAYPAL: 'paypal',
+};

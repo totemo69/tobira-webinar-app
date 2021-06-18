@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import {
   API,
   GET_REQUEST,
@@ -9,6 +9,7 @@ import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
 import { setWebinarList, setWebinarDetails } from './actions';
 import { GET_WEBINAR_LIST, CREATE_WEBINAR } from './types';
+import { makeSelectWebinarForm } from './selector';
 
 function* webinarList() {
   try {
@@ -26,9 +27,10 @@ function* webinarList() {
   }
 }
 
-function* createWebinar({ payload }) {
+function* createWebinar() {
   try {
     yield put(loading(LOADING_PREFIX.CREATE_WEBINAR));
+    const payload = yield select(makeSelectWebinarForm());
     const response = yield call(
       request,
       API.WEBINARS,

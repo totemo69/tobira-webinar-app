@@ -5,10 +5,16 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { useTranslation } from 'next-i18next';
 import { message } from 'antd';
+import { useRouter } from 'next/router';
 
-import { LOADING_PREFIX } from '@/utils/constants';
-import { makeSelectLoading, makeSelectError } from '@/states/global/selector';
+import { LOADING_PREFIX, WEBINAR_ROUTE } from '@/utils/constants';
+import {
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectLoadingStatus,
+} from '@/states/global/selector';
 import { getZoomAccount } from '@/states/accounts/actions';
+import { createWebinar } from '@/states/webinar/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import { makeSelectWebinarForm } from '@/states/webinar/selector';
 import { withAuthSync } from '@/lib/auth';
@@ -27,28 +33,71 @@ import { StyledSteps, StyledStep } from '@/components/Elements/Steps';
 import Button from '@/components/Elements/Button';
 
 export function CreateWebinar({
+  isLoading,
+  submitStatus,
+  errorMessage,
   getZoomAccounts,
   zoomAccountList,
   webinarFormDetails,
+  doCreateWebinar,
 }) {
-  const [current, setCurrent] = useState(0);
   const { t } = useTranslation();
-  const [submitAction, setSubmitAction] = useState();
-  const [stats, setStats] = useState(false);
+  const route = useRouter();
+  const [current, setCurrent] = useState(0);
+  const [submitStep1, setSubmitStep1] = useState();
+  const [submitStep2, setSubmitStep2] = useState();
+  const [submitStep3, setSubmitStep3] = useState();
+  const [submitFormStatus, setsubmitFormStatus] = useState(false);
 
-  const stat = (e) => {
-    console.log(e);
-    setStats(e);
+  const submitStatusBind = (e) => {
+    setsubmitFormStatus(e);
   };
+
   useEffect(() => {
     getZoomAccounts();
   }, []);
 
-  const setSubmitActionWrapper = (action) => {
-    if (!submitAction) {
-      // Weird - read this:
-      // https://stackoverflow.com/questions/55621212/is-it-possible-to-react-usestate-in-react
-      setSubmitAction(() => () => action());
+  useEffect(() => {
+    if (!isLoading) {
+      if (submitStatus) {
+        // Temporary only
+        message.success('Success!');
+        route.push(WEBINAR_ROUTE.LIST_WEBINAR);
+      } else if (errorMessage) {
+        message.error(errorMessage);
+      }
+    }
+  }, [isLoading, submitStatus, errorMessage]);
+
+  useEffect(() => {
+    // if Form doesn't have error, go to next step
+    if (submitFormStatus) {
+      if (current === step.length - 1) {
+        doCreateWebinar();
+      } else {
+        setCurrent(current + 1);
+      }
+
+      // Make false again for checking and listening to form submitting status
+      setsubmitFormStatus(false);
+    }
+  }, [submitFormStatus]);
+
+  const setStep1Wrapper = (action) => {
+    if (!submitStep1) {
+      setSubmitStep1(() => () => action());
+    }
+  };
+
+  const setStep2Wrapper = (action) => {
+    if (!submitStep2) {
+      setSubmitStep2(() => () => action());
+    }
+  };
+
+  const setStep3Wrapper = (action) => {
+    if (!submitStep3) {
+      setSubmitStep3(() => () => action());
     }
   };
 
@@ -57,8 +106,8 @@ export function CreateWebinar({
       title: t(localMessage.details),
       Content: (
         <CreateWebinarPage
-          submitStatus={stat}
-          setSubmitForm={setSubmitActionWrapper}
+          submitStatus={submitStatusBind}
+          setSubmitForm={setStep1Wrapper}
           webinarForm={webinarFormDetails}
           zoomAccounts={zoomAccountList}
         />
@@ -66,20 +115,35 @@ export function CreateWebinar({
     },
     {
       title: t(localMessage.registration),
-      Content: <RegistrationDetails webinarForm={webinarFormDetails} />,
+      Content: (
+        <RegistrationDetails
+          submitStatus={submitStatusBind}
+          setSubmitForm={setStep2Wrapper}
+          webinarForm={webinarFormDetails}
+        />
+      ),
     },
     {
       title: t(localMessage.paymentOptions),
-      Content: <PaymentOptions webinarForm={webinarFormDetails} />,
+      Content: (
+        <PaymentOptions
+          submitStatus={submitStatusBind}
+          setSubmitForm={setStep3Wrapper}
+          webinarForm={webinarFormDetails}
+        />
+      ),
     },
   ];
 
   const next = async () => {
-    console.log(stats);
-    submitAction();
-    // partial
-    if (stats) {
-      setCurrent(current + 1);
+    // Execute child component formik submit form
+    console.log(submitFormStatus);
+    if (current === 0) {
+      await submitStep1();
+    } else if (current === 1) {
+      await submitStep2();
+    } else if (current === 2) {
+      await submitStep3();
     }
   };
 
@@ -112,11 +176,12 @@ export function CreateWebinar({
           )}
           {current === step.length - 1 && (
             <Button
-              onClick={() => message.success('Process completed')}
+              loading={isLoading}
+              onClick={() => next()}
               NextButton
               type="primary"
             >
-              Next
+              Submit
             </Button>
           )}
           {current > 0 && (
@@ -134,13 +199,16 @@ CreateWebinar.propTypes = {
   getZoomAccounts: PropTypes.func,
   webinarFormDetails: PropTypes.any,
   zoomAccountList: PropTypes.array,
-  // isLoading: PropTypes.bool,
-  // errorMessage: PropTypes.any,
+  isLoading: PropTypes.bool,
+  errorMessage: PropTypes.any,
+  doCreateWebinar: PropTypes.func,
+  submitStatus: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectLoading(LOADING_PREFIX.CREATE_WEBINAR),
   isAccountLoading: makeSelectLoading(LOADING_PREFIX.ACCOUNT),
+  submitStatus: makeSelectLoadingStatus(LOADING_PREFIX.CREATE_WEBINAR),
   zoomAccountList: makeSelectAccountList(),
   errorMessage: makeSelectError(),
   webinarFormDetails: makeSelectWebinarForm(),
@@ -148,6 +216,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchProps = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
+  doCreateWebinar: () => dispatch(createWebinar()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
