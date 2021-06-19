@@ -11,7 +11,7 @@ export const initialState = {
     title: '',
     description: '',
     frequency: SCHEDULE_TYPE.ONETIME,
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    timezone: {},
     durationHour: '',
     durationMinute: '',
     duration: '',

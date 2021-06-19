@@ -21,7 +21,7 @@ import { authRequest } from '@/lib/zoom';
 import { LOADING_PREFIX } from '@/utils/constants';
 
 import globalMessage from '@/messages/global';
-import message from '@/messages/listOfWebinar';
+import message from '@/messages/webinar';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -178,7 +178,7 @@ export function ListOfWebinar({
               <Div widthFull noMargin>
                 <Div modal noMargin center>
                   <Image
-                    src="images/warning.svg"
+                    src="/images/warning.svg"
                     alt="success icon"
                     modalIcon
                   />

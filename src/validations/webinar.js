@@ -35,6 +35,9 @@ const createWebinar = Yup.object({
     .required('Schedule is required'),
   durationHour: Yup.number().required('Duration is a required field.'),
   durationMinute: Yup.string().required('Duration is a required field.'),
+  timezone: Yup.object({
+    label: Yup.string().required('Timezone is a required field.'),
+  }),
 });
 
 const registrationForm = Yup.object({

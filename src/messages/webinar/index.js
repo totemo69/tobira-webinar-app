@@ -1,4 +1,4 @@
-export const scope = 'listOfWebinar';
+export const scope = 'webinar';
 
 const message = {
   title: Object.values({
@@ -36,6 +36,18 @@ const message = {
   viewDetails: Object.values({
     key: `${scope}.viewDetails`,
     default: 'View Details',
+  }),
+  congrats: Object.values({
+    key: `${scope}.congrats`,
+    default: 'Congratulations!',
+  }),
+  createdSuccess: Object.values({
+    key: `${scope}.createdSuccess`,
+    default: 'Your webinar has been successfully created.',
+  }),
+  copyMessage: Object.values({
+    key: `${scope}.copyMessage`,
+    default: 'Please copy the generated ticket link.',
   }),
 };
 

@@ -21,6 +21,7 @@ import ErrorMessage from '@/components/Elements/ErrorMessage';
 import { setWebinar } from '@/states/webinar/actions';
 
 import { createWebinar } from '@/validations/webinar';
+import { CombineDateTime, DisableDates } from '@/utils/dateUtils';
 
 export default function CreateWebinarDetails({
   zoomAccounts = [],
@@ -58,7 +59,7 @@ export default function CreateWebinarDetails({
         validationSchema={createWebinar}
         enableReinitialize
       >
-        {({ setFieldValue, submitForm, values }) => {
+        {({ setFieldValue, submitForm, values, errors }) => {
           setSubmitForm(submitForm);
           return (
             <Form id="webinar">
@@ -199,9 +200,8 @@ export default function CreateWebinarDetails({
                     name="schedules[0].scheduleDate"
                     defaultValue={values.schedules[0].scheduleDate}
                     format="MM/DD/YYYY"
-                    onChange={(date, dateString) => {
-                      console.log(date);
-                      console.log(dateString);
+                    disabledDate={DisableDates}
+                    onChange={(date) => {
                       setFieldValue('schedules[0].scheduleDate', date);
                     }}
                   />
@@ -213,11 +213,9 @@ export default function CreateWebinarDetails({
                     name="schedules[0].scheduleTime"
                     defaultValue={values.schedules[0].scheduleTime}
                     use12Hours
-                    minuteStep={30}
+                    minuteStep={15}
                     format="h:mm a"
-                    onChange={(time, timeString) => {
-                      console.log(time);
-                      console.log(timeString);
+                    onChange={(time) => {
                       setFieldValue('schedules[0].scheduleTime', time);
                     }}
                   />
@@ -232,11 +230,14 @@ export default function CreateWebinarDetails({
                     name="timezone"
                     value={values.timezone}
                     onChange={(zone) => {
-                      console.log(zone);
                       setFieldValue('timezone', zone);
                     }}
                   />
-                  <ErrorMessage name="timezone" />
+                  {
+                    // ErrorMessage on timezone.label not working.
+                  }
+                  <ErrorMessage name="timezone.label" />
+                  {errors.timezone ? <div>{errors.timezone.label}</div> : null}
                 </Div>
                 <Div marginLeft>
                   <Labels asterisk>Duration</Labels>
@@ -249,10 +250,6 @@ export default function CreateWebinarDetails({
                         defaultValue={values.durationHour}
                         onChange={(val) => {
                           setFieldValue('durationHour', val);
-                          setFieldValue(
-                            'duration',
-                            `${val}:${values.durationMinute}`,
-                          );
                         }}
                       >
                         <Option key="" value="" disabled>
@@ -274,10 +271,6 @@ export default function CreateWebinarDetails({
                         defaultValue={values.durationMinute}
                         onChange={(val) => {
                           setFieldValue('durationMinute', val);
-                          setFieldValue(
-                            'duration',
-                            `${values.durationHour}:${val}`,
-                          );
                         }}
                       >
                         <Option key="" value="" disabled>
