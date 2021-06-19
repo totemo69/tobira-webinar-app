@@ -29,6 +29,22 @@ const StyledInput = styled(Input).withConfig({
   }
 
   ${(props) =>
+    props.size === 'large' &&
+    css`
+      height: auto;
+      font-size: 1.2em;
+      padding: 0.65em;
+      padding-left: 1.5em;
+      &&:focus {
+        padding-left: 0.85em;
+      }
+      @media screen and (max-width: 480px) {
+        font-size: 1em;
+        padding: 8px;
+      }
+    `};
+
+  ${(props) =>
     props.error &&
     css`
       border: 1px solid #ff0033;
@@ -60,5 +76,14 @@ WrapInput.propTypes = {
   field: PropTypes.any,
   type: PropTypes.string,
 };
+
+export const LabelGroup = styled.div`
+  margin-bottom: 1.2em;
+  ${(props) =>
+    props.spacing === 'large' &&
+    css`
+      margin-bottom: 1.55em;
+    `};
+`;
 
 export default WrapInput;

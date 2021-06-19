@@ -42,6 +42,12 @@ const StyledStep = style(Step).withConfig({
         font-weight: 500 !important;
       }
 
+      &.ant-steps-item-wait
+        > .ant-steps-item-container
+        > .ant-steps-item-content
+        > .ant-steps-item-title {
+        color: var(--accentColor);
+      }
       &.ant-steps-item-finish .ant-steps-item-icon {
         background-color: var(--backgroundColorAccent) !important;
       }
@@ -50,6 +56,23 @@ const StyledStep = style(Step).withConfig({
         color: var(--backgroundColorAccent);
       }
     `}
+
+  // Mobile
+  @media screen and (max-width: 480px) {
+    .ant-steps-item-content {
+      width: 100px !important;
+    }
+    .ant-steps-item-title {
+      font-size: 0.72rem !important;
+      font-weight: 500 !important;
+    }
+    .ant-steps-item-icon{
+      margin-left: 27px;
+    }
+    .ant-steps-item-tail{
+      left: -5px !important;
+    }
+  }    
 
 `;
 

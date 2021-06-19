@@ -7,10 +7,11 @@
 import styled, { css } from 'styled-components';
 import { Select } from 'antd';
 import PropTypes from 'prop-types';
+import Option from '@/components/Elements/Option';
 
 const StyledSelect = styled(Select).withConfig({
   shouldForwardProp: (prop) =>
-    !['error', 'showPages', 'paddingLeft'].includes(prop),
+    !['error', 'showPages', 'paddingLeft', 'size'].includes(prop),
 })`
   margin: 0 auto 10px;
   width: 100%;
@@ -35,6 +36,29 @@ const StyledSelect = styled(Select).withConfig({
   .ant-select-arrow {
     color: #4e4e4e;
   }
+
+  ${(props) =>
+    props.size === 'large' &&
+    css`
+      height: auto !important;
+      font-size: 1.2em;
+      font-weight: normal;
+      .ant-select-selector {
+        height: auto !important;
+      }
+      .ant-select-selection-placeholder {
+        display: flex;
+        align-items: center;
+        padding-left: 0.75em !important;
+        padding-top: 0.5em !important;
+        padding-bottom: 0.5em !important;
+      }
+      .ant-select-selection-item {
+        padding-top: 0.65em !important;
+        padding-bottom: 0.65em !important;
+      }
+      margin-bottom: 0;
+    `};
 
   ${(props) =>
     props.error &&
@@ -73,4 +97,5 @@ WrapSelect.propTypes = {
   children: PropTypes.any,
 };
 
+WrapSelect.Option = Option;
 export default WrapSelect;

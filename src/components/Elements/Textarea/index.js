@@ -13,20 +13,13 @@ const { TextArea } = Input;
 const StyledTextArea = styled(TextArea).withConfig({
   shouldForwardProp: (prop) => !['error'].includes(prop),
 })`
-  margin: 0 auto;
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #b0b0b0;
-  font-size: 10px;
-
-  &:hover {
-    border-color: #0e71eb;
-  }
-
-  &:focus {
-    border: 1px solid #0e71eb;
-    box-shadow: 0px 1px 1px #0e71eb;
+  textarea {
+    border-radius: 8px;
+    border: 1px solid #b0b0b0;
+    font-size: 1.2em;
+    &:focus {
+      border: 1px solid #0e71eb;
+    }
   }
 
   ${(props) =>
