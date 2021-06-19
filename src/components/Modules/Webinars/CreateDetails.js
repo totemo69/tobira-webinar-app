@@ -21,7 +21,7 @@ import ErrorMessage from '@/components/Elements/ErrorMessage';
 import { setWebinar } from '@/states/webinar/actions';
 
 import { createWebinar } from '@/validations/webinar';
-import { CombineDateTime, DisableDates } from '@/utils/dateUtils';
+import { DisableDates } from '@/utils/dateUtils';
 
 export default function CreateWebinarDetails({
   zoomAccounts = [],

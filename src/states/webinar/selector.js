@@ -1,6 +1,6 @@
+import { CombineDateTime } from '@/utils/dateUtils';
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
-import { CombineDateTime } from '@/utils/dateUtils';
 
 const selectWebinarsDomain = (state) => state.webinar || initialState;
 
