@@ -43,7 +43,7 @@ export function CreateWebinar({
 }) {
   const { t } = useTranslation();
   const route = useRouter();
-  const [current, setCurrent] = useState(2);
+  const [current, setCurrent] = useState(0);
   const [submitStep1, setSubmitStep1] = useState();
   const [submitStep2, setSubmitStep2] = useState();
   const [submitStep3, setSubmitStep3] = useState();
