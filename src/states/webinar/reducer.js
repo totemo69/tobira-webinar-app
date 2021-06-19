@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SCHEDULE_TYPE } from '@/utils/constants';
+import { SCHEDULE_TYPE, PAYMENT_METHOD } from '@/utils/constants';
 import { SET_WEBINAR_LIST, WEBINAR_DETAILS, SET_WEBINAR } from './types';
 
 export const initialState = {
@@ -11,16 +11,29 @@ export const initialState = {
     title: '',
     description: '',
     frequency: SCHEDULE_TYPE.ONETIME,
-    timezone: '',
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     durationHour: '',
     durationMinute: '',
+    duration: '',
     image: '',
     schedules: [
       {
         scheduleDate: '',
         scheduleTime: '',
+        dateTime: '',
       },
     ],
+    formName: '',
+    formFields: [
+      {
+        fieldName: 'Email',
+        fieldType: 'Email',
+        isRequired: true,
+        options: [],
+      },
+    ],
+    price: 0,
+    paymentModes: PAYMENT_METHOD.PAYPAL,
   },
 };
 /* eslint-disable default-case, no-param-reassign */

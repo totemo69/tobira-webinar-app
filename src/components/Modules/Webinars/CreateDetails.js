@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TimezoneSelect from 'react-timezone-select';
 import { Formik, Field, Form } from 'formik';
 import { CaretDownFilled, PlusSquareFilled } from '@ant-design/icons';
 import { Row, Col } from 'antd';
+import { useDispatch } from 'react-redux';
 
 import { SCHEDULE_TYPE } from '@/utils/constants';
 import Div from '@/components/Elements/Div';
@@ -18,6 +18,7 @@ import Radio from '@/components/Elements/Radio';
 import DatePicker from '@/components/Elements/DatePicker';
 import TimePicker from '@/components/Elements/TimePicker';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
+import { setWebinar } from '@/states/webinar/actions';
 
 import { createWebinar } from '@/validations/webinar';
 
@@ -27,12 +28,9 @@ export default function CreateWebinarDetails({
   setSubmitForm,
   submitStatus,
 }) {
-  const [selectedTimezone, setSelectedTimezone] = useState(
-    Intl.DateTimeFormat().resolvedOptions().timeZone,
-  );
-
-  const onSubmit = (e) => {
-    console.log(e);
+  const dispatch = useDispatch();
+  const onSubmit = (payload) => {
+    dispatch(setWebinar(payload));
     submitStatus(true);
   };
   return (
@@ -44,10 +42,11 @@ export default function CreateWebinarDetails({
           title: webinarForm.title,
           description: webinarForm.description,
           frequency: webinarForm.frequency,
-          timezone: selectedTimezone,
+          timezone: webinarForm.timezone,
           durationHour: webinarForm.durationHour,
           durationMinute: webinarForm.durationMinute,
-          image: '',
+          duration: webinarForm.duration,
+          image: webinarForm.image,
           schedules: [
             {
               scheduleDate: webinarForm.schedules[0].scheduleDate,
@@ -99,9 +98,9 @@ export default function CreateWebinarDetails({
                       Select an account
                     </Option>
                     {zoomAccounts.map((option) => (
-                      <option key={option.id} value={option.id}>
+                      <Option key={option.id} value={option.id}>
                         {option.zoomEmail}
-                      </option>
+                      </Option>
                     ))}
                   </Field>
                   <ErrorMessage name="webinarAccount" />
@@ -178,8 +177,17 @@ export default function CreateWebinarDetails({
                     setFieldValue('frequency', e.target.value);
                   }}
                 >
-                  <Radio value={SCHEDULE_TYPE.ONETIME}>One-Time</Radio>
-                  <Radio value={SCHEDULE_TYPE.RECURRING} disabled>
+                  <Radio
+                    key={SCHEDULE_TYPE.ONETIME}
+                    value={SCHEDULE_TYPE.ONETIME}
+                  >
+                    One-Time
+                  </Radio>
+                  <Radio
+                    key={SCHEDULE_TYPE.RECURRING}
+                    value={SCHEDULE_TYPE.RECURRING}
+                    disabled
+                  >
                     Recurring
                   </Radio>
                 </Radio.Group>
@@ -191,9 +199,10 @@ export default function CreateWebinarDetails({
                     name="schedules[0].scheduleDate"
                     defaultValue={values.schedules[0].scheduleDate}
                     format="MM/DD/YYYY"
-                    onChange={(e) => {
-                      console.log(e);
-                      setFieldValue('schedules[0].scheduleDate', e);
+                    onChange={(date, dateString) => {
+                      console.log(date);
+                      console.log(dateString);
+                      setFieldValue('schedules[0].scheduleDate', date);
                     }}
                   />
                   <ErrorMessage name="schedules[0].scheduleDate" />
@@ -206,9 +215,10 @@ export default function CreateWebinarDetails({
                     use12Hours
                     minuteStep={30}
                     format="h:mm a"
-                    onChange={(e) => {
-                      console.log(e);
-                      setFieldValue('schedules[0].scheduleTime', e);
+                    onChange={(time, timeString) => {
+                      console.log(time);
+                      console.log(timeString);
+                      setFieldValue('schedules[0].scheduleTime', time);
                     }}
                   />
                   <ErrorMessage name="schedules[0].scheduleTime" />
@@ -218,12 +228,12 @@ export default function CreateWebinarDetails({
                 <Div marginRight>
                   <Labels asterisk>Timezone</Labels>
                   <TimezoneSelect
+                    instanceId="timezone"
                     name="timezone"
                     value={values.timezone}
-                    onChange={(e) => {
-                      console.log(e);
-                      setSelectedTimezone(e);
-                      setFieldValue('timezone', e);
+                    onChange={(zone) => {
+                      console.log(zone);
+                      setFieldValue('timezone', zone);
                     }}
                   />
                   <ErrorMessage name="timezone" />
@@ -237,13 +247,21 @@ export default function CreateWebinarDetails({
                         component={Select}
                         suffixIcon={<CaretDownFilled />}
                         defaultValue={values.durationHour}
-                        onChange={(val) => setFieldValue('durationHour', val)}
+                        onChange={(val) => {
+                          setFieldValue('durationHour', val);
+                          setFieldValue(
+                            'duration',
+                            `${val}:${values.durationMinute}`,
+                          );
+                        }}
                       >
-                        <Option value="" disabled>
+                        <Option key="" value="" disabled>
                           Hour
                         </Option>
                         {Array.from(Array(11), (_, i) => (
-                          <option value={i}>{i}</option>
+                          <Option key={i} value={i}>
+                            {i}
+                          </Option>
                         ))}
                       </Field>{' '}
                       hr <ErrorMessage name="durationHour" />
@@ -254,15 +272,29 @@ export default function CreateWebinarDetails({
                         component={Select}
                         suffixIcon={<CaretDownFilled />}
                         defaultValue={values.durationMinute}
-                        onChange={(val) => setFieldValue('durationMinute', val)}
+                        onChange={(val) => {
+                          setFieldValue('durationMinute', val);
+                          setFieldValue(
+                            'duration',
+                            `${values.durationHour}:${val}`,
+                          );
+                        }}
                       >
-                        <Option value="" disabled>
+                        <Option key="" value="" disabled>
                           Minutes
                         </Option>
-                        <Option value="00">00</Option>
-                        <Option value="15">15</Option>
-                        <Option value="30">30</Option>
-                        <Option value="45">45</Option>
+                        <Option key="00" value="00">
+                          00
+                        </Option>
+                        <Option key="15" value="15">
+                          15
+                        </Option>
+                        <Option key="30" value="30">
+                          30
+                        </Option>
+                        <Option key="45" value="45">
+                          45
+                        </Option>
                       </Field>{' '}
                       mins <ErrorMessage name="durationMinute" />
                     </Col>

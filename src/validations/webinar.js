@@ -25,12 +25,14 @@ const createWebinar = Yup.object({
   title: Yup.string().required('Title is a required field.'),
   description: Yup.string().required('Description is a required field.'),
   frequency: Yup.string().required('Description is a required field.'),
-  // schedules: Yup.array().of(
-  //   Yup.object().shape({
-  //     scheduleDate: Yup.string().required('Date is a required field.'),
-  //     scheduleTime: Yup.string().required('Time is a required field.'),
-  //   }))
-  //   .required('Schedule is required'),
+  schedules: Yup.array()
+    .of(
+      Yup.object().shape({
+        scheduleDate: Yup.date().required('Date is a required field.'),
+        scheduleTime: Yup.date().required('Time is a required field.'),
+      }),
+    )
+    .required('Schedule is required'),
   durationHour: Yup.number().required('Duration is a required field.'),
   durationMinute: Yup.string().required('Duration is a required field.'),
 });
@@ -40,9 +42,9 @@ const registrationForm = Yup.object({
   formFields: Yup.array()
     .of(
       Yup.object().shape({
-        fieldName: Yup.string().required(),
-        fieldType: Yup.string().required(),
-        isRequired: Yup.boolean().required(),
+        fieldName: Yup.string().required('Field Name is a required field.'),
+        fieldType: Yup.string().required('Field Type is a required field.'),
+        isRequired: Yup.boolean(),
         options: Yup.array().of(Yup.string()),
       }),
     )
@@ -51,7 +53,6 @@ const registrationForm = Yup.object({
 
 const paymentOptions = Yup.object({
   price: Yup.number().required('Price is a required field.'),
-  paymentModes: Yup.string().required('Payment options is a required field.'),
 });
 
 export default validationSchema;
