@@ -150,5 +150,10 @@
     "webinarPlan": "Webinar Plan",
     "webinarPriceAttendee": "Webinar price for each attendee",
     "zoomAccount": "Zoom Account"
+  },
+  "webinarDetail": {
+    "register": "Register",
+    "ticketSummary": "Ticket Summary",
+    "complete": "Complete"
   }
 }

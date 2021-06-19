@@ -22,6 +22,7 @@ const StyledContent = styled(Content).withConfig({
       'privacypolicyContent',
       'defaultPadding',
       'narrowPadding',
+      'narrowScreen',
     ].includes(prop),
 })`
   margin-top: 0.25em;
@@ -34,6 +35,21 @@ const StyledContent = styled(Content).withConfig({
     width: 78%;
     margin: auto;
   }
+
+  ${(props) =>
+    props.narrowScreen &&
+    css`
+      width: 70%;
+      margin: auto;
+      @media screen and (min-width: 1920px) {
+        width: 60%;
+        margin: auto;
+      }
+      // Mobiles
+      @media screen and (max-width: 480px) {
+        width: 100%;
+      }
+    `};
 
   ${(props) =>
     props.defaultPadding &&

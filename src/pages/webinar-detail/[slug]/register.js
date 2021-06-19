@@ -1,10 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import DetailLayout from '@/components/Layouts/WebinarDetail';
+import RegisterLayout from '@/components/Layouts/WebinarDetail/register';
 import Register from '@/components/Templates/Detail/register';
 
 const WebinarDetail = ({ postDetail }) => (
-  <DetailLayout>
+  <RegisterLayout>
     <Head>
       <title>{postDetail.title}</title>
       <meta name="description" content={postDetail.title} />
@@ -15,8 +15,8 @@ const WebinarDetail = ({ postDetail }) => (
         key="description"
       />
     </Head>
-    <Register>REGISTER</Register>
-  </DetailLayout>
+    <Register />
+  </RegisterLayout>
 );
 
 WebinarDetail.getInitialProps = () => ({

@@ -178,7 +178,7 @@ export function ListOfWebinar({
               <Div widthFull noMargin>
                 <Div modal noMargin center>
                   <Image
-                    src="Images/warning.svg"
+                    src="images/warning.svg"
                     alt="success icon"
                     modalIcon
                   />
