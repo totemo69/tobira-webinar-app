@@ -58,6 +58,12 @@ const StyledSelect = styled(Select).withConfig({
         padding-bottom: 0.65em !important;
       }
       margin-bottom: 0;
+      @media screen and (max-width: 480px) {
+        font-size: 1em;
+        .ant-select-selection-placeholder {
+          padding-left: 0px !important;
+        }
+      }
     `};
 
   ${(props) =>

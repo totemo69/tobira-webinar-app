@@ -38,6 +38,11 @@ const StyledRadio = styled(Radio).withConfig({
   shouldForwardProp: (prop) => ![].includes(prop),
 })`
   font-size: 12px;
+  @media screen and (max-width: 480px) {
+    &&.ant-radio-wrapper {
+      padding-bottom: 5px;
+    }
+  }
 `;
 
 StyledRadio.Group = StyledRadioGroup;
