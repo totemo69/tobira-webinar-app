@@ -17,7 +17,7 @@ const REGISTER_STEPS = {
 
 export default function Register() {
   const { t } = useTranslation();
-  const [step, setStep] = useState(REGISTER_STEPS.COMPLETE);
+  const [step, setStep] = useState(REGISTER_STEPS.DETAIL);
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
   return (
