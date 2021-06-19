@@ -21,6 +21,19 @@ const StyledTextArea = styled(TextArea).withConfig({
       border: 1px solid #0e71eb;
     }
   }
+  .ant-input:placeholder-shown {
+    padding-left: 1.25em;
+  }
+  .ant-input:placeholder-shown.textarea:focus {
+    padding-left: 0.85em;
+  }
+
+  @media screen and (max-width: 480px) {
+    textarea {
+      font-size: 1em;
+      padding: 8px;
+    }
+  }
 
   ${(props) =>
     props.error &&

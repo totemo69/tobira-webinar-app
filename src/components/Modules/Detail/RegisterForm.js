@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import { Row, Col } from 'antd';
 import { Formik, Field, Form } from 'formik';
 import { CaretDownFilled } from '@ant-design/icons';
 import Input, { LabelGroup } from '@/components/Elements/Input';
@@ -6,8 +8,9 @@ import Radio from '@/components/Elements/Radio';
 import Select from '@/components/Elements/Select';
 import Textarea from '@/components/Elements/Textarea';
 import Button from '@/components/Elements/Button';
+import classNames from './index.module.css';
 
-const WebinarRegistrationForm = () => (
+const WebinarRegistrationForm = ({ nextStep }) => (
   <Formik initialValues={{}} enableReinitialize>
     {() => (
       <Form>
@@ -92,14 +95,28 @@ const WebinarRegistrationForm = () => (
             placeholder="Question & Comments"
           ></Field>
         </LabelGroup>
-
-        <Button NextButton type="primary">
-          Next {'>'}
-        </Button>
-        <Button BackButton>{'<'} Back</Button>
+        <Row justify="end" className={classNames.spacer}>
+          <Col lg={12} xs={24}>
+            <Row>
+              <Col span={12} className={classNames.registerNext}>
+                <Button type="primary" ghost>
+                  {'<'} Back
+                </Button>
+              </Col>
+              <Col span={12} className={classNames.registerNext}>
+                <Button type="primary" size="large" onClick={nextStep}>
+                  Next {'>'}
+                </Button>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Form>
     )}
   </Formik>
 );
+WebinarRegistrationForm.propTypes = {
+  nextStep: PropTypes.func,
+};
 
 export default WebinarRegistrationForm;
