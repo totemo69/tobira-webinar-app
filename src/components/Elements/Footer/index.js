@@ -22,7 +22,17 @@ const StyledFooter = styled(Footer).withConfig({
   font-weight: 600;
   color: #4e4e4e;
   letter-spacing: 0.2px;
-  line-height: 0.18px;
+  @media screen and (max-width: 480px) {
+    height: auto;
+    align-items: center;
+    span {
+      margin-bottom: 1em;
+    }
+    &.ant-row:last-child {
+      margin-bottom: 0;
+    }
+    padding-bottom: 0;
+  }
 `;
 
 export default StyledFooter;

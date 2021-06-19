@@ -12,7 +12,6 @@ const { Title, Text, Paragraph } = Typography;
 
 export default function Detail({ postDetail }) {
   const [isShareVisible, setShareVisible] = useState(false);
-  console.log('postDetail', postDetail);
   return (
     <>
       <Row className={classNames.detailRow}>

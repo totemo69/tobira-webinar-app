@@ -5,6 +5,7 @@ import detailMessage from '@/messages/webinarDetail';
 import RegisterStepper from '@/components/Modules/Detail/RegisterStepper';
 import WebinarRegistrationForm from '@/components/Modules/Detail/RegisterForm';
 import TicketSummary from '@/components/Modules/Detail/TicketSummary';
+import ChoosePayment from '@/components/Modules/Detail/ChoosePayment';
 import classNames from './Detail.module.css';
 
 const { Title } = Typography;
@@ -16,7 +17,7 @@ const REGISTER_STEPS = {
 
 export default function Register() {
   const { t } = useTranslation();
-  const [step, setStep] = useState(REGISTER_STEPS.DETAIL);
+  const [step, setStep] = useState(REGISTER_STEPS.COMPLETE);
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
   return (
@@ -30,12 +31,14 @@ export default function Register() {
           <RegisterStepper currentStep={step} />
         </Col>
       </Row>
-
-      <Row align="middle" justify="center">
-        <Title level={1} className={classNames.title}>
-          {t(detailMessage.register)}
-        </Title>
-      </Row>
+      {[REGISTER_STEPS.DETAIL, REGISTER_STEPS.SUMMARY].includes(step) && (
+        <Row align="middle" justify="center">
+          <Title level={1} className={classNames.title}>
+            {step === REGISTER_STEPS.DETAIL && t(detailMessage.register)}
+            {step === REGISTER_STEPS.SUMMARY && t(detailMessage.ticketSummary)}
+          </Title>
+        </Row>
+      )}
       <Row align="middle" justify="center">
         <Col
           span={18}
@@ -51,6 +54,9 @@ export default function Register() {
           )}
           {step === REGISTER_STEPS.SUMMARY && (
             <TicketSummary prevStep={prevStep} nextStep={nextStep} />
+          )}
+          {step === REGISTER_STEPS.COMPLETE && (
+            <ChoosePayment prevStep={prevStep} />
           )}
         </Col>
       </Row>
