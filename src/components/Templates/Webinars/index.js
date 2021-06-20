@@ -16,7 +16,10 @@ import {
 import { getZoomAccount } from '@/states/accounts/actions';
 import { createWebinar } from '@/states/webinar/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
-import { makeSelectWebinarForm } from '@/states/webinar/selector';
+import {
+  makeSelectWebinarForm,
+  makeSelectWebinarDetails,
+} from '@/states/webinar/selector';
 import { withAuthSync } from '@/lib/auth';
 
 import localMessage from '@/messages/createProfile';
@@ -24,6 +27,7 @@ import localMessage from '@/messages/createProfile';
 import RegistrationDetails from '@/components/Modules/Webinars/RegistrationDetails';
 import PaymentOptions from '@/components/Modules/Webinars/PaymentOptions';
 import CreateWebinarPage from '@/components/Modules/Webinars/CreateDetails';
+import SuccessModal from '@/components/Modules/Webinars/SuccessModal';
 
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -40,6 +44,7 @@ export function CreateWebinar({
   zoomAccountList,
   webinarFormDetails,
   doCreateWebinar,
+  webinarDetails,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -48,9 +53,16 @@ export function CreateWebinar({
   const [submitStep2, setSubmitStep2] = useState();
   const [submitStep3, setSubmitStep3] = useState();
   const [submitFormStatus, setsubmitFormStatus] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
 
   const submitStatusBind = (e) => {
     setsubmitFormStatus(e);
+  };
+
+  const onCloseModal = () => {
+    setSuccessModal(!successModal);
+    route.push(WEBINAR_ROUTE.LIST_WEBINAR);
   };
 
   useEffect(() => {
@@ -58,11 +70,10 @@ export function CreateWebinar({
   }, []);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && submitting) {
+      setSubmitting(false);
       if (submitStatus) {
-        // Temporary only
-        message.success('Success!');
-        route.push(WEBINAR_ROUTE.LIST_WEBINAR);
+        setSuccessModal(!successModal);
       } else if (errorMessage) {
         message.error(errorMessage);
       }
@@ -73,6 +84,7 @@ export function CreateWebinar({
     // if Form doesn't have error, go to next step
     if (submitFormStatus) {
       if (current === step.length - 1) {
+        setSubmitting(true);
         doCreateWebinar();
       } else {
         setCurrent(current + 1);
@@ -137,7 +149,8 @@ export function CreateWebinar({
 
   const next = async () => {
     // Execute child component formik submit form
-    console.log(submitFormStatus);
+    // Make false again for checking and listening to form submitting status
+    setsubmitFormStatus(false);
     if (current === 0) {
       await submitStep1();
     } else if (current === 1) {
@@ -191,6 +204,11 @@ export function CreateWebinar({
           )}
         </Card>
       </Div>
+      <SuccessModal
+        isOpenModal={successModal}
+        closeModal={onCloseModal}
+        webinarUrl={webinarDetails && webinarDetails.slug}
+      />
     </>
   );
 }
@@ -203,6 +221,7 @@ CreateWebinar.propTypes = {
   errorMessage: PropTypes.any,
   doCreateWebinar: PropTypes.func,
   submitStatus: PropTypes.any,
+  webinarDetails: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -212,6 +231,7 @@ const mapStateToProps = createStructuredSelector({
   zoomAccountList: makeSelectAccountList(),
   errorMessage: makeSelectError(),
   webinarFormDetails: makeSelectWebinarForm(),
+  webinarDetails: makeSelectWebinarDetails(),
 });
 
 const mapDispatchProps = (dispatch) => ({

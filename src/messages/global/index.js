@@ -142,6 +142,10 @@ const message = {
     key: `${scope}.goBackPrevious`,
     default: 'Go back to previous page',
   }),
+  ok: Object.values({
+    key: `${scope}.ok`,
+    default: 'Okay',
+  }),
 };
 
 export default message;

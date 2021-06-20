@@ -72,7 +72,7 @@
     "wallet":  "Wallet",
     "logOut":  "Log out"
   },
-  "listOfWebinar": {
+  "webinar": {
     "title": "Title",
     "schedule" :  "Schedule",
     "attendees": "No. of Attendees",
