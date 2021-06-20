@@ -40,7 +40,7 @@ const TicketSummary = ({ prevStep, nextStep }) => (
       <Col lg={14} xs={24}>
         <Row>
           <Col span={12} lg={12} xs={24} className={classnames.summaryNext}>
-            <Button type="primary" ghost onClick={prevStep}>
+            <Button type="primary" ghost size="large" onClick={prevStep}>
               {'<'} Back
             </Button>
           </Col>

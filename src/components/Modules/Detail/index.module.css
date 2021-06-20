@@ -175,3 +175,23 @@ h1.paymentTitle{
     }    
 }
 
+/* Complete */
+.completeCol{
+    min-height: 35vh;
+    margin-top: 3em;
+}
+.completeBtn{
+    text-align: center;
+}
+.completeTitle{
+    color: var(--textColorPrimary) !important;
+    font-weight: 650 !important;
+    letter-spacing: 0.6px !important;
+    padding-bottom: 1em;
+}
+@media screen and (max-width: 480px) {
+    .completeCol{
+        min-height: 25vh;
+        margin-top: 1em;
+    }
+}

@@ -99,7 +99,7 @@ const WebinarRegistrationForm = ({ nextStep }) => (
           <Col lg={12} xs={24}>
             <Row>
               <Col span={12} className={classNames.registerNext}>
-                <Button type="primary" ghost>
+                <Button type="primary" size="large" ghost>
                   {'<'} Back
                 </Button>
               </Col>
