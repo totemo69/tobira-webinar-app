@@ -77,7 +77,18 @@ const StyledButton = styled(Button).withConfig({
     css`
       color: var(--linkColor);
       margin: 0;
-      font-size: bold;
+      font-weight: bold;
+    `};
+
+  ${(props) =>
+    props.size === 'large' &&
+    css`
+      height: 3em;
+      @media screen and (max-width: 480px) {
+        min-height: 3em !important;
+        height: auto !important ;
+        white-space: unset !important;
+      }
     `};
 
   ${(props) =>

@@ -32,7 +32,7 @@ const ChoosePayment = ({ prevStep }) => (
       <Col lg={14} xs={24}>
         <Row>
           <Col span={12} lg={12} xs={24} className={classNames.summaryNext}>
-            <Button type="primary" ghost onClick={prevStep}>
+            <Button type="primary" size="large" ghost onClick={prevStep}>
               {'<'} Back
             </Button>
           </Col>
