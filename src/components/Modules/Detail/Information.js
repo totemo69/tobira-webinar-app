@@ -27,7 +27,7 @@ const InformationItem = ({ iconSrc, label, date, value, price, addendum }) => (
   </div>
 );
 
-const Information = () => (
+const Information = ({ postDetail }) => (
   <Col span={24}>
     <Row>
       <Col lg={12} xs={16}>
@@ -58,14 +58,14 @@ const Information = () => (
         <InformationItem
           iconSrc="/images/language.svg"
           label="Timezone"
-          value="(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk"
+          value={`${postDetail.timezone}`}
         />
       </Col>
       <Col span={24}>
         <InformationItem
           iconSrc="/images/tickets.svg"
           label="Ticket Price"
-          price="500 JPY"
+          price={`${postDetail.price} JPY`}
         />
       </Col>
     </Row>
