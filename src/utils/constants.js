@@ -35,6 +35,7 @@ export const API = {
   AUTH_LOGIN: `${Url}/auth/login`,
   AUTH_REGISTER: `${Url}/auth/register`,
   ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
+  WEBINAR_PUBLIC_DETAIL_PAGE: `${Url}/webinar-page`,
 };
 
 export const WEBINAR_ROUTE = {

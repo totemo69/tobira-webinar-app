@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import DetailLayout from '@/components/Layouts/WebinarDetail';
 import Detail from '@/components/Templates/Detail';
+import WebinarDetailService from '../../../service/WebinarDetailService';
 
 const WebinarDetail = ({ postDetail }) => (
   <DetailLayout>
@@ -19,17 +20,20 @@ const WebinarDetail = ({ postDetail }) => (
   </DetailLayout>
 );
 
-WebinarDetail.getInitialProps = () => ({
-  postDetail: {
-    title: 'Wealth & Asset Management in Tough Times',
-    coverImage: '/images/dummy.jpeg',
-    author: 'Yamazaki Kento',
-    schedules: [
-      'April 26 　Mon 　09:00 AM (GMT +9:00)',
-      'April 26 　Mon 　10:00 AM (GMT +9:00)',
-      'April 26 　Mon 　11:00 AM (GMT +9:00)',
-      'April 26 　Mon 　12:00 PM (GMT +9:00)',
-    ],
-  },
-});
+WebinarDetail.getInitialProps = async ({ query }) => {
+  const page = await WebinarDetailService.getWebinarDetail(query.slug);
+  console.log('Page', page);
+  return {
+    postDetail: {
+      ...page,
+      coverImage: '/images/dummy.jpeg',
+      schedules: [
+        'April 26 　Mon 　09:00 AM (GMT +9:00)',
+        'April 26 　Mon 　10:00 AM (GMT +9:00)',
+        'April 26 　Mon 　11:00 AM (GMT +9:00)',
+        'April 26 　Mon 　12:00 PM (GMT +9:00)',
+      ],
+    },
+  };
+};
 export default WebinarDetail;
