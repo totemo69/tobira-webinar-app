@@ -9,19 +9,19 @@ const RadioGroup = RadioImage.Group;
 const PaymentButton = RadioImage.Button;
 const { Text, Title } = Typography;
 
-const ChoosePayment = ({ prevStep }) => (
+const ChoosePayment = ({ prevStep, checkOut }) => (
   <Col>
     <Row>
       <Col span={24} className={classNames.paymentCol}>
         <Title level={1} className={classNames.paymentTitle}>
           Payment Method
         </Title>
-        <RadioGroup name="payment-method">
+        <RadioGroup defaultValue="Paypal" name="payment-method">
           <PaymentButton value="Paypal">
             <Image src="/images/paypal.svg" alt="paypal image" />
             <Text>Pay with Paypal</Text>
           </PaymentButton>
-          <PaymentButton value="Other">
+          <PaymentButton disabled value="Other">
             <Image src="/images/other-payment.svg" alt="paypal image" />
             <Text>Other payment options coming soon!</Text>
           </PaymentButton>
@@ -37,7 +37,7 @@ const ChoosePayment = ({ prevStep }) => (
             </Button>
           </Col>
           <Col lg={12} xs={24} className={classNames.summaryNext}>
-            <Button type="primary" size="large">
+            <Button type="primary" size="large" onClick={checkOut}>
               Checkout {'>'}
             </Button>
           </Col>
@@ -48,5 +48,6 @@ const ChoosePayment = ({ prevStep }) => (
 );
 ChoosePayment.propTypes = {
   prevStep: PropTypes.func,
+  checkOut: PropTypes.func,
 };
 export default ChoosePayment;

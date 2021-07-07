@@ -5,7 +5,7 @@ import classnames from './index.module.css';
 
 const { Text, Title } = Typography;
 
-const TicketSummary = ({ prevStep, nextStep }) => (
+const TicketSummary = ({ prevStep, nextStep, webinarDetails }) => (
   <Col>
     <div className={classnames.ticketBody}>
       <Row>
@@ -15,21 +15,22 @@ const TicketSummary = ({ prevStep, nextStep }) => (
       </Row>
       <Row justify="center">
         <Col span={24} className={classnames.actualPrice}>
-          <Title level={1}>500 JPY</Title>
+          <Title level={1}>{webinarDetails.price} JPY</Title>
         </Col>
       </Row>
 
       <Row justify="center" className={classnames.ticketLower}>
-        <Text className={classnames.ticketDetailLabel}>Price</Text>
+        <Text className={classnames.ticketDetailLabel}>Title</Text>
         <Text className={classnames.ticketDetailInfo}>
-          Wealth & Asset Management in Tough Times
+          {webinarDetails.title}
         </Text>
 
         <Text className={classnames.ticketDetailLabel}>
           Start Date and Time
         </Text>
         <Text className={classnames.ticketDetailInfo}>
-          April 26, 2021 (Monday) 11:00 AM - 12:30 PM (GMT +9:00)
+          {}
+          {webinarDetails.schedules[0].dateTime}
         </Text>
       </Row>
       <div className={`${classnames.ticketCircle} ${classnames.left}`}></div>
@@ -57,5 +58,6 @@ const TicketSummary = ({ prevStep, nextStep }) => (
 TicketSummary.propTypes = {
   prevStep: PropTypes.func,
   nextStep: PropTypes.func,
+  webinarDetails: PropTypes.any,
 };
 export default TicketSummary;

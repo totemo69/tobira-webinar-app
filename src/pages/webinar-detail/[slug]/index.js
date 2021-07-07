@@ -27,12 +27,6 @@ WebinarDetail.getInitialProps = async ({ query }) => {
     postDetail: {
       ...page,
       coverImage: '/images/dummy.jpeg',
-      schedules: [
-        'April 26 　Mon 　09:00 AM (GMT +9:00)',
-        'April 26 　Mon 　10:00 AM (GMT +9:00)',
-        'April 26 　Mon 　11:00 AM (GMT +9:00)',
-        'April 26 　Mon 　12:00 PM (GMT +9:00)',
-      ],
     },
   };
 };
