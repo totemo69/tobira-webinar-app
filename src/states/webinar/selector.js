@@ -37,5 +37,29 @@ const makeSelectWebinarForm = () =>
     };
   });
 
+const makeSelectWebinarPublic = () =>
+  createSelector(selectWebinarsDomain, (substate) => substate.webinarPublic);
+
+const makeSelectWebinarRegistration = () =>
+  createSelector(selectWebinarsDomain, (substate) => substate.webinarRegister);
+
+const makeSelectWebinarRegistrationForm = () =>
+  createSelector(selectWebinarsDomain, (substate) => substate.registrationForm);
+
+const makeSelectWebinarAttendee = () =>
+  createSelector(selectWebinarsDomain, (substate) => substate.attendee);
+
+const makeSelectWebinarPayment = () =>
+  createSelector(selectWebinarsDomain, (substate) => substate.payment);
+
 export default makeSelectWebinar;
-export { makeSelectWebinars, makeSelectWebinarDetails, makeSelectWebinarForm };
+export {
+  makeSelectWebinars,
+  makeSelectWebinarDetails,
+  makeSelectWebinarForm,
+  makeSelectWebinarPublic,
+  makeSelectWebinarRegistration,
+  makeSelectWebinarRegistrationForm,
+  makeSelectWebinarAttendee,
+  makeSelectWebinarPayment,
+};

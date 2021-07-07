@@ -34,7 +34,7 @@ const Information = ({ postDetail }) => (
         <InformationItem
           iconSrc="/images/date_calendar.svg"
           label="Date"
-          date="April 29, 2021"
+          date={`${postDetail.schedules[0].scheduleDate}`}
           addendum="(Thursday)"
         />
       </Col>
@@ -42,7 +42,7 @@ const Information = ({ postDetail }) => (
         <InformationItem
           iconSrc="/images/time_schedule.svg"
           label="Time"
-          date="11:00 AM"
+          date={`${postDetail.schedules[0].scheduleTime}`}
         />
       </Col>
     </Row>
@@ -51,7 +51,7 @@ const Information = ({ postDetail }) => (
         <InformationItem
           iconSrc="/images/duration.svg"
           label="Duration"
-          date="1 hour and 30 minutes"
+          date={`${postDetail.duration} minutes`}
         />
       </Col>
       <Col span={24}>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import NextImage from 'next/image';
+import { useRouter } from 'next/router';
 import { Row, Col, Typography } from 'antd';
+import { WEBINAR_ROUTE } from '@/utils/constants';
 import Button from '@/components/Elements/Button';
 import CustomIcon from '@/components/Elements/Icon';
-import Schedule from '@/components/Modules/Detail/Schedule';
+// import Schedule from '@/components/Modules/Detail/Schedule';
 import Information from '@/components/Modules/Detail/Information';
 import ShareModal from '@/components/Modules/Detail/ShareModal';
 import classNames from './Detail.module.css';
@@ -11,7 +13,11 @@ import classNames from './Detail.module.css';
 const { Title, Text, Paragraph } = Typography;
 
 export default function Detail({ postDetail }) {
+  const route = useRouter();
   const [isShareVisible, setShareVisible] = useState(false);
+  const onRegister = () => {
+    route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${postDetail.slug}/register`);
+  };
   return (
     <>
       <Row className={classNames.detailRow}>
@@ -49,14 +55,20 @@ export default function Detail({ postDetail }) {
           </Row>
 
           <Row className={classNames.rowSpacing}>
-            <Schedule schedules={postDetail.schedules} />
+            {/* <Schedule schedules={postDetail.schedules} /> */}
           </Row>
           <Row>
             <Information postDetail={postDetail} />
           </Row>
           <Row className={classNames.registerBtnRow}>
             <Col span={24}>
-              <Button type="primary" noBoxShadow fullwidth noMargin>
+              <Button
+                onClick={onRegister}
+                type="primary"
+                noBoxShadow
+                fullwidth
+                noMargin
+              >
                 Register Now
               </Button>
             </Col>

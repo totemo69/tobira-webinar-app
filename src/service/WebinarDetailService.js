@@ -7,8 +7,8 @@ const WebinarDetailService = {
       `${API.WEBINAR_PUBLIC_DETAIL_PAGE}/${slug}`,
       RequestOptions(GET_REQUEST, null, false),
     );
-    if (result?.length > 0) {
-      const [pageDetail] = result;
+    if (result) {
+      const pageDetail = result;
       return {
         id: pageDetail?.id,
         slug: pageDetail?.slug,
@@ -17,6 +17,8 @@ const WebinarDetailService = {
         description: pageDetail?.description,
         price: pageDetail?.price,
         timezone: pageDetail?.timezone?.label,
+        duration: pageDetail?.duration,
+        schedules: pageDetail?.schedules,
       };
     }
     return null;

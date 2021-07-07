@@ -36,6 +36,8 @@ export const API = {
   AUTH_REGISTER: `${Url}/auth/register`,
   ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
   WEBINAR_PUBLIC_DETAIL_PAGE: `${Url}/webinar-page`,
+  ATTENDEES: `${Url}/attendees`,
+  PAYMENT: `${Url}/payments`,
 };
 
 export const WEBINAR_ROUTE = {
@@ -61,6 +63,9 @@ export const LOADING_PREFIX = {
   CREATE_WEBINAR: 'create-webinar',
   SIGNUP: 'signup',
   PROFILE: 'profile',
+  WEBINAR: 'webinar',
+  REGISTER: 'register',
+  PAYMENT: 'payment',
 };
 
 export const SCHEDULE_TYPE = {

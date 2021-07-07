@@ -7,9 +7,24 @@ import {
 } from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
-import { setWebinarList, setWebinarDetails } from './actions';
-import { GET_WEBINAR_LIST, CREATE_WEBINAR } from './types';
-import { makeSelectWebinarForm } from './selector';
+import {
+  setWebinarList,
+  setWebinarDetails,
+  setWebinarPublic,
+  setAttendee,
+  setPayment,
+} from './actions';
+import {
+  GET_WEBINAR_LIST,
+  CREATE_WEBINAR,
+  GET_WEBINAR_PUBLIC,
+  DO_REGISTER,
+  DO_PAY,
+} from './types';
+import {
+  makeSelectWebinarForm,
+  makeSelectWebinarRegistrationForm,
+} from './selector';
 
 function* webinarList() {
   try {
@@ -48,7 +63,72 @@ function* createWebinar() {
   }
 }
 
+function* webinarPublicDetails({ payload }) {
+  try {
+    const { slug } = payload;
+    yield put(loading(LOADING_PREFIX.WEBINAR));
+    const response = yield call(
+      request,
+      `${API.WEBINAR_PUBLIC_DETAIL_PAGE}/${slug}`,
+      RequestOptions(GET_REQUEST, null, false),
+    );
+    yield put(setWebinarPublic(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.WEBINAR));
+  } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.WEBINAR, false));
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.WEBINAR, false));
+  }
+}
+
+function* webinarRegistration() {
+  try {
+    const payload = yield select(makeSelectWebinarRegistrationForm());
+    yield put(loading(LOADING_PREFIX.REGISTER));
+    const response = yield call(
+      request,
+      `${API.WEBINAR_PUBLIC_DETAIL_PAGE}/register`,
+      RequestOptions(POST_REQUEST, { ...payload }, false),
+    );
+    yield put(setAttendee(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.REGISTER));
+  } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.REGISTER, false));
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.REGISTER, false));
+  }
+}
+
+function* webinarPayment({ payload }) {
+  try {
+    yield put(loading(LOADING_PREFIX.PAYMENT));
+    const response = yield call(
+      request,
+      `${API.PAYMENT}`,
+      RequestOptions(POST_REQUEST, { ...payload }, false),
+    );
+    yield put(setPayment(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.PAYMENT));
+  } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.PAYMENT, false));
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.PAYMENT, false));
+  }
+}
+
 export default function* webinarSaga() {
   yield takeLatest(GET_WEBINAR_LIST, webinarList);
   yield takeLatest(CREATE_WEBINAR, createWebinar);
+  yield takeLatest(GET_WEBINAR_PUBLIC, webinarPublicDetails);
+  yield takeLatest(DO_REGISTER, webinarRegistration);
+  yield takeLatest(DO_PAY, webinarPayment);
 }
