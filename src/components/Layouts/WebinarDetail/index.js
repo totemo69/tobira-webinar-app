@@ -6,7 +6,7 @@ import Footer from '@/components/Modules/Footer';
 export default function WebinarDetail({ children }) {
   return (
     <Layout bgPrimary>
-      <Header withLogo />
+      <Header withLogo withMenu={false} />
       <Content bgNone narrowPadding>
         {children}
       </Content>

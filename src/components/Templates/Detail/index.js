@@ -93,80 +93,13 @@ export default function Detail({ postDetail }) {
           <Paragraph className={classNames.paragraph}>
             {postDetail.description}
           </Paragraph>
-          {/* <Paragraph className={classNames.paragraph}>
-            At tempor commodo ullamcorper a lacus vestibulum sed. Pellentesque
-            massa placerat duis ultricies lacus sed turpis. Eget egestas purus
-            viverra accumsan in. Lectus urna duis convallis convallis tellus id
-            interdum velit. Sollicitudin ac orci phasellus egestas tellus
-            rutrum. Urna duis convallis convallis tellus id interdum velit
-            laoreet. Interdum varius sit amet mattis vulputate enim. A iaculis
-            at erat pellentesque. Enim nulla aliquet porttitor lacus luctus
-            accumsan tortor. Cras sed felis eget velit aliquet sagittis. Enim
-            blandit volutpat maecenas volutpat blandit aliquam etiam. Fusce id
-            velit ut tortor pretium viverra suspendisse.
-          </Paragraph>
-          <Paragraph className={classNames.paragraph}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus
-            urna duis convallis convallis. Urna molestie at elementum eu.
-            Blandit libero volutpat sed cras ornare arcu dui vivamus. Nunc id
-            cursus metus aliquam. Quam vulputate dignissim suspendisse in est.
-            Lectus proin nibh nisl condimentum id venenatis a condimentum vitae.
-            Vulputate enim nulla aliquet porttitor lacus luctus. Id interdum
-            velit laoreet id donec ultrices tincidunt. Libero nunc consequat
-            interdum varius sit amet. In egestas erat imperdiet sed euismod.
-            Elementum integer enim neque volutpat ac tincidunt vitae. Mauris
-            ultrices eros in cursus turpis. Augue lacus viverra vitae congue eu
-            consequat ac felis donec. Consequat ac felis donec et odio. Turpis
-            cursus in hac habitasse platea dictumst quisque. Lectus magna
-            fringilla urna porttitor rhoncus dolor purus non.
-          </Paragraph>
-          <Paragraph className={classNames.paragraph}>
-            At tempor commodo ullamcorper a lacus vestibulum sed. Pellentesque
-            massa placerat duis ultricies lacus sed turpis. Eget egestas purus
-            viverra accumsan in. Lectus urna duis convallis convallis tellus id
-            interdum velit. Sollicitudin ac orci phasellus egestas tellus
-            rutrum. Urna duis convallis convallis tellus id interdum velit
-            laoreet. Interdum varius sit amet mattis vulputate enim. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Lectus urna duis
-            convallis convallis. Urna molestie at elementum eu. Blandit libero
-            volutpat sed cras ornare arcu dui vivamus. Nunc id cursus metus
-            aliquam. Quam vulputate dignissim suspendisse in est. Lectus proin
-            nibh nisl condimentum id venenatis a condimentum vitae. Vulputate
-            enim nulla aliquet porttitor lacus luctus. Id interdum velit laoreet
-            id donec ultrices tincidunt. Libero nunc consequat interdum varius
-            sit amet. In egestas erat imperdiet sed euismod. Elementum integer
-            enim neque volutpat ac tincidunt vitae. Mauris ultrices eros in
-            cursus turpis. Augue lacus viverra vitae congue eu consequat ac
-            felis donec. Consequat ac felis donec et odio. Turpis cursus in hac
-            habitasse platea dictumst quisque. Lectus magna fringilla urna
-            porttitor rhoncus dolor purus non. At tempor commodo ullamcorper a
-            lacus vestibulum sed. Pellentesque massa placerat duis ultricies
-            lacus sed turpis. Eget egestas purus viverra accumsan in. Lectus
-            urna duis convallis convallis tellus id interdum velit. Sollicitudin
-            ac orci phasellus egestas tellus rutrum. Urna duis convallis
-            convallis tellus id interdum velit laoreet. Interdum varius sit amet
-            mattis vulputate enim. A iaculis at erat pellentesque. Enim nulla
-            aliquet porttitor lacus luctus accumsan tortor. Cras sed felis eget
-            velit aliquet sagittis. Enim blandit volutpat maecenas volutpat
-            blandit aliquam etiam. Fusce id velit ut tortor pretium viverra
-            suspendisse. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Lectus urna duis convallis convallis. Urna molestie at
-            elementum eu. Blandit libero volutpat sed cras ornare arcu dui
-            vivamus. Nunc id cursus metus aliquam. Quam vulputate dignissim
-            suspendisse in est. Lectus proin nibh nisl condimentum id venenatis
-            a condimentum vitae. Vulputate enim nulla aliquet porttitor lacus
-            luctus. Id interdum velit laoreet id donec ultrices tincidunt.
-            Libero nunc consequat interdum varius sit amet.
-          </Paragraph> */}
         </Col>
       </Row>
 
       <ShareModal
         visible={isShareVisible}
         onClose={() => setShareVisible(!isShareVisible)}
+        slug={postDetail.slug}
       />
     </>
   );

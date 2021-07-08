@@ -10,3 +10,10 @@ export function CombineDateTime(date, time) {
 export function DisableDates(current) {
   return current && current < moment().endOf('day');
 }
+
+export function FormatDate(date, format = 'YYYY-MM-DD') {
+  if (date === null) {
+    return moment().format(format);
+  }
+  return moment(date).format(format);
+}
