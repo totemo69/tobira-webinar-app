@@ -1,4 +1,5 @@
 import { Row, Col, Typography } from 'antd';
+import { FormatDate } from '@/utils/dateUtils';
 import CustomIcon from '@/components/Elements/Icon';
 import classNames from './index.module.css';
 
@@ -34,15 +35,18 @@ const Information = ({ postDetail }) => (
         <InformationItem
           iconSrc="/images/date_calendar.svg"
           label="Date"
-          date={`${postDetail.schedules[0].scheduleDate}`}
-          addendum="(Thursday)"
+          date={FormatDate(postDetail.schedules[0].scheduleDate)}
+          addendum={`(${FormatDate(
+            postDetail.schedules[0].scheduleDate,
+            'dddd',
+          )})`}
         />
       </Col>
       <Col lg={12} xs={8}>
         <InformationItem
           iconSrc="/images/time_schedule.svg"
           label="Time"
-          date={`${postDetail.schedules[0].scheduleTime}`}
+          date={FormatDate(postDetail.schedules[0].scheduleTime, 'HH:mm a')}
         />
       </Col>
     </Row>

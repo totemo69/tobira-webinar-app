@@ -20,7 +20,7 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
-export default function Header({ withLogo = false }) {
+export default function Header({ withLogo = false, withMenu = true }) {
   const { t } = useTranslation();
 
   const MenuItems = (
@@ -81,9 +81,16 @@ export default function Header({ withLogo = false }) {
               height={36}
             />
           )}
-
-          <Image src="/images/avatar.svg" alt="Picture of the user" userImg />
-          <Dropdown username="tobirauser" items={MenuItems} />
+          {withMenu && (
+            <>
+              <Image
+                src="/images/avatar.svg"
+                alt="Picture of the user"
+                userImg
+              />
+              <Dropdown username="tobirauser" items={MenuItems} />
+            </>
+          )}
         </Div>
       </Hdr>
     </>

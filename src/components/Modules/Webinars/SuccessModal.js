@@ -20,6 +20,11 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
   if (typeof window !== 'undefined') {
     hostname = window.location.origin;
   }
+  const onCopy = () => {
+    navigator.clipboard.writeText(
+      `${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarUrl}`,
+    );
+  };
   return (
     <Modal
       isOpen={isOpenModal}
@@ -53,7 +58,9 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
                 <Labels center>{t(localMessage.copyMessage)}</Labels>
                 <Input
                   readOnly
-                  addonAfter={<CustomIcon src="/images/copy.svg" />}
+                  addonAfter={
+                    <CustomIcon onClick={onCopy} src="/images/copy.svg" />
+                  }
                   defaultValue={`${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarUrl}`}
                 />
               </Div>
