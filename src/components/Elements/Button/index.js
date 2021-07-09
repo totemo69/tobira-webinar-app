@@ -29,6 +29,7 @@ const StyledButton = styled(Button).withConfig({
       'addField',
       'noBoxShadow',
       'noMargin',
+      'marginRight',
     ].includes(prop),
 })`
   margin: 0 auto 10px;
@@ -294,6 +295,11 @@ const StyledButton = styled(Button).withConfig({
     props.noMargin &&
     css`
       margin: 0;
+    `};
+  ${(props) =>
+    props.marginRight &&
+    css`
+      margin: 0 20px;
     `};
 `;
 
