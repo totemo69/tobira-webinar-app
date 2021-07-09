@@ -11,10 +11,12 @@ import {
   Space,
   Typography,
 } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Card from '@/components/Elements/Card';
 import Tabs from '@/components/Elements/Tabs';
+import Button from '@/components/Elements/Button';
 import globalMessage from '@/messages/global';
 
 const { Paragraph, Title, Text } = Typography;
@@ -76,7 +78,7 @@ export function Details() {
             <Div marginY betweenCenter widthFull>
               <Tabs>
                 <TabPane tab="Details" key="1">
-                  <Row gutter={24} style={{ padding: '60px 40px 25px' }}>
+                  <Row gutter={24} style={{ padding: '60px 25px 25px' }}>
                     <Col span={12}>
                       <StyledImage
                         width
@@ -132,25 +134,36 @@ export function Details() {
                 </TabPane>
               </Tabs>
             </Div>
-            <Divider />
-            <Space size={30} direction="vertical">
-              <Title level={5} align="center">
-                Wealth & Asset Management in Tough Times
-              </Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab
-                accusantium beatae error inventore ipsa ipsam modi numquam
-                placeat porro quos, ratione, recusandae repudiandae sint sit
-                soluta veritatis? Alias, atque. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Aliquam animi aut culpa delectus
-                doloribus eligendi esse est fuga in neque nostrum odio optio
-                quam quas, quibusdam saepe velit. Id, magni. Lorem ipsum dolor
-                sit amet, consectetur adipisicing elit. Aspernatur aut
-                consectetur cum dolor eum excepturi exercitationem facilis hic
-                incidunt, odit quod reprehenderit, sint unde velit veritatis.
-                Atque culpa libero quas.{' '}
-              </Paragraph>
-            </Space>
+            <div style={{ padding: '0 25px 18px' }}>
+              <Divider />
+              <Space size={30} direction="vertical">
+                <Title level={5} align="center">
+                  Wealth & Asset Management in Tough Times
+                </Title>
+                <Paragraph>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab
+                  accusantium beatae error inventore ipsa ipsam modi numquam
+                  placeat porro quos, ratione, recusandae repudiandae sint sit
+                  soluta veritatis? Alias, atque. Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Aliquam animi aut culpa delectus
+                  doloribus eligendi esse est fuga in neque nostrum odio optio
+                  quam quas, quibusdam saepe velit. Id, magni. Lorem ipsum dolor
+                  sit amet, consectetur adipisicing elit. Aspernatur aut
+                  consectetur cum dolor eum excepturi exercitationem facilis hic
+                  incidunt, odit quod reprehenderit, sint unde velit veritatis.
+                  Atque culpa libero quas.{' '}
+                </Paragraph>
+              </Space>
+              <Row align="middle" justify="end" style={{ marginTop: 50 }}>
+                <Button chooseStandard marginRight type="link">
+                  <LeftOutlined />
+                  Back
+                </Button>
+                <Button chooseProfessional noMargin type="primary">
+                  Edit Details
+                </Button>
+              </Row>
+            </div>
           </Card>
         </Div>
       </Layout>
