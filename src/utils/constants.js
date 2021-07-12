@@ -54,7 +54,7 @@ export const WEBINAR_ROUTE = {
   WALLET: '/wallet',
   DASHBOARD: '/dashboard',
   PURCHASE_LICENSE: '/purchase-license',
-  WEBINAR_DETAIL: '/webinar-detail',
+  WEBINAR_DETAIL: '/webinars/details',
 };
 
 export const LOADING_PREFIX = {
