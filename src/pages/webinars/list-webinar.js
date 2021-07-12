@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useEffect, useState } from 'react';
@@ -11,14 +12,14 @@ import {
   EyeTwoTone,
   FileImageOutlined,
 } from '@ant-design/icons';
-
+// import history from '@/utils/history';
 import { getZoomAccount } from '@/states/accounts/actions';
 import { getWebinarList } from '@/states/webinar/actions';
 import { makeSelectLoading } from '@/states/global/selector';
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import { makeSelectWebinars } from '@/states/webinar/selector';
 import { authRequest } from '@/lib/zoom';
-import { LOADING_PREFIX } from '@/utils/constants';
+import { LOADING_PREFIX, WEBINAR_ROUTE } from '@/utils/constants';
 
 import globalMessage from '@/messages/global';
 import message from '@/messages/webinar';
@@ -46,6 +47,7 @@ export function ListOfWebinar({
     getZoomAccounts();
     getWebinarLists();
   }, []);
+  const route = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openModal = () => {
@@ -62,6 +64,7 @@ export function ListOfWebinar({
 
   const viewDetails = (id) => {
     console.log(id);
+    route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}`);
   };
 
   useEffect(() => {
