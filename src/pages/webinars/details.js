@@ -76,33 +76,35 @@ export function Details({ registerParticipantsList }) {
 
   const columns = [
     {
-      title: '',
-      dataIndex: 'image',
-      render: () => <FileImageOutlined />,
-    },
-    {
-      title: t(message.title),
-      dataIndex: 'title',
+      title: t(message.number),
+      dataIndex: 'id',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.schedule),
-      dataIndex: 'schedules[0]',
+      title: t(globalMessage.fullName),
+      dataIndex: 'fullName',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.attendees),
-      dataIndex: 'attendees',
+      title: t(message.emailAddress),
+      dataIndex: 'emailAddress',
       sorter: {
         multiple: 3,
       },
     },
     {
-      title: t(message.status),
+      title: t(globalMessage.contactNo),
+      dataIndex: 'status',
+      sorter: {
+        multiple: 3,
+      },
+    },
+    {
+      title: t(message.paymentStatus),
       dataIndex: 'status',
       sorter: {
         multiple: 3,
@@ -130,16 +132,16 @@ export function Details({ registerParticipantsList }) {
               <Text level={4}>{t(globalMessage.listWebinar)}</Text>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Text>Details</Text>
+              <Text>{t(message.details)}</Text>
             </Breadcrumb.Item>
           </Breadcrumb>
         </Div>
         <Div widthFull>
-          <Card>
+          <Card style={{ padding: '20px 25px 5px'}}>
             <Div widthFull>
               <Tabs>
                 <TabPane tab="Details" key="1">
-                  <div style={{ padding: '60px 25px 5px' }}>
+                  <div style={{ paddingTop: '30px' }}>
                     <Row gutter={24}>
                       <Col span={12}>
                         <StyledImage
@@ -195,7 +197,7 @@ export function Details({ registerParticipantsList }) {
                           Wealth & Asset Management in Tough Times
                         </Title>
                         <Paragraph>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                            ---Lorem ipsum dolor sit amet, consectetur adipisicing
                           elit. A ab accusantium beatae error inventore ipsa
                           ipsam modi numquam placeat porro quos, ratione,
                           recusandae repudiandae sint sit soluta veritatis?
@@ -221,17 +223,17 @@ export function Details({ registerParticipantsList }) {
                         }}
                       >
                         <LeftOutlined />
-                        Back
+                        {t(globalMessage.back)}
                       </Button>
                       <Button chooseProfessional noMargin type="primary">
-                        Edit Details
+                        {t(message.editDetails)}
                       </Button>
                     </Row>
                   </div>
                 </TabPane>
-                <TabPane tab="Registered Participants" key="2">
-                  <div style={{ padding: '60px 25px 5px' }}>
-                    <Row style={{ width: '100%' }}>
+                <TabPane tab={t(message.registeredParticipants)} key="2">
+                  <div style={{ paddingTop: '30px' }}>
+                    <Row>
                       <Col span={12}>
                         <Div noMargin>
                           {t(globalMessage.show)}
@@ -265,6 +267,7 @@ export function Details({ registerParticipantsList }) {
                     <Table
                       dataSource={registerParticipantsList}
                       columns={columns}
+                      style={{ paddingTop: 20 }}
                     />
                   </div>
                 </TabPane>
