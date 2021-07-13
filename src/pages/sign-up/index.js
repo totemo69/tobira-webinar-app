@@ -48,9 +48,10 @@ export function SignUp({ doSignUp, isLoading, signupStatus, errorMessage }) {
   }, [isLoading, signupStatus, errorMessage]);
 
   /* eslint-disable no-param-reassign */
-  const onSubmit = useCallback((values) => {
+  const onSubmit = useCallback((values, { resetForm }) => {
     delete values.confirmPassword;
     doSignUp(values);
+    resetForm();
   });
 
   return (

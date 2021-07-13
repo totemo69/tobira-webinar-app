@@ -12,8 +12,9 @@ import {
   makeSelectWebinarPublic,
   makeSelectWebinarAttendee,
   makeSelectWebinarPayment,
+  makeSelectLoading,
 } from '@/states/webinar/selector';
-import { WEBINAR_ROUTE } from '@/utils/constants';
+import { WEBINAR_ROUTE, LOADING_PREFIX } from '@/utils/constants';
 import detailMessage from '@/messages/webinarDetail';
 import RegisterStepper from '@/components/Modules/Detail/RegisterStepper';
 import WebinarRegistrationForm from '@/components/Modules/Detail/RegisterForm';
@@ -32,6 +33,7 @@ export function Register({
   getWebinarDetails,
   // isLoading,
   // errorMessage,
+  isRegistering,
   webinarDetails,
   register,
   attendeeDetails,
@@ -120,7 +122,11 @@ export function Register({
             />
           )}
           {step === REGISTER_STEPS.COMPLETE && (
-            <ChoosePayment prevStep={prevStep} checkOut={onCheckOut} />
+            <ChoosePayment
+              prevStep={prevStep}
+              checkOut={onCheckOut}
+              isLoading={isRegistering}
+            />
           )}
         </Col>
       </Row>
@@ -131,7 +137,7 @@ export function Register({
 Register.propTypes = {
   getWebinarDetails: PropTypes.func,
   // isLoading: PropTypes.bool,
-  // isRegistering: PropTypes.bool,
+  isRegistering: PropTypes.bool,
   // isPaying: PropTypes.bool,
   // errorMessage: PropTypes.any,
   webinarDetails: PropTypes.any,
@@ -143,7 +149,7 @@ Register.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   // isLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR),
-  // isRegistering: makeSelectLoading(LOADING_PREFIX.REGISTER),
+  isRegistering: makeSelectLoading(LOADING_PREFIX.REGISTER),
   // isPaying: makeSelectLoading(LOADING_PREFIX.PAYMENT),
   // errorMessage: makeSelectError(),
   webinarDetails: makeSelectWebinarPublic(),

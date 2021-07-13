@@ -72,6 +72,7 @@ export default function Header({ withLogo = false, withMenu = true }) {
           noMargin
           flexSpaceBetween={withLogo}
           flexCenterEnd={!withLogo}
+          style={{ 'min-height': '65px;' }}
         >
           {withLogo && (
             <NextImage

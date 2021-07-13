@@ -101,10 +101,10 @@ export function Login({ doLogin }) {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
+              <Image src="images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Image
-              src="Images/illustration1.svg"
+              src="images/illustration1.svg"
               alt="Webinar Illustration"
               large
             />
