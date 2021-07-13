@@ -9,7 +9,7 @@ const RadioGroup = RadioImage.Group;
 const PaymentButton = RadioImage.Button;
 const { Text, Title } = Typography;
 
-const ChoosePayment = ({ prevStep, checkOut }) => (
+const ChoosePayment = ({ isLoading, prevStep, checkOut }) => (
   <Col>
     <Row>
       <Col span={24} className={classNames.paymentCol}>
@@ -37,7 +37,12 @@ const ChoosePayment = ({ prevStep, checkOut }) => (
             </Button>
           </Col>
           <Col lg={12} xs={24} className={classNames.summaryNext}>
-            <Button type="primary" size="large" onClick={checkOut}>
+            <Button
+              type="primary"
+              size="large"
+              loading={isLoading}
+              onClick={checkOut}
+            >
               Checkout {'>'}
             </Button>
           </Col>
@@ -49,5 +54,6 @@ const ChoosePayment = ({ prevStep, checkOut }) => (
 ChoosePayment.propTypes = {
   prevStep: PropTypes.func,
   checkOut: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 export default ChoosePayment;

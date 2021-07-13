@@ -1,65 +1,142 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import React, { useState, useCallback } from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+import { Formik, Field } from 'formik';
+import { Row, Col } from 'antd';
+import globalMessage from '@/messages/global';
+import message from '@/messages/login';
 
-export default function Home() {
+import Layout from '@/components/Layouts/Guest';
+import Form from '@/components/Elements/Form';
+import Title from '@/components/Elements/Title';
+import Div from '@/components/Elements/Div';
+import Labels from '@/components/Elements/Labels';
+import Input from '@/components/Elements/Input';
+import Checkbox from '@/components/Elements/Checkbox';
+import Link from '@/components/Elements/Link';
+import Button from '@/components/Elements/Button';
+import Image from '@/components/Elements/Image';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
+
+import { authenticateUser } from '@/states/login/action';
+import { makeSelectIsLogin } from '@/states/login/selector';
+import validationSchema from '@/validations/login';
+
+export function Login({ doLogin }) {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = useCallback((values) => {
+    console.log(values);
+    setIsLoading(true);
+    doLogin(values, (errors) => {
+      console.log(errors);
+      // translateApiError(errors, formikAction, intl);
+      setIsLoading(false);
+    });
+  });
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <>
+      <Layout>
+        <Row>
+          <Col span={12}>
+            <Formik
+              initialValues={{
+                email: '',
+                password: '',
+              }}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
+            >
+              {({ handleSubmit }) => (
+                <Form>
+                  <Title marginBottom>{t(globalMessage.login)}</Title>
+                  <Labels asterisk>{t(globalMessage.email)}</Labels>
+                  <Div marginBottom>
+                    <Field
+                      type="email"
+                      name="email"
+                      component={Input}
+                      placeholder={t(globalMessage.enterEmail)}
+                    />
+                    <ErrorMessage name="email" />
+                  </Div>
+                  <Labels asterisk>{t(globalMessage.password)}</Labels>
+                  <Div>
+                    <Field
+                      name="password"
+                      component={Input}
+                      type="password"
+                      placeholder={t(globalMessage.enterPassword)}
+                    />
+                    <ErrorMessage name="password" />
+                  </Div>
+                  <Div marginY betweenCenter>
+                    <Checkbox content={t(message.rememberMe)} />
+                    <Link
+                      href="/forgot-password"
+                      name={t(globalMessage.forgotPassword)}
+                    />
+                  </Div>
+                  <Button
+                    loading={isLoading}
+                    type="primary"
+                    onClick={handleSubmit}
+                    htmlType="submit"
+                  >
+                    {t(globalMessage.login)}
+                  </Button>
+                  <Div center>
+                    {t(message.createAccount)}{' '}
+                    <Link href="/sign-up" name={t(message.signHere)} />
+                  </Div>
+                </Form>
+              )}
+            </Formik>
+          </Col>
+          <Col span={12}>
+            <Div marginBottom center>
+              <Image src="images/logo.svg" alt="Tobira Logo" logo />
+            </Div>
+            <Image
+              src="images/illustration1.svg"
+              alt="Webinar Illustration"
+              large
+            />
+          </Col>
+        </Row>
+      </Layout>
+    </>
   );
 }
+
+Login.propTypes = {
+  // authenticateUser: PropTypes.func,
+  // isLoggedIn: PropTypes.bool,
+};
+
+const mapStateToProps = createStructuredSelector({
+  isLoggedIn: makeSelectIsLogin(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    doLogin: (payload, errCallback) =>
+      dispatch(authenticateUser(payload, errCallback)),
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect)(Login);
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['translation'])),
+  },
+});

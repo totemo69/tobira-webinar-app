@@ -43,11 +43,12 @@ export function ListOfWebinar({
   webinarLists,
 }) {
   const { t } = useTranslation();
+  const route = useRouter();
   useEffect(() => {
     getZoomAccounts();
     getWebinarLists();
   }, []);
-  const route = useRouter();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openModal = () => {
@@ -63,8 +64,7 @@ export function ListOfWebinar({
   };
 
   const viewDetails = (id) => {
-    console.log(id);
-    route.push(`${WEBINAR_ROUTE.WEBINAR_DETAILS}`);
+    route.push(`${WEBINAR_ROUTE.DETAILS_WEBINAR}/?id=${id}`);
   };
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.action),
-      dataIndex: 'action',
+      dataIndex: 'id',
       align: 'center',
       render: (id) => (
         <Button

@@ -12,11 +12,11 @@ module.exports = withTM({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"]
+      use: ['@svgr/webpack'],
     });
 
     config.plugins.push(new CaseSensitivePathsPlugin());
 
     return config;
-  }
+  },
 });
