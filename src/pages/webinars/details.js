@@ -2,24 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import {
-  Row,
-  Col,
-  List,
-  Breadcrumb,
-  Image,
-  Divider,
-  Space,
-  Typography,
-} from 'antd';
-import {
-  CaretDownFilled,
-  EyeTwoTone,
-  FileImageOutlined,
-  LeftOutlined,
-} from '@ant-design/icons';
+import { Row, Col, List, Image, Divider, Space, Typography } from 'antd';
+import { CaretDownFilled, EyeTwoTone, LeftOutlined } from '@ant-design/icons';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
+import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Tabs from '@/components/Elements/Tabs';
 import Button from '@/components/Elements/Button';
@@ -31,8 +18,9 @@ import Search from '@/components/Elements/Search';
 import Table from '@/components/Elements/Table';
 import PropTypes from 'prop-types';
 import message from '@/messages/webinar';
+import Span from '@/components/Elements/Span';
 
-const { Paragraph, Title, Text } = Typography;
+const { Paragraph, Text } = Typography;
 const { TabPane } = Tabs;
 
 export function Details({ registerParticipantsList }) {
@@ -42,6 +30,18 @@ export function Details({ registerParticipantsList }) {
   const StyledImage = styled(Image)`
     border-radius: 10px;
   `;
+
+  const StyledDiv = styled.div`
+    padding-top: 30px;
+  `;
+
+  const StyledCard = styled(Card)`
+    padding: 20px 25px 5px;
+  `;
+
+  const onUpdate = () => {
+    route.push(WEBINAR_ROUTE.WEBINAR_UPDATE_DETAILS);
+  };
 
   const data = [
     {
@@ -126,22 +126,18 @@ export function Details({ registerParticipantsList }) {
   return (
     <>
       <Layout>
-        <Div marginBottomLarge>
-          <Breadcrumb separator=">">
-            <Breadcrumb.Item>
-              <Text level={4}>{t(globalMessage.listWebinar)}</Text>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <Text>{t(message.details)}</Text>
-            </Breadcrumb.Item>
-          </Breadcrumb>
+        <Div marginBottomLarge flexTop>
+          <Title secondary marginRight>
+            {t(globalMessage.listWebinar)} {'>'}
+          </Title>
+          <Span breadCrumbs>{t(message.details)}</Span>
         </Div>
         <Div widthFull>
-          <Card style={{ padding: '20px 25px 5px'}}>
+          <StyledCard>
             <Div widthFull>
               <Tabs>
                 <TabPane tab="Details" key="1">
-                  <div style={{ paddingTop: '30px' }}>
+                  <StyledDiv>
                     <Row gutter={24}>
                       <Col span={12}>
                         <StyledImage
@@ -197,7 +193,7 @@ export function Details({ registerParticipantsList }) {
                           Wealth & Asset Management in Tough Times
                         </Title>
                         <Paragraph>
-                            ---Lorem ipsum dolor sit amet, consectetur adipisicing
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
                           elit. A ab accusantium beatae error inventore ipsa
                           ipsam modi numquam placeat porro quos, ratione,
                           recusandae repudiandae sint sit soluta veritatis?
@@ -225,14 +221,19 @@ export function Details({ registerParticipantsList }) {
                         <LeftOutlined />
                         {t(globalMessage.back)}
                       </Button>
-                      <Button chooseProfessional noMargin type="primary">
+                      <Button
+                        chooseProfessional
+                        noMargin
+                        type="primary"
+                        onClick={onUpdate}
+                      >
                         {t(message.editDetails)}
                       </Button>
                     </Row>
-                  </div>
+                  </StyledDiv>
                 </TabPane>
                 <TabPane tab={t(message.registeredParticipants)} key="2">
-                  <div style={{ paddingTop: '30px' }}>
+                  <StyledDiv>
                     <Row>
                       <Col span={12}>
                         <Div noMargin>
@@ -269,11 +270,11 @@ export function Details({ registerParticipantsList }) {
                       columns={columns}
                       style={{ paddingTop: 20 }}
                     />
-                  </div>
+                  </StyledDiv>
                 </TabPane>
               </Tabs>
             </Div>
-          </Card>
+          </StyledCard>
         </Div>
       </Layout>
     </>
