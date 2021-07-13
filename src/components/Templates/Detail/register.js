@@ -6,13 +6,12 @@ import { createStructuredSelector } from 'reselect';
 import { Typography, Row, Col } from 'antd';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-
+import { makeSelectLoading } from '@/states/global/selector';
 import { getWebinarPublic, doRegister, doPay } from '@/states/webinar/actions';
 import {
   makeSelectWebinarPublic,
   makeSelectWebinarAttendee,
   makeSelectWebinarPayment,
-  makeSelectLoading,
 } from '@/states/webinar/selector';
 import { WEBINAR_ROUTE, LOADING_PREFIX } from '@/utils/constants';
 import detailMessage from '@/messages/webinarDetail';
