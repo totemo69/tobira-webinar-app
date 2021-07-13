@@ -64,7 +64,7 @@ export function ListOfWebinar({
 
   const viewDetails = (id) => {
     console.log(id);
-    route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}`);
+    route.push(`${WEBINAR_ROUTE.WEBINAR_DETAILS}`);
   };
 
   useEffect(() => {

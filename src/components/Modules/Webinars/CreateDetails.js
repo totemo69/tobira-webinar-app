@@ -187,7 +187,6 @@ export default function CreateWebinarDetails({
                   <Radio
                     key={SCHEDULE_TYPE.RECURRING}
                     value={SCHEDULE_TYPE.RECURRING}
-                    disabled
                   >
                     Recurring
                   </Radio>
@@ -241,7 +240,7 @@ export default function CreateWebinarDetails({
                 </Div>
                 <Div marginLeft>
                   <Labels asterisk>Duration</Labels>
-                  <Row>
+                  <Row gutter={50}>
                     <Col span={12}>
                       <Field
                         name="durationHour"

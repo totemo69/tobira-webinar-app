@@ -73,6 +73,10 @@ const message = {
     key: `${scope}.editDetails`,
     default: 'Edit Details',
   }),
+  updateWebinar: Object.values({
+    key: `${scope}.updateWebinar`,
+    default: 'UPDATE WEBINAR',
+  }),
 };
 
 export default message;
