@@ -155,5 +155,11 @@
     "register": "Register",
     "ticketSummary": "Ticket Summary",
     "complete": "Complete"
+  },
+  "plan": {
+    "title": "PURCHASE LICENSE",
+    "subTitle": "Webinar Plan",
+    "header": "Selct your plan",
+    "chooseButton": "Choose this plan"
   }
 }

@@ -1,34 +1,33 @@
-import { takeEvery, all, call, put } from 'redux-saga/effects';
-import { API } from '@/utils/constants';
-import { request } from '@/utils/request';
-import { PLANS_COUNT, PLANS_GET } from './types';
-import { plansSuccess, plansFailed } from './action';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import { API, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import { request, RequestOptions } from '@/utils/request';
+import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
+import { PLANS_GET } from './types';
+import { setPlans } from './action';
 
 function* getPlanSaga() {
   try {
-    const data = yield call(request, API.AUTH_PLANS_GET);
-    yield put(plansSuccess(data));
-    console.log(data);
+    // Set loading status to true
+    yield put(loading(LOADING_PREFIX.PLAN));
+    const data = yield call(
+      request,
+      API.AUTH_PLANS_GET,
+      RequestOptions(GET_REQUEST, null, true),
+    );
+    yield put(setPlans(data));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.PLAN));
   } catch (error) {
-    yield put(plansFailed(error.message));
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.PLAN, false));
+    // Set the error
+    yield put(loadErrors(error));
+  } finally {
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.PLAN, false));
   }
-}
-
-function* getPlansCountSaga() {
-  try {
-    const data = yield call(request, API.AUTH_PLANS_COUNT);
-    yield put(plansSuccess(data));
-    console.log(data);
-  } catch (error) {
-    yield put(plansFailed(error.message));
-  }
-}
-
-function* getPlanWatcher() {
-  yield takeEvery(PLANS_GET, getPlanSaga);
-  yield takeEvery(PLANS_COUNT, getPlansCountSaga);
 }
 
 export default function* planSaga() {
-  yield all([getPlanWatcher()]);
+  yield takeEvery(PLANS_GET, getPlanSaga);
 }
