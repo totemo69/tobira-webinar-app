@@ -157,5 +157,11 @@
     "register": "登録",
     "ticketSummary": "チケットの概要",
     "complete": "コンプリート"
+  },
+  "plan": {
+    "title": "ウェビナープラン",
+    "subTitle": "ウェビナープラン",
+    "header": "プランを選択してください",
+    "chooseButton": "購入"
   }
 }
