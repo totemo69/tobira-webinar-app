@@ -58,6 +58,12 @@ const StyledLabels = styled.label`
     css`
       font-weight: 600;
     `}
+  
+    ${(props) =>
+    props.marginBottom &&
+    css`
+      margin-bottom: 1rem;
+    `}
 `;
 
 export default StyledLabels;

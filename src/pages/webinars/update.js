@@ -186,9 +186,6 @@ export function Update({
                 <Button onClick={() => next()} NextButton type="primary">
                   Next {'>'}
                 </Button>
-                <Button onClick={() => prev()} BackButton>
-                  {'<'} {t(globalMessage.back)}
-                </Button>
               </>
             )}
             {current === step.length - 1 && (
