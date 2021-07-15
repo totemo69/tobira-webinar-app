@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import TimezoneSelect from 'react-timezone-select';
 import { Formik, Field, Form } from 'formik';
-import { CaretDownFilled, PlusSquareFilled } from '@ant-design/icons';
+import {
+  CaretDownFilled,
+  CloseSquareOutlined,
+  PlusSquareFilled,
+} from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { useDispatch } from 'react-redux';
 
@@ -34,6 +39,9 @@ export default function CreateWebinarDetails({
     dispatch(setWebinar(payload));
     submitStatus(true);
   };
+
+  const [isVisible, setIsVisible] = useState(true);
+
   return (
     <>
       <Formik
@@ -181,118 +189,382 @@ export default function CreateWebinarDetails({
                   <Radio
                     key={SCHEDULE_TYPE.ONETIME}
                     value={SCHEDULE_TYPE.ONETIME}
+                    onClick={() => {
+                      setIsVisible(true);
+                    }}
                   >
                     One-Time
                   </Radio>
                   <Radio
                     key={SCHEDULE_TYPE.RECURRING}
                     value={SCHEDULE_TYPE.RECURRING}
+                    onClick={() => {
+                      setIsVisible(false);
+                    }}
+                    disabled
                   >
                     Recurring
                   </Radio>
                 </Radio.Group>
               </Div>
-              <Div marginY flexTop widthFull>
-                <Div marginRight>
-                  <Labels asterisk>Date</Labels>
-                  <DatePicker
-                    name="schedules[0].scheduleDate"
-                    defaultValue={values.schedules[0].scheduleDate}
-                    format="MM/DD/YYYY"
-                    disabledDate={DisableDates}
-                    onChange={(date) => {
-                      setFieldValue('schedules[0].scheduleDate', date);
-                    }}
-                  />
-                  <ErrorMessage name="schedules[0].scheduleDate" />
-                </Div>
-                <Div marginLeft>
-                  <Labels asterisk>Start Time</Labels>
-                  <TimePicker
-                    name="schedules[0].scheduleTime"
-                    defaultValue={values.schedules[0].scheduleTime}
-                    use12Hours
-                    minuteStep={15}
-                    format="h:mm a"
-                    onChange={(time) => {
-                      setFieldValue('schedules[0].scheduleTime', time);
-                    }}
-                  />
-                  <ErrorMessage name="schedules[0].scheduleTime" />
-                </Div>
-              </Div>
-              <Div marginY flexTop widthFull>
-                <Div marginRight>
-                  <Labels asterisk>Timezone</Labels>
-                  <TimezoneSelect
-                    instanceId="timezone"
-                    name="timezone"
-                    value={values.timezone}
-                    onChange={(zone) => {
-                      setFieldValue('timezone', zone);
-                    }}
-                  />
-                  {
-                    // ErrorMessage on timezone.label not working.
-                  }
-                  <ErrorMessage name="timezone.label" />
-                  {errors.timezone ? <div>{errors.timezone.label}</div> : null}
-                </Div>
-                <Div marginLeft>
-                  <Labels asterisk>Duration</Labels>
-                  <Row gutter={50}>
-                    <Col span={12}>
-                      <Field
-                        name="durationHour"
-                        component={Select}
-                        suffixIcon={<CaretDownFilled />}
-                        defaultValue={values.durationHour}
-                        onChange={(val) => {
-                          setFieldValue('durationHour', val);
+              {isVisible ? (
+                <>
+                  <Div marginY flexTop widthFull>
+                    <Div marginRight>
+                      <Labels asterisk>Date</Labels>
+                      <DatePicker
+                        name="schedules[0].scheduleDate"
+                        defaultValue={values.schedules[0].scheduleDate}
+                        format="MM/DD/YYYY"
+                        disabledDate={DisableDates}
+                        onChange={(date) => {
+                          setFieldValue('schedules[0].scheduleDate', date);
                         }}
-                      >
-                        <Option key="" value="" disabled>
-                          Hour
-                        </Option>
-                        {Array.from(Array(11), (_, i) => (
-                          <Option key={i} value={i}>
-                            {i}
-                          </Option>
-                        ))}
-                      </Field>{' '}
-                      hr <ErrorMessage name="durationHour" />
-                    </Col>
-                    <Col span={12}>
-                      <Field
-                        name="durationMinute"
-                        component={Select}
-                        suffixIcon={<CaretDownFilled />}
-                        defaultValue={values.durationMinute}
-                        onChange={(val) => {
-                          setFieldValue('durationMinute', val);
+                      />
+                      <ErrorMessage name="schedules[0].scheduleDate" />
+                    </Div>
+                    <Div marginLeft>
+                      <Labels asterisk>Start Time</Labels>
+                      <TimePicker
+                        name="schedules[0].scheduleTime"
+                        defaultValue={values.schedules[0].scheduleTime}
+                        use12Hours
+                        minuteStep={15}
+                        format="h:mm a"
+                        onChange={(time) => {
+                          setFieldValue('schedules[0].scheduleTime', time);
                         }}
-                      >
-                        <Option key="" value="" disabled>
-                          Minutes
-                        </Option>
-                        <Option key="00" value="00">
-                          00
-                        </Option>
-                        <Option key="15" value="15">
-                          15
-                        </Option>
-                        <Option key="30" value="30">
-                          30
-                        </Option>
-                        <Option key="45" value="45">
-                          45
-                        </Option>
-                      </Field>{' '}
-                      mins <ErrorMessage name="durationMinute" />
-                    </Col>
+                      />
+                      <ErrorMessage name="schedules[0].scheduleTime" />
+                    </Div>
+                  </Div>
+                  <Div marginY flexTop widthFull>
+                    <Div marginRight>
+                      <Labels asterisk>Timezone</Labels>
+                      <TimezoneSelect
+                        instanceId="timezone"
+                        name="timezone"
+                        value={values.timezone}
+                        onChange={(zone) => {
+                          setFieldValue('timezone', zone);
+                        }}
+                      />
+                      {
+                        // ErrorMessage on timezone.label not working.
+                      }
+                      <ErrorMessage name="timezone.label" />
+                      {errors.timezone ? (
+                        <div>{errors.timezone.label}</div>
+                      ) : null}
+                    </Div>
+                    <Div marginLeft>
+                      <Labels asterisk>Duration</Labels>
+                      <Row gutter={50}>
+                        <Col span={12}>
+                          <Field
+                            name="durationHour"
+                            component={Select}
+                            suffixIcon={<CaretDownFilled />}
+                            defaultValue={values.durationHour}
+                            onChange={(val) => {
+                              setFieldValue('durationHour', val);
+                            }}
+                          >
+                            <Option key="" value="" disabled>
+                              Hour
+                            </Option>
+                            {Array.from(Array(11), (_, i) => (
+                              <Option key={i} value={i}>
+                                {i}
+                              </Option>
+                            ))}
+                          </Field>{' '}
+                          hr <ErrorMessage name="durationHour" />
+                        </Col>
+                        <Col span={12}>
+                          <Field
+                            name="durationMinute"
+                            component={Select}
+                            suffixIcon={<CaretDownFilled />}
+                            defaultValue={values.durationMinute}
+                            onChange={(val) => {
+                              setFieldValue('durationMinute', val);
+                            }}
+                          >
+                            <Option key="" value="" disabled>
+                              Minutes
+                            </Option>
+                            <Option key="00" value="00">
+                              00
+                            </Option>
+                            <Option key="15" value="15">
+                              15
+                            </Option>
+                            <Option key="30" value="30">
+                              30
+                            </Option>
+                            <Option key="45" value="45">
+                              45
+                            </Option>
+                          </Field>{' '}
+                          mins <ErrorMessage name="durationMinute" />
+                        </Col>
+                      </Row>
+                    </Div>
+                  </Div>
+                </>
+              ) : (
+                <>
+                  <Div marginY widthFull style={{ margin: '30px 0 20px 20px' }}>
+                    <Row justify="end" style={{ marginRight: 25 }}>
+                      <Button
+                        ghost
+                        shape="circle"
+                        style={{ width: 28, height: 25, padding: 0, margin: 0 }}
+                        icon={
+                          <CloseSquareOutlined
+                            style={{ fontSize: '24px', color: '#FF0033' }}
+                          />
+                        }
+                      ></Button>
+                    </Row>
+                    <Labels marginBottom with>
+                      Session 1
+                    </Labels>
+                  </Div>
+                  <Div marginY flexTop widthFull>
+                    <Div marginRight>
+                      <Labels asterisk>Date</Labels>
+                      <DatePicker
+                        name="schedules[0].scheduleDate"
+                        defaultValue={values.schedules[0].scheduleDate}
+                        format="MM/DD/YYYY"
+                        disabledDate={DisableDates}
+                        onChange={(date) => {
+                          setFieldValue('schedules[0].scheduleDate', date);
+                        }}
+                      />
+                      <ErrorMessage name="schedules[0].scheduleDate" />
+                    </Div>
+                    <Div marginLeft>
+                      <Labels asterisk>Start Time</Labels>
+                      <TimePicker
+                        name="schedules[0].scheduleTime"
+                        defaultValue={values.schedules[0].scheduleTime}
+                        use12Hours
+                        minuteStep={15}
+                        format="h:mm a"
+                        onChange={(time) => {
+                          setFieldValue('schedules[0].scheduleTime', time);
+                        }}
+                      />
+                      <ErrorMessage name="schedules[0].scheduleTime" />
+                    </Div>
+                  </Div>
+                  <Div marginY flexTop widthFull>
+                    <Div marginRight>
+                      <Labels asterisk>Timezone</Labels>
+                      <TimezoneSelect
+                        instanceId="timezone"
+                        name="timezone"
+                        value={values.timezone}
+                        onChange={(zone) => {
+                          setFieldValue('timezone', zone);
+                        }}
+                      />
+                      {
+                        // ErrorMessage on timezone.label not working.
+                      }
+                      <ErrorMessage name="timezone.label" />
+                      {errors.timezone ? (
+                        <div>{errors.timezone.label}</div>
+                      ) : null}
+                    </Div>
+                    <Div marginLeft>
+                      <Labels asterisk>Duration</Labels>
+                      <Row gutter={50}>
+                        <Col span={12}>
+                          <Field
+                            name="durationHour"
+                            component={Select}
+                            suffixIcon={<CaretDownFilled />}
+                            defaultValue={values.durationHour}
+                            onChange={(val) => {
+                              setFieldValue('durationHour', val);
+                            }}
+                          >
+                            <Option key="" value="" disabled>
+                              Hour
+                            </Option>
+                            {Array.from(Array(11), (_, i) => (
+                              <Option key={i} value={i}>
+                                {i}
+                              </Option>
+                            ))}
+                          </Field>{' '}
+                          hr <ErrorMessage name="durationHour" />
+                        </Col>
+                        <Col span={12}>
+                          <Field
+                            name="durationMinute"
+                            component={Select}
+                            suffixIcon={<CaretDownFilled />}
+                            defaultValue={values.durationMinute}
+                            onChange={(val) => {
+                              setFieldValue('durationMinute', val);
+                            }}
+                          >
+                            <Option key="" value="" disabled>
+                              Minutes
+                            </Option>
+                            <Option key="00" value="00">
+                              00
+                            </Option>
+                            <Option key="15" value="15">
+                              15
+                            </Option>
+                            <Option key="30" value="30">
+                              30
+                            </Option>
+                            <Option key="45" value="45">
+                              45
+                            </Option>
+                          </Field>{' '}
+                          mins <ErrorMessage name="durationMinute" />
+                        </Col>
+                      </Row>
+                    </Div>
+                  </Div>
+                  <Div marginY widthFull style={{ margin: '30px 0 20px 20px' }}>
+                    <Row justify="end" style={{ marginRight: 25 }}>
+                      <Button
+                        ghost
+                        shape="circle"
+                        style={{ width: 28, height: 25, padding: 0, margin: 0 }}
+                        icon={
+                          <CloseSquareOutlined
+                            style={{ fontSize: '24px', color: '#FF0033' }}
+                          />
+                        }
+                      ></Button>
+                    </Row>
+                    <Labels marginBottom with>
+                      Session 2
+                    </Labels>
+                  </Div>
+                  <Div marginY flexTop widthFull>
+                    <Div marginRight>
+                      <Labels asterisk>Date</Labels>
+                      <DatePicker
+                        name="schedules[0].scheduleDate"
+                        defaultValue={values.schedules[0].scheduleDate}
+                        format="MM/DD/YYYY"
+                        disabledDate={DisableDates}
+                        onChange={(date) => {
+                          setFieldValue('schedules[0].scheduleDate', date);
+                        }}
+                      />
+                      <ErrorMessage name="schedules[0].scheduleDate" />
+                    </Div>
+                    <Div marginLeft>
+                      <Labels asterisk>Start Time</Labels>
+                      <TimePicker
+                        name="schedules[0].scheduleTime"
+                        defaultValue={values.schedules[0].scheduleTime}
+                        use12Hours
+                        minuteStep={15}
+                        format="h:mm a"
+                        onChange={(time) => {
+                          setFieldValue('schedules[0].scheduleTime', time);
+                        }}
+                      />
+                      <ErrorMessage name="schedules[0].scheduleTime" />
+                    </Div>
+                  </Div>
+                  <Div marginY flexTop widthFull>
+                    <Div marginRight>
+                      <Labels asterisk>Timezone</Labels>
+                      <TimezoneSelect
+                        instanceId="timezone"
+                        name="timezone"
+                        value={values.timezone}
+                        onChange={(zone) => {
+                          setFieldValue('timezone', zone);
+                        }}
+                      />
+                      {
+                        // ErrorMessage on timezone.label not working.
+                      }
+                      <ErrorMessage name="timezone.label" />
+                      {errors.timezone ? (
+                        <div>{errors.timezone.label}</div>
+                      ) : null}
+                    </Div>
+                    <Div marginLeft>
+                      <Labels asterisk>Duration</Labels>
+                      <Row gutter={50}>
+                        <Col span={12}>
+                          <Field
+                            name="durationHour"
+                            component={Select}
+                            suffixIcon={<CaretDownFilled />}
+                            defaultValue={values.durationHour}
+                            onChange={(val) => {
+                              setFieldValue('durationHour', val);
+                            }}
+                          >
+                            <Option key="" value="" disabled>
+                              Hour
+                            </Option>
+                            {Array.from(Array(11), (_, i) => (
+                              <Option key={i} value={i}>
+                                {i}
+                              </Option>
+                            ))}
+                          </Field>{' '}
+                          hr <ErrorMessage name="durationHour" />
+                        </Col>
+                        <Col span={12}>
+                          <Field
+                            name="durationMinute"
+                            component={Select}
+                            suffixIcon={<CaretDownFilled />}
+                            defaultValue={values.durationMinute}
+                            onChange={(val) => {
+                              setFieldValue('durationMinute', val);
+                            }}
+                          >
+                            <Option key="" value="" disabled>
+                              Minutes
+                            </Option>
+                            <Option key="00" value="00">
+                              00
+                            </Option>
+                            <Option key="15" value="15">
+                              15
+                            </Option>
+                            <Option key="30" value="30">
+                              30
+                            </Option>
+                            <Option key="45" value="45">
+                              45
+                            </Option>
+                          </Field>{' '}
+                          mins <ErrorMessage name="durationMinute" />
+                        </Col>
+                      </Row>
+                    </Div>
+                  </Div>
+                  <Row align="middle" justify="start">
+                    <Labels textBlue bold>
+                      <Button addBtn>
+                        <PlusSquareFilled />
+                        Add another session
+                      </Button>
+                    </Labels>
                   </Row>
-                </Div>
-              </Div>
+                </>
+              )}
             </Form>
           );
         }}
