@@ -45,6 +45,30 @@ const message = {
     key: `${scope}.saveThisAccountFutureUse`,
     default: 'Save this account for future use',
   }),
-}
+  transferFundRequestSuccess: Object.values({
+    key: `${scope}.transferFundRequestSuccess`,
+    default: 'Transfer Fund Request Success',
+  }),
+  successfullySentTransferFundRequest: Object.values({
+    key: `${scope}.successfullySentTransferFundRequest`,
+    default: 'You have successfully sent a transfer fund request',
+  }),
+  bankAccountAdded: Object.values({
+    key: `${scope}.bankAccountAdded`,
+    default: 'Bank Account Added',
+  }),
+  successfullyAddedBankAccount: Object.values({
+    key: `${scope}.successfullyAddedBankAccount`,
+    default: 'You have successfully added a bank account',
+  }),
+  bankAccountDeleted: Object.values({
+    key: `${scope}.bankAccountDeleted`,
+    default: 'Bank Account Deleted',
+  }),
+  successfullyDeletedBankAccount: Object.values({
+    key: `${scope}.successfullyDeletedBankAccount`,
+    default: 'You have successfully deleted a bank account',
+  }),
+};
 
 export default message;
