@@ -89,6 +89,10 @@ export default function Wallet() {
     useState(false);
   const [isBankAddedSuccessModalVisible, setIsBankAddedSuccessModalVisible] =
     useState(false);
+  const [
+    isBankDeletedSuccessModalVisible,
+    setIsBankDeletedSuccessModalVisible,
+  ] = useState(true);
 
   const viewVisible = () => {
     setVisible(true);
@@ -108,17 +112,24 @@ export default function Wallet() {
         <SuccessModal
           visible={isTransferSuccessModalVisible}
           onClose={() => setIsTransferSuccessModalVisible(false)}
-          title="Transfer Fund Request Success"
-          subTitle="You have successfully sent a transfer fund request"
+          title={t(message.transferFundRequestSuccess)}
+          subTitle={t(message.successfullySentTransferFundRequest)}
         />
-
         {/* Bank account added success modal */}
         <SuccessModal
           visible={isBankAddedSuccessModalVisible}
           onClose={() => setIsBankAddedSuccessModalVisible(false)}
-          title="Bank Account Added"
-          subTitle="You have successfully added a bank account"
+          title={t(message.bankAccountAdded)}
+          subTitle={t(message.successfullyAddedBankAccount)}
         />
+        {/* Bank account delete success modal */}
+        <SuccessModal
+          visible={isBankDeletedSuccessModalVisible}
+          onClose={() => setIsBankDeletedSuccessModalVisible(false)}
+          title={t(message.bankAccountDeleted)}
+          subTitle={t(message.successfullyDeletedBankAccount)}
+        />
+
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
             {t(message.wallet)}
