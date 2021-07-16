@@ -174,6 +174,18 @@ const message = {
     key: `${scope}.proceed`,
     default: 'Proceed',
   }),
+  add: Object.values({
+    key: `${scope}.add`,
+    default: 'Add',
+  }),
+  delete: Object.values({
+    key: `${scope}.delete`,
+    default: 'Delete',
+  }),
+  edit: Object.values({
+    key: `${scope}.edit`,
+    default: 'Edit',
+  }),
 };
 
 export default message;

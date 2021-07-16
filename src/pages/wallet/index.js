@@ -4,16 +4,20 @@ import {
   PlusSquareFilled,
   CaretDownFilled,
   BankOutlined,
+  MoreOutlined,
+  EditFilled,
+  CloseCircleFilled,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
+import { Row, Col, Dropdown, Menu } from 'antd';
+
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Span from '@/components/Elements/Span';
 import Button from '@/components/Elements/Button';
-import { Row, Col } from 'antd';
 import Image from '@/components/Elements/Image';
 import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
@@ -21,11 +25,14 @@ import Option from '@/components/Elements/Option';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import Text from '@/components/Elements/Text';
 import Checkbox from '@/components/Elements/Checkbox';
 import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
-import { AddBankAccount, StyledDiv } from '@/components/Modules/Modals';
+import BankModal from '@/components/Modules/Wallet/BankModal';
+import { StyledDiv } from '@/components/Modules/Modals';
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
+import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
 
 const dataSource = [
   {
@@ -83,31 +90,66 @@ const dataTable = [
 export default function Wallet() {
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
-  const [visibleAddBank, setVisbleAddBank] = useState(false);
+  const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
+    useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false);
+  const [isBankAddModalVisible, setIsBankAddModalVisible] = useState(false);
   const [isTransferSuccessModalVisible, setIsTransferSuccessModalVisible] =
     useState(false);
   const [isBankAddedSuccessModalVisible, setIsBankAddedSuccessModalVisible] =
     useState(false);
   const [
+    isBankUpdatedSuccessModalVisible,
+    setIsBankUpdatedSuccessModalVisible,
+  ] = useState(false);
+  const [
     isBankDeletedSuccessModalVisible,
     setIsBankDeletedSuccessModalVisible,
-  ] = useState(true);
+  ] = useState(false);
+  const [isBankEditModalVisible, setIsBankEditModalVisible] = useState(false);
 
   const viewVisible = () => {
     setVisible(true);
   };
-  const viewVisibleAddBank = () => {
-    setVisbleAddBank(true);
+
+  const onAddBankAccount = () => {
+    setIsBankAddModalVisible(false);
+    setIsBankAddedSuccessModalVisible(true);
   };
+
+  const onUpdateBankAccount = () => {
+    setIsBankEditModalVisible(false);
+    setIsBankUpdatedSuccessModalVisible(true);
+  };
+
+  const onDeleteBankAccount = () => {
+    setIsBankDeleteModalVisible(false);
+    setIsBankDeletedSuccessModalVisible(true);
+  };
+
+  const menu = (
+    <Menu>
+      <Menu.Item
+        key="1"
+        icon={<EditFilled />}
+        onClick={() => setIsBankEditModalVisible(true)}
+      >
+        {t(globalMessage.edit)}
+      </Menu.Item>
+      <Menu.Item
+        key="2"
+        icon={<CloseCircleFilled />}
+        style={{ color: '#FF0033' }}
+        onClick={() => setIsBankDeleteModalVisible(true)}
+      >
+        <Text red content={t(globalMessage.delete)} />
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <>
       <Layout>
-        <AddBankAccount
-          close={() => setVisbleAddBank(false)}
-          isVisible={visibleAddBank}
-        />
         {/* Transfer fund success modal */}
         <SuccessModal
           visible={isTransferSuccessModalVisible}
@@ -122,12 +164,43 @@ export default function Wallet() {
           title={t(message.bankAccountAdded)}
           subTitle={t(message.successfullyAddedBankAccount)}
         />
+        {/* Bank account updated success modal */}
+        <SuccessModal
+          visible={isBankUpdatedSuccessModalVisible}
+          onClose={() => setIsBankUpdatedSuccessModalVisible(false)}
+          title={t(message.bankAccountUpdated)}
+          subTitle={t(message.successfullyUpdatedBankAccount)}
+        />
         {/* Bank account delete success modal */}
         <SuccessModal
           visible={isBankDeletedSuccessModalVisible}
           onClose={() => setIsBankDeletedSuccessModalVisible(false)}
           title={t(message.bankAccountDeleted)}
           subTitle={t(message.successfullyDeletedBankAccount)}
+        />
+        {/* Bank account add modal */}
+        <BankModal
+          visible={isBankAddModalVisible}
+          onClose={() => setIsBankAddModalVisible(false)}
+          title={t(message.addBankAccount)}
+          onOk={onAddBankAccount}
+          okText={t(globalMessage.add)}
+        />
+        {/* Bank account edit modal */}
+        <BankModal
+          visible={isBankEditModalVisible}
+          onClose={() => setIsBankEditModalVisible(false)}
+          title={t(message.editBankAccount)}
+          onOk={onUpdateBankAccount}
+          okText={t(message.saveChanges)}
+        />
+        {/* Bank account delete modal */}
+        <DeleteModal
+          visible={isBankDeleteModalVisible}
+          onClose={() => setIsBankDeleteModalVisible(false)}
+          onOk={onDeleteBankAccount}
+          title={t(message.deleteBankAccount)}
+          subTitle={t(message.deleteBankAccountSubTitle)}
         />
 
         <Div marginBottomLarge flexTop>
@@ -170,30 +243,33 @@ export default function Wallet() {
             }}
           >
             <Div bankList>
-              <Image
-                moreButton
-                style={{ float: 'right', width: '10px' }}
-                src="Images/more.svg"
+              <Dropdown.Button
+                style={{ float: 'right' }}
+                overlay={menu}
+                icon={<MoreOutlined />}
+                type="text"
               />
               <Title level={5}>Metrobank</Title>
               <StyledParagraph>Yamazaki Kento</StyledParagraph>
               <EllipsisOutlined /> 456
             </Div>
             <Div bankList>
-              <Image
-                moreButton
-                style={{ float: 'right', width: '10px' }}
-                src="Images/more.svg"
+              <Dropdown.Button
+                style={{ float: 'right' }}
+                overlay={menu}
+                icon={<MoreOutlined />}
+                type="text"
               />
               <Title level={5}>Japan Post Bank</Title>
               <StyledParagraph>Yamazaki Kento</StyledParagraph>
               <EllipsisOutlined /> 123
             </Div>
             <Div bankList>
-              <Image
-                moreButton
-                style={{ float: 'right', width: '10px' }}
-                src="Images/more.svg"
+              <Dropdown.Button
+                style={{ float: 'right' }}
+                overlay={menu}
+                icon={<MoreOutlined />}
+                type="text"
               />
               <Title level={5}>Mizuho Financial Group</Title>
               <StyledParagraph>Yamazaki Kento</StyledParagraph>
@@ -210,10 +286,11 @@ export default function Wallet() {
             }}
           >
             <Div bankList>
-              <Image
-                moreButton
-                style={{ float: 'right', width: '10px' }}
-                src="Images/more.svg"
+              <Dropdown.Button
+                style={{ float: 'right' }}
+                overlay={menu}
+                icon={<MoreOutlined />}
+                type="text"
               />
               <Title level={5}>Sumitomo Mitsui Financial Group</Title>
               <StyledParagraph>Yamazaki Kento</StyledParagraph>
@@ -222,7 +299,7 @@ export default function Wallet() {
             <Div bankList>
               <Div addBankList>
                 <Button
-                  onClick={() => viewVisibleAddBank()}
+                  onClick={() => setIsBankAddModalVisible(true)}
                   style={{ width: '50px', textAlign: 'center' }}
                   type="primary"
                 >
