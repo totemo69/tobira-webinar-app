@@ -1,3 +1,12 @@
+import { useState } from 'react';
+import {
+  EllipsisOutlined,
+  PlusSquareFilled,
+  CaretDownFilled,
+  BankOutlined,
+} from '@ant-design/icons';
+import Modal from 'react-modal';
+
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -10,18 +19,10 @@ import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
-import {
-  TransferFundRequestModal,
-  AddBankAccount,
-} from '@/components/Modules/Modals';
-
-import { useState } from 'react';
-
-import {
-  EllipsisOutlined,
-  PlusSquareFilled,
-  CaretDownFilled,
-} from '@ant-design/icons';
+import Label from '@/components/Elements/Labels';
+import Input from '@/components/Elements/Input';
+import Checkbox from '@/components/Elements/Checkbox';
+import { AddBankAccount, StyledDiv } from '@/components/Modules/Modals';
 
 const dataSource = [
   {
@@ -79,6 +80,7 @@ const dataTable = [
 export default function Wallet() {
   const [visible, setVisible] = useState(false);
   const [visibleAddBank, setVisbleAddBank] = useState(false);
+  const [isInputVisible, setIsInputVisible] = useState(false);
 
   const viewVisible = () => {
     setVisible(true);
@@ -90,10 +92,6 @@ export default function Wallet() {
   return (
     <>
       <Layout>
-        <TransferFundRequestModal
-          close={() => setVisible(false)}
-          isVisible={visible}
-        />
         <AddBankAccount
           close={() => setVisbleAddBank(false)}
           isVisible={visibleAddBank}
@@ -223,6 +221,86 @@ export default function Wallet() {
           <Table columns={dataTable} dataSource={dataSource} />
         </Card>
       </Layout>
+
+      {/* Transfer fund request modal */}
+      <Modal
+        isOpen={visible}
+        style={{
+          content: {
+            height: '500px',
+            width: '600px',
+            margin: '0 auto',
+            padding: '0',
+          },
+        }}
+      >
+        <StyledDiv header>Transfer Fund Request</StyledDiv>
+        <StyledDiv style={{ padding: '20px' }}>
+          <Label asterisk>
+            Enter Amount to Transfer{' '}
+            <span style={{ float: 'right' }}>
+              (Minimum required amount : 100 JPY)
+            </span>
+          </Label>
+          <Input type="number" placeholder="0" prefix="￥" suffix="JPY" />
+        </StyledDiv>
+        <StyledDiv style={{ padding: '20px' }}>
+          <Label>Select Payment Gateway</Label>
+        </StyledDiv>
+        <Row>
+          <Col span={12} style={{ paddingLeft: 40 }}>
+            <Button
+              style={{ height: 55, width: 190, borderColor: 'transparent' }}
+              onClick={() => setIsInputVisible(false)}
+            >
+              <img src="Images/paypal.svg" alt="paypal" />
+            </Button>
+          </Col>
+          <Col span={12}>
+            <Button
+              chooseStandard
+              style={{ height: 55, borderColor: 'transparent', marginTop: 0 }}
+              icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
+              onClick={() => setIsInputVisible(true)}
+            >
+              Bank
+            </Button>
+          </Col>
+        </Row>
+        {isInputVisible ? (
+          <Row style={{ paddingLeft: 50 }}>
+            <Col span={20}>
+              <Label marginTop asterisk>
+                Bank Name
+              </Label>
+              <Input placeholder="Bank Name" />
+              <Label marginTop asterisk>
+                Account Name
+              </Label>
+              <Input placeholder="Account Name" />
+              <Label marginTop asterisk>
+                Account Number
+              </Label>
+              <Input placeholder="Account Number" />
+              <Row style={{ marginTop: 20 }}>
+                <Checkbox />
+                <Label>Save this account for future use</Label>
+              </Row>
+            </Col>
+          </Row>
+        ) : null}
+
+        <StyledDiv
+          style={{ display: 'flex', margin: '0 auto', width: '300px' }}
+        >
+          <Button BackButton onClick={() => setVisible(false)}>
+            Cancel
+          </Button>{' '}
+          <Button NextButton type="primary">
+            Proceed
+          </Button>
+        </StyledDiv>
+      </Modal>
     </>
   );
 }

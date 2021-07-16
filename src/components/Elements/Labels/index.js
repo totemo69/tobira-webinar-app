@@ -63,6 +63,12 @@ const StyledLabels = styled.label`
     props.marginBottom &&
     css`
       margin-bottom: 1rem;
+    `}    
+  
+    ${(props) =>
+    props.marginTop &&
+    css`
+      margin-top: 1rem;
     `}
 `;
 
