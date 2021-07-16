@@ -7,7 +7,7 @@ import Search from '@/components/Elements/Search';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 
-const StyledDiv = style.div`
+export const StyledDiv = style.div`
 
   ${(props) =>
     props.header &&
@@ -438,60 +438,6 @@ const ShareModal = ({ isVisible, close }) => (
   </ShareModalStyle>
 );
 
-const TransferFundRequestModal = ({ isVisible, close }) => (
-  <Modal
-    onRequestClose={close}
-    isOpen={isVisible}
-    style={{
-      content: {
-        height: '500px',
-        width: '600px',
-        margin: '0 auto',
-        padding: '0',
-      },
-    }}
-  >
-    <StyledDiv header>Transfer Fund Request</StyledDiv>
-
-    <StyledDiv style={{ padding: '20px' }}>
-      <Label asterisk>
-        Enter Amount to Transfer{' '}
-        <span style={{ float: 'right' }}>
-          (Minimum required amount : 100 JPY)
-        </span>
-      </Label>
-
-      <Input type="number" placeholder="0" prefix="￥" suffix="JPY" />
-    </StyledDiv>
-
-    <StyledDiv style={{ padding: '20px' }}>
-      <Label>Select Payment Gateway</Label>
-    </StyledDiv>
-
-    <StyledDiv style={{ padding: '20px' }}>
-      <StyledDiv
-        style={{
-          background: '#DAE9FB',
-          textAlign: 'center',
-          padding: '10px',
-          width: '200px',
-        }}
-      >
-        <img src="Images/paypal.svg" alt="paypal" />
-      </StyledDiv>
-    </StyledDiv>
-
-    <StyledDiv style={{ display: 'flex', margin: '0 auto', width: '300px' }}>
-      <Button BackButton onClick={close}>
-        Cancel
-      </Button>{' '}
-      <Button NextButton type="primary">
-        Proceed
-      </Button>
-    </StyledDiv>
-  </Modal>
-);
-
 const AddBankAccount = ({ isVisible, close }) => (
   <Modal
     onRequestClose={close}
@@ -537,6 +483,5 @@ export {
   AddOnsConfirm,
   UpgradePlanConfirm,
   ShareModal,
-  TransferFundRequestModal,
   AddBankAccount,
 };
