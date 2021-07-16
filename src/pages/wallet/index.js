@@ -6,6 +6,7 @@ import {
   BankOutlined,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
+import { useTranslation } from "next-i18next";
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -23,6 +24,8 @@ import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Checkbox from '@/components/Elements/Checkbox';
 import { AddBankAccount, StyledDiv } from '@/components/Modules/Modals';
+import globalMessage from '@/messages/global';
+import message from '@/messages/wallet';
 
 const dataSource = [
   {
@@ -78,6 +81,7 @@ const dataTable = [
 ];
 
 export default function Wallet() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [visibleAddBank, setVisbleAddBank] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -98,14 +102,14 @@ export default function Wallet() {
         />
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
-            WALLET
+            {t(message.wallet)}
           </Title>
         </Div>
 
         <Card style={{ padding: '20px' }}>
           <Div walletBalance>
             <Div>
-              <Span>Current Wallet Balance</Span>
+              <Span>{t(message.currentWalletBalance)}</Span>
               <Title level={1}>¥ 90,000</Title>
               <Row gutter={20}>
                 <Col>+ 110,000 JPY</Col>
@@ -119,13 +123,13 @@ export default function Wallet() {
                 type="primary"
                 onClick={() => viewVisible()}
               >
-                <Image transferFunds src="Images/transfer-funds.svg" /> Transfer
-                Funds
+                <Image transferFunds src="Images/transfer-funds.svg" />
+                {" "}{t(message.transferFunds)}
               </Button>
             </Div>
           </Div>
           <Div marginY>
-            <StyledParagraph colorBlue>Bank List</StyledParagraph>
+            <StyledParagraph colorBlue>{t(message.bankList)}</StyledParagraph>
           </Div>
 
           <Div
@@ -194,17 +198,17 @@ export default function Wallet() {
                 >
                   <PlusSquareFilled style={{ fontSize: '20px' }} />
                 </Button>
-                <StyledParagraph colorBlue>Add bank account</StyledParagraph>
+                <StyledParagraph colorBlue>{t(message.addBankAccount)}</StyledParagraph>
               </Div>
             </Div>
           </Div>
 
           <Div marginY>
-            <StyledParagraph colorBlue>All Transaction History</StyledParagraph>
+            <StyledParagraph colorBlue>{t(message.allTransactionHistory)}</StyledParagraph>
           </Div>
           <Div marginY widthFull>
             <Div noMargin>
-              Show
+              {t(globalMessage.show)}
               <Select
                 showPages
                 defaultValue="10"
@@ -234,18 +238,18 @@ export default function Wallet() {
           },
         }}
       >
-        <StyledDiv header>Transfer Fund Request</StyledDiv>
+        <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
         <StyledDiv style={{ padding: '20px' }}>
           <Label asterisk>
-            Enter Amount to Transfer{' '}
+            {t(message.enterAmountToTransfer)}{' '}
             <span style={{ float: 'right' }}>
-              (Minimum required amount : 100 JPY)
+              ({t(message.miniMumRequiredAmount)} 100 {t(globalMessage.jpy)})
             </span>
           </Label>
           <Input type="number" placeholder="0" prefix="￥" suffix="JPY" />
         </StyledDiv>
         <StyledDiv style={{ padding: '20px' }}>
-          <Label>Select Payment Gateway</Label>
+          <Label>{t(message.selectPaymentGateway)}</Label>
         </StyledDiv>
         <Row>
           <Col span={12} style={{ paddingLeft: 40 }}>
@@ -263,7 +267,7 @@ export default function Wallet() {
               icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
               onClick={() => setIsInputVisible(true)}
             >
-              Bank
+              {t(globalMessage.bank)}
             </Button>
           </Col>
         </Row>
@@ -271,20 +275,20 @@ export default function Wallet() {
           <Row style={{ paddingLeft: 50 }}>
             <Col span={20}>
               <Label marginTop asterisk>
-                Bank Name
+                {t(globalMessage.bankName)}
               </Label>
               <Input placeholder="Bank Name" />
               <Label marginTop asterisk>
-                Account Name
+                {t(globalMessage.accountName)}
               </Label>
               <Input placeholder="Account Name" />
               <Label marginTop asterisk>
-                Account Number
+                {t(globalMessage.accountNumber)}
               </Label>
               <Input placeholder="Account Number" />
               <Row style={{ marginTop: 20 }}>
                 <Checkbox />
-                <Label>Save this account for future use</Label>
+                <Label>{t(message.saveThisAccountFutureUse)}</Label>
               </Row>
             </Col>
           </Row>
@@ -294,10 +298,10 @@ export default function Wallet() {
           style={{ display: 'flex', margin: '0 auto', width: '300px' }}
         >
           <Button BackButton onClick={() => setVisible(false)}>
-            Cancel
+            {t(globalMessage.cancel)}
           </Button>{' '}
           <Button NextButton type="primary">
-            Proceed
+            {t(globalMessage.proceed)}
           </Button>
         </StyledDiv>
       </Modal>
