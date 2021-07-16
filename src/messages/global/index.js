@@ -146,6 +146,34 @@ const message = {
     key: `${scope}.ok`,
     default: 'Okay',
   }),
+  jpy: Object.values({
+    key: `${scope}.jpy`,
+    default: 'JPY',
+  }),
+  bank: Object.values({
+    key: `${scope}.bank`,
+    default: 'Bank',
+  }),
+  bankName: Object.values({
+    key: `${scope}.bankName`,
+    default: 'Bank Name',
+  }),
+  accountName: Object.values({
+    key: `${scope}.accountName`,
+    default: 'Account Name',
+  }),
+  accountNumber: Object.values({
+    key: `${scope}.accountNumber`,
+    default: 'Account Number',
+  }),
+  cancel: Object.values({
+    key: `${scope}.cancel`,
+    default: 'Cancel',
+  }),
+  proceed: Object.values({
+    key: `${scope}.proceed`,
+    default: 'Proceed',
+  }),
 };
 
 export default message;
