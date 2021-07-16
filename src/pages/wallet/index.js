@@ -6,8 +6,7 @@ import {
   BankOutlined,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
-import { useTranslation } from "next-i18next";
-
+import { useTranslation } from 'next-i18next';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -23,6 +22,7 @@ import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Checkbox from '@/components/Elements/Checkbox';
+import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
 import { AddBankAccount, StyledDiv } from '@/components/Modules/Modals';
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
@@ -85,6 +85,10 @@ export default function Wallet() {
   const [visible, setVisible] = useState(false);
   const [visibleAddBank, setVisbleAddBank] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false);
+  const [isTransferSuccessModalVisible, setIsTransferSuccessModalVisible] =
+    useState(false);
+  const [isBankAddedSuccessModalVisible, setIsBankAddedSuccessModalVisible] =
+    useState(false);
 
   const viewVisible = () => {
     setVisible(true);
@@ -99,6 +103,21 @@ export default function Wallet() {
         <AddBankAccount
           close={() => setVisbleAddBank(false)}
           isVisible={visibleAddBank}
+        />
+        {/* Transfer fund success modal */}
+        <SuccessModal
+          visible={isTransferSuccessModalVisible}
+          onClose={() => setIsTransferSuccessModalVisible(false)}
+          title="Transfer Fund Request Success"
+          subTitle="You have successfully sent a transfer fund request"
+        />
+
+        {/* Bank account added success modal */}
+        <SuccessModal
+          visible={isBankAddedSuccessModalVisible}
+          onClose={() => setIsBankAddedSuccessModalVisible(false)}
+          title="Bank Account Added"
+          subTitle="You have successfully added a bank account"
         />
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
@@ -123,8 +142,8 @@ export default function Wallet() {
                 type="primary"
                 onClick={() => viewVisible()}
               >
-                <Image transferFunds src="Images/transfer-funds.svg" />
-                {" "}{t(message.transferFunds)}
+                <Image transferFunds src="Images/transfer-funds.svg" />{' '}
+                {t(message.transferFunds)}
               </Button>
             </Div>
           </Div>
@@ -198,13 +217,17 @@ export default function Wallet() {
                 >
                   <PlusSquareFilled style={{ fontSize: '20px' }} />
                 </Button>
-                <StyledParagraph colorBlue>{t(message.addBankAccount)}</StyledParagraph>
+                <StyledParagraph colorBlue>
+                  {t(message.addBankAccount)}
+                </StyledParagraph>
               </Div>
             </Div>
           </Div>
 
           <Div marginY>
-            <StyledParagraph colorBlue>{t(message.allTransactionHistory)}</StyledParagraph>
+            <StyledParagraph colorBlue>
+              {t(message.allTransactionHistory)}
+            </StyledParagraph>
           </Div>
           <Div marginY widthFull>
             <Div noMargin>

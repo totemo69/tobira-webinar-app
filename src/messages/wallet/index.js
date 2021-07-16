@@ -45,6 +45,6 @@ const message = {
     key: `${scope}.saveThisAccountFutureUse`,
     default: 'Save this account for future use',
   }),
-}
+};
 
 export default message;
