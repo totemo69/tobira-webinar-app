@@ -1,4 +1,5 @@
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const path = require('path');
 const { i18n } = require('./next-i18next.config');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -9,7 +10,7 @@ module.exports = withBundleAnalyzer();
 module.exports = withTM({
   webpack5: false,
   i18n,
-  webpack(config) {
+  webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
@@ -17,6 +18,14 @@ module.exports = withTM({
 
     config.plugins.push(new CaseSensitivePathsPlugin());
 
+    if (!options.isServer && config.mode === 'development') {
+      const { I18NextHMRPlugin } = require('i18next-hmr/plugin');
+      config.plugins.push(
+        new I18NextHMRPlugin({
+          localesDir: path.resolve(__dirname, 'src/locales'),
+        }),
+      );
+    }
     return config;
   },
 });

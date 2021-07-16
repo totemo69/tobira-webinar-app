@@ -156,7 +156,25 @@
   "webinarDetail": {
     "register": "登録",
     "ticketSummary": "チケットの概要",
-    "complete": "コンプリート"
+    "complete": "コンプリート",
+    "shareButton": "シェア",
+    "author": "by",
+    "registerButton": "今すぐ登録",
+    "descriptionLabel": "説明",
+    "dateLabel": "日付",
+    "timeLabel": "時間",
+    "durationLabel": "期間",
+    "timezoneLabel": "タイムゾーン",
+    "ticketPriceLabel": "価格",
+    "backButton": "バック",
+    "nextButton": "次",
+    "titleLabel": "題名",
+    "dateTimeLabel": "スケジュール",
+    "paymentButton": "支払い",
+    "paymentMethodLabel": "支払方法",
+    "checkoutButton": "購入",
+    "payWithPaypal": "ペイパル",
+    "payWithOthers": "その他"
   },
   "plan": {
     "title": "ウェビナープラン",
