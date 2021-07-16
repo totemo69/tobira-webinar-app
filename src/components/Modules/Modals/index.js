@@ -4,8 +4,6 @@ import { Row, Col } from 'antd';
 import Button from '@/components/Elements/Button';
 import { CloseOutlined, FileOutlined } from '@ant-design/icons';
 import Search from '@/components/Elements/Search';
-import Label from '@/components/Elements/Labels';
-import Input from '@/components/Elements/Input';
 
 export const StyledDiv = style.div`
 
@@ -438,50 +436,4 @@ const ShareModal = ({ isVisible, close }) => (
   </ShareModalStyle>
 );
 
-const AddBankAccount = ({ isVisible, close }) => (
-  <Modal
-    onRequestClose={close}
-    isOpen={isVisible}
-    style={{
-      overlay: {
-        background: '##4E4E4E 0% 0% no-repeat padding-box;',
-      },
-      content: {
-        height: '500px',
-        width: '600px',
-        margin: '0 auto',
-        padding: '0',
-      },
-    }}
-  >
-    <StyledDiv header>Add Bank Account</StyledDiv>
-
-    <StyledDiv style={{ padding: '20px' }}>
-      <Label asterisk>Bank Name</Label>
-      <Input placeholder="Bank Name" />
-
-      <Label asterisk>Account Name</Label>
-      <Input placeholder="Account Name" />
-
-      <Label asterisk>Account Number</Label>
-      <Input placeholder="Account Number" />
-    </StyledDiv>
-
-    <StyledDiv style={{ display: 'flex', margin: '0 auto', width: '300px' }}>
-      <Button BackButton onClick={close}>
-        Cancel
-      </Button>{' '}
-      <Button NextButton type="primary">
-        Add
-      </Button>
-    </StyledDiv>
-  </Modal>
-);
-
-export {
-  ProfessionalConfirm,
-  AddOnsConfirm,
-  UpgradePlanConfirm,
-  ShareModal,
-  AddBankAccount,
-};
+export { ProfessionalConfirm, AddOnsConfirm, UpgradePlanConfirm, ShareModal };
