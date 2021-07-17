@@ -23,6 +23,13 @@ const WebinarDetailService = {
     }
     return null;
   },
+  getWebinarList: async () => {
+    const result = await request(
+      `${API.WEBINAR_PUBLIC_DETAIL_PAGE}`,
+      RequestOptions(GET_REQUEST, null, false),
+    );
+    return result;
+  },
 };
 
 export default WebinarDetailService;

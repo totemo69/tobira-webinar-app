@@ -154,7 +154,25 @@
   "webinarDetail": {
     "register": "Register",
     "ticketSummary": "Ticket Summary",
-    "complete": "Complete"
+    "complete": "Complete",
+    "shareButton": "Share",
+    "author": "by",
+    "registerButton": "Register Now",
+    "descriptionLabel": "Description",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "durationLabel": "Label",
+    "timezoneLabel": "Timezone",
+    "ticketPriceLabel": "Ticket Price",
+    "backButton": "Back",
+    "nextButton": "Next",
+    "titleLabel": "Title",
+    "dateTimeLabel": "Schedule",
+    "paymentButton": "Payment",
+    "paymentMethodLabel": "Payment Method",
+    "checkoutButton": "Checkout",
+    "payWithPaypal": "Pay with Paypal",
+    "payWithOthers": "Other payment options coming soon!"
   },
   "plan": {
     "title": "PURCHASE LICENSE",

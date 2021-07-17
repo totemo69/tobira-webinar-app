@@ -74,7 +74,6 @@ export function Register({
       );
       window.location = `${approvalLink.href}`;
     }
-    // route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}/register-complete`);
   }, [paymentDetails]);
 
   return (

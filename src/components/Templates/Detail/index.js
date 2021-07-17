@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import NextImage from 'next/image';
 import { useRouter } from 'next/router';
 import { Row, Col, Typography } from 'antd';
+import { useTranslation } from 'next-i18next';
 import { WEBINAR_ROUTE } from '@/utils/constants';
+import localMessage from '@/messages/webinarDetail';
+
 import Button from '@/components/Elements/Button';
 import CustomIcon from '@/components/Elements/Icon';
-// import Schedule from '@/components/Modules/Detail/Schedule';
 import Information from '@/components/Modules/Detail/Information';
 import ShareModal from '@/components/Modules/Detail/ShareModal';
 import classNames from './Detail.module.css';
@@ -13,6 +15,7 @@ import classNames from './Detail.module.css';
 const { Title, Text, Paragraph } = Typography;
 
 export default function Detail({ postDetail }) {
+  const { t } = useTranslation();
   const route = useRouter();
   const [isShareVisible, setShareVisible] = useState(false);
   const onRegister = () => {
@@ -45,11 +48,13 @@ export default function Detail({ postDetail }) {
                 onClick={() => setShareVisible(!isShareVisible)}
               >
                 {' '}
-                Share
+                {t(localMessage.shareButton)}
               </Button>
             </Col>
             <Col span={12} xs={8}>
-              <Text className={classNames.authorBy}>by</Text>{' '}
+              <Text className={classNames.authorBy}>
+                {t(localMessage.author)}
+              </Text>{' '}
               {postDetail.author}
             </Col>
           </Row>
@@ -69,7 +74,7 @@ export default function Detail({ postDetail }) {
                 fullwidth
                 noMargin
               >
-                Register Now
+                {t(localMessage.registerButton)}
               </Button>
             </Col>
           </Row>
@@ -88,7 +93,7 @@ export default function Detail({ postDetail }) {
           }}
         >
           <Title level={2} className={classNames.descriptionHeader}>
-            Description
+            {t(localMessage.descriptionLabel)}
           </Title>
           <Paragraph className={classNames.paragraph}>
             {postDetail.description}

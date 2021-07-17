@@ -186,6 +186,10 @@ const message = {
     key: `${scope}.edit`,
     default: 'Edit',
   }),
+  currencySymbol: Object.values({
+    key: `${scope}.currencySymbol`,
+    default: 'JPY',
+  }),
 };
 
 export default message;
