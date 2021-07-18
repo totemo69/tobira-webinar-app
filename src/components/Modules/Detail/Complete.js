@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import NextImage from 'next/image';
-import { Spin } from 'antd';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { Typography, Row, Col } from 'antd';
+import { Typography, Row, Col, Spin } from 'antd';
 import PropTypes from 'prop-types';
 import { LOADING_PREFIX } from '@/utils/constants';
 import {

@@ -7,7 +7,8 @@
       "@/messages/*": ["src/messages/*"],
       "@/utils/*": ["src/utils/*"],
       "@/lib/*": ["src/lib/*"],
-      "@/validations/*": ["src/validations/*"]
+      "@/validations/*": ["src/validations/*"],
+      "@/services/*": ["src/services/*"]
     }
   }
 }

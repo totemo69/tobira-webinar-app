@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { WEBINAR_ROUTE } from '@/utils/constants';
-import WebinarDetailService from '../../../service/WebinarDetailService';
+
 import RegisterLayout from '@/components/Layouts/WebinarDetail/register';
 import Complete from '@/components/Modules/Detail/Complete';
+import WebinarDetailService from '@/services/WebinarDetailService';
 
 const RegisterComplete = () => {
   const route = useRouter();
