@@ -13,7 +13,7 @@ const WebinarDetailService = {
         id: pageDetail?.id,
         slug: pageDetail?.slug,
         title: pageDetail?.title,
-        author: pageDetail?.author?.fullName,
+        author: pageDetail?.author?.username,
         description: pageDetail?.description,
         price: pageDetail?.price,
         timezone: pageDetail?.timezone?.label,

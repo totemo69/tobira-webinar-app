@@ -33,14 +33,21 @@ export async function getStaticProps({ params, locale }) {
         coverImage: '/images/dummy.jpeg',
       },
       ...(await serverSideTranslations(locale, ['translation'])),
-    }, // will be passed to the page component as props
+    },
+    revalidate: 60 * 60, // In seconds
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const webinars = await WebinarDetailService.getWebinarList();
+  const paths = locales.map(
+    (locale) =>
+      webinars?.map((page) => ({
+        params: { slug: page.slug, locale },
+      })) || [],
+  );
   return {
-    paths: webinars?.map((page) => ({ params: { slug: page.slug } })) || [],
-    fallback: true,
+    paths: paths.flat(),
+    fallback: 'blocking',
   };
 }

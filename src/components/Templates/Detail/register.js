@@ -41,6 +41,7 @@ export function Register({
 }) {
   const route = useRouter();
   const { slug } = route.query;
+  const { locale } = route;
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -61,6 +62,7 @@ export function Register({
   useEffect(() => {
     if (Object.keys(attendeeDetails).length > 0) {
       payment({
+        callbackUrl: `${locale}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}`,
         webinarId: attendeeDetails.webinarId,
         attendeeId: attendeeDetails.id,
       });

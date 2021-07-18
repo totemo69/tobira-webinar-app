@@ -46,7 +46,6 @@ export async function getStaticPaths({ locales }) {
         params: { slug: page.slug, locale },
       })) || [],
   );
-  console.log(paths.flat());
   return {
     paths: paths.flat(),
     fallback: 'blocking',

@@ -174,7 +174,10 @@
     "paymentMethodLabel": "支払方法",
     "checkoutButton": "購入",
     "payWithPaypal": "ペイパル",
-    "payWithOthers": "その他"
+    "payWithOthers": "その他",
+    "ticketCompleteMessage": "ご注文が完了しました。",
+    "ticketCompleteDetails": "注文の詳細が記載されたメールが届きます。",
+    "gotoDetailsButton": "戻る"
   },
   "plan": {
     "title": "ウェビナープラン",
