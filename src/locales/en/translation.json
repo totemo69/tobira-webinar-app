@@ -172,7 +172,10 @@
     "paymentMethodLabel": "Payment Method",
     "checkoutButton": "Checkout",
     "payWithPaypal": "Pay with Paypal",
-    "payWithOthers": "Other payment options coming soon!"
+    "payWithOthers": "Other payment options coming soon!",
+    "ticketCompleteMessage": "Your order is complete!",
+    "ticketCompleteDetails": "You will be receiving an email with order details.",
+    "gotoDetailsButton": "Go back to webinar details"
   },
   "plan": {
     "title": "PURCHASE LICENSE",

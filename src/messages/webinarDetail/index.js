@@ -85,6 +85,18 @@ const message = {
     key: `${scope}.payWithOthers`,
     default: 'Other payment options coming soon!',
   }),
+  ticketCompleteMessage: Object.values({
+    key: `${scope}.ticketCompleteMessage`,
+    default: 'Your order is complete!',
+  }),
+  ticketCompleteDetails: Object.values({
+    key: `${scope}.ticketCompleteDetails`,
+    default: 'You will be receiving an email with order details.',
+  }),
+  gotoDetailsButton: Object.values({
+    key: `${scope}.gotoDetailsButton`,
+    default: 'Go back to webinar details',
+  }),
 };
 
 export default message;

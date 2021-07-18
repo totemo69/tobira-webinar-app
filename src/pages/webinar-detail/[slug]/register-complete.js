@@ -1,10 +1,11 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { WEBINAR_ROUTE } from '@/utils/constants';
+import WebinarDetailService from '../../../service/WebinarDetailService';
 import RegisterLayout from '@/components/Layouts/WebinarDetail/register';
 import Complete from '@/components/Modules/Detail/Complete';
 
-const RegisterComplete = ({ postDetail }) => {
+const RegisterComplete = () => {
   const route = useRouter();
   const { slug } = route.query;
   const onClick = () => {
@@ -13,32 +14,29 @@ const RegisterComplete = ({ postDetail }) => {
 
   return (
     <RegisterLayout>
-      <Head>
-        <title>{postDetail.title}</title>
-        <meta name="description" content={postDetail.title} />
-        <meta property="og:title" content={postDetail.title} key="title" />
-        <meta
-          property="og:description"
-          content="My page title"
-          key="description"
-        />
-      </Head>
       <Complete gotoDetails={onClick} />
     </RegisterLayout>
   );
 };
 
-RegisterComplete.getInitialProps = () => ({
-  postDetail: {
-    title: 'Wealth & Asset Management in Tough Times',
-    coverImage: '/images/dummy.jpeg',
-    author: 'Yamazaki Kento',
-    schedules: [
-      'April 26 　Mon 　09:00 AM (GMT +9:00)',
-      'April 26 　Mon 　10:00 AM (GMT +9:00)',
-      'April 26 　Mon 　11:00 AM (GMT +9:00)',
-      'April 26 　Mon 　12:00 PM (GMT +9:00)',
-    ],
+export default RegisterComplete;
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['translation'])),
   },
 });
-export default RegisterComplete;
+
+export async function getStaticPaths({ locales }) {
+  const webinars = await WebinarDetailService.getWebinarList();
+  const paths = locales.map(
+    (locale) =>
+      webinars?.map((page) => ({
+        params: { slug: page.slug, locale },
+      })) || [],
+  );
+  return {
+    paths: paths.flat(),
+    fallback: 'blocking',
+  };
+}
