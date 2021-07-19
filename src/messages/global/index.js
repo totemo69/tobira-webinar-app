@@ -190,6 +190,10 @@ const message = {
     key: `${scope}.close`,
     default: 'Close',
   }),
+  currencySymbol: Object.values({
+    key: `${scope}.currencySymbol`,
+    default: 'JPY',
+  }),
 };
 
 export default message;

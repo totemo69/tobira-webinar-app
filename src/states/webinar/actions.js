@@ -11,6 +11,7 @@ import {
   WEBINAR_REGISTER,
   DO_REGISTER,
   DO_PAY,
+  CAPTURE_PAYMENT,
   SET_ATTENDEE,
   SET_PAYMENT,
 } from './types';
@@ -70,6 +71,11 @@ export const doRegister = () => ({
 
 export const doPay = (payload) => ({
   type: DO_PAY,
+  payload,
+});
+
+export const capturePayment = (payload) => ({
+  type: CAPTURE_PAYMENT,
   payload,
 });
 

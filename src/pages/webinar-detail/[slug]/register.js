@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import RegisterLayout from '@/components/Layouts/WebinarDetail/register';
 import Register from '@/components/Templates/Detail/register';
 import WebinarDetailService from '../../../service/WebinarDetailService';
@@ -20,20 +21,33 @@ const WebinarDetail = ({ postDetail }) => (
   </RegisterLayout>
 );
 
-WebinarDetail.getInitialProps = async ({ query }) => {
-  const page = await WebinarDetailService.getWebinarDetail(query.slug);
+export default WebinarDetail;
+
+export async function getStaticProps({ params, locale }) {
+  const page = await WebinarDetailService.getWebinarDetail(params.slug);
   console.log('Page', page);
   return {
-    postDetail: {
-      ...page,
-      coverImage: '/images/dummy.jpeg',
-      schedules: [
-        'April 26 　Mon 　09:00 AM (GMT +9:00)',
-        'April 26 　Mon 　10:00 AM (GMT +9:00)',
-        'April 26 　Mon 　11:00 AM (GMT +9:00)',
-        'April 26 　Mon 　12:00 PM (GMT +9:00)',
-      ],
+    props: {
+      postDetail: {
+        ...page,
+        coverImage: '/images/dummy.jpeg',
+      },
+      ...(await serverSideTranslations(locale, ['translation'])),
     },
+    revalidate: 60 * 60, // In seconds
   };
-};
-export default WebinarDetail;
+}
+
+export async function getStaticPaths({ locales }) {
+  const webinars = await WebinarDetailService.getWebinarList();
+  const paths = locales.map(
+    (locale) =>
+      webinars?.map((page) => ({
+        params: { slug: page.slug, locale },
+      })) || [],
+  );
+  return {
+    paths: paths.flat(),
+    fallback: 'blocking',
+  };
+}

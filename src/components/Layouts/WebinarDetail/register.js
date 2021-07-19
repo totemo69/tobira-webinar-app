@@ -1,16 +1,16 @@
 import Layout from '@/components/Elements/Layout';
-import Header from '@/components/Modules/Header';
+import BlankHeader from '@/components/Modules/Header/blank';
 import Content from '@/components/Elements/Content';
-import Footer from '@/components/Modules/Footer';
+import BlankFooter from '@/components/Modules/Footer/blank';
 
 export default function RegisterLayout({ children }) {
   return (
     <Layout bgPrimary>
-      <Header withLogo />
+      <BlankHeader />
       <Content bgNone narrowScreen>
         {children}
       </Content>
-      <Footer />
+      <BlankFooter />
     </Layout>
   );
 }
