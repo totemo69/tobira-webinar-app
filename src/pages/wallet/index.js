@@ -7,10 +7,13 @@ import {
   MoreOutlined,
   EditFilled,
   CloseCircleFilled,
+  EyeFilled,
+  ArrowDownOutlined,
+  ArrowUpOutlined,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
-import { Row, Col, Dropdown, Menu } from 'antd';
+import { Row, Col, Dropdown, Menu, Tag } from 'antd';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -24,68 +27,17 @@ import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
+import { StyledDiv } from '@/components/Modules/Modals';
 import Input from '@/components/Elements/Input';
 import Text from '@/components/Elements/Text';
 import Checkbox from '@/components/Elements/Checkbox';
 import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
 import BankModal from '@/components/Modules/Wallet/BankModal';
-import { StyledDiv } from '@/components/Modules/Modals';
+import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
+import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
+
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
-import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
-
-const dataSource = [
-  {
-    dateTime: 'April 05,2021 10:20',
-    Transaction: 'Payment for Webinar',
-    amount: '+100JPY',
-    status: 'Pending',
-    action: '',
-  },
-  {
-    dateTime: 'April 05,2021 10:20',
-    Transaction: 'Payment for Webinar',
-    amount: '+100JPY',
-    status: 'Complete',
-    action: '',
-  },
-];
-
-const dataTable = [
-  {
-    title: 'Date and Time',
-    dataIndex: 'dateTime',
-    sorter: {
-      multiple: 3,
-    },
-  },
-  {
-    title: 'Transaction',
-    dataIndex: 'Transaction',
-    sorter: {
-      multiple: 3,
-    },
-    render: (text) => <p style={{ color: 'blue' }}>{text}</p>,
-  },
-  {
-    title: 'Amount',
-    dataIndex: 'amount',
-    sorter: {
-      multiple: 3,
-    },
-  },
-  {
-    title: 'Status',
-    dataIndex: 'status',
-    sorter: {
-      multiple: 3,
-    },
-  },
-  {
-    title: 'Action',
-    dataIndex: 'action',
-  },
-];
 
 export default function Wallet() {
   const { t } = useTranslation();
@@ -107,6 +59,10 @@ export default function Wallet() {
     setIsBankDeletedSuccessModalVisible,
   ] = useState(false);
   const [isBankEditModalVisible, setIsBankEditModalVisible] = useState(false);
+  const [isPaymentWebinarModalVisible, setIsPaymentWebinarModalVisible] =
+    useState(false);
+  const [isWithdrawalModalVisible, setIsWithdrawalModalVisible] =
+    useState(false);
 
   const viewVisible = () => {
     setVisible(true);
@@ -126,6 +82,120 @@ export default function Wallet() {
     setIsBankDeleteModalVisible(false);
     setIsBankDeletedSuccessModalVisible(true);
   };
+
+  const onViewTransactionDetails = () => {
+    setIsWithdrawalModalVisible(true);
+  };
+
+  const dataSource = [
+    {
+      dateTime: 'April 05,2021 10:20',
+      transaction: ['Payment for Webinar'],
+      amount: '+100JPY',
+      status: ['Pending'],
+      action: '',
+    },
+    {
+      dateTime: 'April 05,2021 10:20',
+      transaction: ['Withdrawal'],
+      amount: '-100JPY',
+      status: ['Completed'],
+      action: '',
+    },
+    {
+      dateTime: 'April 05,2021 10:20',
+      transaction: ['Payment for Webinar'],
+      amount: '+100JPY',
+      status: ['Credited'],
+      action: '',
+    },
+  ];
+
+  const dataTable = [
+    {
+      title: 'Date and Time',
+      dataIndex: 'dateTime',
+      sorter: {
+        multiple: 3,
+      },
+    },
+    {
+      title: 'Transaction',
+      dataIndex: 'transaction',
+      sorter: {
+        multiple: 3,
+      },
+      render: (titles) => (
+        <>
+          {titles.map((title) => {
+            const transaction =
+              title.length > 10 ? (
+                <>
+                  <ArrowDownOutlined style={{ color: '#4CAF50' }} />
+                  <Text black content="Payment for webinar" />
+                </>
+              ) : (
+                <>
+                  <ArrowUpOutlined style={{ color: '#FF0033' }} />
+                  <Text black content="Withdrawal" />
+                </>
+              );
+            return (
+              <>
+                <Text black content={transaction} />
+              </>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: 'Amount',
+      dataIndex: 'amount',
+      sorter: {
+        multiple: 3,
+      },
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      sorter: {
+        multiple: 3,
+      },
+      render: (status) => (
+        <>
+          {status.map((stat) => {
+            let color = stat.length > 7 ? '#4CAF50' : '#FFA000';
+            if (stat === 'pending') {
+              color = '#FFA000';
+            }
+            return (
+              <Tag color={color} key={stat}>
+                {stat}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      sorter: {
+        multiple: 3,
+      },
+      render: () => (
+        <Button
+          noBoxShadow
+          type="text"
+          icon={<EyeFilled style={{ color: '#0E71EB' }} />}
+          onClick={onViewTransactionDetails}
+        >
+          <Text blue strong content="View" />
+        </Button>
+      ),
+    },
+  ];
 
   const menu = (
     <Menu>
@@ -201,6 +271,20 @@ export default function Wallet() {
           onOk={onDeleteBankAccount}
           title={t(message.deleteBankAccount)}
           subTitle={t(message.deleteBankAccountSubTitle)}
+        />
+        {/* Transaction Details Payment for Webinar */}
+        <TransactionModal
+          visible={isPaymentWebinarModalVisible}
+          title="Transaction Details"
+          subTitle={<Text blue strong content="Payment for Webinar" />}
+          onClose={() => setIsPaymentWebinarModalVisible(false)}
+        />
+        {/* Transaction Details Withdrawal */}
+        <TransactionModal
+          visible={isWithdrawalModalVisible}
+          title="Transaction Details"
+          subTitle={<Text blue strong content="Withdrawal" />}
+          onClose={() => setIsWithdrawalModalVisible(false)}
         />
 
         <Div marginBottomLarge flexTop>
@@ -333,7 +417,11 @@ export default function Wallet() {
               </Select>
             </Div>
           </Div>
-          <Table columns={dataTable} dataSource={dataSource} />
+          <Table
+            columns={dataTable}
+            dataSource={dataSource}
+            pagination={{ position: ['bottomCenter'] }}
+          />
         </Card>
       </Layout>
 
