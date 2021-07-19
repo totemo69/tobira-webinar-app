@@ -4,7 +4,7 @@ import { Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form } from 'formik';
 
-import message from '@/messages/createProfile';
+import message from '@/messages/webinar';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';

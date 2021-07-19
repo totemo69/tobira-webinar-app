@@ -1,13 +1,13 @@
 import React, { memo, useEffect, useState } from 'react';
+import { message } from 'antd';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import globalMessage from '@/messages/global';
-import message from '@/messages/webinar';
 import { useTranslation } from 'next-i18next';
 import Title from '@/components/Elements/Title';
 import Span from '@/components/Elements/Span';
 import Card from '@/components/Elements/Card';
-import localMessage from '@/messages/createProfile';
+import localMessage from '@/messages/webinar';
 import CreateWebinarPage from '@/components/Modules/Webinars/CreateDetails';
 import RegistrationDetails from '@/components/Modules/Webinars/RegistrationDetails';
 import PaymentOptions from '@/components/Modules/Webinars/PaymentOptions';
@@ -167,9 +167,9 @@ export function Update({
       <Layout>
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
-            {t(message.updateWebinar)} {'>'}
+            {t(localMessage.updateWebinar)} {'>'}
           </Title>
-          <Span breadCrumbs>{t(message.details)}</Span>
+          <Span breadCrumbs>{t(localMessage.details)}</Span>
         </Div>
         <Div widthFull>
           <Card webinarRegistrationCard>

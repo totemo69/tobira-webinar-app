@@ -24,8 +24,6 @@ export const PATCH_REQUEST = 'PATCH';
 export const DELETE_REQUEST = 'DELETE';
 
 export const API = {
-  AUTH_ATTENDEE: `${Url}/attendees`,
-  AUTH_ATTENDEE_COUNT: `${Url}/attendees/count`,
   AUTH_USER_PROFILE: `${Url}/users/profile`,
   AUTH_PLANS_GET: `${Url}/plans`,
   AUTH_PAYMENTS_GET: `${Url}/payments`,
@@ -61,6 +59,7 @@ export const WEBINAR_ROUTE = {
 export const LOADING_PREFIX = {
   ACCOUNT: 'account',
   WEBINAR_LIST: 'webinar-list',
+  WEBINAR_DETAILS: 'webinar-details',
   CREATE_WEBINAR: 'create-webinar',
   SIGNUP: 'signup',
   VERIFICATION: 'verification',
@@ -69,6 +68,7 @@ export const LOADING_PREFIX = {
   REGISTER: 'register',
   PAYMENT: 'payment',
   PLAN: 'plan',
+  ATTENDEES: 'attendees',
 };
 
 export const SCHEDULE_TYPE = {

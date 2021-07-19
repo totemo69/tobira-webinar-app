@@ -22,7 +22,7 @@ import {
 } from '@/states/webinar/selector';
 import { withAuthSync } from '@/lib/auth';
 
-import localMessage from '@/messages/createProfile';
+import localMessage from '@/messages/webinar';
 
 import RegistrationDetails from '@/components/Modules/Webinars/RegistrationDetails';
 import PaymentOptions from '@/components/Modules/Webinars/PaymentOptions';

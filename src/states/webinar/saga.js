@@ -21,6 +21,7 @@ import {
   DO_REGISTER,
   DO_PAY,
   CAPTURE_PAYMENT,
+  GET_WEBINAR_DETAILS,
 } from './types';
 import {
   makeSelectWebinarForm,
@@ -145,6 +146,27 @@ function* capturePayment({ payload }) {
   }
 }
 
+function* webinarDetails({ payload }) {
+  try {
+    const { id } = payload;
+    yield put(loading(LOADING_PREFIX.WEBINAR_DETAILS));
+    const response = yield call(
+      request,
+      `${API.WEBINARS}/${id}`,
+      RequestOptions(GET_REQUEST, null, true),
+    );
+    yield put(setWebinarDetails(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.WEBINAR_DETAILS));
+  } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.WEBINAR_DETAILS, false));
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.WEBINAR_DETAILS, false));
+  }
+}
+
 export default function* webinarSaga() {
   yield takeLatest(GET_WEBINAR_LIST, webinarList);
   yield takeLatest(CREATE_WEBINAR, createWebinar);
@@ -152,4 +174,5 @@ export default function* webinarSaga() {
   yield takeLatest(DO_REGISTER, webinarRegistration);
   yield takeLatest(DO_PAY, webinarPayment);
   yield takeLatest(CAPTURE_PAYMENT, capturePayment);
+  yield takeLatest(GET_WEBINAR_DETAILS, webinarDetails);
 }
