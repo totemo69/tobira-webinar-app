@@ -186,6 +186,10 @@ const message = {
     key: `${scope}.edit`,
     default: 'Edit',
   }),
+  close: Object.values({
+    key: `${scope}.close`,
+    default: 'Close',
+  }),
 };
 
 export default message;

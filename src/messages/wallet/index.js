@@ -47,7 +47,7 @@ const message = {
   }),
   transferFundRequestSuccess: Object.values({
     key: `${scope}.transferFundRequestSuccess`,
-    default: 'Transfer Fund Request Success',
+    default: 'Transfer Fund Request Success!',
   }),
   successfullySentTransferFundRequest: Object.values({
     key: `${scope}.successfullySentTransferFundRequest`,

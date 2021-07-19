@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'next-i18next';
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import { Col, Row } from 'antd';
 import { CheckCircleTwoTone } from '@ant-design/icons';
@@ -6,7 +7,11 @@ import Title from '@/components/Elements/Title';
 import Text from '@/components/Elements/Text';
 import Button from '@/components/Elements/Button';
 
+import globalMessage from '@/messages/global';
+
 function SuccessModal({ visible, onClose, title, subTitle }) {
+  const { t } = useTranslation();
+
   return (
     <StyledModal visible={visible} footer={null} closable={false} width={450}>
       <Row align="middle" justify="center">
@@ -21,7 +26,7 @@ function SuccessModal({ visible, onClose, title, subTitle }) {
             <Text gray content={subTitle} />
           </div>
           <Button marginBottom type="primary" onClick={onClose}>
-            okay
+            {t(globalMessage.ok)}
           </Button>
         </Col>
       </Row>
