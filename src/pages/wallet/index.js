@@ -8,6 +8,8 @@ import {
   EditFilled,
   CloseCircleFilled,
   EyeFilled,
+  ArrowDownOutlined,
+  ArrowUpOutlined,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
@@ -36,30 +38,6 @@ import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
 
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
-
-const dataSource = [
-  {
-    dateTime: 'April 05,2021 10:20',
-    Transaction: 'Payment for Webinar',
-    amount: '+100JPY',
-    status: ['Pending'],
-    action: '',
-  },
-  {
-    dateTime: 'April 05,2021 10:20',
-    Transaction: 'Withdrawal',
-    amount: '-100JPY',
-    status: ['Completed'],
-    action: '',
-  },
-  {
-    dateTime: 'April 05,2021 10:20',
-    Transaction: 'Payment for Webinar',
-    amount: '+100JPY',
-    status: ['Credited'],
-    action: '',
-  },
-];
 
 export default function Wallet() {
   const { t } = useTranslation();
@@ -109,6 +87,30 @@ export default function Wallet() {
     setIsWithdrawalModalVisible(true);
   };
 
+  const dataSource = [
+    {
+      dateTime: 'April 05,2021 10:20',
+      transaction: ['Payment for Webinar'],
+      amount: '+100JPY',
+      status: ['Pending'],
+      action: '',
+    },
+    {
+      dateTime: 'April 05,2021 10:20',
+      transaction: ['Withdrawal'],
+      amount: '-100JPY',
+      status: ['Completed'],
+      action: '',
+    },
+    {
+      dateTime: 'April 05,2021 10:20',
+      transaction: ['Payment for Webinar'],
+      amount: '+100JPY',
+      status: ['Credited'],
+      action: '',
+    },
+  ];
+
   const dataTable = [
     {
       title: 'Date and Time',
@@ -119,11 +121,33 @@ export default function Wallet() {
     },
     {
       title: 'Transaction',
-      dataIndex: 'Transaction',
+      dataIndex: 'transaction',
       sorter: {
         multiple: 3,
       },
-      render: (text) => <Text blue content={text} />,
+      render: (titles) => (
+        <>
+          {titles.map((title) => {
+            const transaction =
+              title.length > 10 ? (
+                <>
+                  <ArrowDownOutlined style={{ color: '#4CAF50' }} />
+                  <Text black content="Payment for webinar" />
+                </>
+              ) : (
+                <>
+                  <ArrowUpOutlined style={{ color: '#FF0033' }} />
+                  <Text black content="Withdrawal" />
+                </>
+              );
+            return (
+              <>
+                <Text black content={transaction} />
+              </>
+            );
+          })}
+        </>
+      ),
     },
     {
       title: 'Amount',
@@ -135,6 +159,9 @@ export default function Wallet() {
     {
       title: 'Status',
       dataIndex: 'status',
+      sorter: {
+        multiple: 3,
+      },
       render: (status) => (
         <>
           {status.map((stat) => {
@@ -154,6 +181,9 @@ export default function Wallet() {
     {
       title: 'Action',
       dataIndex: 'action',
+      sorter: {
+        multiple: 3,
+      },
       render: () => (
         <Button
           noBoxShadow
