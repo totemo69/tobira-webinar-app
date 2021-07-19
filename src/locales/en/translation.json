@@ -32,7 +32,8 @@
     "searchPlaceholder":  "Search webinar title",
     "thankYou":  "Thank You",
     "accountActivated":  "Your account has been successfully activated",
-    "goBackPrevious":  "Go back to previous page"
+    "goBackPrevious":  "Go back to previous page",
+    "close": "Close"
   },
   "storyBook" : {
     "title": "Title"
@@ -124,7 +125,17 @@
     "registeredParticipants": "Registered Participants",
     "editDetails": "Edit Details",
     "time": "Time",
-    "ticketLink": "Ticket Link"
+    "ticketLink": "Ticket Link",
+    "paymentStatus": "Payment Status",
+    "viewDetails": "View Details",
+    "participantId": "Participant ID",
+    "registeredDate": "Date of Registration",
+    "registrationLabel": "Registration Details",
+    "registrationTitle": "Registered Participants Details",
+    "paymentLabel": "Payment Details",
+    "paymentMethodLabel": "Payment Method",
+    "paymentIdLabel": "Transaction ID",
+    "paymentDateLabel": "Transaction Date and Time"
   },
   "termsAndPrivacy": {
     "privacyContent1": "Your privacy is important to us, and so is being transparent about how we collect, use, and share information about you. This policy is intended to help you understand",

@@ -14,7 +14,6 @@ const { Paragraph, Text } = Typography;
 export default function WebinarDetails({ webinarDetails }) {
   const { t } = useTranslation();
   const route = useRouter();
-  console.log(webinarDetails);
   const StyledImage = styled(Image)`
     border-radius: 10px;
   `;

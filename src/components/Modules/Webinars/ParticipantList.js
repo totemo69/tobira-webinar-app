@@ -12,7 +12,7 @@ import Select from '@/components/Elements/Select';
 import Search from '@/components/Elements/Search';
 import Table from '@/components/Elements/Table';
 
-export default function ParticipantList({ registerParticipantsList }) {
+export default function ParticipantList({ attendeesList, onClickDetails }) {
   const { t } = useTranslation();
 
   const StyledDiv = styled.div`
@@ -22,32 +22,33 @@ export default function ParticipantList({ registerParticipantsList }) {
   const columns = [
     {
       title: t(message.number),
-      dataIndex: 'id',
+      dataIndex: 'index',
+      render: (text, record, index) => `${index + 1}`,
       sorter: {
         multiple: 3,
       },
     },
-    {
-      title: t(globalMessage.fullName),
-      dataIndex: 'fullName',
-      sorter: {
-        multiple: 3,
-      },
-    },
+    // {
+    //   title: t(globalMessage.fullName),
+    //   dataIndex: 'fullName',
+    //   sorter: {
+    //     multiple: 3,
+    //   },
+    // },
     {
       title: t(message.emailAddress),
-      dataIndex: 'emailAddress',
+      dataIndex: ['formValues', '0', 'fieldValue'],
       sorter: {
         multiple: 3,
       },
     },
-    {
-      title: t(globalMessage.contactNo),
-      dataIndex: 'status',
-      sorter: {
-        multiple: 3,
-      },
-    },
+    // {
+    //   title: t(globalMessage.contactNo),
+    //   dataIndex: 'status',
+    //   sorter: {
+    //     multiple: 3,
+    //   },
+    // },
     {
       title: t(message.paymentStatus),
       dataIndex: 'status',
@@ -57,10 +58,15 @@ export default function ParticipantList({ registerParticipantsList }) {
     },
     {
       title: t(message.action),
-      dataIndex: 'action',
+      dataIndex: 'id',
       align: 'center',
-      render: () => (
-        <Button noMargin noBoxShadow type="link">
+      render: (id) => (
+        <Button
+          onClick={() => onClickDetails(id)}
+          noMargin
+          noBoxShadow
+          type="link"
+        >
           <EyeTwoTone />
           {t(message.viewDetails)}
         </Button>
@@ -101,7 +107,7 @@ export default function ParticipantList({ registerParticipantsList }) {
         </Col>
       </Row>
       <Table
-        dataSource={registerParticipantsList}
+        dataSource={attendeesList}
         columns={columns}
         style={{ paddingTop: 20 }}
       />
@@ -110,5 +116,6 @@ export default function ParticipantList({ registerParticipantsList }) {
 }
 
 ParticipantList.propTypes = {
-  registerParticipantsList: PropTypes.any,
+  attendeesList: PropTypes.any,
+  onClickDetails: PropTypes.func,
 };
