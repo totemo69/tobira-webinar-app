@@ -184,7 +184,7 @@ export function Update({
             {current < step.length - 1 && (
               <>
                 <Button onClick={() => next()} NextButton type="primary">
-                  Next {'>'}
+                  {t(message.next)} {'>'}
                 </Button>
               </>
             )}
@@ -195,7 +195,7 @@ export function Update({
                 NextButton
                 type="primary"
               >
-                Submit
+                {t(globalMessage.submit)}
               </Button>
             )}
             {current > 0 && (

@@ -6,33 +6,34 @@ import Title from '@/components/Elements/Title';
 import Text from '@/components/Elements/Text';
 import Button from '@/components/Elements/Button';
 import globalMessage from '@/messages/global';
+import message from '@/messages/wallet';
 
 function TransactionModal({ visible, title, onClose, subTitle }) {
   const { t } = useTranslation();
 
   const transactionDetails = [
     {
-      title: 'Transaction ID',
+      title: t(message.transactionId),
       description: '5TY05013RG002845M',
     },
     {
-      title: 'Transaction Date and Time',
+      title: t(message.transactionDateTime),
       description: 'April 05, 2021 10:20',
     },
     {
-      title: 'Webinar Title',
+      title: t(message.webinarTitle),
       description: 'Wealth & Asset Management in Tough Times',
     },
     {
-      title: 'Amount',
+      title: t(message.amount),
       description: '100 JPY',
     },
     {
-      title: 'Payment Method',
+      title: t(message.paymentMethod),
       description: 'Paypal',
     },
     {
-      title: 'Status',
+      title: t(message.status),
       description: 'Credited',
     },
   ];

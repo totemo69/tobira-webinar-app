@@ -93,6 +93,42 @@ const message = {
     key: `${scope}.deleteBankAccountSubTitle`,
     default: 'Are you sure you want to delete this bank account?',
   }),
+  transactionDetails: Object.values({
+    key: `${scope}.transactionDetails`,
+    default: 'Transaction Details',
+  }),
+  paymentForWebinar: Object.values({
+    key: `${scope}.paymentForWebinar`,
+    default: 'Payment for Webinar',
+  }),
+  withdrawal: Object.values({
+    key: `${scope}.withdrawal`,
+    default: 'Withdrawal',
+  }),
+  transactionId: Object.values({
+    key: `${scope}.transactionId`,
+    default: 'Transaction ID',
+  }),
+  transactionDateTime: Object.values({
+    key: `${scope}.transactionDateTime`,
+    default: 'Transaction Date and Time',
+  }),
+  webinarTitle: Object.values({
+    key: `${scope}.webinarTitle`,
+    default: 'Webinar Title',
+  }),
+  amount: Object.values({
+    key: `${scope}.amount`,
+    default: 'Amount',
+  }),
+  paymentMethod: Object.values({
+    key: `${scope}.paymentMethod`,
+    default: 'Payment Method',
+  }),
+  status: Object.values({
+    key: `${scope}.status`,
+    default: 'Status',
+  }),
 };
 
 export default message;

@@ -190,6 +190,14 @@ const message = {
     key: `${scope}.close`,
     default: 'Close',
   }),
+  details: Object.values({
+    key: `${scope}.details`,
+    default: 'Details',
+  }),
+  submit: Object.values({
+    key: `${scope}.submit`,
+    default: 'Submit',
+  }),
   currencySymbol: Object.values({
     key: `${scope}.currencySymbol`,
     default: 'JPY',
