@@ -10,6 +10,7 @@ const { Text } = Typography;
 
 export default function ParticipantDetails({
   participantDetails = [],
+  paymentInfo = [],
   isVisible,
   closeModal,
 }) {
@@ -42,6 +43,8 @@ export default function ParticipantDetails({
     color: #4678b5;
   `;
 
+  const info = paymentInfo.length > 0 ? paymentInfo[0] : {};
+
   const details = [
     {
       title: t(message.participantId),
@@ -62,11 +65,11 @@ export default function ParticipantDetails({
   const paymentDetails = [
     {
       title: t(message.paymentIdLabel),
-      details: '5TY05013RG002845M',
+      details: info.id,
     },
     {
       title: t(message.paymentDateLabel),
-      details: 'April 24, 2021 10:22',
+      details: info.createdAt,
     },
     {
       title: t(message.paymentMethodLabel),
@@ -74,7 +77,7 @@ export default function ParticipantDetails({
     },
     {
       title: t(message.paymentStatus),
-      details: 'Pending',
+      details: info.paymentStatus,
     },
   ];
   return (
@@ -153,4 +156,5 @@ ParticipantDetails.propTypes = {
   participantDetails: PropTypes.any,
   isVisible: PropTypes.bool,
   closeModal: PropTypes.any,
+  paymentInfo: PropTypes.any,
 };

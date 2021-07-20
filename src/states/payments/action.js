@@ -1,26 +1,11 @@
-import {
-  PAYMENTS_COUNT,
-  PAYMENTS_GET,
-  PAYMENTS_SUCCESS,
-  PAYMENTS_FAILED,
-} from './types';
+import { GET_PAYMENT, SET_PAYMENT } from './types';
 
 export const getPayments = (payload) => ({
-  type: PAYMENTS_GET,
+  type: GET_PAYMENT,
   payload,
 });
 
-export const getPaymentsCount = (payload) => ({
-  type: PAYMENTS_COUNT,
-  payload,
-});
-
-export const paymentSuccess = (payload) => ({
-  type: PAYMENTS_SUCCESS,
-  payload,
-});
-
-export const paymentFailed = (payload) => ({
-  type: PAYMENTS_FAILED,
+export const setPayments = (payload) => ({
+  type: SET_PAYMENT,
   payload,
 });
