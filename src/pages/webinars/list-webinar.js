@@ -93,7 +93,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.schedule),
-      dataIndex: 'schedules[0]',
+      dataIndex: ['schedules', '0', 'dateTime'],
       sorter: {
         multiple: 3,
       },
@@ -101,6 +101,8 @@ export function ListOfWebinar({
     {
       title: t(message.attendees),
       dataIndex: 'attendees',
+      render: (text, record) =>
+        record.attendees ? record.attendees.length : 0,
       sorter: {
         multiple: 3,
       },
