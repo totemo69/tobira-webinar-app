@@ -55,7 +55,7 @@ const message = {
   }),
   paymentStatus: Object.values({
     key: `${scope}.paymentStatus`,
-    default: 'Email Address',
+    default: 'Payment Status',
   }),
   details: Object.values({
     key: `${scope}.details`,
@@ -248,6 +248,38 @@ const message = {
   ticketLink: Object.values({
     key: `${scope}.ticketLink`,
     default: 'Ticket Link',
+  }),
+  participantId: Object.values({
+    key: `${scope}.participantId`,
+    default: 'Participant ID',
+  }),
+  registeredDate: Object.values({
+    key: `${scope}.registeredDate`,
+    default: 'Date of Registration',
+  }),
+  registrationLabel: Object.values({
+    key: `${scope}.registrationLabel`,
+    default: 'Registration Details',
+  }),
+  registrationTitle: Object.values({
+    key: `${scope}.registrationTitle`,
+    default: 'Registered Participants Details',
+  }),
+  paymentLabel: Object.values({
+    key: `${scope}.paymentLabel`,
+    default: 'Payment Details',
+  }),
+  paymentMethodLabel: Object.values({
+    key: `${scope}.paymentMethodLabel`,
+    default: 'Payment Method',
+  }),
+  paymentIdLabel: Object.values({
+    key: `${scope}.paymentIdLabel`,
+    default: 'Transaction ID',
+  }),
+  paymentDateLabel: Object.values({
+    key: `${scope}.paymentDateLabel`,
+    default: 'Transaction Date and Time',
   }),
 };
 

@@ -31,7 +31,8 @@
     "searchPlaceholder": "ウェビナーのタイトルを検索",
     "thankYou": "ありがとうございました",
     "accountActivated": "アカウントが正常にアクティブ化されました",
-    "goBackPrevious": "前のページに戻る"
+    "goBackPrevious": "前のページに戻る",
+    "close": "閉じる"
   },
   "storyBook": {
     "title": "題名"
@@ -126,7 +127,17 @@
     "registeredParticipants": "登録参加者",
     "editDetails": "詳細を編集する",
     "time": "時間",
-    "ticketLink": "チケットリンク"
+    "ticketLink": "チケットリンク",
+    "paymentStatus": "支払い状況",
+    "viewDetails": "詳細",
+    "participantId": "参加者ID",
+    "registeredDate": "登録日時",
+    "registrationLabel": "登録詳細",
+    "registrationTitle": "登録参加者情報",
+    "paymentLabel": "支払詳細",
+    "paymentMethodLabel": "支払方法",
+    "paymentIdLabel": "取引ID",
+    "paymentDateLabel": "取引日時"
   },
   "termsAndPrivacy": {
     "privacyContent1": "あなたのプライバシーは私たちにとって重要であり、私たちがあなたに関する情報をどのように収集、使用、共有するかについて透明性があります。 このポリシーは、理解を助けることを目的としています",

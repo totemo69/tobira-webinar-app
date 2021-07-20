@@ -1,13 +1,19 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import { Row, Col, List, Divider, Modal, Typography } from 'antd';
+import message from '@/messages/webinar';
+import globalMessage from '@/messages/global';
 import Button from '@/components/Elements/Button';
 
 const { Text } = Typography;
 
-export function ParticipantDetails({ participantDetails }) {
-  // const { t } = useTranslation();
+export default function ParticipantDetails({
+  participantDetails = [],
+  isVisible,
+  closeModal,
+}) {
+  const { t } = useTranslation();
 
   const StyledModal = styled(Modal)`
     .ant-modal-content {
@@ -36,33 +42,56 @@ export function ParticipantDetails({ participantDetails }) {
     color: #4678b5;
   `;
 
+  const details = [
+    {
+      title: t(message.participantId),
+      details: participantDetails.id,
+    },
+    {
+      title: t(message.registeredDate),
+      details: participantDetails.createdAt,
+    },
+    {
+      title: t(message.emailAddress),
+      details: participantDetails.formValues
+        ? participantDetails.formValues[0].fieldValue
+        : '',
+    },
+  ];
+
   const paymentDetails = [
     {
-      title: 'Transaction ID',
+      title: t(message.paymentIdLabel),
       details: '5TY05013RG002845M',
     },
     {
-      title: 'Transaction Date and Time',
+      title: t(message.paymentDateLabel),
       details: 'April 24, 2021 10:22',
     },
     {
-      title: 'Payment Method',
+      title: t(message.paymentMethodLabel),
       details: 'Paypal',
     },
     {
-      title: 'Payment Status',
+      title: t(message.paymentStatus),
       details: 'Pending',
     },
   ];
   return (
-    <StyledModal visible footer={null} centered>
+    <StyledModal
+      visible={isVisible}
+      onRequestClose={closeModal}
+      footer={null}
+      centered
+      onCancel={closeModal}
+    >
       <Row align="middle" justify="center">
         <Col align="middle" justify="center" span={24}>
           <StyledTitle>
-            <Text>Registered Participants Details</Text>
+            <Text>{t(message.registrationTitle)}</Text>
           </StyledTitle>
           <StyledTitle1>
-            <StyledText>Registration Details</StyledText>
+            <StyledText>{t(message.registrationLabel)}</StyledText>
             <Divider />
           </StyledTitle1>
         </Col>
@@ -70,7 +99,7 @@ export function ParticipantDetails({ participantDetails }) {
       <List
         style={{ padding: '20px 40px' }}
         itemLayout="horizontal"
-        dataSource={participantDetails}
+        dataSource={details}
         renderItem={(item) => (
           <List.Item
             style={{
@@ -88,7 +117,7 @@ export function ParticipantDetails({ participantDetails }) {
       <Row align="middle" justify="center">
         <Col align="middle" justify="center" span={24}>
           <StyledTitle1>
-            <StyledText>Payment Details</StyledText>
+            <StyledText>{t(message.paymentLabel)}</StyledText>
             <Divider />
           </StyledTitle1>
         </Col>
@@ -112,8 +141,8 @@ export function ParticipantDetails({ participantDetails }) {
         )}
       />
       <Row align="middle" justify="center">
-        <Button chooseStandard type="primary" ghost>
-          <StyledText>Close</StyledText>
+        <Button onClick={closeModal} chooseStandard type="primary" ghost>
+          <StyledText>{t(globalMessage.close)}</StyledText>
         </Button>
       </Row>
     </StyledModal>
@@ -122,4 +151,6 @@ export function ParticipantDetails({ participantDetails }) {
 
 ParticipantDetails.propTypes = {
   participantDetails: PropTypes.any,
+  isVisible: PropTypes.bool,
+  closeModal: PropTypes.any,
 };

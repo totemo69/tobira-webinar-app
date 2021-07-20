@@ -4,7 +4,7 @@ import { WEBINAR_ROUTE } from '@/utils/constants';
 
 import RegisterLayout from '@/components/Layouts/WebinarDetail/register';
 import Complete from '@/components/Modules/Detail/Complete';
-import WebinarDetailService from '@/services/WebinarDetailService';
+import WebinarDetailService from '../../../service/WebinarDetailService';
 
 const RegisterComplete = () => {
   const route = useRouter();

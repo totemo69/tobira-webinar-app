@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import querystring from 'querystring';
 import { API, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
@@ -8,10 +9,21 @@ import { setAttendeeDetails, setAttendeeList } from './action';
 function* getAttendeeList({ payload }) {
   try {
     yield put(loading(LOADING_PREFIX.ATTENDEES));
+    const { webinarId } = payload;
+    const query = {
+      where: {
+        webinarId,
+        status: '1',
+      },
+    };
+    const filter = {
+      filter: JSON.stringify(query),
+    };
+    const stringifyQuery = querystring.stringify(filter);
     const response = yield call(
       request,
-      API.ATTENDEES,
-      RequestOptions(GET_REQUEST, { ...payload }, true),
+      `${API.ATTENDEES}?${stringifyQuery}`,
+      RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setAttendeeList(response));
     // Set the status to success
