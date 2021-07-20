@@ -59,7 +59,7 @@ const message = {
   }),
   paymentStatus: Object.values({
     key: `${scope}.paymentStatus`,
-    default: 'Email Address',
+    default: 'Payment Status',
   }),
   details: Object.values({
     key: `${scope}.details`,
@@ -76,6 +76,10 @@ const message = {
   updateWebinar: Object.values({
     key: `${scope}.updateWebinar`,
     default: 'UPDATE WEBINAR',
+  }),
+  next: Object.values({
+    key: `${scope}.next`,
+    default: 'Next',
   }),
 };
 

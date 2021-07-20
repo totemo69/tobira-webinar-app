@@ -275,15 +275,15 @@ export default function Wallet() {
         {/* Transaction Details Payment for Webinar */}
         <TransactionModal
           visible={isPaymentWebinarModalVisible}
-          title="Transaction Details"
-          subTitle={<Text blue strong content="Payment for Webinar" />}
+          title={t(message.transactionDetails)}
+          subTitle={<Text blue strong content={t(message.paymentForWebinar)} />}
           onClose={() => setIsPaymentWebinarModalVisible(false)}
         />
         {/* Transaction Details Withdrawal */}
         <TransactionModal
           visible={isWithdrawalModalVisible}
-          title="Transaction Details"
-          subTitle={<Text blue strong content="Withdrawal" />}
+          title={t(message.transactionDetails)}
+          subTitle={<Text blue strong content={t(message.withdrawal)} />}
           onClose={() => setIsWithdrawalModalVisible(false)}
         />
 
