@@ -198,6 +198,10 @@ const message = {
     key: `${scope}.submit`,
     default: 'Submit',
   }),
+  currencySymbol: Object.values({
+    key: `${scope}.currencySymbol`,
+    default: 'JPY',
+  }),
 };
 
 export default message;

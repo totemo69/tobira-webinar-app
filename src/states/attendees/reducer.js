@@ -1,28 +1,23 @@
 import produce from 'immer';
-import { GET_ATENDEE, GET_ATENDEE_SUCCESS } from './types';
+import { SET_ATTENDEE_DETAILS, SET_WEBINAR_ATTENDEES } from './types';
 
 export const initialState = {
-  isLoading: false,
-  content: [],
-  error: null,
+  attendeeList: [],
+  attendeeDetails: {},
 };
 
+/* eslint-disable default-case, no-param-reassign */
 const atendeeCheck = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case GET_ATENDEE:
-        return {
-          ...state,
-          isLoading: true,
-        };
-      case GET_ATENDEE_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          content: draft,
-        };
-      default:
-        return state;
+      case SET_ATTENDEE_DETAILS: {
+        draft.attendeeDetails = action.payload;
+        break;
+      }
+      case SET_WEBINAR_ATTENDEES: {
+        draft.attendeeList = action.payload;
+        break;
+      }
     }
   });
 

@@ -24,12 +24,8 @@ export const PATCH_REQUEST = 'PATCH';
 export const DELETE_REQUEST = 'DELETE';
 
 export const API = {
-  AUTH_ATTENDEE: `${Url}/attendees`,
-  AUTH_ATTENDEE_COUNT: `${Url}/attendees/count`,
   AUTH_USER_PROFILE: `${Url}/users/profile`,
-  AUTH_PLANS_COUNT: `${Url}/plans/count`,
-  AUTH_PLANS_GET: `${Url}/plans/`,
-  AUTH_PAYMENTS_COUNT: `${Url}/payments/count`,
+  AUTH_PLANS_GET: `${Url}/plans`,
   AUTH_PAYMENTS_GET: `${Url}/payments`,
   WEBINARS: `${Url}/webinars`,
   AUTH_LOGIN: `${Url}/auth/login`,
@@ -56,13 +52,14 @@ export const WEBINAR_ROUTE = {
   WALLET: '/wallet',
   DASHBOARD: '/dashboard',
   PURCHASE_LICENSE: '/purchase-license',
-  WEBINAR_DETAILS: '/webinars/details',
+  WEBINAR_DETAIL: '/webinar-detail',
   WEBINAR_UPDATE_DETAILS: '/webinars/update',
 };
 
 export const LOADING_PREFIX = {
   ACCOUNT: 'account',
   WEBINAR_LIST: 'webinar-list',
+  WEBINAR_DETAILS: 'webinar-details',
   CREATE_WEBINAR: 'create-webinar',
   SIGNUP: 'signup',
   VERIFICATION: 'verification',
@@ -70,6 +67,8 @@ export const LOADING_PREFIX = {
   WEBINAR: 'webinar',
   REGISTER: 'register',
   PAYMENT: 'payment',
+  PLAN: 'plan',
+  ATTENDEES: 'attendees',
 };
 
 export const SCHEDULE_TYPE = {
