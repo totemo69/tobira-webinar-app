@@ -1,34 +1,45 @@
-import { takeEvery, all, call, put } from 'redux-saga/effects';
-import { API } from '@/utils/constants';
-import { request } from '@/utils/request';
-import { PAYMENTS_COUNT, PAYMENTS_GET } from './types';
-import { paymentSuccess, paymentFailed } from './action';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import querystring from 'querystring';
+import { API, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
+import { request, RequestOptions } from '@/utils/request';
+import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
+import { GET_PAYMENT } from './types';
+import { setPayments } from './action';
 
-function* getPaymentSaga() {
+function* getPaymentSaga({ payload }) {
   try {
-    const data = yield call(request, API.AUTH_PAYMENTS_GET);
-    yield put(paymentSuccess(data));
-    console.log(data);
+    // Set loading status to true
+    yield put(loading(LOADING_PREFIX.PAYMENT));
+    const { attendeeId, webinarId } = payload;
+    const query = {
+      where: {
+        attendeeId,
+        webinarId,
+      },
+    };
+    const filter = {
+      filter: JSON.stringify(query),
+    };
+    const stringifyQuery = querystring.stringify(filter);
+    const response = yield call(
+      request,
+      `${API.PAYMENT}?${stringifyQuery}`,
+      RequestOptions(GET_REQUEST, null, true),
+    );
+    yield put(setPayments(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.PAYMENT));
   } catch (error) {
-    yield put(paymentFailed(error.message));
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.PAYMENT, false));
+    // Set the error
+    yield put(loadErrors(error));
+  } finally {
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.PROFILE, false));
   }
-}
-
-function* getPaymentCountSaga() {
-  try {
-    const data = yield call(request, API.AUTH_PAYMENTS_COUNT);
-    yield put(paymentSuccess(data));
-    console.log(data);
-  } catch (error) {
-    yield put(paymentFailed(error.message));
-  }
-}
-
-function* getPaymentWatcher() {
-  yield takeEvery(PAYMENTS_GET, getPaymentSaga);
-  yield takeEvery(PAYMENTS_COUNT, getPaymentCountSaga);
 }
 
 export default function* paymentSaga() {
-  yield all([getPaymentWatcher()]);
+  yield takeEvery(GET_PAYMENT, getPaymentSaga);
 }

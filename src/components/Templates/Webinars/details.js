@@ -16,8 +16,10 @@ import {
   makeSelectLoadingStatus,
 } from '@/states/global/selector';
 import { makeSelectWebinarDetails } from '@/states/webinar/selector';
+import { makeSelecPaymentsDetails } from '@/states/payments/selector';
 import { getWebinarDetail } from '@/states/webinar/actions';
 import { getAttendeeList, getAttendeeDetails } from '@/states/attendees/action';
+import { getPayments } from '@/states/payments/action';
 import {
   makeSelectAttendees,
   makeSelectAttendeesDetails,
@@ -36,10 +38,12 @@ const { TabPane } = Tabs;
 export function Details({
   getDetails,
   webinarDetails,
+  paymentInfo,
   getAttendee,
   attendeesList,
   attendeesDetails,
   getAttendeeDetail,
+  getPaymentInfo,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -66,6 +70,7 @@ export function Details({
 
   const onClickDetails = (attendeeId) => {
     getAttendeeDetail({ id: attendeeId });
+    getPaymentInfo({ attendeeId, webinarId: id });
     setShow(true);
   };
 
@@ -101,6 +106,7 @@ export function Details({
       </Div>
       <ParticipantDetails
         participantDetails={attendeesDetails}
+        paymentInfo={paymentInfo}
         isVisible={isShow}
         closeModal={closeModal}
       />
@@ -116,10 +122,12 @@ Details.propTypes = {
   attendeesList: PropTypes.any,
   webinarDetails: PropTypes.any,
   attendeesDetails: PropTypes.any,
+  paymentInfo: PropTypes.any,
   getDetails: PropTypes.func,
   getAttendee: PropTypes.func,
   getAttendeeDetail: PropTypes.func,
   // error: PropTypes.any,
+  getPaymentInfo: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -130,6 +138,7 @@ const mapStateToProps = createStructuredSelector({
   webinarDetails: makeSelectWebinarDetails(),
   attendeesList: makeSelectAttendees(),
   attendeesDetails: makeSelectAttendeesDetails(),
+  paymentInfo: makeSelecPaymentsDetails(),
   error: makeSelectError(),
 });
 
@@ -137,6 +146,7 @@ const mapDispatchProps = (dispatch) => ({
   getDetails: (payload) => dispatch(getWebinarDetail(payload)),
   getAttendee: (payload) => dispatch(getAttendeeList(payload)),
   getAttendeeDetail: (payload) => dispatch(getAttendeeDetails(payload)),
+  getPaymentInfo: (payload) => dispatch(getPayments(payload)),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
