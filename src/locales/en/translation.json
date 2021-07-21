@@ -48,9 +48,11 @@
     "details": "Details",
     "submit": "Submit"
   },
+
   "storyBook" : {
     "title": "Title"
   },
+
   "signUp" : {
     "signUp":  "Sign Up",
     "agreeMessage":  "By signing up, you agree to the",
@@ -58,34 +60,41 @@
     "loginHere":  "Log in here",
     "verificationMsg":  "A verification mail has been sent to your email account. Please check your email and click the link to confirm."
   },
+
   "login" : {
     "rememberMe":  "Remember Me",
     "createAccount":  "Create an account?",
     "signHere":  "Sign up here"
   },
+
   "forgotPassword" : {
     "forgotPasswordText":  "Enter your email address and we'll send you an email with instructions for setting a new one",
     "recoverInstructions":  "We have sent a password recover instructions to your email",
     "checkSpam":  "If you don't see the email in your inbox, please check your spam folder"
   },
+
   "resetPassword" : {
     "resetPassword":  "Reset Password",
     "resetSuccess":  "Password has been reset successfully"
   },
+
   "profile" : {
     "editProfile":  "Edit Profile",
     "changePassword":  "Change Password"
   },
+
   "sidebar" : {
     "webinars":  "Webinars",
     "createWebinar":  "Create Webinar"
   },
+
   "header" : {
     "accounts":  "Accounts",
     "purchaseLicense":  "Purchase License",
     "wallet":  "Wallet",
     "logOut":  "Log out"
   },
+
   "webinar": {
     "title": "Title",
     "schedule" :  "Schedule",
@@ -104,35 +113,7 @@
     "paymentStatus": "Payment Status",
     "registeredParticipants": "Registered Participants",
     "editDetails": "Edit Details",
-    "updateWebinar": "UPDATE WEBINAR"
-  },
-  "termsAndPrivacy": {
-    "privacyContent1": "Your privacy is important to us, and so is being transparent about how we collect, use, and share information about you. This policy is intended to help you understand",
-    "privacyContent2": "This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed. Atlassian, we and us refers to Atlassian Pty Ltd, Atlassian, Inc. and any of our corporate affiliates. We offer a wide range of products, including our cloud, server and data center products. We refer to all of these products, together with our other services and websites as \"Services\" in this policy",
-    "privacyContent3": "This policy also explains your choices surrounding how we use information about you, which include how you can object to certain uses of information about you and how you can access and update certain information about you. If you do not agree with this policy, do not access or use our Services or interact with any other aspect of our business",
-    "privacyContent4": "Where we provide the Services under contract with an organization (for example, your employer) that organization controls the information processed by the Services. For more information, please see Notice to End Users below. This policy does not apply to the extent we process personal information in the role of a processor on behalf of such organizations",
-    "privacyContent5": "What information we collect about you? We collect information about you when you provide it to us, when you use our Services, and when other sources provide it to us, as further described below",
-    "privacyItem1" :  "What information we collect about you",
-    "privacyItem2": "How we use information we collect",
-    "privacyItem3": "How we share information we collect",
-    "privacyItem4" :  "How we store and secure information we collect",
-    "privacyItem5" :  "How to access and control your information",
-    "privacyItem6" :  "How we transfer information we collect internationally",
-    "privacyItem7" :  "Other important privacy information",
-    "termsContent1": "Terms of service are the legal agreements between a service provider and a person who wants to use that service",
-    "termsContent2": "The person must agree to abide by the terms of service in order to use the offered service. Terms of service can also be merely a disclaimer, especially regarding the use of websites",
-    "termsContent3": "Having this agreement helps you set out the rules and guidelines that your users or visitors must agree to in order to use your website or app such as",
-    "termsContent4": "These agreements are commonly abbreviated as ToS and are also referred to as a Terms and Conditions agreement, Conditions of Use, or User Agreement",
-    "termsContent5": "Regardless of what you call your Terms of Service, the aim of the agreement is the same",
-    "termsItem1" :  "Not stealing your content and violating copyright laws",
-    "termsItem2": "Not spamming other users",
-    "termsItem3": "Not using your site for illegal activities",
-    "termsItem4" :  "Disclose the rules and restrictions that your users must adhere to",
-    "termsItem5" :  "Maintain your right to terminate abusive accounts",
-    "termsItem6" :  "Make your copyright, trademark and intellectual property rights known",
-    "termsItem7" :  "Limit your liability"
-  },
-  "createwebinar": {
+    "updateWebinar": "UPDATE WEBINAR",
     "addAccount":"Add Account",
     "basicDetails":  "Basic Details",
     "back": "Back",
@@ -143,7 +124,6 @@
     "date":  "Date",
     "duration": "Duration",
     "enterWebinarTitle": "Enter Webinar title",
-    "emailAddress": "Email Address",
     "email": "Email",
     "enterRegistrationFomrName": "Enter registration form name",
     "enterWebinarDescription":  "Enter Webinar Description",
@@ -176,12 +156,8 @@
     "webinarPlan": "Webinar Plan",
     "webinarPriceAttendee": "Webinar price for each attendee",
     "zoomAccount": "Zoom Account",
-    "registeredParticipants": "Registered Participants",
-    "editDetails": "Edit Details",
     "time": "Time",
     "ticketLink": "Ticket Link",
-    "paymentStatus": "Payment Status",
-    "viewDetails": "View Details",
     "participantId": "Participant ID",
     "registeredDate": "Date of Registration",
     "registrationLabel": "Registration Details",
@@ -191,6 +167,7 @@
     "paymentIdLabel": "Transaction ID",
     "paymentDateLabel": "Transaction Date and Time"
   },
+
   "termsAndPrivacy": {
     "privacyContent1": "Your privacy is important to us, and so is being transparent about how we collect, use, and share information about you. This policy is intended to help you understand",
     "privacyContent2": "This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed. Atlassian, we and us refers to Atlassian Pty Ltd, Atlassian, Inc. and any of our corporate affiliates. We offer a wide range of products, including our cloud, server and data center products. We refer to all of these products, together with our other services and websites as \"Services\" in this policy",
@@ -217,10 +194,32 @@
     "termsItem6" :  "Make your copyright, trademark and intellectual property rights known",
     "termsItem7" :  "Limit your liability"
   },
+
   "webinarDetail": {
     "register": "Register",
     "ticketSummary": "Ticket Summary",
-    "complete": "Complete"
+    "complete": "Complete",
+    "shareButton": "Share",
+    "author": "by",
+    "registerButton": "Register Now",
+    "descriptionLabel": "Description",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "durationLabel": "Label",
+    "timezoneLabel": "Timezone",
+    "ticketPriceLabel": "Ticket Price",
+    "backButton": "Back",
+    "nextButton": "Next",
+    "titleLabel": "Title",
+    "dateTimeLabel": "Schedule",
+    "paymentButton": "Payment",
+    "paymentMethodLabel": "Payment Method",
+    "checkoutButton": "Checkout",
+    "payWithPaypal": "Pay with Paypal",
+    "payWithOthers": "Other payment options coming soon!",
+    "ticketCompleteMessage": "Your order is complete!",
+    "ticketCompleteDetails": "You will be receiving an email with order details.",
+    "gotoDetailsButton": "Go back to webinar details"
   },
 
   "wallet": {
@@ -255,30 +254,9 @@
     "webinarTitle": "Webinar Title",
     "amount": "Amount",
     "paymentMethod": "Payment Method",
-    "status": "Status",
-    "complete": "Complete",
-    "shareButton": "Share",
-    "author": "by",
-    "registerButton": "Register Now",
-    "descriptionLabel": "Description",
-    "dateLabel": "Date",
-    "timeLabel": "Time",
-    "durationLabel": "Label",
-    "timezoneLabel": "Timezone",
-    "ticketPriceLabel": "Ticket Price",
-    "backButton": "Back",
-    "nextButton": "Next",
-    "titleLabel": "Title",
-    "dateTimeLabel": "Schedule",
-    "paymentButton": "Payment",
-    "paymentMethodLabel": "Payment Method",
-    "checkoutButton": "Checkout",
-    "payWithPaypal": "Pay with Paypal",
-    "payWithOthers": "Other payment options coming soon!",
-    "ticketCompleteMessage": "Your order is complete!",
-    "ticketCompleteDetails": "You will be receiving an email with order details.",
-    "gotoDetailsButton": "Go back to webinar details"
+    "status": "Status"
   },
+
   "plan": {
     "title": "PURCHASE LICENSE",
     "subTitle": "Webinar Plan",

@@ -35,6 +35,7 @@ export const API = {
   WEBINAR_PUBLIC_DETAIL_PAGE: `${Url}/webinar-page`,
   ATTENDEES: `${Url}/attendees`,
   PAYMENT: `${Url}/payments`,
+  BANKS: `${Url}/banks`,
 };
 
 export const WEBINAR_ROUTE = {
@@ -69,6 +70,7 @@ export const LOADING_PREFIX = {
   PAYMENT: 'payment',
   PLAN: 'plan',
   ATTENDEES: 'attendees',
+  WALLET: 'wallet',
 };
 
 export const SCHEDULE_TYPE = {
