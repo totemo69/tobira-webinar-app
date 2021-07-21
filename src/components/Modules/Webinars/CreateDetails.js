@@ -17,12 +17,12 @@ import Input from '@/components/Elements/Input';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import Button from '@/components/Elements/Button';
-import Image from '@/components/Elements/Image';
 import Textarea from '@/components/Elements/Textarea';
 import Radio from '@/components/Elements/Radio';
 import DatePicker from '@/components/Elements/DatePicker';
 import TimePicker from '@/components/Elements/TimePicker';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
+import ImageUpload from '@/components/Elements/ImageUpload';
 import { setWebinar } from '@/states/webinar/actions';
 
 import { createWebinar } from '@/validations/webinar';
@@ -134,16 +134,12 @@ export default function CreateWebinarDetails({
                 <Div widthFull>
                   <Labels asterisk>Webinar Image</Labels>
                   <Div imageContainer flexColCenter>
-                    <p>
-                      <Image
-                        src="/images/image.svg"
-                        alt="Webinar image container"
-                        iconLg
-                      />
-                    </p>
-                    <Labels textBlue textCenter bold textLg>
-                      Upload a photo
-                    </Labels>
+                    <ImageUpload
+                      src={values.image}
+                      onUploadComplete={(image) =>
+                        setFieldValue('image', image, true)
+                      }
+                    />
                   </Div>
                 </Div>
                 <Div widthFull paddingX>

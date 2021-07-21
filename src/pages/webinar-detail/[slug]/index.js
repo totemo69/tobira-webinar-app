@@ -30,7 +30,6 @@ export async function getStaticProps({ params, locale }) {
     props: {
       postDetail: {
         ...page,
-        coverImage: '/images/dummy.jpeg',
       },
       ...(await serverSideTranslations(locale, ['translation'])),
     },

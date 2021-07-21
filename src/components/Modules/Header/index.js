@@ -16,11 +16,16 @@ import {
   UserOutlined,
   WalletFilled,
   AccountBookFilled,
-  CreditCardFilled,
+  // CreditCardFilled,
   LogoutOutlined,
 } from '@ant-design/icons';
 
-export default function Header({ withLogo = false, withMenu = true }) {
+export default function Header({
+  profilePic = '/images/avatar.svg',
+  username = 'tobirauser',
+  withLogo = false,
+  withMenu = true,
+}) {
   const { t } = useTranslation();
 
   const MenuItems = (
@@ -39,13 +44,13 @@ export default function Header({ withLogo = false, withMenu = true }) {
           </a>
         </Link>
       </Menu.Item>
-      <Menu.Item key="2">
+      {/* <Menu.Item key="2">
         <Link href={WEBINAR_ROUTE.PURCHASE_LICENSE}>
           <a>
             <CreditCardFilled /> {t(message.purchaseLicense)}
           </a>
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item key="3">
         <Link href={WEBINAR_ROUTE.WALLET}>
           <a>
@@ -84,12 +89,8 @@ export default function Header({ withLogo = false, withMenu = true }) {
           )}
           {withMenu && (
             <>
-              <Image
-                src="/images/avatar.svg"
-                alt="Picture of the user"
-                userImg
-              />
-              <Dropdown username="tobirauser" items={MenuItems} />
+              <Image src={profilePic} alt="Picture of the user" userImg />
+              <Dropdown username={username} items={MenuItems} />
             </>
           )}
         </Div>

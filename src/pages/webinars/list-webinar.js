@@ -85,7 +85,7 @@ export function ListOfWebinar({
       dataIndex: 'image',
       render: (img) => (
         <NextImage
-          src={img ?? '/images/dummy.jpeg'}
+          src={img ? img : '/images/dummy.jpeg'}
           alt="Webinar Images"
           width={150}
           height={150}

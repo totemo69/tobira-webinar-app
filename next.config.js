@@ -10,6 +10,9 @@ module.exports = withBundleAnalyzer();
 module.exports = withTM({
   webpack5: false,
   i18n,
+  images: {
+    domains: ['tobira-webinar-dev.s3.ap-northeast-1.amazonaws.com'],
+  },
   webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/,
