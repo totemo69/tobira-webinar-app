@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { getBankList } from '@/states/wallet/actions';
+import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
   PlusSquareFilled,
@@ -38,9 +44,15 @@ import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
 
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
+import { makeSelectBankList } from '@/states/wallet/selector';
 
-export default function Wallet() {
+export function Wallet({ doGetBankList, bankList }) {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    doGetBankList();
+  }, []);
+
   const [visible, setVisible] = useState(false);
   const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
     useState(false);
@@ -217,6 +229,22 @@ export default function Wallet() {
     </Menu>
   );
 
+  const bankItems = bankList.map((bank) => (
+    <Col span={8} key={bank.id}>
+      <Div bankList>
+        <Dropdown.Button
+          style={{ float: 'right' }}
+          overlay={menu}
+          icon={<MoreOutlined />}
+          type="text"
+        />
+        <Title level={5}>{bank.bankName}</Title>
+        <StyledParagraph>{bank.accountName}</StyledParagraph>
+        <EllipsisOutlined /> {bank.accountNumber}
+      </Div>
+    </Col>
+  ));
+
   return (
     <>
       <Layout>
@@ -325,76 +353,26 @@ export default function Wallet() {
               justifyContent: 'space-between',
               width: '100%',
             }}
-          >
-            <Div bankList>
-              <Dropdown.Button
-                style={{ float: 'right' }}
-                overlay={menu}
-                icon={<MoreOutlined />}
-                type="text"
-              />
-              <Title level={5}>Metrobank</Title>
-              <StyledParagraph>Yamazaki Kento</StyledParagraph>
-              <EllipsisOutlined /> 456
-            </Div>
-            <Div bankList>
-              <Dropdown.Button
-                style={{ float: 'right' }}
-                overlay={menu}
-                icon={<MoreOutlined />}
-                type="text"
-              />
-              <Title level={5}>Japan Post Bank</Title>
-              <StyledParagraph>Yamazaki Kento</StyledParagraph>
-              <EllipsisOutlined /> 123
-            </Div>
-            <Div bankList>
-              <Dropdown.Button
-                style={{ float: 'right' }}
-                overlay={menu}
-                icon={<MoreOutlined />}
-                type="text"
-              />
-              <Title level={5}>Mizuho Financial Group</Title>
-              <StyledParagraph>Yamazaki Kento</StyledParagraph>
-              <EllipsisOutlined /> 333
-            </Div>
-          </Div>
-
-          <Div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '66.5%',
-              marginTop: '10px',
-            }}
-          >
-            <Div bankList>
-              <Dropdown.Button
-                style={{ float: 'right' }}
-                overlay={menu}
-                icon={<MoreOutlined />}
-                type="text"
-              />
-              <Title level={5}>Sumitomo Mitsui Financial Group</Title>
-              <StyledParagraph>Yamazaki Kento</StyledParagraph>
-              <EllipsisOutlined /> 333
-            </Div>
-            <Div bankList>
-              <Div addBankList>
-                <Button
-                  onClick={() => setIsBankAddModalVisible(true)}
-                  style={{ width: '50px', textAlign: 'center' }}
-                  type="primary"
-                >
-                  <PlusSquareFilled style={{ fontSize: '20px' }} />
-                </Button>
-                <StyledParagraph colorBlue>
-                  {t(message.addBankAccount)}
-                </StyledParagraph>
+          />
+          <Row gutter={[24, 24]}>
+            {bankItems}
+            <Col span={8}>
+              <Div bankList>
+                <Div addBankList>
+                  <Button
+                    onClick={() => setIsBankAddModalVisible(true)}
+                    style={{ width: '50px', textAlign: 'center' }}
+                    type="primary"
+                  >
+                    <PlusSquareFilled style={{ fontSize: '20px' }} />
+                  </Button>
+                  <StyledParagraph colorBlue>
+                    {t(message.addBankAccount)}
+                  </StyledParagraph>
+                </Div>
               </Div>
-            </Div>
-          </Div>
+            </Col>
+          </Row>
 
           <Div marginY>
             <StyledParagraph colorBlue>
@@ -507,3 +485,26 @@ export default function Wallet() {
     </>
   );
 }
+
+Wallet.propTypes = {
+  bankList: PropTypes.any,
+  doGetBankList: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  bankList: makeSelectBankList(),
+});
+
+const mapPropsToDispatch = (dispatch) => ({
+  doGetBankList: () => dispatch(getBankList()),
+});
+
+const withConnect = connect(mapStateToProps, mapPropsToDispatch);
+
+export default compose(withConnect)(Wallet);
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['translation'])),
+  },
+});

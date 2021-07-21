@@ -8,6 +8,7 @@ import webinar from '@/states/webinar/reducer';
 import login from '@/states/login/reducer';
 import signup from '@/states/sign-up/reducer';
 import accounts from '@/states/accounts/reducer';
+import wallet from '@/states/wallet/reducer';
 
 const rootReducer = combineReducers({
   global,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   login,
   signup,
   accounts,
+  wallet,
 });
 
 export default rootReducer;

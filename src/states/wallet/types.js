@@ -1,0 +1,4 @@
+export const GET_BANK_LIST = 'APP/WALLET/GET_BANK_LIST';
+export const SET_BANK_LIST = 'APP/WALLET/SET_BANK_LIST';
+export const ADD_BANK = 'APP/WALLET/ADD_BANK';
+export const SET_BANK = 'APP/WALLET/SET_BANK';
