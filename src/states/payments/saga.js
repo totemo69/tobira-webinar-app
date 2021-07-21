@@ -36,7 +36,7 @@ function* getPaymentSaga({ payload }) {
     yield put(loadErrors(error));
   } finally {
     // Set loading status to false
-    yield put(loading(LOADING_PREFIX.PROFILE, false));
+    yield put(loading(LOADING_PREFIX.PAYMENT, false));
   }
 }
 

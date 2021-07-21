@@ -281,6 +281,34 @@ const message = {
     key: `${scope}.paymentDateLabel`,
     default: 'Transaction Date and Time',
   }),
+  doneStatusLabel: Object.values({
+    key: `${scope}.doneStatusLabel`,
+    default: 'Done',
+  }),
+  notYetStatusLabel: Object.values({
+    key: `${scope}.notYetStatusLabel`,
+    default: 'Not yet started',
+  }),
+  upcomingStatusLabel: Object.values({
+    key: `${scope}.upcomingStatusLabel`,
+    default: 'Upcoming',
+  }),
+  oneTimePlan: Object.values({
+    key: `${scope}.oneTimePlan`,
+    default: 'One-time',
+  }),
+  pendingPaymentLabel: Object.values({
+    key: `${scope}.pendingPaymentLabel`,
+    default: 'Pending',
+  }),
+  failedPaymentLabel: Object.values({
+    key: `${scope}.failedPaymentLabel`,
+    default: 'Failed',
+  }),
+  completedPaymentLabel: Object.values({
+    key: `${scope}.completedPaymentLabel`,
+    default: 'Completed',
+  }),
 };
 
 export default message;

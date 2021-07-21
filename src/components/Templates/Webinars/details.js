@@ -53,6 +53,8 @@ export function Details({
 
   const [tabKey, setTabKey] = useState('1');
 
+  const [displayCount, setDisplayCount] = useState(10);
+
   const closeModal = () => {
     setShow(false);
   };
@@ -91,13 +93,19 @@ export function Details({
               onChange={(activeKey) => setTabKey(activeKey)}
               defaultActiveKey={tabKey}
             >
-              <TabPane tab={t(message.details)} key="1">
+              <TabPane forceRender tab={t(message.details)} key="1">
                 <WebinarDetail webinarDetails={webinarDetails} />
               </TabPane>
-              <TabPane tab={t(message.registeredParticipants)} key="2">
+              <TabPane
+                forceRender
+                tab={t(message.registeredParticipants)}
+                key="2"
+              >
                 <Participants
                   attendeesList={attendeesList}
                   onClickDetails={onClickDetails}
+                  displayCount={displayCount}
+                  setDisplayCount={setDisplayCount}
                 />
               </TabPane>
             </Tabs>

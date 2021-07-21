@@ -69,6 +69,7 @@ export const LOADING_PREFIX = {
   PAYMENT: 'payment',
   PLAN: 'plan',
   ATTENDEES: 'attendees',
+  ATTENDEEDETAIL: 'attendeedetail',
 };
 
 export const SCHEDULE_TYPE = {
