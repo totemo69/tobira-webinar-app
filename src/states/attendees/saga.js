@@ -13,7 +13,6 @@ function* getAttendeeList({ payload }) {
     const query = {
       where: {
         webinarId,
-        status: '1',
       },
     };
     const filter = {
@@ -39,7 +38,7 @@ function* getAttendeeList({ payload }) {
 
 function* getAttendeeDetails({ payload }) {
   try {
-    yield put(loading(LOADING_PREFIX.ATTENDEES));
+    yield put(loading(LOADING_PREFIX.ATTENDEEDETAIL));
     const { id } = payload;
     const response = yield call(
       request,
@@ -48,13 +47,13 @@ function* getAttendeeDetails({ payload }) {
     );
     yield put(setAttendeeDetails(response));
     // Set the status to success
-    yield put(loadSuccess(LOADING_PREFIX.ATTENDEES));
+    yield put(loadSuccess(LOADING_PREFIX.ATTENDEEDETAIL));
   } catch (error) {
     // Set the status to failed
-    yield put(loadSuccess(LOADING_PREFIX.ATTENDEES, false));
+    yield put(loadSuccess(LOADING_PREFIX.ATTENDEEDETAIL, false));
     yield put(loadErrors(error));
   } finally {
-    yield put(loading(LOADING_PREFIX.ATTENDEES, false));
+    yield put(loading(LOADING_PREFIX.ATTENDEEDETAIL, false));
   }
 }
 
