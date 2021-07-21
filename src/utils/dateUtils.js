@@ -11,6 +11,14 @@ export function DisableDates(current) {
   return current && current < moment().endOf('day');
 }
 
+export function DateIsBefore(date) {
+  return moment().isBefore(date);
+}
+
+export function DateIsSame(date) {
+  return moment().isSame(date, 'day');
+}
+
 export function FormatDate(date, format = 'YYYY-MM-DD') {
   if (date === null) {
     return moment().format(format);

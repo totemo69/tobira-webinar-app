@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import { Row, Col } from 'antd';
+import { Row, Col, Typography } from 'antd';
 import { CaretDownFilled, EyeTwoTone } from '@ant-design/icons';
 import globalMessage from '@/messages/global';
 import message from '@/messages/webinar';
@@ -12,8 +13,21 @@ import Select from '@/components/Elements/Select';
 import Search from '@/components/Elements/Search';
 import Table from '@/components/Elements/Table';
 
-export default function ParticipantList({ attendeesList, onClickDetails }) {
+const { Text } = Typography;
+
+export default function ParticipantList({
+  attendeesList,
+  onClickDetails,
+  displayCount = 10,
+  setDisplayCount,
+}) {
   const { t } = useTranslation();
+
+  const onClick = useCallback((e, id) => {
+    // Prevent trigger on Card onclick
+    e.stopPropagation();
+    onClickDetails(id);
+  }, []);
 
   const StyledDiv = styled.div`
     padding-top: 30px;
@@ -52,6 +66,23 @@ export default function ParticipantList({ attendeesList, onClickDetails }) {
     {
       title: t(message.paymentStatus),
       dataIndex: 'status',
+      render: (status) => {
+        let returnText = '';
+        if (status === '1') {
+          returnText = (
+            <Text type="success">{t(message.completedPaymentLabel)}</Text>
+          );
+        } else if (status === '0') {
+          returnText = (
+            <Text type="warning">{t(message.pendingPaymentLabel)}</Text>
+          );
+        } else {
+          returnText = (
+            <Text type="danger">{t(message.failedPaymentLabel)}</Text>
+          );
+        }
+        return returnText;
+      },
       sorter: {
         multiple: 3,
       },
@@ -62,7 +93,7 @@ export default function ParticipantList({ attendeesList, onClickDetails }) {
       align: 'center',
       render: (id) => (
         <Button
-          onClick={() => onClickDetails(id)}
+          onClick={(e) => onClick(e, id)}
           noMargin
           noBoxShadow
           type="link"
@@ -82,14 +113,15 @@ export default function ParticipantList({ attendeesList, onClickDetails }) {
             <Select
               showPages
               paddingLeft
-              defaultValue="10"
+              defaultValue={displayCount}
+              onChange={setDisplayCount}
               suffixIcon={<CaretDownFilled />}
             >
-              <Option value="10">10</Option>
-              <Option value="20">20</Option>
-              <Option value="30">30</Option>
-              <Option value="40">40</Option>
-              <Option value="50">50</Option>
+              <Option value={10}>10</Option>
+              <Option value={20}>20</Option>
+              <Option value={30}>30</Option>
+              <Option value={40}>40</Option>
+              <Option value={50}>50</Option>
             </Select>
             {t(globalMessage.entries)}
           </Div>
@@ -109,6 +141,7 @@ export default function ParticipantList({ attendeesList, onClickDetails }) {
       <Table
         dataSource={attendeesList}
         columns={columns}
+        pagination={{ pageSize: displayCount }}
         style={{ paddingTop: 20 }}
       />
     </StyledDiv>
@@ -118,4 +151,6 @@ export default function ParticipantList({ attendeesList, onClickDetails }) {
 ParticipantList.propTypes = {
   attendeesList: PropTypes.any,
   onClickDetails: PropTypes.func,
+  displayCount: PropTypes.any,
+  setDisplayCount: PropTypes.func,
 };

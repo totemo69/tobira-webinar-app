@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import NextImage from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -6,13 +7,10 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useEffect, useState } from 'react';
-import { Row, Col } from 'antd';
-import {
-  CaretDownFilled,
-  EyeTwoTone,
-  FileImageOutlined,
-} from '@ant-design/icons';
+import { Row, Col, Typography } from 'antd';
+import { CaretDownFilled, EyeTwoTone } from '@ant-design/icons';
 // import history from '@/utils/history';
+import { FormatDate, DateIsBefore, DateIsSame } from '@/utils/dateUtils';
 import { getZoomAccount } from '@/states/accounts/actions';
 import { getWebinarList } from '@/states/webinar/actions';
 import { makeSelectLoading } from '@/states/global/selector';
@@ -20,7 +18,6 @@ import { makeSelectAccountList } from '@/states/accounts/selector';
 import { makeSelectWebinars } from '@/states/webinar/selector';
 import { authRequest } from '@/lib/zoom';
 import { LOADING_PREFIX, WEBINAR_ROUTE } from '@/utils/constants';
-
 import globalMessage from '@/messages/global';
 import message from '@/messages/webinar';
 
@@ -36,7 +33,10 @@ import Modal from '@/components/Elements/Modal';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
+const { Text } = Typography;
+
 export function ListOfWebinar({
+  isListLoading,
   getZoomAccounts,
   zoomAccountList,
   getWebinarLists,
@@ -50,6 +50,7 @@ export function ListOfWebinar({
   }, []);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [displayCount, setDisplayCount] = useState(10);
 
   const openModal = () => {
     setIsOpenModal(true);
@@ -82,7 +83,15 @@ export function ListOfWebinar({
     {
       title: '',
       dataIndex: 'image',
-      render: () => <FileImageOutlined />,
+      render: (img) => (
+        <NextImage
+          src={img ?? '/images/dummy.jpeg'}
+          alt="Webinar Images"
+          width={150}
+          height={150}
+          loading="lazy"
+        />
+      ),
     },
     {
       title: t(message.title),
@@ -93,7 +102,8 @@ export function ListOfWebinar({
     },
     {
       title: t(message.schedule),
-      dataIndex: 'schedules[0]',
+      dataIndex: ['schedules', '0', 'dateTime'],
+      render: (date) => FormatDate(date, 'YYYY-MM-DD HH:mm'),
       sorter: {
         multiple: 3,
       },
@@ -101,13 +111,29 @@ export function ListOfWebinar({
     {
       title: t(message.attendees),
       dataIndex: 'attendees',
+      render: (text, record) =>
+        record.attendees ? record.attendees.length : 0,
       sorter: {
         multiple: 3,
       },
     },
     {
       title: t(message.status),
-      dataIndex: 'status',
+      render: (text, record) => {
+        let returnText = null;
+        if (!DateIsBefore(record.schedules[0].dateTime)) {
+          returnText = <Text type="success">{t(message.doneStatusLabel)}</Text>;
+        } else if (DateIsSame(record.schedules[0].dateTime)) {
+          returnText = (
+            <Text type="danger">{t(message.notYetStatusLabel)}</Text>
+          );
+        } else {
+          returnText = (
+            <Text type="warning">{t(message.upcomingStatusLabel)}</Text>
+          );
+        }
+        return returnText;
+      },
       sorter: {
         multiple: 3,
       },
@@ -144,14 +170,15 @@ export function ListOfWebinar({
                 <Select
                   showPages
                   paddingLeft
-                  defaultValue="10"
+                  defaultValue={displayCount}
                   suffixIcon={<CaretDownFilled />}
+                  onChange={setDisplayCount}
                 >
-                  <Option value="10">10</Option>
-                  <Option value="20">20</Option>
-                  <Option value="30">30</Option>
-                  <Option value="40">40</Option>
-                  <Option value="50">50</Option>
+                  <Option value={10}>10</Option>
+                  <Option value={20}>20</Option>
+                  <Option value={30}>30</Option>
+                  <Option value={40}>40</Option>
+                  <Option value={50}>50</Option>
                 </Select>
                 {t(globalMessage.entries)}
               </Div>
@@ -165,7 +192,12 @@ export function ListOfWebinar({
                 />
               </Div>
             </Div>
-            <Table dataSource={webinarLists} columns={columns} />
+            <Table
+              loading={isListLoading}
+              pagination={{ pageSize: displayCount }}
+              dataSource={webinarLists}
+              columns={columns}
+            />
           </Card>
         </Div>
         <Modal

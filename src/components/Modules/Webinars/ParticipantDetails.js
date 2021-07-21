@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { Row, Col, List, Divider, Modal, Typography } from 'antd';
+import { FormatDate } from '@/utils/dateUtils';
 import message from '@/messages/webinar';
 import globalMessage from '@/messages/global';
 import Button from '@/components/Elements/Button';
@@ -45,6 +46,24 @@ export default function ParticipantDetails({
 
   const info = paymentInfo.length > 0 ? paymentInfo[0] : {};
 
+  const paymentStatus = (status) => {
+    let returnText = '';
+    if (status) {
+      if (status === 'completed') {
+        returnText = (
+          <Text type="success">{t(message.completedPaymentLabel)}</Text>
+        );
+      } else if (status === 'created') {
+        returnText = (
+          <Text type="warning">{t(message.pendingPaymentLabel)}</Text>
+        );
+      } else {
+        returnText = <Text type="danger">{t(message.failedPaymentLabel)}</Text>;
+      }
+    }
+    return returnText;
+  };
+
   const details = [
     {
       title: t(message.participantId),
@@ -52,7 +71,7 @@ export default function ParticipantDetails({
     },
     {
       title: t(message.registeredDate),
-      details: participantDetails.createdAt,
+      details: FormatDate(participantDetails.createdAt, 'YYYY-MM-DD HH:mm'),
     },
     {
       title: t(message.emailAddress),
@@ -69,7 +88,7 @@ export default function ParticipantDetails({
     },
     {
       title: t(message.paymentDateLabel),
-      details: info.createdAt,
+      details: FormatDate(info.updatedAt, 'YYYY-MM-DD HH:mm'),
     },
     {
       title: t(message.paymentMethodLabel),
@@ -77,13 +96,12 @@ export default function ParticipantDetails({
     },
     {
       title: t(message.paymentStatus),
-      details: info.paymentStatus,
+      details: paymentStatus(info.paymentStatus),
     },
   ];
   return (
     <StyledModal
       visible={isVisible}
-      onRequestClose={closeModal}
       footer={null}
       centered
       onCancel={closeModal}

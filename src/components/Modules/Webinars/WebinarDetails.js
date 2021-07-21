@@ -6,10 +6,11 @@ import { Row, Col, List, Image, Divider, Space, Typography } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import message from '@/messages/webinar';
 import { WEBINAR_ROUTE } from '@/utils/constants';
+import { DateIsBefore, DateIsSame, FormatDate } from '@/utils/dateUtils';
 import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 
-const { Paragraph, Text } = Typography;
+const { Paragraph, Text, Link } = Typography;
 
 export default function WebinarDetails({ webinarDetails }) {
   const { t } = useTranslation();
@@ -27,21 +28,37 @@ export default function WebinarDetails({ webinarDetails }) {
     route.push(`${WEBINAR_ROUTE.WEBINAR_UPDATE_DETAILS}?id=${id}`);
   };
 
+  const webinarStatus = (data) => {
+    let returnText = '';
+    if (webinarDetails.schedules) {
+      if (!DateIsBefore(data.schedules[0].dateTime)) {
+        returnText = <Text type="success">{t(message.doneStatusLabel)}</Text>;
+      } else if (DateIsSame(data.schedules[0].dateTime)) {
+        returnText = <Text type="danger">{t(message.notYetStatusLabel)}</Text>;
+      } else {
+        returnText = (
+          <Text type="warning">{t(message.upcomingStatusLabel)}</Text>
+        );
+      }
+    }
+    return returnText;
+  };
+
   const data = [
     {
       title: t(message.status),
-      description: webinarDetails.status,
+      description: webinarStatus(webinarDetails),
     },
     {
       title: t(message.date),
       description: webinarDetails.schedules
-        ? webinarDetails.schedules[0].scheduleDate
+        ? FormatDate(webinarDetails.schedules[0].scheduleDate, 'YYYY-MM-DD')
         : '',
     },
     {
       title: t(message.time),
       description: webinarDetails.schedules
-        ? webinarDetails.schedules[0].scheduleTime
+        ? FormatDate(webinarDetails.schedules[0].scheduleTime, 'HH:mm')
         : '',
     },
     {
@@ -54,11 +71,18 @@ export default function WebinarDetails({ webinarDetails }) {
     },
     {
       title: t(message.ticketLink),
-      description: `${WEBINAR_ROUTE.WEBINAR_DETAIL}${webinarDetails.slug}`,
+      description: (
+        <Link
+          href={`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
+          target="_blank"
+        >
+          {webinarDetails.slug}
+        </Link>
+      ),
     },
     {
       title: t(message.webinarPlan),
-      description: webinarDetails.frequency,
+      description: t(message.oneTimePlan),
     },
   ];
   return (
