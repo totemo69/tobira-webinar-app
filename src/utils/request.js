@@ -1,5 +1,7 @@
 import Cookie from '@/lib/cookie';
-import { GET_REQUEST } from '@/utils/constants';
+import Router from 'next/router';
+import { GET_REQUEST, WEBINAR_ROUTE } from '@/utils/constants';
+import { logout } from '@/lib/auth';
 
 /**
  * Parses the JSON returned by a network request
@@ -29,6 +31,11 @@ function parseJSON(response) {
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
+  }
+
+  if (response.status === 401) {
+    logout();
+    Router.push(WEBINAR_ROUTE.LOGIN);
   }
 
   const error = new Error(response.statusText);
