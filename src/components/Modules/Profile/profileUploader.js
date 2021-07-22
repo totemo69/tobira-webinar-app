@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar, Upload } from 'antd';
 import {
   UserOutlined,
@@ -54,15 +54,14 @@ const OverLay = ({ loading }) => (
   </StyledOverlay>
 );
 
-function ProfileUploader({
-  alt,
-  src = 'images/avatar.svg',
-  onUploadComplete,
-  ...props
-}) {
+function ProfileUploader({ alt, src, onUploadComplete, ...props }) {
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState(src);
   const [accessToken] = Cookie.getAccessToken();
+
+  useEffect(() => {
+    setImage(src);
+  }, [src]);
 
   const handleChange = (info) => {
     if (info.file.status === 'uploading') {

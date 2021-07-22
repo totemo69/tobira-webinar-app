@@ -13,7 +13,7 @@ import { GET_PROFILE, UPDATE_PROFILE } from './types';
 function* getProfileSaga() {
   try {
     // Set loading status to true
-    yield put(loading(LOADING_PREFIX.PROFILE));
+    yield put(loading(LOADING_PREFIX.GET_PROFILE));
     const response = yield call(
       request,
       API.AUTH_USER_PROFILE,
@@ -21,22 +21,22 @@ function* getProfileSaga() {
     );
     yield put(setProfile(response));
     // Set the status to success
-    yield put(loadSuccess(LOADING_PREFIX.PROFILE));
+    yield put(loadSuccess(LOADING_PREFIX.GET_PROFILE));
   } catch (error) {
     // Set the status to failed
-    yield put(loadSuccess(LOADING_PREFIX.PROFILE, false));
+    yield put(loadSuccess(LOADING_PREFIX.GET_PROFILE, false));
     // Set the error
     yield put(loadErrors(error));
   } finally {
     // Set loading status to false
-    yield put(loading(LOADING_PREFIX.PROFILE, false));
+    yield put(loading(LOADING_PREFIX.GET_PROFILE, false));
   }
 }
 
 function* updateProfileSaga({ payload }) {
   try {
     // Set loading status to true
-    yield put(loading(LOADING_PREFIX.PROFILE));
+    yield put(loading(LOADING_PREFIX.UPDATE_PROFILE));
     const response = yield call(
       request,
       API.AUTH_USER_PROFILE,
@@ -44,15 +44,15 @@ function* updateProfileSaga({ payload }) {
     );
     yield put(setProfile(response));
     // Set the status to success
-    yield put(loadSuccess(LOADING_PREFIX.PROFILE));
+    yield put(loadSuccess(LOADING_PREFIX.UPDATE_PROFILE));
   } catch (error) {
     // Set the status to failed
-    yield put(loadSuccess(LOADING_PREFIX.PROFILE, false));
+    yield put(loadSuccess(LOADING_PREFIX.UPDATE_PROFILE, false));
     // Set the error
     yield put(loadErrors(error));
   } finally {
     // Set loading status to false
-    yield put(loading(LOADING_PREFIX.PROFILE, false));
+    yield put(loading(LOADING_PREFIX.UPDATE_PROFILE, false));
   }
 }
 

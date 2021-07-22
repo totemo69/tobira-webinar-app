@@ -77,7 +77,7 @@ export function Profile({
           <Card ProfileCard>
             <Div widthFull noMargin paddingCard center borderBreak>
               <ProfileUpload
-                src={userDetails && userDetails.profileImage}
+                src={userDetails.profileImage}
                 alt="Profile Pic"
                 onUploadComplete={(image) =>
                   doUpdateProfile({ profileImage: image })
@@ -208,8 +208,8 @@ Profile.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   userDetails: makeSelectProfileDetails(),
-  isLoading: makeSelectLoading(LOADING_PREFIX.PROFILE),
-  profileUpdateStatus: makeSelectLoadingStatus(LOADING_PREFIX.PROFILE),
+  isLoading: makeSelectLoading(LOADING_PREFIX.UPDATE_PROFILE),
+  profileUpdateStatus: makeSelectLoadingStatus(LOADING_PREFIX.UPDATE_PROFILE),
   errorMessage: makeSelectError(),
 });
 
