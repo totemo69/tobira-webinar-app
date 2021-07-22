@@ -422,9 +422,6 @@ const StyledDiv = style.div`
       &:hover {
         border: 1px solid #0e71eb;
       }
-      &: {
-        border: 1px solid #0e71eb;
-      }
     `}
 
   ${(props) =>
@@ -449,11 +446,9 @@ const StyledDiv = style.div`
     props.bankList &&
     css`
       width: 100%;
-      box-shadow: 0 1px 2px 0 #0e71eb;
+      box-shadow: 0 1px 2px 1px #0e71eb;
       border-radius: 5px;
-      padding: 20px;
-      margintop: 20px;
-      margin: 0 5px;
+      padding: 15px;
     `}
 
   ${(props) =>
@@ -461,7 +456,7 @@ const StyledDiv = style.div`
     css`
       border-radius: 5px;
       width: 100%;
-      margin: 0;
+      margin: 15px;
       text-align: center;
     `}
 
@@ -474,7 +469,7 @@ const StyledDiv = style.div`
       border: 1px solid #0e71eb;
       border-radius: 10px;
       margin-top: 30px;
-      padding: none;
+      padding: 0;
     `}
 
 
