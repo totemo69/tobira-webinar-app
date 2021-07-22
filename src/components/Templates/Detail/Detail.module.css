@@ -1,0 +1,49 @@
+
+.detailRow{
+  margin-top: 0.5em;
+}
+
+.heroImage{
+  border-radius: 8px;
+  object-fit: cover;
+}
+h1.title{
+  font-size: 2.2em;
+  font-weight: 500;
+  color: var(--textColorPrimary);
+  letter-spacing: 0.52px;
+}
+
+.authorBy{
+  font-size: 0.85em;
+  color: var(--accentColor);
+}
+
+.rowSpacing{
+  padding: 1.5em 0;
+}
+
+.registerBtnRow{
+  margin-top: 1.5em;
+}
+
+.descriptionHeader{
+  font-size: 16px !important;
+  margin: 1.5em 0 !important;
+}
+.paragraph{
+  margin-bottom: 1.5em !important;
+}
+
+@media screen and (max-width: 480px) {
+  .detailRow, .detailCol{
+    min-height: 100%;
+  }
+  .detailCol{
+    height: 300px;
+  }
+  h1.title{
+    padding-top: 0.5em;
+     font-size: 1.85em;
+  }
+} 
