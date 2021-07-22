@@ -23,6 +23,7 @@ import {
 import { withAuthSync } from '@/lib/auth';
 
 import localMessage from '@/messages/webinar';
+import globaMessage from '@/messages/global';
 
 import RegistrationDetails from '@/components/Modules/Webinars/RegistrationDetails';
 import PaymentOptions from '@/components/Modules/Webinars/PaymentOptions';
@@ -116,6 +117,7 @@ export function CreateWebinar({
   const step = [
     {
       title: t(localMessage.details),
+      breadCrumbs: t(localMessage.details),
       Content: (
         <CreateWebinarPage
           submitStatus={submitStatusBind}
@@ -127,6 +129,7 @@ export function CreateWebinar({
     },
     {
       title: t(localMessage.registration),
+      breadCrumbs: t(localMessage.registration),
       Content: (
         <RegistrationDetails
           submitStatus={submitStatusBind}
@@ -137,6 +140,7 @@ export function CreateWebinar({
     },
     {
       title: t(localMessage.paymentOptions),
+      breadCrumbs: t(localMessage.paymentOptions),
       Content: (
         <PaymentOptions
           submitStatus={submitStatusBind}
@@ -168,9 +172,9 @@ export function CreateWebinar({
     <>
       <Div marginBottomLarge flexTop>
         <Title secondary marginRight>
-          Create Webinar {'>'}
+          {t(localMessage.createWebinar)} {'>'}
         </Title>
-        <Span breadCrumbs>Details</Span>
+        <Span breadCrumbs>{step[current].breadCrumbs}</Span>
       </Div>
       <Div widthFull>
         <Card webinarRegistrationCard>
@@ -184,7 +188,7 @@ export function CreateWebinar({
 
           {current < step.length - 1 && (
             <Button onClick={() => next()} NextButton type="primary">
-              Next {'>'}
+              {t(globaMessage.next)} {'>'}
             </Button>
           )}
           {current === step.length - 1 && (
@@ -194,12 +198,12 @@ export function CreateWebinar({
               NextButton
               type="primary"
             >
-              Submit
+              {t(globaMessage.submit)}
             </Button>
           )}
           {current > 0 && (
             <Button onClick={() => prev()} BackButton>
-              {'<'} Back
+              {'<'} {t(globaMessage.back)}
             </Button>
           )}
         </Card>
