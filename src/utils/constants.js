@@ -36,6 +36,7 @@ export const API = {
   ATTENDEES: `${Url}/attendees`,
   PAYMENT: `${Url}/payments`,
   BANKS: `${Url}/banks`,
+  UPLOAD: `${Url}/files`,
 };
 
 export const WEBINAR_ROUTE = {

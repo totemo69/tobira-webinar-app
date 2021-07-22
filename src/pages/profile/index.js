@@ -21,7 +21,6 @@ import { getProfile, updateProfile } from '@/states/profiles/action';
 import { withAuthSync } from '@/lib/auth';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
-import Image from '@/components/Elements/Image';
 import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Labels from '@/components/Elements/Labels';
@@ -31,6 +30,7 @@ import Tabs from '@/components/Elements/Tabs';
 import TabPane from '@/components/Elements/TabPane';
 import Button from '@/components/Elements/Button';
 import Span from '@/components/Elements/Span';
+import ProfileUpload from '@/components/Modules/Profile/profileUploader';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
 import validationSchema from '@/validations/profile';
@@ -76,7 +76,15 @@ export function Profile({
         <Div widthFull noMargin flexCenter>
           <Card ProfileCard>
             <Div widthFull noMargin paddingCard center borderBreak>
-              <Image src="Images/avatar.svg" alt="Tobira Logo" profileImg />
+              <ProfileUpload
+                src={userDetails && userDetails.profileImage}
+                alt="Profile Pic"
+                onUploadComplete={(image) =>
+                  doUpdateProfile({ profileImage: image })
+                }
+              />
+            </Div>
+            <Div widthFull center noMargin>
               <Title profileName>{userDetails && userDetails.username}</Title>
             </Div>
             <Div widthFull paddingCard noMargin>

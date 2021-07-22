@@ -26,7 +26,7 @@ export default function Detail({ postDetail }) {
       <Row className={classNames.detailRow}>
         <Col lg={11} className={classNames.detailCol} xs={24}>
           <NextImage
-            src={postDetail.coverImage}
+            src={postDetail.image}
             alt="Course Detail"
             layout="fill"
             loading="lazy"
