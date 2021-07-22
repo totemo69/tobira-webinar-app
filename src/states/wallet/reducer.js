@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SET_BANK, SET_BANK_LIST } from './types';
+import { REMOVE_BANK, SET_BANK, SET_BANK_LIST } from './types';
 
 export const initialState = {
   bankList: [],
@@ -18,6 +18,11 @@ const walletReducer = (state = initialState, action) =>
           ...draft.bank,
           ...action.payload,
         };
+        break;
+      }
+
+      case REMOVE_BANK: {
+        draft.bankList = draft.bankList.filter((item) => item.id !== action.id);
         break;
       }
     }
