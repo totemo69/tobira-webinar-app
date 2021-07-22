@@ -92,7 +92,8 @@ export default function WebinarDetails({ webinarDetails }) {
           <StyledImage
             width
             height={290}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            src={webinarDetails && webinarDetails.image}
+            fallback="/images/fallback.png"
             preview={false}
           />
         </Col>
