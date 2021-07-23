@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading } from '@/states/global/selector';
 import { LOADING_PREFIX } from '@/utils/constants';
-import { addBank } from '@/states/wallet/actions';
+import { updateBank } from '@/states/wallet/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -42,11 +42,6 @@ export function UpdateBankModal({
       </div>
       <Formik
         initialValues={{
-          user: 'admin',
-          branchCode: '1234',
-          branchName: 'adminBranch',
-          accountType: 'admin',
-          status: 'active',
           bankName: '',
           accountName: '',
           accountNumber: '',
@@ -129,7 +124,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchProps(dispatch) {
   return {
-    doUpdateBank: (id, payload) => dispatch(addBank(id, payload)),
+    doUpdateBank: (id, payload) => dispatch(updateBank(id, payload)),
   };
 }
 
