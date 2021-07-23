@@ -1,9 +1,37 @@
 export const scope = 'account';
 
 const message = {
-  completedTitle: Object.values({
-    key: `${scope}.completedTitle`,
-    default: 'Setup Complete!',
+  accountTitle: Object.values({
+    key: `${scope}.accountTitle`,
+    default: 'ACCOUNTS',
+  }),
+  accountSubTitle: Object.values({
+    key: `${scope}.accountSubTitle`,
+    default: 'Zoom Accounts',
+  }),
+  accountTabTitle: Object.values({
+    key: `${scope}.accountTabTitle`,
+    default: 'Zoom Account',
+  }),
+  accountLabel: Object.values({
+    key: `${scope}.accountLabel`,
+    default: 'Email Address or Contact Number',
+  }),
+  accountStatus: Object.values({
+    key: `${scope}.accountStatus`,
+    default: 'Status',
+  }),
+  connectedButton: Object.values({
+    key: `${scope}.connectedButton`,
+    default: 'Connected',
+  }),
+  defaultButton: Object.values({
+    key: `${scope}.defaultButton`,
+    default: 'Default',
+  }),
+  addAccountButton: Object.values({
+    key: `${scope}.addAccountButton`,
+    default: 'Add account',
   }),
   completedMessage: Object.values({
     key: `${scope}.completedMessage`,

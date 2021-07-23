@@ -269,5 +269,20 @@
     "subTitle": "ウェビナープラン",
     "header": "プランを選択してください",
     "chooseButton": "購入"
+  },
+
+  "account": {
+    "accountTitle": "アカウント",
+    "accountSubTitle": "Zoomアカウント",
+    "accountTabTitle": "Zoomアカウント",
+    "accountLabel": "メールアドレスまたはあ連絡先番号*",
+    "accountStatus": "ステータス",
+    "connectedButton": "接続済み",
+    "defaultButton": "デフォルト",
+    "addAccountButton": "アカウントを追加",
+    "completedTitle": "セットアップ完了",
+    "completedMessage": "Zoomアカウントが正常に追加されました。",
+    "createNewWebinar": "今すぐウェビナーを作成する",
+    "gotoAccounts" : "アカウント画面に戻る"
   }
 }
