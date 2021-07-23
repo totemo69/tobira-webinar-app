@@ -58,11 +58,11 @@ export function RegisterVerified({
     <>
       <Layout>
         <Div widthFull marginTopXLarge center>
-          <Image src="Images/logo.svg" alt="Tobira Logo" logo />
+          <Image src="/images/logo.svg" alt="Tobira Logo" logo />
         </Div>
         {!isLoading && (
           <Div marginTop widthFull center>
-            <Image src="Images/success.svg" alt="Tobira Logo" successImg />
+            <Image src="/images/success.svg" alt="Tobira Logo" successImg />
             <Title secondary2 marginBottom>
               {t(globalMessage.thankYou)}!
             </Title>
