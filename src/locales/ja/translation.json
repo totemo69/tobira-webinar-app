@@ -48,7 +48,10 @@
     "submit": "作成する",
     "currencySymbol": "¥",
     "back": "戻る",
-    "next": "次"
+    "next": "次",
+    "shareTitle": "シェア",
+    "shareWebinarLink": "イベントリンクをシェアする",
+    "linkCopied": "コピー!"
   },
   "storyBook": {
     "title": "題名"
