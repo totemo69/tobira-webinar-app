@@ -63,6 +63,7 @@ export const LOADING_PREFIX = {
   WEBINAR_LIST: 'webinar-list',
   WEBINAR_DETAILS: 'webinar-details',
   CREATE_WEBINAR: 'create-webinar',
+  UPDATE_WEBINAR: 'update-webinar',
   SIGNUP: 'signup',
   VERIFICATION: 'verification',
   GET_PROFILE: 'get-profile',

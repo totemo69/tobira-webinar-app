@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { List } from 'antd';
 import { LOADING_PREFIX } from '@/utils/constants';
+import { authRequest } from '@/lib/zoom';
 import { getZoomAccount } from '@/states/accounts/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import { makeSelectLoading } from '@/states/global/selector';
@@ -31,6 +32,10 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
   useEffect(() => {
     getZoomAccounts();
   }, []);
+
+  const connectToZoom = () => {
+    window.location = authRequest();
+  };
 
   return (
     <>
@@ -80,9 +85,13 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                 />
 
                 <Div>
-                  <Button addField>
+                  <Button onClick={connectToZoom} addField>
                     <Image
-                      style={{ width: '20px', borderRadius: '5px' }}
+                      style={{
+                        width: '20px',
+                        borderRadius: '5px',
+                        marginRight: '5px',
+                      }}
                       src="Images/material-add-box.svg"
                     />
                     Add account
