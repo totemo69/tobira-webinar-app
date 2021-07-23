@@ -49,7 +49,10 @@
     "submit": "Submit",
     "currencySymbol": "JPY",
     "back": "Back",
-    "next": "Next"
+    "next": "Next",
+    "shareTitle": "Share",
+    "shareWebinarLink": "Share event link",
+    "linkCopied": "Copied!"
   },
 
   "storyBook" : {
