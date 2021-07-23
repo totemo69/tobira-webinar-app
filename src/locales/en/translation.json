@@ -276,5 +276,20 @@
     "subTitle": "Webinar Plan",
     "header": "Selct your plan",
     "chooseButton": "Choose this plan"
+  },
+
+  "account": {
+    "accountTitle": "ACCOUNTS",
+    "accountSubTitle": "Zoom Accounts",
+    "accountTabTitle": "Zoom Account",
+    "accountLabel": "Email Address or Contact Number",
+    "accountStatus": "Status",
+    "connectedButton": "Connected",
+    "defaultButton": "Default",
+    "addAccountButton": "Add account",
+    "completedTitle": "Setup Complete!",
+    "completedMessage": "Zoom account has been successfully added.",
+    "createNewWebinar": "Create a webinar now",
+    "gotoAccounts" : "Go to Accounts"
   }
 }
