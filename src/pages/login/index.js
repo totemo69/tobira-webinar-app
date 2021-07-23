@@ -31,10 +31,8 @@ export function Login({ doLogin }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback((values) => {
-    console.log(values);
     setIsLoading(true);
-    doLogin(values, (errors) => {
-      console.log(errors);
+    doLogin(values, () => {
       // translateApiError(errors, formikAction, intl);
       setIsLoading(false);
     });

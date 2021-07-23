@@ -294,5 +294,11 @@
     "completedMessage": "Zoom account has been successfully added.",
     "createNewWebinar": "Create a webinar now",
     "gotoAccounts" : "Go to Accounts"
+  },
+
+  "validation": {
+    "email": "Email address",
+    "password": "Password",
+    "required": "is required."
   }
 }
