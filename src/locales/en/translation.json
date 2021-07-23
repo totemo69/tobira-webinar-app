@@ -46,7 +46,10 @@
     "edit": "Edit",
     "close": "Close",
     "details": "Details",
-    "submit": "Submit"
+    "submit": "Submit",
+    "currencySymbol": "JPY",
+    "back": "Back",
+    "next": "Next"
   },
 
   "storyBook" : {
@@ -132,6 +135,7 @@
     "fieldType": "Field Type",
     "fieldNameOrPlaceholder": "Field Name or Placeholder",
     "hour": "hr",
+    "hourSelect": "Hour",
     "registration": "Registration",
     "recuring": "Recuring",
     "required": "Required?",
@@ -143,8 +147,10 @@
     "selectPayment": "Select payment gateway for the payments",
     "selectZoomAccount": "Select an account",
     "timeZone": "Timezone",
+    "selectTimeZone": "Select Timezone",
     "managementSection": "Management Section",
     "minutes": "min",
+    "minutesSelect": "Minutes",
     "next": "Next",
     "oneTime": "One-Time",
     "otherPaymentOptions": "Other payment options coming soon!",
@@ -165,7 +171,15 @@
     "paymentLabel": "Payment Details",
     "paymentMethodLabel": "Payment Method",
     "paymentIdLabel": "Transaction ID",
-    "paymentDateLabel": "Transaction Date and Time"
+    "paymentDateLabel": "Transaction Date and Time",
+    "doneStatusLabel": "Done",
+    "notYetStatusLabel": "Not yet",
+    "upcomingStatusLabel": "Upcoming",
+    "oneTimePlan": "One-time",
+    "pendingPaymentLabel": "Pending",
+    "failedPaymentLabel": "Failed",
+    "completedPaymentLabel": "Completed",
+    "createWebinarTitle": "Management Section"
   },
 
   "termsAndPrivacy": {
@@ -262,5 +276,20 @@
     "subTitle": "Webinar Plan",
     "header": "Selct your plan",
     "chooseButton": "Choose this plan"
+  },
+
+  "account": {
+    "accountTitle": "ACCOUNTS",
+    "accountSubTitle": "Zoom Accounts",
+    "accountTabTitle": "Zoom Account",
+    "accountLabel": "Email Address or Contact Number",
+    "accountStatus": "Status",
+    "connectedButton": "Connected",
+    "defaultButton": "Default",
+    "addAccountButton": "Add account",
+    "completedTitle": "Setup Complete!",
+    "completedMessage": "Zoom account has been successfully added.",
+    "createNewWebinar": "Create a webinar now",
+    "gotoAccounts" : "Go to Accounts"
   }
 }

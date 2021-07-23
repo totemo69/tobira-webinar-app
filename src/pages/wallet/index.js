@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { getBankList } from '@/states/wallet/actions';
+import { getBankList, removeBank } from '@/states/wallet/actions';
 import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
@@ -46,12 +46,14 @@ import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
 import { makeSelectBankList } from '@/states/wallet/selector';
 
-export function Wallet({ doGetBankList, bankList }) {
+export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
   const { t } = useTranslation();
 
   useEffect(() => {
     doGetBankList();
   }, []);
+
+  const [bankId, setBankId] = useState(null);
 
   const [visible, setVisible] = useState(false);
   const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
@@ -90,13 +92,22 @@ export function Wallet({ doGetBankList, bankList }) {
     setIsBankUpdatedSuccessModalVisible(true);
   };
 
-  const onDeleteBankAccount = () => {
-    setIsBankDeleteModalVisible(false);
-    setIsBankDeletedSuccessModalVisible(true);
-  };
+  const onRemoveBankAccount = useCallback((id) => {
+    doRemoveBank(id, (success) => {
+      setIsBankDeleteModalVisible(false);
+      if (success) {
+        setIsBankDeletedSuccessModalVisible(true);
+      }
+    });
+  });
 
   const onViewTransactionDetails = () => {
     setIsWithdrawalModalVisible(true);
+  };
+
+  const showRemoveBankModal = (id) => {
+    setBankId(id);
+    setIsBankDeleteModalVisible(true);
   };
 
   const dataSource = [
@@ -209,38 +220,38 @@ export function Wallet({ doGetBankList, bankList }) {
     },
   ];
 
-  const menu = (
-    <Menu>
-      <Menu.Item
-        key="1"
-        icon={<EditFilled />}
-        onClick={() => setIsBankEditModalVisible(true)}
-      >
-        {t(globalMessage.edit)}
-      </Menu.Item>
-      <Menu.Item
-        key="2"
-        icon={<CloseCircleFilled />}
-        style={{ color: '#FF0033' }}
-        onClick={() => setIsBankDeleteModalVisible(true)}
-      >
-        <Text red content={t(globalMessage.delete)} />
-      </Menu.Item>
-    </Menu>
-  );
-
   const bankItems = bankList.map((bank) => (
     <Col span={8} key={bank.id}>
       <Div bankList>
         <Dropdown.Button
           style={{ float: 'right' }}
-          overlay={menu}
+          overlay={
+            <Menu>
+              <Menu.Item
+                key="1"
+                icon={<EditFilled />}
+                onClick={() => setIsBankEditModalVisible(true)}
+              >
+                {t(globalMessage.edit)}
+              </Menu.Item>
+              <Menu.Item
+                key="2"
+                icon={<CloseCircleFilled />}
+                style={{ color: '#FF0033' }}
+                onClick={() => showRemoveBankModal(bank.id)}
+              >
+                <Text red content={t(globalMessage.delete)} />
+              </Menu.Item>
+            </Menu>
+          }
           icon={<MoreOutlined />}
           type="text"
         />
         <Title level={5}>{bank.bankName}</Title>
         <StyledParagraph>{bank.accountName}</StyledParagraph>
-        <EllipsisOutlined /> {bank.accountNumber}
+        <Row align="middle">
+          <EllipsisOutlined style={{ fontSize: 35 }} /> {bank.accountNumber}
+        </Row>
       </Div>
     </Col>
   ));
@@ -296,7 +307,7 @@ export function Wallet({ doGetBankList, bankList }) {
         <DeleteModal
           visible={isBankDeleteModalVisible}
           onClose={() => setIsBankDeleteModalVisible(false)}
-          onOk={onDeleteBankAccount}
+          onOk={() => onRemoveBankAccount(bankId)}
           title={t(message.deleteBankAccount)}
           subTitle={t(message.deleteBankAccountSubTitle)}
         />
@@ -489,6 +500,7 @@ export function Wallet({ doGetBankList, bankList }) {
 Wallet.propTypes = {
   bankList: PropTypes.any,
   doGetBankList: PropTypes.func,
+  doRemoveBank: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -497,6 +509,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapPropsToDispatch = (dispatch) => ({
   doGetBankList: () => dispatch(getBankList()),
+  doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import { Col, Row } from 'antd';
 import Title from '@/components/Elements/Title';
@@ -42,5 +43,9 @@ function DeleteModal({ visible, title, subTitle, onClose, onOk }) {
     </StyledModal>
   );
 }
+
+DeleteModal.propTypes = {
+  onOk: PropTypes.func,
+};
 
 export default DeleteModal;

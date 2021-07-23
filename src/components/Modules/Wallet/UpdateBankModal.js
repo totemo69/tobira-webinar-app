@@ -1,27 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
-import { useTranslation } from 'next-i18next';
-import { Formik, Field, Form } from 'formik';
-
-import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
-import { Col, Row } from 'antd';
 import Title from '@/components/Elements/Title';
+import { Field, Form, Formik } from 'formik';
+import { Col, Row } from 'antd';
 import Label from '@/components/Elements/Labels';
+import globalMessage from '@/messages/global';
 import Input from '@/components/Elements/Input';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-import { addBank } from '@/states/wallet/actions';
-
-import globalMessage from '@/messages/global';
 import Button from '@/components/Elements/Button';
+import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
+import { useTranslation } from 'next-i18next';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading } from '@/states/global/selector';
 import { LOADING_PREFIX } from '@/utils/constants';
+import { updateBank } from '@/states/wallet/actions';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-export function BankModal({
+export function UpdateBankModal({
   isLoading,
-  doAddBank,
+  doUpdateBank,
   visible,
   title,
   onOk,
@@ -31,7 +29,7 @@ export function BankModal({
   const { t } = useTranslation();
 
   const onSubmit = (values) => {
-    doAddBank(values);
+    doUpdateBank(values);
     onOk();
   };
 
@@ -115,9 +113,9 @@ export function BankModal({
   );
 }
 
-BankModal.propTypes = {
+UpdateBankModal.propTypes = {
   isLoading: PropTypes.bool,
-  doAddBank: PropTypes.func,
+  doUpdateBank: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -126,10 +124,10 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchProps(dispatch) {
   return {
-    doAddBank: (payload) => dispatch(addBank(payload)),
+    doUpdateBank: (id, payload) => dispatch(updateBank(id, payload)),
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
 
-export default compose(withConnect)(BankModal);
+export default compose(withConnect)(UpdateBankModal);

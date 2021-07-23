@@ -3,11 +3,13 @@ import {
   API,
   GET_REQUEST,
   POST_REQUEST,
+  DELETE_REQUEST,
+  PATCH_REQUEST,
   LOADING_PREFIX,
 } from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
-import { GET_BANK_LIST, ADD_BANK } from './types';
+import { GET_BANK_LIST, ADD_BANK, REMOVE_BANK, UPDATE_BANK } from './types';
 import { setBankList } from './actions';
 
 function* doGetBankList() {
@@ -41,7 +43,40 @@ function* doAddBank({ payload }) {
   }
 }
 
+function* doUpdateBank({ id, payload }) {
+  try {
+    yield call(
+      request,
+      `${API.BANKS}/${id}`,
+      RequestOptions(PATCH_REQUEST, { ...payload }, true),
+    );
+    yield put(loadSuccess(LOADING_PREFIX.WALLET));
+  } catch (error) {
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.WALLET, false));
+  }
+}
+
+function* doRemoveBank({ id, onCallback }) {
+  try {
+    yield call(
+      request,
+      `${API.BANKS}/${id}`,
+      RequestOptions(DELETE_REQUEST, {}, true),
+    );
+    if (onCallback) {
+      onCallback(true);
+    }
+  } catch (error) {
+    yield put(loadErrors(error));
+    onCallback(false);
+  }
+}
+
 export default function* walletSaga() {
   yield takeLatest(GET_BANK_LIST, doGetBankList);
   yield takeLatest(ADD_BANK, doAddBank);
+  yield takeLatest(UPDATE_BANK, doUpdateBank);
+  yield takeLatest(REMOVE_BANK, doRemoveBank);
 }

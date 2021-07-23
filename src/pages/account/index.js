@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -7,12 +7,13 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { List } from 'antd';
 import { LOADING_PREFIX } from '@/utils/constants';
+import { authRequest } from '@/lib/zoom';
 import { getZoomAccount } from '@/states/accounts/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import { makeSelectLoading } from '@/states/global/selector';
 
-// import globalMessage from '@/messages/global';
-// import message from '@/messages/profile';
+import globalMessage from '@/messages/global';
+import localMessage from '@/messages/account';
 import Layout from '@/components/Layouts/Home';
 import Card from '@/components/Elements/Card';
 import Div from '@/components/Elements/Div';
@@ -26,25 +27,29 @@ import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
 export function Account({ getZoomAccounts, zoomAccountList }) {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     getZoomAccounts();
   }, []);
+
+  const connectToZoom = () => {
+    window.location = authRequest();
+  };
 
   return (
     <>
       <Layout>
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
-            ACCOUNTS {'>'}{' '}
+            {t(localMessage.accountTitle)} {'>'}{' '}
           </Title>
-          <Span breadCrumbs>Zoom Accounts</Span>
+          <Span breadCrumbs>{t(localMessage.accountSubTitle)}</Span>
         </Div>
         <Card>
           <Div>
             <Tabs defaultActiveKey="1">
-              <TabPane tab="Zoom Account" key="1">
+              <TabPane tab={t(localMessage.accountTabTitle)} key="1">
                 <Div
                   style={{
                     display: 'flex',
@@ -54,8 +59,8 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Label asterisk>Email Address or Contact Number</Label>
-                  <Label>Status</Label>
+                  <Label asterisk>{t(localMessage.accountLabel)}</Label>
+                  <Label>{t(localMessage.accountStatus)}</Label>
                 </Div>
                 <List
                   itemLayout="horizontal"
@@ -72,27 +77,35 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                           disabled
                           placeholder={item.zoomEmail}
                         />
-                        <Button connectedButton>Connected</Button>
-                        <Button defaultButton>Default</Button>
+                        <Button connectedButton>
+                          {t(localMessage.connectedButton)}
+                        </Button>
+                        <Button defaultButton>
+                          {t(localMessage.defaultButton)}
+                        </Button>
                       </Div>
                     </List.Item>
                   )}
                 />
 
                 <Div>
-                  <Button addField>
+                  <Button onClick={connectToZoom} addField>
                     <Image
-                      style={{ width: '20px', borderRadius: '5px' }}
+                      style={{
+                        width: '20px',
+                        borderRadius: '5px',
+                        marginRight: '5px',
+                      }}
                       src="Images/material-add-box.svg"
                     />
-                    Add account
+                    {t(localMessage.addAccountButton)}
                   </Button>
                 </Div>
               </TabPane>
             </Tabs>
           </Div>
           <Button type="primary" NextButton>
-            Save Changes
+            {t(globalMessage.saveChanges)}
           </Button>
         </Card>
       </Layout>

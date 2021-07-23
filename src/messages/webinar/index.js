@@ -149,13 +149,17 @@ const message = {
     key: `${scope}.hour`,
     default: 'hr',
   }),
+  hourSelect: Object.values({
+    key: `${scope}.hourSelect`,
+    default: 'Hour',
+  }),
   registration: Object.values({
     key: `${scope}.registration`,
     default: 'Registration',
   }),
   recuring: Object.values({
     key: `${scope}.recuring`,
-    default: 'Recuring',
+    default: 'Recurring',
   }),
   required: Object.values({
     key: `${scope}.required`,
@@ -193,6 +197,10 @@ const message = {
     key: `${scope}.timeZone`,
     default: 'Timezone',
   }),
+  selectTimeZone: Object.values({
+    key: `${scope}.selectTimeZone`,
+    default: 'Select Timezone',
+  }),
   managementSection: Object.values({
     key: `${scope}.managementSection`,
     default: 'Management Section',
@@ -200,6 +208,10 @@ const message = {
   minutes: Object.values({
     key: `${scope}.minutes`,
     default: 'min',
+  }),
+  minutesSelect: Object.values({
+    key: `${scope}.minutesSelect`,
+    default: 'Minutes',
   }),
   next: Object.values({
     key: `${scope}.next`,
@@ -308,6 +320,10 @@ const message = {
   completedPaymentLabel: Object.values({
     key: `${scope}.completedPaymentLabel`,
     default: 'Completed',
+  }),
+  createWebinarTitle: Object.values({
+    key: `${scope}.createWebinarTitle`,
+    default: 'Management Secion',
   }),
 };
 

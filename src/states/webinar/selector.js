@@ -1,4 +1,4 @@
-import { CombineDateTime } from '@/utils/dateUtils';
+import { CombineDateTime, ConvertMoment } from '@/utils/dateUtils';
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
@@ -15,7 +15,21 @@ const makeSelectWebinars = () =>
   createSelector(selectWebinarsDomain, (substate) => substate.webinarList);
 
 const makeSelectWebinarDetails = () =>
-  createSelector(selectWebinarsDomain, (substate) => substate.webinarDetail);
+  createSelector(selectWebinarsDomain, (substate) => {
+    let schedules = [{ scheduleDate: '', scheduleTime: '' }];
+
+    if (substate.webinarDetail && substate.webinarDetail.schedules) {
+      schedules = substate.webinarDetail.schedules.map((val) => ({
+        scheduleDate: ConvertMoment(val.scheduleDate),
+        scheduleTime: ConvertMoment(val.scheduleTime),
+      }));
+    }
+
+    return {
+      ...substate.webinarDetail,
+      schedules,
+    };
+  });
 
 const makeSelectWebinarForm = () =>
   createSelector(selectWebinarsDomain, (substate) => {

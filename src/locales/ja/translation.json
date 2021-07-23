@@ -43,7 +43,12 @@
     "add": "追加",
     "delete": "削除",
     "edit": "編集",
-    "close": "閉じる"
+    "close": "閉じる",
+    "details": "Details",
+    "submit": "作成する",
+    "currencySymbol": "¥",
+    "back": "戻る",
+    "next": "次"
   },
   "storyBook": {
     "title": "題名"
@@ -110,7 +115,7 @@
     "back": "バック",
     "create": "作成する",
     "createWebinar": "ウェビナーを作成する",
-    "details": "詳細",
+    "details": "情報",
     "description": "詳細",
     "date": "日付",
     "duration": "デュレーション",
@@ -122,7 +127,8 @@
     "formName": "フォーム名",
     "fieldType": "フィールドタイプ",
     "fieldNameOrPlaceholder": "フィールド名またはプレースホルダー",
-    "hour": "hr",
+    "hour": "時間",
+    "hourSelect": "時間",
     "registration": "登録",
     "recuring": "繰り返し",
     "required": "必須？",
@@ -134,8 +140,10 @@
     "selectPayment": "支払い用の支払いゲートウェイを選択します",
     "selectZoomAccount": "アカウントを選択してください",
     "timeZone": "タイムゾーン",
-    "managementSection": "管理セクション",
-    "minutes": "議事録",
+    "selectTimeZone": "時間帯を選択",
+    "managementSection": "理部分",
+    "minutes": "分",
+    "minutesSelect": "分",
     "next": "次",
     "oneTime": "一度",
     "otherPaymentOptions": "他の支払いオプションはすぐに来ています！",
@@ -156,7 +164,15 @@
     "paymentLabel": "支払詳細",
     "paymentMethodLabel": "支払方法",
     "paymentIdLabel": "取引ID",
-    "paymentDateLabel": "取引日時"
+    "paymentDateLabel": "取引日時",
+    "doneStatusLabel": "完了",
+    "notYetStatusLabel": "保留中",
+    "upcomingStatusLabel": "到来",
+    "oneTimePlan": "一度",
+    "pendingPaymentLabel": "保留中",
+    "failedPaymentLabel": "失敗",
+    "completedPaymentLabel": "完了",
+    "createWebinarTitle": "管理部分"
   },
 
   "termsAndPrivacy": {
@@ -253,5 +269,20 @@
     "subTitle": "ウェビナープラン",
     "header": "プランを選択してください",
     "chooseButton": "購入"
+  },
+
+  "account": {
+    "accountTitle": "アカウント",
+    "accountSubTitle": "Zoomアカウント",
+    "accountTabTitle": "Zoomアカウント",
+    "accountLabel": "メールアドレスまたはあ連絡先番号*",
+    "accountStatus": "ステータス",
+    "connectedButton": "接続済み",
+    "defaultButton": "デフォルト",
+    "addAccountButton": "アカウントを追加",
+    "completedTitle": "セットアップ完了",
+    "completedMessage": "Zoomアカウントが正常に追加されました。",
+    "createNewWebinar": "今すぐウェビナーを作成する",
+    "gotoAccounts" : "アカウント画面に戻る"
   }
 }

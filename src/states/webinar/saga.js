@@ -4,6 +4,7 @@ import {
   GET_REQUEST,
   POST_REQUEST,
   LOADING_PREFIX,
+  PATCH_REQUEST,
 } from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
@@ -22,6 +23,7 @@ import {
   DO_PAY,
   CAPTURE_PAYMENT,
   GET_WEBINAR_DETAILS,
+  UPDATE_WEBINAR,
 } from './types';
 import {
   makeSelectWebinarForm,
@@ -167,9 +169,32 @@ function* webinarDetails({ payload }) {
   }
 }
 
+function* updateWebinar() {
+  try {
+    yield put(loading(LOADING_PREFIX.UPDATE_WEBINAR));
+    const payload = yield select(makeSelectWebinarForm());
+    const { id } = payload;
+    const response = yield call(
+      request,
+      `${API.WEBINARS}/${id}`,
+      RequestOptions(PATCH_REQUEST, { ...payload }, true),
+    );
+    yield put(setWebinarDetails(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.UPDATE_WEBINAR));
+  } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.UPDATE_WEBINAR, false));
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.UPDATE_WEBINAR, false));
+  }
+}
+
 export default function* webinarSaga() {
   yield takeLatest(GET_WEBINAR_LIST, webinarList);
   yield takeLatest(CREATE_WEBINAR, createWebinar);
+  yield takeLatest(UPDATE_WEBINAR, updateWebinar);
   yield takeLatest(GET_WEBINAR_PUBLIC, webinarPublicDetails);
   yield takeLatest(DO_REGISTER, webinarRegistration);
   yield takeLatest(DO_PAY, webinarPayment);

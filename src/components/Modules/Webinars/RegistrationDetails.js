@@ -2,14 +2,14 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form } from 'formik';
 import { Row, Col } from 'antd';
-import { DownOutlined, UpOutlined, PlusSquareFilled } from '@ant-design/icons';
+// import { DownOutlined, UpOutlined, PlusSquareFilled } from '@ant-design/icons';
 import { useTranslation } from 'next-i18next';
 
 import message from '@/messages/webinar';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
-import Button from '@/components/Elements/Button';
+// import Button from '@/components/Elements/Button';
 import Div from '@/components/Elements/Div';
 import Switch from '@/components/Elements/Switch';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
@@ -73,15 +73,15 @@ export default function CreateWebinarRegistration({
 
             {t(message.setupRegistrationFormFields)}
             <Row className="paymentRow" gutter={[10]}>
-              <Col style={{ display: 'flex' }}>
+              {/* <Col style={{ display: 'flex' }}>
                 <Button UpDownButton>
                   <DownOutlined />
                 </Button>
                 <Button UpDownButton>
                   <UpOutlined />
                 </Button>
-              </Col>
-              <Col span={7}>
+              </Col> */}
+              <Col span={12}>
                 <Label center asterisk>
                   {t(message.fieldNameOrPlaceholder)}
                 </Label>
@@ -89,7 +89,7 @@ export default function CreateWebinarRegistration({
                   defaultValue={values.formFields[0].fieldName}
                   type="text"
                   name="formFields[0].fieldName"
-                  placeholder={t(message.emailAddress)}
+                  placeholder={t(message.email)}
                   readOnly
                   component={Input}
                 />
@@ -112,6 +112,7 @@ export default function CreateWebinarRegistration({
               <Col span={2}>
                 <Label center>{t(message.required)}</Label>
                 <Switch
+                  disabled
                   defaultChecked={values.formFields[0].isRequired}
                   size="default"
                   onChange={(val) =>
@@ -120,10 +121,10 @@ export default function CreateWebinarRegistration({
                 />
               </Col>
             </Row>
-            <Button addField>
+            {/* <Button addField>
               <PlusSquareFilled size="large" />
               {t(message.addAccount)}
-            </Button>
+            </Button> */}
           </Form>
         );
       }}

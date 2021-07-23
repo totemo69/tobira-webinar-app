@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import TimezoneSelect from 'react-timezone-select';
+import { useTranslation } from 'next-i18next';
 import { Formik, Field, Form } from 'formik';
 import {
   CaretDownFilled,
@@ -24,6 +25,7 @@ import TimePicker from '@/components/Elements/TimePicker';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 import ImageUpload from '@/components/Elements/ImageUpload';
 import { setWebinar } from '@/states/webinar/actions';
+import localMessage from '@/messages/webinar';
 
 import { createWebinar } from '@/validations/webinar';
 import { DisableDates } from '@/utils/dateUtils';
@@ -33,12 +35,16 @@ export default function CreateWebinarDetails({
   webinarForm,
   setSubmitForm,
   submitStatus,
+  isUpdate = false,
 }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const onSubmit = (payload) => {
     dispatch(setWebinar(payload));
     submitStatus(true);
   };
+
+  console.log(webinarForm);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -69,20 +75,21 @@ export default function CreateWebinarDetails({
       >
         {({ setFieldValue, submitForm, values, errors }) => {
           setSubmitForm(submitForm);
+          console.log(values);
           return (
             <Form id="webinar">
               <Div marginTop>
                 <Labels textBlue bold>
-                  Management Secion
+                  {t(localMessage.managementSection)}
                 </Labels>
               </Div>
               <Div marginY widthFull>
-                <Labels asterisk>Webinar Title</Labels>
+                <Labels asterisk>{t(localMessage.webinarTitle)}</Labels>
                 <Field
                   defaultValue={values.managementTitle}
                   type="text"
                   name="managementTitle"
-                  placeholder="Enter webinar title"
+                  placeholder={t(localMessage.enterWebinarTitle)}
                   component={Input}
                 />
                 <ErrorMessage name="managementTitle" />
@@ -95,16 +102,17 @@ export default function CreateWebinarDetails({
                 doubleDividerBlue
               >
                 <Div>
-                  <Labels asterisk>Zoom Account</Labels>
+                  <Labels asterisk>{t(localMessage.zoomAccount)}</Labels>
                   <Field
                     name="webinarAccount"
                     component={Select}
                     suffixIcon={<CaretDownFilled />}
                     defaultValue={values.webinarAccount}
                     onChange={(val) => setFieldValue('webinarAccount', val)}
+                    disabled={isUpdate}
                   >
                     <Option value="" disabled>
-                      Select an account
+                      {t(localMessage.selectZoomAccount)}
                     </Option>
                     {zoomAccounts.map((option) => (
                       <Option key={option.id} value={option.id}>
@@ -115,13 +123,12 @@ export default function CreateWebinarDetails({
                   <ErrorMessage name="webinarAccount" />
                 </Div>
                 <Button addBtn>
-                  <PlusSquareFilled /> <a href="/account">Add Account</a>
+                  <PlusSquareFilled />{' '}
+                  <a href="/account">{t(localMessage.addAccount)}</a>
                 </Button>
               </Div>
               <Div marginTop marginBottomLarge>
-                <Labels textBlue bold>
-                  Basic Details
-                </Labels>
+                <Labels textBlue bold></Labels>
               </Div>
               <Div
                 marginY
@@ -132,7 +139,7 @@ export default function CreateWebinarDetails({
                 flexTop
               >
                 <Div widthFull>
-                  <Labels asterisk>Webinar Image</Labels>
+                  <Labels asterisk>{t(localMessage.webinarImage)}</Labels>
                   <Div imageContainer flexColCenter>
                     <ImageUpload
                       src={values.image}
@@ -144,20 +151,20 @@ export default function CreateWebinarDetails({
                 </Div>
                 <Div widthFull paddingX>
                   <Div widthFull marginBottomLarge>
-                    <Labels asterisk>Webinar Title</Labels>
+                    <Labels asterisk>{t(localMessage.webinarTitle)}</Labels>
                     <Field
                       type="text"
                       name="title"
-                      placeholder="Enter webinar title"
+                      placeholder={t(localMessage.enterWebinarTitle)}
                       component={Input}
                     />
                     <ErrorMessage name="title" />
                   </Div>
                   <Div widthFull marginY>
-                    <Labels asterisk>Description</Labels>
+                    <Labels asterisk>{t(localMessage.description)}</Labels>
                     <Field
                       name="description"
-                      placeholder="Enter webinar description"
+                      placeholder={t(localMessage.enterWebinarDescription)}
                       component={Textarea}
                       rows={7}
                       showCount
@@ -169,11 +176,11 @@ export default function CreateWebinarDetails({
               </Div>
               <Div marginTop>
                 <Labels textBlue bold>
-                  Schedule
+                  {t(localMessage.schedule)}
                 </Labels>
               </Div>
               <Div marginTop widthFull>
-                <Labels asterisk>Webinar Plan</Labels>
+                <Labels asterisk>{t(localMessage.webinarPlan)}</Labels>
                 <Radio.Group
                   buttonStyle="solid"
                   name="frequency"
@@ -189,7 +196,7 @@ export default function CreateWebinarDetails({
                       setIsVisible(true);
                     }}
                   >
-                    One-Time
+                    {t(localMessage.oneTime)}
                   </Radio>
                   <Radio
                     key={SCHEDULE_TYPE.RECURRING}
@@ -199,7 +206,7 @@ export default function CreateWebinarDetails({
                     }}
                     disabled
                   >
-                    Recurring
+                    {t(localMessage.recuring)}
                   </Radio>
                 </Radio.Group>
               </Div>
@@ -207,12 +214,14 @@ export default function CreateWebinarDetails({
                 <>
                   <Div marginY flexTop widthFull>
                     <Div marginRight>
-                      <Labels asterisk>Date</Labels>
+                      <Labels asterisk>{t(localMessage.date)}</Labels>
                       <DatePicker
                         name="schedules[0].scheduleDate"
-                        defaultValue={values.schedules[0].scheduleDate}
+                        value={values.schedules[0].scheduleDate}
+                        placeholder={t(localMessage.selectDate)}
                         format="MM/DD/YYYY"
                         disabledDate={DisableDates}
+                        disabled={isUpdate}
                         onChange={(date) => {
                           setFieldValue('schedules[0].scheduleDate', date);
                         }}
@@ -220,12 +229,14 @@ export default function CreateWebinarDetails({
                       <ErrorMessage name="schedules[0].scheduleDate" />
                     </Div>
                     <Div marginLeft>
-                      <Labels asterisk>Start Time</Labels>
+                      <Labels asterisk>{t(localMessage.startTime)}</Labels>
                       <TimePicker
                         name="schedules[0].scheduleTime"
-                        defaultValue={values.schedules[0].scheduleTime}
+                        value={values.schedules[0].scheduleTime}
+                        placeholder={t(localMessage.startTime)}
                         use12Hours
                         minuteStep={15}
+                        disabled={isUpdate}
                         format="h:mm a"
                         onChange={(time) => {
                           setFieldValue('schedules[0].scheduleTime', time);
@@ -236,11 +247,13 @@ export default function CreateWebinarDetails({
                   </Div>
                   <Div marginY flexTop widthFull>
                     <Div marginRight>
-                      <Labels asterisk>Timezone</Labels>
+                      <Labels asterisk>{t(localMessage.timeZone)}</Labels>
                       <TimezoneSelect
                         instanceId="timezone"
+                        placeholder={t(localMessage.selectTimeZone)}
                         name="timezone"
                         value={values.timezone}
+                        isDisabled={isUpdate}
                         onChange={(zone) => {
                           setFieldValue('timezone', zone);
                         }}
@@ -254,7 +267,7 @@ export default function CreateWebinarDetails({
                       ) : null}
                     </Div>
                     <Div marginLeft>
-                      <Labels asterisk>Duration</Labels>
+                      <Labels asterisk>{t(localMessage.duration)}</Labels>
                       <Row gutter={50}>
                         <Col span={12}>
                           <Field
@@ -262,12 +275,13 @@ export default function CreateWebinarDetails({
                             component={Select}
                             suffixIcon={<CaretDownFilled />}
                             defaultValue={values.durationHour}
+                            disabled={isUpdate}
                             onChange={(val) => {
                               setFieldValue('durationHour', val);
                             }}
                           >
                             <Option key="" value="" disabled>
-                              Hour
+                              {t(localMessage.hourSelect)}
                             </Option>
                             {Array.from(Array(11), (_, i) => (
                               <Option key={i} value={i}>
@@ -275,7 +289,8 @@ export default function CreateWebinarDetails({
                               </Option>
                             ))}
                           </Field>{' '}
-                          hr <ErrorMessage name="durationHour" />
+                          {t(localMessage.hour)}{' '}
+                          <ErrorMessage name="durationHour" />
                         </Col>
                         <Col span={12}>
                           <Field
@@ -283,12 +298,13 @@ export default function CreateWebinarDetails({
                             component={Select}
                             suffixIcon={<CaretDownFilled />}
                             defaultValue={values.durationMinute}
+                            disabled={isUpdate}
                             onChange={(val) => {
                               setFieldValue('durationMinute', val);
                             }}
                           >
                             <Option key="" value="" disabled>
-                              Minutes
+                              {t(localMessage.minutesSelect)}
                             </Option>
                             <Option key="00" value="00">
                               00
@@ -303,7 +319,8 @@ export default function CreateWebinarDetails({
                               45
                             </Option>
                           </Field>{' '}
-                          mins <ErrorMessage name="durationMinute" />
+                          {t(localMessage.minutes)}{' '}
+                          <ErrorMessage name="durationMinute" />
                         </Col>
                       </Row>
                     </Div>
@@ -574,4 +591,5 @@ CreateWebinarDetails.propTypes = {
   webinarForm: PropTypes.any,
   setSubmitForm: PropTypes.any,
   submitStatus: PropTypes.any,
+  isUpdate: PropTypes.bool,
 };
