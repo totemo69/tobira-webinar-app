@@ -349,7 +349,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 type="primary"
                 onClick={() => viewVisible()}
               >
-                <Image transferFunds src="Images/transfer-funds.svg" />{' '}
+                <Image transferFunds src="/images/transfer-funds.svg" />{' '}
                 {t(message.transferFunds)}
               </Button>
             </Div>
@@ -445,7 +445,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
               style={{ height: 55, width: 190, borderColor: 'transparent' }}
               onClick={() => setIsInputVisible(false)}
             >
-              <img src="Images/paypal.svg" alt="paypal" />
+              <img src="/images/paypal.svg" alt="paypal" />
             </Button>
           </Col>
           <Col span={12}>

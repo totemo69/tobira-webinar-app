@@ -22,7 +22,7 @@ export default function TermsOfService() {
     <>
       <Layout>
         <Div widthFull center noMargin marginBottomLarge>
-          <Image src="Images/logo.svg" alt="Tobira Logo" logo />
+          <Image src="/images/logo.svg" alt="Tobira Logo" logo />
         </Div>
         <Card TermsAndPrivacy>
           <Div doubleDividerBlue withPadding widthFull>

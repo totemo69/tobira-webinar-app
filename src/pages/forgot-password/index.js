@@ -70,7 +70,7 @@ export default function ForgotPassword() {
                   <Div widthFull noMargin>
                     <Div modal noMargin center>
                       <Image
-                        src="Images/email-sent-icon.svg"
+                        src="/images/email-sent-icon.svg"
                         alt="email sent icon"
                         modalIcon
                       />
@@ -95,10 +95,10 @@ export default function ForgotPassword() {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
+              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Image
-              src="Images/illustration2.svg"
+              src="/images/illustration2.svg"
               alt="Forgot password Illustration"
               larger
             />
