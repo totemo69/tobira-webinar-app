@@ -190,7 +190,7 @@ const ProfessionalConfirm = ({ isVisible, close }) => (
       <Row>
         <Col style={{ margin: '0 auto', marginLeft: '104px' }}>
           <StyledDiv payPal>
-            <img src="Images/paypal.svg" alt="paypal" />
+            <img src="/images/paypal.svg" alt="paypal" />
           </StyledDiv>
         </Col>
       </Row>
@@ -285,7 +285,7 @@ const AddOnsConfirm = ({ isVisible, close }) => (
       <Row>
         <Col style={{ margin: '0 auto', marginLeft: '104px' }}>
           <StyledDiv payPal>
-            <img src="Images/paypal.svg" alt="paypal" />
+            <img src="/images/paypal.svg" alt="paypal" />
           </StyledDiv>
         </Col>
       </Row>
@@ -379,7 +379,7 @@ const UpgradePlanConfirm = ({ isVisible }) => (
       <Row>
         <Col style={{ margin: '0 auto', marginLeft: '104px' }}>
           <StyledDiv payPal>
-            <img src="Images/paypal.svg" alt="paypal" />
+            <img src="/images/paypal.svg" alt="paypal" />
           </StyledDiv>
         </Col>
       </Row>
