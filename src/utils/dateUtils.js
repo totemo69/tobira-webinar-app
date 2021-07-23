@@ -4,7 +4,7 @@ export function CombineDateTime(date, time) {
   if (date && time) {
     return moment(`${date.format('MM/DD/YYYY')} ${time.format('HH:mm')}`);
   }
-  return null;
+  return '';
 }
 
 export function DisableDates(current) {
@@ -24,4 +24,8 @@ export function FormatDate(date, format = 'YYYY-MM-DD') {
     return moment().format(format);
   }
   return moment(date).format(format);
+}
+
+export function ConvertMoment(date) {
+  return moment(date);
 }

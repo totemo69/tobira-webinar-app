@@ -35,6 +35,7 @@ export default function CreateWebinarDetails({
   webinarForm,
   setSubmitForm,
   submitStatus,
+  isUpdate = false,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -42,6 +43,8 @@ export default function CreateWebinarDetails({
     dispatch(setWebinar(payload));
     submitStatus(true);
   };
+
+  console.log(webinarForm);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -72,6 +75,7 @@ export default function CreateWebinarDetails({
       >
         {({ setFieldValue, submitForm, values, errors }) => {
           setSubmitForm(submitForm);
+          console.log(values);
           return (
             <Form id="webinar">
               <Div marginTop>
@@ -105,6 +109,7 @@ export default function CreateWebinarDetails({
                     suffixIcon={<CaretDownFilled />}
                     defaultValue={values.webinarAccount}
                     onChange={(val) => setFieldValue('webinarAccount', val)}
+                    disabled={isUpdate}
                   >
                     <Option value="" disabled>
                       {t(localMessage.selectZoomAccount)}
@@ -212,10 +217,11 @@ export default function CreateWebinarDetails({
                       <Labels asterisk>{t(localMessage.date)}</Labels>
                       <DatePicker
                         name="schedules[0].scheduleDate"
-                        defaultValue={values.schedules[0].scheduleDate}
+                        value={values.schedules[0].scheduleDate}
                         placeholder={t(localMessage.selectDate)}
                         format="MM/DD/YYYY"
                         disabledDate={DisableDates}
+                        disabled={isUpdate}
                         onChange={(date) => {
                           setFieldValue('schedules[0].scheduleDate', date);
                         }}
@@ -226,10 +232,11 @@ export default function CreateWebinarDetails({
                       <Labels asterisk>{t(localMessage.startTime)}</Labels>
                       <TimePicker
                         name="schedules[0].scheduleTime"
-                        defaultValue={values.schedules[0].scheduleTime}
+                        value={values.schedules[0].scheduleTime}
                         placeholder={t(localMessage.startTime)}
                         use12Hours
                         minuteStep={15}
+                        disabled={isUpdate}
                         format="h:mm a"
                         onChange={(time) => {
                           setFieldValue('schedules[0].scheduleTime', time);
@@ -246,6 +253,7 @@ export default function CreateWebinarDetails({
                         placeholder={t(localMessage.selectTimeZone)}
                         name="timezone"
                         value={values.timezone}
+                        isDisabled={isUpdate}
                         onChange={(zone) => {
                           setFieldValue('timezone', zone);
                         }}
@@ -267,6 +275,7 @@ export default function CreateWebinarDetails({
                             component={Select}
                             suffixIcon={<CaretDownFilled />}
                             defaultValue={values.durationHour}
+                            disabled={isUpdate}
                             onChange={(val) => {
                               setFieldValue('durationHour', val);
                             }}
@@ -289,6 +298,7 @@ export default function CreateWebinarDetails({
                             component={Select}
                             suffixIcon={<CaretDownFilled />}
                             defaultValue={values.durationMinute}
+                            disabled={isUpdate}
                             onChange={(val) => {
                               setFieldValue('durationMinute', val);
                             }}
@@ -581,4 +591,5 @@ CreateWebinarDetails.propTypes = {
   webinarForm: PropTypes.any,
   setSubmitForm: PropTypes.any,
   submitStatus: PropTypes.any,
+  isUpdate: PropTypes.bool,
 };
