@@ -3,7 +3,11 @@ import { REMOVE_BANK, SET_BANK, SET_BANK_LIST, SET_WITHDRAW } from './types';
 
 export const initialState = {
   bankList: [],
-  bank: {},
+  bank: {
+    bankName: 'mark',
+    accountName: '',
+    accountNumber: '',
+  },
   withdraw: {
     user: '',
     amount: '',

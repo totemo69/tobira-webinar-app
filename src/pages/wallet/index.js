@@ -48,6 +48,7 @@ import BankModal from '@/components/Modules/Wallet/BankModal';
 import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
 import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
 import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
 
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
@@ -55,6 +56,7 @@ import {
   makeSelectBankList,
   makeSelectWithdraw,
 } from '@/states/wallet/selector';
+import { withdrawalValidationSchema } from '@/validations/wallet';
 
 export function Wallet({
   doGetBankList,
@@ -136,11 +138,13 @@ export function Wallet({
 
   const onProceed = (payload) => {
     dispatch(setWithdraw(payload));
+    setIsTransferFundVisible(!setIsTransferFundVisible);
     setIsConfirmTransferFundVisible(true);
   };
 
   const onConfirm = () => {
     doWithdraw();
+    setIsConfirmTransferFundVisible(!setIsConfirmTransferFundVisible);
     setIsTransferSuccessModalVisible(true);
   };
 
@@ -465,8 +469,9 @@ export function Wallet({
         <Formik
           initialValues={{
             user: 'admin',
-            amount: 0,
-            gatewayType: 'bank',
+            amount: '',
+            gatewayType: 'Bank',
+            paypal: '',
             bankName: '',
             accountName: '',
             accountNumber: '',
@@ -474,6 +479,7 @@ export function Wallet({
           }}
           onSubmit={onProceed}
           enableReinitialize
+          validationSchema={withdrawalValidationSchema}
         >
           {({ handleSubmit }) => (
             <Form>
@@ -489,17 +495,17 @@ export function Wallet({
                 <Field
                   type="number"
                   name="amount"
-                  placeholder="0"
                   component={Input}
                   prefix="￥"
                   suffix="JPY"
                 />
+                <ErrorMessage name="amount" />
               </StyledDiv>
               <StyledDiv style={{ padding: '20px' }}>
-                <Label>{t(message.selectPaymentGateway)}</Label>
+                <StyledText black content={t(message.selectPaymentGateway)} />
               </StyledDiv>
-              <Row>
-                <Col span={12} style={{ paddingLeft: 40 }}>
+              <Row type="flex" align="middle" justify="center">
+                <Col align="middle" justify="center" span={12}>
                   <Button
                     style={{
                       height: 55,
@@ -508,10 +514,15 @@ export function Wallet({
                     }}
                     onClick={() => setIsInputVisible(false)}
                   >
-                    <img src="Images/paypal.svg" alt="paypal" />
+                    <img
+                      src="Images/paypal.svg"
+                      alt="paypal"
+                      width="100"
+                      height="50"
+                    />
                   </Button>
                 </Col>
-                <Col span={12}>
+                <Col align="middle" justify="center" span={12}>
                   <Button
                     chooseStandard
                     style={{
@@ -522,7 +533,7 @@ export function Wallet({
                     icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
                     onClick={() => setIsInputVisible(true)}
                   >
-                    {t(globalMessage.bank)}
+                    <StyledText strong blue content={t(globalMessage.bank)} />
                   </Button>
                 </Col>
               </Row>
@@ -533,36 +544,53 @@ export function Wallet({
                       {t(globalMessage.bankName)}
                     </Label>
                     <Field
-                      type="StyledText"
+                      type="Text"
                       name="bankName"
                       placeholder={t(globalMessage.bankName)}
                       component={Input}
                     />
+                    <ErrorMessage name="bankName" />
                     <Label marginTop asterisk>
                       {t(globalMessage.accountName)}
                     </Label>
                     <Field
-                      type="StyledText"
+                      type="Text"
                       name="accountName"
                       placeholder={t(globalMessage.accountName)}
                       component={Input}
                     />
+                    <ErrorMessage name="accountName" />
                     <Label marginTop asterisk>
                       {t(globalMessage.accountNumber)}
                     </Label>
                     <Field
-                      type="StyledText"
+                      type="Text"
                       name="accountNumber"
                       placeholder={t(globalMessage.accountNumber)}
                       component={Input}
                     />
+                    <ErrorMessage name="accountNumber" />
                     <Row style={{ marginTop: 20 }}>
                       <Checkbox />
                       <Label>{t(message.saveThisAccountFutureUse)}</Label>
                     </Row>
                   </Col>
                 </Row>
-              ) : null}
+              ) : (
+                <Row style={{ paddingLeft: 50 }}>
+                  <Col span={20}>
+                    <Label marginTop asterisk>
+                      {t(message.enterPaypalAccount)}
+                    </Label>
+                    <Field
+                      type="Text"
+                      name="paypal"
+                      placeholder={t(message.enterPaypalAccount)}
+                      component={Input}
+                    />
+                  </Col>
+                </Row>
+              )}
 
               <StyledDiv
                 style={{ display: 'flex', margin: '0 auto', width: '300px' }}
@@ -651,7 +679,6 @@ export function Wallet({
               }
             >
               <StyledText strong content={t(globalMessage.back)} />
-              <img src="/images/paypal.svg" alt="paypal" />
             </Button>
           </Col>
           <Col>
