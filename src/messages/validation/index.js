@@ -13,6 +13,10 @@ const message = {
     key: `${scope}.required`,
     default: 'is required.',
   }),
+  validEmail: Object.values({
+    key: `${scope}.validEmail`,
+    default: 'Invalid email address.',
+  }),
 };
 
 export default message;

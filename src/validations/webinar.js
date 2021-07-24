@@ -59,16 +59,11 @@ const paymentOptions = Yup.object({
 });
 
 const webinarRegistration = Yup.object({
-  formFields: Yup.array()
-    .of(
-      Yup.object().shape({
-        fieldName: Yup.string().required('Field Name is a required field.'),
-        fieldType: Yup.string().required('Field Type is a required field.'),
-        isRequired: Yup.boolean(),
-        options: Yup.array().of(Yup.string()),
-      }),
-    )
-    .required('Form Fields is required'),
+  formFields: Yup.array().of(
+    Yup.object().shape({
+      Email: Yup.string().required('email.required').email('validEmail'),
+    }),
+  ),
 });
 
 export default validationSchema;

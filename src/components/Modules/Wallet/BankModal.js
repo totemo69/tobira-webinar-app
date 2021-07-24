@@ -44,11 +44,7 @@ export function BankModal({
       </div>
       <Formik
         initialValues={{
-          user: 'admin',
-          branchCode: '1234',
-          branchName: 'adminBranch',
-          accountType: 'admin',
-          status: 'active',
+          bankName: '',
           accountName: '',
           accountNumber: '',
         }}
