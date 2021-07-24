@@ -8,6 +8,7 @@ const addBankValidationSchema = Yup.object({
 
 const withdrawalValidationSchema = Yup.object({
   amount: Yup.string().required().min(3, 'Minimum required amount: 100 JPY'),
+  paypal: Yup.string().required(),
   bankName: Yup.string().required(),
   accountName: Yup.string().required(),
   accountNumber: Yup.string().required(),
