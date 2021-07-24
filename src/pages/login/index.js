@@ -31,10 +31,8 @@ export function Login({ doLogin }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback((values) => {
-    console.log(values);
     setIsLoading(true);
-    doLogin(values, (errors) => {
-      console.log(errors);
+    doLogin(values, () => {
       // translateApiError(errors, formikAction, intl);
       setIsLoading(false);
     });
@@ -101,10 +99,10 @@ export function Login({ doLogin }) {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src="images/logo.svg" alt="Tobira Logo" logo />
+              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Image
-              src="images/illustration1.svg"
+              src="/images/illustration1.svg"
               alt="Webinar Illustration"
               large
             />

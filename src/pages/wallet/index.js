@@ -385,7 +385,7 @@ export function Wallet({
                 type="primary"
                 onClick={showTransferFundsModal}
               >
-                <Image transferFunds src="Images/transfer-funds.svg" />{' '}
+                <Image transferFunds src="/images/transfer-funds.svg" />{' '}
                 {t(message.transferFunds)}
               </Button>
             </Div>
@@ -651,6 +651,7 @@ export function Wallet({
               }
             >
               <StyledText strong content={t(globalMessage.back)} />
+              <img src="/images/paypal.svg" alt="paypal" />
             </Button>
           </Col>
           <Col>

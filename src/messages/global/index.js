@@ -206,6 +206,18 @@ const message = {
     key: `${scope}.confirm`,
     default: 'Confirm',
   }),
+  shareTitle: Object.values({
+    key: `${scope}.shareTitle`,
+    default: 'Share',
+  }),
+  shareWebinarLink: Object.values({
+    key: `${scope}.shareWebinarLink`,
+    default: 'Share event link',
+  }),
+  linkCopied: Object.values({
+    key: `${scope}.linkCopied`,
+    default: 'Copied!',
+  }),
 };
 
 export default message;

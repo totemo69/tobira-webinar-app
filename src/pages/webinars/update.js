@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { message } from 'antd';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import globalMessage from '@/messages/global';
@@ -28,7 +29,11 @@ import {
   makeSelectWebinarForm,
 } from '@/states/webinar/selector';
 import { getZoomAccount } from '@/states/accounts/actions';
-import { createWebinar } from '@/states/webinar/actions';
+import {
+  updateWebinar,
+  getWebinarDetail,
+  setWebinar,
+} from '@/states/webinar/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withAuthSync } from '@/lib/auth';
@@ -36,16 +41,20 @@ import SuccessModal from '@/components/Modules/Webinars/SuccessModal';
 
 export function Update({
   isLoading,
+  isUpdateLoading,
   submitStatus,
   errorMessage,
   getZoomAccounts,
+  getWebinar,
+  setWebinarForm,
   zoomAccountList,
   webinarFormDetails,
-  doCreateWebinar,
+  doUpdateWebinar,
   webinarDetails,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
+  const { id } = route.query;
   const [current, setCurrent] = useState(0);
   const [submitStep1, setSubmitStep1] = useState();
   const [submitStep2, setSubmitStep2] = useState();
@@ -64,11 +73,25 @@ export function Update({
   };
 
   useEffect(() => {
+    if (id) {
+      getWebinar({ id });
+    }
+  }, [id]);
+
+  useEffect(() => {
     getZoomAccounts();
   }, []);
 
   useEffect(() => {
-    if (!isLoading && submitting) {
+    if (!isLoading) {
+      if (Object.keys(webinarDetails).length > 0) {
+        setWebinarForm(webinarDetails);
+      }
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (!isUpdateLoading && submitting) {
       setSubmitting(false);
       if (submitStatus) {
         setSuccessModal(!successModal);
@@ -76,14 +99,14 @@ export function Update({
         message.error(errorMessage);
       }
     }
-  }, [isLoading, submitStatus, errorMessage]);
+  }, [isUpdateLoading, submitStatus, errorMessage]);
 
   useEffect(() => {
     // if Form doesn't have error, go to next step
     if (submitFormStatus) {
       if (current === step.length - 1) {
         setSubmitting(true);
-        doCreateWebinar();
+        doUpdateWebinar();
       } else {
         setCurrent(current + 1);
       }
@@ -114,17 +137,20 @@ export function Update({
   const step = [
     {
       title: t(localMessage.details),
+      breadCrumbs: t(localMessage.details),
       Content: (
         <CreateWebinarPage
           submitStatus={submitStatusBind}
           setSubmitForm={setStep1Wrapper}
           webinarForm={webinarFormDetails}
           zoomAccounts={zoomAccountList}
+          isUpdate
         />
       ),
     },
     {
       title: t(localMessage.registration),
+      breadCrumbs: t(localMessage.registration),
       Content: (
         <RegistrationDetails
           submitStatus={submitStatusBind}
@@ -135,11 +161,13 @@ export function Update({
     },
     {
       title: t(localMessage.paymentOptions),
+      breadCrumbs: t(localMessage.paymentOptions),
       Content: (
         <PaymentOptions
           submitStatus={submitStatusBind}
           setSubmitForm={setStep3Wrapper}
           webinarForm={webinarFormDetails}
+          isUpdate
         />
       ),
     },
@@ -169,7 +197,7 @@ export function Update({
           <Title secondary marginRight>
             {t(localMessage.updateWebinar)} {'>'}
           </Title>
-          <Span breadCrumbs>{t(localMessage.details)}</Span>
+          <Span breadCrumbs>{step[current].breadCrumbs}</Span>
         </Div>
         <Div widthFull>
           <Card webinarRegistrationCard>
@@ -184,7 +212,7 @@ export function Update({
             {current < step.length - 1 && (
               <>
                 <Button onClick={() => next()} NextButton type="primary">
-                  {t(message.next)} {'>'}
+                  {t(globalMessage.next)} {'>'}
                 </Button>
               </>
             )}
@@ -217,19 +245,23 @@ export function Update({
 
 Update.propTypes = {
   getZoomAccounts: PropTypes.func,
+  getWebinar: PropTypes.func,
+  setWebinarForm: PropTypes.func,
   webinarFormDetails: PropTypes.any,
   zoomAccountList: PropTypes.array,
   isLoading: PropTypes.bool,
   errorMessage: PropTypes.any,
-  doCreateWebinar: PropTypes.func,
+  doUpdateWebinar: PropTypes.func,
+  isUpdateLoading: PropTypes.bool,
   submitStatus: PropTypes.any,
   webinarDetails: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: makeSelectLoading(LOADING_PREFIX.CREATE_WEBINAR),
+  isLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR_DETAILS),
   isAccountLoading: makeSelectLoading(LOADING_PREFIX.ACCOUNT),
-  submitStatus: makeSelectLoadingStatus(LOADING_PREFIX.CREATE_WEBINAR),
+  isUpdateLoading: makeSelectLoading(LOADING_PREFIX.UPDATE_WEBINAR),
+  submitStatus: makeSelectLoadingStatus(LOADING_PREFIX.UPDATE_WEBINAR),
   zoomAccountList: makeSelectAccountList(),
   errorMessage: makeSelectError(),
   webinarFormDetails: makeSelectWebinarForm(),
@@ -238,9 +270,17 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchProps = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
-  doCreateWebinar: () => dispatch(createWebinar()),
+  doUpdateWebinar: () => dispatch(updateWebinar()),
+  getWebinar: (payload) => dispatch(getWebinarDetail(payload)),
+  setWebinarForm: (payload) => dispatch(setWebinar(payload)),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
 
 export default compose(withConnect, memo)(withAuthSync(Update));
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['translation'])),
+  },
+});

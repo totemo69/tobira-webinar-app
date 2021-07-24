@@ -49,7 +49,6 @@ export function BankModal({
           branchName: 'adminBranch',
           accountType: 'admin',
           status: 'active',
-          bankName: '',
           accountName: '',
           accountNumber: '',
         }}

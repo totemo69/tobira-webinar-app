@@ -19,6 +19,7 @@ export default function PaymentOption({
   webinarForm,
   setSubmitForm,
   submitStatus,
+  isUpdate = false,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export default function PaymentOption({
               component={Input}
               prefix="￥"
               suffix="JPY"
+              disabled={isUpdate}
             />
             <ErrorMessage name="price" />
             <Div BrakeLine />
@@ -99,4 +101,5 @@ PaymentOption.propTypes = {
   webinarForm: PropTypes.any,
   setSubmitForm: PropTypes.any,
   submitStatus: PropTypes.any,
+  isUpdate: PropTypes.bool,
 };

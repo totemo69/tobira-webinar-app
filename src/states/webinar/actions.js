@@ -14,6 +14,7 @@ import {
   CAPTURE_PAYMENT,
   SET_ATTENDEE,
   SET_PAYMENT,
+  UPDATE_WEBINAR,
 } from './types';
 
 export const getWebinarList = (payload) => ({
@@ -28,6 +29,10 @@ export const setWebinarList = (payload) => ({
 
 export const createWebinar = () => ({
   type: CREATE_WEBINAR,
+});
+
+export const updateWebinar = () => ({
+  type: UPDATE_WEBINAR,
 });
 
 export const setWebinarDetails = (payload) => ({
