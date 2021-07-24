@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '@/components/Elements/Title';
 import { Field, Form, Formik } from 'formik';
 import { Col, Row } from 'antd';
 import Label from '@/components/Elements/Labels';
 import globalMessage from '@/messages/global';
 import Input from '@/components/Elements/Input';
-import ErrorMessage from '@/components/Elements/ErrorMessage';
 import Button from '@/components/Elements/Button';
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import { useTranslation } from 'next-i18next';
@@ -22,15 +21,15 @@ export function UpdateBankModal({
   doUpdateBank,
   visible,
   title,
-  onOk,
   onClose,
   okText,
 }) {
   const { t } = useTranslation();
 
+  useEffect(() => {}, []);
+
   const onSubmit = (values) => {
     doUpdateBank(values);
-    onOk();
   };
 
   return (
@@ -42,9 +41,14 @@ export function UpdateBankModal({
       </div>
       <Formik
         initialValues={{
-          bankName: '',
-          accountName: '',
-          accountNumber: '',
+          user: 'admin',
+          branchCode: '1234',
+          branchName: 'adminBranch',
+          accountType: 'admin',
+          status: 'active',
+          bankName: 'mayBank',
+          accountName: '123',
+          accountNumber: '13222',
         }}
         onSubmit={onSubmit}
         enableReinitialize
@@ -56,20 +60,14 @@ export function UpdateBankModal({
                 <Label marginTop asterisk>
                   {t(globalMessage.bankName)}
                 </Label>
-                <Field
-                  type="text"
-                  name="bankName"
-                  placeholder="Bank Name"
-                  component={Input}
-                />
-                <ErrorMessage name="bankName" />
+                <Field type="text" name="bankName" component={Input} />
                 <Label marginTop asterisk>
                   {t(globalMessage.accountName)}
                 </Label>
                 <Field
                   type="text"
                   name="accountName"
-                  placeholder="Account Name"
+                  placeholder={t(globalMessage.accountName)}
                   component={Input}
                 />
                 <Label marginTop asterisk>
@@ -78,7 +76,7 @@ export function UpdateBankModal({
                 <Field
                   type="text"
                   name="accountNumber"
-                  placeholder="Account Number"
+                  placeholder={t(globalMessage.accountNumber)}
                   component={Input}
                 />
               </Col>
@@ -124,7 +122,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchProps(dispatch) {
   return {
-    doUpdateBank: (id, payload) => dispatch(updateBank(id, payload)),
+    doUpdateBank: (payload) => dispatch(updateBank(payload)),
   };
 }
 

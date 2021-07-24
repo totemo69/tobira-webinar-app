@@ -1,9 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
+import { Formik, Field, Form } from 'formik';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { getBankList, removeBank } from '@/states/wallet/actions';
+import {
+  getBankList,
+  removeBank,
+  setWithdraw,
+  withdraws,
+} from '@/states/wallet/actions';
 import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
@@ -35,19 +41,30 @@ import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import { StyledDiv } from '@/components/Modules/Modals';
 import Input from '@/components/Elements/Input';
-import Text from '@/components/Elements/Text';
+import StyledText from '@/components/Elements/Text';
 import Checkbox from '@/components/Elements/Checkbox';
 import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
 import BankModal from '@/components/Modules/Wallet/BankModal';
 import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
 import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
+import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
 
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
-import { makeSelectBankList } from '@/states/wallet/selector';
+import {
+  makeSelectBankList,
+  makeSelectWithdraw,
+} from '@/states/wallet/selector';
 
-export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
+export function Wallet({
+  doGetBankList,
+  bankList,
+  doRemoveBank,
+  doWithdraw,
+  withdraw,
+}) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     doGetBankList();
@@ -55,7 +72,9 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
 
   const [bankId, setBankId] = useState(null);
 
-  const [visible, setVisible] = useState(false);
+  const [isTransferFundVisible, setIsTransferFundVisible] = useState(false);
+  const [isConfirmTransferFundVisible, setIsConfirmTransferFundVisible] =
+    useState(false);
   const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
     useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -78,8 +97,8 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
   const [isWithdrawalModalVisible, setIsWithdrawalModalVisible] =
     useState(false);
 
-  const viewVisible = () => {
-    setVisible(true);
+  const showTransferFundsModal = () => {
+    setIsTransferFundVisible(true);
   };
 
   const onAddBankAccount = () => {
@@ -87,9 +106,9 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
     setIsBankAddedSuccessModalVisible(true);
   };
 
-  const onUpdateBankAccount = () => {
-    setIsBankEditModalVisible(false);
-    setIsBankUpdatedSuccessModalVisible(true);
+  const showRemoveBankModal = (id) => {
+    setBankId(id);
+    setIsBankDeleteModalVisible(true);
   };
 
   const onRemoveBankAccount = useCallback((id) => {
@@ -101,13 +120,28 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
     });
   });
 
+  const showUpdateModal = (id) => {
+    setBankId(id);
+    setIsBankEditModalVisible(true);
+  };
+
+  const onUpdateBankAccount = () => {
+    setIsBankEditModalVisible(false);
+    setIsBankUpdatedSuccessModalVisible(true);
+  };
+
   const onViewTransactionDetails = () => {
     setIsWithdrawalModalVisible(true);
   };
 
-  const showRemoveBankModal = (id) => {
-    setBankId(id);
-    setIsBankDeleteModalVisible(true);
+  const onProceed = (payload) => {
+    dispatch(setWithdraw(payload));
+    setIsConfirmTransferFundVisible(true);
+  };
+
+  const onConfirm = () => {
+    doWithdraw();
+    setIsTransferSuccessModalVisible(true);
   };
 
   const dataSource = [
@@ -155,17 +189,17 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
               title.length > 10 ? (
                 <>
                   <ArrowDownOutlined style={{ color: '#4CAF50' }} />
-                  <Text black content="Payment for webinar" />
+                  <StyledText black content="Payment for webinar" />
                 </>
               ) : (
                 <>
                   <ArrowUpOutlined style={{ color: '#FF0033' }} />
-                  <Text black content="Withdrawal" />
+                  <StyledText black content="Withdrawal" />
                 </>
               );
             return (
               <>
-                <Text black content={transaction} />
+                <StyledText black content={transaction} />
               </>
             );
           })}
@@ -214,7 +248,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
           icon={<EyeFilled style={{ color: '#0E71EB' }} />}
           onClick={onViewTransactionDetails}
         >
-          <Text blue strong content="View" />
+          <StyledText blue strong content="View" />
         </Button>
       ),
     },
@@ -230,7 +264,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
               <Menu.Item
                 key="1"
                 icon={<EditFilled />}
-                onClick={() => setIsBankEditModalVisible(true)}
+                onClick={() => showUpdateModal(bank.id)}
               >
                 {t(globalMessage.edit)}
               </Menu.Item>
@@ -240,7 +274,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 style={{ color: '#FF0033' }}
                 onClick={() => showRemoveBankModal(bank.id)}
               >
-                <Text red content={t(globalMessage.delete)} />
+                <StyledText red content={t(globalMessage.delete)} />
               </Menu.Item>
             </Menu>
           }
@@ -295,8 +329,8 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
           onOk={onAddBankAccount}
           okText={t(globalMessage.add)}
         />
-        {/* Bank account edit modal */}
-        <BankModal
+        {/* Bank account update modal */}
+        <UpdateBankModal
           visible={isBankEditModalVisible}
           onClose={() => setIsBankEditModalVisible(false)}
           title={t(message.editBankAccount)}
@@ -315,14 +349,16 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
         <TransactionModal
           visible={isPaymentWebinarModalVisible}
           title={t(message.transactionDetails)}
-          subTitle={<Text blue strong content={t(message.paymentForWebinar)} />}
+          subTitle={
+            <StyledText blue strong content={t(message.paymentForWebinar)} />
+          }
           onClose={() => setIsPaymentWebinarModalVisible(false)}
         />
         {/* Transaction Details Withdrawal */}
         <TransactionModal
           visible={isWithdrawalModalVisible}
           title={t(message.transactionDetails)}
-          subTitle={<Text blue strong content={t(message.withdrawal)} />}
+          subTitle={<StyledText blue strong content={t(message.withdrawal)} />}
           onClose={() => setIsWithdrawalModalVisible(false)}
         />
 
@@ -343,11 +379,11 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 <Col>- 20,000 JPY</Col>
               </Row>
             </Div>
-            <Div style={{ margin: 'auto 0' }}>
+            <Div style={{ margin: 'auto 0', float: 'right' }}>
               <Button
                 style={{ height: '50px', width: '50%' }}
                 type="primary"
-                onClick={() => viewVisible()}
+                onClick={showTransferFundsModal}
               >
                 <Image transferFunds src="/images/transfer-funds.svg" />{' '}
                 {t(message.transferFunds)}
@@ -372,7 +408,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 <Div addBankList>
                   <Button
                     onClick={() => setIsBankAddModalVisible(true)}
-                    style={{ width: '50px', textAlign: 'center' }}
+                    style={{ width: '50px', StyledtextAlign: 'center' }}
                     type="primary"
                   >
                     <PlusSquareFilled style={{ fontSize: '20px' }} />
@@ -416,7 +452,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
 
       {/* Transfer fund request modal */}
       <Modal
-        isOpen={visible}
+        isOpen={isTransferFundVisible}
         style={{
           content: {
             height: '500px',
@@ -426,72 +462,204 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
           },
         }}
       >
-        <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
-        <StyledDiv style={{ padding: '20px' }}>
-          <Label asterisk>
-            {t(message.enterAmountToTransfer)}{' '}
-            <span style={{ float: 'right' }}>
-              ({t(message.miniMumRequiredAmount)} 100 {t(globalMessage.jpy)})
-            </span>
-          </Label>
-          <Input type="number" placeholder="0" prefix="￥" suffix="JPY" />
-        </StyledDiv>
-        <StyledDiv style={{ padding: '20px' }}>
-          <Label>{t(message.selectPaymentGateway)}</Label>
-        </StyledDiv>
-        <Row>
-          <Col span={12} style={{ paddingLeft: 40 }}>
+        <Formik
+          initialValues={{
+            user: 'admin',
+            amount: 0,
+            gatewayType: 'bank',
+            bankName: '',
+            accountName: '',
+            accountNumber: '',
+            status: 'active',
+          }}
+          onSubmit={onProceed}
+          enableReinitialize
+        >
+          {({ handleSubmit }) => (
+            <Form>
+              <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
+              <StyledDiv style={{ padding: '20px' }}>
+                <Label asterisk>
+                  {t(message.enterAmountToTransfer)}{' '}
+                  <span style={{ float: 'right' }}>
+                    ({t(message.miniMumRequiredAmount)} 100{' '}
+                    {t(globalMessage.jpy)})
+                  </span>
+                </Label>
+                <Field
+                  type="number"
+                  name="amount"
+                  placeholder="0"
+                  component={Input}
+                  prefix="￥"
+                  suffix="JPY"
+                />
+              </StyledDiv>
+              <StyledDiv style={{ padding: '20px' }}>
+                <Label>{t(message.selectPaymentGateway)}</Label>
+              </StyledDiv>
+              <Row>
+                <Col span={12} style={{ paddingLeft: 40 }}>
+                  <Button
+                    style={{
+                      height: 55,
+                      width: 190,
+                      borderColor: 'transparent',
+                    }}
+                    onClick={() => setIsInputVisible(false)}
+                  >
+                    <img src="Images/paypal.svg" alt="paypal" />
+                  </Button>
+                </Col>
+                <Col span={12}>
+                  <Button
+                    chooseStandard
+                    style={{
+                      height: 55,
+                      borderColor: 'transparent',
+                      marginTop: 0,
+                    }}
+                    icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
+                    onClick={() => setIsInputVisible(true)}
+                  >
+                    {t(globalMessage.bank)}
+                  </Button>
+                </Col>
+              </Row>
+              {isInputVisible ? (
+                <Row style={{ paddingLeft: 50 }}>
+                  <Col span={20}>
+                    <Label marginTop asterisk>
+                      {t(globalMessage.bankName)}
+                    </Label>
+                    <Field
+                      type="StyledText"
+                      name="bankName"
+                      placeholder={t(globalMessage.bankName)}
+                      component={Input}
+                    />
+                    <Label marginTop asterisk>
+                      {t(globalMessage.accountName)}
+                    </Label>
+                    <Field
+                      type="StyledText"
+                      name="accountName"
+                      placeholder={t(globalMessage.accountName)}
+                      component={Input}
+                    />
+                    <Label marginTop asterisk>
+                      {t(globalMessage.accountNumber)}
+                    </Label>
+                    <Field
+                      type="StyledText"
+                      name="accountNumber"
+                      placeholder={t(globalMessage.accountNumber)}
+                      component={Input}
+                    />
+                    <Row style={{ marginTop: 20 }}>
+                      <Checkbox />
+                      <Label>{t(message.saveThisAccountFutureUse)}</Label>
+                    </Row>
+                  </Col>
+                </Row>
+              ) : null}
+
+              <StyledDiv
+                style={{ display: 'flex', margin: '0 auto', width: '300px' }}
+              >
+                <Button
+                  BackButton
+                  onClick={() =>
+                    setIsTransferFundVisible(!setIsTransferFundVisible)
+                  }
+                >
+                  {t(globalMessage.cancel)}
+                </Button>{' '}
+                <Button NextButton type="primary" onClick={handleSubmit}>
+                  {t(globalMessage.proceed)}
+                </Button>
+              </StyledDiv>
+            </Form>
+          )}
+        </Formik>
+      </Modal>
+
+      {/* Transfer fund request confirm modal */}
+      <Modal
+        isOpen={isConfirmTransferFundVisible}
+        style={{
+          content: {
+            height: '350px',
+            width: '560px',
+            margin: '0 auto',
+            padding: '0',
+            overflow: 'hidden',
+          },
+        }}
+      >
+        <StyledDiv header>{t(message.confirmTransferFundRequest)}</StyledDiv>
+        <Row
+          align="middle"
+          justify="center"
+          style={{ padding: 30 }}
+          gutter={[0, 10]}
+        >
+          <Col align="middle" justify="center" span={12}>
+            <StyledText gray content={t(message.currentBalance)} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText content="" />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText gray content={t(message.withdrawAmount)} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText content={withdraw.amount} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText gray content={t(message.remainingBalance)} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText content="" />
+          </Col>
+          <Col
+            align="middle"
+            justify="center"
+            span={12}
+            style={{ marginTop: 30 }}
+          >
+            <StyledText gray content={t(message.paymentGateway)} />
+          </Col>
+          <Col
+            align="middle"
+            justify="center"
+            span={12}
+            style={{ marginTop: 30 }}
+          >
+            <StyledText content={withdraw.gatewayType} />
+          </Col>
+        </Row>
+        <Row align="middle" justify="center" gutter={20}>
+          <Col>
             <Button
-              style={{ height: 55, width: 190, borderColor: 'transparent' }}
-              onClick={() => setIsInputVisible(false)}
+              BackButton
+              noMargin
+              onClick={() =>
+                setIsConfirmTransferFundVisible(
+                  !setIsConfirmTransferFundVisible,
+                )
+              }
             >
+              <StyledText strong content={t(globalMessage.back)} />
               <img src="/images/paypal.svg" alt="paypal" />
             </Button>
           </Col>
-          <Col span={12}>
-            <Button
-              chooseStandard
-              style={{ height: 55, borderColor: 'transparent', marginTop: 0 }}
-              icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
-              onClick={() => setIsInputVisible(true)}
-            >
-              {t(globalMessage.bank)}
+          <Col>
+            <Button NextButton noMargin type="primary" onClick={onConfirm}>
+              {t(globalMessage.confirm)}
             </Button>
           </Col>
         </Row>
-        {isInputVisible ? (
-          <Row style={{ paddingLeft: 50 }}>
-            <Col span={20}>
-              <Label marginTop asterisk>
-                {t(globalMessage.bankName)}
-              </Label>
-              <Input placeholder="Bank Name" />
-              <Label marginTop asterisk>
-                {t(globalMessage.accountName)}
-              </Label>
-              <Input placeholder="Account Name" />
-              <Label marginTop asterisk>
-                {t(globalMessage.accountNumber)}
-              </Label>
-              <Input placeholder="Account Number" />
-              <Row style={{ marginTop: 20 }}>
-                <Checkbox />
-                <Label>{t(message.saveThisAccountFutureUse)}</Label>
-              </Row>
-            </Col>
-          </Row>
-        ) : null}
-
-        <StyledDiv
-          style={{ display: 'flex', margin: '0 auto', width: '300px' }}
-        >
-          <Button BackButton onClick={() => setVisible(false)}>
-            {t(globalMessage.cancel)}
-          </Button>{' '}
-          <Button NextButton type="primary">
-            {t(globalMessage.proceed)}
-          </Button>
-        </StyledDiv>
       </Modal>
     </>
   );
@@ -499,17 +667,21 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
 
 Wallet.propTypes = {
   bankList: PropTypes.any,
+  withdraw: PropTypes.any,
   doGetBankList: PropTypes.func,
   doRemoveBank: PropTypes.func,
+  doWithdraw: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   bankList: makeSelectBankList(),
+  withdraw: makeSelectWithdraw(),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
   doGetBankList: () => dispatch(getBankList()),
   doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
+  doWithdraw: (payload) => dispatch(withdraws(payload)),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

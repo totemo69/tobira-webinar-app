@@ -271,7 +271,12 @@
     "webinarTitle": "Webinar Title",
     "amount": "Amount",
     "paymentMethod": "Payment Method",
-    "status": "Status"
+    "status": "Status",
+    "confirmTransferFundRequest": "Confirm Transfer Fund Request",
+    "currentBalance": "Current Balance :",
+    "withdrawAmount": "Withdraw Amount :",
+    "remainingBalance": "Remaining Balance :",
+    "paymentGateway": "Payment Gateway :"
   },
 
   "plan": {

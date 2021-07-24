@@ -4,6 +4,9 @@ import {
   ADD_BANK,
   SET_BANK,
   REMOVE_BANK,
+  WITHDRAWS,
+  UPDATE_BANK,
+  SET_WITHDRAW,
 } from './types';
 
 export const getBankList = () => ({
@@ -25,15 +28,23 @@ export const setBank = (payload) => ({
   payload,
 });
 
-export const updateBank = (id, payload, onCallback = null) => ({
-  type: SET_BANK,
-  id,
+export const updateBank = (payload) => ({
+  type: UPDATE_BANK,
   payload,
-  onCallback,
 });
 
 export const removeBank = (id, onCallback = null) => ({
   type: REMOVE_BANK,
   id,
   onCallback,
+});
+
+export const withdraws = (payload) => ({
+  type: WITHDRAWS,
+  payload,
+});
+
+export const setWithdraw = (payload) => ({
+  type: SET_WITHDRAW,
+  payload,
 });

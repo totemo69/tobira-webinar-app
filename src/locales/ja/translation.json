@@ -244,9 +244,9 @@
     "miniMumRequiredAmount": "最低限必要な量：",
     "selectPaymentGateway": "ペイメントゲートウェイを選択",
     "saveThisAccountFutureUse": "将来の使用のためにこのアカウントを保存します",
-      "transferFundRequestSuccess": "送金リクエストの成功！",
+    "transferFundRequestSuccess": "送金リクエストの成功！",
     "successfullySentTransferFundRequest": "送金リクエストを正常に送信しました",
-      "bankAccountAdded": "銀行口座が追加されました！",
+    "bankAccountAdded": "銀行口座が追加されました！",
     "successfullyAddedBankAccount": "銀行口座が正常に追加されました。",
     "bankAccountDeleted": "銀行口座が削除されました！",
     "successfullyDeletedBankAccount": "銀行口座を正常に削除しました",
@@ -264,7 +264,12 @@
     "webinarTitle": "ウェビナータイトル",
     "amount": "出金金額",
     "paymentMethod": "支払い方法",
-    "status": "ステータス"
+    "status": "ステータス",
+    "confirmTransferFundRequest": "送金リクエストの確認",
+    "currentBalance": "経常収支 ：",
+    "withdrawAmount": "金額を撤回 ：",
+    "remainingBalance": "保たれているバランス ：",
+    "paymentGateway": "ペイメントゲートウェイ："
   },
 
   "plan": {
