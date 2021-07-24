@@ -11,7 +11,10 @@ module.exports = withTM({
   webpack5: false,
   i18n,
   images: {
-    domains: ['tobira-webinar-dev.s3.ap-northeast-1.amazonaws.com'],
+    domains: [
+      'tobira-webinar-dev.s3.ap-northeast-1.amazonaws.com',
+      'tobira-webinar-dev.s3.amazonaws.com',
+    ],
   },
   webpack(config, options) {
     config.module.rules.push({

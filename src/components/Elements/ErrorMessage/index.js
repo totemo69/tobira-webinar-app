@@ -6,6 +6,7 @@
 
 import { ErrorMessage } from 'formik';
 import styled from 'styled-components';
+import LocalizeError from '@/utils/i18nError';
 
 const TextRed = styled.span`
   margin: 0 auto 10px;
@@ -14,6 +15,15 @@ const TextRed = styled.span`
   font-weight: 600;
 `;
 
-const ErrorMsg = ({ name }) => <ErrorMessage name={name} component={TextRed} />;
+const ErrorMsg = ({ name }) => (
+  <ErrorMessage
+    name={name}
+    render={(msg) => (
+      <TextRed>
+        <LocalizeError errorCode={msg} />
+      </TextRed>
+    )}
+  />
+);
 
 export default ErrorMsg;

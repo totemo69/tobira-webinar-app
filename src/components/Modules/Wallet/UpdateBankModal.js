@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '@/components/Elements/Title';
 import { Field, Form, Formik } from 'formik';
 import { Col, Row } from 'antd';
 import Label from '@/components/Elements/Labels';
 import globalMessage from '@/messages/global';
 import Input from '@/components/Elements/Input';
-import ErrorMessage from '@/components/Elements/ErrorMessage';
 import Button from '@/components/Elements/Button';
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import { useTranslation } from 'next-i18next';
@@ -16,21 +15,25 @@ import { LOADING_PREFIX } from '@/utils/constants';
 import { updateBank } from '@/states/wallet/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { addBankValidationSchema } from '@/validations/wallet';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
+import { makeSelectAddBank } from '@/states/wallet/selector';
 
 export function UpdateBankModal({
   isLoading,
   doUpdateBank,
   visible,
   title,
-  onOk,
   onClose,
   okText,
+  bank,
 }) {
   const { t } = useTranslation();
 
+  useEffect(() => {}, []);
+
   const onSubmit = (values) => {
     doUpdateBank(values);
-    onOk();
   };
 
   return (
@@ -42,12 +45,13 @@ export function UpdateBankModal({
       </div>
       <Formik
         initialValues={{
-          bankName: '',
-          accountName: '',
-          accountNumber: '',
+          bankName: bank.bankName,
+          accountName: bank.accountName,
+          accountNumber: bank.accountNumber,
         }}
         onSubmit={onSubmit}
         enableReinitialize
+        validationSchema={addBankValidationSchema}
       >
         {({ handleSubmit }) => (
           <Form>
@@ -59,7 +63,7 @@ export function UpdateBankModal({
                 <Field
                   type="text"
                   name="bankName"
-                  placeholder="Bank Name"
+                  placeholder={t(globalMessage.bankName)}
                   component={Input}
                 />
                 <ErrorMessage name="bankName" />
@@ -69,18 +73,20 @@ export function UpdateBankModal({
                 <Field
                   type="text"
                   name="accountName"
-                  placeholder="Account Name"
+                  placeholder={t(globalMessage.accountName)}
                   component={Input}
                 />
+                <ErrorMessage name="accountName" />
                 <Label marginTop asterisk>
                   {t(globalMessage.accountNumber)}
                 </Label>
                 <Field
                   type="text"
                   name="accountNumber"
-                  placeholder="Account Number"
+                  placeholder={t(globalMessage.accountNumber)}
                   component={Input}
                 />
+                <ErrorMessage name="accountNumber" />
               </Col>
             </Row>
             <Row
@@ -114,17 +120,19 @@ export function UpdateBankModal({
 }
 
 UpdateBankModal.propTypes = {
+  bank: PropTypes.any,
   isLoading: PropTypes.bool,
   doUpdateBank: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  bank: makeSelectAddBank(),
 });
 
 function mapDispatchProps(dispatch) {
   return {
-    doUpdateBank: (id, payload) => dispatch(updateBank(id, payload)),
+    doUpdateBank: (payload) => dispatch(updateBank(payload)),
   };
 }
 

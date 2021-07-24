@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
@@ -6,10 +7,17 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
-import { Row, Col } from 'antd';
+import { Row, Col, message } from 'antd';
 import globalMessage from '@/messages/global';
-import message from '@/messages/login';
-
+import localMessage from '@/messages/login';
+import validationMessage from '@/messages/validation';
+import { LOADING_PREFIX } from '@/utils/constants';
+import {
+  makeSelectLoading,
+  makeSelectLoadingStatus,
+  makeSelectError,
+} from '@/states/global/selector';
+import { clearErrors } from '@/states/global/actions';
 import Layout from '@/components/Layouts/Guest';
 import Form from '@/components/Elements/Form';
 import Title from '@/components/Elements/Title';
@@ -23,22 +31,30 @@ import Image from '@/components/Elements/Image';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
 import { authenticateUser } from '@/states/login/action';
-import { makeSelectIsLogin } from '@/states/login/selector';
 import validationSchema from '@/validations/login';
 
-export function Login({ doLogin }) {
+export function Login({
+  doLogin,
+  isLoading,
+  loginStatus,
+  errorMessage,
+  clearErrorMessage,
+}) {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback((values) => {
-    console.log(values);
-    setIsLoading(true);
-    doLogin(values, (errors) => {
-      console.log(errors);
-      // translateApiError(errors, formikAction, intl);
-      setIsLoading(false);
-    });
+    doLogin(values);
   });
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!loginStatus && errorMessage) {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
+      }
+    }
+  }, [isLoading, loginStatus]);
 
   return (
     <>
@@ -77,7 +93,7 @@ export function Login({ doLogin }) {
                     <ErrorMessage name="password" />
                   </Div>
                   <Div marginY betweenCenter>
-                    <Checkbox content={t(message.rememberMe)} />
+                    <Checkbox content={t(localMessage.rememberMe)} />
                     <Link
                       href="/forgot-password"
                       name={t(globalMessage.forgotPassword)}
@@ -92,8 +108,8 @@ export function Login({ doLogin }) {
                     {t(globalMessage.login)}
                   </Button>
                   <Div center>
-                    {t(message.createAccount)}{' '}
-                    <Link href="/sign-up" name={t(message.signHere)} />
+                    {t(localMessage.createAccount)}{' '}
+                    <Link href="/sign-up" name={t(localMessage.signHere)} />
                   </Div>
                 </Form>
               )}
@@ -116,18 +132,24 @@ export function Login({ doLogin }) {
 }
 
 Login.propTypes = {
-  // authenticateUser: PropTypes.func,
-  // isLoggedIn: PropTypes.bool,
+  doLogin: PropTypes.func,
+  isLoading: PropTypes.bool,
+  loginStatus: PropTypes.bool,
+  errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoggedIn: makeSelectIsLogin(),
+  isLoading: makeSelectLoading(LOADING_PREFIX.LOGIN),
+  loginStatus: makeSelectLoadingStatus(LOADING_PREFIX.LOGIN),
+  errorMessage: makeSelectError(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     doLogin: (payload, errCallback) =>
       dispatch(authenticateUser(payload, errCallback)),
+    clearErrorMessage: () => dispatch(clearErrors()),
   };
 }
 

@@ -12,6 +12,8 @@ import { makeSelectWebinarRegistration } from '@/states/webinar/selector';
 import Input, { LabelGroup } from '@/components/Elements/Input';
 import Labels from '@/components/Elements/Labels';
 import Button from '@/components/Elements/Button';
+import { webinarRegistration } from '@/validations/webinar';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
 import classNames from './index.module.css';
 
 const WebinarRegistrationForm = ({
@@ -34,8 +36,9 @@ const WebinarRegistrationForm = ({
       initialValues={{ formFields: registerForm.formFields }}
       onSubmit={onSubmit}
       enableReinitialize
+      validationSchema={webinarRegistration}
     >
-      {({ values, handleSubmit }) => (
+      {({ handleSubmit }) => (
         <Form>
           {formDetails.formFields.map((field, index) => (
             <LabelGroup key={`label.${field.fieldName}`} spacing="large">
@@ -50,9 +53,9 @@ const WebinarRegistrationForm = ({
                 size="large"
                 initialValues={`values.formFields.${index}.${field.fieldName}`}
               />
+              <ErrorMessage name={`formFields.${index}.${field.fieldName}`} />
             </LabelGroup>
           ))}
-          {console.log(values)}
           <Row justify="end" className={classNames.spacer}>
             <Col lg={12} xs={24}>
               <Row>

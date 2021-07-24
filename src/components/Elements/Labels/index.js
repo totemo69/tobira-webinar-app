@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const StyledLabels = styled.label`
   margin-bottom: 0.25rem;
-  width: 80%;
+  width: 90%;
   display: block;
   font-size: 12px;
   font-weight: 500;

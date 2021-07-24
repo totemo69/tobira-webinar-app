@@ -18,6 +18,7 @@ import globalMessage from '@/messages/global';
 import Button from '@/components/Elements/Button';
 import { makeSelectLoading } from '@/states/global/selector';
 import { LOADING_PREFIX } from '@/utils/constants';
+import { addBankValidationSchema } from '@/validations/wallet';
 
 export function BankModal({
   isLoading,
@@ -50,6 +51,7 @@ export function BankModal({
         }}
         onSubmit={onSubmit}
         enableReinitialize
+        validationSchema={addBankValidationSchema}
       >
         {({ handleSubmit }) => (
           <Form>
@@ -74,6 +76,7 @@ export function BankModal({
                   placeholder="Account Name"
                   component={Input}
                 />
+                <ErrorMessage name="accountName" />
                 <Label marginTop asterisk>
                   {t(globalMessage.accountNumber)}
                 </Label>
@@ -83,6 +86,7 @@ export function BankModal({
                   placeholder="Account Number"
                   component={Input}
                 />
+                <ErrorMessage name="accountNumber" />
               </Col>
             </Row>
             <Row

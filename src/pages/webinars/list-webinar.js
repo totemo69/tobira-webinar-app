@@ -29,7 +29,7 @@ import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import Search from '@/components/Elements/Search';
-import Modal from '@/components/Elements/Modal';
+import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
@@ -200,48 +200,53 @@ export function ListOfWebinar({
             />
           </Card>
         </Div>
-        <Modal
-          isOpen={isOpenModal}
+        <StyledModal
+          visible={isOpenModal}
           onRequestClose={closeModal}
           ariaHideApp={false}
-          overlayClassName="Overlay"
           marginTop
           noPadding
+          width={450}
+          footer={null}
+          closable={false}
         >
           <Row>
             <Col span={24}>
-              <Div widthFull noMargin>
+              <Div widthFull noMargin style={{ zIndex: '9999' }}>
                 <Div modal noMargin center>
                   <Image
                     src="/images/warning.svg"
                     alt="success icon"
                     modalIcon
                   />
-                  <Title modalTitle>{t(globalMessage.warning)}!</Title>
+                  <Title modalTitle>{t(globalMessage.warning)}</Title>
                 </Div>
                 <Div flexColCenter widthFull heightFull>
                   <Div center marginYLarge>
                     {t(message.setupMessage)}
                   </Div>
                 </Div>
-                <Div widthFull marginTopLarge heightFull>
-                  <Row>
-                    <Col span={12}>
-                      <Button onClick={closeModal} defaultButton>
-                        {t(message.buttonLater)}
-                      </Button>
-                    </Col>
-                    <Col span={12}>
-                      <Button onClick={connectToZoom} type="primary">
-                        {t(message.buttonSetup)}
-                      </Button>
-                    </Col>
-                  </Row>
-                </Div>
+                <Row align="middle" justify="center" style={{ padding: 40 }}>
+                  <Col align="middle" justify="center" span={12}>
+                    <Button onClick={closeModal} defaultButton>
+                      {t(message.buttonLater)}
+                    </Button>
+                  </Col>
+                  <Col align="middle" justify="center" span={12}>
+                    <Button
+                      default
+                      type="primary"
+                      onClick={connectToZoom}
+                      style={{ width: 140 }}
+                    >
+                      {t(message.buttonSetup)}
+                    </Button>
+                  </Col>
+                </Row>
               </Div>
             </Col>
           </Row>
-        </Modal>
+        </StyledModal>
       </Layout>
     </>
   );
