@@ -56,7 +56,9 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
             </Div>
             <Div flexColCenter widthFull paddingTop>
               <Div center>
-                <Labels center>{t(localMessage.copyMessage)}</Labels>
+                <Labels center style={{ width: '100%' }}>
+                  {t(localMessage.copyMessage)}
+                </Labels>
                 <Input
                   readOnly
                   addonAfter={

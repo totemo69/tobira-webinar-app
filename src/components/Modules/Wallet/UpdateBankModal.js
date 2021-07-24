@@ -15,6 +15,9 @@ import { LOADING_PREFIX } from '@/utils/constants';
 import { updateBank } from '@/states/wallet/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { addBankValidationSchema } from '@/validations/wallet';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
+import { makeSelectAddBank } from '@/states/wallet/selector';
 
 export function UpdateBankModal({
   isLoading,
@@ -23,6 +26,7 @@ export function UpdateBankModal({
   title,
   onClose,
   okText,
+  bank,
 }) {
   const { t } = useTranslation();
 
@@ -41,12 +45,13 @@ export function UpdateBankModal({
       </div>
       <Formik
         initialValues={{
-          bankName: 'mayBank',
-          accountName: '123',
-          accountNumber: '13222',
+          bankName: bank.bankName,
+          accountName: bank.accountName,
+          accountNumber: bank.accountNumber,
         }}
         onSubmit={onSubmit}
         enableReinitialize
+        validationSchema={addBankValidationSchema}
       >
         {({ handleSubmit }) => (
           <Form>
@@ -55,7 +60,13 @@ export function UpdateBankModal({
                 <Label marginTop asterisk>
                   {t(globalMessage.bankName)}
                 </Label>
-                <Field type="text" name="bankName" component={Input} />
+                <Field
+                  type="text"
+                  name="bankName"
+                  placeholder={t(globalMessage.bankName)}
+                  component={Input}
+                />
+                <ErrorMessage name="bankName" />
                 <Label marginTop asterisk>
                   {t(globalMessage.accountName)}
                 </Label>
@@ -65,6 +76,7 @@ export function UpdateBankModal({
                   placeholder={t(globalMessage.accountName)}
                   component={Input}
                 />
+                <ErrorMessage name="accountName" />
                 <Label marginTop asterisk>
                   {t(globalMessage.accountNumber)}
                 </Label>
@@ -74,6 +86,7 @@ export function UpdateBankModal({
                   placeholder={t(globalMessage.accountNumber)}
                   component={Input}
                 />
+                <ErrorMessage name="accountNumber" />
               </Col>
             </Row>
             <Row
@@ -107,12 +120,14 @@ export function UpdateBankModal({
 }
 
 UpdateBankModal.propTypes = {
+  bank: PropTypes.any,
   isLoading: PropTypes.bool,
   doUpdateBank: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  bank: makeSelectAddBank(),
 });
 
 function mapDispatchProps(dispatch) {

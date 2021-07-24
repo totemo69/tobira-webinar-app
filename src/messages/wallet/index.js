@@ -149,6 +149,10 @@ const message = {
     key: `${scope}.paymentGateway`,
     default: 'Payment Gateway :',
   }),
+  enterPaypalAccount: Object.values({
+    key: `${scope}.enterPaypalAccount`,
+    default: 'Enter Paypal Account',
+  }),
 };
 
 export default message;
