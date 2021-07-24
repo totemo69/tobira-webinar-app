@@ -1,20 +1,33 @@
 import * as Yup from 'yup';
 
+export function noWhitespace(message) {
+  return this.test(
+    'noWhitespace',
+    message,
+    (value) => value && !value.includes(' '),
+  );
+}
+
+Yup.addMethod(Yup.string, 'noWhitespace', noWhitespace);
+
 const validationSchema = Yup.object({
   email: Yup.string()
-    .required('Email address is a required field.')
-    .email('Invalid email format.'),
+    .required('email.required')
+    .email('email.validEmail')
+    .max(254, 'email.fieldMax'),
   username: Yup.string()
-    .required('Username is a required field.')
-    .min(6, 'Minimum of ${min} characters.')
-    .max(30, 'Max of ${max} characters.'),
+    .required('username.required')
+    .noWhitespace('usernameAlphaNumeric')
+    .min(6, 'usernameMinMax')
+    .max(20, 'usernameMinMax'),
   password: Yup.string()
-    .required('Password is a required field.')
-    .min(6, 'Minimum of ${min} characters.')
-    .max(30, 'Max of ${max} characters.'),
+    .required('password.required')
+    .min(6, 'passwordMinMax')
+    .max(20, 'passwordMinMax')
+    .matches(/^[a-z0-9]+$/i, 'passwordAlphaNumeric'),
   confirmPassword: Yup.string()
-    .required('Confirm password is a required field.')
-    .oneOf([Yup.ref('password'), null], 'Password match'),
+    .required('confirmPassword.required')
+    .oneOf([Yup.ref('password'), null], 'confirmPassMatch'),
 });
 
 export default validationSchema;

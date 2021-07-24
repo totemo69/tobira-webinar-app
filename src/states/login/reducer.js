@@ -1,10 +1,8 @@
 import produce from 'immer';
-import { AUTH_LOGIN_USER, AUTH_LOGIN_SUCCESS } from './types';
+import { SET_LOGIN } from './types';
 
 export const initialState = {
-  isLoading: false,
   login: [],
-  error: null,
   isLoggedIn: false,
 };
 
@@ -12,11 +10,7 @@ export const initialState = {
 const authenticate = (state = initialState, { type, payload }) =>
   produce(state, (draft) => {
     switch (type) {
-      case AUTH_LOGIN_USER:
-        draft.isLoading = true;
-        break;
-      case AUTH_LOGIN_SUCCESS: {
-        draft.isLoading = false;
+      case SET_LOGIN: {
         draft.login = payload;
         draft.isLoggedIn = true;
         break;

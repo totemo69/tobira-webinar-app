@@ -304,7 +304,19 @@
   "validation": {
     "email": "Email address",
     "password": "Password",
+    "username": "Username",
+    "confirmPassword": "Confirm Password",
     "required": "is required.",
-    "validEmail": "Invalid email address."
+    "validEmail": "The email address or password that you have entered is incorrect.",
+    "invalidLogin": "The email address or password that you have entered is incorrect.",
+    "confirmPassMatch": "Confirm Password doesnt match with Password",
+    "fieldMax": " must not exceed {max} characters.",
+    "fieldMin": " must be at least {min} characters.",
+    "usernameMinMax": "Username must be 6 to 20 characters",
+    "usernameAlphaNumeric": "Username only accepts alphanumeric characters",
+    "passwordMinMax": "Password must be 6 to 20 characters",
+    "passwordAlphaNumeric": "Password only accepts alphanumeric characters",
+    "userExist": "Email Address is already associated with an account."
+
   }
 }

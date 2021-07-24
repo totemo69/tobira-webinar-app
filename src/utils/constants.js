@@ -60,6 +60,7 @@ export const WEBINAR_ROUTE = {
 };
 
 export const LOADING_PREFIX = {
+  LOGIN: 'login',
   ACCOUNT: 'account',
   WEBINAR_LIST: 'webinar-list',
   WEBINAR_DETAILS: 'webinar-details',

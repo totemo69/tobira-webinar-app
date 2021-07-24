@@ -15,11 +15,11 @@ import {
   makeSelectLoadingStatus,
   makeSelectError,
 } from '@/states/global/selector';
-
+import { clearErrors } from '@/states/global/actions';
 import validationSchema from '@/validations/signup';
 import globalMessage from '@/messages/global';
 import localMessage from '@/messages/signUp';
-
+import validationMessage from '@/messages/validation';
 import Layout from '@/components/Layouts/Guest';
 import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
@@ -33,19 +33,27 @@ import Image from '@/components/Elements/Image';
 import Form from '@/components/Elements/Form';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
-export function SignUp({ doSignUp, isLoading, signupStatus, errorMessage }) {
+export function SignUp({
+  doSignUp,
+  isLoading,
+  signupStatus,
+  errorMessage,
+  clearErrorMessage,
+}) {
   const { t } = useTranslation();
   const [successModal, setSuccessModal] = useState(false);
 
   useEffect(() => {
     if (!isLoading) {
-      if (signupStatus) {
+      if (signupStatus && !errorMessage) {
         setSuccessModal(true);
-      } else if (errorMessage) {
-        message.error(errorMessage);
+      } else if (!signupStatus && errorMessage) {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
       }
     }
-  }, [isLoading, signupStatus, errorMessage]);
+  }, [isLoading, signupStatus]);
 
   /* eslint-disable no-param-reassign */
   const onSubmit = useCallback((values, { resetForm }) => {
@@ -201,6 +209,7 @@ SignUp.propTypes = {
   isLoading: PropTypes.bool,
   signupStatus: PropTypes.bool,
   errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -211,6 +220,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchProps = (dispatch) => ({
   doSignUp: (payload) => dispatch(signUp(payload)),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
