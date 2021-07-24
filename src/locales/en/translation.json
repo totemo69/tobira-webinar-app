@@ -304,6 +304,7 @@
   "validation": {
     "email": "Email address",
     "password": "Password",
-    "required": "is required."
+    "required": "is required.",
+    "validEmail": "Invalid email address."
   }
 }

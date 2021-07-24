@@ -297,6 +297,7 @@
   "validation": {
     "email": "メールアドレス",
     "password": "パスワード",
-    "required": "は必須入力です。"
+    "required": "は必須項目です。",
+    "validEmail": "無効な電子メールアドレス"
   }
 }

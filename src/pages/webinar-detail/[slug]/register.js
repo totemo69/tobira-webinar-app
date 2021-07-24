@@ -13,7 +13,7 @@ const WebinarDetail = ({ postDetail }) => (
       <meta property="og:title" content={postDetail.title} key="title" />
       <meta
         property="og:description"
-        content="My page title"
+        content={postDetail.title}
         key="description"
       />
     </Head>
