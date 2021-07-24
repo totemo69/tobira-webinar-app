@@ -38,6 +38,7 @@ export const API = {
   BANKS: `${Url}/banks`,
   UPLOAD: `${Url}/files`,
   WITHDRAWS: `${Url}/withdraws`,
+  TRANSACTION: `${Url}/transactions`,
 };
 
 export const WEBINAR_ROUTE = {
@@ -77,6 +78,7 @@ export const LOADING_PREFIX = {
   ATTENDEEDETAIL: 'attendeedetail',
   WALLET: 'wallet',
   WITHDRAWS: 'withdraws',
+  TRANSACTION: 'transaction',
 };
 
 export const SCHEDULE_TYPE = {

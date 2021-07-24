@@ -8,6 +8,7 @@ import loginSaga from '@/states/login/saga';
 import signupSaga from '@/states/sign-up/saga';
 import accountSaga from '@/states/accounts/saga';
 import walletSaga from '@/states/wallet/saga';
+import transactionSaga from '@/states/transaction/saga';
 
 function* rootSaga() {
   yield all([
@@ -20,6 +21,7 @@ function* rootSaga() {
     signupSaga(),
     accountSaga(),
     walletSaga(),
+    transactionSaga(),
   ]);
 }
 

@@ -269,7 +269,8 @@
     "currentBalance": "経常収支 ：",
     "withdrawAmount": "金額を撤回 ：",
     "remainingBalance": "保たれているバランス ：",
-    "paymentGateway": "ペイメントゲートウェイ："
+    "paymentGateway": "ペイメントゲートウェイ：",
+    "enterPaypalAccount": "Paypalアカウントを入力してください"
   },
 
   "plan": {
