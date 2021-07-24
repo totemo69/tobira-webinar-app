@@ -56,11 +56,15 @@ import {
   makeSelectBankList,
   makeSelectWithdraw,
 } from '@/states/wallet/selector';
+import { makeSelectTransactionList } from '@/states/transaction/selector';
 import { withdrawalValidationSchema } from '@/validations/wallet';
+import { getTransaction } from '@/states/transaction/actions';
 
 export function Wallet({
   doGetBankList,
+  getTransactionHistory,
   bankList,
+  transactionHistoryList,
   doRemoveBank,
   doWithdraw,
   withdraw,
@@ -70,6 +74,7 @@ export function Wallet({
 
   useEffect(() => {
     doGetBankList();
+    getTransactionHistory();
   }, []);
 
   const [bankId, setBankId] = useState(null);
@@ -148,41 +153,17 @@ export function Wallet({
     setIsTransferSuccessModalVisible(true);
   };
 
-  const dataSource = [
-    {
-      dateTime: 'April 05,2021 10:20',
-      transaction: ['Payment for Webinar'],
-      amount: '+100JPY',
-      status: ['Pending'],
-      action: '',
-    },
-    {
-      dateTime: 'April 05,2021 10:20',
-      transaction: ['Withdrawal'],
-      amount: '-100JPY',
-      status: ['Completed'],
-      action: '',
-    },
-    {
-      dateTime: 'April 05,2021 10:20',
-      transaction: ['Payment for Webinar'],
-      amount: '+100JPY',
-      status: ['Credited'],
-      action: '',
-    },
-  ];
-
   const dataTable = [
     {
       title: 'Date and Time',
-      dataIndex: 'dateTime',
+      dataIndex: ['fields', 'transactionDate'],
       sorter: {
         multiple: 3,
       },
     },
     {
       title: 'Transaction',
-      dataIndex: 'transaction',
+      dataIndex: ['fields', 'transactionType'],
       sorter: {
         multiple: 3,
       },
@@ -212,14 +193,14 @@ export function Wallet({
     },
     {
       title: 'Amount',
-      dataIndex: 'amount',
+      dataIndex: ['fields', 'amount'],
       sorter: {
         multiple: 3,
       },
     },
     {
       title: 'Status',
-      dataIndex: 'status',
+      dataIndex: ['fields', 'status'],
       sorter: {
         multiple: 3,
       },
@@ -448,7 +429,7 @@ export function Wallet({
           </Div>
           <Table
             columns={dataTable}
-            dataSource={dataSource}
+            dataSource={transactionHistoryList}
             pagination={{ position: ['bottomCenter'] }}
           />
         </Card>
@@ -694,19 +675,23 @@ export function Wallet({
 
 Wallet.propTypes = {
   bankList: PropTypes.any,
+  transactionHistoryList: PropTypes.any,
   withdraw: PropTypes.any,
   doGetBankList: PropTypes.func,
+  getTransactionHistory: PropTypes.func,
   doRemoveBank: PropTypes.func,
   doWithdraw: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   bankList: makeSelectBankList(),
+  transactionHistoryList: makeSelectTransactionList(),
   withdraw: makeSelectWithdraw(),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
   doGetBankList: () => dispatch(getBankList()),
+  getTransactionHistory: () => dispatch(getTransaction()),
   doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
   doWithdraw: (payload) => dispatch(withdraws(payload)),
 });

@@ -276,7 +276,8 @@
     "currentBalance": "Current Balance :",
     "withdrawAmount": "Withdraw Amount :",
     "remainingBalance": "Remaining Balance :",
-    "paymentGateway": "Payment Gateway :"
+    "paymentGateway": "Payment Gateway :",
+    "enterPaypalAccount": "Enter Paypal Account"
   },
 
   "plan": {
