@@ -2,8 +2,8 @@
   "global": {
     "h1": "簡単な例",
     "login": "ログイン",
-    "email": "電子メールアドレス",
-    "enterEmail": "メールアドレスを入力",
+    "email": "メールアドレス",
+    "enterEmail": "メールアドレスを入力してください",
     "password": "パスワード",
     "enterPassword": "パスワードを入力してください",
     "username": "ユーザー名",
@@ -64,9 +64,9 @@
     "verificationMsg": "確認メールがメールアカウントに送信されました。 メールを確認し、リンクをクリックして確認してください"
   },
   "login": {
-    "rememberMe": "私を覚えてますか",
+    "rememberMe": "ログイン情報を保存する",
     "createAccount": "アカウントを作成する？",
-    "signHere": "ここでサインアップ"
+    "signHere": "ここでサインアップする"
   },
   "forgotPassword": {
     "forgotPasswordText": "メールアドレスを入力すると、新しいアドレスを設定する手順が記載されたメールが送信されます",
@@ -297,7 +297,18 @@
   "validation": {
     "email": "メールアドレス",
     "password": "パスワード",
+    "username": "ユーザー名",
+    "confirmPassword": "パスワード（確認）",
     "required": "は必須項目です。",
-    "validEmail": "無効な電子メールアドレス"
+    "validEmail": "無効な電子メールアドレス",
+    "invalidLogin": "メールアドレスおよびパスワードをご確認ください。",
+    "confirmPassMatch": "『パスワード』と『パスワード確認』の内容が一致していません。",
+    "fieldMax": "は {max} 文字以下で入力してください。",
+    "fieldMin": "は半角英数字 {min} 字で入力してください。",
+    "usernameMinMax": "ユーザー名は半角英数字6~30字で入力してください。",
+    "usernameAlphaNumeric": "ユーザー名は半角英字と数字を組み合わせてください。",
+    "passwordMinMax": "パスワードは半角英数字6~20字で入力してください。",
+    "passwordAlphaNumeric": "パスワードは半角英字と数字を組み合わせてください。",
+    "userExist": "メールアドレスは既に登録されています。"
   }
 }

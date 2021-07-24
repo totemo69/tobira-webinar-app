@@ -38,9 +38,15 @@ function checkStatus(response) {
     Router.push(WEBINAR_ROUTE.LOGIN);
   }
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
+  return response.text().then((text) => {
+    const data = text && JSON.parse(text);
+    console.log(data);
+    return Promise.reject(data);
+  });
+
+  // const error = new Error(response.statusText);
+  // error.response = response;
+  // throw error;
 }
 
 export function RequestOptions(Method, body = {}, withAuth = false) {
