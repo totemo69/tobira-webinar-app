@@ -202,6 +202,10 @@ const message = {
     key: `${scope}.currencySymbol`,
     default: 'JPY',
   }),
+  confirm: Object.values({
+    key: `${scope}.confirm`,
+    default: 'Confirm',
+  }),
 };
 
 export default message;

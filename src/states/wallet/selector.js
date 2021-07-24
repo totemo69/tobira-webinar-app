@@ -12,5 +12,8 @@ const makeSelectBankList = () =>
 const makeSelectAddBank = () =>
   createSelector(selectWalletDomain, (substate) => substate.bank);
 
+const makeSelectWithdraw = () =>
+  createSelector(selectWalletDomain, (substate) => substate.withdraw);
+
 export default makeSelectWallet;
-export { makeSelectBankList, makeSelectAddBank };
+export { makeSelectBankList, makeSelectAddBank, makeSelectWithdraw };

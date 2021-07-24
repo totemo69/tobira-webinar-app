@@ -46,7 +46,7 @@ export function BankModal({
         initialValues={{
           user: 'admin',
           branchCode: '1234',
-          branchName: 'adminbranch',
+          branchName: 'adminBranch',
           accountType: 'admin',
           status: 'active',
           bankName: '',
