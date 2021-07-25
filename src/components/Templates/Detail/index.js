@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { Row, Col, Typography } from 'antd';
 import { useTranslation } from 'next-i18next';
 import { WEBINAR_ROUTE } from '@/utils/constants';
+import { DateIsBefore } from '@/utils/dateUtils';
 import localMessage from '@/messages/webinarDetail';
 
 import Button from '@/components/Elements/Button';
@@ -18,6 +19,7 @@ export default function Detail({ postDetail }) {
   const { t } = useTranslation();
   const route = useRouter();
   const [isShareVisible, setShareVisible] = useState(false);
+
   const onRegister = () => {
     route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${postDetail.slug}/register`);
   };
@@ -68,6 +70,7 @@ export default function Detail({ postDetail }) {
           <Row className={classNames.registerBtnRow}>
             <Col span={24}>
               <Button
+                disabled={!DateIsBefore(postDetail.schedules[0].dateTime)}
                 onClick={onRegister}
                 type="primary"
                 noBoxShadow

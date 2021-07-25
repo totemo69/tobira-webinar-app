@@ -14,6 +14,8 @@ module.exports = withTM({
     domains: [
       'tobira-webinar-dev.s3.ap-northeast-1.amazonaws.com',
       'tobira-webinar-dev.s3.amazonaws.com',
+      'https://tobira-webinar.s3.amazonaws.com',
+      'https://tobira-webinar.s3.ap-northeast-1.amazonaws.com',
     ],
   },
   webpack(config, options) {

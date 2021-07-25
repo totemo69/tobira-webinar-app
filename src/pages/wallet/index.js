@@ -19,13 +19,10 @@ import {
   MoreOutlined,
   EditFilled,
   CloseCircleFilled,
-  EyeFilled,
-  ArrowDownOutlined,
-  ArrowUpOutlined,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
-import { Row, Col, Dropdown, Menu, Tag } from 'antd';
+import { Row, Col, Dropdown, Menu } from 'antd';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -34,7 +31,7 @@ import Card from '@/components/Elements/Card';
 import Span from '@/components/Elements/Span';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
-import Table from '@/components/Elements/Table';
+// import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
@@ -59,6 +56,9 @@ import {
 import { makeSelectTransactionList } from '@/states/transaction/selector';
 import { withdrawalValidationSchema } from '@/validations/wallet';
 import { getTransaction } from '@/states/transaction/actions';
+import TransactionHistoryTable from '@/components/Modules/Wallet/TransactionHistoryTable';
+import { LOADING_PREFIX } from '@/utils/constants';
+import { makeSelectLoading } from '@/states/global/selector';
 
 export function Wallet({
   doGetBankList,
@@ -68,6 +68,7 @@ export function Wallet({
   doRemoveBank,
   doWithdraw,
   withdraw,
+  isLoading,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -78,6 +79,8 @@ export function Wallet({
   }, []);
 
   const [bankId, setBankId] = useState(null);
+
+  const [displayCount, setDisplayCount] = useState(10);
 
   const [isTransferFundVisible, setIsTransferFundVisible] = useState(false);
   const [isConfirmTransferFundVisible, setIsConfirmTransferFundVisible] =
@@ -137,10 +140,6 @@ export function Wallet({
     setIsBankUpdatedSuccessModalVisible(true);
   };
 
-  const onViewTransactionDetails = () => {
-    setIsWithdrawalModalVisible(true);
-  };
-
   const onProceed = (payload) => {
     dispatch(setWithdraw(payload));
     setIsTransferFundVisible(!setIsTransferFundVisible);
@@ -152,92 +151,6 @@ export function Wallet({
     setIsConfirmTransferFundVisible(!setIsConfirmTransferFundVisible);
     setIsTransferSuccessModalVisible(true);
   };
-
-  const dataTable = [
-    {
-      title: 'Date and Time',
-      dataIndex: ['fields', 'transactionDate'],
-      sorter: {
-        multiple: 3,
-      },
-    },
-    {
-      title: 'Transaction',
-      dataIndex: ['fields', 'transactionType'],
-      sorter: {
-        multiple: 3,
-      },
-      render: (titles) => (
-        <>
-          {titles.map((title) => {
-            const transaction =
-              title.length > 10 ? (
-                <>
-                  <ArrowDownOutlined style={{ color: '#4CAF50' }} />
-                  <StyledText black content="Payment for webinar" />
-                </>
-              ) : (
-                <>
-                  <ArrowUpOutlined style={{ color: '#FF0033' }} />
-                  <StyledText black content="Withdrawal" />
-                </>
-              );
-            return (
-              <>
-                <StyledText black content={transaction} />
-              </>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Amount',
-      dataIndex: ['fields', 'amount'],
-      sorter: {
-        multiple: 3,
-      },
-    },
-    {
-      title: 'Status',
-      dataIndex: ['fields', 'status'],
-      sorter: {
-        multiple: 3,
-      },
-      render: (status) => (
-        <>
-          {status.map((stat) => {
-            let color = stat.length > 7 ? '#4CAF50' : '#FFA000';
-            if (stat === 'pending') {
-              color = '#FFA000';
-            }
-            return (
-              <Tag color={color} key={stat}>
-                {stat}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      sorter: {
-        multiple: 3,
-      },
-      render: () => (
-        <Button
-          noBoxShadow
-          type="text"
-          icon={<EyeFilled style={{ color: '#0E71EB' }} />}
-          onClick={onViewTransactionDetails}
-        >
-          <StyledText blue strong content="View" />
-        </Button>
-      ),
-    },
-  ];
 
   const bankItems = bankList.map((bank) => (
     <Col span={8} key={bank.id}>
@@ -418,6 +331,7 @@ export function Wallet({
                 showPages
                 defaultValue="10"
                 suffixIcon={<CaretDownFilled />}
+                onChange={setDisplayCount}
               >
                 <Option value="10">10</Option>
                 <Option value="20">20</Option>
@@ -427,10 +341,10 @@ export function Wallet({
               </Select>
             </Div>
           </Div>
-          <Table
-            columns={dataTable}
+          <TransactionHistoryTable
+            displayCount={displayCount}
             dataSource={transactionHistoryList}
-            pagination={{ position: ['bottomCenter'] }}
+            loading={isLoading}
           />
         </Card>
       </Layout>
@@ -681,12 +595,14 @@ Wallet.propTypes = {
   getTransactionHistory: PropTypes.func,
   doRemoveBank: PropTypes.func,
   doWithdraw: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   bankList: makeSelectBankList(),
   transactionHistoryList: makeSelectTransactionList(),
   withdraw: makeSelectWithdraw(),
+  isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
