@@ -49,7 +49,10 @@
     "submit": "Submit",
     "currencySymbol": "JPY",
     "back": "Back",
-    "next": "Next"
+    "next": "Next",
+    "shareTitle": "Share",
+    "shareWebinarLink": "Share event link",
+    "linkCopied": "Copied!"
   },
 
   "storyBook" : {
@@ -268,7 +271,13 @@
     "webinarTitle": "Webinar Title",
     "amount": "Amount",
     "paymentMethod": "Payment Method",
-    "status": "Status"
+    "status": "Status",
+    "confirmTransferFundRequest": "Confirm Transfer Fund Request",
+    "currentBalance": "Current Balance :",
+    "withdrawAmount": "Withdraw Amount :",
+    "remainingBalance": "Remaining Balance :",
+    "paymentGateway": "Payment Gateway :",
+    "enterPaypalAccount": "Enter Paypal Account"
   },
 
   "plan": {
@@ -291,5 +300,24 @@
     "completedMessage": "Zoom account has been successfully added.",
     "createNewWebinar": "Create a webinar now",
     "gotoAccounts" : "Go to Accounts"
+  },
+
+  "validation": {
+    "email": "Email address",
+    "password": "Password",
+    "username": "Username",
+    "confirmPassword": "Confirm Password",
+    "required": "is required.",
+    "validEmail": "The email address or password that you have entered is incorrect.",
+    "invalidLogin": "The email address or password that you have entered is incorrect.",
+    "confirmPassMatch": "Confirm Password doesnt match with Password",
+    "fieldMax": " must not exceed {max} characters.",
+    "fieldMin": " must be at least {min} characters.",
+    "usernameMinMax": "Username must be 6 to 20 characters",
+    "usernameAlphaNumeric": "Username only accepts alphanumeric characters",
+    "passwordMinMax": "Password must be 6 to 20 characters",
+    "passwordAlphaNumeric": "Password only accepts alphanumeric characters",
+    "userExist": "Email Address is already associated with an account."
+
   }
 }

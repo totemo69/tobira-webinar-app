@@ -1,4 +1,4 @@
-import { Row, Col } from 'antd';
+import { Row, Col, message } from 'antd';
 import { useTranslation } from 'next-i18next';
 
 import { WEBINAR_ROUTE } from '@/utils/constants';
@@ -20,10 +20,11 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
   if (typeof window !== 'undefined') {
     hostname = window.location.origin;
   }
+  const url = `${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarUrl}`;
+
   const onCopy = () => {
-    navigator.clipboard.writeText(
-      `${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarUrl}`,
-    );
+    navigator.clipboard.writeText(url);
+    message.success(t(globalMessage.linkCopied));
   };
   return (
     <Modal
@@ -55,13 +56,15 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
             </Div>
             <Div flexColCenter widthFull paddingTop>
               <Div center>
-                <Labels center>{t(localMessage.copyMessage)}</Labels>
+                <Labels center style={{ width: '100%' }}>
+                  {t(localMessage.copyMessage)}
+                </Labels>
                 <Input
                   readOnly
                   addonAfter={
                     <CustomIcon onClick={onCopy} src="/images/copy.svg" />
                   }
-                  defaultValue={`${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarUrl}`}
+                  defaultValue={url}
                 />
               </Div>
             </Div>

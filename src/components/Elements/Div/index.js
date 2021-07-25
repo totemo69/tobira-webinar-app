@@ -455,7 +455,7 @@ const StyledDiv = style.div`
     props.addBankList &&
     css`
       border-radius: 5px;
-      width: 100%;
+      width: 91%;
       margin: 15px;
       text-align: center;
     `}

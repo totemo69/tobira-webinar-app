@@ -1,9 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
+import { Formik, Field, Form } from 'formik';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { getBankList, removeBank } from '@/states/wallet/actions';
+import {
+  getBankList,
+  removeBank,
+  setWithdraw,
+  withdraws,
+} from '@/states/wallet/actions';
 import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
@@ -13,13 +19,10 @@ import {
   MoreOutlined,
   EditFilled,
   CloseCircleFilled,
-  EyeFilled,
-  ArrowDownOutlined,
-  ArrowUpOutlined,
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
-import { Row, Col, Dropdown, Menu, Tag } from 'antd';
+import { Row, Col, Dropdown, Menu } from 'antd';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -28,34 +31,60 @@ import Card from '@/components/Elements/Card';
 import Span from '@/components/Elements/Span';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
-import Table from '@/components/Elements/Table';
+// import Table from '@/components/Elements/Table';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import { StyledDiv } from '@/components/Modules/Modals';
 import Input from '@/components/Elements/Input';
-import Text from '@/components/Elements/Text';
+import StyledText from '@/components/Elements/Text';
 import Checkbox from '@/components/Elements/Checkbox';
 import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
 import BankModal from '@/components/Modules/Wallet/BankModal';
 import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
 import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
+import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
 
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
-import { makeSelectBankList } from '@/states/wallet/selector';
+import {
+  makeSelectBankList,
+  makeSelectWithdraw,
+} from '@/states/wallet/selector';
+import { makeSelectTransactionList } from '@/states/transaction/selector';
+import { withdrawalValidationSchema } from '@/validations/wallet';
+import { getTransaction } from '@/states/transaction/actions';
+import TransactionHistoryTable from '@/components/Modules/Wallet/TransactionHistoryTable';
+import { LOADING_PREFIX } from '@/utils/constants';
+import { makeSelectLoading } from '@/states/global/selector';
 
-export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
+export function Wallet({
+  doGetBankList,
+  getTransactionHistory,
+  bankList,
+  transactionHistoryList,
+  doRemoveBank,
+  doWithdraw,
+  withdraw,
+  isLoading,
+}) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     doGetBankList();
+    getTransactionHistory();
   }, []);
 
   const [bankId, setBankId] = useState(null);
 
-  const [visible, setVisible] = useState(false);
+  const [displayCount, setDisplayCount] = useState(10);
+
+  const [isTransferFundVisible, setIsTransferFundVisible] = useState(false);
+  const [isConfirmTransferFundVisible, setIsConfirmTransferFundVisible] =
+    useState(false);
   const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
     useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -78,8 +107,8 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
   const [isWithdrawalModalVisible, setIsWithdrawalModalVisible] =
     useState(false);
 
-  const viewVisible = () => {
-    setVisible(true);
+  const showTransferFundsModal = () => {
+    setIsTransferFundVisible(true);
   };
 
   const onAddBankAccount = () => {
@@ -87,9 +116,9 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
     setIsBankAddedSuccessModalVisible(true);
   };
 
-  const onUpdateBankAccount = () => {
-    setIsBankEditModalVisible(false);
-    setIsBankUpdatedSuccessModalVisible(true);
+  const showRemoveBankModal = (id) => {
+    setBankId(id);
+    setIsBankDeleteModalVisible(true);
   };
 
   const onRemoveBankAccount = useCallback((id) => {
@@ -101,124 +130,27 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
     });
   });
 
-  const onViewTransactionDetails = () => {
-    setIsWithdrawalModalVisible(true);
-  };
-
-  const showRemoveBankModal = (id) => {
+  const showUpdateModal = (id) => {
     setBankId(id);
-    setIsBankDeleteModalVisible(true);
+    setIsBankEditModalVisible(true);
   };
 
-  const dataSource = [
-    {
-      dateTime: 'April 05,2021 10:20',
-      transaction: ['Payment for Webinar'],
-      amount: '+100JPY',
-      status: ['Pending'],
-      action: '',
-    },
-    {
-      dateTime: 'April 05,2021 10:20',
-      transaction: ['Withdrawal'],
-      amount: '-100JPY',
-      status: ['Completed'],
-      action: '',
-    },
-    {
-      dateTime: 'April 05,2021 10:20',
-      transaction: ['Payment for Webinar'],
-      amount: '+100JPY',
-      status: ['Credited'],
-      action: '',
-    },
-  ];
+  const onUpdateBankAccount = () => {
+    setIsBankEditModalVisible(false);
+    setIsBankUpdatedSuccessModalVisible(true);
+  };
 
-  const dataTable = [
-    {
-      title: 'Date and Time',
-      dataIndex: 'dateTime',
-      sorter: {
-        multiple: 3,
-      },
-    },
-    {
-      title: 'Transaction',
-      dataIndex: 'transaction',
-      sorter: {
-        multiple: 3,
-      },
-      render: (titles) => (
-        <>
-          {titles.map((title) => {
-            const transaction =
-              title.length > 10 ? (
-                <>
-                  <ArrowDownOutlined style={{ color: '#4CAF50' }} />
-                  <Text black content="Payment for webinar" />
-                </>
-              ) : (
-                <>
-                  <ArrowUpOutlined style={{ color: '#FF0033' }} />
-                  <Text black content="Withdrawal" />
-                </>
-              );
-            return (
-              <>
-                <Text black content={transaction} />
-              </>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Amount',
-      dataIndex: 'amount',
-      sorter: {
-        multiple: 3,
-      },
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      sorter: {
-        multiple: 3,
-      },
-      render: (status) => (
-        <>
-          {status.map((stat) => {
-            let color = stat.length > 7 ? '#4CAF50' : '#FFA000';
-            if (stat === 'pending') {
-              color = '#FFA000';
-            }
-            return (
-              <Tag color={color} key={stat}>
-                {stat}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      sorter: {
-        multiple: 3,
-      },
-      render: () => (
-        <Button
-          noBoxShadow
-          type="text"
-          icon={<EyeFilled style={{ color: '#0E71EB' }} />}
-          onClick={onViewTransactionDetails}
-        >
-          <Text blue strong content="View" />
-        </Button>
-      ),
-    },
-  ];
+  const onProceed = (payload) => {
+    dispatch(setWithdraw(payload));
+    setIsTransferFundVisible(!setIsTransferFundVisible);
+    setIsConfirmTransferFundVisible(true);
+  };
+
+  const onConfirm = () => {
+    doWithdraw();
+    setIsConfirmTransferFundVisible(!setIsConfirmTransferFundVisible);
+    setIsTransferSuccessModalVisible(true);
+  };
 
   const bankItems = bankList.map((bank) => (
     <Col span={8} key={bank.id}>
@@ -230,7 +162,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
               <Menu.Item
                 key="1"
                 icon={<EditFilled />}
-                onClick={() => setIsBankEditModalVisible(true)}
+                onClick={() => showUpdateModal(bank.id)}
               >
                 {t(globalMessage.edit)}
               </Menu.Item>
@@ -240,7 +172,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 style={{ color: '#FF0033' }}
                 onClick={() => showRemoveBankModal(bank.id)}
               >
-                <Text red content={t(globalMessage.delete)} />
+                <StyledText red content={t(globalMessage.delete)} />
               </Menu.Item>
             </Menu>
           }
@@ -295,8 +227,8 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
           onOk={onAddBankAccount}
           okText={t(globalMessage.add)}
         />
-        {/* Bank account edit modal */}
-        <BankModal
+        {/* Bank account update modal */}
+        <UpdateBankModal
           visible={isBankEditModalVisible}
           onClose={() => setIsBankEditModalVisible(false)}
           title={t(message.editBankAccount)}
@@ -315,14 +247,16 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
         <TransactionModal
           visible={isPaymentWebinarModalVisible}
           title={t(message.transactionDetails)}
-          subTitle={<Text blue strong content={t(message.paymentForWebinar)} />}
+          subTitle={
+            <StyledText blue strong content={t(message.paymentForWebinar)} />
+          }
           onClose={() => setIsPaymentWebinarModalVisible(false)}
         />
         {/* Transaction Details Withdrawal */}
         <TransactionModal
           visible={isWithdrawalModalVisible}
           title={t(message.transactionDetails)}
-          subTitle={<Text blue strong content={t(message.withdrawal)} />}
+          subTitle={<StyledText blue strong content={t(message.withdrawal)} />}
           onClose={() => setIsWithdrawalModalVisible(false)}
         />
 
@@ -343,13 +277,13 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 <Col>- 20,000 JPY</Col>
               </Row>
             </Div>
-            <Div style={{ margin: 'auto 0' }}>
+            <Div style={{ margin: 'auto 0', float: 'right' }}>
               <Button
                 style={{ height: '50px', width: '50%' }}
                 type="primary"
-                onClick={() => viewVisible()}
+                onClick={showTransferFundsModal}
               >
-                <Image transferFunds src="Images/transfer-funds.svg" />{' '}
+                <Image transferFunds src="/images/transfer-funds.svg" />{' '}
                 {t(message.transferFunds)}
               </Button>
             </Div>
@@ -372,7 +306,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 <Div addBankList>
                   <Button
                     onClick={() => setIsBankAddModalVisible(true)}
-                    style={{ width: '50px', textAlign: 'center' }}
+                    style={{ width: '50px', StyledtextAlign: 'center' }}
                     type="primary"
                   >
                     <PlusSquareFilled style={{ fontSize: '20px' }} />
@@ -397,6 +331,7 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
                 showPages
                 defaultValue="10"
                 suffixIcon={<CaretDownFilled />}
+                onChange={setDisplayCount}
               >
                 <Option value="10">10</Option>
                 <Option value="20">20</Option>
@@ -406,17 +341,17 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
               </Select>
             </Div>
           </Div>
-          <Table
-            columns={dataTable}
-            dataSource={dataSource}
-            pagination={{ position: ['bottomCenter'] }}
+          <TransactionHistoryTable
+            displayCount={displayCount}
+            dataSource={transactionHistoryList}
+            loading={isLoading}
           />
         </Card>
       </Layout>
 
       {/* Transfer fund request modal */}
       <Modal
-        isOpen={visible}
+        isOpen={isTransferFundVisible}
         style={{
           content: {
             height: '500px',
@@ -426,72 +361,227 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
           },
         }}
       >
-        <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
-        <StyledDiv style={{ padding: '20px' }}>
-          <Label asterisk>
-            {t(message.enterAmountToTransfer)}{' '}
-            <span style={{ float: 'right' }}>
-              ({t(message.miniMumRequiredAmount)} 100 {t(globalMessage.jpy)})
-            </span>
-          </Label>
-          <Input type="number" placeholder="0" prefix="￥" suffix="JPY" />
-        </StyledDiv>
-        <StyledDiv style={{ padding: '20px' }}>
-          <Label>{t(message.selectPaymentGateway)}</Label>
-        </StyledDiv>
-        <Row>
-          <Col span={12} style={{ paddingLeft: 40 }}>
+        <Formik
+          initialValues={{
+            user: 'admin',
+            amount: '',
+            gatewayType: 'Bank',
+            paypal: '',
+            bankName: '',
+            accountName: '',
+            accountNumber: '',
+            status: 'active',
+          }}
+          onSubmit={onProceed}
+          enableReinitialize
+          validationSchema={withdrawalValidationSchema}
+        >
+          {({ handleSubmit }) => (
+            <Form>
+              <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
+              <StyledDiv style={{ padding: '20px' }}>
+                <Label asterisk>
+                  {t(message.enterAmountToTransfer)}{' '}
+                  <span style={{ float: 'right' }}>
+                    ({t(message.miniMumRequiredAmount)} 100{' '}
+                    {t(globalMessage.jpy)})
+                  </span>
+                </Label>
+                <Field
+                  type="number"
+                  name="amount"
+                  component={Input}
+                  prefix="￥"
+                  suffix="JPY"
+                />
+                <ErrorMessage name="amount" />
+              </StyledDiv>
+              <StyledDiv style={{ padding: '20px' }}>
+                <StyledText black content={t(message.selectPaymentGateway)} />
+              </StyledDiv>
+              <Row type="flex" align="middle" justify="center">
+                <Col align="middle" justify="center" span={12}>
+                  <Button
+                    style={{
+                      height: 55,
+                      width: 190,
+                      borderColor: 'transparent',
+                    }}
+                    onClick={() => setIsInputVisible(false)}
+                  >
+                    <img
+                      src="Images/paypal.svg"
+                      alt="paypal"
+                      width="100"
+                      height="50"
+                    />
+                  </Button>
+                </Col>
+                <Col align="middle" justify="center" span={12}>
+                  <Button
+                    chooseStandard
+                    style={{
+                      height: 55,
+                      borderColor: 'transparent',
+                      marginTop: 0,
+                    }}
+                    icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
+                    onClick={() => setIsInputVisible(true)}
+                  >
+                    <StyledText strong blue content={t(globalMessage.bank)} />
+                  </Button>
+                </Col>
+              </Row>
+              {isInputVisible ? (
+                <Row style={{ paddingLeft: 50 }}>
+                  <Col span={20}>
+                    <Label marginTop asterisk>
+                      {t(globalMessage.bankName)}
+                    </Label>
+                    <Field
+                      type="Text"
+                      name="bankName"
+                      placeholder={t(globalMessage.bankName)}
+                      component={Input}
+                    />
+                    <ErrorMessage name="bankName" />
+                    <Label marginTop asterisk>
+                      {t(globalMessage.accountName)}
+                    </Label>
+                    <Field
+                      type="Text"
+                      name="accountName"
+                      placeholder={t(globalMessage.accountName)}
+                      component={Input}
+                    />
+                    <ErrorMessage name="accountName" />
+                    <Label marginTop asterisk>
+                      {t(globalMessage.accountNumber)}
+                    </Label>
+                    <Field
+                      type="Text"
+                      name="accountNumber"
+                      placeholder={t(globalMessage.accountNumber)}
+                      component={Input}
+                    />
+                    <ErrorMessage name="accountNumber" />
+                    <Row style={{ marginTop: 20 }}>
+                      <Checkbox />
+                      <Label>{t(message.saveThisAccountFutureUse)}</Label>
+                    </Row>
+                  </Col>
+                </Row>
+              ) : (
+                <Row style={{ paddingLeft: 50 }}>
+                  <Col span={20}>
+                    <Label marginTop asterisk>
+                      {t(message.enterPaypalAccount)}
+                    </Label>
+                    <Field
+                      type="Text"
+                      name="paypal"
+                      placeholder={t(message.enterPaypalAccount)}
+                      component={Input}
+                    />
+                  </Col>
+                </Row>
+              )}
+
+              <StyledDiv
+                style={{ display: 'flex', margin: '0 auto', width: '300px' }}
+              >
+                <Button
+                  BackButton
+                  onClick={() =>
+                    setIsTransferFundVisible(!setIsTransferFundVisible)
+                  }
+                >
+                  {t(globalMessage.cancel)}
+                </Button>{' '}
+                <Button NextButton type="primary" onClick={handleSubmit}>
+                  {t(globalMessage.proceed)}
+                </Button>
+              </StyledDiv>
+            </Form>
+          )}
+        </Formik>
+      </Modal>
+
+      {/* Transfer fund request confirm modal */}
+      <Modal
+        isOpen={isConfirmTransferFundVisible}
+        style={{
+          content: {
+            height: '350px',
+            width: '560px',
+            margin: '0 auto',
+            padding: '0',
+            overflow: 'hidden',
+          },
+        }}
+      >
+        <StyledDiv header>{t(message.confirmTransferFundRequest)}</StyledDiv>
+        <Row
+          align="middle"
+          justify="center"
+          style={{ padding: 30 }}
+          gutter={[0, 10]}
+        >
+          <Col align="middle" justify="center" span={12}>
+            <StyledText gray content={t(message.currentBalance)} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText content="" />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText gray content={t(message.withdrawAmount)} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText content={withdraw.amount} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText gray content={t(message.remainingBalance)} />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText content="" />
+          </Col>
+          <Col
+            align="middle"
+            justify="center"
+            span={12}
+            style={{ marginTop: 30 }}
+          >
+            <StyledText gray content={t(message.paymentGateway)} />
+          </Col>
+          <Col
+            align="middle"
+            justify="center"
+            span={12}
+            style={{ marginTop: 30 }}
+          >
+            <StyledText content={withdraw.gatewayType} />
+          </Col>
+        </Row>
+        <Row align="middle" justify="center" gutter={20}>
+          <Col>
             <Button
-              style={{ height: 55, width: 190, borderColor: 'transparent' }}
-              onClick={() => setIsInputVisible(false)}
+              BackButton
+              noMargin
+              onClick={() =>
+                setIsConfirmTransferFundVisible(
+                  !setIsConfirmTransferFundVisible,
+                )
+              }
             >
-              <img src="Images/paypal.svg" alt="paypal" />
+              <StyledText strong content={t(globalMessage.back)} />
             </Button>
           </Col>
-          <Col span={12}>
-            <Button
-              chooseStandard
-              style={{ height: 55, borderColor: 'transparent', marginTop: 0 }}
-              icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
-              onClick={() => setIsInputVisible(true)}
-            >
-              {t(globalMessage.bank)}
+          <Col>
+            <Button NextButton noMargin type="primary" onClick={onConfirm}>
+              {t(globalMessage.confirm)}
             </Button>
           </Col>
         </Row>
-        {isInputVisible ? (
-          <Row style={{ paddingLeft: 50 }}>
-            <Col span={20}>
-              <Label marginTop asterisk>
-                {t(globalMessage.bankName)}
-              </Label>
-              <Input placeholder="Bank Name" />
-              <Label marginTop asterisk>
-                {t(globalMessage.accountName)}
-              </Label>
-              <Input placeholder="Account Name" />
-              <Label marginTop asterisk>
-                {t(globalMessage.accountNumber)}
-              </Label>
-              <Input placeholder="Account Number" />
-              <Row style={{ marginTop: 20 }}>
-                <Checkbox />
-                <Label>{t(message.saveThisAccountFutureUse)}</Label>
-              </Row>
-            </Col>
-          </Row>
-        ) : null}
-
-        <StyledDiv
-          style={{ display: 'flex', margin: '0 auto', width: '300px' }}
-        >
-          <Button BackButton onClick={() => setVisible(false)}>
-            {t(globalMessage.cancel)}
-          </Button>{' '}
-          <Button NextButton type="primary">
-            {t(globalMessage.proceed)}
-          </Button>
-        </StyledDiv>
       </Modal>
     </>
   );
@@ -499,17 +589,27 @@ export function Wallet({ doGetBankList, bankList, doRemoveBank }) {
 
 Wallet.propTypes = {
   bankList: PropTypes.any,
+  transactionHistoryList: PropTypes.any,
+  withdraw: PropTypes.any,
   doGetBankList: PropTypes.func,
+  getTransactionHistory: PropTypes.func,
   doRemoveBank: PropTypes.func,
+  doWithdraw: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   bankList: makeSelectBankList(),
+  transactionHistoryList: makeSelectTransactionList(),
+  withdraw: makeSelectWithdraw(),
+  isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
   doGetBankList: () => dispatch(getBankList()),
+  getTransactionHistory: () => dispatch(getTransaction()),
   doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
+  doWithdraw: (payload) => dispatch(withdraws(payload)),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

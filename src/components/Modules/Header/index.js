@@ -1,10 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useTranslation } from 'next-i18next';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { memo, useEffect } from 'react';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import Link from 'next/link';
 import NextImage from 'next/image';
 import globalMessage from '@/messages/global';
 import message from '@/messages/header';
 import { WEBINAR_ROUTE } from '@/utils/constants';
+import { makeSelectProfileDetails } from '@/states/profiles/selector';
+import { getProfile } from '@/states/profiles/action';
 import Hdr from '@/components/Elements/Header';
 import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
@@ -20,13 +27,17 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
-export default function Header({
-  profilePic = '/images/avatar.svg',
-  username = 'tobirauser',
+export function Header({
+  fetchProfile,
+  userDetails,
   withLogo = false,
   withMenu = true,
 }) {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
   const MenuItems = (
     <Menu className="profile-dropdown">
@@ -89,8 +100,14 @@ export default function Header({
           )}
           {withMenu && (
             <>
-              <Image src={profilePic} alt="Picture of the user" userImg />
-              <Dropdown username={username} items={MenuItems} />
+              <Image
+                src={userDetails.profileImage ?? '/images/avatar.svg'}
+                userImg
+              />
+              <Dropdown
+                username={userDetails && userDetails.username}
+                items={MenuItems}
+              />
             </>
           )}
         </Div>
@@ -98,3 +115,22 @@ export default function Header({
     </>
   );
 }
+
+Header.propTypes = {
+  fetchProfile: PropTypes.func,
+  userDetails: PropTypes.any,
+  withLogo: PropTypes.bool,
+  withMenu: PropTypes.bool,
+};
+
+const mapStateToProps = createStructuredSelector({
+  userDetails: makeSelectProfileDetails(),
+});
+
+const mapDispatchProps = (dispatch) => ({
+  fetchProfile: () => dispatch(getProfile()),
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchProps);
+
+export default compose(withConnect, memo)(Header);

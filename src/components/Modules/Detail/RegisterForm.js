@@ -6,12 +6,15 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 import { Formik, Field, Form } from 'formik';
 import { useTranslation } from 'next-i18next';
+import { DateIsBefore } from '@/utils/dateUtils';
 import localMessage from '@/messages/webinarDetail';
 import { setWebinarRegistration } from '@/states/webinar/actions';
 import { makeSelectWebinarRegistration } from '@/states/webinar/selector';
 import Input, { LabelGroup } from '@/components/Elements/Input';
 import Labels from '@/components/Elements/Labels';
 import Button from '@/components/Elements/Button';
+import { webinarRegistration } from '@/validations/webinar';
+import ErrorMessage from '@/components/Elements/ErrorMessage';
 import classNames from './index.module.css';
 
 const WebinarRegistrationForm = ({
@@ -34,8 +37,9 @@ const WebinarRegistrationForm = ({
       initialValues={{ formFields: registerForm.formFields }}
       onSubmit={onSubmit}
       enableReinitialize
+      validationSchema={webinarRegistration}
     >
-      {({ values, handleSubmit }) => (
+      {({ handleSubmit }) => (
         <Form>
           {formDetails.formFields.map((field, index) => (
             <LabelGroup key={`label.${field.fieldName}`} spacing="large">
@@ -49,10 +53,15 @@ const WebinarRegistrationForm = ({
                 component={Input}
                 size="large"
                 initialValues={`values.formFields.${index}.${field.fieldName}`}
+                disabled={
+                  !DateIsBefore(
+                    formDetails.schedules && formDetails.schedules[0].dateTime,
+                  )
+                }
               />
+              <ErrorMessage name={`formFields.${index}.${field.fieldName}`} />
             </LabelGroup>
           ))}
-          {console.log(values)}
           <Row justify="end" className={classNames.spacer}>
             <Col lg={12} xs={24}>
               <Row>
@@ -62,7 +71,17 @@ const WebinarRegistrationForm = ({
                   </Button>
                 </Col>
                 <Col span={12} className={classNames.registerNext}>
-                  <Button type="primary" size="large" onClick={handleSubmit}>
+                  <Button
+                    type="primary"
+                    size="large"
+                    disabled={
+                      !DateIsBefore(
+                        formDetails.schedules &&
+                          formDetails.schedules[0].dateTime,
+                      )
+                    }
+                    onClick={handleSubmit}
+                  >
                     {t(localMessage.nextButton)} {'>'}
                   </Button>
                 </Col>

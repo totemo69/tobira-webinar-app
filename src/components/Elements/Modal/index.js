@@ -11,7 +11,7 @@ const StyledModal = styled(Modal).withConfig({
   shouldForwardProp: (prop) => !['noPadding', 'marginTop'].includes(prop),
 })`
   margin: 0 auto;
-  height: 400px;
+  height: 430px;
   width: 400px;
   background-color: #ffffff;
   box-shadow: 0px 3px 6px #00000029;

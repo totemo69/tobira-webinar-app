@@ -37,6 +37,8 @@ export const API = {
   PAYMENT: `${Url}/payments`,
   BANKS: `${Url}/banks`,
   UPLOAD: `${Url}/files`,
+  WITHDRAWS: `${Url}/withdraws`,
+  TRANSACTION: `${Url}/transactions`,
 };
 
 export const WEBINAR_ROUTE = {
@@ -59,6 +61,7 @@ export const WEBINAR_ROUTE = {
 };
 
 export const LOADING_PREFIX = {
+  LOGIN: 'login',
   ACCOUNT: 'account',
   WEBINAR_LIST: 'webinar-list',
   WEBINAR_DETAILS: 'webinar-details',
@@ -70,11 +73,14 @@ export const LOADING_PREFIX = {
   UPDATE_PROFILE: 'update-profile',
   WEBINAR: 'webinar',
   REGISTER: 'register',
+  REGISTER_CONFIRM: 'register-confirm',
   PAYMENT: 'payment',
   PLAN: 'plan',
   ATTENDEES: 'attendees',
   ATTENDEEDETAIL: 'attendeedetail',
   WALLET: 'wallet',
+  WITHDRAWS: 'withdraws',
+  TRANSACTION: 'transaction',
 };
 
 export const SCHEDULE_TYPE = {

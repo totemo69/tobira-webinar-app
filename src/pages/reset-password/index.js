@@ -74,7 +74,7 @@ export default function ResetPassword() {
                   <Div widthFull noMargin>
                     <Div modal noMargin center>
                       <Image
-                        src="Images/success-icon.svg"
+                        src="/images/success-icon.svg"
                         alt="success icon"
                         modalIcon
                       />
@@ -100,10 +100,10 @@ export default function ResetPassword() {
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src="Images/logo.svg" alt="Tobira Logo" logo />
+              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Image
-              src="Images/illustration3.svg"
+              src="/images/illustration3.svg"
               alt="Forgot password Illustration"
               twoLarger
             />

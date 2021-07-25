@@ -96,7 +96,7 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                         borderRadius: '5px',
                         marginRight: '5px',
                       }}
-                      src="Images/material-add-box.svg"
+                      src="/images/material-add-box.svg"
                     />
                     {t(localMessage.addAccountButton)}
                   </Button>

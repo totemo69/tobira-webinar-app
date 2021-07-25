@@ -129,6 +129,30 @@ const message = {
     key: `${scope}.status`,
     default: 'Status',
   }),
+  confirmTransferFundRequest: Object.values({
+    key: `${scope}.confirmTransferFundRequest`,
+    default: 'Confirm Transfer Fund Request',
+  }),
+  currentBalance: Object.values({
+    key: `${scope}.currentBalance`,
+    default: 'Current Balance :',
+  }),
+  withdrawAmount: Object.values({
+    key: `${scope}.withdrawAmount`,
+    default: 'Withdraw Amount :',
+  }),
+  remainingBalance: Object.values({
+    key: `${scope}.remainingBalance`,
+    default: 'Remaining Balance :',
+  }),
+  paymentGateway: Object.values({
+    key: `${scope}.paymentGateway`,
+    default: 'Payment Gateway :',
+  }),
+  enterPaypalAccount: Object.values({
+    key: `${scope}.enterPaypalAccount`,
+    default: 'Enter Paypal Account',
+  }),
 };
 
 export default message;
