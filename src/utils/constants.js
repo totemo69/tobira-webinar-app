@@ -73,6 +73,7 @@ export const LOADING_PREFIX = {
   UPDATE_PROFILE: 'update-profile',
   WEBINAR: 'webinar',
   REGISTER: 'register',
+  REGISTER_CONFIRM: 'register-confirm',
   PAYMENT: 'payment',
   PLAN: 'plan',
   ATTENDEES: 'attendees',
