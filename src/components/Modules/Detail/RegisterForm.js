@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { Row, Col } from 'antd';
 import { Formik, Field, Form } from 'formik';
 import { useTranslation } from 'next-i18next';
+import { DateIsBefore } from '@/utils/dateUtils';
 import localMessage from '@/messages/webinarDetail';
 import { setWebinarRegistration } from '@/states/webinar/actions';
 import { makeSelectWebinarRegistration } from '@/states/webinar/selector';
@@ -52,6 +53,11 @@ const WebinarRegistrationForm = ({
                 component={Input}
                 size="large"
                 initialValues={`values.formFields.${index}.${field.fieldName}`}
+                disabled={
+                  !DateIsBefore(
+                    formDetails.schedules && formDetails.schedules[0].dateTime,
+                  )
+                }
               />
               <ErrorMessage name={`formFields.${index}.${field.fieldName}`} />
             </LabelGroup>
@@ -65,7 +71,17 @@ const WebinarRegistrationForm = ({
                   </Button>
                 </Col>
                 <Col span={12} className={classNames.registerNext}>
-                  <Button type="primary" size="large" onClick={handleSubmit}>
+                  <Button
+                    type="primary"
+                    size="large"
+                    disabled={
+                      !DateIsBefore(
+                        formDetails.schedules &&
+                          formDetails.schedules[0].dateTime,
+                      )
+                    }
+                    onClick={handleSubmit}
+                  >
                     {t(localMessage.nextButton)} {'>'}
                   </Button>
                 </Col>

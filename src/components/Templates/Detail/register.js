@@ -3,17 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Typography, Row, Col } from 'antd';
+import { Typography, Row, Col, Spin, Modal, message } from 'antd';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { makeSelectLoading } from '@/states/global/selector';
-import { getWebinarPublic, doRegister, doPay } from '@/states/webinar/actions';
+import {
+  makeSelectLoading,
+  makeSelectLoadingStatus,
+  makeSelectError,
+} from '@/states/global/selector';
+import {
+  getWebinarPublic,
+  doRegister,
+  doPay,
+  doConfirmRegister,
+} from '@/states/webinar/actions';
 import {
   makeSelectWebinarPublic,
   makeSelectWebinarAttendee,
   makeSelectWebinarPayment,
 } from '@/states/webinar/selector';
+import { clearErrors } from '@/states/global/actions';
 import { WEBINAR_ROUTE, LOADING_PREFIX } from '@/utils/constants';
+import validationMessage from '@/messages/validation';
 import detailMessage from '@/messages/webinarDetail';
 import RegisterStepper from '@/components/Modules/Detail/RegisterStepper';
 import WebinarRegistrationForm from '@/components/Modules/Detail/RegisterForm';
@@ -30,19 +41,24 @@ const REGISTER_STEPS = {
 
 export function Register({
   getWebinarDetails,
-  // isLoading,
-  // errorMessage,
+  isConfirmationLoading,
+  confirmationStatus,
+  errorMessage,
   isRegistering,
   webinarDetails,
   register,
   attendeeDetails,
   paymentDetails,
   payment,
+  freePayment,
+  clearErrorMessage,
 }) {
   const route = useRouter();
   const { slug } = route.query;
   const { locale } = route;
   const { t } = useTranslation();
+
+  const [isModalVisible, setIsmodalVisible] = useState(false);
 
   useEffect(() => {
     getWebinarDetails({ slug });
@@ -61,13 +77,37 @@ export function Register({
 
   useEffect(() => {
     if (Object.keys(attendeeDetails).length > 0) {
-      payment({
-        callbackUrl: `${locale}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}`,
-        webinarId: attendeeDetails.webinarId,
-        attendeeId: attendeeDetails.id,
-      });
+      setIsmodalVisible(true);
+      if (webinarDetails.price > 0) {
+        payment({
+          callbackUrl: `${locale}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}`,
+          webinarId: attendeeDetails.webinarId,
+          attendeeId: attendeeDetails.id,
+        });
+      } else {
+        freePayment({
+          webinarId: webinarDetails.id,
+          attendeeId: attendeeDetails.id,
+        });
+      }
     }
   }, [attendeeDetails]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      const { message: msg } = errorMessage.error;
+      message.error(t(validationMessage[msg]));
+      clearErrorMessage();
+    }
+  }, [errorMessage]);
+
+  useEffect(() => {
+    if (!isConfirmationLoading) {
+      if (confirmationStatus) {
+        route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}/register-complete`);
+      }
+    }
+  }, [isConfirmationLoading, confirmationStatus]);
 
   useEffect(() => {
     if (Object.keys(paymentDetails).length > 0) {
@@ -130,28 +170,37 @@ export function Register({
           )}
         </Col>
       </Row>
+      <Modal visible={isModalVisible} closable={false} footer={null}>
+        <Row type="flex" justify="center" align="middle">
+          <Spin size="large" style={{ display: 'block' }} />
+        </Row>
+      </Modal>
     </>
   );
 }
 
 Register.propTypes = {
   getWebinarDetails: PropTypes.func,
-  // isLoading: PropTypes.bool,
+  isConfirmationLoading: PropTypes.bool,
+  confirmationStatus: PropTypes.bool,
   isRegistering: PropTypes.bool,
   // isPaying: PropTypes.bool,
-  // errorMessage: PropTypes.any,
+  errorMessage: PropTypes.any,
   webinarDetails: PropTypes.any,
   register: PropTypes.func,
   payment: PropTypes.func,
   attendeeDetails: PropTypes.any,
   paymentDetails: PropTypes.any,
+  freePayment: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // isLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR),
+  isConfirmationLoading: makeSelectLoading(LOADING_PREFIX.REGISTER_CONFIRM),
+  confirmationStatus: makeSelectLoadingStatus(LOADING_PREFIX.REGISTER_CONFIRM),
   isRegistering: makeSelectLoading(LOADING_PREFIX.REGISTER),
   // isPaying: makeSelectLoading(LOADING_PREFIX.PAYMENT),
-  // errorMessage: makeSelectError(),
+  errorMessage: makeSelectError(),
   webinarDetails: makeSelectWebinarPublic(),
   attendeeDetails: makeSelectWebinarAttendee(),
   paymentDetails: makeSelectWebinarPayment(),
@@ -161,6 +210,8 @@ const mapDispatchProps = (dispatch) => ({
   getWebinarDetails: (payload) => dispatch(getWebinarPublic(payload)),
   register: () => dispatch(doRegister()),
   payment: (payload) => dispatch(doPay(payload)),
+  freePayment: (payload) => dispatch(doConfirmRegister(payload)),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);

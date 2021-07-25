@@ -15,6 +15,7 @@ import {
   SET_ATTENDEE,
   SET_PAYMENT,
   UPDATE_WEBINAR,
+  DO_CONFIRM_REGISTRATION,
 } from './types';
 
 export const getWebinarList = (payload) => ({
@@ -72,6 +73,11 @@ export const setWebinarRegistration = (payload) => ({
 
 export const doRegister = () => ({
   type: DO_REGISTER,
+});
+
+export const doConfirmRegister = (payload) => ({
+  type: DO_CONFIRM_REGISTRATION,
+  payload,
 });
 
 export const doPay = (payload) => ({
