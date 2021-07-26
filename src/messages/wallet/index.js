@@ -117,7 +117,7 @@ const message = {
     key: `${scope}.webinarTitle`,
     default: 'Webinar Title',
   }),
-  amount: Object.values({
+  amountInput: Object.values({
     key: `${scope}.amount`,
     default: 'Amount',
   }),
