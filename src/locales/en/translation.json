@@ -269,7 +269,7 @@
     "transactionId": "Transaction ID",
     "transactionDateTime": "Transaction Date and Time",
     "webinarTitle": "Webinar Title",
-    "amount": "Amount",
+    "amountInput": "Amount",
     "paymentMethod": "Payment Method",
     "status": "Status",
     "confirmTransferFundRequest": "Confirm Transfer Fund Request",
@@ -320,7 +320,12 @@
     "usernameAlphaNumeric": "Username only accepts alphanumeric characters",
     "passwordMinMax": "Password must be 6 to 20 characters",
     "passwordAlphaNumeric": "Password only accepts alphanumeric characters",
-    "userExist": "Email Address is already associated with an account."
-
+    "userExist": "Email Address is already associated with an account.",
+    "bankName": "Bank name",
+    "accountName": "Account Name",
+    "accountNumber": "Account Number",
+    "amount": "Amount",
+    "requiredField": "is a required field",
+    "amountMin": "Minimum required amount: 100 JPY"
   }
 }

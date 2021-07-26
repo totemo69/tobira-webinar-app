@@ -24,7 +24,7 @@
     "termsOfService": "利用規約",
     "privacyPolicy": "個人情報保護方針",
     "and": "そして",
-    "listWebinar": "ウェビナーのリスト",
+    "listWebinar": "ウェビナー一覧",
     "show": "公演",
     "entries": "エントリ",
     "search": "探す",
@@ -92,11 +92,11 @@
     "logOut": "ログアウト"
   },
   "webinar": {
-    "title": "ティトル",
+    "title": "タイトル",
     "listOfWebinar": "ウェビナー一覧",
     "schedule": "スケジュール",
-    "attendees": "参加者の数",
-    "status": "状態",
+    "attendees": "申込者数",
+    "status": "ステータス",
     "action": "アクション",
     "search": "捜索",
     "searchPlaceholder": "検索ウェビナーのタイトル",
@@ -121,7 +121,7 @@
     "details": "情報",
     "description": "詳細",
     "date": "日付",
-    "duration": "デュレーション",
+    "duration": "長さ",
     "enterWebinarTitle": "ウェビナーのタイトルを入力してください",
     "email": "Eメール",
     "enterRegistrationFomrName": "登録フォーム名を入力してください",
@@ -170,7 +170,7 @@
     "paymentDateLabel": "取引日時",
     "doneStatusLabel": "完了",
     "notYetStatusLabel": "保留中",
-    "upcomingStatusLabel": "到来",
+    "upcomingStatusLabel": "有効",
     "oneTimePlan": "一度",
     "pendingPaymentLabel": "保留中",
     "failedPaymentLabel": "失敗",
@@ -313,6 +313,12 @@
     "usernameAlphaNumeric": "ユーザー名は半角英字と数字を組み合わせてください。",
     "passwordMinMax": "パスワードは半角英数字6~20字で入力してください。",
     "passwordAlphaNumeric": "パスワードは半角英字と数字を組み合わせてください。",
-    "userExist": "メールアドレスは既に登録されています。"
+    "userExist": "メールアドレスは既に登録されています。",
+    "bankName": "銀行名",
+    "accountName": "アカウント名",
+    "accountNumber": "口座番号",
+    "amount": "額",
+    "requiredField": "必須フィールドです",
+    "amountMin": "最低必要額：100円"
   }
 }

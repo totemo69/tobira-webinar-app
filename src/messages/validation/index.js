@@ -62,6 +62,10 @@ const message = {
     key: `${scope}.userExist`,
     default: 'Email Address is already associated with an account.',
   }),
+  amount: Object.values({
+    key: `${scope}.amount`,
+    default: 'Amount is a required field',
+  }),
   bankName: Object.values({
     key: `${scope}.bankName`,
     default: 'Bank name is a required field',
@@ -69,6 +73,18 @@ const message = {
   accountName: Object.values({
     key: `${scope}.accountName`,
     default: 'Account Name is a required field',
+  }),
+  accountNumber: Object.values({
+    key: `${scope}.accountNumber`,
+    default: 'Account Number is a required field',
+  }),
+  requiredField: Object.values({
+    key: `${scope}.requiredField`,
+    default: 'is a required field',
+  }),
+  amountMin: Object.values({
+    key: `${scope}.amountMin`,
+    default: 'Minimum required amount: 100 JPY',
   }),
 };
 

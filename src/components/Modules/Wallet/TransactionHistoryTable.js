@@ -66,7 +66,7 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
       ),
     },
     {
-      title: t(message.amount),
+      title: t(message.amountInput),
       dataIndex: ['fields', 'amount'],
       sorter: {
         multiple: 3,
