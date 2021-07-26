@@ -10,6 +10,7 @@ import signup from '@/states/sign-up/reducer';
 import accounts from '@/states/accounts/reducer';
 import wallet from '@/states/wallet/reducer';
 import transaction from '@/states/transaction/reducer';
+import forgotpassword from '@/states/forgot-password/reducer';
 
 const rootReducer = combineReducers({
   global,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   accounts,
   wallet,
   transaction,
+  forgotpassword,
 });
 
 export default rootReducer;

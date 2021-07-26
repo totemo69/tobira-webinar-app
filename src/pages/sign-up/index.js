@@ -126,12 +126,12 @@ export function SignUp({
                   <Div marginTop center>
                     {t(message.agreeMessage)}{' '}
                     <Link
-                      href="/terms-of-service-example"
+                      href="/terms-of-service"
                       name={t(globalMessage.termsOfService)}
                     />{' '}
                     {t(globalMessage.and)}{' '}
                     <Link
-                      href="/privacy-policy-example"
+                      href="/privacy-policy"
                       name={t(globalMessage.privacyPolicy)}
                     />
                     .
