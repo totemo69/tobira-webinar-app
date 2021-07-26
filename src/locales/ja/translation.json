@@ -318,6 +318,7 @@
     "accountName": "アカウント名",
     "accountNumber": "口座番号",
     "amount": "額",
-    "requiredField": "必須フィールドです"
+    "requiredField": "必須フィールドです",
+    "amountMin": "最低必要額：100円"
   }
 }

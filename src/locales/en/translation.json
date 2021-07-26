@@ -325,6 +325,7 @@
     "accountName": "Account Name",
     "accountNumber": "Account Number",
     "amount": "Amount",
-    "requiredField": "is a required field"
+    "requiredField": "is a required field",
+    "amountMin": "Minimum required amount: 100 JPY"
   }
 }

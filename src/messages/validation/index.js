@@ -82,6 +82,10 @@ const message = {
     key: `${scope}.requiredField`,
     default: 'is a required field',
   }),
+  amountMin: Object.values({
+    key: `${scope}.amountMin`,
+    default: 'Minimum required amount: 100 JPY',
+  }),
 };
 
 export default message;
