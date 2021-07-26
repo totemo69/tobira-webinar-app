@@ -218,6 +218,10 @@ const message = {
     key: `${scope}.linkCopied`,
     default: 'Copied!',
   }),
+  view: Object.values({
+    key: `${scope}.view`,
+    default: 'View',
+  }),
 };
 
 export default message;

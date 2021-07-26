@@ -62,6 +62,14 @@ const message = {
     key: `${scope}.userExist`,
     default: 'Email Address is already associated with an account.',
   }),
+  bankName: Object.values({
+    key: `${scope}.bankName`,
+    default: 'Bank name is a required field',
+  }),
+  accountName: Object.values({
+    key: `${scope}.accountName`,
+    default: 'Account Name is a required field',
+  }),
 };
 
 export default message;

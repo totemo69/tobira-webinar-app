@@ -43,7 +43,6 @@ import Checkbox from '@/components/Elements/Checkbox';
 import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
 import BankModal from '@/components/Modules/Wallet/BankModal';
 import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
-import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
 import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
@@ -102,10 +101,6 @@ export function Wallet({
     setIsBankDeletedSuccessModalVisible,
   ] = useState(false);
   const [isBankEditModalVisible, setIsBankEditModalVisible] = useState(false);
-  const [isPaymentWebinarModalVisible, setIsPaymentWebinarModalVisible] =
-    useState(false);
-  const [isWithdrawalModalVisible, setIsWithdrawalModalVisible] =
-    useState(false);
 
   const showTransferFundsModal = () => {
     setIsTransferFundVisible(true);
@@ -243,23 +238,6 @@ export function Wallet({
           title={t(message.deleteBankAccount)}
           subTitle={t(message.deleteBankAccountSubTitle)}
         />
-        {/* Transaction Details Payment for Webinar */}
-        <TransactionModal
-          visible={isPaymentWebinarModalVisible}
-          title={t(message.transactionDetails)}
-          subTitle={
-            <StyledText blue strong content={t(message.paymentForWebinar)} />
-          }
-          onClose={() => setIsPaymentWebinarModalVisible(false)}
-        />
-        {/* Transaction Details Withdrawal */}
-        <TransactionModal
-          visible={isWithdrawalModalVisible}
-          title={t(message.transactionDetails)}
-          subTitle={<StyledText blue strong content={t(message.withdrawal)} />}
-          onClose={() => setIsWithdrawalModalVisible(false)}
-        />
-
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
             {t(message.wallet)}
