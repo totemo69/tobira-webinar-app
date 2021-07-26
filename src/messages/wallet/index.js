@@ -153,6 +153,18 @@ const message = {
     key: `${scope}.enterPaypalAccount`,
     default: 'Enter Paypal Account',
   }),
+  dateAndTime: Object.values({
+    key: `${scope}.dateAndTime`,
+    default: 'Date and Time',
+  }),
+  transaction: Object.values({
+    key: `${scope}.transaction`,
+    default: 'Transaction',
+  }),
+  action: Object.values({
+    key: `${scope}.action`,
+    default: 'Action',
+  }),
 };
 
 export default message;

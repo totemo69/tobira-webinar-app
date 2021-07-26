@@ -270,7 +270,10 @@
     "withdrawAmount": "金額を撤回 ：",
     "remainingBalance": "保たれているバランス ：",
     "paymentGateway": "ペイメントゲートウェイ：",
-    "enterPaypalAccount": "Paypalアカウントを入力してください"
+    "enterPaypalAccount": "Paypalアカウントを入力してください",
+    "dateAndTime": "日時",
+    "transaction": "取引",
+    "action": "アクション"
   },
 
   "plan": {

@@ -277,7 +277,10 @@
     "withdrawAmount": "Withdraw Amount :",
     "remainingBalance": "Remaining Balance :",
     "paymentGateway": "Payment Gateway :",
-    "enterPaypalAccount": "Enter Paypal Account"
+    "enterPaypalAccount": "Enter Paypal Account",
+    "dateAndTime": "Date and Time",
+    "transaction": "Transaction",
+    "action": "Action"
   },
 
   "plan": {

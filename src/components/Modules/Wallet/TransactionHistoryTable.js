@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import Table from '@/components/Elements/Table/PaginatedTable';
 import {
   ArrowDownOutlined,
@@ -9,10 +10,24 @@ import StyledText from '@/components/Elements/Text';
 import { Tag } from 'antd';
 import Button from '@/components/Elements/Button';
 
+import message from '@/messages/wallet';
+import globalMessage from '@/messages/global';
+import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
+import { getTransactionDetails } from '@/states/transaction/actions';
+
 function TransactionHistoryTable({ displayCount, dataSource, loading }) {
+  const { t } = useTranslation();
+  const [isPaymentWebinarModalVisible, setIsPaymentWebinarModalVisible] =
+    useState(false);
+
+  const viewTransactionHistory = (id) => {
+    getTransactionDetails(id);
+    setIsPaymentWebinarModalVisible(true);
+  };
+
   const columns = [
     {
-      title: 'Date and Time',
+      title: t(message.dateAndTime),
       dataIndex: ['fields', 'transactionDate'],
       sorter: {
         multiple: 3,
@@ -20,7 +35,7 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
       align: 'center',
     },
     {
-      title: 'Transaction',
+      title: t(message.transaction),
       dataIndex: ['fields', 'transactionType'],
       sorter: {
         multiple: 3,
@@ -51,7 +66,7 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
       ),
     },
     {
-      title: 'Amount',
+      title: t(message.amount),
       dataIndex: ['fields', 'amount'],
       sorter: {
         multiple: 3,
@@ -59,7 +74,7 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
       align: 'center',
     },
     {
-      title: 'Status',
+      title: t(message.status),
       dataIndex: ['fields', 'status'],
       sorter: {
         multiple: 3,
@@ -82,33 +97,44 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
       ),
     },
     {
-      title: 'Action',
+      title: t(message.action),
       dataIndex: 'action',
       sorter: {
         multiple: 3,
       },
       align: 'center',
-      render: () => (
+      render: (id) => (
         <Button
           noBoxShadow
           type="text"
           icon={<EyeFilled style={{ color: '#0E71EB' }} />}
+          onClick={() => viewTransactionHistory(id)}
         >
-          <StyledText blue strong content="View" />
+          <StyledText blue strong content={t(globalMessage.view)} />
         </Button>
       ),
     },
   ];
 
   return (
-    <Table
-      columns={columns}
-      datasource={dataSource}
-      pagination={displayCount}
-      scroll={500}
-      size="small"
-      loading={loading}
-    />
+    <>
+      <TransactionModal
+        visible={isPaymentWebinarModalVisible}
+        title={t(message.transactionDetails)}
+        subTitle={
+          <StyledText blue strong content={t(message.paymentForWebinar)} />
+        }
+        onClose={() => setIsPaymentWebinarModalVisible(false)}
+      />
+      <Table
+        columns={columns}
+        datasource={dataSource}
+        pagination={displayCount}
+        scroll={500}
+        size="small"
+        loading={loading}
+      />
+    </>
   );
 }
 
