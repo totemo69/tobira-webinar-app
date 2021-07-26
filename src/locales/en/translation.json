@@ -326,6 +326,9 @@
     "accountNumber": "Account Number",
     "amount": "Amount",
     "requiredField": "is a required field",
-    "amountMin": "Minimum required amount: 100 JPY"
+    "amountMin": "Minimum required amount: 100 JPY",
+    "resetNotFound": "Your reset token is invalid or already expired.",
+    "tokenExpired": "Your reset token is invalid or already expired."
+
   }
 }

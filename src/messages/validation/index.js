@@ -86,6 +86,14 @@ const message = {
     key: `${scope}.amountMin`,
     default: 'Minimum required amount: 100 JPY',
   }),
+  resetNotFound: Object.values({
+    key: `${scope}.resetNotFound`,
+    default: 'Your reset token is invalid or already expired.',
+  }),
+  tokenExpired: Object.values({
+    key: `${scope}.tokenExpired`,
+    default: 'Your reset token is invalid or already expired.',
+  }),
 };
 
 export default message;

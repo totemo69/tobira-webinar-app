@@ -319,6 +319,8 @@
     "accountNumber": "口座番号",
     "amount": "額",
     "requiredField": "必須フィールドです",
-    "amountMin": "最低必要額：100円"
+    "amountMin": "最低必要額：100円",
+    "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
+    "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。"
   }
 }
