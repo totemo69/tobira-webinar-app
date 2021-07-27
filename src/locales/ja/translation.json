@@ -320,6 +320,7 @@
     "accountName": "アカウント名",
     "accountNumber": "口座番号",
     "amount": "額",
+<<<<<<< HEAD
     "requiredField": " 必須フィールドです",
     "amountMin": "最低必要額：100円",
     "fullName": "フルネーム",
@@ -339,6 +340,10 @@
     "fieldType": "フィールドタイプ",
     "formField": "フォームフィールド",
     "price": "価格",
-    "inValidEmailFormat": "メール形式が無効です。"
+    "inValidEmailFormat": "メール形式が無効です。",
+    "requiredField": "必須フィールドです",
+    "amountMin": "最低必要額：100円",
+    "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
+    "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。"
   }
 }

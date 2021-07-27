@@ -346,6 +346,8 @@
     "fieldType": "Field Type",
     "formField": "Form Fields",
     "price": "Price",
-    "inValidEmailFormat": "Invalid email format."
+    "inValidEmailFormat": "Invalid email format.",
+    "resetNotFound": "Your reset token is invalid or already expired.",
+    "tokenExpired": "Your reset token is invalid or already expired."
   }
 }

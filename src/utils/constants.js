@@ -30,6 +30,8 @@ export const API = {
   WEBINARS: `${Url}/webinars`,
   AUTH_LOGIN: `${Url}/auth/login`,
   AUTH_REGISTER: `${Url}/auth/register`,
+  AUTH_FORGOT: `${Url}/auth/send-password-reset`,
+  AUTH_RESET: `${Url}/auth/reset-password`,
   AUTH_VERIFY: `${Url}/auth/verify`,
   ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
   WEBINAR_PUBLIC_DETAIL_PAGE: `${Url}/webinar-page`,
@@ -81,6 +83,7 @@ export const LOADING_PREFIX = {
   WALLET: 'wallet',
   WITHDRAWS: 'withdraws',
   TRANSACTION: 'transaction',
+  FORGOT_PASSWORD: 'forgot-password',
 };
 
 export const SCHEDULE_TYPE = {
