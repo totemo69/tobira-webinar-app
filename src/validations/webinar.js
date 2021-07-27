@@ -2,60 +2,58 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
   email: Yup.string()
-    .required('Email address is a required field.')
+    .required('email.requiredField')
     .email('Invalid email format.'),
   username: Yup.string()
-    .required('Username is a required field.')
+    .required('username.requiredField')
     .min(6, 'Minimum of ${min} characters.')
     .max(30, 'Max of ${max} characters.'),
   password: Yup.string()
-    .required('Password is a required field.')
+    .required('password.requiredField')
     .min(6, 'Minimum of ${min} characters.')
     .max(30, 'Max of ${max} characters.'),
   confirmPassword: Yup.string()
-    .required('Confirm password is a required field.')
+    .required('confirmPassword.requiredField')
     .oneOf([Yup.ref('password'), null], 'Password match'),
 });
 
 const createWebinar = Yup.object({
-  managementTitle: Yup.string().required(
-    'Management title is a required field.',
-  ),
-  webinarAccount: Yup.string().required('Zoom account is a required field.'),
-  title: Yup.string().required('Title is a required field.'),
-  description: Yup.string().required('Description is a required field.'),
-  frequency: Yup.string().required('Description is a required field.'),
+  managementTitle: Yup.string().required('manageTitle.requiredField'),
+  webinarAccount: Yup.string().required('zoomAccount.requiredField'),
+  title: Yup.string().required('title.requiredField'),
+  description: Yup.string().required('description.requiredField'),
+  frequency: Yup.string().required('frequency.requiredField'),
   schedules: Yup.array()
     .of(
       Yup.object().shape({
-        scheduleDate: Yup.date().required('Date is a required field.'),
-        scheduleTime: Yup.date().required('Time is a required field.'),
+        scheduleDate: Yup.date().required('date.requiredField'),
+        scheduleTime: Yup.date().required('time.requiredField'),
       }),
     )
-    .required('Schedule is required'),
-  durationHour: Yup.number().required('Duration is a required field.'),
-  durationMinute: Yup.string().required('Duration is a required field.'),
+    .required('schedule.requiredField'),
+  durationHour: Yup.number().required('duration.requiredField'),
+  durationMinute: Yup.string().required('duration.requiredField'),
   timezone: Yup.object({
-    label: Yup.string().required('Timezone is a required field.'),
+    label: Yup.string().required('timezone.requiredField'),
   }),
 });
 
 const registrationForm = Yup.object({
-  formName: Yup.string().required('Form Name is a required field.'),
+  formName: Yup.string().required('formName.requiredField'),
   formFields: Yup.array()
     .of(
       Yup.object().shape({
-        fieldName: Yup.string().required('Field Name is a required field.'),
-        fieldType: Yup.string().required('Field Type is a required field.'),
+        fieldName: Yup.string().required('fieldName.requiredField'),
+        fieldType: Yup.string().required('fieldType.requiredField'),
         isRequired: Yup.boolean(),
         options: Yup.array().of(Yup.string()),
       }),
     )
-    .required('Form Fields is required'),
+    .required('formField.requiredField'),
 });
 
 const paymentOptions = Yup.object({
-  price: Yup.number().required('Price is a required field.'),
+  price: Yup.number().required('price.requiredField'),
 });
 
 const webinarRegistration = Yup.object({

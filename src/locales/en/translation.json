@@ -326,6 +326,23 @@
     "accountNumber": "Account Number",
     "amount": "Amount",
     "requiredField": "is a required field",
-    "amountMin": "Minimum required amount: 100 JPY"
+    "amountMin": "Minimum required amount: 100 JPY",
+    "fullName": "Full Name",
+    "contactNo": "Contact Number",
+    "manageTitle": "Management title",
+    "zoomAccount": "Zoom account",
+    "title": "Title",
+    "description": "Description",
+    "frequency": "Frequency",
+    "date": "Date",
+    "time": "Time",
+    "schedule": "Schedule",
+    "duration": "Duration",
+    "timezone": "Timezone",
+    "formName": "Form Name",
+    "fieldName": "Field Name",
+    "fieldType": "Field Type",
+    "formField": "Form Fields",
+    "price": "Price"
   }
 }
