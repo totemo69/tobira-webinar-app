@@ -327,6 +327,8 @@
     "amount": "Amount",
     "requiredField": "is a required field",
     "amountMin": "Minimum required amount: 100 JPY",
+    "resetNotFound": "Your reset token is invalid or already expired.",
+    "tokenExpired": "Your reset token is invalid or already expired.",
     "fullName": "Full Name",
     "contactNo": "Contact Number",
     "manageTitle": "Management title",
