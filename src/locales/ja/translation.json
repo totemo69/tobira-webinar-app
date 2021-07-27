@@ -51,7 +51,9 @@
     "next": "次",
     "shareTitle": "シェア",
     "shareWebinarLink": "イベントリンクをシェアする",
-    "linkCopied": "コピー!"
+    "linkCopied": "コピー!",
+    "english":  "English 英語",
+    "japanese":  "Japanese 日本語"
   },
   "storyBook": {
     "title": "題名"
