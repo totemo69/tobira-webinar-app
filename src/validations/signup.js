@@ -13,7 +13,7 @@ Yup.addMethod(Yup.string, 'noWhitespace', noWhitespace);
 const validationSchema = Yup.object({
   email: Yup.string()
     .required('email.required')
-    .email('email.validEmail')
+    .email('validEmail')
     .max(254, 'email.fieldMax'),
   username: Yup.string()
     .required('username.required')

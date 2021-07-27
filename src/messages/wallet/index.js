@@ -118,7 +118,7 @@ const message = {
     default: 'Webinar Title',
   }),
   amountInput: Object.values({
-    key: `${scope}.amount`,
+    key: `${scope}.amountInput`,
     default: 'Amount',
   }),
   paymentMethod: Object.values({
