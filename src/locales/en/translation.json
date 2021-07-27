@@ -343,6 +343,7 @@
     "fieldName": "Field Name",
     "fieldType": "Field Type",
     "formField": "Form Fields",
-    "price": "Price"
+    "price": "Price",
+    "inValidEmailFormat": "Invalid email format."
   }
 }

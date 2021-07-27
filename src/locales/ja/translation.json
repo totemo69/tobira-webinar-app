@@ -336,6 +336,7 @@
     "fieldName": "フィールド名",
     "fieldType": "フィールドタイプ",
     "formField": "フォームフィールド",
-    "price": "価格"
+    "price": "価格",
+    "inValidEmailFormat": "メール形式が無効です。"
   }
 }

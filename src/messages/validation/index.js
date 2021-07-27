@@ -154,6 +154,10 @@ const message = {
     key: `${scope}.price`,
     default: 'Price',
   }),
+  inValidEmailFormat: Object.values({
+    key: `${scope}.inValidEmailFormat`,
+    default: 'Invalid email format.',
+  }),
 };
 
 export default message;

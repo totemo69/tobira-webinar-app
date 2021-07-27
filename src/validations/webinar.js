@@ -3,15 +3,15 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object({
   email: Yup.string()
     .required('email.requiredField')
-    .email('Invalid email format.'),
+    .email('inValidEmailFormat'),
   username: Yup.string()
     .required('username.requiredField')
-    .min(6, 'Minimum of ${min} characters.')
-    .max(30, 'Max of ${max} characters.'),
+    .min(6, 'fieldMin')
+    .max(30, 'fieldMax'),
   password: Yup.string()
     .required('password.requiredField')
-    .min(6, 'Minimum of ${min} characters.')
-    .max(30, 'Max of ${max} characters.'),
+    .min(6, 'fieldMin')
+    .max(30, 'fieldMax'),
   confirmPassword: Yup.string()
     .required('confirmPassword.requiredField')
     .oneOf([Yup.ref('password'), null], 'Password match'),
