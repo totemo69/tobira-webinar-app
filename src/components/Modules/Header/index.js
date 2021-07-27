@@ -17,6 +17,7 @@ import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Dropdown from '@/components/Elements/Dropdown';
 import Menu from '@/components/Elements/Menu';
+import { StyledSelect } from '@/components/Elements/Select/SimpleSelect';
 import { logout } from '@/lib/auth';
 
 import {
@@ -26,6 +27,8 @@ import {
   // CreditCardFilled,
   LogoutOutlined,
 } from '@ant-design/icons';
+
+const { Option } = StyledSelect;
 
 export function Header({
   fetchProfile,
@@ -108,6 +111,23 @@ export function Header({
                 username={userDetails && userDetails.username}
                 items={MenuItems}
               />
+              <StyledSelect
+                defaultValue="english"
+                bordered={false}
+                style={{ marginLeft: 8 }}
+              >
+                <Option value="english">
+                  <img
+                    src="/images/united-states-flag-icon.png"
+                    alt="english"
+                  />{' '}
+                  {t(globalMessage.english)}
+                </Option>
+                <Option value="japanese">
+                  <img src="/images/japan-flag-icon.png" alt="japanese" />{' '}
+                  {t(globalMessage.japanese)}
+                </Option>
+              </StyledSelect>
             </>
           )}
         </Div>

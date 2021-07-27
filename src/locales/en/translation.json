@@ -52,7 +52,9 @@
     "next": "Next",
     "shareTitle": "Share",
     "shareWebinarLink": "Share event link",
-    "linkCopied": "Copied!"
+    "linkCopied": "Copied!",
+    "english":  "English 英語",
+    "japanese":  "Japanese 日本語"
   },
 
   "storyBook" : {

@@ -32,6 +32,9 @@ import ErrorMessage from '@/components/Elements/ErrorMessage';
 
 import { authenticateUser } from '@/states/login/action';
 import validationSchema from '@/validations/login';
+import { StyledSelect } from '@/components/Elements/Select/SimpleSelect';
+
+const { Option } = StyledSelect;
 
 export function Login({
   doLogin,
@@ -114,6 +117,28 @@ export function Login({
                 </Form>
               )}
             </Formik>
+            <Row
+              align="middle"
+              justify="center"
+              style={{ paddingLeft: '12vw', marginTop: 8 }}
+            >
+              <StyledSelect
+                defaultValue={t(globalMessage.english)}
+                bordered={false}
+              >
+                <Option value={t(globalMessage.english)}>
+                  <img
+                    src="/images/united-states-flag-icon.png"
+                    alt="english"
+                  />{' '}
+                  {t(globalMessage.english)}
+                </Option>
+                <Option value={t(globalMessage.japanese)}>
+                  <img src="/images/japan-flag-icon.png" alt="japanese" />{' '}
+                  {t(globalMessage.japanese)}
+                </Option>
+              </StyledSelect>
+            </Row>
           </Col>
           <Col span={12}>
             <Div marginBottom center>
