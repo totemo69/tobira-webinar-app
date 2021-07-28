@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Row, Col, message } from 'antd';
 import { Formik, Field } from 'formik';
-
+import { useRouter } from 'next/router';
 import { LOADING_PREFIX } from '@/utils/constants';
 import { signUp } from '@/states/sign-up/action';
 import {
@@ -32,9 +32,7 @@ import Modal from '@/components/Elements/Modal';
 import Image from '@/components/Elements/Image';
 import Form from '@/components/Elements/Form';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-import { StyledSelect } from '@/components/Elements/Select/SimpleSelect';
-
-const { Option } = StyledSelect;
+import Language from '@/components/Modules/Language';
 
 export function SignUp({
   doSignUp,
@@ -44,6 +42,8 @@ export function SignUp({
   clearErrorMessage,
 }) {
   const { t } = useTranslation();
+  const route = useRouter();
+  const { locale } = route;
   const [successModal, setSuccessModal] = useState(false);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export function SignUp({
   /* eslint-disable no-param-reassign */
   const onSubmit = useCallback((values, { resetForm }) => {
     delete values.confirmPassword;
-    doSignUp(values);
+    doSignUp({ ...values, lang: locale });
     resetForm();
   });
 
@@ -159,22 +159,7 @@ export function SignUp({
               justify="center"
               style={{ paddingLeft: '12vw', marginTop: 8 }}
             >
-              <StyledSelect
-                defaultValue={t(globalMessage.english)}
-                bordered={false}
-              >
-                <Option value={t(globalMessage.english)}>
-                  <img
-                    src="/images/united-states-flag-icon.png"
-                    alt="english"
-                  />{' '}
-                  {t(globalMessage.english)}
-                </Option>
-                <Option value={t(globalMessage.japanese)}>
-                  <img src="/images/japan-flag-icon.png" alt="japanese" />{' '}
-                  {t(globalMessage.japanese)}
-                </Option>
-              </StyledSelect>
+              <Language locale={locale} route={route} />
             </Row>
           </Col>
           <Col span={12}>
