@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { Formik, Field } from 'formik';
 import { Row, Col, message } from 'antd';
 import globalMessage from '@/messages/global';
@@ -32,9 +32,7 @@ import ErrorMessage from '@/components/Elements/ErrorMessage';
 
 import { authenticateUser } from '@/states/login/action';
 import validationSchema from '@/validations/login';
-import { StyledSelect } from '@/components/Elements/Select/SimpleSelect';
-
-const { Option } = StyledSelect;
+import Language from '@/components/Modules/Language';
 
 export function Login({
   doLogin,
@@ -44,7 +42,8 @@ export function Login({
   clearErrorMessage,
 }) {
   const { t } = useTranslation();
-
+  const route = useRouter();
+  const { locale } = route;
   const onSubmit = useCallback((values) => {
     doLogin(values);
   });
@@ -122,22 +121,7 @@ export function Login({
               justify="center"
               style={{ paddingLeft: '12vw', marginTop: 8 }}
             >
-              <StyledSelect
-                defaultValue={t(globalMessage.english)}
-                bordered={false}
-              >
-                <Option value={t(globalMessage.english)}>
-                  <img
-                    src="/images/united-states-flag-icon.png"
-                    alt="english"
-                  />{' '}
-                  {t(globalMessage.english)}
-                </Option>
-                <Option value={t(globalMessage.japanese)}>
-                  <img src="/images/japan-flag-icon.png" alt="japanese" />{' '}
-                  {t(globalMessage.japanese)}
-                </Option>
-              </StyledSelect>
+              <Language locale={locale} route={route} />
             </Row>
           </Col>
           <Col span={12}>
