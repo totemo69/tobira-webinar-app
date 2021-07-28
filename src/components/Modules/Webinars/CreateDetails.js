@@ -44,8 +44,6 @@ export default function CreateWebinarDetails({
     submitStatus(true);
   };
 
-  console.log(webinarForm);
-
   const [isVisible, setIsVisible] = useState(true);
 
   return (
@@ -75,7 +73,6 @@ export default function CreateWebinarDetails({
       >
         {({ setFieldValue, submitForm, values, errors }) => {
           setSubmitForm(submitForm);
-          console.log(values);
           return (
             <Form id="webinar">
               <Div marginTop>
