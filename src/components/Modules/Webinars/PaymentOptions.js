@@ -74,7 +74,7 @@ export default function PaymentOption({
                 </Div>
               </Col>
               <Col span={10}>
-                <Div paymentOption>
+                {/* <Div paymentOption>
                   <Image
                     style={{
                       width: '30%',
@@ -87,7 +87,7 @@ export default function PaymentOption({
                   <StyledParagraph>
                     {t(message.otherPaymentOptions)}
                   </StyledParagraph>
-                </Div>
+                </Div> */}
               </Col>
             </Row>
           </Form>

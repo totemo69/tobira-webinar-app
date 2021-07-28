@@ -12,5 +12,18 @@ const makeSelectTransactionList = () =>
     (substate) => substate.transactionList,
   );
 
+const makeSelectTransactionDetails = () =>
+  createSelector(
+    selectTransactionDomain,
+    (substate) => substate.transactionDetails,
+  );
+
+const makeSelectTransactionDetailsId = () =>
+  createSelector(selectTransactionDomain, (substate) => substate.id);
+
 export default makeSelectTransaction;
-export { makeSelectTransactionList };
+export {
+  makeSelectTransactionList,
+  makeSelectTransactionDetails,
+  makeSelectTransactionDetailsId,
+};

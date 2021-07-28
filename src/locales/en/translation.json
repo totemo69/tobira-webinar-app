@@ -52,7 +52,9 @@
     "next": "Next",
     "shareTitle": "Share",
     "shareWebinarLink": "Share event link",
-    "linkCopied": "Copied!"
+    "linkCopied": "Copied!",
+    "english":  "English 英語",
+    "japanese":  "Japanese 日本語"
   },
 
   "storyBook" : {
@@ -269,7 +271,7 @@
     "transactionId": "Transaction ID",
     "transactionDateTime": "Transaction Date and Time",
     "webinarTitle": "Webinar Title",
-    "amount": "Amount",
+    "amountInput": "Amount",
     "paymentMethod": "Payment Method",
     "status": "Status",
     "confirmTransferFundRequest": "Confirm Transfer Fund Request",
@@ -277,7 +279,10 @@
     "withdrawAmount": "Withdraw Amount :",
     "remainingBalance": "Remaining Balance :",
     "paymentGateway": "Payment Gateway :",
-    "enterPaypalAccount": "Enter Paypal Account"
+    "enterPaypalAccount": "Enter Paypal Account",
+    "dateAndTime": "Date and Time",
+    "transaction": "Transaction",
+    "action": "Action"
   },
 
   "plan": {
@@ -317,7 +322,32 @@
     "usernameAlphaNumeric": "Username only accepts alphanumeric characters",
     "passwordMinMax": "Password must be 6 to 20 characters",
     "passwordAlphaNumeric": "Password only accepts alphanumeric characters",
-    "userExist": "Email Address is already associated with an account."
-
+    "userExist": "Email Address is already associated with an account.",
+    "bankName": "Bank name",
+    "accountName": "Account Name",
+    "accountNumber": "Account Number",
+    "amount": "Amount",
+    "requiredField": "is a required field",
+    "amountMin": "Minimum required amount: 100 JPY",
+    "fullName": "Full Name",
+    "contactNo": "Contact Number",
+    "manageTitle": "Management title",
+    "zoomAccount": "Zoom account",
+    "title": "Title",
+    "description": "Description",
+    "frequency": "Frequency",
+    "date": "Date",
+    "time": "Time",
+    "schedule": "Schedule",
+    "duration": "Duration",
+    "timezone": "Timezone",
+    "formName": "Form Name",
+    "fieldName": "Field Name",
+    "fieldType": "Field Type",
+    "formField": "Form Fields",
+    "price": "Price",
+    "inValidEmailFormat": "Invalid email format.",
+    "resetNotFound": "Your reset token is invalid or already expired.",
+    "tokenExpired": "Your reset token is invalid or already expired."
   }
 }

@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  fullName: Yup.string().required('Fullname is a required field.'),
-  contact: Yup.string().required('Contact is a required field.'),
+const validationSchema = Yup.object({
+  fullName: Yup.string().required('fullName.requiredField'),
+  contact: Yup.string().required('contactNo.requiredField'),
 });
 
 export default validationSchema;

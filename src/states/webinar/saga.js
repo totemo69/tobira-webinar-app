@@ -195,12 +195,11 @@ function* updateWebinar() {
     yield put(loading(LOADING_PREFIX.UPDATE_WEBINAR));
     const payload = yield select(makeSelectWebinarForm());
     const { id } = payload;
-    const response = yield call(
+    yield call(
       request,
       `${API.WEBINARS}/${id}`,
       RequestOptions(PATCH_REQUEST, { ...payload }, true),
     );
-    yield put(setWebinarDetails(response));
     // Set the status to success
     yield put(loadSuccess(LOADING_PREFIX.UPDATE_WEBINAR));
   } catch (error) {

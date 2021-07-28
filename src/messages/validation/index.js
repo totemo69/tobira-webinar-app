@@ -62,6 +62,110 @@ const message = {
     key: `${scope}.userExist`,
     default: 'Email Address is already associated with an account.',
   }),
+  amount: Object.values({
+    key: `${scope}.amount`,
+    default: 'Amount is a required field',
+  }),
+  bankName: Object.values({
+    key: `${scope}.bankName`,
+    default: 'Bank name is a required field',
+  }),
+  accountName: Object.values({
+    key: `${scope}.accountName`,
+    default: 'Account Name is a required field',
+  }),
+  accountNumber: Object.values({
+    key: `${scope}.accountNumber`,
+    default: 'Account Number is a required field',
+  }),
+  requiredField: Object.values({
+    key: `${scope}.requiredField`,
+    default: 'is a required field',
+  }),
+  amountMin: Object.values({
+    key: `${scope}.amountMin`,
+    default: 'Minimum required amount: 100 JPY',
+  }),
+  fullName: Object.values({
+    key: `${scope}.fullName`,
+    default: 'Full name',
+  }),
+  contactNo: Object.values({
+    key: `${scope}.contactNo`,
+    default: 'Contact Number',
+  }),
+  manageTitle: Object.values({
+    key: `${scope}.manageTitle`,
+    default: 'Management title',
+  }),
+  zoomAccount: Object.values({
+    key: `${scope}.zoomAccount`,
+    default: 'Zoom account',
+  }),
+  title: Object.values({
+    key: `${scope}.title`,
+    default: 'Title',
+  }),
+  description: Object.values({
+    key: `${scope}.description`,
+    default: 'Description',
+  }),
+  frequency: Object.values({
+    key: `${scope}.frequency`,
+    default: 'Frequency',
+  }),
+  date: Object.values({
+    key: `${scope}.date`,
+    default: 'Date',
+  }),
+  time: Object.values({
+    key: `${scope}.time`,
+    default: 'Time',
+  }),
+  schedule: Object.values({
+    key: `${scope}.schedule`,
+    default: 'Schedule',
+  }),
+  duration: Object.values({
+    key: `${scope}.duration`,
+    default: 'Duration',
+  }),
+  timezone: Object.values({
+    key: `${scope}.timezone`,
+    default: 'Timezone',
+  }),
+  formName: Object.values({
+    key: `${scope}.formName`,
+    default: 'Form Name',
+  }),
+  fieldName: Object.values({
+    key: `${scope}.fieldName`,
+    default: 'Field Name',
+  }),
+  fieldType: Object.values({
+    key: `${scope}.fieldType`,
+    default: 'Field Type',
+  }),
+  formField: Object.values({
+    key: `${scope}.formField`,
+    default: 'Form Fields',
+  }),
+  price: Object.values({
+    key: `${scope}.price`,
+    default: 'Price',
+  }),
+  inValidEmailFormat: Object.values({
+    key: `${scope}.inValidEmailFormat`,
+    default: 'Invalid email format.',
+  }),
+  resetNotFound: Object.values({
+    key: `${scope}.resetNotFound`,
+    default: 'Your reset token is invalid or already expired.',
+  }),
+  tokenExpired: Object.values({
+    key: `${scope}.tokenExpired`,
+    default: 'Your reset token is invalid or already expired.',
+  }),
 };
 
 export default message;

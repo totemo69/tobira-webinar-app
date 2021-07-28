@@ -1,42 +1,32 @@
-import React from 'react';
+import React, { memo, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Col, Row, List } from 'antd';
+import { Col, Row, Divider } from 'antd';
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import Title from '@/components/Elements/Title';
 import Text from '@/components/Elements/Text';
 import Button from '@/components/Elements/Button';
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { getTransactionDetails } from '@/states/transaction/actions';
+import { makeSelectTransactionDetails } from '@/states/transaction/selector';
 
-function TransactionModal({ visible, title, onClose, subTitle }) {
+function TransactionModal({
+  visible,
+  title,
+  onClose,
+  subTitle,
+  getTransactionHistory,
+  transactionDetails,
+}) {
   const { t } = useTranslation();
 
-  const transactionDetails = [
-    {
-      title: t(message.transactionId),
-      description: '5TY05013RG002845M',
-    },
-    {
-      title: t(message.transactionDateTime),
-      description: 'April 05, 2021 10:20',
-    },
-    {
-      title: t(message.webinarTitle),
-      description: 'Wealth & Asset Management in Tough Times',
-    },
-    {
-      title: t(message.amount),
-      description: '100 JPY',
-    },
-    {
-      title: t(message.paymentMethod),
-      description: 'Paypal',
-    },
-    {
-      title: t(message.status),
-      description: 'Credited',
-    },
-  ];
+  useEffect(() => {
+    getTransactionHistory();
+  }, []);
 
   return (
     <StyledModal width={500} visible={visible} footer={null} closable={false}>
@@ -58,24 +48,60 @@ function TransactionModal({ visible, title, onClose, subTitle }) {
           {subTitle}
         </Col>
       </Row>
-      <List
-        style={{ paddingLeft: 40 }}
-        itemLayout="horizontal"
-        dataSource={transactionDetails}
-        renderItem={(item) => (
-          <List.Item
-            style={{
-              borderBottom: 'none',
-              padding: '8px 0',
-            }}
-          >
-            <List.Item.Meta
-              title={<Text gray content={item.title} />}
-              description={<Text blue content={item.description} />}
-            />
-          </List.Item>
-        )}
-      />
+      <Row style={{ padding: '10px 40px 0px 40px' }} gutter={[0, 14]}>
+        <Divider style={{ padding: 0, margin: 0 }} />
+        <Col span={24}>
+          <div>
+            <Text gray content={t(message.transactionId)} />
+          </div>
+          <Text blue content={transactionDetails && transactionDetails.id} />
+        </Col>
+        <Col span={24}>
+          <div>
+            <Text gray content={t(message.transactionDateTime)} />
+          </div>
+          <Text
+            blue
+            content={transactionDetails && transactionDetails.transactionDate}
+          />
+        </Col>
+        <Col span={24}>
+          <div>
+            <Text gray content={t(message.webinarTitle)} />
+          </div>
+          <Text
+            blue
+            content={transactionDetails && transactionDetails.transactionType}
+          />
+        </Col>
+        <Col span={24}>
+          <div>
+            <Text gray content={t(message.amount)} />
+          </div>
+          <Text
+            blue
+            content={transactionDetails && transactionDetails.amount}
+          />
+        </Col>
+        <Col span={24}>
+          <div>
+            <Text gray content={t(message.paymentMethod)} />
+          </div>
+          <Text
+            blue
+            content={transactionDetails && transactionDetails.transactionType}
+          />
+        </Col>
+        <Col span={24}>
+          <div>
+            <Text gray content={t(message.status)} />
+          </div>
+          <Text
+            blue
+            content={transactionDetails && transactionDetails.status}
+          />
+        </Col>
+      </Row>
       <Row align="middle" justify="center" style={{ padding: 25 }}>
         <Button NextButton noMargin chooseStandard onClick={onClose}>
           {t(globalMessage.close)}
@@ -85,4 +111,19 @@ function TransactionModal({ visible, title, onClose, subTitle }) {
   );
 }
 
-export default TransactionModal;
+TransactionModal.propTypes = {
+  transactionDetails: PropTypes.any,
+  getTransactionHistory: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  transactionDetails: makeSelectTransactionDetails(),
+});
+
+const mapDispatchProps = (dispatch) => ({
+  getTransactionHistory: (payload) => dispatch(getTransactionDetails(payload)),
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchProps);
+
+export default compose(withConnect, memo)(TransactionModal);

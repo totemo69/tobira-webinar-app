@@ -117,8 +117,8 @@ const message = {
     key: `${scope}.webinarTitle`,
     default: 'Webinar Title',
   }),
-  amount: Object.values({
-    key: `${scope}.amount`,
+  amountInput: Object.values({
+    key: `${scope}.amountInput`,
     default: 'Amount',
   }),
   paymentMethod: Object.values({
@@ -152,6 +152,18 @@ const message = {
   enterPaypalAccount: Object.values({
     key: `${scope}.enterPaypalAccount`,
     default: 'Enter Paypal Account',
+  }),
+  dateAndTime: Object.values({
+    key: `${scope}.dateAndTime`,
+    default: 'Date and Time',
+  }),
+  transaction: Object.values({
+    key: `${scope}.transaction`,
+    default: 'Transaction',
+  }),
+  action: Object.values({
+    key: `${scope}.action`,
+    default: 'Action',
   }),
 };
 
