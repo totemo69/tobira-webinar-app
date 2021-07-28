@@ -29,7 +29,7 @@ export function Complete({
 }) {
   const route = useRouter();
   const { t } = useTranslation();
-  console.log(route);
+  const { locale } = route;
   // Loading on render while waiting for status
   const [isLoading, setIsLoading] = useState(true);
 
@@ -43,7 +43,7 @@ export function Complete({
   const onCallback = async () => {
     if (route.query.token && route.query.PayerID) {
       const { token, PayerID } = route.query;
-      doCapturePayment({ token, PayerID });
+      doCapturePayment({ token, PayerID, lang: locale });
     }
   };
 

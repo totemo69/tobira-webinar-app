@@ -88,6 +88,7 @@ export function Register({
         freePayment({
           webinarId: webinarDetails.id,
           attendeeId: attendeeDetails.id,
+          lang: locale,
         });
       }
     }
