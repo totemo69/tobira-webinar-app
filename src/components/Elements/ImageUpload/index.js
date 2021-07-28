@@ -80,7 +80,14 @@ function ImageUpload({ alt, src, onUploadComplete, ...props }) {
       action={API.UPLOAD}
       onChange={handleChange}
     >
-      <StyledImage alt={alt} src={image} preview={false} iconLg {...props} />
+      <StyledImage
+        alt={alt}
+        src={image}
+        preview={false}
+        iconLg
+        {...props}
+        height={310}
+      />
       <OverLay loading={uploading} />
     </StyledUpload>
   );
