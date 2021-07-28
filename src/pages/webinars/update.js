@@ -91,15 +91,16 @@ export function Update({
   }, [isLoading]);
 
   useEffect(() => {
-    if (!isUpdateLoading && submitting) {
-      setSubmitting(false);
-      if (submitStatus) {
-        setSuccessModal(!successModal);
-      } else if (errorMessage) {
-        message.error(errorMessage);
+    if (!isUpdateLoading) {
+      if (submitting) {
+        if (submitStatus && !errorMessage) {
+          setSuccessModal(!successModal);
+        } else {
+          message.error(errorMessage);
+        }
       }
     }
-  }, [isUpdateLoading, submitStatus, errorMessage]);
+  }, [isUpdateLoading, submitting]);
 
   useEffect(() => {
     // if Form doesn't have error, go to next step
