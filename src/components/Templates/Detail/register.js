@@ -59,6 +59,7 @@ export function Register({
   const { t } = useTranslation();
 
   const [isModalVisible, setIsmodalVisible] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     getWebinarDetails({ slug });
@@ -72,27 +73,30 @@ export function Register({
   };
 
   const onCheckOut = () => {
+    setSubmitting(true);
     register();
   };
 
   useEffect(() => {
-    if (Object.keys(attendeeDetails).length > 0) {
-      setIsmodalVisible(true);
-      if (webinarDetails.price > 0) {
-        payment({
-          callbackUrl: `${locale}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}`,
-          webinarId: attendeeDetails.webinarId,
-          attendeeId: attendeeDetails.id,
-        });
-      } else {
-        freePayment({
-          webinarId: webinarDetails.id,
-          attendeeId: attendeeDetails.id,
-          lang: locale,
-        });
+    if (submitting) {
+      if (Object.keys(attendeeDetails).length > 0) {
+        if (webinarDetails.price > 0) {
+          payment({
+            callbackUrl: `${locale}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}`,
+            webinarId: attendeeDetails.webinarId,
+            attendeeId: attendeeDetails.id,
+          });
+        } else {
+          freePayment({
+            webinarId: webinarDetails.id,
+            attendeeId: attendeeDetails.id,
+            lang: locale,
+          });
+        }
+        setIsmodalVisible(true);
       }
     }
-  }, [attendeeDetails]);
+  }, [attendeeDetails, submitting]);
 
   useEffect(() => {
     if (errorMessage) {
@@ -104,20 +108,20 @@ export function Register({
 
   useEffect(() => {
     if (!isConfirmationLoading) {
-      if (confirmationStatus) {
+      if (submitting && confirmationStatus) {
         route.push(`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${slug}/register-complete`);
       }
     }
-  }, [isConfirmationLoading, confirmationStatus]);
+  }, [isConfirmationLoading, submitting]);
 
   useEffect(() => {
-    if (Object.keys(paymentDetails).length > 0) {
+    if (submitting && Object.keys(paymentDetails).length > 0) {
       const approvalLink = paymentDetails.paymentDetails.links.find(
         (link) => link.rel === 'approve',
       );
       window.location = `${approvalLink.href}`;
     }
-  }, [paymentDetails]);
+  }, [submitting, paymentDetails]);
 
   return (
     <>

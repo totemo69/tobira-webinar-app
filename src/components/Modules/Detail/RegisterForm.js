@@ -14,7 +14,7 @@ import Input, { LabelGroup } from '@/components/Elements/Input';
 import Labels from '@/components/Elements/Labels';
 import Button from '@/components/Elements/Button';
 import { webinarRegistration } from '@/validations/webinar';
-import ErrorMessage from '@/components/Elements/ErrorMessage';
+import ErrorMessage, { DisplayError } from '@/components/Elements/ErrorMessage';
 import classNames from './index.module.css';
 
 const WebinarRegistrationForm = ({
@@ -25,6 +25,8 @@ const WebinarRegistrationForm = ({
   registerForm,
 }) => {
   const { t } = useTranslation();
+
+  const { formFields } = formDetails;
   const onSubmit = (values) => {
     setWebinarForm({
       webinarId: formDetails.id,
@@ -37,31 +39,33 @@ const WebinarRegistrationForm = ({
       initialValues={{ formFields: registerForm.formFields }}
       onSubmit={onSubmit}
       enableReinitialize
+      validateOnChange={false}
+      validateOnBlur={false}
       validationSchema={webinarRegistration}
     >
-      {({ handleSubmit }) => (
+      {({ handleSubmit, errors, touched }) => (
         <Form>
-          {formDetails.formFields.map((field, index) => (
-            <LabelGroup key={`label.${field.fieldName}`} spacing="large">
-              <Labels asterisk bold>
-                {field.fieldName}
-              </Labels>
-              <Field
-                type="email"
-                name={`formFields.${index}.${field.fieldName}`}
-                placeholder={field.fieldName}
-                component={Input}
-                size="large"
-                initialValues={`values.formFields.${index}.${field.fieldName}`}
-                disabled={
-                  !DateIsBefore(
-                    formDetails.schedules && formDetails.schedules[0].dateTime,
-                  )
-                }
-              />
-              <ErrorMessage name={`formFields.${index}.${field.fieldName}`} />
-            </LabelGroup>
-          ))}
+          <LabelGroup key={`label.${formFields[0].fieldName}`} spacing="large">
+            <Labels asterisk bold>
+              {formFields[0].fieldName}
+            </Labels>
+            <Field
+              type="email"
+              name={`formFields.0.Email`}
+              placeholder={formFields[0].fieldName}
+              component={Input}
+              size="large"
+              initialValues={`values.formFields.0.Email`}
+              disabled={
+                !DateIsBefore(
+                  formDetails.schedules && formDetails.schedules[0].dateTime,
+                )
+              }
+            />
+            {errors.formFields && touched.formFields ? (
+              <DisplayError error={errors.formFields[0].Email} />
+            ) : null}
+          </LabelGroup>
           <Row justify="end" className={classNames.spacer}>
             <Col lg={12} xs={24}>
               <Row>
