@@ -14,7 +14,7 @@ import Input, { LabelGroup } from '@/components/Elements/Input';
 import Labels from '@/components/Elements/Labels';
 import Button from '@/components/Elements/Button';
 import { webinarRegistration } from '@/validations/webinar';
-import ErrorMessage, { DisplayError } from '@/components/Elements/ErrorMessage';
+import { DisplayError } from '@/components/Elements/ErrorMessage';
 import classNames from './index.module.css';
 
 const WebinarRegistrationForm = ({
@@ -51,11 +51,11 @@ const WebinarRegistrationForm = ({
             </Labels>
             <Field
               type="email"
-              name={`formFields.0.Email`}
+              name="formFields.0.Email"
               placeholder={formFields[0].fieldName}
               component={Input}
               size="large"
-              initialValues={`values.formFields.0.Email`}
+              initialValues="values.formFields.0.Email"
               disabled={
                 !DateIsBefore(
                   formDetails.schedules && formDetails.schedules[0].dateTime,
