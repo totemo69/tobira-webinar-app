@@ -51,7 +51,7 @@ function ImageUpload({ alt, src, onUploadComplete, ...props }) {
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState(src);
   const [accessToken] = Cookie.getAccessToken();
-
+  const imgSrc = image === '' ? src : image;
   const handleChange = (info) => {
     if (info.file.status === 'uploading') {
       setUploading(true);
@@ -80,7 +80,17 @@ function ImageUpload({ alt, src, onUploadComplete, ...props }) {
       action={API.UPLOAD}
       onChange={handleChange}
     >
-      <StyledImage alt={alt} src={image} preview={false} iconLg {...props} />
+      {imgSrc && (
+        <StyledImage
+          alt={alt}
+          src={imgSrc}
+          preview={false}
+          iconLg
+          {...props}
+          height={310}
+        />
+      )}
+
       <OverLay loading={uploading} />
     </StyledUpload>
   );

@@ -33,6 +33,7 @@ import {
   updateWebinar,
   getWebinarDetail,
   setWebinar,
+  clearWebinar,
 } from '@/states/webinar/actions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -51,6 +52,7 @@ export function Update({
   webinarFormDetails,
   doUpdateWebinar,
   webinarDetails,
+  cleanWebinar,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -62,6 +64,7 @@ export function Update({
   const [submitFormStatus, setsubmitFormStatus] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
+  const [fetching, setFetching] = useState(false);
 
   const submitStatusBind = (e) => {
     setsubmitFormStatus(e);
@@ -74,6 +77,7 @@ export function Update({
 
   useEffect(() => {
     if (id) {
+      setFetching(true);
       getWebinar({ id });
     }
   }, [id]);
@@ -83,23 +87,28 @@ export function Update({
   }, []);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && fetching) {
       if (Object.keys(webinarDetails).length > 0) {
+        // Cleaning previous values
+        setFetching(false);
+        cleanWebinar();
         setWebinarForm(webinarDetails);
       }
     }
   }, [isLoading]);
 
   useEffect(() => {
-    if (!isUpdateLoading && submitting) {
-      setSubmitting(false);
-      if (submitStatus) {
-        setSuccessModal(!successModal);
-      } else if (errorMessage) {
-        message.error(errorMessage);
+    if (!isUpdateLoading) {
+      if (submitting) {
+        if (submitStatus && !errorMessage) {
+          setSuccessModal(!successModal);
+          cleanWebinar();
+        } else {
+          message.error(errorMessage);
+        }
       }
     }
-  }, [isUpdateLoading, submitStatus, errorMessage]);
+  }, [isUpdateLoading, submitting]);
 
   useEffect(() => {
     // if Form doesn't have error, go to next step
@@ -255,6 +264,7 @@ Update.propTypes = {
   isUpdateLoading: PropTypes.bool,
   submitStatus: PropTypes.any,
   webinarDetails: PropTypes.any,
+  cleanWebinar: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -273,6 +283,7 @@ const mapDispatchProps = (dispatch) => ({
   doUpdateWebinar: () => dispatch(updateWebinar()),
   getWebinar: (payload) => dispatch(getWebinarDetail(payload)),
   setWebinarForm: (payload) => dispatch(setWebinar(payload)),
+  cleanWebinar: () => dispatch(clearWebinar()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);

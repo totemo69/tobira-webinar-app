@@ -22,7 +22,7 @@ import Textarea from '@/components/Elements/Textarea';
 import Radio from '@/components/Elements/Radio';
 import DatePicker from '@/components/Elements/DatePicker';
 import TimePicker from '@/components/Elements/TimePicker';
-import ErrorMessage from '@/components/Elements/ErrorMessage';
+import ErrorMessage, { DisplayError } from '@/components/Elements/ErrorMessage';
 import ImageUpload from '@/components/Elements/ImageUpload';
 import { setWebinar } from '@/states/webinar/actions';
 import localMessage from '@/messages/webinar';
@@ -43,8 +43,6 @@ export default function CreateWebinarDetails({
     dispatch(setWebinar(payload));
     submitStatus(true);
   };
-
-  console.log(webinarForm);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -75,7 +73,6 @@ export default function CreateWebinarDetails({
       >
         {({ setFieldValue, submitForm, values, errors }) => {
           setSubmitForm(submitForm);
-          console.log(values);
           return (
             <Form id="webinar">
               <Div marginTop>
@@ -258,12 +255,8 @@ export default function CreateWebinarDetails({
                           setFieldValue('timezone', zone);
                         }}
                       />
-                      {
-                        // ErrorMessage on timezone.label not working.
-                      }
-                      <ErrorMessage name="timezone.label" />
                       {errors.timezone ? (
-                        <div>{errors.timezone.label}</div>
+                        <DisplayError error={errors.timezone.label} />
                       ) : null}
                     </Div>
                     <Div marginLeft>
@@ -289,7 +282,7 @@ export default function CreateWebinarDetails({
                               </Option>
                             ))}
                           </Field>{' '}
-                          {t(localMessage.hour)}{' '}
+                          {/* {t(localMessage.hour)}{' '} */}
                           <ErrorMessage name="durationHour" />
                         </Col>
                         <Col span={12}>
@@ -319,7 +312,7 @@ export default function CreateWebinarDetails({
                               45
                             </Option>
                           </Field>{' '}
-                          {t(localMessage.minutes)}{' '}
+                          {/* {t(localMessage.minutes)}{' '} */}
                           <ErrorMessage name="durationMinute" />
                         </Col>
                       </Row>

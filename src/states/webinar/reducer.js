@@ -8,6 +8,7 @@ import {
   WEBINAR_REGISTER,
   SET_ATTENDEE,
   SET_PAYMENT,
+  CLEAR_WEBINAR,
 } from './types';
 
 export const initialState = {
@@ -152,6 +153,39 @@ const webinarReducer = (state = initialState, action) =>
         draft.payment = {
           ...draft.payment,
           ...action.payload,
+        };
+        break;
+      }
+      case CLEAR_WEBINAR: {
+        draft.webinar = {
+          managementTitle: '',
+          webinarAccount: '',
+          title: '',
+          description: '',
+          frequency: SCHEDULE_TYPE.ONETIME,
+          timezone: {},
+          durationHour: '',
+          durationMinute: '',
+          duration: '',
+          image: '',
+          schedules: [
+            {
+              scheduleDate: '',
+              scheduleTime: '',
+              dateTime: '',
+            },
+          ],
+          formName: '',
+          formFields: [
+            {
+              fieldName: 'Email',
+              fieldType: 'Email',
+              isRequired: true,
+              options: [],
+            },
+          ],
+          price: 0,
+          paymentModes: PAYMENT_METHOD.PAYPAL,
         };
         break;
       }

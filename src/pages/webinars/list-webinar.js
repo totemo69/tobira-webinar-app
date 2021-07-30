@@ -70,14 +70,16 @@ export function ListOfWebinar({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (zoomAccountList.length === 0) {
-        openModal();
-      } else {
-        closeModal();
+      if (!isListLoading) {
+        if (zoomAccountList.length === 0) {
+          openModal();
+        } else {
+          closeModal();
+        }
       }
-    }, 1000);
+    }, 3000);
     return () => clearTimeout(timer);
-  }, [zoomAccountList]);
+  }, [isListLoading, zoomAccountList]);
 
   const columns = [
     {

@@ -218,6 +218,18 @@ const message = {
     key: `${scope}.linkCopied`,
     default: 'Copied!',
   }),
+  view: Object.values({
+    key: `${scope}.view`,
+    default: 'View',
+  }),
+  english: Object.values({
+    key: `${scope}.english`,
+    default: ' English 英語',
+  }),
+  japanese: Object.values({
+    key: `${scope}.japanese`,
+    default: ' Japanese 日本語',
+  }),
 };
 
 export default message;

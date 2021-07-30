@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { Formik, Field } from 'formik';
 import { Row, Col, message } from 'antd';
 import globalMessage from '@/messages/global';
@@ -24,14 +24,15 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import InputPassword from '@/components/Elements/Input/password';
 import Checkbox from '@/components/Elements/Checkbox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-
 import { authenticateUser } from '@/states/login/action';
 import validationSchema from '@/validations/login';
+import Language from '@/components/Modules/Language';
 
 export function Login({
   doLogin,
@@ -41,7 +42,8 @@ export function Login({
   clearErrorMessage,
 }) {
   const { t } = useTranslation();
-
+  const route = useRouter();
+  const { locale } = route;
   const onSubmit = useCallback((values) => {
     doLogin(values);
   });
@@ -60,7 +62,7 @@ export function Login({
     <>
       <Layout>
         <Row>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Formik
               initialValues={{
                 email: '',
@@ -86,8 +88,7 @@ export function Login({
                   <Div>
                     <Field
                       name="password"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.enterPassword)}
                     />
                     <ErrorMessage name="password" />
@@ -114,15 +115,28 @@ export function Login({
                 </Form>
               )}
             </Formik>
+            <Row
+              align="middle"
+              justify="center"
+              style={{ paddingLeft: '12vw', marginTop: 8 }}
+            >
+              <Language locale={locale} route={route} />
+            </Row>
           </Col>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Div marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+              <Image
+                src="/images/logo.svg"
+                alt="Tobira Logo"
+                logo
+                style={{ width: '18rem' }}
+              />
             </Div>
             <Image
               src="/images/illustration1.svg"
               alt="Webinar Illustration"
               large
+              style={{ width: '100%' }}
             />
           </Col>
         </Row>

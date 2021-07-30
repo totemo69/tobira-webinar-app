@@ -91,7 +91,7 @@ export default function WebinarDetails({ webinarDetails }) {
         <Col span={10}>
           <StyledImage
             width
-            height={290}
+            height={300}
             src={webinarDetails && webinarDetails.image}
             fallback="/images/fallback.png"
             preview={false}

@@ -24,7 +24,7 @@
     "termsOfService": "利用規約",
     "privacyPolicy": "個人情報保護方針",
     "and": "そして",
-    "listWebinar": "ウェビナーのリスト",
+    "listWebinar": "ウェビナー一覧",
     "show": "公演",
     "entries": "エントリ",
     "search": "探す",
@@ -51,7 +51,9 @@
     "next": "次",
     "shareTitle": "シェア",
     "shareWebinarLink": "イベントリンクをシェアする",
-    "linkCopied": "コピー!"
+    "linkCopied": "コピー!",
+    "english":  "英語",
+    "japanese":  "日本語"
   },
   "storyBook": {
     "title": "題名"
@@ -92,11 +94,11 @@
     "logOut": "ログアウト"
   },
   "webinar": {
-    "title": "ティトル",
+    "title": "タイトル",
     "listOfWebinar": "ウェビナー一覧",
     "schedule": "スケジュール",
-    "attendees": "参加者の数",
-    "status": "状態",
+    "attendees": "申込者数",
+    "status": "ステータス",
     "action": "アクション",
     "search": "捜索",
     "searchPlaceholder": "検索ウェビナーのタイトル",
@@ -121,7 +123,7 @@
     "details": "情報",
     "description": "詳細",
     "date": "日付",
-    "duration": "デュレーション",
+    "duration": "長さ",
     "enterWebinarTitle": "ウェビナーのタイトルを入力してください",
     "email": "Eメール",
     "enterRegistrationFomrName": "登録フォーム名を入力してください",
@@ -170,7 +172,7 @@
     "paymentDateLabel": "取引日時",
     "doneStatusLabel": "完了",
     "notYetStatusLabel": "保留中",
-    "upcomingStatusLabel": "到来",
+    "upcomingStatusLabel": "有効",
     "oneTimePlan": "一度",
     "pendingPaymentLabel": "保留中",
     "failedPaymentLabel": "失敗",
@@ -262,7 +264,7 @@
     "transactionId": "取引ID",
     "transactionDateTime": "取引日時",
     "webinarTitle": "ウェビナータイトル",
-    "amount": "出金金額",
+    "amountInput": "出金金額",
     "paymentMethod": "支払い方法",
     "status": "ステータス",
     "confirmTransferFundRequest": "送金リクエストの確認",
@@ -270,7 +272,10 @@
     "withdrawAmount": "金額を撤回 ：",
     "remainingBalance": "保たれているバランス ：",
     "paymentGateway": "ペイメントゲートウェイ：",
-    "enterPaypalAccount": "Paypalアカウントを入力してください"
+    "enterPaypalAccount": "Paypalアカウントを入力してください",
+    "dateAndTime": "日時",
+    "transaction": "取引",
+    "action": "アクション"
   },
 
   "plan": {
@@ -310,6 +315,32 @@
     "usernameAlphaNumeric": "ユーザー名は半角英字と数字を組み合わせてください。",
     "passwordMinMax": "パスワードは半角英数字6~20字で入力してください。",
     "passwordAlphaNumeric": "パスワードは半角英字と数字を組み合わせてください。",
-    "userExist": "メールアドレスは既に登録されています。"
+    "userExist": "メールアドレスは既に登録されています。",
+    "bankName": "銀行名",
+    "accountName": "アカウント名",
+    "accountNumber": "口座番号",
+    "amount": "額",
+    "requiredField": " 必須フィールドです",
+    "amountMin": "最低必要額：100円",
+    "fullName": "フルネーム",
+    "contactNo": "連絡先番号",
+    "manageTitle": "経営者の称号",
+    "zoomAccount": "ズームアカウント",
+    "title": "タイトル",
+    "description": "説明",
+    "frequency": "周波数",
+    "date": "日にち",
+    "time": "時間",
+    "schedule": "スケジュール",
+    "duration": "間隔",
+    "timezone": "タイムゾーン",
+    "formName": "フォーム名",
+    "fieldName": "フィールド名",
+    "fieldType": "フィールドタイプ",
+    "formField": "フォームフィールド",
+    "price": "価格",
+    "inValidEmailFormat": "メール形式が無効です。",
+    "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
+    "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。"
   }
 }

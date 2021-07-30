@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { memo, useEffect } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import NextImage from 'next/image';
 import globalMessage from '@/messages/global';
@@ -17,6 +18,7 @@ import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Dropdown from '@/components/Elements/Dropdown';
 import Menu from '@/components/Elements/Menu';
+import Language from '@/components/Modules/Language';
 import { logout } from '@/lib/auth';
 
 import {
@@ -34,7 +36,8 @@ export function Header({
   withMenu = true,
 }) {
   const { t } = useTranslation();
-
+  const route = useRouter();
+  const { locale } = route;
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -108,6 +111,7 @@ export function Header({
                 username={userDetails && userDetails.username}
                 items={MenuItems}
               />
+              <Language locale={locale} route={route} />
             </>
           )}
         </Div>

@@ -26,4 +26,11 @@ const ErrorMsg = ({ name }) => (
   />
 );
 
+const DisplayError = ({ error }) => (
+  <TextRed>
+    <LocalizeError errorCode={error} />
+  </TextRed>
+);
+
 export default ErrorMsg;
+export { DisplayError };

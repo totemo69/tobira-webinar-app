@@ -16,6 +16,7 @@ import {
   SET_PAYMENT,
   UPDATE_WEBINAR,
   DO_CONFIRM_REGISTRATION,
+  CLEAR_WEBINAR,
 } from './types';
 
 export const getWebinarList = (payload) => ({
@@ -43,6 +44,11 @@ export const setWebinarDetails = (payload) => ({
 
 export const setWebinar = (payload) => ({
   type: SET_WEBINAR,
+  payload,
+});
+
+export const clearWebinar = (payload) => ({
+  type: CLEAR_WEBINAR,
   payload,
 });
 

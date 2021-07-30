@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Row, Col, message } from 'antd';
 import { Formik, Field } from 'formik';
-
+import { useRouter } from 'next/router';
 import { LOADING_PREFIX } from '@/utils/constants';
 import { signUp } from '@/states/sign-up/action';
 import {
@@ -25,6 +25,7 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import InputPassword from '@/components/Elements/Input/password';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import ButtonLink from '@/components/Elements/ButtonLink';
@@ -32,6 +33,7 @@ import Modal from '@/components/Elements/Modal';
 import Image from '@/components/Elements/Image';
 import Form from '@/components/Elements/Form';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
+import Language from '@/components/Modules/Language';
 
 export function SignUp({
   doSignUp,
@@ -41,6 +43,8 @@ export function SignUp({
   clearErrorMessage,
 }) {
   const { t } = useTranslation();
+  const route = useRouter();
+  const { locale } = route;
   const [successModal, setSuccessModal] = useState(false);
 
   useEffect(() => {
@@ -58,7 +62,7 @@ export function SignUp({
   /* eslint-disable no-param-reassign */
   const onSubmit = useCallback((values, { resetForm }) => {
     delete values.confirmPassword;
-    doSignUp(values);
+    doSignUp({ ...values, lang: locale });
     resetForm();
   });
 
@@ -106,8 +110,7 @@ export function SignUp({
                     <Field
                       id="password"
                       name="password"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.enterPassword)}
                     />
                     <ErrorMessage name="password" />
@@ -117,8 +120,7 @@ export function SignUp({
                     <Field
                       id="confirmPassword"
                       name="confirmPassword"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.confirmPassword)}
                     />
                     <ErrorMessage name="confirmPassword" />
@@ -126,12 +128,12 @@ export function SignUp({
                   <Div marginTop center>
                     {t(message.agreeMessage)}{' '}
                     <Link
-                      href="/terms-of-service-example"
+                      href="/terms-of-service"
                       name={t(globalMessage.termsOfService)}
                     />{' '}
                     {t(globalMessage.and)}{' '}
                     <Link
-                      href="/privacy-policy-example"
+                      href="/privacy-policy"
                       name={t(globalMessage.privacyPolicy)}
                     />
                     .
@@ -151,6 +153,13 @@ export function SignUp({
               {t(localMessage.haveAccount)}{' '}
               <Link href="/login" name={t(localMessage.loginHere)} />
             </Div>
+            <Row
+              align="middle"
+              justify="center"
+              style={{ paddingLeft: '12vw', marginTop: 8 }}
+            >
+              <Language locale={locale} route={route} />
+            </Row>
           </Col>
           <Col span={12}>
             <Div marginBottom center>
