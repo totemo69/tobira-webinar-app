@@ -25,12 +25,12 @@ import Form from '@/components/Elements/Form';
 import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
-import Input from '@/components/Elements/Input';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 import Modal from '@/components/Elements/Modal';
 import ButtonLink from '@/components/Elements/ButtonLink';
+import InputPassword from '@/components/Elements/Input/password';
 import { resetPasswordValidation } from '@/validations/forgot-password';
 
 export function ResetPassword({
@@ -85,10 +85,9 @@ export function ResetPassword({
                   <Div>
                     <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
                     <Field
-                      type="password"
                       id="password"
                       name="password"
-                      component={Input}
+                      component={InputPassword}
                       placeholder={t(globalMessage.newPassword)}
                     />
                     <ErrorMessage name="password" />
@@ -96,10 +95,9 @@ export function ResetPassword({
                   <Div>
                     <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
                     <Field
-                      type="password"
                       id="confirmPassword"
                       name="confirmPassword"
-                      component={Input}
+                      component={InputPassword}
                       placeholder={t(globalMessage.confirmPassword)}
                     />
                     <ErrorMessage name="confirmPassword" />

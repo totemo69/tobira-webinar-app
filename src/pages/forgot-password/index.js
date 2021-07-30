@@ -32,6 +32,7 @@ import Image from '@/components/Elements/Image';
 import Modal from '@/components/Elements/Modal';
 import ButtonLink from '@/components/Elements/ButtonLink';
 import forgotPasswordValidation from '@/validations/forgot-password';
+import Language from '@/components/Modules/Language';
 
 export function ForgotPassword({
   doForgot,
@@ -42,6 +43,7 @@ export function ForgotPassword({
 }) {
   const { t } = useTranslation();
   const route = useRouter();
+  const { locale } = route;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
@@ -58,7 +60,6 @@ export function ForgotPassword({
 
   /* eslint-disable no-param-reassign */
   const onSubmit = useCallback((values, { resetForm }) => {
-    const { locale } = route;
     doForgot({ ...values, lang: locale });
     resetForm();
   });
@@ -106,6 +107,13 @@ export function ForgotPassword({
                 </Form>
               )}
             </Formik>
+            <Row
+              align="middle"
+              justify="center"
+              style={{ paddingLeft: '12vw', marginTop: 8 }}
+            >
+              <Language locale={locale} route={route} />
+            </Row>
             <Modal
               isOpen={isOpenModal}
               onRequestClose={() => setIsOpenModal(false)}

@@ -53,8 +53,8 @@
     "shareTitle": "Share",
     "shareWebinarLink": "Share event link",
     "linkCopied": "Copied!",
-    "english":  "English 英語",
-    "japanese":  "Japanese 日本語"
+    "english":  "English",
+    "japanese":  "Japanese"
   },
 
   "storyBook" : {
@@ -313,7 +313,7 @@
     "username": "Username",
     "confirmPassword": "Confirm Password",
     "required": "is required.",
-    "validEmail": "The email address or password that you have entered is incorrect.",
+    "validEmail": "Invalid email address.",
     "invalidLogin": "The email address or password that you have entered is incorrect.",
     "confirmPassMatch": "Confirm Password doesnt match with Password",
     "fieldMax": " must not exceed {max} characters.",
