@@ -19,7 +19,7 @@ const WebinarDetailService = {
         timezone: pageDetail?.timezone?.label,
         duration: pageDetail?.duration,
         schedules: pageDetail?.schedules,
-        image: pageDetail?.image ? pageDetail?.image : '/images/dummy.jpeg',
+        image: pageDetail?.image ? pageDetail?.image : '/images/fallback.png',
       };
     }
     return null;

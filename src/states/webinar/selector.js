@@ -22,6 +22,7 @@ const makeSelectWebinarDetails = () =>
       schedules = substate.webinarDetail.schedules.map((val) => ({
         scheduleDate: ConvertMoment(val.scheduleDate),
         scheduleTime: ConvertMoment(val.scheduleTime),
+        dateTime: ConvertMoment(val.dateTime),
       }));
     }
 

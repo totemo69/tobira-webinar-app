@@ -14,7 +14,7 @@ import {
   makeSelectLoadingStatus,
 } from '@/states/global/selector';
 import { getZoomAccount } from '@/states/accounts/actions';
-import { createWebinar } from '@/states/webinar/actions';
+import { createWebinar, clearWebinar } from '@/states/webinar/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import {
   makeSelectWebinarForm,
@@ -46,6 +46,7 @@ export function CreateWebinar({
   webinarFormDetails,
   doCreateWebinar,
   webinarDetails,
+  cleanWebinar,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -75,6 +76,7 @@ export function CreateWebinar({
       setSubmitting(false);
       if (submitStatus) {
         setSuccessModal(!successModal);
+        cleanWebinar();
       } else if (errorMessage) {
         message.error(errorMessage);
       }
@@ -226,6 +228,7 @@ CreateWebinar.propTypes = {
   doCreateWebinar: PropTypes.func,
   submitStatus: PropTypes.any,
   webinarDetails: PropTypes.any,
+  cleanWebinar: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -241,6 +244,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchProps = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
   doCreateWebinar: () => dispatch(createWebinar()),
+  cleanWebinar: () => dispatch(clearWebinar()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
