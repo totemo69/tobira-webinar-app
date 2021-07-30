@@ -49,6 +49,7 @@ const StyledImg = styled.img`
       width: 26px;
       height: 26px;
       z-index: 10;
+      border-radius: 50%;
     `};
 
   ${(props) =>

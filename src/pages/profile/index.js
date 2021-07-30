@@ -16,6 +16,7 @@ import {
   makeSelectLoadingStatus,
   makeSelectError,
 } from '@/states/global/selector';
+import { clearErrors } from '@/states/global/actions';
 import { makeSelectProfileDetails } from '@/states/profiles/selector';
 import { getProfile, updateProfile } from '@/states/profiles/action';
 import { withAuthSync } from '@/lib/auth';
@@ -32,7 +33,7 @@ import Button from '@/components/Elements/Button';
 import Span from '@/components/Elements/Span';
 import ProfileUpload from '@/components/Modules/Profile/profileUploader';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-
+import validationMessage from '@/messages/validation';
 import validationSchema from '@/validations/profile';
 
 export function Profile({
@@ -42,6 +43,7 @@ export function Profile({
   isLoading,
   profileUpdateStatus,
   errorMessage,
+  clearErrorMessage,
 }) {
   const { t } = useTranslation();
 
@@ -55,14 +57,15 @@ export function Profile({
 
   useEffect(() => {
     if (!isLoading) {
-      if (profileUpdateStatus) {
-        // Temporary only
+      if (profileUpdateStatus && !errorMessage) {
         message.success('Success!');
-      } else if (errorMessage) {
-        message.error(errorMessage);
+      } else if (!profileUpdateStatus && errorMessage) {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
       }
     }
-  }, [isLoading, profileUpdateStatus, errorMessage]);
+  }, [isLoading, profileUpdateStatus]);
 
   return (
     <>
@@ -115,7 +118,7 @@ export function Profile({
                     onSubmit={onSubmit}
                     enableReinitialize
                   >
-                    {({ handleSubmit }) => (
+                    {({ setFieldValue, handleSubmit }) => (
                       <>
                         <Div widthFull>
                           <Labels asterisk>{t(globalMessage.username)}</Labels>
@@ -148,6 +151,7 @@ export function Profile({
                             name="contact"
                             country="jp"
                             component={PhoneInput}
+                            onChange={(val) => setFieldValue('contact', val)}
                           />
                           <ErrorMessage name="contact" />
                         </Div>
@@ -204,6 +208,7 @@ Profile.propTypes = {
   isLoading: PropTypes.bool,
   profileUpdateStatus: PropTypes.bool,
   errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -216,6 +221,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchProps = (dispatch) => ({
   fetchProfile: () => dispatch(getProfile()),
   doUpdateProfile: (payload) => dispatch(updateProfile(payload)),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);

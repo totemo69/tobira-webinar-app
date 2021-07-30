@@ -25,6 +25,7 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import InputPassword from '@/components/Elements/Input/password';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import ButtonLink from '@/components/Elements/ButtonLink';
@@ -109,8 +110,7 @@ export function SignUp({
                     <Field
                       id="password"
                       name="password"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.enterPassword)}
                     />
                     <ErrorMessage name="password" />
@@ -120,8 +120,7 @@ export function SignUp({
                     <Field
                       id="confirmPassword"
                       name="confirmPassword"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.confirmPassword)}
                     />
                     <ErrorMessage name="confirmPassword" />

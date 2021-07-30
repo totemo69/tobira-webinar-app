@@ -24,12 +24,12 @@ import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import InputPassword from '@/components/Elements/Input/password';
 import Checkbox from '@/components/Elements/Checkbox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-
 import { authenticateUser } from '@/states/login/action';
 import validationSchema from '@/validations/login';
 import Language from '@/components/Modules/Language';
@@ -88,8 +88,7 @@ export function Login({
                   <Div>
                     <Field
                       name="password"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.enterPassword)}
                     />
                     <ErrorMessage name="password" />
@@ -126,7 +125,12 @@ export function Login({
           </Col>
           <Col sm={24} lg={12}>
             <Div marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo style={{ width: '18rem'}} />
+              <Image
+                src="/images/logo.svg"
+                alt="Tobira Logo"
+                logo
+                style={{ width: '18rem' }}
+              />
             </Div>
             <Image
               src="/images/illustration1.svg"
