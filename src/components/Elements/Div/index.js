@@ -25,6 +25,12 @@ const StyledDiv = style.div`
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     `};
+    
+  ${(props) =>
+    props.paddingLeft &&
+    css`
+      padding-left: 1.5rem;
+    `};
 
   ${(props) =>
     props.paddingYLg &&
