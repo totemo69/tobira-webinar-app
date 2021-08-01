@@ -1,50 +1,68 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { Formik, Field } from 'formik';
-import { Row, Col } from 'antd';
+import { Row, Col, message } from 'antd';
 import globalMessage from '@/messages/global';
-import message from '@/messages/login';
-
+import localMessage from '@/messages/login';
+import validationMessage from '@/messages/validation';
+import { LOADING_PREFIX } from '@/utils/constants';
+import {
+  makeSelectLoading,
+  makeSelectLoadingStatus,
+  makeSelectError,
+} from '@/states/global/selector';
+import { clearErrors } from '@/states/global/actions';
 import Layout from '@/components/Layouts/Guest';
 import Form from '@/components/Elements/Form';
 import Title from '@/components/Elements/Title';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import InputPassword from '@/components/Elements/Input/password';
 import Checkbox from '@/components/Elements/Checkbox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-
 import { authenticateUser } from '@/states/login/action';
-import { makeSelectIsLogin } from '@/states/login/selector';
 import validationSchema from '@/validations/login';
+import Language from '@/components/Modules/Language';
 
-export function Login({ doLogin }) {
+export function Login({
+  doLogin,
+  isLoading,
+  loginStatus,
+  errorMessage,
+  clearErrorMessage,
+}) {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-
+  const route = useRouter();
+  const { locale } = route;
   const onSubmit = useCallback((values) => {
-    console.log(values);
-    setIsLoading(true);
-    doLogin(values, (errors) => {
-      console.log(errors);
-      // translateApiError(errors, formikAction, intl);
-      setIsLoading(false);
-    });
+    doLogin(values);
   });
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!loginStatus && errorMessage) {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
+      }
+    }
+  }, [isLoading, loginStatus]);
 
   return (
     <>
       <Layout>
         <Row>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Formik
               initialValues={{
                 email: '',
@@ -70,14 +88,13 @@ export function Login({ doLogin }) {
                   <Div>
                     <Field
                       name="password"
-                      component={Input}
-                      type="password"
+                      component={InputPassword}
                       placeholder={t(globalMessage.enterPassword)}
                     />
                     <ErrorMessage name="password" />
                   </Div>
                   <Div marginY betweenCenter>
-                    <Checkbox content={t(message.rememberMe)} />
+                    <Checkbox content={t(localMessage.rememberMe)} />
                     <Link
                       href="/forgot-password"
                       name={t(globalMessage.forgotPassword)}
@@ -92,21 +109,34 @@ export function Login({ doLogin }) {
                     {t(globalMessage.login)}
                   </Button>
                   <Div center>
-                    {t(message.createAccount)}{' '}
-                    <Link href="/sign-up" name={t(message.signHere)} />
+                    {t(localMessage.createAccount)}{' '}
+                    <Link href="/sign-up" name={t(localMessage.signHere)} />
                   </Div>
                 </Form>
               )}
             </Formik>
+            <Row
+              align="middle"
+              justify="center"
+              style={{ paddingLeft: '12vw', marginTop: 8 }}
+            >
+              <Language locale={locale} route={route} />
+            </Row>
           </Col>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Div marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+              <Image
+                src="/images/logo.svg"
+                alt="Tobira Logo"
+                logo
+                style={{ width: '18rem' }}
+              />
             </Div>
             <Image
               src="/images/illustration1.svg"
               alt="Webinar Illustration"
               large
+              style={{ width: '100%' }}
             />
           </Col>
         </Row>
@@ -116,18 +146,24 @@ export function Login({ doLogin }) {
 }
 
 Login.propTypes = {
-  // authenticateUser: PropTypes.func,
-  // isLoggedIn: PropTypes.bool,
+  doLogin: PropTypes.func,
+  isLoading: PropTypes.bool,
+  loginStatus: PropTypes.bool,
+  errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoggedIn: makeSelectIsLogin(),
+  isLoading: makeSelectLoading(LOADING_PREFIX.LOGIN),
+  loginStatus: makeSelectLoadingStatus(LOADING_PREFIX.LOGIN),
+  errorMessage: makeSelectError(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     doLogin: (payload, errCallback) =>
       dispatch(authenticateUser(payload, errCallback)),
+    clearErrorMessage: () => dispatch(clearErrors()),
   };
 }
 

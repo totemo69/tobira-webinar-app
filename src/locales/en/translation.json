@@ -53,6 +53,7 @@
     "shareTitle": "Share",
     "shareWebinarLink": "Share event link",
     "linkCopied": "Copied!",
+    "view": "View",
     "english":  "English",
     "japanese":  "Japanese"
   },
@@ -282,7 +283,12 @@
     "enterPaypalAccount": "Enter Paypal Account",
     "dateAndTime": "Date and Time",
     "transaction": "Transaction",
-    "action": "Action"
+    "action": "Action",
+    "pending": "Pending",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "paymentWebinar": "Payment for webinar",
+    "withdrawWebinar": "Withdraw from wallet"
   },
 
   "plan": {
