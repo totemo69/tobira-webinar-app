@@ -61,8 +61,8 @@ export function Login({
   return (
     <>
       <Layout>
-        <Row>
-          <Col sm={24} lg={12}>
+        <Row align="middle" justify="center">
+          <Col align="middle" justify="center" xs={24} sm={24} lg={12}>
             <Formik
               initialValues={{
                 email: '',
@@ -124,9 +124,14 @@ export function Login({
               <Language locale={locale} route={route} />
             </Row>
           </Col>
-          <Col sm={24} lg={12}>
+          <Col xs={24} sm={24} lg={12}>
             <Div marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo style={{ width: '18rem'}} />
+              <Image
+                src="/images/logo.svg"
+                alt="Tobira Logo"
+                logo
+                style={{ width: '18rem' }}
+              />
             </Div>
             <Image
               src="/images/illustration1.svg"

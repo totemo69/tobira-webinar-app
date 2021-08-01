@@ -66,6 +66,11 @@ const StyleSearch = styled(Search).withConfig({
     color: #4e4e4e;
   }
 
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+  }
+
   ${(props) =>
     props.marginLeft &&
     css`

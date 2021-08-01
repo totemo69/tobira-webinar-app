@@ -165,32 +165,42 @@ export function ListOfWebinar({
         <Div widthFull>
           <Card>
             <Div marginY betweenCenter widthFull>
-              <Div noMargin>
-                {t(globalMessage.show)}
-                <Select
-                  showPages
-                  paddingLeft
-                  defaultValue={displayCount}
-                  suffixIcon={<CaretDownFilled />}
-                  onChange={setDisplayCount}
-                >
-                  <Option value={10}>10</Option>
-                  <Option value={20}>20</Option>
-                  <Option value={30}>30</Option>
-                  <Option value={40}>40</Option>
-                  <Option value={50}>50</Option>
-                </Select>
-                {t(globalMessage.entries)}
-              </Div>
-              <Div noMargin flexCenterEnd>
-                {t(globalMessage.search)}{' '}
-                <Search
-                  placeholder={t(globalMessage.searchPlaceholder)}
-                  allowClear
-                  marginLeft
-                  widthMedium
-                />
-              </Div>
+              <Row
+                align="middle"
+                justify="space-between"
+                style={{ width: '100%' }}
+              >
+                <Col xs={24} lg={12}>
+                  <Div noMargin>
+                    {t(globalMessage.show)}
+                    <Select
+                      showPages
+                      paddingLeft
+                      defaultValue={displayCount}
+                      suffixIcon={<CaretDownFilled />}
+                      onChange={setDisplayCount}
+                    >
+                      <Option value={10}>10</Option>
+                      <Option value={20}>20</Option>
+                      <Option value={30}>30</Option>
+                      <Option value={40}>40</Option>
+                      <Option value={50}>50</Option>
+                    </Select>
+                    {t(globalMessage.entries)}
+                  </Div>
+                </Col>
+                <Col xs={24} lg={12}>
+                  <Div noMargin flexCenterEnd style={{ width: '100%' }}>
+                    {/* {t(globalMessage.search)}{' '} */}
+                    <Search
+                      placeholder={t(globalMessage.searchPlaceholder)}
+                      allowClear
+                      marginLeft
+                      widthMedium
+                    />
+                  </Div>
+                </Col>
+              </Row>
             </Div>
             <Table
               loading={isListLoading}

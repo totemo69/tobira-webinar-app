@@ -16,6 +16,10 @@ const StyledDropDown = styled(Dropdown).withConfig({
   font-weight: 600;
   letter-spacing: 0.28px;
   color: #4e4e4e;
+
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+  }
 `;
 
 const Drop = ({ username, items }) => (

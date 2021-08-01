@@ -15,6 +15,9 @@ const StyledTable = styled(Table).withConfig({
     background-color: #0e71eb !important;
     color: #ffffff;
   }
+
+  overflow: auto;
+  margin-top: 10px;
 `;
 
 export default StyledTable;
