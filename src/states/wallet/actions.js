@@ -7,6 +7,8 @@ import {
   WITHDRAWS,
   UPDATE_BANK,
   SET_WITHDRAW,
+  GET_WALLET,
+  SET_WALLET,
 } from './types';
 
 export const getBankList = () => ({
@@ -15,6 +17,15 @@ export const getBankList = () => ({
 
 export const setBankList = (payload) => ({
   type: SET_BANK_LIST,
+  payload,
+});
+
+export const getWallet = () => ({
+  type: GET_WALLET,
+});
+
+export const setWallet = (payload) => ({
+  type: SET_WALLET,
   payload,
 });
 

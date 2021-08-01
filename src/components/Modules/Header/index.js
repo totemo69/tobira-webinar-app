@@ -6,6 +6,7 @@ import { memo, useEffect } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { useRouter } from 'next/router';
+import { Col, Row } from 'antd';
 import Link from 'next/link';
 import NextImage from 'next/image';
 import globalMessage from '@/messages/global';
@@ -103,15 +104,21 @@ export function Header({
           )}
           {withMenu && (
             <>
-              <Image
-                src={userDetails.profileImage ?? '/images/avatar.svg'}
-                userImg
-              />
-              <Dropdown
-                username={userDetails && userDetails.username}
-                items={MenuItems}
-              />
-              <Language locale={locale} route={route} />
+              <Row type="flex">
+                <Col type="flex" xs={12}>
+                  <Image
+                    src={userDetails.profileImage ?? '/images/avatar.svg'}
+                    userImg
+                  />
+                  <Dropdown
+                    username={userDetails && userDetails.username}
+                    items={MenuItems}
+                  />
+                </Col>
+                <Col type="flex" xs={12}>
+                  <Language locale={locale} route={route} />
+                </Col>
+              </Row>
             </>
           )}
         </Div>

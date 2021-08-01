@@ -1,5 +1,11 @@
 import produce from 'immer';
-import { REMOVE_BANK, SET_BANK, SET_BANK_LIST, SET_WITHDRAW } from './types';
+import {
+  REMOVE_BANK,
+  SET_BANK,
+  SET_BANK_LIST,
+  SET_WITHDRAW,
+  SET_WALLET,
+} from './types';
 
 export const initialState = {
   bankList: [],
@@ -9,14 +15,16 @@ export const initialState = {
     accountNumber: '',
   },
   withdraw: {
-    user: '',
     amount: '',
     gatewayType: '',
-    bankName: '',
-    accountName: '',
-    accountNumber: '',
-    status: '',
+    gatewayDetails: {
+      bankName: '',
+      accountName: '',
+      accountNumber: '',
+      paypal: '',
+    },
   },
+  wallet: {},
 };
 /* eslint-disable default-case, no-param-reassign */
 const walletReducer = (state = initialState, action) =>
@@ -42,6 +50,10 @@ const walletReducer = (state = initialState, action) =>
       }
       case REMOVE_BANK: {
         draft.bankList = draft.bankList.filter((item) => item.id !== action.id);
+        break;
+      }
+      case SET_WALLET: {
+        draft.wallet = action.payload;
         break;
       }
     }

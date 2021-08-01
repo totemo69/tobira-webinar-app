@@ -6,6 +6,7 @@ import {
   ArrowUpOutlined,
   EyeFilled,
 } from '@ant-design/icons';
+import { FormatDate } from '@/utils/dateUtils';
 import StyledText from '@/components/Elements/Text';
 import { Tag } from 'antd';
 import Button from '@/components/Elements/Button';
@@ -25,83 +26,73 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
     setIsPaymentWebinarModalVisible(true);
   };
 
+  const colorStatus = (status) => {
+    let color = '';
+    if (status === 'pending') {
+      color = '#FFA000';
+    } else {
+      color = '#4CAF50';
+    }
+    return color;
+  };
+
+  const transactionTypes = (types) => {
+    let returnValue = '';
+    if (types === 'credit') {
+      returnValue = (
+        <>
+          <ArrowDownOutlined style={{ color: '#4CAF50' }} />
+          <StyledText black content={t(message.paymentWebinar)} />
+        </>
+      );
+    } else {
+      returnValue = (
+        <>
+          <ArrowUpOutlined style={{ color: '#FF0033' }} />
+          <StyledText black content={t(message.withdrawWebinar)} />
+        </>
+      );
+    }
+    return returnValue;
+  };
+
   const columns = [
     {
       title: t(message.dateAndTime),
-      dataIndex: ['fields', 'transactionDate'],
-      sorter: {
-        multiple: 3,
-      },
+      dataIndex: 'transactionDate',
       align: 'center',
+      render: (transactionDate) =>
+        FormatDate(transactionDate, 'YYYY-MM-DD HH:mm'),
     },
     {
       title: t(message.transaction),
-      dataIndex: ['fields', 'transactionType'],
-      sorter: {
-        multiple: 3,
-      },
+      dataIndex: 'transactionType',
       align: 'center',
-      render: (titles) => (
+      render: (transactionType) => (
         <>
-          {titles.map((title) => {
-            const transaction =
-              title.length > 10 ? (
-                <>
-                  <ArrowDownOutlined style={{ color: '#4CAF50' }} />
-                  <StyledText black content="Payment for webinar" />
-                </>
-              ) : (
-                <>
-                  <ArrowUpOutlined style={{ color: '#FF0033' }} />
-                  <StyledText black content="Withdrawal" />
-                </>
-              );
-            return (
-              <>
-                <StyledText black content={transaction} />
-              </>
-            );
-          })}
+          <StyledText black content={transactionTypes(transactionType)} />
         </>
       ),
     },
     {
       title: t(message.amountInput),
-      dataIndex: ['fields', 'amount'],
-      sorter: {
-        multiple: 3,
-      },
+      dataIndex: 'amount',
       align: 'center',
+      render: (amount) => <>{amount} JPY</>,
     },
     {
       title: t(message.status),
-      dataIndex: ['fields', 'status'],
-      sorter: {
-        multiple: 3,
-      },
+      dataIndex: 'status',
       align: 'center',
       render: (status) => (
-        <>
-          {status.map((stat) => {
-            let color = stat.length > 7 ? '#4CAF50' : '#FFA000';
-            if (stat === 'pending') {
-              color = '#FFA000';
-            }
-            return (
-              <Tag color={color} key={stat}>
-                {stat}
-              </Tag>
-            );
-          })}
-        </>
+        <Tag color={colorStatus(status)} key={status}>
+          {t(message[status])}
+        </Tag>
       ),
     },
     {
       title: t(message.action),
       dataIndex: 'action',
-      sorter: {
-        multiple: 3,
-      },
       align: 'center',
       render: (id) => (
         <Button

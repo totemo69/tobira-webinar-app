@@ -17,7 +17,14 @@ export default function Sider() {
 
   return (
     <>
-      <Sidebar width={250}>
+      <Sidebar
+        width={250}
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+      >
         <Div paddingSmall noMargin widthFull yellowBg>
           <Image src="/images/logo.svg" alt="Tobira Logo" logoSmall />
         </Div>

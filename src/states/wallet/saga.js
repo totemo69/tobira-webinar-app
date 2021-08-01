@@ -15,13 +15,14 @@ import {
   REMOVE_BANK,
   UPDATE_BANK,
   WITHDRAWS,
+  GET_WALLET,
 } from './types';
-import { setBankList } from './actions';
+import { setBankList, setWallet } from './actions';
 import { makeSelectWithdraw } from './selector';
 
 function* doGetBankList() {
   try {
-    yield put(loading(LOADING_PREFIX.WALLET));
+    yield put(loading(LOADING_PREFIX.BANK));
     const response = yield call(
       request,
       `${API.BANKS}`,
@@ -31,7 +32,7 @@ function* doGetBankList() {
   } catch (error) {
     yield put(loadErrors(error));
   } finally {
-    yield put(loading(LOADING_PREFIX.WALLET, false));
+    yield put(loading(LOADING_PREFIX.BANK, false));
   }
 }
 
@@ -99,10 +100,27 @@ function* doWithdraw() {
   }
 }
 
+function* getMyWallet() {
+  try {
+    yield put(loading(LOADING_PREFIX.WALLET));
+    const response = yield call(
+      request,
+      `${API.WALLET}/mywallet`,
+      RequestOptions(GET_REQUEST, null, true),
+    );
+    yield put(setWallet(response));
+  } catch (error) {
+    yield put(loadErrors(error));
+  } finally {
+    yield put(loading(LOADING_PREFIX.WALLET, false));
+  }
+}
+
 export default function* walletSaga() {
   yield takeLatest(GET_BANK_LIST, doGetBankList);
   yield takeLatest(ADD_BANK, doAddBank);
   yield takeLatest(UPDATE_BANK, doUpdateBank);
   yield takeLatest(REMOVE_BANK, doRemoveBank);
   yield takeLatest(WITHDRAWS, doWithdraw);
+  yield takeLatest(GET_WALLET, getMyWallet);
 }
