@@ -91,14 +91,13 @@ export default function CreateWebinarDetails({
                 />
                 <ErrorMessage name="managementTitle" />
               </Div>
-              <Div
-                widthFull
-                marginY
-                paddingBottomXL
-                betweenBottom
-                doubleDividerBlue
+              <Row
+                type="flex"
+                align="middle"
+                justify="start"
+                style={{ width: '100%' }}
               >
-                <Div>
+                <Col type="flex" align="middle" justify="start" xs={24} lg={18}>
                   <Labels asterisk>{t(localMessage.zoomAccount)}</Labels>
                   <Field
                     name="webinarAccount"
@@ -118,12 +117,14 @@ export default function CreateWebinarDetails({
                     ))}
                   </Field>
                   <ErrorMessage name="webinarAccount" />
-                </Div>
-                <Button addBtn>
-                  <PlusSquareFilled />{' '}
-                  <a href="/account">{t(localMessage.addAccount)}</a>
-                </Button>
-              </Div>
+                </Col>
+                <Col type="flex" align="middle" justify="start" xs={24} lg={6}>
+                  <Button addBtn style={{ width: '90%' }}>
+                    <PlusSquareFilled />{' '}
+                    <a href="/account">{t(localMessage.addAccount)}</a>
+                  </Button>
+                </Col>
+              </Row>
               <Div marginTop marginBottomLarge>
                 <Labels textBlue bold></Labels>
               </Div>
@@ -135,41 +136,64 @@ export default function CreateWebinarDetails({
                 doubleDividerBlue
                 flexTop
               >
-                <Div widthFull>
-                  <Labels asterisk>{t(localMessage.webinarImage)}</Labels>
-                  <Div imageContainer flexColCenter>
-                    <ImageUpload
-                      src={values.image}
-                      onUploadComplete={(image) =>
-                        setFieldValue('image', image, true)
-                      }
-                    />
-                  </Div>
-                </Div>
-                <Div widthFull paddingX>
-                  <Div widthFull marginBottomLarge>
-                    <Labels asterisk>{t(localMessage.webinarTitle)}</Labels>
-                    <Field
-                      type="text"
-                      name="title"
-                      placeholder={t(localMessage.enterWebinarTitle)}
-                      component={Input}
-                    />
-                    <ErrorMessage name="title" />
-                  </Div>
-                  <Div widthFull marginY>
-                    <Labels asterisk>{t(localMessage.description)}</Labels>
-                    <Field
-                      name="description"
-                      placeholder={t(localMessage.enterWebinarDescription)}
-                      component={Textarea}
-                      rows={7}
-                      showCount
-                      maxLength={100}
-                    />
-                    <ErrorMessage name="description" />
-                  </Div>
-                </Div>
+                <Row
+                  type="flex"
+                  align="middle"
+                  justify="center"
+                  style={{ width: '100%' }}
+                >
+                  <Col
+                    type="flex"
+                    align="middle"
+                    justify="center"
+                    xs={24}
+                    lg={12}
+                  >
+                    <Div widthFull>
+                      <Labels asterisk>{t(localMessage.webinarImage)}</Labels>
+                      <Div imageContainer flexColCenter>
+                        <ImageUpload
+                          src={values.image}
+                          onUploadComplete={(image) =>
+                            setFieldValue('image', image, true)
+                          }
+                        />
+                      </Div>
+                    </Div>
+                  </Col>
+                  <Col
+                    type="flex"
+                    align="middle"
+                    justify="center"
+                    xs={24}
+                    lg={12}
+                  >
+                    <Div widthFull paddingLeft>
+                      <Div widthFull marginBottomLarge>
+                        <Labels asterisk>{t(localMessage.webinarTitle)}</Labels>
+                        <Field
+                          type="text"
+                          name="title"
+                          placeholder={t(localMessage.enterWebinarTitle)}
+                          component={Input}
+                        />
+                        <ErrorMessage name="title" />
+                      </Div>
+                      <Div widthFull marginY>
+                        <Labels asterisk>{t(localMessage.description)}</Labels>
+                        <Field
+                          name="description"
+                          placeholder={t(localMessage.enterWebinarDescription)}
+                          component={Textarea}
+                          rows={7}
+                          showCount
+                          maxLength={100}
+                        />
+                        <ErrorMessage name="description" />
+                      </Div>
+                    </Div>
+                  </Col>
+                </Row>
               </Div>
               <Div marginTop>
                 <Labels textBlue bold>
@@ -210,113 +234,159 @@ export default function CreateWebinarDetails({
               {isVisible ? (
                 <>
                   <Div marginY flexTop widthFull>
-                    <Div marginRight>
-                      <Labels asterisk>{t(localMessage.date)}</Labels>
-                      <DatePicker
-                        name="schedules[0].scheduleDate"
-                        value={values.schedules[0].scheduleDate}
-                        placeholder={t(localMessage.selectDate)}
-                        format="MM/DD/YYYY"
-                        disabledDate={DisableDates}
-                        disabled={isUpdate}
-                        onChange={(date) => {
-                          setFieldValue('schedules[0].scheduleDate', date);
-                        }}
-                      />
-                      <ErrorMessage name="schedules[0].scheduleDate" />
-                    </Div>
-                    <Div marginLeft>
-                      <Labels asterisk>{t(localMessage.startTime)}</Labels>
-                      <TimePicker
-                        name="schedules[0].scheduleTime"
-                        value={values.schedules[0].scheduleTime}
-                        placeholder={t(localMessage.startTime)}
-                        use12Hours
-                        minuteStep={15}
-                        disabled={isUpdate}
-                        format="h:mm a"
-                        onChange={(time) => {
-                          setFieldValue('schedules[0].scheduleTime', time);
-                        }}
-                      />
-                      <ErrorMessage name="schedules[0].scheduleTime" />
-                    </Div>
+                    <Row
+                      type="flex"
+                      align="middle"
+                      justify="start"
+                      style={{ width: '100%' }}
+                    >
+                      <Col
+                        type="flex"
+                        align="middle"
+                        justify="start"
+                        xs={24}
+                        lg={12}
+                      >
+                        <Div widthFull>
+                          <Labels asterisk>{t(localMessage.date)}</Labels>
+                          <DatePicker
+                            name="schedules[0].scheduleDate"
+                            value={values.schedules[0].scheduleDate}
+                            placeholder={t(localMessage.selectDate)}
+                            format="MM/DD/YYYY"
+                            disabledDate={DisableDates}
+                            disabled={isUpdate}
+                            onChange={(date) => {
+                              setFieldValue('schedules[0].scheduleDate', date);
+                            }}
+                          />
+                          <ErrorMessage name="schedules[0].scheduleDate" />
+                        </Div>
+                      </Col>
+                      <Col
+                        type="flex"
+                        align="middle"
+                        justify="start"
+                        xs={24}
+                        lg={12}
+                      >
+                        <Div paddingLeft widthFull>
+                          <Labels asterisk>{t(localMessage.startTime)}</Labels>
+                          <TimePicker
+                            name="schedules[0].scheduleTime"
+                            value={values.schedules[0].scheduleTime}
+                            placeholder={t(localMessage.startTime)}
+                            use12Hours
+                            minuteStep={15}
+                            disabled={isUpdate}
+                            format="h:mm a"
+                            onChange={(time) => {
+                              setFieldValue('schedules[0].scheduleTime', time);
+                            }}
+                          />
+                          <ErrorMessage name="schedules[0].scheduleTime" />
+                        </Div>
+                      </Col>
+                    </Row>
                   </Div>
                   <Div marginY flexTop widthFull>
-                    <Div marginRight>
-                      <Labels asterisk>{t(localMessage.timeZone)}</Labels>
-                      <TimezoneSelect
-                        instanceId="timezone"
-                        placeholder={t(localMessage.selectTimeZone)}
-                        name="timezone"
-                        value={values.timezone}
-                        isDisabled={isUpdate}
-                        onChange={(zone) => {
-                          setFieldValue('timezone', zone);
-                        }}
-                      />
-                      {errors.timezone ? (
-                        <DisplayError error={errors.timezone.label} />
-                      ) : null}
-                    </Div>
-                    <Div marginLeft>
-                      <Labels asterisk>{t(localMessage.duration)}</Labels>
-                      <Row gutter={50}>
-                        <Col span={12}>
-                          <Field
-                            name="durationHour"
-                            component={Select}
-                            suffixIcon={<CaretDownFilled />}
-                            defaultValue={values.durationHour}
-                            disabled={isUpdate}
-                            onChange={(val) => {
-                              setFieldValue('durationHour', val);
-                            }}
-                          >
-                            <Option key="" value="" disabled>
-                              {t(localMessage.hourSelect)}
-                            </Option>
-                            {Array.from(Array(11), (_, i) => (
-                              <Option key={i} value={i}>
-                                {i}
-                              </Option>
-                            ))}
-                          </Field>{' '}
-                          {/* {t(localMessage.hour)}{' '} */}
-                          <ErrorMessage name="durationHour" />
-                        </Col>
-                        <Col span={12}>
-                          <Field
-                            name="durationMinute"
-                            component={Select}
-                            suffixIcon={<CaretDownFilled />}
-                            defaultValue={values.durationMinute}
-                            disabled={isUpdate}
-                            onChange={(val) => {
-                              setFieldValue('durationMinute', val);
-                            }}
-                          >
-                            <Option key="" value="" disabled>
-                              {t(localMessage.minutesSelect)}
-                            </Option>
-                            <Option key="00" value="00">
-                              00
-                            </Option>
-                            <Option key="15" value="15">
-                              15
-                            </Option>
-                            <Option key="30" value="30">
-                              30
-                            </Option>
-                            <Option key="45" value="45">
-                              45
-                            </Option>
-                          </Field>{' '}
-                          {/* {t(localMessage.minutes)}{' '} */}
-                          <ErrorMessage name="durationMinute" />
-                        </Col>
-                      </Row>
-                    </Div>
+                    <Row
+                      type="flex"
+                      align="middle"
+                      justify="start"
+                      style={{ width: '100%' }}
+                    >
+                      <Col
+                        type="flex"
+                        align="middle"
+                        justify="start"
+                        xs={24}
+                        lg={12}
+                      >
+                        <Labels asterisk>{t(localMessage.timeZone)}</Labels>
+                        <TimezoneSelect
+                          instanceId="timezone"
+                          placeholder={t(localMessage.selectTimeZone)}
+                          name="timezone"
+                          value={values.timezone}
+                          isDisabled={isUpdate}
+                          onChange={(zone) => {
+                            setFieldValue('timezone', zone);
+                          }}
+                          style={{ height: 50 }}
+                        />
+                        {errors.timezone ? (
+                          <DisplayError error={errors.timezone.label} />
+                        ) : null}
+                      </Col>
+                      <Col
+                        type="flex"
+                        align="middle"
+                        justify="start"
+                        xs={24}
+                        lg={12}
+                        style={{ paddingTop: 10 }}
+                      >
+                        <Div widthFull paddingLeft>
+                          <Labels asterisk>{t(localMessage.duration)}</Labels>
+                          <Row gutter={30}>
+                            <Col span={12}>
+                              <Field
+                                name="durationHour"
+                                component={Select}
+                                suffixIcon={<CaretDownFilled />}
+                                defaultValue={values.durationHour}
+                                disabled={isUpdate}
+                                onChange={(val) => {
+                                  setFieldValue('durationHour', val);
+                                }}
+                              >
+                                <Option key="" value="" disabled>
+                                  {t(localMessage.hourSelect)}
+                                </Option>
+                                {Array.from(Array(11), (_, i) => (
+                                  <Option key={i} value={i}>
+                                    {i}
+                                  </Option>
+                                ))}
+                              </Field>{' '}
+                              {/* {t(localMessage.hour)}{' '} */}
+                              <ErrorMessage name="durationHour" />
+                            </Col>
+                            <Col span={12}>
+                              <Field
+                                name="durationMinute"
+                                component={Select}
+                                suffixIcon={<CaretDownFilled />}
+                                defaultValue={values.durationMinute}
+                                disabled={isUpdate}
+                                onChange={(val) => {
+                                  setFieldValue('durationMinute', val);
+                                }}
+                              >
+                                <Option key="" value="" disabled>
+                                  {t(localMessage.minutesSelect)}
+                                </Option>
+                                <Option key="00" value="00">
+                                  00
+                                </Option>
+                                <Option key="15" value="15">
+                                  15
+                                </Option>
+                                <Option key="30" value="30">
+                                  30
+                                </Option>
+                                <Option key="45" value="45">
+                                  45
+                                </Option>
+                              </Field>{' '}
+                              {/* {t(localMessage.minutes)}{' '} */}
+                              <ErrorMessage name="durationMinute" />
+                            </Col>
+                          </Row>
+                        </Div>
+                      </Col>
+                    </Row>
                   </Div>
                 </>
               ) : (
@@ -377,6 +447,7 @@ export default function CreateWebinarDetails({
                         onChange={(zone) => {
                           setFieldValue('timezone', zone);
                         }}
+                        style={{ height: 50 }}
                       />
                       {
                         // ErrorMessage on timezone.label not working.
