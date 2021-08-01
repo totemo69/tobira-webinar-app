@@ -2,12 +2,19 @@ import styled, { css } from 'styled-components';
 
 const StyledLabels = styled.label`
   margin-bottom: 0.25rem;
-  width: 90%;
-  display: block;
+  width: 80%;
   font-size: 12px;
   font-weight: 500;
   color: #4e4e4e;
   letter-spacing: 0.24px;
+  display: inline-flex;
+  justify-content: flex-start;
+
+  @media screen and (max-width: 768px) {
+    display: inline-flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
 
   ${(props) =>
     props.asterisk &&
