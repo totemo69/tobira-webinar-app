@@ -7,6 +7,12 @@ const StyledDiv = style.div`
   font-size: 12px;
   letter-spacing: 0.24px;
 
+  @media screen and (max-width: 768px) {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  
   ${(props) =>
     props.withPadding &&
     css`
@@ -18,6 +24,12 @@ const StyledDiv = style.div`
     css`
       padding-left: 1.5rem;
       padding-right: 1.5rem;
+    `};
+    
+  ${(props) =>
+    props.paddingLeft &&
+    css`
+      padding-left: 1.5rem;
     `};
 
   ${(props) =>

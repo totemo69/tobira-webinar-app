@@ -13,6 +13,10 @@ const StyledForm = styled(Form).withConfig({
 })`
   margin: 5rem auto 0;
   width: 80%;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default StyledForm;

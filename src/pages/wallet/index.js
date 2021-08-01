@@ -4,12 +4,7 @@ import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { Formik, Field, Form } from 'formik';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import {
-  getBankList,
-  removeBank,
-  setWithdraw,
-  withdraws,
-} from '@/states/wallet/actions';
+
 import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
@@ -51,7 +46,15 @@ import message from '@/messages/wallet';
 import {
   makeSelectBankList,
   makeSelectWithdraw,
+  makeSelectMyWallet,
 } from '@/states/wallet/selector';
+import {
+  getBankList,
+  removeBank,
+  setWithdraw,
+  withdraws,
+  getWallet,
+} from '@/states/wallet/actions';
 import { makeSelectTransactionList } from '@/states/transaction/selector';
 import { withdrawalValidationSchema } from '@/validations/wallet';
 import { getTransaction } from '@/states/transaction/actions';
@@ -62,6 +65,8 @@ import { makeSelectLoading } from '@/states/global/selector';
 export function Wallet({
   doGetBankList,
   getTransactionHistory,
+  getMyWallet,
+  myWallet,
   bankList,
   transactionHistoryList,
   doRemoveBank,
@@ -75,6 +80,7 @@ export function Wallet({
   useEffect(() => {
     doGetBankList();
     getTransactionHistory();
+    getMyWallet();
   }, []);
 
   const [bankId, setBankId] = useState(null);
@@ -248,11 +254,11 @@ export function Wallet({
           <Div walletBalance>
             <Div>
               <Span>{t(message.currentWalletBalance)}</Span>
-              <Title level={1}>¥ 90,000</Title>
+              <Title level={1}>{myWallet.currentBalance}</Title>
               <Row gutter={20}>
-                <Col>+ 110,000 JPY</Col>
+                <Col>+ {myWallet.currentBalance}</Col>
 
-                <Col>- 20,000 JPY</Col>
+                <Col>- {myWallet.currentBalance}</Col>
               </Row>
             </Div>
             <Div style={{ margin: 'auto 0', float: 'right' }}>
@@ -341,14 +347,14 @@ export function Wallet({
       >
         <Formik
           initialValues={{
-            user: 'admin',
             amount: '',
-            gatewayType: 'Bank',
-            paypal: '',
-            bankName: '',
-            accountName: '',
-            accountNumber: '',
-            status: 'active',
+            gatewayType: 'bank',
+            gatewayDetails: {
+              paypal: '',
+              bankName: '',
+              accountName: '',
+              accountNumber: '',
+            },
           }}
           onSubmit={onProceed}
           enableReinitialize
@@ -418,31 +424,31 @@ export function Wallet({
                     </Label>
                     <Field
                       type="Text"
-                      name="bankName"
+                      name="gatewayDetails.bankName"
                       placeholder={t(globalMessage.bankName)}
                       component={Input}
                     />
-                    <ErrorMessage name="bankName" />
+                    <ErrorMessage name="gatewayDetails.bankName" />
                     <Label marginTop asterisk>
                       {t(globalMessage.accountName)}
                     </Label>
                     <Field
                       type="Text"
-                      name="accountName"
+                      name="gatewayDetails.accountName"
                       placeholder={t(globalMessage.accountName)}
                       component={Input}
                     />
-                    <ErrorMessage name="accountName" />
+                    <ErrorMessage name="gatewayDetails.accountName" />
                     <Label marginTop asterisk>
                       {t(globalMessage.accountNumber)}
                     </Label>
                     <Field
                       type="Text"
-                      name="accountNumber"
+                      name="gatewayDetails.accountNumber"
                       placeholder={t(globalMessage.accountNumber)}
                       component={Input}
                     />
-                    <ErrorMessage name="accountNumber" />
+                    <ErrorMessage name="gatewayDetails.accountNumber" />
                     <Row style={{ marginTop: 20 }}>
                       <Checkbox />
                       <Label>{t(message.saveThisAccountFutureUse)}</Label>
@@ -457,7 +463,7 @@ export function Wallet({
                     </Label>
                     <Field
                       type="Text"
-                      name="paypal"
+                      name="gatewayDetails.paypal"
                       placeholder={t(message.enterPaypalAccount)}
                       component={Input}
                     />
@@ -569,6 +575,8 @@ Wallet.propTypes = {
   bankList: PropTypes.any,
   transactionHistoryList: PropTypes.any,
   withdraw: PropTypes.any,
+  getMyWallet: PropTypes.any,
+  myWallet: PropTypes.any,
   doGetBankList: PropTypes.func,
   getTransactionHistory: PropTypes.func,
   doRemoveBank: PropTypes.func,
@@ -581,6 +589,7 @@ const mapStateToProps = createStructuredSelector({
   transactionHistoryList: makeSelectTransactionList(),
   withdraw: makeSelectWithdraw(),
   isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  myWallet: makeSelectMyWallet(),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
@@ -588,6 +597,7 @@ const mapPropsToDispatch = (dispatch) => ({
   getTransactionHistory: () => dispatch(getTransaction()),
   doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
   doWithdraw: (payload) => dispatch(withdraws(payload)),
+  getMyWallet: () => dispatch(getWallet()),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

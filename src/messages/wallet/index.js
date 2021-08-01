@@ -165,6 +165,26 @@ const message = {
     key: `${scope}.action`,
     default: 'Action',
   }),
+  pending: Object.values({
+    key: `${scope}.pending`,
+    default: 'Pending',
+  }),
+  completed: Object.values({
+    key: `${scope}.completed`,
+    default: 'Completed',
+  }),
+  cancelled: Object.values({
+    key: `${scope}.cancelled`,
+    default: 'Cancelled',
+  }),
+  paymentWebinar: Object.values({
+    key: `${scope}.paymentWebinar`,
+    default: 'Payment for Webinar',
+  }),
+  withdrawWebinar: Object.values({
+    key: `${scope}.withdrawWebinar`,
+    default: 'Withdraw from wallet',
+  }),
 };
 
 export default message;

@@ -1,4 +1,5 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
+import querystring from 'querystring';
 import {
   API,
   GET_REQUEST,
@@ -34,9 +35,16 @@ import {
 function* webinarList() {
   try {
     yield put(loading(LOADING_PREFIX.LIST_WEBINAR));
+    const query = {
+      order: 'createdAt DESC',
+    };
+    const filter = {
+      filter: JSON.stringify(query),
+    };
+    const stringifyQuery = querystring.stringify(filter);
     const response = yield call(
       request,
-      API.WEBINARS,
+      `${API.WEBINARS}/?${stringifyQuery}`,
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setWebinarList(response));

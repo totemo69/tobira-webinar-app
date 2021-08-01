@@ -24,6 +24,14 @@ const StyledCard = styled(Card).withConfig({
   .ant-card-body {
     padding: 0 24px 24px 24px;
   }
+
+  @media screen and (max-width: 768px) {
+    .ant-card-body {
+      padding: 10px;
+    }
+    margin-top: 20px;
+  }
+
   width: 100%;
   margin-top: 4px;
   border-radius: 10px;

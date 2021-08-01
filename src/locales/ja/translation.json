@@ -52,6 +52,7 @@
     "shareTitle": "シェア",
     "shareWebinarLink": "イベントリンクをシェアする",
     "linkCopied": "コピー!",
+    "view": "詳細",
     "english":  "英語",
     "japanese":  "日本語"
   },
@@ -275,7 +276,12 @@
     "enterPaypalAccount": "Paypalアカウントを入力してください",
     "dateAndTime": "日時",
     "transaction": "取引",
-    "action": "アクション"
+    "action": "アクション",
+    "pending": "保留中",
+    "completed": "完了",
+    "cancelled": "キャンセル",
+    "paymentWebinar": "ウェビナーの支払い",
+    "withdrawWebinar": "出金"
   },
 
   "plan": {
