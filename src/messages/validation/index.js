@@ -166,6 +166,10 @@ const message = {
     key: `${scope}.tokenExpired`,
     default: 'Your reset token is invalid or already expired.',
   }),
+  paypalAccount: Object.values({
+    key: `${scope}.paypalAccount`,
+    default: 'Paypal account',
+  }),
 };
 
 export default message;
