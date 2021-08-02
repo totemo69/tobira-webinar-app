@@ -26,7 +26,6 @@ function TransactionHistoryTable({
   const [isPaymentWebinarModalVisible, setIsPaymentWebinarModalVisible] =
     useState(false);
 
-  console.log(displayCount);
   const viewTransactionHistory = (id) => {
     onClickDetails(id);
     setIsPaymentWebinarModalVisible(true);

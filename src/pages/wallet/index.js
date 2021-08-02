@@ -4,7 +4,7 @@ import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { Formik, Field, Form } from 'formik';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import { subtract } from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
@@ -162,8 +162,11 @@ export function Wallet({
   };
 
   const onViewDetails = (id) => {
-    console.log(id);
     getDetails(id);
+  };
+
+  const isCanWithdraw = (val1, val2) => {
+    return val1 > val2;
   };
 
   const bankItems = bankList.map((bank) => (
@@ -363,8 +366,9 @@ export function Wallet({
         <Formik
           initialValues={{
             amount: '',
-            gatewayType: 'bank',
+            gatewayType: 'paypal',
             gatewayDetails: {
+              gatewayType: 'paypal',
               paypal: '',
               bankName: '',
               accountName: '',
@@ -375,7 +379,7 @@ export function Wallet({
           enableReinitialize
           validationSchema={withdrawalValidationSchema}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, errors, setFieldValue }) => (
             <Form>
               <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
               <StyledDiv style={{ padding: '20px' }}>
@@ -406,7 +410,11 @@ export function Wallet({
                       width: 190,
                       borderColor: 'transparent',
                     }}
-                    onClick={() => setIsInputVisible(false)}
+                    onClick={() => {
+                      setIsInputVisible(false);
+                      setFieldValue('gatewayType', 'paypal');
+                      setFieldValue('gatewayDetails.gatewayType', 'paypal');
+                    }}
                   >
                     <img
                       src="Images/paypal.svg"
@@ -425,7 +433,11 @@ export function Wallet({
                       marginTop: 0,
                     }}
                     icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
-                    onClick={() => setIsInputVisible(true)}
+                    onClick={() => {
+                      setIsInputVisible(true);
+                      setFieldValue('gatewayType', 'bank');
+                      setFieldValue('gatewayDetails.gatewayType', 'bank');
+                    }}
                   >
                     <StyledText strong blue content={t(globalMessage.bank)} />
                   </Button>
@@ -482,10 +494,10 @@ export function Wallet({
                       placeholder={t(message.enterPaypalAccount)}
                       component={Input}
                     />
+                    <ErrorMessage name="gatewayDetails.paypal" />
                   </Col>
                 </Row>
               )}
-
               <StyledDiv
                 style={{ display: 'flex', margin: '0 auto', width: '300px' }}
               >
@@ -530,19 +542,24 @@ export function Wallet({
             <StyledText gray content={t(message.currentBalance)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content="" />
+            <StyledText content={`${myWallet.currentBalance} ¥`} />
           </Col>
           <Col align="middle" justify="center" span={12}>
             <StyledText gray content={t(message.withdrawAmount)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content={withdraw.amount} />
+            <StyledText content={`${withdraw.amount} ¥`} />
           </Col>
           <Col align="middle" justify="center" span={12}>
             <StyledText gray content={t(message.remainingBalance)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content="" />
+            <StyledText
+              content={`${subtract(
+                myWallet.currentBalance,
+                withdraw.amount,
+              )} ¥`}
+            />
           </Col>
           <Col
             align="middle"
@@ -558,7 +575,7 @@ export function Wallet({
             span={12}
             style={{ marginTop: 30 }}
           >
-            <StyledText content={withdraw.gatewayType} />
+            <StyledText content={t(message[withdraw.gatewayType])} />
           </Col>
         </Row>
         <Row align="middle" justify="center" gutter={20}>
@@ -573,10 +590,17 @@ export function Wallet({
               }
             >
               <StyledText strong content={t(globalMessage.back)} />
+              {console.log(withdraw.amount > myWallet.currentBalance)}
             </Button>
           </Col>
           <Col>
-            <Button NextButton noMargin type="primary" onClick={onConfirm}>
+            <Button
+              NextButton
+              noMargin
+              type="primary"
+              onClick={onConfirm}
+              disabled={isCanWithdraw(withdraw.amount, myWallet.currentBalance)}
+            >
               {t(globalMessage.confirm)}
             </Button>
           </Col>
