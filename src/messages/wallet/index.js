@@ -185,6 +185,14 @@ const message = {
     key: `${scope}.withdrawWebinar`,
     default: 'Withdraw from wallet',
   }),
+  paypal: Object.values({
+    key: `${scope}.paypal`,
+    default: 'Paypal',
+  }),
+  bank: Object.values({
+    key: `${scope}.bank`,
+    default: 'Bank',
+  }),
 };
 
 export default message;

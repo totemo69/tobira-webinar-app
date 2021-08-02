@@ -14,8 +14,9 @@ export const setTransaction = (payload) => ({
   payload,
 });
 
-export const getTransactionDetails = () => ({
+export const getTransactionDetails = (payload) => ({
   type: GET_TRANSACTION_DETAILS,
+  payload,
 });
 
 export const setTransactionDetails = (payload) => ({

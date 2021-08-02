@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import querystring from 'querystring';
 import { API, GET_REQUEST, LOADING_PREFIX } from '@/utils/constants';
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors } from '@/states/global/actions';
@@ -11,9 +12,16 @@ import { GET_TRANSACTION, GET_TRANSACTION_DETAILS } from './types';
 function* doGetTransactionHistory() {
   try {
     yield put(loading(LOADING_PREFIX.TRANSACTION));
+    const query = {
+      order: 'createdAt DESC',
+    };
+    const filter = {
+      filter: JSON.stringify(query),
+    };
+    const stringifyQuery = querystring.stringify(filter);
     const response = yield call(
       request,
-      `${API.TRANSACTION}`,
+      `${API.TRANSACTION}/?${stringifyQuery}`,
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setTransaction(response));
@@ -26,11 +34,10 @@ function* doGetTransactionHistory() {
 
 function* transactionDetails({ payload }) {
   try {
-    const { id } = payload;
     yield put(loading(LOADING_PREFIX.TRANSACTION));
     const response = yield call(
       request,
-      `${API.TRANSACTION}/${id}`,
+      `${API.TRANSACTION}/${payload}`,
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setTransactionDetails(response));

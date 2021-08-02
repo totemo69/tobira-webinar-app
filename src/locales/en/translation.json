@@ -288,7 +288,9 @@
     "completed": "Completed",
     "cancelled": "Cancelled",
     "paymentWebinar": "Payment for webinar",
-    "withdrawWebinar": "Withdraw from wallet"
+    "withdrawWebinar": "Withdraw from wallet",
+    "paypal": "Paypal",
+    "bank": "Bank"
   },
 
   "plan": {

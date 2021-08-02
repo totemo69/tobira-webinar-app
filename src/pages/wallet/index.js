@@ -55,9 +55,15 @@ import {
   withdraws,
   getWallet,
 } from '@/states/wallet/actions';
-import { makeSelectTransactionList } from '@/states/transaction/selector';
+import {
+  makeSelectTransactionList,
+  makeSelectTransactionDetails,
+} from '@/states/transaction/selector';
 import { withdrawalValidationSchema } from '@/validations/wallet';
-import { getTransaction } from '@/states/transaction/actions';
+import {
+  getTransaction,
+  getTransactionDetails,
+} from '@/states/transaction/actions';
 import TransactionHistoryTable from '@/components/Modules/Wallet/TransactionHistoryTable';
 import { LOADING_PREFIX } from '@/utils/constants';
 import { makeSelectLoading } from '@/states/global/selector';
@@ -73,6 +79,8 @@ export function Wallet({
   doWithdraw,
   withdraw,
   isLoading,
+  getDetails,
+  transactionDetails,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -151,6 +159,11 @@ export function Wallet({
     doWithdraw();
     setIsConfirmTransferFundVisible(!setIsConfirmTransferFundVisible);
     setIsTransferSuccessModalVisible(true);
+  };
+
+  const onViewDetails = (id) => {
+    console.log(id);
+    getDetails(id);
   };
 
   const bankItems = bankList.map((bank) => (
@@ -255,11 +268,11 @@ export function Wallet({
             <Div>
               <Span>{t(message.currentWalletBalance)}</Span>
               <Title level={1}>{myWallet.currentBalance}</Title>
-              <Row gutter={20}>
+              {/* <Row gutter={20}>
                 <Col>+ {myWallet.currentBalance}</Col>
 
                 <Col>- {myWallet.currentBalance}</Col>
-              </Row>
+              </Row> */}
             </Div>
             <Div style={{ margin: 'auto 0', float: 'right' }}>
               <Button
@@ -313,15 +326,15 @@ export function Wallet({
               {t(globalMessage.show)}
               <Select
                 showPages
-                defaultValue="10"
+                defaultValue={displayCount}
                 suffixIcon={<CaretDownFilled />}
                 onChange={setDisplayCount}
               >
-                <Option value="10">10</Option>
-                <Option value="20">20</Option>
-                <Option value="30">30</Option>
-                <Option value="40">40</Option>
-                <Option value="50">50</Option>
+                <Option value={10}>10</Option>
+                <Option value={20}>20</Option>
+                <Option value={30}>30</Option>
+                <Option value={40}>40</Option>
+                <Option value={50}>50</Option>
               </Select>
             </Div>
           </Div>
@@ -329,6 +342,8 @@ export function Wallet({
             displayCount={displayCount}
             dataSource={transactionHistoryList}
             loading={isLoading}
+            onClickDetails={(id) => onViewDetails(id)}
+            transactionDetails={transactionDetails}
           />
         </Card>
       </Layout>
@@ -582,19 +597,26 @@ Wallet.propTypes = {
   doRemoveBank: PropTypes.func,
   doWithdraw: PropTypes.func,
   isLoading: PropTypes.bool,
+  getDetails: PropTypes.func,
+  transactionDetails: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
   bankList: makeSelectBankList(),
   transactionHistoryList: makeSelectTransactionList(),
+  transactionDetails: makeSelectTransactionDetails(),
   withdraw: makeSelectWithdraw(),
-  isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  isLoading: makeSelectLoading(LOADING_PREFIX.TRANSACTION),
+  isWalletLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  isBankLoading: makeSelectLoading(LOADING_PREFIX.BANK),
+  isWithdrawLoading: makeSelectLoading(LOADING_PREFIX.WITHDRAWS),
   myWallet: makeSelectMyWallet(),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
   doGetBankList: () => dispatch(getBankList()),
   getTransactionHistory: () => dispatch(getTransaction()),
+  getDetails: (payload) => dispatch(getTransactionDetails(payload)),
   doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
   doWithdraw: (payload) => dispatch(withdraws(payload)),
   getMyWallet: () => dispatch(getWallet()),

@@ -22,6 +22,7 @@ import { makeSelectWithdraw } from './selector';
 
 function* doGetBankList() {
   try {
+    // Set loading status to true
     yield put(loading(LOADING_PREFIX.BANK));
     const response = yield call(
       request,
@@ -29,25 +30,38 @@ function* doGetBankList() {
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setBankList(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.BANK));
   } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    // Set the error
     yield put(loadErrors(error));
   } finally {
+    // Set loading status to false
     yield put(loading(LOADING_PREFIX.BANK, false));
   }
 }
 
 function* doAddBank({ payload }) {
   try {
+    // Set loading status to true
+    yield put(loading(LOADING_PREFIX.BANK));
     yield call(
       request,
       `${API.BANKS}`,
       RequestOptions(POST_REQUEST, { ...payload }, true),
     );
-    yield put(loadSuccess(LOADING_PREFIX.WALLET));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.BANK));
   } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    // Set the error
     yield put(loadErrors(error));
   } finally {
-    yield put(loading(LOADING_PREFIX.WALLET, false));
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.BANK, false));
   }
 }
 
@@ -94,6 +108,9 @@ function* doWithdraw() {
     );
     yield put(loadSuccess(LOADING_PREFIX.WITHDRAWS));
   } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    // Set the error
     yield put(loadErrors(error));
   } finally {
     yield put(loading(LOADING_PREFIX.WITHDRAWS, false));
@@ -102,6 +119,7 @@ function* doWithdraw() {
 
 function* getMyWallet() {
   try {
+    // Set loading status to true
     yield put(loading(LOADING_PREFIX.WALLET));
     const response = yield call(
       request,
@@ -109,9 +127,12 @@ function* getMyWallet() {
       RequestOptions(GET_REQUEST, null, true),
     );
     yield put(setWallet(response));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.WALLET));
   } catch (error) {
     yield put(loadErrors(error));
   } finally {
+    // Set loading status to false
     yield put(loading(LOADING_PREFIX.WALLET, false));
   }
 }

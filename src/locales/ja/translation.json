@@ -281,7 +281,9 @@
     "completed": "完了",
     "cancelled": "キャンセル",
     "paymentWebinar": "ウェビナーの支払い",
-    "withdrawWebinar": "出金"
+    "withdrawWebinar": "出金",
+    "paypal": "ペイパル",
+    "bank": "銀行"
   },
 
   "plan": {
