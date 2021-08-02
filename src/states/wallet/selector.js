@@ -18,10 +18,16 @@ const makeSelectWithdraw = () =>
 const makeSelectMyWallet = () =>
   createSelector(selectWalletDomain, (substate) => substate.wallet);
 
+const makeSelectBankDetails = (id) =>
+  createSelector(selectWalletDomain, (substate) =>
+    substate.bankList.find((item) => item.id === id),
+  );
+
 export default makeSelectWallet;
 export {
   makeSelectBankList,
   makeSelectAddBank,
   makeSelectWithdraw,
   makeSelectMyWallet,
+  makeSelectBankDetails,
 };

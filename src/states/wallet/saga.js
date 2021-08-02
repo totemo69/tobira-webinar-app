@@ -23,7 +23,7 @@ import { makeSelectWithdraw } from './selector';
 function* doGetBankList() {
   try {
     // Set loading status to true
-    yield put(loading(LOADING_PREFIX.BANK));
+    yield put(loading(LOADING_PREFIX.BANK_LIST));
     const response = yield call(
       request,
       `${API.BANKS}`,
@@ -31,15 +31,15 @@ function* doGetBankList() {
     );
     yield put(setBankList(response));
     // Set the status to success
-    yield put(loadSuccess(LOADING_PREFIX.BANK));
+    yield put(loadSuccess(LOADING_PREFIX.BANK_LIST));
   } catch (error) {
     // Set the status to failed
-    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    yield put(loadSuccess(LOADING_PREFIX.BANK_LIST, false));
     // Set the error
     yield put(loadErrors(error));
   } finally {
     // Set loading status to false
-    yield put(loading(LOADING_PREFIX.BANK, false));
+    yield put(loading(LOADING_PREFIX.BANK_LIST, false));
   }
 }
 
@@ -65,23 +65,31 @@ function* doAddBank({ payload }) {
   }
 }
 
-function* doUpdateBank({ payload }) {
-  const id = '60f8159872d7c30020e533af';
+function* doUpdateBank({ id, payload }) {
+  // Set loading status to true
+  yield put(loading(LOADING_PREFIX.BANK));
   try {
     yield call(
       request,
       `${API.BANKS}/${id}`,
       RequestOptions(PATCH_REQUEST, { ...payload }, true),
     );
-    yield put(loadSuccess(LOADING_PREFIX.WALLET));
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.BANK));
   } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    // Set the error
     yield put(loadErrors(error));
   } finally {
-    yield put(loading(LOADING_PREFIX.WALLET, false));
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.BANK, false));
   }
 }
 
 function* doRemoveBank({ id, onCallback }) {
+  // Set loading status to true
+  yield put(loading(LOADING_PREFIX.BANK));
   try {
     yield call(
       request,
@@ -91,15 +99,23 @@ function* doRemoveBank({ id, onCallback }) {
     if (onCallback) {
       onCallback(true);
     }
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.BANK));
   } catch (error) {
-    yield put(loadErrors(error));
     onCallback(false);
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    // Set the error
+    yield put(loadErrors(error));
+  } finally {
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.BANK, false));
   }
 }
 
 function* doWithdraw() {
   try {
-    yield put(loading(LOADING_PREFIX.WALLET));
+    yield put(loading(LOADING_PREFIX.WITHDRAWS));
     const payload = yield select(makeSelectWithdraw());
     yield call(
       request,
@@ -109,7 +125,7 @@ function* doWithdraw() {
     yield put(loadSuccess(LOADING_PREFIX.WITHDRAWS));
   } catch (error) {
     // Set the status to failed
-    yield put(loadSuccess(LOADING_PREFIX.BANK, false));
+    yield put(loadSuccess(LOADING_PREFIX.WITHDRAWS, false));
     // Set the error
     yield put(loadErrors(error));
   } finally {

@@ -83,6 +83,7 @@ export const LOADING_PREFIX = {
   ATTENDEEDETAIL: 'attendeedetail',
   WALLET: 'wallet',
   BANK: 'bank',
+  BANK_LIST: 'bank-list',
   WITHDRAWS: 'withdraws',
   TRANSACTION: 'transaction',
   FORGOT_PASSWORD: 'forgot-password',

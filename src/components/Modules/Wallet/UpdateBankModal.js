@@ -17,14 +17,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { addBankValidationSchema } from '@/validations/wallet';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-import { makeSelectAddBank } from '@/states/wallet/selector';
 
 export function UpdateBankModal({
+  bankId,
   isLoading,
   doUpdateBank,
   visible,
   title,
   onClose,
+  onOk,
   okText,
   bank,
 }) {
@@ -33,7 +34,8 @@ export function UpdateBankModal({
   useEffect(() => {}, []);
 
   const onSubmit = (values) => {
-    doUpdateBank(values);
+    doUpdateBank(bankId, values);
+    onOk();
   };
 
   return (
@@ -45,9 +47,9 @@ export function UpdateBankModal({
       </div>
       <Formik
         initialValues={{
-          bankName: bank.bankName,
-          accountName: bank.accountName,
-          accountNumber: bank.accountNumber,
+          bankName: bank && bank.bankName,
+          accountName: bank && bank.accountName,
+          accountNumber: bank && bank.accountNumber,
         }}
         onSubmit={onSubmit}
         enableReinitialize
@@ -120,19 +122,19 @@ export function UpdateBankModal({
 }
 
 UpdateBankModal.propTypes = {
+  bankId: PropTypes.any,
   bank: PropTypes.any,
   isLoading: PropTypes.bool,
   doUpdateBank: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
-  bank: makeSelectAddBank(),
+  isLoading: makeSelectLoading(LOADING_PREFIX.BANK),
 });
 
 function mapDispatchProps(dispatch) {
   return {
-    doUpdateBank: (payload) => dispatch(updateBank(payload)),
+    doUpdateBank: (id, payload) => dispatch(updateBank(id, payload)),
   };
 }
 
