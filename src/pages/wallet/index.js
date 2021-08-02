@@ -165,9 +165,7 @@ export function Wallet({
     getDetails(id);
   };
 
-  const isCanWithdraw = (val1, val2) => {
-    return val1 > val2;
-  };
+  const isCanWithdraw = (val1, val2) => val1 > val2;
 
   const bankItems = bankList.map((bank) => (
     <Col span={8} key={bank.id}>
@@ -379,7 +377,7 @@ export function Wallet({
           enableReinitialize
           validationSchema={withdrawalValidationSchema}
         >
-          {({ handleSubmit, errors, setFieldValue }) => (
+          {({ handleSubmit, setFieldValue }) => (
             <Form>
               <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
               <StyledDiv style={{ padding: '20px' }}>
@@ -555,10 +553,8 @@ export function Wallet({
           </Col>
           <Col align="middle" justify="center" span={12}>
             <StyledText
-              content={`${subtract(
-                myWallet.currentBalance,
-                withdraw.amount,
-              )} ¥`}
+              content={`${subtract(myWallet.currentBalance, withdraw.amount)} ¥
+              `}
             />
           </Col>
           <Col
