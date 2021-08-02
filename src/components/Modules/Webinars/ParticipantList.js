@@ -107,7 +107,7 @@ export default function ParticipantList({
   return (
     <StyledDiv>
       <Row>
-        <Col span={12}>
+        <Col xs={24} lg={12}>
           <Div noMargin>
             {t(globalMessage.show)}
             <Select
@@ -126,9 +126,9 @@ export default function ParticipantList({
             {t(globalMessage.entries)}
           </Div>
         </Col>
-        <Col span={12}>
+        <Col xs={24} lg={12}>
           <Div noMargin flexCenterEnd style={{ width: '100%' }}>
-            {t(globalMessage.search)}{' '}
+            {/* {t(globalMessage.search)}{' '} */}
             <Search
               placeholder={t(globalMessage.searchPlaceholder)}
               allowClear

@@ -88,7 +88,7 @@ export default function WebinarDetails({ webinarDetails }) {
   return (
     <StyledDiv>
       <Row gutter={24}>
-        <Col span={10}>
+        <Col xs={24} lg={10}>
           <StyledImage
             width
             height={300}
@@ -97,7 +97,7 @@ export default function WebinarDetails({ webinarDetails }) {
             preview={false}
           />
         </Col>
-        <Col span={14} style={{ padding: '4px 0' }}>
+        <Col xs={24} lg={14} style={{ padding: '4px 12px' }}>
           <Row>
             <Col span={8}>
               <List

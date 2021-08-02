@@ -6,7 +6,7 @@ import { memo, useEffect, useCallback } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Formik, Field } from 'formik';
-import { message } from 'antd';
+import { Col, message, Row } from 'antd';
 
 import globalMessage from '@/messages/global';
 import localMessage from '@/messages/profile';
@@ -76,126 +76,137 @@ export function Profile({
           </Title>
           <Span breadCrumbs>{t(localMessage.editProfile)}</Span>
         </Div>
-        <Div widthFull noMargin flexCenter>
-          <Card ProfileCard>
-            <Div widthFull noMargin paddingCard center borderBreak>
-              <ProfileUpload
-                src={userDetails.profileImage}
-                alt="Profile Pic"
-                onUploadComplete={(image) =>
-                  doUpdateProfile({ profileImage: image })
-                }
-              />
-            </Div>
-            <Div widthFull center noMargin>
-              <Title profileName>{userDetails && userDetails.username}</Title>
-            </Div>
-            <Div widthFull paddingCard noMargin>
-              <Div widthFull>
-                <Labels light>{t(globalMessage.email)}</Labels>
-                {userDetails && userDetails.email}
+        <Row type="flex" gutter={[15, 0]} style={{ width: '100%' }}>
+          <Col xs={24} lg={6}>
+            <Card>
+              <Div widthFull noMargin paddingCard center borderBreak>
+                <ProfileUpload
+                  src={userDetails.profileImage}
+                  alt="Profile Pic"
+                  onUploadComplete={(image) =>
+                    doUpdateProfile({ profileImage: image })
+                  }
+                />
               </Div>
-              <Div widthFull cardInfo>
-                <Labels light>{t(globalMessage.fullName)}</Labels>
-                {userDetails && userDetails.fullName}
+              <Div widthFull center noMargin>
+                <Title profileName>{userDetails && userDetails.username}</Title>
               </Div>
-              <Div widthFull cardInfo>
-                <Labels light>{t(globalMessage.contactNo)}</Labels>
-                {userDetails && userDetails.contact}
+              <Div widthFull paddingCard noMargin>
+                <Div widthFull>
+                  <Labels light>{t(globalMessage.email)}</Labels>
+                  {userDetails && userDetails.email}
+                </Div>
+                <Div widthFull cardInfo>
+                  <Labels light>{t(globalMessage.fullName)}</Labels>
+                  {userDetails && userDetails.fullName}
+                </Div>
+                <Div widthFull cardInfo>
+                  <Labels light>{t(globalMessage.contactNo)}</Labels>
+                  {userDetails && userDetails.contact}
+                </Div>
               </Div>
-            </Div>
-          </Card>
-          <Card ProfileSettings>
-            <Div widthFull paddingCard2 noMargin>
-              <Tabs defaultActiveKey="1">
-                <TabPane tab={t(localMessage.editProfile)} key="1">
-                  <Formik
-                    initialValues={{
-                      fullName: userDetails && userDetails.fullName,
-                      contact: userDetails && userDetails.contact,
-                    }}
-                    validationSchema={validationSchema}
-                    onSubmit={onSubmit}
-                    enableReinitialize
-                  >
-                    {({ setFieldValue, handleSubmit }) => (
-                      <>
-                        <Div widthFull>
-                          <Labels asterisk>{t(globalMessage.username)}</Labels>
-                          <Input
-                            type="text"
-                            disabled
-                            value={userDetails && userDetails.username}
-                          />
-                        </Div>
-                        <Div widthFull marginTop>
-                          <Labels asterisk>{t(globalMessage.email)}</Labels>
-                          <Input
-                            type="text"
-                            disabled
-                            value={userDetails && userDetails.email}
-                          />
-                        </Div>
-                        <Div widthFull marginTop>
-                          <Labels asterisk>{t(globalMessage.fullName)}</Labels>
-                          <Field
-                            type="text"
-                            name="fullName"
-                            component={Input}
-                          />
-                          <ErrorMessage name="fullName" />
-                        </Div>
-                        <Div widthFull marginY>
-                          <Labels asterisk>{t(globalMessage.contactNo)}</Labels>
-                          <Field
-                            name="contact"
-                            country="jp"
-                            component={PhoneInput}
-                            onChange={(val) => setFieldValue('contact', val)}
-                          />
-                          <ErrorMessage name="contact" />
-                        </Div>
-                        <Div
-                          widthFull
-                          paddingCard2
-                          flexHeight
-                          noMargin
-                          bottomRight
-                        >
-                          <Button
-                            type="primary"
-                            onClick={handleSubmit}
-                            smallBtn
-                            marginLeftAuto
-                            marginBottomLarge
+            </Card>
+          </Col>
+          <Col xs={24} lg={18}>
+            <Card>
+              <Div widthFull paddingCard2 noMargin>
+                <Tabs defaultActiveKey="1">
+                  <TabPane tab={t(localMessage.editProfile)} key="1">
+                    <Formik
+                      initialValues={{
+                        fullName: userDetails && userDetails.fullName,
+                        contact: userDetails && userDetails.contact,
+                      }}
+                      validationSchema={validationSchema}
+                      onSubmit={onSubmit}
+                      enableReinitialize
+                    >
+                      {({ setFieldValue, handleSubmit }) => (
+                        <>
+                          <Div widthFull>
+                            <Labels asterisk>
+                              {t(globalMessage.username)}
+                            </Labels>
+                            <Input
+                              type="text"
+                              disabled
+                              value={userDetails && userDetails.username}
+                            />
+                          </Div>
+                          <Div widthFull marginTop>
+                            <Labels asterisk>{t(globalMessage.email)}</Labels>
+                            <Input
+                              type="text"
+                              disabled
+                              value={userDetails && userDetails.email}
+                            />
+                          </Div>
+                          <Div widthFull marginTop>
+                            <Labels asterisk>
+                              {t(globalMessage.fullName)}
+                            </Labels>
+                            <Field
+                              type="text"
+                              name="fullName"
+                              component={Input}
+                            />
+                            <ErrorMessage name="fullName" />
+                          </Div>
+                          <Div widthFull marginY>
+                            <Labels asterisk>
+                              {t(globalMessage.contactNo)}
+                            </Labels>
+                            <Field
+                              name="contact"
+                              country="jp"
+                              component={PhoneInput}
+                              onChange={(val) => setFieldValue('contact', val)}
+                            />
+                            <ErrorMessage name="contact" />
+                          </Div>
+                          <Div
+                            widthFull
+                            paddingCard2
+                            flexHeight
+                            noMargin
+                            bottomRight
                           >
-                            {t(globalMessage.saveChanges)}
-                          </Button>
-                        </Div>
-                      </>
-                    )}
-                  </Formik>
-                </TabPane>
-                <TabPane tab={t(localMessage.changePassword)} key="2">
-                  <Div widthFull>
-                    <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
-                    <Input
-                      type="email"
-                      placeholder={t(globalMessage.newPassword)}
-                    />
-                  </Div>
-                  <Div widthFull marginY>
-                    <Labels asterisk>{t(globalMessage.confirmPassword)}</Labels>
-                    <Input
-                      type="email"
-                      placeholder={t(globalMessage.confirmPassword)}
-                    />
-                  </Div>
-                </TabPane>
-              </Tabs>
-            </Div>
-          </Card>
-        </Div>
+                            <Button
+                              type="primary"
+                              onClick={handleSubmit}
+                              smallBtn
+                              marginLeftAuto
+                            >
+                              {t(globalMessage.saveChanges)}
+                            </Button>
+                          </Div>
+                        </>
+                      )}
+                    </Formik>
+                  </TabPane>
+                  <TabPane tab={t(localMessage.changePassword)} key="2">
+                    <Div widthFull>
+                      <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
+                      <Input
+                        type="email"
+                        placeholder={t(globalMessage.newPassword)}
+                      />
+                    </Div>
+                    <Div widthFull marginY>
+                      <Labels asterisk>
+                        {t(globalMessage.confirmPassword)}
+                      </Labels>
+                      <Input
+                        type="email"
+                        placeholder={t(globalMessage.confirmPassword)}
+                      />
+                    </Div>
+                  </TabPane>
+                </Tabs>
+              </Div>
+            </Card>
+          </Col>
+        </Row>
       </Layout>
     </>
   );

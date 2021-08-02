@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { List } from 'antd';
+import { Col, List, Row } from 'antd';
 import { LOADING_PREFIX } from '@/utils/constants';
 import { authRequest } from '@/lib/zoom';
 import { getZoomAccount } from '@/states/accounts/actions';
@@ -50,39 +50,35 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
           <Div>
             <Tabs defaultActiveKey="1">
               <TabPane tab={t(localMessage.accountTabTitle)} key="1">
-                <Div
-                  style={{
-                    display: 'flex',
-                    textAlign: 'center',
-                    width: '100%',
-                    padding: '20px',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Label asterisk>{t(localMessage.accountLabel)}</Label>
-                  <Label>{t(localMessage.accountStatus)}</Label>
-                </Div>
                 <List
                   itemLayout="horizontal"
                   dataSource={zoomAccountList}
                   renderItem={(item) => (
                     <List.Item>
                       <Div style={{ display: 'flex', width: '100%' }}>
-                        <Input
-                          style={{
-                            width: '60%',
-                            marginLeft: '50px',
-                            marginRight: '10px',
-                          }}
-                          disabled
-                          placeholder={item.zoomEmail}
-                        />
-                        <Button connectedButton>
-                          {t(localMessage.connectedButton)}
-                        </Button>
-                        <Button defaultButton>
-                          {t(localMessage.defaultButton)}
-                        </Button>
+                        <Row type="flex" style={{ width: '100%' }}>
+                          <Col xs={24} lg={12} style={{ paddingTop: 15 }}>
+                            <Label asterisk>
+                              {t(localMessage.accountLabel)}
+                            </Label>
+                            <Input disabled placeholder={item.zoomEmail} />
+                          </Col>
+                          <Col
+                            align="middle"
+                            justify="center"
+                            xs={24}
+                            lg={12}
+                            style={{ paddingTop: 15 }}
+                          >
+                            <Label>{t(localMessage.accountStatus)}</Label>
+                            <Button connectedButton>
+                              {t(localMessage.connectedButton)}
+                            </Button>
+                            <Button defaultButton>
+                              {t(localMessage.defaultButton)}
+                            </Button>
+                          </Col>
+                        </Row>
                       </Div>
                     </List.Item>
                   )}

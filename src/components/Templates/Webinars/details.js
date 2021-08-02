@@ -68,6 +68,10 @@ export function Details({
 
   const StyledCard = styled(Card)`
     padding: 20px 25px 5px;
+
+    @media screen and (max-width: 480px) {
+      padding: 0;
+    }
   `;
 
   const onClickDetails = (attendeeId) => {

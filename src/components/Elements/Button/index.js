@@ -158,6 +158,7 @@ const StyledButton = styled(Button).withConfig({
       width: 35%;
       @media screen and (max-width: 480px) {
         width: 48%;
+        margin-top: 10px;
       }
     `};
 
@@ -300,6 +301,10 @@ const StyledButton = styled(Button).withConfig({
     props.marginRight &&
     css`
       margin: 0 20px;
+
+      @media screen and (max-width: 480px) {
+        margin: 0 12px;
+      }
     `};
 `;
 
