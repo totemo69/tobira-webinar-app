@@ -64,24 +64,13 @@ export default function CreateWebinarRegistration({
               component={Input}
             />
             <ErrorMessage name="formName" />
-
-            <Div BrakeLine></Div>
-
+            <Div BrakeLine />
             <StyledParagraph colorBlue>
               {t(message.registrationFormFields)}
             </StyledParagraph>
-
             {t(message.setupRegistrationFormFields)}
-            <Row className="paymentRow" gutter={[10]}>
-              {/* <Col style={{ display: 'flex' }}>
-                <Button UpDownButton>
-                  <DownOutlined />
-                </Button>
-                <Button UpDownButton>
-                  <UpOutlined />
-                </Button>
-              </Col> */}
-              <Col span={12}>
+            <Row gutter={20} style={{ marginTop: 30 }}>
+              <Col xs={24} lg={12}>
                 <Label center asterisk>
                   {t(message.fieldNameOrPlaceholder)}
                 </Label>
@@ -95,7 +84,7 @@ export default function CreateWebinarRegistration({
                 />
                 <ErrorMessage name="formFields[0].fieldName" />
               </Col>
-              <Col span={10}>
+              <Col xs={24} lg={10}>
                 <Label center asterisk>
                   {t(message.fieldType)}
                 </Label>
@@ -121,10 +110,6 @@ export default function CreateWebinarRegistration({
                 />
               </Col>
             </Row>
-            {/* <Button addField>
-              <PlusSquareFilled size="large" />
-              {t(message.addAccount)}
-            </Button> */}
           </Form>
         );
       }}
