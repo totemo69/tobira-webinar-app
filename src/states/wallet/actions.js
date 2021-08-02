@@ -39,8 +39,9 @@ export const setBank = (payload) => ({
   payload,
 });
 
-export const updateBank = (payload) => ({
+export const updateBank = (id, payload) => ({
   type: UPDATE_BANK,
+  id,
   payload,
 });
 
