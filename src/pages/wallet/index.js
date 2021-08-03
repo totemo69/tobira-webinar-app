@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
@@ -72,6 +73,28 @@ import {
   makeSelectLoadingStatus,
 } from '@/states/global/selector';
 import { clearErrors } from '@/states/global/actions';
+
+export const StyledModal = styled(Modal)`
+  height: 680px;
+  width: 600px;
+  margin: 50px auto 0;
+  padding: 0;
+  background-color: white;
+
+  @media screen and (max-width: 480px) {
+    width: auto;
+    margin: 0 auto;
+  }
+`;
+export const ConfirmModal = styled(StyledModal)`
+  height: 350px;
+  width: 560px;
+  overflow: hidden;
+
+  @media screen and (max-width: 480px) {
+    width: auto;
+  }
+`;
 
 export function Wallet({
   doGetBankList,
@@ -223,7 +246,7 @@ export function Wallet({
   const isCanWithdraw = (val1, val2) => val1 > val2;
 
   const bankItems = bankList.map((bank) => (
-    <Col span={8} key={bank.id}>
+    <Col xs={24} lg={8} key={bank.id}>
       <Div bankList>
         <Dropdown.Button
           style={{ float: 'right' }}
@@ -321,9 +344,9 @@ export function Wallet({
           </Title>
         </Div>
 
-        <Card style={{ padding: '20px' }}>
+        <Card Padding>
           <Div walletBalance>
-            <Div>
+            <Div walletBalancePadding>
               <Span>{t(localMessage.currentWalletBalance)}</Span>
               <Title level={1}>
                 {isWalletLoading && <Spin />}
@@ -337,7 +360,7 @@ export function Wallet({
             </Div>
             <Div style={{ margin: 'auto 0', float: 'right' }}>
               <Button
-                style={{ height: '50px', width: '50%' }}
+                btnTransferFund
                 type="primary"
                 onClick={showTransferFundsModal}
               >
@@ -361,7 +384,7 @@ export function Wallet({
           />
           <Row gutter={[24, 24]}>
             {bankItems}
-            <Col span={8}>
+            <Col xs={24} lg={8}>
               <Div bankList>
                 <Div addBankList>
                   <Button
@@ -412,17 +435,7 @@ export function Wallet({
       </Layout>
 
       {/* Transfer fund request modal */}
-      <Modal
-        isOpen={isTransferFundVisible}
-        style={{
-          content: {
-            height: '500px',
-            width: '600px',
-            margin: '0 auto',
-            padding: '0',
-          },
-        }}
-      >
+      <StyledModal isOpen={isTransferFundVisible}>
         <Formik
           initialValues={{
             amount: '',
@@ -581,21 +594,10 @@ export function Wallet({
             </Form>
           )}
         </Formik>
-      </Modal>
+      </StyledModal>
 
       {/* Transfer fund request confirm modal */}
-      <Modal
-        isOpen={isConfirmTransferFundVisible}
-        style={{
-          content: {
-            height: '350px',
-            width: '560px',
-            margin: '0 auto',
-            padding: '0',
-            overflow: 'hidden',
-          },
-        }}
-      >
+      <ConfirmModal isOpen={isConfirmTransferFundVisible}>
         <StyledDiv header>
           {t(localMessage.confirmTransferFundRequest)}
         </StyledDiv>
@@ -670,7 +672,7 @@ export function Wallet({
             </Button>
           </Col>
         </Row>
-      </Modal>
+      </ConfirmModal>
     </>
   );
 }

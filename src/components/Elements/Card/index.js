@@ -11,6 +11,7 @@ import { Card } from 'antd';
 const StyledCard = styled(Card).withConfig({
   shouldForwardProp: (prop) =>
     ![
+      'Padding',
       'PaddingTop',
       'ProfileCard',
       'ProfileSettings',
@@ -41,6 +42,16 @@ const StyledCard = styled(Card).withConfig({
     props.PaddingTop &&
     css`
       padding-top: 20px;
+    `};
+
+  ${(props) =>
+    props.Padding &&
+    css`
+      padding: 20px;
+
+      @media screen and (max-width: 480px) {
+        padding: 0;
+      }
     `};
 
   ${(props) =>

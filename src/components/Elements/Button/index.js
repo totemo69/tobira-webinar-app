@@ -30,6 +30,7 @@ const StyledButton = styled(Button).withConfig({
       'noBoxShadow',
       'noMargin',
       'marginRight',
+      'btnTransferFund',
     ].includes(prop),
 })`
   margin: 0 auto 10px;
@@ -304,6 +305,18 @@ const StyledButton = styled(Button).withConfig({
 
       @media screen and (max-width: 480px) {
         margin: 0 12px;
+      }
+    `};
+
+  ${(props) =>
+    props.btnTransferFund &&
+    css`
+      height: 50px;
+      width: 50%;
+
+      @media screen and (max-width: 480px) {
+        height: 50px;
+        width: 96%;
       }
     `};
 `;
