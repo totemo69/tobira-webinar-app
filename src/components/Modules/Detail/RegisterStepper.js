@@ -10,7 +10,7 @@ const RegisterStepper = ({ currentStep }) => {
   const { t } = useTranslation();
   return (
     <Steps
-      current={currentStep}
+      current={currentStep + 1}
       labelPlacement="vertical"
       progressDot={StepItem}
     >

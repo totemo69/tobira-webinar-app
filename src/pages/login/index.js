@@ -61,7 +61,7 @@ export function Login({
   return (
     <>
       <Layout>
-        <Row align="middle" justify="center">
+        <Row type="flex" align="middle" justify="center">
           <Col align="middle" justify="center" xs={24} sm={24} lg={12}>
             <Formik
               initialValues={{

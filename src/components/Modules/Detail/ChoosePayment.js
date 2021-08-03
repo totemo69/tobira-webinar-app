@@ -9,7 +9,7 @@ import classNames from './index.module.css';
 
 const RadioGroup = RadioImage.Group;
 const PaymentButton = RadioImage.Button;
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const ChoosePayment = ({ isLoading, prevStep, checkOut }) => {
   const { t } = useTranslation();
@@ -17,9 +17,6 @@ const ChoosePayment = ({ isLoading, prevStep, checkOut }) => {
     <Col>
       <Row>
         <Col span={24} className={classNames.paymentCol}>
-          <Title level={1} className={classNames.paymentTitle}>
-            {t(localMessage.paymentMethodLabel)}
-          </Title>
           <RadioGroup defaultValue="Paypal" name="payment-method">
             <PaymentButton value="Paypal">
               <Image src="/images/paypal.svg" alt="paypal image" />

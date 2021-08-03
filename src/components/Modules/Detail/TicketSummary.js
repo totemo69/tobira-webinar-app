@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { Typography, Row, Col } from 'antd';
+import { Typography, Row, Col, Space } from 'antd';
 import { useTranslation } from 'next-i18next';
 import localMessage from '@/messages/webinarDetail';
 import globalMessage from '@/messages/global';
 import Button from '@/components/Elements/Button';
+import { FormatDate } from '@/utils/dateUtils';
 import classnames from './index.module.css';
 
 const { Text, Title } = Typography;
@@ -27,18 +28,23 @@ const TicketSummary = ({ prevStep, nextStep, webinarDetails }) => {
         </Row>
 
         <Row justify="center" className={classnames.ticketLower}>
-          <Text className={classnames.ticketDetailLabel}></Text>
-          <Text className={classnames.ticketDetailInfo}>
-            {webinarDetails.title}
-          </Text>
+          <Space direction="vertical" align="center" size="middle">
+            <Text className={classnames.ticketDetailLabel}></Text>
+            <Text className={classnames.ticketTitle}>
+              {webinarDetails.title}
+            </Text>
 
-          <Text className={classnames.ticketDetailLabel}>
-            {t(localMessage.dateTimeLabel)}
-          </Text>
-          <Text className={classnames.ticketDetailInfo}>
-            {}
-            {webinarDetails.schedules[0].dateTime}
-          </Text>
+            <Text className={classnames.ticketDetailLabel}>
+              {t(localMessage.dateTimeLabel)}
+            </Text>
+            <Text className={classnames.ticketDetailInfo}>
+              {}
+              {FormatDate(
+                webinarDetails.schedules[0].dateTime,
+                'YYYY-MM-DD HH:mm',
+              )}
+            </Text>
+          </Space>
         </Row>
         <div className={`${classnames.ticketCircle} ${classnames.left}`}></div>
         <div className={`${classnames.ticketCircle} ${classnames.right}`}></div>

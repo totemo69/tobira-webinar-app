@@ -104,8 +104,13 @@ export function Header({
           )}
           {withMenu && (
             <>
-              <Row type="flex">
-                <Col type="flex" xs={12}>
+              <Row type="flex" align="middle">
+                <Col
+                  type="flex"
+                  align="middle"
+                  xs={12}
+                  style={{ marginBottom: '7px' }}
+                >
                   <Image
                     src={userDetails.profileImage ?? '/images/avatar.svg'}
                     userImg
@@ -115,7 +120,7 @@ export function Header({
                     items={MenuItems}
                   />
                 </Col>
-                <Col type="flex" xs={12}>
+                <Col type="flex" align="middle" xs={12}>
                   <Language locale={locale} route={route} />
                 </Col>
               </Row>

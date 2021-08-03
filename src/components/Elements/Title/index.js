@@ -7,6 +7,7 @@ const SampleTitle = styled(Title).withConfig({
   shouldForwardProp: (prop) =>
     ![
       'modalTitle',
+      'listWebinarmarginTop',
       'marginRight',
       'marginBottom',
       'center',
@@ -84,6 +85,14 @@ const SampleTitle = styled(Title).withConfig({
     css`
       &.ant-typography {
         margin-right: 0.25rem;
+      }
+    `};
+
+  ${(props) =>
+    props.listWebinarmarginTop &&
+    css`
+      &.ant-typography {
+        margin-top: 7px;
       }
     `};
 

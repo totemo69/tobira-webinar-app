@@ -44,7 +44,7 @@ export default function PaymentOption({
         return (
           <Form>
             <Div BrakeLine />
-            <StyledParagraph colorBlue>
+            <StyledParagraph colorBlue marginTop>
               {t(message.webinarPrice)}
             </StyledParagraph>
             <Field
@@ -59,11 +59,11 @@ export default function PaymentOption({
             />
             <ErrorMessage name="price" />
             <Div BrakeLine />
-            <StyledParagraph colorBlue>
+            <StyledParagraph colorBlue marginTop>
               {t(message.paymentOptions)}
             </StyledParagraph>
             <Row>
-              <Col span={10}>
+              <Col xs={24} lg={10}>
                 <Div>
                   <RadioGroup defaultValue="Paypal" name="payment-method">
                     <PaymentButton value="Paypal">
