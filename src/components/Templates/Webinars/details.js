@@ -32,6 +32,7 @@ import Span from '@/components/Elements/Span';
 import WebinarDetail from '@/components/Modules/Webinars/WebinarDetails';
 import Participants from '@/components/Modules/Webinars/ParticipantList';
 import ParticipantDetails from '@/components/Modules/Webinars/ParticipantDetails';
+import { Col, Row } from 'antd';
 
 const { TabPane } = Tabs;
 
@@ -83,12 +84,18 @@ export function Details({
   return (
     <>
       <Div marginBottomLarge flexTop>
-        <Title secondary marginRight>
-          {t(globalMessage.listWebinar)} {'>'}
-        </Title>
-        <Span breadCrumbs>{t(message.details)}</Span>
-        <Span breadCrumbs>{' > '}</Span>
-        <Span breadCrumbs>{webinarDetails.title}</Span>
+        <Row align="middle" style={{ width: '100%', overflow: 'overflow-x' }}>
+          <Col align="middle">
+            <Title secondary marginRight listWebinarmarginTop>
+              {t(globalMessage.listWebinar)} {'>'}
+            </Title>
+          </Col>
+          <Col align="middle">
+            <Span breadCrumbs>{t(message.details)}</Span>
+            <Span breadCrumbs>{' > '}</Span>
+            <Span breadCrumbs>{webinarDetails.title}</Span>
+          </Col>
+        </Row>
       </Div>
       <Div widthFull>
         <StyledCard>

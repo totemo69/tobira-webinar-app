@@ -143,6 +143,7 @@ export default function ParticipantList({
         columns={columns}
         pagination={{ pageSize: displayCount }}
         style={{ paddingTop: 20 }}
+        scroll={{ x: 600 }}
       />
     </StyledDiv>
   );
