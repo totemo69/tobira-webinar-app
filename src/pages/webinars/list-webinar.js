@@ -83,6 +83,7 @@ export function ListOfWebinar({
 
   const columns = [
     {
+      key: 'image',
       title: '',
       dataIndex: 'image',
       render: (img) => (
@@ -97,6 +98,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.title),
+      key: 'title',
       dataIndex: 'title',
       sorter: {
         multiple: 3,
@@ -104,6 +106,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.schedule),
+      key: 'schedules',
       dataIndex: ['schedules', '0', 'dateTime'],
       render: (date) => FormatDate(date, 'YYYY-MM-DD HH:mm'),
       sorter: {
@@ -112,6 +115,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.attendees),
+      key: 'attendees',
       dataIndex: 'attendees',
       render: (text, record) =>
         record.attendees ? record.attendees.length : 0,
@@ -121,6 +125,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.status),
+      key: 'status',
       render: (text, record) => {
         let returnText = null;
         if (!DateIsBefore(record.schedules[0].dateTime)) {
@@ -136,12 +141,10 @@ export function ListOfWebinar({
         }
         return returnText;
       },
-      sorter: {
-        multiple: 3,
-      },
     },
     {
       title: t(message.action),
+      key: 'action',
       dataIndex: 'id',
       align: 'center',
       render: (id) => (

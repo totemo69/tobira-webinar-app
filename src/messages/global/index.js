@@ -230,6 +230,10 @@ const message = {
     key: `${scope}.japanese`,
     default: ' Japanese 日本語',
   }),
+  minutes: Object.values({
+    key: `${scope}.minutes`,
+    default: 'minutes',
+  }),
 };
 
 export default message;
