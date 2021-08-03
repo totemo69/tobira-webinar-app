@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { Row, Col, Typography } from 'antd';
 import { CaretDownFilled, EyeTwoTone } from '@ant-design/icons';
 // import history from '@/utils/history';
-import { FormatDate, DateIsBefore, DateIsSame } from '@/utils/dateUtils';
+import { FormatDate, DateIsBefore } from '@/utils/dateUtils';
 import { getZoomAccount } from '@/states/accounts/actions';
 import { getWebinarList } from '@/states/webinar/actions';
 import { makeSelectLoading } from '@/states/global/selector';
@@ -83,6 +83,7 @@ export function ListOfWebinar({
 
   const columns = [
     {
+      key: 'image',
       title: '',
       dataIndex: 'image',
       render: (img) => (
@@ -96,14 +97,16 @@ export function ListOfWebinar({
       ),
     },
     {
-      title: t(message.title),
-      dataIndex: 'title',
+      title: t(message.webinarTitleAdmin),
+      key: 'managementTitle',
+      dataIndex: 'managementTitle',
       sorter: {
         multiple: 3,
       },
     },
     {
       title: t(message.schedule),
+      key: 'schedules',
       dataIndex: ['schedules', '0', 'dateTime'],
       render: (date) => FormatDate(date, 'YYYY-MM-DD HH:mm'),
       sorter: {
@@ -112,6 +115,7 @@ export function ListOfWebinar({
     },
     {
       title: t(message.attendees),
+      key: 'attendees',
       dataIndex: 'attendees',
       render: (text, record) =>
         record.attendees ? record.attendees.length : 0,
@@ -121,27 +125,28 @@ export function ListOfWebinar({
     },
     {
       title: t(message.status),
+      key: 'status',
       render: (text, record) => {
-        let returnText = null;
-        if (!DateIsBefore(record.schedules[0].dateTime)) {
-          returnText = <Text type="success">{t(message.doneStatusLabel)}</Text>;
-        } else if (DateIsSame(record.schedules[0].dateTime)) {
-          returnText = (
-            <Text type="danger">{t(message.notYetStatusLabel)}</Text>
-          );
-        } else {
-          returnText = (
-            <Text type="warning">{t(message.upcomingStatusLabel)}</Text>
-          );
+        let returnText = (
+          <Text type="warning">{t(message.hiddenStatusLabel)}</Text>
+        );
+        if (record.schedules) {
+          if (!DateIsBefore(record.schedules[0].dateTime)) {
+            returnText = (
+              <Text type="danger">{t(message.doneStatusLabel)}</Text>
+            );
+          } else if (record.status === 0) {
+            returnText = (
+              <Text type="success">{t(message.publishStatusLabel)}</Text>
+            );
+          }
         }
         return returnText;
       },
-      sorter: {
-        multiple: 3,
-      },
     },
     {
-      title: t(message.action),
+      title: '',
+      key: 'action',
       dataIndex: 'id',
       align: 'center',
       render: (id) => (

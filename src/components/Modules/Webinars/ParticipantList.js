@@ -83,12 +83,9 @@ export default function ParticipantList({
         }
         return returnText;
       },
-      sorter: {
-        multiple: 3,
-      },
     },
     {
-      title: t(message.action),
+      title: '',
       dataIndex: 'id',
       align: 'center',
       render: (id) => (
@@ -107,7 +104,7 @@ export default function ParticipantList({
   return (
     <StyledDiv>
       <Row>
-        <Col span={12}>
+        <Col xs={24} lg={12}>
           <Div noMargin>
             {t(globalMessage.show)}
             <Select
@@ -126,11 +123,11 @@ export default function ParticipantList({
             {t(globalMessage.entries)}
           </Div>
         </Col>
-        <Col span={12}>
+        <Col xs={24} lg={12}>
           <Div noMargin flexCenterEnd style={{ width: '100%' }}>
             {t(globalMessage.search)}{' '}
             <Search
-              placeholder={t(globalMessage.searchPlaceholder)}
+              placeholder={t(globalMessage.searchEmailPlaceholder)}
               allowClear
               marginLeft
               widthMedium

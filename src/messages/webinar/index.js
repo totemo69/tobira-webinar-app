@@ -57,6 +57,10 @@ const message = {
     key: `${scope}.paymentStatus`,
     default: 'Payment Status',
   }),
+  paymentAmount: Object.values({
+    key: `${scope}.paymentAmount`,
+    default: 'Amount',
+  }),
   details: Object.values({
     key: `${scope}.details`,
     default: 'Details',
@@ -110,7 +114,7 @@ const message = {
     default: 'Duration',
   }),
   enterWebinarTitle: Object.values({
-    key: `${scope}.webinarTitle`,
+    key: `${scope}.enterWebinarTitle`,
     default: 'Enter Webinar title',
   }),
   emailAddress: Object.values({
@@ -237,9 +241,13 @@ const message = {
     key: `${scope}.webinarImage`,
     default: 'Webinar Image',
   }),
-  webinarTitle: Object.values({
-    key: `${scope}.webinarTitle`,
-    default: 'Webinar Title',
+  webinarTitleAdmin: Object.values({
+    key: `${scope}.webinarTitleAdmin`,
+    default: 'Webinar Title (Admin)',
+  }),
+  webinarTitlePublic: Object.values({
+    key: `${scope}.webinarTitlePublic`,
+    default: 'Webinar Title (Public)',
   }),
   webinarPrice: Object.values({
     key: `${scope}.webinarPrice`,
@@ -305,6 +313,14 @@ const message = {
     key: `${scope}.upcomingStatusLabel`,
     default: 'Upcoming',
   }),
+  publishStatusLabel: Object.values({
+    key: `${scope}.publishStatusLabel`,
+    default: 'Published',
+  }),
+  hiddenStatusLabel: Object.values({
+    key: `${scope}.hiddenStatusLabel`,
+    default: 'Hidden',
+  }),
   oneTimePlan: Object.values({
     key: `${scope}.oneTimePlan`,
     default: 'One-time',
@@ -324,6 +340,10 @@ const message = {
   createWebinarTitle: Object.values({
     key: `${scope}.createWebinarTitle`,
     default: 'Management Secion',
+  }),
+  createWebinarSuccess: Object.values({
+    key: `${scope}.createWebinarSuccess`,
+    default: 'Webinar creation completed',
   }),
 };
 

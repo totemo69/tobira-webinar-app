@@ -46,22 +46,27 @@ export function SignUp({
   const route = useRouter();
   const { locale } = route;
   const [successModal, setSuccessModal] = useState(false);
+  const [onSignup, setOnsignup] = useState(false);
 
   useEffect(() => {
     if (!isLoading) {
-      if (signupStatus && !errorMessage) {
-        setSuccessModal(true);
-      } else if (!signupStatus && errorMessage) {
-        const { message: msg } = errorMessage.error;
-        message.error(t(validationMessage[msg]));
-        clearErrorMessage();
+      if (onSignup) {
+        if (signupStatus && !errorMessage) {
+          setSuccessModal(true);
+        } else if (!signupStatus && errorMessage) {
+          const { message: msg } = errorMessage.error;
+          message.error(t(validationMessage[msg]));
+          clearErrorMessage();
+        }
+        setOnsignup(false);
       }
     }
-  }, [isLoading, signupStatus]);
+  }, [isLoading, onSignup]);
 
   /* eslint-disable no-param-reassign */
   const onSubmit = useCallback((values, { resetForm }) => {
     delete values.confirmPassword;
+    setOnsignup(true);
     doSignUp({ ...values, lang: locale });
     resetForm();
   });

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import TimezoneSelect from 'react-timezone-select';
 import { useTranslation } from 'next-i18next';
@@ -11,7 +11,7 @@ import {
 import { Row, Col } from 'antd';
 import { useDispatch } from 'react-redux';
 
-import { SCHEDULE_TYPE } from '@/utils/constants';
+// import { SCHEDULE_TYPE } from '@/utils/constants';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
@@ -19,7 +19,7 @@ import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import Button from '@/components/Elements/Button';
 import Textarea from '@/components/Elements/Textarea';
-import Radio from '@/components/Elements/Radio';
+// import Radio from '@/components/Elements/Radio';
 import DatePicker from '@/components/Elements/DatePicker';
 import TimePicker from '@/components/Elements/TimePicker';
 import ErrorMessage, { DisplayError } from '@/components/Elements/ErrorMessage';
@@ -44,7 +44,9 @@ export default function CreateWebinarDetails({
     submitStatus(true);
   };
 
-  const [isVisible, setIsVisible] = useState(true);
+  // const [isVisible, setIsVisible] = useState(true);
+
+  const isVisible = true;
 
   return (
     <>
@@ -75,13 +77,8 @@ export default function CreateWebinarDetails({
           setSubmitForm(submitForm);
           return (
             <Form id="webinar">
-              <Div marginTop>
-                <Labels textBlue bold>
-                  {t(localMessage.managementSection)}
-                </Labels>
-              </Div>
-              <Div marginY widthFull>
-                <Labels asterisk>{t(localMessage.webinarTitle)}</Labels>
+              <Div paddingTop marginTopLarge marginBottom widthFull>
+                <Labels asterisk>{t(localMessage.webinarTitleAdmin)}</Labels>
                 <Field
                   defaultValue={values.managementTitle}
                   type="text"
@@ -97,7 +94,7 @@ export default function CreateWebinarDetails({
                 justify="start"
                 style={{ width: '100%' }}
               >
-                <Col type="flex" align="middle" justify="start" xs={24} lg={18}>
+                <Col type="flex" align="left" justify="start" xs={24} lg={18}>
                   <Labels asterisk>{t(localMessage.zoomAccount)}</Labels>
                   <Field
                     name="webinarAccount"
@@ -144,7 +141,7 @@ export default function CreateWebinarDetails({
                 >
                   <Col
                     type="flex"
-                    align="middle"
+                    align="left"
                     justify="center"
                     xs={24}
                     lg={12}
@@ -163,14 +160,16 @@ export default function CreateWebinarDetails({
                   </Col>
                   <Col
                     type="flex"
-                    align="middle"
+                    align="left"
                     justify="center"
                     xs={24}
                     lg={12}
                   >
                     <Div widthFull paddingLeft>
                       <Div widthFull marginBottomLarge>
-                        <Labels asterisk>{t(localMessage.webinarTitle)}</Labels>
+                        <Labels asterisk>
+                          {t(localMessage.webinarTitlePublic)}
+                        </Labels>
                         <Field
                           type="text"
                           name="title"
@@ -187,7 +186,7 @@ export default function CreateWebinarDetails({
                           component={Textarea}
                           rows={7}
                           showCount
-                          maxLength={100}
+                          maxLength={1000}
                         />
                         <ErrorMessage name="description" />
                       </Div>
@@ -195,7 +194,7 @@ export default function CreateWebinarDetails({
                   </Col>
                 </Row>
               </Div>
-              <Div marginTop>
+              {/* <Div marginTop>
                 <Labels textBlue bold>
                   {t(localMessage.schedule)}
                 </Labels>
@@ -230,7 +229,7 @@ export default function CreateWebinarDetails({
                     {t(localMessage.recuring)}
                   </Radio>
                 </Radio.Group>
-              </Div>
+              </Div> */}
               {isVisible ? (
                 <>
                   <Div marginY flexTop widthFull>
@@ -242,7 +241,7 @@ export default function CreateWebinarDetails({
                     >
                       <Col
                         type="flex"
-                        align="middle"
+                        align="left"
                         justify="start"
                         xs={24}
                         lg={12}
@@ -265,7 +264,7 @@ export default function CreateWebinarDetails({
                       </Col>
                       <Col
                         type="flex"
-                        align="middle"
+                        align="left"
                         justify="start"
                         xs={24}
                         lg={12}
@@ -298,7 +297,7 @@ export default function CreateWebinarDetails({
                     >
                       <Col
                         type="flex"
-                        align="middle"
+                        align="left"
                         justify="start"
                         xs={24}
                         lg={12}
@@ -321,7 +320,7 @@ export default function CreateWebinarDetails({
                       </Col>
                       <Col
                         type="flex"
-                        align="middle"
+                        align="left"
                         justify="start"
                         xs={24}
                         lg={12}

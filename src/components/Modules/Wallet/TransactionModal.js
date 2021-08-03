@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Col, Row, Divider } from 'antd';
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
@@ -7,26 +7,25 @@ import Text from '@/components/Elements/Text';
 import Button from '@/components/Elements/Button';
 import globalMessage from '@/messages/global';
 import message from '@/messages/wallet';
-import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { getTransactionDetails } from '@/states/transaction/actions';
-import { makeSelectTransactionDetails } from '@/states/transaction/selector';
+import { FormatDate } from '@/utils/dateUtils';
 
-function TransactionModal({
+export default function TransactionModal({
   visible,
   title,
   onClose,
-  subTitle,
-  getTransactionHistory,
   transactionDetails,
 }) {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    getTransactionHistory();
-  }, []);
+  const transactionTypes = (types) => {
+    let returnValue = '';
+    if (types === 'credit') {
+      returnValue = t(message.paymentWebinar);
+    } else {
+      returnValue = t(message.withdrawWebinar);
+    }
+    return returnValue;
+  };
 
   return (
     <StyledModal width={500} visible={visible} footer={null} closable={false}>
@@ -42,10 +41,13 @@ function TransactionModal({
           span={24}
           style={{ paddingTop: 20 }}
         >
-          <Text gray marginTop content="Transaction" />
-        </Col>
-        <Col align="middle" justify="center" span={24}>
-          {subTitle}
+          <Text
+            blue
+            strong
+            content={transactionTypes(
+              transactionDetails && transactionDetails.transactionType,
+            )}
+          />
         </Col>
       </Row>
       <Row style={{ padding: '10px 40px 0px 40px' }} gutter={[0, 14]}>
@@ -62,25 +64,31 @@ function TransactionModal({
           </div>
           <Text
             blue
-            content={transactionDetails && transactionDetails.transactionDate}
+            content={
+              transactionDetails &&
+              FormatDate(transactionDetails.transactionDate, 'YYYY-DD-MM HH:mm')
+            }
           />
         </Col>
+        {transactionDetails && transactionDetails.transactionType === 'credit' && (
+          <Col span={24}>
+            <div>
+              <Text gray content={t(message.webinarTitle)} />
+            </div>
+            <Text
+              blue
+              content={transactionDetails && transactionDetails.title}
+            />
+          </Col>
+        )}
+
         <Col span={24}>
           <div>
-            <Text gray content={t(message.webinarTitle)} />
+            <Text gray content={t(message.amountInput)} />
           </div>
           <Text
             blue
-            content={transactionDetails && transactionDetails.transactionType}
-          />
-        </Col>
-        <Col span={24}>
-          <div>
-            <Text gray content={t(message.amount)} />
-          </div>
-          <Text
-            blue
-            content={transactionDetails && transactionDetails.amount}
+            content={transactionDetails && `${transactionDetails.amount} ¥`}
           />
         </Col>
         <Col span={24}>
@@ -89,7 +97,9 @@ function TransactionModal({
           </div>
           <Text
             blue
-            content={transactionDetails && transactionDetails.transactionType}
+            content={
+              transactionDetails && t(message[transactionDetails.paymentMethod])
+            }
           />
         </Col>
         <Col span={24}>
@@ -98,7 +108,9 @@ function TransactionModal({
           </div>
           <Text
             blue
-            content={transactionDetails && transactionDetails.status}
+            content={
+              transactionDetails && t(message[transactionDetails.status])
+            }
           />
         </Col>
       </Row>
@@ -110,20 +122,3 @@ function TransactionModal({
     </StyledModal>
   );
 }
-
-TransactionModal.propTypes = {
-  transactionDetails: PropTypes.any,
-  getTransactionHistory: PropTypes.func,
-};
-
-const mapStateToProps = createStructuredSelector({
-  transactionDetails: makeSelectTransactionDetails(),
-});
-
-const mapDispatchProps = (dispatch) => ({
-  getTransactionHistory: (payload) => dispatch(getTransactionDetails(payload)),
-});
-
-const withConnect = connect(mapStateToProps, mapDispatchProps);
-
-export default compose(withConnect, memo)(TransactionModal);

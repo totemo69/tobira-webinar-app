@@ -30,6 +30,7 @@
     "entries":  "entries",
     "search":  "Search",
     "searchPlaceholder":  "Search webinar title",
+    "searchEmailPlaceholder": "For English “Search from email",
     "thankYou":  "Thank You",
     "accountActivated":  "Your account has been successfully activated",
     "goBackPrevious":  "Go back to previous page",
@@ -55,7 +56,8 @@
     "linkCopied": "Copied!",
     "view": "View",
     "english":  "English",
-    "japanese":  "Japanese"
+    "japanese":  "Japanese",
+    "minutes": "minutes"
   },
 
   "storyBook" : {
@@ -120,6 +122,7 @@
     "number": "No.",
     "emailAddress": "Email Address",
     "paymentStatus": "Payment Status",
+    "paymentAmount": "Amount",
     "registeredParticipants": "Registered Participants",
     "editDetails": "Edit Details",
     "updateWebinar": "UPDATE WEBINAR",
@@ -163,7 +166,8 @@
     "paymentOptions":  "Payment Options",
     "payWithPaypal": "Pay with Paypal",
     "webinarImage": "Webinar Image",
-    "webinarTitle": "Webinar Title",
+    "webinarTitleAdmin": "Webinar Title (Admin)",
+    "webinarTitlePublic": "Webinar Title (Public)",
     "webinarPrice": "Webinar Price",
     "webinarPlan": "Webinar Plan",
     "webinarPriceAttendee": "Webinar price for each attendee",
@@ -181,11 +185,14 @@
     "doneStatusLabel": "Done",
     "notYetStatusLabel": "Not yet",
     "upcomingStatusLabel": "Upcoming",
+    "publishStatusLabel": "Published",
+    "hiddenStatusLabel": "Hidden",
     "oneTimePlan": "One-time",
     "pendingPaymentLabel": "Pending",
     "failedPaymentLabel": "Failed",
     "completedPaymentLabel": "Completed",
-    "createWebinarTitle": "Management Section"
+    "createWebinarTitle": "Management Section",
+    "createWebinarSuccess": "Webinar creation completed"
   },
 
   "termsAndPrivacy": {
@@ -288,7 +295,9 @@
     "completed": "Completed",
     "cancelled": "Cancelled",
     "paymentWebinar": "Payment for webinar",
-    "withdrawWebinar": "Withdraw from wallet"
+    "withdrawWebinar": "Withdraw from wallet",
+    "paypal": "Paypal",
+    "bank": "Bank"
   },
 
   "plan": {
@@ -354,6 +363,7 @@
     "price": "Price",
     "inValidEmailFormat": "Invalid email format.",
     "resetNotFound": "Your reset token is invalid or already expired.",
-    "tokenExpired": "Your reset token is invalid or already expired."
+    "tokenExpired": "Your reset token is invalid or already expired.",
+    "paypalAccount": "Paypal account"
   }
 }

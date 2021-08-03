@@ -44,14 +44,18 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
                 alt="success icon"
                 modalIcon
               />
-              <Title modalTitle>{t(globalMessage.success)}!</Title>
+              <Title modalTitle>{t(localMessage.createWebinarSuccess)}!</Title>
             </Div>
             <Div flexColCenter widthFull paddingTop>
-              <Div center widthFull>
-                <Labels center bold>
+              <Div center>
+                <Labels fullWidth center textCenter bold>
                   {t(localMessage.congrats)}
                 </Labels>
-                <Labels center>{t(localMessage.createdSuccess)}</Labels>
+              </Div>
+              <Div center>
+                <Labels fullWidth center textCenter>
+                  {t(localMessage.createdSuccess)}
+                </Labels>
               </Div>
             </Div>
             <Div flexColCenter widthFull paddingTop>
@@ -71,7 +75,7 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
             <Div flexColCenter widthFull>
               <Div center>
                 <Button onClick={closeModal} type="primary">
-                  {t(globalMessage.ok)}
+                  {t(globalMessage.close)}
                 </Button>
               </Div>
             </Div>

@@ -98,6 +98,10 @@ export default function ParticipantDetails({
       title: t(message.paymentStatus),
       details: paymentStatus(info.paymentStatus),
     },
+    {
+      title: t(message.paymentAmount),
+      details: info.amount ?? 0,
+    },
   ];
   return (
     <StyledModal

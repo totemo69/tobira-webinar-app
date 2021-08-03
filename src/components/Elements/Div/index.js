@@ -12,7 +12,14 @@ const StyledDiv = style.div`
       margin: 0;
       padding: 0;
   }
-  
+  ${(props) =>
+    props.walletBalancePadding &&
+    css`
+      @media screen and (max-width: 480px) {
+        padding: 5px;
+      }
+    `};
+    
   ${(props) =>
     props.withPadding &&
     css`
@@ -134,6 +141,11 @@ const StyledDiv = style.div`
     css`
       margin-top: 1rem;
       margin-bottom: 1rem;
+
+      @media screen and (max-width: 480px) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
     `};
 
   ${(props) =>
@@ -461,6 +473,10 @@ const StyledDiv = style.div`
       box-shadow: 0 1px 2px 1px #0e71eb;
       border-radius: 5px;
       padding: 15px;
+
+      @media screen and (max-width: 480px) {
+        padding: 10px;
+      }
     `}
 
   ${(props) =>

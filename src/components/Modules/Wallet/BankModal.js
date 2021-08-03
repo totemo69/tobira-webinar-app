@@ -125,7 +125,7 @@ BankModal.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  isLoading: makeSelectLoading(LOADING_PREFIX.BANK),
 });
 
 function mapDispatchProps(dispatch) {

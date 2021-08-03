@@ -25,7 +25,7 @@ export default WebinarDetail;
 
 export async function getStaticProps({ params, locale }) {
   const page = await WebinarDetailService.getWebinarDetail(params.slug);
-  console.log('Page', page);
+
   return {
     props: {
       postDetail: {
