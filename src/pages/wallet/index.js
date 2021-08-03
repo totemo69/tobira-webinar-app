@@ -75,7 +75,7 @@ import {
 import { clearErrors } from '@/states/global/actions';
 
 export const StyledModal = styled(Modal)`
-  height: 500px;
+  height: 680px;
   width: 600px;
   margin: 50px auto 0;
   padding: 0;
@@ -83,6 +83,7 @@ export const StyledModal = styled(Modal)`
 
   @media screen and (max-width: 480px) {
     width: auto;
+    margin: 0 auto;
   }
 `;
 export const ConfirmModal = styled(StyledModal)`
