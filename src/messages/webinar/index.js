@@ -57,6 +57,10 @@ const message = {
     key: `${scope}.paymentStatus`,
     default: 'Payment Status',
   }),
+  paymentAmount: Object.values({
+    key: `${scope}.paymentAmount`,
+    default: 'Amount',
+  }),
   details: Object.values({
     key: `${scope}.details`,
     default: 'Details',
@@ -308,6 +312,14 @@ const message = {
   upcomingStatusLabel: Object.values({
     key: `${scope}.upcomingStatusLabel`,
     default: 'Upcoming',
+  }),
+  publishStatusLabel: Object.values({
+    key: `${scope}.publishStatusLabel`,
+    default: 'Published',
+  }),
+  hiddenStatusLabel: Object.values({
+    key: `${scope}.hiddenStatusLabel`,
+    default: 'Hidden',
   }),
   oneTimePlan: Object.values({
     key: `${scope}.oneTimePlan`,
