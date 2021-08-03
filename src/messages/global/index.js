@@ -130,6 +130,10 @@ const message = {
     key: `${scope}.searchPlaceholder`,
     default: 'Search webinar title',
   }),
+  searchEmailPlaceholder: Object.values({
+    key: `${scope}.searchEmailPlaceholder`,
+    default: 'Search from email',
+  }),
   thankYou: Object.values({
     key: `${scope}.thankYou`,
     default: 'Thank You',
