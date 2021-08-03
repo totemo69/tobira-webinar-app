@@ -1,156 +1,162 @@
-.scheduleList{
-    list-style: none;
-    margin:0;
-    padding:0;
-    color: var(--accentColor);
+.scheduleList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--accentColor);
 }
-.activeSchedule{
-    color: var(--linkColor);
-} 
-.infoItem, .infoItemWrap{
-    display: flex;
-    margin-bottom: 0.35em;
+.activeSchedule {
+  color: var(--linkColor);
 }
-.infoItem{
-    flex-direction: row;
-    align-items: flex-start;
+.infoItem,
+.infoItemWrap {
+  display: flex;
+  margin-bottom: 0.35em;
+}
+.infoItem {
+  flex-direction: row;
+  align-items: flex-start;
 }
 .infoItem img {
-    padding-top: 0.25em;
+  padding-top: 0.25em;
 }
-.infoItemWrap{
-    flex-direction: column;
-    padding: 0 10px;
+.infoItemWrap {
+  flex-direction: column;
+  padding: 0 10px;
 }
-.infoLabel{
-    font-size: var(--smallFontSize);
-    color: var(--accentColor);
+.infoLabel {
+  font-size: var(--smallFontSize);
+  color: var(--accentColor);
 }
-.addendum{
-    color: var(--accentColor);
+.addendum {
+  color: var(--accentColor);
 }
-.price{
-    font-size: 1.25em;
+.price {
+  font-size: 1.25em;
 }
-.shareIconWrapper{
-    display: flex;
-    width: 60%;
-    margin: auto;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 24px;
+.shareIconWrapper {
+  display: flex;
+  width: 60%;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
 }
-.shareInputWrapper{
-    text-align: center;
-    padding-bottom: 1em;
+.shareInputWrapper {
+  text-align: center;
+  padding-bottom: 1em;
 }
 
 /* Register */
-.spacer{
-    margin-top: 4.5em;
-    margin-bottom: 1em;
+.spacer {
+  margin-top: 4.5em;
+  margin-bottom: 1em;
 }
-.registerNext{
-    display: flex;
-    justify-content: flex-end;
+.registerNext {
+  display: flex;
+  justify-content: flex-end;
 }
-.registerNext button{
-    margin-right: 0;
-}
-.summaryNext{
-  text-align: center;
-}
-.summaryNext button{
+.registerNext button {
   margin-right: 0;
 }
-    
+.summaryNext {
+  text-align: center;
+}
+.summaryNext button {
+  margin-right: 0;
+}
 
 /* Ticker Summary */
-.ticketBody{
-    margin: auto;
-    border-radius: 1rem;
-    border: 1px;
-    height: 55vh;
-    width: 42%;
-    background: #F4F8FE 0% 0% no-repeat padding-box;
-    box-shadow: 0px 2px 4px #00000029;
-    border: 1px solid var(--backgroundColorAccent);
-    opacity: 1;    
-    position: relative;
-}
- 
-.ticketLine{
-    width: 100%;
-    height: 2px;
-    position: absolute;
-    top: 46%;    
-    border-top: 2px dashed var(--backgroundColorAccent);
-    z-index: 1;
-}
-.ticketCircle{
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 40%;
-    z-index: 2;
-    background-color: white;
-    border-top-left-radius: 50px;
-    border: 2px solid var(--backgroundColorAccent);
-}
-.left{
-    left:-25px;
-    border-bottom: 0;
-    border-left: 0;
-    border-top: 0;
-}
-.right{
-    right:-25px;
-    border-bottom: 0;
-    border-right: 0;
-    border-top: 0;    
+.ticketBody {
+  margin: auto;
+  border-radius: 1rem;
+  border: 1px;
+  height: 55vh;
+  width: 42%;
+  background: #f4f8fe 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 4px #00000029;
+  border: 1px solid var(--backgroundColorAccent);
+  opacity: 1;
+  position: relative;
 }
 
-.priceLabel{
-    padding: 3em 2.5em;
-    color: var(--accentColor); 
+.ticketLine {
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 46%;
+  border-top: 2px dashed var(--backgroundColorAccent);
+  z-index: 1;
 }
-.actualPrice{
-    text-align: center;
+.ticketCircle {
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 40%;
+  z-index: 2;
+  background-color: white;
+  border-top-left-radius: 50px;
+  border: 2px solid var(--backgroundColorAccent);
+}
+.left {
+  left: -25px;
+  border-bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+.right {
+  right: -25px;
+  border-bottom: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+.priceLabel {
+  padding: 3em 2.5em;
+  color: var(--accentColor);
+}
+.actualPrice {
+  text-align: center;
 }
 .actualPrice h1 {
   color: var(--textColorPrimary);
-  font-weight: 500; 
+  font-weight: 500;
   font-size: 2.25em;
 }
 
-.ticketLower{
-    position: absolute;
-    width: 100%;
-    top: 50%;
+.ticketLower {
+  position: absolute;
+  width: 100%;
+  top: 50%;
 }
 .ticketDetailLabel {
-    color: var(--accentColor); 
-    padding-top: 1em;
+  color: var(--accentColor);
+  padding-top: 1em;
 }
 .ticketDetailInfo {
-    padding: 0.5em 2em;
-    text-align: center;
-    font-weight: 500;
+  padding: 0.5em 2em;
+  text-align: center;
+  font-weight: 500;
+}
+.ticketTitle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: 500;
 }
 @media screen and (max-width: 480px) {
-    .ticketBody{
-        width: 90%;
-        height: 62vh;
-    }
+  .ticketBody {
+    width: 90%;
+    height: 62vh;
+  }
 }
 
 /* Choose Payment */
-.paymentCol{
-    text-align: center;
-    margin-top: 3em;
+.paymentCol {
+  text-align: center;
+  margin-top: 3em;
 }
-h1.paymentTitle{
+h1.paymentTitle {
   font-size: 1.8em;
   font-weight: 500;
   color: var(--textColorPrimary);
@@ -161,37 +167,37 @@ h1.paymentTitle{
 }
 
 @media screen and (max-width: 480px) {
-    .paymentCol{
-        margin-top: 1em;
-    }
-    h1.paymentTitle{
-        padding-left: 0;
-        padding-bottom: 0.5em;
-        font-size: 1.5em;
-    }
-    .spacer{
-        margin-top: 2.5em;
-        margin-bottom: 1em;
-    }    
+  .paymentCol {
+    margin-top: 1em;
+  }
+  h1.paymentTitle {
+    padding-left: 0;
+    padding-bottom: 0.5em;
+    font-size: 1.5em;
+  }
+  .spacer {
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+  }
 }
 
 /* Complete */
-.completeCol{
-    min-height: 35vh;
-    margin-top: 3em;
+.completeCol {
+  min-height: 35vh;
+  margin-top: 3em;
 }
-.completeBtn{
-    text-align: center;
+.completeBtn {
+  text-align: center;
 }
-.completeTitle{
-    color: var(--textColorPrimary) !important;
-    font-weight: 650 !important;
-    letter-spacing: 0.6px !important;
-    padding-bottom: 1em;
+.completeTitle {
+  color: var(--textColorPrimary) !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.6px !important;
+  padding-bottom: 1em;
 }
 @media screen and (max-width: 480px) {
-    .completeCol{
-        min-height: 25vh;
-        margin-top: 1em;
-    }
+  .completeCol {
+    min-height: 25vh;
+    margin-top: 1em;
+  }
 }

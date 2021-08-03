@@ -8,6 +8,7 @@ import { Formik, Field, Form } from 'formik';
 import { useTranslation } from 'next-i18next';
 import { DateIsBefore } from '@/utils/dateUtils';
 import localMessage from '@/messages/webinarDetail';
+import globalMessage from '@/messages/global';
 import { setWebinarRegistration } from '@/states/webinar/actions';
 import { makeSelectWebinarRegistration } from '@/states/webinar/selector';
 import Input, { LabelGroup } from '@/components/Elements/Input';
@@ -47,12 +48,12 @@ const WebinarRegistrationForm = ({
         <Form>
           <LabelGroup key={`label.${formFields[0].fieldName}`} spacing="large">
             <Labels asterisk bold>
-              {formFields[0].fieldName}
+              {t(globalMessage.email)}
             </Labels>
             <Field
               type="email"
               name="formFields.0.Email"
-              placeholder={formFields[0].fieldName}
+              placeholder={t(globalMessage.email)}
               component={Input}
               size="large"
               initialValues="values.formFields.0.Email"
