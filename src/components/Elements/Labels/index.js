@@ -78,6 +78,12 @@ const StyledLabels = styled.label`
     css`
       margin-top: 1rem;
     `}
+
+    ${(props) =>
+    props.fullWidth &&
+    css`
+      width: auto;
+    `}
 `;
 
 export default StyledLabels;

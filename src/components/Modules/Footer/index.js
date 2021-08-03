@@ -15,15 +15,11 @@ export default function Footer() {
         <Text>{t(globalMessage.copyRight)}.</Text>
         <Text>
           <Link
-            href="/terms-of-service-example"
+            href="/terms-of-service"
             name={t(globalMessage.termsOfService)}
           />{' '}
           {t(globalMessage.and)}{' '}
-          <Link
-            href="/privacy-policy-example"
-            name={t(globalMessage.privacyPolicy)}
-          />
-          .
+          <Link href="/privacy-policy" name={t(globalMessage.privacyPolicy)} />.
         </Text>
       </Row>
     </Ftr>

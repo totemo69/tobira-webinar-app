@@ -110,7 +110,7 @@ const message = {
     default: 'Duration',
   }),
   enterWebinarTitle: Object.values({
-    key: `${scope}.webinarTitle`,
+    key: `${scope}.enterWebinarTitle`,
     default: 'Enter Webinar title',
   }),
   emailAddress: Object.values({
@@ -237,9 +237,13 @@ const message = {
     key: `${scope}.webinarImage`,
     default: 'Webinar Image',
   }),
-  webinarTitle: Object.values({
-    key: `${scope}.webinarTitle`,
-    default: 'Webinar Title',
+  webinarTitleAdmin: Object.values({
+    key: `${scope}.webinarTitleAdmin`,
+    default: 'Webinar Title (Admin)',
+  }),
+  webinarTitlePublic: Object.values({
+    key: `${scope}.webinarTitlePublic`,
+    default: 'Webinar Title (Public)',
   }),
   webinarPrice: Object.values({
     key: `${scope}.webinarPrice`,
@@ -324,6 +328,10 @@ const message = {
   createWebinarTitle: Object.values({
     key: `${scope}.createWebinarTitle`,
     default: 'Management Secion',
+  }),
+  createWebinarSuccess: Object.values({
+    key: `${scope}.createWebinarSuccess`,
+    default: 'Webinar creation completed',
   }),
 };
 

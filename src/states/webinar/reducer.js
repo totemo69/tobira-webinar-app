@@ -15,7 +15,7 @@ export const initialState = {
   webinarList: [],
   webinarDetail: {},
   webinarPublic: {
-    formName: '',
+    formName: 'Register',
     formFields: [
       {
         fieldName: 'Email',
@@ -44,7 +44,7 @@ export const initialState = {
         dateTime: '',
       },
     ],
-    formName: '',
+    formName: 'Register',
     formFields: [
       {
         fieldName: 'Email',
@@ -175,7 +175,7 @@ const webinarReducer = (state = initialState, action) =>
               dateTime: '',
             },
           ],
-          formName: '',
+          formName: 'Register',
           formFields: [
             {
               fieldName: 'Email',
