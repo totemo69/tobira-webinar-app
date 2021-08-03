@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { Formik, Field, Form } from 'formik';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import { subtract } from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import {
   EllipsisOutlined,
@@ -17,7 +18,7 @@ import {
 } from '@ant-design/icons';
 import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
-import { Row, Col, Dropdown, Menu } from 'antd';
+import { Row, Col, Dropdown, Menu, message, Spin } from 'antd';
 
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -40,9 +41,9 @@ import BankModal from '@/components/Modules/Wallet/BankModal';
 import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
 import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
-
+import validationMessage from '@/messages/validation';
 import globalMessage from '@/messages/global';
-import message from '@/messages/wallet';
+import localMessage from '@/messages/wallet';
 import {
   makeSelectBankList,
   makeSelectWithdraw,
@@ -55,12 +56,45 @@ import {
   withdraws,
   getWallet,
 } from '@/states/wallet/actions';
-import { makeSelectTransactionList } from '@/states/transaction/selector';
+import {
+  makeSelectTransactionList,
+  makeSelectTransactionDetails,
+} from '@/states/transaction/selector';
 import { withdrawalValidationSchema } from '@/validations/wallet';
-import { getTransaction } from '@/states/transaction/actions';
+import {
+  getTransaction,
+  getTransactionDetails,
+} from '@/states/transaction/actions';
 import TransactionHistoryTable from '@/components/Modules/Wallet/TransactionHistoryTable';
 import { LOADING_PREFIX } from '@/utils/constants';
-import { makeSelectLoading } from '@/states/global/selector';
+import {
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectLoadingStatus,
+} from '@/states/global/selector';
+import { clearErrors } from '@/states/global/actions';
+
+export const StyledModal = styled(Modal)`
+  height: 680px;
+  width: 600px;
+  margin: 50px auto 0;
+  padding: 0;
+  background-color: white;
+
+  @media screen and (max-width: 480px) {
+    width: auto;
+    margin: 0 auto;
+  }
+`;
+export const ConfirmModal = styled(StyledModal)`
+  height: 350px;
+  width: 560px;
+  overflow: hidden;
+
+  @media screen and (max-width: 480px) {
+    width: auto;
+  }
+`;
 
 export function Wallet({
   doGetBankList,
@@ -73,9 +107,24 @@ export function Wallet({
   doWithdraw,
   withdraw,
   isLoading,
+  isWalletLoading,
+  isBankLoading,
+  isBankStatus,
+  getDetails,
+  transactionDetails,
+  isWithdrawLoading,
+  isWithdrawStatus,
+  errorMessage,
+  clearErrorMessage,
 }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  const [onWithdraw, setOnWithdraw] = useState(false);
+  const [onBank, setOnBank] = useState(false);
+  const [onBankEdit, setOnBankEdit] = useState(false);
+  const [bankId, setBankId] = useState(null);
+  const [bankDetails, setDankDetails] = useState({});
 
   useEffect(() => {
     doGetBankList();
@@ -83,7 +132,43 @@ export function Wallet({
     getMyWallet();
   }, []);
 
-  const [bankId, setBankId] = useState(null);
+  useEffect(() => {
+    if (!isWithdrawLoading) {
+      if (onWithdraw) {
+        if (isWithdrawStatus && !errorMessage) {
+          setIsConfirmTransferFundVisible(!setIsConfirmTransferFundVisible);
+          setIsTransferSuccessModalVisible(true);
+          getTransactionHistory();
+        } else {
+          const { message: msg } = errorMessage.error;
+          message.error(t(validationMessage[msg]));
+          clearErrorMessage();
+        }
+      }
+    }
+  }, [isWithdrawLoading, onWithdraw]);
+
+  useEffect(() => {
+    if (!isBankLoading) {
+      if (onBank) {
+        if (isBankStatus && !errorMessage) {
+          if (onBankEdit) {
+            setIsBankEditModalVisible(false);
+            setIsBankUpdatedSuccessModalVisible(true);
+          } else {
+            setIsBankAddModalVisible(false);
+            setIsBankAddedSuccessModalVisible(true);
+          }
+          doGetBankList();
+        } else {
+          const { message: msg } = errorMessage.error;
+          message.error(t(validationMessage[msg]));
+          clearErrorMessage();
+        }
+        setOnBank(false);
+      }
+    }
+  }, [isBankLoading, onBank]);
 
   const [displayCount, setDisplayCount] = useState(10);
 
@@ -113,8 +198,8 @@ export function Wallet({
   };
 
   const onAddBankAccount = () => {
-    setIsBankAddModalVisible(false);
-    setIsBankAddedSuccessModalVisible(true);
+    setOnBank(true);
+    setOnBankEdit(false);
   };
 
   const showRemoveBankModal = (id) => {
@@ -132,13 +217,15 @@ export function Wallet({
   });
 
   const showUpdateModal = (id) => {
+    const details = bankList.find((item) => item.id === id);
+    setDankDetails(details);
     setBankId(id);
     setIsBankEditModalVisible(true);
   };
 
   const onUpdateBankAccount = () => {
-    setIsBankEditModalVisible(false);
-    setIsBankUpdatedSuccessModalVisible(true);
+    setOnBank(true);
+    setOnBankEdit(true);
   };
 
   const onProceed = (payload) => {
@@ -149,12 +236,17 @@ export function Wallet({
 
   const onConfirm = () => {
     doWithdraw();
-    setIsConfirmTransferFundVisible(!setIsConfirmTransferFundVisible);
-    setIsTransferSuccessModalVisible(true);
+    setOnWithdraw(true);
   };
 
+  const onViewDetails = (id) => {
+    getDetails(id);
+  };
+
+  const isCanWithdraw = (val1, val2) => val1 > val2;
+
   const bankItems = bankList.map((bank) => (
-    <Col span={8} key={bank.id}>
+    <Col xs={24} lg={8} key={bank.id}>
       <Div bankList>
         <Dropdown.Button
           style={{ float: 'right' }}
@@ -196,35 +288,35 @@ export function Wallet({
         <SuccessModal
           visible={isTransferSuccessModalVisible}
           onClose={() => setIsTransferSuccessModalVisible(false)}
-          title={t(message.transferFundRequestSuccess)}
-          subTitle={t(message.successfullySentTransferFundRequest)}
+          title={t(localMessage.transferFundRequestSuccess)}
+          subTitle={t(localMessage.successfullySentTransferFundRequest)}
         />
         {/* Bank account added success modal */}
         <SuccessModal
           visible={isBankAddedSuccessModalVisible}
           onClose={() => setIsBankAddedSuccessModalVisible(false)}
-          title={t(message.bankAccountAdded)}
-          subTitle={t(message.successfullyAddedBankAccount)}
+          title={t(localMessage.bankAccountAdded)}
+          subTitle={t(localMessage.successfullyAddedBankAccount)}
         />
         {/* Bank account updated success modal */}
         <SuccessModal
           visible={isBankUpdatedSuccessModalVisible}
           onClose={() => setIsBankUpdatedSuccessModalVisible(false)}
-          title={t(message.bankAccountUpdated)}
-          subTitle={t(message.successfullyUpdatedBankAccount)}
+          title={t(localMessage.bankAccountUpdated)}
+          subTitle={t(localMessage.successfullyUpdatedBankAccount)}
         />
         {/* Bank account delete success modal */}
         <SuccessModal
           visible={isBankDeletedSuccessModalVisible}
           onClose={() => setIsBankDeletedSuccessModalVisible(false)}
-          title={t(message.bankAccountDeleted)}
-          subTitle={t(message.successfullyDeletedBankAccount)}
+          title={t(localMessage.bankAccountDeleted)}
+          subTitle={t(localMessage.successfullyDeletedBankAccount)}
         />
         {/* Bank account add modal */}
         <BankModal
           visible={isBankAddModalVisible}
           onClose={() => setIsBankAddModalVisible(false)}
-          title={t(message.addBankAccount)}
+          title={t(localMessage.addBankAccount)}
           onOk={onAddBankAccount}
           okText={t(globalMessage.add)}
         />
@@ -232,48 +324,55 @@ export function Wallet({
         <UpdateBankModal
           visible={isBankEditModalVisible}
           onClose={() => setIsBankEditModalVisible(false)}
-          title={t(message.editBankAccount)}
+          title={t(localMessage.editBankAccount)}
           onOk={onUpdateBankAccount}
-          okText={t(message.saveChanges)}
+          bankId={bankId}
+          bank={bankDetails}
+          okText={t(localMessage.saveChanges)}
         />
         {/* Bank account delete modal */}
         <DeleteModal
           visible={isBankDeleteModalVisible}
           onClose={() => setIsBankDeleteModalVisible(false)}
           onOk={() => onRemoveBankAccount(bankId)}
-          title={t(message.deleteBankAccount)}
-          subTitle={t(message.deleteBankAccountSubTitle)}
+          title={t(localMessage.deleteBankAccount)}
+          subTitle={t(localMessage.deleteBankAccountSubTitle)}
         />
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
-            {t(message.wallet)}
+            {t(localMessage.wallet)}
           </Title>
         </Div>
 
-        <Card style={{ padding: '20px' }}>
+        <Card Padding>
           <Div walletBalance>
-            <Div>
-              <Span>{t(message.currentWalletBalance)}</Span>
-              <Title level={1}>{myWallet.currentBalance}</Title>
-              <Row gutter={20}>
+            <Div walletBalancePadding>
+              <Span>{t(localMessage.currentWalletBalance)}</Span>
+              <Title level={1}>
+                {isWalletLoading && <Spin />}
+                {!isWalletLoading && myWallet.currentBalance}
+              </Title>
+              {/* <Row gutter={20}>
                 <Col>+ {myWallet.currentBalance}</Col>
 
                 <Col>- {myWallet.currentBalance}</Col>
-              </Row>
+              </Row> */}
             </Div>
             <Div style={{ margin: 'auto 0', float: 'right' }}>
               <Button
-                style={{ height: '50px', width: '50%' }}
+                btnTransferFund
                 type="primary"
                 onClick={showTransferFundsModal}
               >
                 <Image transferFunds src="/images/transfer-funds.svg" />{' '}
-                {t(message.transferFunds)}
+                {t(localMessage.transferFunds)}
               </Button>
             </Div>
           </Div>
           <Div marginY>
-            <StyledParagraph colorBlue>{t(message.bankList)}</StyledParagraph>
+            <StyledParagraph colorBlue>
+              {t(localMessage.bankList)}
+            </StyledParagraph>
           </Div>
 
           <Div
@@ -285,7 +384,7 @@ export function Wallet({
           />
           <Row gutter={[24, 24]}>
             {bankItems}
-            <Col span={8}>
+            <Col xs={24} lg={8}>
               <Div bankList>
                 <Div addBankList>
                   <Button
@@ -296,7 +395,7 @@ export function Wallet({
                     <PlusSquareFilled style={{ fontSize: '20px' }} />
                   </Button>
                   <StyledParagraph colorBlue>
-                    {t(message.addBankAccount)}
+                    {t(localMessage.addBankAccount)}
                   </StyledParagraph>
                 </Div>
               </Div>
@@ -305,7 +404,7 @@ export function Wallet({
 
           <Div marginY>
             <StyledParagraph colorBlue>
-              {t(message.allTransactionHistory)}
+              {t(localMessage.allTransactionHistory)}
             </StyledParagraph>
           </Div>
           <Div marginY widthFull>
@@ -313,15 +412,15 @@ export function Wallet({
               {t(globalMessage.show)}
               <Select
                 showPages
-                defaultValue="10"
+                defaultValue={displayCount}
                 suffixIcon={<CaretDownFilled />}
                 onChange={setDisplayCount}
               >
-                <Option value="10">10</Option>
-                <Option value="20">20</Option>
-                <Option value="30">30</Option>
-                <Option value="40">40</Option>
-                <Option value="50">50</Option>
+                <Option value={10}>10</Option>
+                <Option value={20}>20</Option>
+                <Option value={30}>30</Option>
+                <Option value={40}>40</Option>
+                <Option value={50}>50</Option>
               </Select>
             </Div>
           </Div>
@@ -329,27 +428,20 @@ export function Wallet({
             displayCount={displayCount}
             dataSource={transactionHistoryList}
             loading={isLoading}
+            onClickDetails={(id) => onViewDetails(id)}
+            transactionDetails={transactionDetails}
           />
         </Card>
       </Layout>
 
       {/* Transfer fund request modal */}
-      <Modal
-        isOpen={isTransferFundVisible}
-        style={{
-          content: {
-            height: '500px',
-            width: '600px',
-            margin: '0 auto',
-            padding: '0',
-          },
-        }}
-      >
+      <StyledModal isOpen={isTransferFundVisible}>
         <Formik
           initialValues={{
             amount: '',
-            gatewayType: 'bank',
+            gatewayType: 'paypal',
             gatewayDetails: {
+              gatewayType: 'paypal',
               paypal: '',
               bankName: '',
               accountName: '',
@@ -360,14 +452,16 @@ export function Wallet({
           enableReinitialize
           validationSchema={withdrawalValidationSchema}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, setFieldValue }) => (
             <Form>
-              <StyledDiv header>{t(message.transferFundRequest)}</StyledDiv>
+              <StyledDiv header>
+                {t(localMessage.transferFundRequest)}
+              </StyledDiv>
               <StyledDiv style={{ padding: '20px' }}>
                 <Label asterisk>
-                  {t(message.enterAmountToTransfer)}{' '}
+                  {t(localMessage.enterAmountToTransfer)}{' '}
                   <span style={{ float: 'right' }}>
-                    ({t(message.miniMumRequiredAmount)} 100{' '}
+                    ({t(localMessage.miniMumRequiredAmount)} 100{' '}
                     {t(globalMessage.jpy)})
                   </span>
                 </Label>
@@ -381,7 +475,10 @@ export function Wallet({
                 <ErrorMessage name="amount" />
               </StyledDiv>
               <StyledDiv style={{ padding: '20px' }}>
-                <StyledText black content={t(message.selectPaymentGateway)} />
+                <StyledText
+                  black
+                  content={t(localMessage.selectPaymentGateway)}
+                />
               </StyledDiv>
               <Row type="flex" align="middle" justify="center">
                 <Col align="middle" justify="center" span={12}>
@@ -391,10 +488,14 @@ export function Wallet({
                       width: 190,
                       borderColor: 'transparent',
                     }}
-                    onClick={() => setIsInputVisible(false)}
+                    onClick={() => {
+                      setIsInputVisible(false);
+                      setFieldValue('gatewayType', 'paypal');
+                      setFieldValue('gatewayDetails.gatewayType', 'paypal');
+                    }}
                   >
                     <img
-                      src="Images/paypal.svg"
+                      src="/images/paypal.svg"
                       alt="paypal"
                       width="100"
                       height="50"
@@ -410,7 +511,11 @@ export function Wallet({
                       marginTop: 0,
                     }}
                     icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
-                    onClick={() => setIsInputVisible(true)}
+                    onClick={() => {
+                      setIsInputVisible(true);
+                      setFieldValue('gatewayType', 'bank');
+                      setFieldValue('gatewayDetails.gatewayType', 'bank');
+                    }}
                   >
                     <StyledText strong blue content={t(globalMessage.bank)} />
                   </Button>
@@ -451,7 +556,7 @@ export function Wallet({
                     <ErrorMessage name="gatewayDetails.accountNumber" />
                     <Row style={{ marginTop: 20 }}>
                       <Checkbox />
-                      <Label>{t(message.saveThisAccountFutureUse)}</Label>
+                      <Label>{t(localMessage.saveThisAccountFutureUse)}</Label>
                     </Row>
                   </Col>
                 </Row>
@@ -459,18 +564,18 @@ export function Wallet({
                 <Row style={{ paddingLeft: 50 }}>
                   <Col span={20}>
                     <Label marginTop asterisk>
-                      {t(message.enterPaypalAccount)}
+                      {t(localMessage.enterPaypalAccount)}
                     </Label>
                     <Field
                       type="Text"
                       name="gatewayDetails.paypal"
-                      placeholder={t(message.enterPaypalAccount)}
+                      placeholder={t(localMessage.enterPaypalAccount)}
                       component={Input}
                     />
+                    <ErrorMessage name="gatewayDetails.paypal" />
                   </Col>
                 </Row>
               )}
-
               <StyledDiv
                 style={{ display: 'flex', margin: '0 auto', width: '300px' }}
               >
@@ -489,22 +594,13 @@ export function Wallet({
             </Form>
           )}
         </Formik>
-      </Modal>
+      </StyledModal>
 
       {/* Transfer fund request confirm modal */}
-      <Modal
-        isOpen={isConfirmTransferFundVisible}
-        style={{
-          content: {
-            height: '350px',
-            width: '560px',
-            margin: '0 auto',
-            padding: '0',
-            overflow: 'hidden',
-          },
-        }}
-      >
-        <StyledDiv header>{t(message.confirmTransferFundRequest)}</StyledDiv>
+      <ConfirmModal isOpen={isConfirmTransferFundVisible}>
+        <StyledDiv header>
+          {t(localMessage.confirmTransferFundRequest)}
+        </StyledDiv>
         <Row
           align="middle"
           justify="center"
@@ -512,22 +608,25 @@ export function Wallet({
           gutter={[0, 10]}
         >
           <Col align="middle" justify="center" span={12}>
-            <StyledText gray content={t(message.currentBalance)} />
+            <StyledText gray content={t(localMessage.currentBalance)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content="" />
+            <StyledText content={`${myWallet.currentBalance} ¥`} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText gray content={t(message.withdrawAmount)} />
+            <StyledText gray content={t(localMessage.withdrawAmount)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content={withdraw.amount} />
+            <StyledText content={`${withdraw.amount} ¥`} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText gray content={t(message.remainingBalance)} />
+            <StyledText gray content={t(localMessage.remainingBalance)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content="" />
+            <StyledText
+              content={`${subtract(myWallet.currentBalance, withdraw.amount)} ¥
+              `}
+            />
           </Col>
           <Col
             align="middle"
@@ -535,7 +634,7 @@ export function Wallet({
             span={12}
             style={{ marginTop: 30 }}
           >
-            <StyledText gray content={t(message.paymentGateway)} />
+            <StyledText gray content={t(localMessage.paymentGateway)} />
           </Col>
           <Col
             align="middle"
@@ -543,7 +642,7 @@ export function Wallet({
             span={12}
             style={{ marginTop: 30 }}
           >
-            <StyledText content={withdraw.gatewayType} />
+            <StyledText content={t(localMessage[withdraw.gatewayType])} />
           </Col>
         </Row>
         <Row align="middle" justify="center" gutter={20}>
@@ -561,12 +660,19 @@ export function Wallet({
             </Button>
           </Col>
           <Col>
-            <Button NextButton noMargin type="primary" onClick={onConfirm}>
+            <Button
+              NextButton
+              noMargin
+              type="primary"
+              onClick={onConfirm}
+              loading={isWithdrawLoading}
+              disabled={isCanWithdraw(withdraw.amount, myWallet.currentBalance)}
+            >
               {t(globalMessage.confirm)}
             </Button>
           </Col>
         </Row>
-      </Modal>
+      </ConfirmModal>
     </>
   );
 }
@@ -582,22 +688,40 @@ Wallet.propTypes = {
   doRemoveBank: PropTypes.func,
   doWithdraw: PropTypes.func,
   isLoading: PropTypes.bool,
+  isWalletLoading: PropTypes.bool,
+  isBankLoading: PropTypes.bool,
+  isBankStatus: PropTypes.bool,
+  getDetails: PropTypes.func,
+  transactionDetails: PropTypes.any,
+  isWithdrawLoading: PropTypes.bool,
+  isWithdrawStatus: PropTypes.bool,
+  errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
   bankList: makeSelectBankList(),
   transactionHistoryList: makeSelectTransactionList(),
+  transactionDetails: makeSelectTransactionDetails(),
   withdraw: makeSelectWithdraw(),
-  isLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  isLoading: makeSelectLoading(LOADING_PREFIX.TRANSACTION),
+  isWalletLoading: makeSelectLoading(LOADING_PREFIX.WALLET),
+  isBankLoading: makeSelectLoading(LOADING_PREFIX.BANK),
+  isBankStatus: makeSelectLoadingStatus(LOADING_PREFIX.BANK),
+  isWithdrawLoading: makeSelectLoading(LOADING_PREFIX.WITHDRAWS),
+  isWithdrawStatus: makeSelectLoadingStatus(LOADING_PREFIX.WITHDRAWS),
   myWallet: makeSelectMyWallet(),
+  errorMessage: makeSelectError(),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
   doGetBankList: () => dispatch(getBankList()),
   getTransactionHistory: () => dispatch(getTransaction()),
+  getDetails: (payload) => dispatch(getTransactionDetails(payload)),
   doRemoveBank: (id, callback) => dispatch(removeBank(id, callback)),
   doWithdraw: (payload) => dispatch(withdraws(payload)),
   getMyWallet: () => dispatch(getWallet()),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

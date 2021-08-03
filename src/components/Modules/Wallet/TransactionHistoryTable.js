@@ -14,15 +14,20 @@ import Button from '@/components/Elements/Button';
 import message from '@/messages/wallet';
 import globalMessage from '@/messages/global';
 import TransactionModal from '@/components/Modules/Wallet/TransactionModal';
-import { getTransactionDetails } from '@/states/transaction/actions';
 
-function TransactionHistoryTable({ displayCount, dataSource, loading }) {
+function TransactionHistoryTable({
+  displayCount,
+  dataSource,
+  loading,
+  onClickDetails,
+  transactionDetails,
+}) {
   const { t } = useTranslation();
   const [isPaymentWebinarModalVisible, setIsPaymentWebinarModalVisible] =
     useState(false);
 
   const viewTransactionHistory = (id) => {
-    getTransactionDetails(id);
+    onClickDetails(id);
     setIsPaymentWebinarModalVisible(true);
   };
 
@@ -92,7 +97,7 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
     },
     {
       title: t(message.action),
-      dataIndex: 'action',
+      dataIndex: 'id',
       align: 'center',
       render: (id) => (
         <Button
@@ -112,9 +117,7 @@ function TransactionHistoryTable({ displayCount, dataSource, loading }) {
       <TransactionModal
         visible={isPaymentWebinarModalVisible}
         title={t(message.transactionDetails)}
-        subTitle={
-          <StyledText blue strong content={t(message.paymentForWebinar)} />
-        }
+        transactionDetails={transactionDetails}
         onClose={() => setIsPaymentWebinarModalVisible(false)}
       />
       <Table

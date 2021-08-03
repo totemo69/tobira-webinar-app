@@ -13,6 +13,9 @@ const TextRed = styled.span`
   color: #eb4034;
   font-size: 11px;
   font-weight: 600;
+  display: inline-flex;
+  justify-content: start;
+  width: 100%;
 `;
 
 const ErrorMsg = ({ name }) => (

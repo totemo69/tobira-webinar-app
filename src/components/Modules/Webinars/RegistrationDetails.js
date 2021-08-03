@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form } from 'formik';
 import { Row, Col } from 'antd';
@@ -6,15 +6,16 @@ import { Row, Col } from 'antd';
 import { useTranslation } from 'next-i18next';
 
 import message from '@/messages/webinar';
-import { StyledParagraph } from '@/components/Elements/SampleParagraph';
+import globalMessage from '@/messages/global';
+// import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 // import Button from '@/components/Elements/Button';
-import Div from '@/components/Elements/Div';
+// import Div from '@/components/Elements/Div';
 import Switch from '@/components/Elements/Switch';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 
-import { setWebinar } from '@/states/webinar/actions';
+// import { setWebinar } from '@/states/webinar/actions';
 import { registrationForm } from '@/validations/webinar';
 
 export default function CreateWebinarRegistration({
@@ -24,20 +25,20 @@ export default function CreateWebinarRegistration({
 }) {
   const { t } = useTranslation();
 
-  const dispatch = useDispatch();
-  const onSubmit = (payload) => {
-    dispatch(setWebinar(payload));
+  // const dispatch = useDispatch();
+  const onSubmit = () => {
+    // dispatch(setWebinar(payload));
     submitStatus(true);
   };
 
   return (
     <Formik
       initialValues={{
-        formName: webinarForm.formName,
+        formName: 'Register',
         formFields: [
           {
-            fieldName: webinarForm.formFields[0].fieldName,
-            fieldType: webinarForm.formFields[0].fieldType,
+            fieldName: t(globalMessage.email), // webinarForm.formFields[0].fieldName,
+            fieldType: t(globalMessage.email), // webinarForm.formFields[0].fieldType,
             isRequired: webinarForm.formFields[0].isRequired,
             options: webinarForm.formFields[0].options,
           },
@@ -51,7 +52,7 @@ export default function CreateWebinarRegistration({
         setSubmitForm(submitForm);
         return (
           <Form>
-            <StyledParagraph colorBlue>
+            {/* <StyledParagraph colorBlue>
               {t(message.registrationForm)}
             </StyledParagraph>
 
@@ -64,24 +65,13 @@ export default function CreateWebinarRegistration({
               component={Input}
             />
             <ErrorMessage name="formName" />
-
-            <Div BrakeLine></Div>
-
+            <Div BrakeLine />
             <StyledParagraph colorBlue>
               {t(message.registrationFormFields)}
             </StyledParagraph>
-
-            {t(message.setupRegistrationFormFields)}
-            <Row className="paymentRow" gutter={[10]}>
-              {/* <Col style={{ display: 'flex' }}>
-                <Button UpDownButton>
-                  <DownOutlined />
-                </Button>
-                <Button UpDownButton>
-                  <UpOutlined />
-                </Button>
-              </Col> */}
-              <Col span={12}>
+            {t(message.setupRegistrationFormFields)} */}
+            <Row gutter={20} style={{ marginTop: 30 }}>
+              <Col xs={24} lg={12}>
                 <Label center asterisk>
                   {t(message.fieldNameOrPlaceholder)}
                 </Label>
@@ -89,13 +79,13 @@ export default function CreateWebinarRegistration({
                   defaultValue={values.formFields[0].fieldName}
                   type="text"
                   name="formFields[0].fieldName"
-                  placeholder={t(message.email)}
+                  placeholder={t(globalMessage.email)}
                   readOnly
                   component={Input}
                 />
                 <ErrorMessage name="formFields[0].fieldName" />
               </Col>
-              <Col span={10}>
+              <Col xs={24} lg={10}>
                 <Label center asterisk>
                   {t(message.fieldType)}
                 </Label>
@@ -103,7 +93,7 @@ export default function CreateWebinarRegistration({
                   defaultValue={values.formFields[0].fieldType}
                   type="text"
                   name="formFields[0].fieldType"
-                  placeholder={t(message.email)}
+                  placeholder={t(globalMessage.email)}
                   readOnly
                   component={Input}
                 />
@@ -121,10 +111,6 @@ export default function CreateWebinarRegistration({
                 />
               </Col>
             </Row>
-            {/* <Button addField>
-              <PlusSquareFilled size="large" />
-              {t(message.addAccount)}
-            </Button> */}
           </Form>
         );
       }}

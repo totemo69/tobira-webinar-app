@@ -14,6 +14,7 @@ const StyledLabels = styled.label`
     display: inline-flex;
     justify-content: flex-start;
     width: 100%;
+    margin-top: 0.5rem;
   }
 
   ${(props) =>
@@ -76,6 +77,12 @@ const StyledLabels = styled.label`
     props.marginTop &&
     css`
       margin-top: 1rem;
+    `}
+
+    ${(props) =>
+    props.fullWidth &&
+    css`
+      width: auto;
     `}
 `;
 

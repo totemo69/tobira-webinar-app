@@ -19,7 +19,6 @@ const StyledHeader = styled(Header).withConfig({
   box-shadow: 0px 2px 4px #00000029;
 
   @media screen and (max-width: 480px) {
-    padding: 10px;
     height: auto;
   }
 
