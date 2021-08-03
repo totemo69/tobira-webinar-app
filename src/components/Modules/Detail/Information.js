@@ -60,7 +60,7 @@ const Information = ({ postDetail }) => {
           <InformationItem
             iconSrc="/images/duration.svg"
             label={t(localMessage.durationLabel)}
-            date={`${postDetail.duration} minutes`}
+            date={`${postDetail.duration} ${t(globalMessage.minutes)}`}
           />
         </Col>
         <Col span={24}>

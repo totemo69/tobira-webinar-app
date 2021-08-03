@@ -7,8 +7,17 @@ const { Option } = StyledSelect;
 
 const Language = ({ locale, route }) => {
   const { t } = useTranslation();
+  const { slug } = route.query;
   const onChange = (val) => {
-    route.push(route.pathname, route.pathname, { locale: val });
+    if (slug) {
+      route.push(
+        route.pathname.replace('[slug]', slug),
+        route.pathname.replace('[slug]', slug),
+        { locale: val },
+      );
+    } else {
+      route.push(route.pathname, route.pathname, { locale: val });
+    }
   };
   return (
     <StyledSelect onChange={onChange} defaultValue={locale} bordered={false}>

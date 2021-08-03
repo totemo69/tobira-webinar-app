@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { Row, Col, List, Image, Divider, Space, Typography } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import message from '@/messages/webinar';
+import globalMessage from '@/messages/global';
 import { WEBINAR_ROUTE } from '@/utils/constants';
 import { DateIsBefore, DateIsSame, FormatDate } from '@/utils/dateUtils';
 import Title from '@/components/Elements/Title';
@@ -67,7 +68,9 @@ export default function WebinarDetails({ webinarDetails }) {
     },
     {
       title: t(message.duration),
-      description: webinarDetails.duration,
+      description: (
+        <>{`${webinarDetails.duration} ${t(globalMessage.minutes)}`}</>
+      ),
     },
     {
       title: t(message.ticketLink),
