@@ -14,7 +14,7 @@ function PaginatedTable({
       columns={columns}
       dataSource={datasource}
       pagination={{ pageSize: pagination, position: ['bottomCenter'] }}
-      scroll={{ y: scroll }}
+      scroll={{ y: scroll, x: scroll }}
       size={size}
       loading={loading}
     />
