@@ -164,7 +164,8 @@
     "paymentOptions":  "Payment Options",
     "payWithPaypal": "Pay with Paypal",
     "webinarImage": "Webinar Image",
-    "webinarTitle": "Webinar Title",
+    "webinarTitleAdmin": "Webinar Title (Admin)",
+    "webinarTitlePublic": "Webinar Title (Public)",
     "webinarPrice": "Webinar Price",
     "webinarPlan": "Webinar Plan",
     "webinarPriceAttendee": "Webinar price for each attendee",
@@ -186,7 +187,8 @@
     "pendingPaymentLabel": "Pending",
     "failedPaymentLabel": "Failed",
     "completedPaymentLabel": "Completed",
-    "createWebinarTitle": "Management Section"
+    "createWebinarTitle": "Management Section",
+    "createWebinarSuccess": "Webinar creation completed"
   },
 
   "termsAndPrivacy": {
