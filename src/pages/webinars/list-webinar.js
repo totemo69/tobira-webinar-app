@@ -214,6 +214,7 @@ export function ListOfWebinar({
               pagination={{ pageSize: displayCount }}
               dataSource={webinarLists}
               columns={columns}
+              scroll={{ x: 990 }}
             />
           </Card>
         </Div>
