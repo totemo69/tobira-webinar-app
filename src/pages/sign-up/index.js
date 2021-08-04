@@ -75,7 +75,7 @@ export function SignUp({
     <>
       <Layout>
         <Row>
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <Formik
               initialValues={{
                 email: '',
@@ -148,6 +148,7 @@ export function SignUp({
                     htmlType="submit"
                     onClick={handleSubmit}
                     marginTop
+                    btnCenter
                   >
                     {t(localMessage.signUp)}
                   </Button>
@@ -166,11 +167,12 @@ export function SignUp({
               <Language locale={locale} route={route} />
             </Row>
           </Col>
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <Div marginBottom center>
               <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Image
+              hideLogo
               src="/images/illustration1.svg"
               alt="Webinar Illustration"
               large

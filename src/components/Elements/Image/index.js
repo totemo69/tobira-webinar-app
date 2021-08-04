@@ -11,6 +11,14 @@ const StyledImg = styled.img`
   z-index: -10;
 
   ${(props) =>
+    props.hideLogo &&
+    css`
+      @media screen and (max-width: 480px) {
+        display: none;
+      }
+    `};
+
+  ${(props) =>
     props.logo &&
     css`
       margin-top: 1.5rem;

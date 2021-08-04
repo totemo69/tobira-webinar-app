@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { memo, useEffect, useCallback } from 'react';
+import { memo, useEffect, useCallback, useState } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Formik, Field } from 'formik';
@@ -18,7 +18,11 @@ import {
 } from '@/states/global/selector';
 import { clearErrors } from '@/states/global/actions';
 import { makeSelectProfileDetails } from '@/states/profiles/selector';
-import { getProfile, updateProfile } from '@/states/profiles/action';
+import {
+  getProfile,
+  updateProfile,
+  updateCredentials,
+} from '@/states/profiles/action';
 import { withAuthSync } from '@/lib/auth';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
@@ -26,6 +30,7 @@ import Title from '@/components/Elements/Title';
 import Card from '@/components/Elements/Card';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
+import InputPassword from '@/components/Elements/Input/password';
 import PhoneInput from '@/components/Elements/PhoneInput';
 import Tabs from '@/components/Elements/Tabs';
 import TabPane from '@/components/Elements/TabPane';
@@ -34,38 +39,50 @@ import Span from '@/components/Elements/Span';
 import ProfileUpload from '@/components/Modules/Profile/profileUploader';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 import validationMessage from '@/messages/validation';
-import validationSchema from '@/validations/profile';
+import validationSchema, { credentialsValidation } from '@/validations/profile';
 
 export function Profile({
   fetchProfile,
   userDetails,
   doUpdateProfile,
+  doUpdateCredentials,
   isLoading,
   profileUpdateStatus,
   errorMessage,
   clearErrorMessage,
 }) {
   const { t } = useTranslation();
+  const [onAction, setOnAction] = useState(false);
 
   useEffect(() => {
     fetchProfile();
   }, []);
 
   const onSubmit = useCallback((values) => {
+    setOnAction(true);
     doUpdateProfile(values);
   });
 
+  const onSubmitCredentials = (values, { resetForm }) => {
+    setOnAction(true);
+    doUpdateCredentials(values);
+    resetForm();
+  };
+
   useEffect(() => {
     if (!isLoading) {
-      if (profileUpdateStatus && !errorMessage) {
-        message.success('Success!');
-      } else if (!profileUpdateStatus && errorMessage) {
-        const { message: msg } = errorMessage.error;
-        message.error(t(validationMessage[msg]));
-        clearErrorMessage();
+      if (onAction) {
+        if (profileUpdateStatus && !errorMessage) {
+          message.success(t(globalMessage.success));
+        } else if (!profileUpdateStatus && errorMessage) {
+          const { message: msg } = errorMessage.error;
+          message.error(t(validationMessage[msg]));
+          clearErrorMessage();
+        }
+        setOnAction(false);
       }
     }
-  }, [isLoading, profileUpdateStatus]);
+  }, [isLoading, onAction]);
 
   return (
     <>
@@ -94,15 +111,15 @@ export function Profile({
               <Div widthFull paddingCard noMargin>
                 <Div widthFull>
                   <Labels light>{t(globalMessage.email)}</Labels>
-                  {userDetails && userDetails.email}
+                  <Labels>{userDetails && userDetails.email}</Labels>
                 </Div>
                 <Div widthFull cardInfo>
                   <Labels light>{t(globalMessage.fullName)}</Labels>
-                  {userDetails && userDetails.fullName}
+                  <Labels>{userDetails && userDetails.fullName}</Labels>
                 </Div>
                 <Div widthFull cardInfo>
                   <Labels light>{t(globalMessage.contactNo)}</Labels>
-                  {userDetails && userDetails.contact}
+                  <Labels>{userDetails && userDetails.contact}</Labels>
                 </Div>
               </Div>
             </Card>
@@ -185,22 +202,71 @@ export function Profile({
                     </Formik>
                   </TabPane>
                   <TabPane tab={t(localMessage.changePassword)} key="2">
-                    <Div widthFull>
-                      <Labels asterisk>{t(globalMessage.newPassword)}</Labels>
-                      <Input
-                        type="email"
-                        placeholder={t(globalMessage.newPassword)}
-                      />
-                    </Div>
-                    <Div widthFull marginY>
-                      <Labels asterisk>
-                        {t(globalMessage.confirmPassword)}
-                      </Labels>
-                      <Input
-                        type="email"
-                        placeholder={t(globalMessage.confirmPassword)}
-                      />
-                    </Div>
+                    <Formik
+                      initialValues={{
+                        currentPassword: '',
+                        password: '',
+                        confirmPassword: '',
+                      }}
+                      validationSchema={credentialsValidation}
+                      onSubmit={onSubmitCredentials}
+                      enableReinitialize
+                    >
+                      {({ handleSubmit }) => (
+                        <>
+                          <Div widthFull marginY>
+                            <Labels asterisk>
+                              {t(globalMessage.password)}
+                            </Labels>
+                            <Field
+                              name="currentPassword"
+                              component={InputPassword}
+                              placeholder={t(globalMessage.enterPassword)}
+                            />
+                            <ErrorMessage name="currentPassword" />
+                          </Div>
+                          <Div widthFull marginY>
+                            <Labels asterisk>
+                              {t(globalMessage.newPassword)}
+                            </Labels>
+                            <Field
+                              name="password"
+                              component={InputPassword}
+                              placeholder={t(globalMessage.newPassword)}
+                            />
+                            <ErrorMessage name="password" />
+                          </Div>
+                          <Div widthFull marginY>
+                            <Labels asterisk>
+                              {t(globalMessage.confirmPassword)}
+                            </Labels>
+                            <Field
+                              name="confirmPassword"
+                              component={InputPassword}
+                              placeholder={t(globalMessage.confirmPassword)}
+                            />
+                            <ErrorMessage name="confirmPassword" />
+                          </Div>
+                          <Div
+                            widthFull
+                            paddingCard2
+                            flexHeight
+                            noMargin
+                            bottomRight
+                          >
+                            <Button
+                              type="primary"
+                              onClick={handleSubmit}
+                              smallBtn
+                              marginLeftAuto
+                              loading={isLoading}
+                            >
+                              {t(globalMessage.saveChanges)}
+                            </Button>
+                          </Div>
+                        </>
+                      )}
+                    </Formik>
                   </TabPane>
                 </Tabs>
               </Div>
@@ -216,6 +282,7 @@ Profile.propTypes = {
   fetchProfile: PropTypes.func,
   userDetails: PropTypes.any,
   doUpdateProfile: PropTypes.func,
+  doUpdateCredentials: PropTypes.func,
   isLoading: PropTypes.bool,
   profileUpdateStatus: PropTypes.bool,
   errorMessage: PropTypes.any,
@@ -231,6 +298,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchProps = (dispatch) => ({
   fetchProfile: () => dispatch(getProfile()),
+  doUpdateCredentials: (payload) => dispatch(updateCredentials(payload)),
   doUpdateProfile: (payload) => dispatch(updateProfile(payload)),
   clearErrorMessage: () => dispatch(clearErrors()),
 });

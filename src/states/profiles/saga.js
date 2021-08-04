@@ -8,7 +8,7 @@ import {
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors, loadSuccess } from '@/states/global/actions';
 import { setProfile } from './action';
-import { GET_PROFILE, UPDATE_PROFILE } from './types';
+import { GET_PROFILE, UPDATE_PROFILE, UPDATE_CREDENTIALS } from './types';
 
 function* getProfileSaga() {
   try {
@@ -56,7 +56,31 @@ function* updateProfileSaga({ payload }) {
   }
 }
 
+function* updateCredentialsSaga({ payload }) {
+  try {
+    // Set loading status to true
+    yield put(loading(LOADING_PREFIX.UPDATE_PROFILE));
+    console.log(API.USER_CREDENTIALS);
+    yield call(
+      request,
+      API.USER_CREDENTIALS,
+      RequestOptions(PATCH_REQUEST, { ...payload }, true),
+    );
+    // Set the status to success
+    yield put(loadSuccess(LOADING_PREFIX.UPDATE_PROFILE));
+  } catch (error) {
+    // Set the status to failed
+    yield put(loadSuccess(LOADING_PREFIX.UPDATE_PROFILE, false));
+    // Set the error
+    yield put(loadErrors(error));
+  } finally {
+    // Set loading status to false
+    yield put(loading(LOADING_PREFIX.UPDATE_PROFILE, false));
+  }
+}
+
 export default function* profileSaga() {
   yield takeLatest(GET_PROFILE, getProfileSaga);
   yield takeLatest(UPDATE_PROFILE, updateProfileSaga);
+  yield takeLatest(UPDATE_CREDENTIALS, updateCredentialsSaga);
 }

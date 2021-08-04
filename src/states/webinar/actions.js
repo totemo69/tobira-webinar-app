@@ -17,6 +17,7 @@ import {
   UPDATE_WEBINAR,
   DO_CONFIRM_REGISTRATION,
   CLEAR_WEBINAR,
+  UPDATE_STATUS,
 } from './types';
 
 export const getWebinarList = (payload) => ({
@@ -103,5 +104,10 @@ export const setAttendee = (payload) => ({
 
 export const setPayment = (payload) => ({
   type: SET_PAYMENT,
+  payload,
+});
+
+export const updateStatus = (payload) => ({
+  type: UPDATE_STATUS,
   payload,
 });

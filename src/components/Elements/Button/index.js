@@ -31,6 +31,7 @@ const StyledButton = styled(Button).withConfig({
       'noMargin',
       'marginRight',
       'btnTransferFund',
+      'btnCenter',
     ].includes(prop),
 })`
   margin: 0 auto 10px;
@@ -206,12 +207,30 @@ const StyledButton = styled(Button).withConfig({
     `}
 
   ${(props) =>
+    props.btnTFR &&
+    css`
+      width: 140px;
+      color: #0e71eb;
+      float: right;
+      margin: 25px 0;
+    `}
+
+  ${(props) =>
     props.NextButton &&
     css`
       width: 140px;
       float: right;
       margin-left: 30.52px;
       margin-top: 55px;
+    `};
+
+  ${(props) =>
+    props.btnNextTFR &&
+    css`
+      width: 140px;
+      float: right;
+      margin-left: 30.52px;
+      margin-top: 25px;
     `};
 
   ${(props) =>
@@ -317,6 +336,15 @@ const StyledButton = styled(Button).withConfig({
       @media screen and (max-width: 480px) {
         height: 50px;
         width: 96%;
+      }
+    `};
+
+  ${(props) =>
+    props.btnCenter &&
+    css`
+      @media screen and (max-width: 768px) {
+        display: flex;
+        justify-content: center;
       }
     `};
 `;
