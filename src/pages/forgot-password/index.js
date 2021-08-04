@@ -68,7 +68,7 @@ export function ForgotPassword({
     <>
       <Layout>
         <Row>
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <Formik
               initialValues={{
                 email: '',
@@ -96,6 +96,7 @@ export function ForgotPassword({
                   <Button
                     type="primary"
                     marginTop
+                    btnCenter
                     loading={isLoading}
                     onClick={handleSubmit}
                   >
@@ -150,7 +151,7 @@ export function ForgotPassword({
               </Row>
             </Modal>
           </Col>
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <Div marginBottom center>
               <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
@@ -158,6 +159,7 @@ export function ForgotPassword({
               src="/images/illustration2.svg"
               alt="Forgot password Illustration"
               larger
+              hideLogo
             />
           </Col>
         </Row>
