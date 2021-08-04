@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
@@ -16,7 +15,6 @@ import {
   EditFilled,
   CloseCircleFilled,
 } from '@ant-design/icons';
-import Modal from 'react-modal';
 import { useTranslation } from 'next-i18next';
 import { Row, Col, Dropdown, Menu, message, Spin } from 'antd';
 
@@ -27,7 +25,7 @@ import Card from '@/components/Elements/Card';
 import Span from '@/components/Elements/Span';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
-// import Table from '@/components/Elements/Table';
+import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
 import { StyledParagraph } from '@/components/Elements/SampleParagraph';
@@ -73,28 +71,6 @@ import {
   makeSelectLoadingStatus,
 } from '@/states/global/selector';
 import { clearErrors } from '@/states/global/actions';
-
-export const StyledModal = styled(Modal)`
-  height: 680px;
-  width: 600px;
-  margin: 50px auto 0;
-  padding: 0;
-  background-color: white;
-
-  @media screen and (max-width: 480px) {
-    width: auto;
-    margin: 0 auto;
-  }
-`;
-export const ConfirmModal = styled(StyledModal)`
-  height: 350px;
-  width: 560px;
-  overflow: hidden;
-
-  @media screen and (max-width: 480px) {
-    width: auto;
-  }
-`;
 
 export function Wallet({
   doGetBankList,
@@ -435,7 +411,11 @@ export function Wallet({
       </Layout>
 
       {/* Transfer fund request modal */}
-      <StyledModal isOpen={isTransferFundVisible}>
+      <StyledModal
+        visible={isTransferFundVisible}
+        footer={null}
+        closable={false}
+      >
         <Formik
           initialValues={{
             amount: '',
@@ -580,14 +560,14 @@ export function Wallet({
                 style={{ display: 'flex', margin: '0 auto', width: '300px' }}
               >
                 <Button
-                  BackButton
+                  btnTFR
                   onClick={() =>
                     setIsTransferFundVisible(!setIsTransferFundVisible)
                   }
                 >
                   {t(globalMessage.cancel)}
                 </Button>{' '}
-                <Button NextButton type="primary" onClick={handleSubmit}>
+                <Button btnNextTFR type="primary" onClick={handleSubmit}>
                   {t(globalMessage.proceed)}
                 </Button>
               </StyledDiv>
@@ -597,7 +577,11 @@ export function Wallet({
       </StyledModal>
 
       {/* Transfer fund request confirm modal */}
-      <ConfirmModal isOpen={isConfirmTransferFundVisible}>
+      <StyledModal
+        visible={isConfirmTransferFundVisible}
+        footer={null}
+        closable={false}
+      >
         <StyledDiv header>
           {t(localMessage.confirmTransferFundRequest)}
         </StyledDiv>
@@ -645,7 +629,12 @@ export function Wallet({
             <StyledText content={t(localMessage[withdraw.gatewayType])} />
           </Col>
         </Row>
-        <Row align="middle" justify="center" gutter={20}>
+        <Row
+          align="middle"
+          justify="center"
+          gutter={20}
+          style={{ paddingBottom: 25 }}
+        >
           <Col>
             <Button
               BackButton
@@ -672,7 +661,7 @@ export function Wallet({
             </Button>
           </Col>
         </Row>
-      </ConfirmModal>
+      </StyledModal>
     </>
   );
 }

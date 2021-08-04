@@ -207,12 +207,30 @@ const StyledButton = styled(Button).withConfig({
     `}
 
   ${(props) =>
+    props.btnTFR &&
+    css`
+      width: 140px;
+      color: #0e71eb;
+      float: right;
+      margin: 25px 0;
+    `}
+
+  ${(props) =>
     props.NextButton &&
     css`
       width: 140px;
       float: right;
       margin-left: 30.52px;
       margin-top: 55px;
+    `};
+
+  ${(props) =>
+    props.btnNextTFR &&
+    css`
+      width: 140px;
+      float: right;
+      margin-left: 30.52px;
+      margin-top: 25px;
     `};
 
   ${(props) =>
