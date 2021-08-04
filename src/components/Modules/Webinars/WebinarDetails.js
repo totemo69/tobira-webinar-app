@@ -20,6 +20,10 @@ export default function WebinarDetails({
 }) {
   const { t } = useTranslation();
   const route = useRouter();
+  let hostname = '';
+  if (typeof window !== 'undefined') {
+    hostname = window.location.origin;
+  }
   const StyledImage = styled(Image)`
     border-radius: 10px;
   `;
@@ -90,7 +94,7 @@ export default function WebinarDetails({
           href={`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
           target="_blank"
         >
-          {webinarDetails.slug}
+          {`${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
         </Link>
       ),
     },
