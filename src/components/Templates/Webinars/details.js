@@ -6,8 +6,10 @@ import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { Col, Row, message } from 'antd';
 import globalMessage from '@/messages/global';
-import message from '@/messages/webinar';
+import validationMessage from '@/messages/validation';
+import localMessage from '@/messages/webinar';
 import { withAuthSync } from '@/lib/auth';
 import { LOADING_PREFIX } from '@/utils/constants';
 import {
@@ -15,9 +17,10 @@ import {
   makeSelectError,
   makeSelectLoadingStatus,
 } from '@/states/global/selector';
+import { clearErrors } from '@/states/global/actions';
 import { makeSelectWebinarDetails } from '@/states/webinar/selector';
 import { makeSelecPaymentsDetails } from '@/states/payments/selector';
-import { getWebinarDetail } from '@/states/webinar/actions';
+import { getWebinarDetail, updateStatus } from '@/states/webinar/actions';
 import { getAttendeeList, getAttendeeDetails } from '@/states/attendees/action';
 import { getPayments } from '@/states/payments/action';
 import {
@@ -32,7 +35,6 @@ import Span from '@/components/Elements/Span';
 import WebinarDetail from '@/components/Modules/Webinars/WebinarDetails';
 import Participants from '@/components/Modules/Webinars/ParticipantList';
 import ParticipantDetails from '@/components/Modules/Webinars/ParticipantDetails';
-import { Col, Row } from 'antd';
 
 const { TabPane } = Tabs;
 
@@ -45,6 +47,11 @@ export function Details({
   attendeesDetails,
   getAttendeeDetail,
   getPaymentInfo,
+  doUpdateStatus,
+  isUpdating,
+  updatingStatus,
+  errorMessage,
+  clearErrorMessage,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -56,6 +63,8 @@ export function Details({
 
   const [displayCount, setDisplayCount] = useState(10);
 
+  const [onAction, setOnAction] = useState(false);
+
   const closeModal = () => {
     setShow(false);
   };
@@ -66,6 +75,22 @@ export function Details({
       getAttendee({ webinarId: id });
     }
   }, [id]);
+
+  useEffect(() => {
+    if (!isUpdating) {
+      if (onAction) {
+        if (updatingStatus && !errorMessage) {
+          getDetails({ id });
+          message.success(t(globalMessage.success));
+        } else {
+          const { message: msg } = errorMessage.error;
+          message.error(t(validationMessage[msg]));
+          clearErrorMessage();
+        }
+        setOnAction(false);
+      }
+    }
+  }, [isUpdating, onAction]);
 
   const StyledCard = styled(Card)`
     padding: 20px 25px 5px;
@@ -81,6 +106,11 @@ export function Details({
     setShow(true);
   };
 
+  const changeStatus = (webinarId, status) => {
+    setOnAction(true);
+    doUpdateStatus({ id: webinarId, status });
+  };
+
   return (
     <>
       <Div marginBottomLarge flexTop>
@@ -91,7 +121,7 @@ export function Details({
             </Title>
           </Col>
           <Col align="middle">
-            <Span breadCrumbs>{t(message.details)}</Span>
+            <Span breadCrumbs>{t(localMessage.details)}</Span>
             <Span breadCrumbs>{' > '}</Span>
             <Span breadCrumbs>{webinarDetails.title}</Span>
           </Col>
@@ -104,12 +134,16 @@ export function Details({
               onChange={(activeKey) => setTabKey(activeKey)}
               defaultActiveKey={tabKey}
             >
-              <TabPane forceRender tab={t(message.details)} key="1">
-                <WebinarDetail webinarDetails={webinarDetails} />
+              <TabPane forceRender tab={t(localMessage.details)} key="1">
+                <WebinarDetail
+                  isLoading={isUpdating}
+                  changeStatus={changeStatus}
+                  webinarDetails={webinarDetails}
+                />
               </TabPane>
               <TabPane
                 forceRender
-                tab={t(message.registeredParticipants)}
+                tab={t(localMessage.registeredParticipants)}
                 key="2"
               >
                 <Participants
@@ -134,6 +168,8 @@ export function Details({
 }
 
 Details.propTypes = {
+  isUpdating: PropTypes.bool,
+  updatingStatus: PropTypes.bool,
   // isWebinarLoading: PropTypes.bool,
   // isAttendeesLoading: PropTypes.bool,
   // webinarLoadingStatus: PropTypes.bool,
@@ -145,12 +181,16 @@ Details.propTypes = {
   getDetails: PropTypes.func,
   getAttendee: PropTypes.func,
   getAttendeeDetail: PropTypes.func,
-  // error: PropTypes.any,
+  errorMessage: PropTypes.any,
   getPaymentInfo: PropTypes.func,
+  doUpdateStatus: PropTypes.func,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   isWebinarLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR),
+  isUpdating: makeSelectLoading(LOADING_PREFIX.UPDATE_WEBINAR),
+  updatingStatus: makeSelectLoadingStatus(LOADING_PREFIX.UPDATE_WEBINAR),
   isAttendeesLoading: makeSelectLoading(LOADING_PREFIX.ATTENDEES),
   webinarLoadingStatus: makeSelectLoadingStatus(LOADING_PREFIX.WEBINAR),
   attendeeLoadingStatus: makeSelectLoadingStatus(LOADING_PREFIX.ATTENDEES),
@@ -158,7 +198,7 @@ const mapStateToProps = createStructuredSelector({
   attendeesList: makeSelectAttendees(),
   attendeesDetails: makeSelectAttendeesDetails(),
   paymentInfo: makeSelecPaymentsDetails(),
-  error: makeSelectError(),
+  errorMessage: makeSelectError(),
 });
 
 const mapDispatchProps = (dispatch) => ({
@@ -166,6 +206,8 @@ const mapDispatchProps = (dispatch) => ({
   getAttendee: (payload) => dispatch(getAttendeeList(payload)),
   getAttendeeDetail: (payload) => dispatch(getAttendeeDetails(payload)),
   getPaymentInfo: (payload) => dispatch(getPayments(payload)),
+  doUpdateStatus: (payload) => dispatch(updateStatus(payload)),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
