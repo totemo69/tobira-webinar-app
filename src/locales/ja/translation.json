@@ -353,6 +353,7 @@
     "inValidEmailFormat": "メール形式が無効です。",
     "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
-    "paypalAccount": "Paypalアカウント"
+    "paypalAccount": "Paypalアカウント",
+    "thisFieldIsRequired": "必須フィールドです"
   }
 }
