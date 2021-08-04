@@ -33,10 +33,20 @@ import {
   makeSelectWebinarRegistrationForm,
 } from './selector';
 
-function* webinarList() {
+function* webinarList({ payload }) {
   try {
-    yield put(loading(LOADING_PREFIX.LIST_WEBINAR));
+    yield put(loading(LOADING_PREFIX.WEBINAR_LIST));
+    let where = {};
+    if (payload) {
+      const { managementTitle } = payload;
+      where = {
+        managementTitle: {
+          like: managementTitle,
+        },
+      };
+    }
     const query = {
+      where,
       order: 'createdAt DESC',
     };
     const filter = {
@@ -52,7 +62,7 @@ function* webinarList() {
   } catch (error) {
     yield put(loadErrors(error));
   } finally {
-    yield put(loading(LOADING_PREFIX.LIST_WEBINAR, false));
+    yield put(loading(LOADING_PREFIX.WEBINAR_LIST, false));
   }
 }
 

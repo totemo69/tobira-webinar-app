@@ -9,11 +9,22 @@ import { setAttendeeDetails, setAttendeeList } from './action';
 function* getAttendeeList({ payload }) {
   try {
     yield put(loading(LOADING_PREFIX.ATTENDEES));
-    const { webinarId } = payload;
-    const query = {
-      where: {
+    const { webinarId, email } = payload;
+    let where = { webinarId };
+
+    if (email) {
+      const formValues = {
+        elemMatch: {
+          fieldValue: email,
+        },
+      };
+      where = {
         webinarId,
-      },
+        formValues,
+      };
+    }
+    const query = {
+      where,
     };
     const filter = {
       filter: JSON.stringify(query),
