@@ -18,23 +18,23 @@ const validationSchema = Yup.object({
 });
 
 const createWebinar = Yup.object({
-  managementTitle: Yup.string().required('manageTitle.requiredField'),
-  webinarAccount: Yup.string().required('zoomAccount.requiredField'),
-  title: Yup.string().required('title.requiredField'),
-  description: Yup.string().required('description.requiredField'),
-  frequency: Yup.string().required('frequency.requiredField'),
+  managementTitle: Yup.string().required('thisFieldIsRequired'),
+  webinarAccount: Yup.string().required('thisFieldIsRequired'),
+  title: Yup.string().required('thisFieldIsRequired'),
+  description: Yup.string().required('thisFieldIsRequired'),
+  frequency: Yup.string().required('thisFieldIsRequired'),
   schedules: Yup.array()
     .of(
       Yup.object().shape({
-        scheduleDate: Yup.date().required('date.requiredField'),
-        scheduleTime: Yup.date().required('time.requiredField'),
+        scheduleDate: Yup.date().required('thisFieldIsRequired'),
+        scheduleTime: Yup.date().required('thisFieldIsRequired'),
       }),
     )
-    .required('schedule.requiredField'),
-  durationHour: Yup.number().required('duration.requiredField'),
-  durationMinute: Yup.string().required('duration.requiredField'),
+    .required('thisFieldIsRequired'),
+  durationHour: Yup.number().required('thisFieldIsRequired'),
+  durationMinute: Yup.string().required('thisFieldIsRequired'),
   timezone: Yup.object({
-    label: Yup.string().required('timezone.requiredField'),
+    label: Yup.string().required('thisFieldIsRequired'),
   }),
 });
 
