@@ -125,18 +125,13 @@ export function Login({
           </Col>
           <Col xs={24} sm={24} lg={12}>
             <Div marginBottom center>
-              <Image
-                src="/images/logo.svg"
-                alt="Tobira Logo"
-                logo
-                style={{ width: '18rem' }}
-              />
+              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
             </Div>
             <Image
               src="/images/illustration1.svg"
               alt="Webinar Illustration"
               large
-              style={{ width: '100%' }}
+              hideLogo
             />
           </Col>
         </Row>
