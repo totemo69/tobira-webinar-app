@@ -56,7 +56,21 @@
     "view": "詳細",
     "english":  "英語",
     "japanese":  "日本語",
-    "minutes": "分"
+    "minutes": "分",
+    "branchCode": "支店コード",
+    "branchName": "支店名",
+    "usually": "普通",
+    "current": "当座",
+    "no": "いいえ",
+    "accountType": "口座種別",
+    "transferRequestName": "振込依頼名",
+    "specifiedTransferDate": "振込指定日",
+    "withholdingSection": "源泉徴収課支払いを依頼しますか？",
+    "transferAmountMoney": "振込金額",
+    "currency": "円",
+    "withholdingAmount": "源泉徴収金額",
+    "totalWithdrawalAmount": "引落合計金額",
+    "accountBalanceAfterWithdrawal": "引出後口座残高"
   },
   "storyBook": {
     "title": "題名"

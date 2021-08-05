@@ -7,7 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { Formik, Field, Form } from 'formik';
 
 import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
-import { Col, Row } from 'antd';
+import { Col, Radio, Row } from "antd";
 import Title from '@/components/Elements/Title';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
@@ -17,7 +17,7 @@ import { addBank } from '@/states/wallet/actions';
 import globalMessage from '@/messages/global';
 import Button from '@/components/Elements/Button';
 import { makeSelectLoading } from '@/states/global/selector';
-import { LOADING_PREFIX } from '@/utils/constants';
+import { BANK_ACCOUNT_TYPE, LOADING_PREFIX } from "@/utils/constants";
 import { addBankValidationSchema } from '@/validations/wallet';
 
 export function BankModal({
@@ -61,32 +61,85 @@ export function BankModal({
                   {t(globalMessage.bankName)}
                 </Label>
                 <Field
-                  type="text"
-                  name="bankName"
-                  placeholder="Bank Name"
+                  type="Text"
+                  name="gatewayDetails.bankName"
+                  placeholder={t(globalMessage.bankName)}
                   component={Input}
                 />
-                <ErrorMessage name="bankName" />
+                <ErrorMessage name="gatewayDetails.bankName" />
+                <Row gutter={20}>
+                  <Col span={11}>
+                    <Label marginTop asterisk>
+                      {t(globalMessage.branchCode)}
+                    </Label>
+                    <Field
+                      type="text"
+                      name="branchCode"
+                      placeholder={t(globalMessage.branchCode)}
+                      component={Input}
+                    />
+                    <ErrorMessage name="branchCode" />
+                  </Col>
+                  <Col span={13}>
+                    <Label marginTop asterisk>
+                      {t(globalMessage.branchName)}
+                    </Label>
+                    <Field
+                      type="text"
+                      name="branchName"
+                      placeholder={t(globalMessage.branchName)}
+                      component={Input}
+                    />
+                    <ErrorMessage name="branchName" />
+                  </Col>
+                </Row>
+                <Label marginTop asterisk>
+                  {t(globalMessage.accountNumber)}
+                </Label>
+                <Field
+                  type="Text"
+                  name="gatewayDetails.accountNumber"
+                  placeholder={t(globalMessage.accountNumber)}
+                  component={Input}
+                />
+                <ErrorMessage name="gatewayDetails.accountNumber" />
+                <Field type="hidden" name="accountType" />
+                <Label marginTop asterisk>
+                  {t(globalMessage.accountType)}
+                </Label>
+                <Radio.Group
+                  onChange={(e) =>
+                    setFieldValue('accountType', e.target.value)
+                  }
+                >
+                  <Radio value={BANK_ACCOUNT_TYPE.SAVINGS}>
+                    {t(globalMessage.usually)}
+                  </Radio>
+                  <Radio value={BANK_ACCOUNT_TYPE.CHECKING}>
+                    {t(globalMessage.current)}
+                  </Radio>
+                </Radio.Group>
+                <ErrorMessage name="accountType" />
                 <Label marginTop asterisk>
                   {t(globalMessage.accountName)}
                 </Label>
                 <Field
                   type="text"
-                  name="accountName"
-                  placeholder="Account Name"
+                  name="gatewayDetails.accountName"
+                  placeholder={t(globalMessage.accountName)}
                   component={Input}
                 />
-                <ErrorMessage name="accountName" />
+                <ErrorMessage name="gatewayDetails.accountName" />
                 <Label marginTop asterisk>
-                  {t(globalMessage.accountNumber)}
+                  {t(globalMessage.transferRequestName)}
                 </Label>
                 <Field
                   type="text"
-                  name="accountNumber"
-                  placeholder="Account Number"
+                  name="requestorName"
+                  placeholder={t(globalMessage.transferRequestName)}
                   component={Input}
                 />
-                <ErrorMessage name="accountNumber" />
+                <ErrorMessage name="requestorName" />
               </Col>
             </Row>
             <Row

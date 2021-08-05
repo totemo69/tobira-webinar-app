@@ -238,6 +238,62 @@ const message = {
     key: `${scope}.minutes`,
     default: 'minutes',
   }),
+  branchCode: Object.values({
+    key: `${scope}.branchCode`,
+    default: 'Branch Code',
+  }),
+  branchName: Object.values({
+    key: `${scope}.branchName`,
+    default: 'Branch Name',
+  }),
+  usually: Object.values({
+    key: `${scope}.usually`,
+    default: 'usually',
+  }),
+  current: Object.values({
+    key: `${scope}.current`,
+    default: 'current',
+  }),
+  no: Object.values({
+    key: `${scope}.no`,
+    default: 'No',
+  }),
+  accountType: Object.values({
+    key: `${scope}.accountType`,
+    default: 'Account Type',
+  }),
+  transferRequestName: Object.values({
+    key: `${scope}.transferRequestName`,
+    default: 'Transfer request name',
+  }),
+  specifiedTransferDate: Object.values({
+    key: `${scope}.specifiedTransferDate`,
+    default: 'Specified transfer date',
+  }),
+  withholdingSection: Object.values({
+    key: `${scope}.withholdingSection`,
+    default: 'Withholding Section Would you like to request payment?',
+  }),
+  transferAmountMoney: Object.values({
+    key: `${scope}.transferAmountMoney`,
+    default: 'Transfer amount of money',
+  }),
+  currency: Object.values({
+    key: `${scope}.currency`,
+    default: '円',
+  }),
+  withholdingAmount: Object.values({
+    key: `${scope}.withholdingAmount`,
+    default: 'Withholding amount',
+  }),
+  totalWithdrawalAmount: Object.values({
+    key: `${scope}.totalWithdrawalAmount`,
+    default: 'Total withdrawal amount',
+  }),
+  accountBalanceAfterWithdrawal: Object.values({
+    key: `${scope}.accountBalanceAfterWithdrawal`,
+    default: 'Account balance after withdrawal',
+  }),
 };
 
 export default message;

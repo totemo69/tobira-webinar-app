@@ -57,7 +57,21 @@
     "view": "View",
     "english":  "English",
     "japanese":  "Japanese",
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "branchCode": "Branch Code",
+    "branchName": "Branch Name",
+    "usually": "usually",
+    "current": "current",
+    "no": "No",
+    "accountType": "Account Type",
+    "transferRequestName": "Transfer request name",
+    "specifiedTransferDate": "Specified transfer date",
+    "withholdingSection": "Withholding Section Would you like to request payment?",
+    "transferAmountMoney": "Transfer amount of money",
+    "currency": "円",
+    "withholdingAmount": "Withholding amount",
+    "totalWithdrawalAmount": "Total withdrawal amount",
+    "accountBalanceAfterWithdrawal": "Account balance after withdrawal"
   },
 
   "storyBook" : {

@@ -98,3 +98,8 @@ export const SCHEDULE_TYPE = {
 export const PAYMENT_METHOD = {
   PAYPAL: 'paypal',
 };
+
+export const BANK_ACCOUNT_TYPE = {
+  SAVINGS: 0,
+  CHECKING: 1,
+};
