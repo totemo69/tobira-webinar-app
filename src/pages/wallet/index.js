@@ -511,8 +511,8 @@ export function Wallet({
                 </Col>
               </Row>
               {isInputVisible ? (
-                <Row style={{ paddingLeft: 50 }}>
-                  <Col span={20}>
+                <Row style={{ padding: '0 35px' }}>
+                  <Col span={24}>
                     <Label marginTop asterisk>
                       {t(globalMessage.bankName)}
                     </Label>

@@ -60,8 +60,8 @@ export function BankModal({
       >
         {({ handleSubmit, setFieldValue, values }) => (
           <Form>
-            <Row style={{ paddingLeft: 70 }}>
-              <Col span={20}>
+            <Row style={{ padding: '10px 35px' }}>
+              <Col span={24}>
                 <Label marginTop asterisk>
                   {t(globalMessage.bankName)}
                 </Label>
