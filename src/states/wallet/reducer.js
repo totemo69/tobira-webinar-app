@@ -9,11 +9,7 @@ import {
 
 export const initialState = {
   bankList: [],
-  bank: {
-    bankName: 'mark',
-    accountName: '',
-    accountNumber: '',
-  },
+  bank: {},
   withdraw: {
     amount: '',
     gatewayType: '',

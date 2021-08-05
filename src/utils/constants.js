@@ -100,6 +100,6 @@ export const PAYMENT_METHOD = {
 };
 
 export const BANK_ACCOUNT_TYPE = {
-  SAVINGS: 0,
-  CHECKING: 1,
+  SAVINGS: '0',
+  CHECKING: '1',
 };
