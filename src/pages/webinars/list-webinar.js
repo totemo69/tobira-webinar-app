@@ -81,6 +81,10 @@ export function ListOfWebinar({
     return () => clearTimeout(timer);
   }, [isListLoading, zoomAccountList]);
 
+  const onSearch = (value) => {
+    getWebinarLists({ managementTitle: value });
+  };
+
   const columns = [
     {
       key: 'image',
@@ -200,6 +204,7 @@ export function ListOfWebinar({
                   <Div noMargin flexCenterEnd style={{ width: '100%' }}>
                     {/* {t(globalMessage.search)}{' '} */}
                     <Search
+                      onSearch={onSearch}
                       placeholder={t(globalMessage.searchPlaceholder)}
                       allowClear
                       marginLeft
@@ -214,6 +219,7 @@ export function ListOfWebinar({
               pagination={{ pageSize: displayCount }}
               dataSource={webinarLists}
               columns={columns}
+              scroll={{ x: 990 }}
             />
           </Card>
         </Div>
@@ -287,7 +293,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapPropsToDispatch = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
-  getWebinarLists: () => dispatch(getWebinarList()),
+  getWebinarLists: (payload) => dispatch(getWebinarList(payload)),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

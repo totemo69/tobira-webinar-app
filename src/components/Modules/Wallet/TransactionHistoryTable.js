@@ -124,7 +124,7 @@ function TransactionHistoryTable({
         columns={columns}
         datasource={dataSource}
         pagination={displayCount}
-        scroll={500}
+        scroll={600}
         size="small"
         loading={loading}
       />

@@ -216,19 +216,19 @@
   },
 
   "webinarDetail": {
-    "register": "登録",
-    "ticketSummary": "チケットの概要",
-    "complete": "コンプリート",
+    "register": "ユーザー登録",
+    "ticketSummary": "チケット概要",
+    "complete": "支払い",
     "shareButton": "シェア",
     "author": "by",
     "registerButton": "今すぐ登録",
     "descriptionLabel": "説明",
     "dateLabel": "日付",
     "timeLabel": "時間",
-    "durationLabel": "期間",
+    "durationLabel": "長さ",
     "timezoneLabel": "タイムゾーン",
     "ticketPriceLabel": "価格",
-    "backButton": "バック",
+    "backButton": "戻る",
     "nextButton": "次",
     "titleLabel": "題名",
     "dateTimeLabel": "スケジュール",
@@ -357,6 +357,7 @@
     "inValidEmailFormat": "メール形式が無効です。",
     "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
-    "paypalAccount": "Paypalアカウント"
+    "paypalAccount": "Paypalアカウント",
+    "thisFieldIsRequired": "必須フィールドです"
   }
 }

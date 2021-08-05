@@ -13,9 +13,17 @@ import Button from '@/components/Elements/Button';
 
 const { Paragraph, Text, Link } = Typography;
 
-export default function WebinarDetails({ webinarDetails }) {
+export default function WebinarDetails({
+  webinarDetails,
+  changeStatus,
+  isLoading,
+}) {
   const { t } = useTranslation();
   const route = useRouter();
+  let hostname = '';
+  if (typeof window !== 'undefined') {
+    hostname = window.location.origin;
+  }
   const StyledImage = styled(Image)`
     border-radius: 10px;
   `;
@@ -27,6 +35,15 @@ export default function WebinarDetails({ webinarDetails }) {
   const onUpdate = () => {
     const { id } = webinarDetails;
     route.push(`${WEBINAR_ROUTE.WEBINAR_UPDATE_DETAILS}?id=${id}`);
+  };
+
+  const onChangeStatus = () => {
+    const { id, status } = webinarDetails;
+    let newStatus = 0;
+    if (status === 0) {
+      newStatus = 1;
+    }
+    changeStatus(id, newStatus);
   };
 
   const webinarStatus = (data) => {
@@ -77,7 +94,7 @@ export default function WebinarDetails({ webinarDetails }) {
           href={`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
           target="_blank"
         >
-          {webinarDetails.slug}
+          {`${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
         </Link>
       ),
     },
@@ -145,7 +162,13 @@ export default function WebinarDetails({ webinarDetails }) {
         </Space>
       </Row>
       <Row align="middle" justify="end" style={{ marginTop: 50 }}>
-        <Button chooseStandard marginRight type="link">
+        <Button
+          loading={isLoading}
+          onClick={onChangeStatus}
+          chooseStandard
+          marginRight
+          type="link"
+        >
           {webinarDetails.status === 0
             ? t(message.hiddenStatusLabel)
             : t(message.publishStatusLabel)}
@@ -170,5 +193,7 @@ export default function WebinarDetails({ webinarDetails }) {
 }
 
 WebinarDetails.propTypes = {
+  isLoading: PropTypes.bool,
   webinarDetails: PropTypes.any,
+  changeStatus: PropTypes.any,
 };

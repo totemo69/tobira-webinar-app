@@ -87,6 +87,12 @@ const StyledCard = styled(Card).withConfig({
       .ant-card-body {
         padding: 1.5rem 1.5rem 0;
       }
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
     `};
 
   ${(props) =>

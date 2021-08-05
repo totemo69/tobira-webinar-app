@@ -16,6 +16,13 @@ const StyledParagraph = style.p`
       font-size: 12px;
       character-spacing: 20;
     `}
+    
+  ${(props) =>
+    props.marginTop &&
+    css`
+      margin-top: 10px;
+      margin-bottom: 0;
+    `}
 `;
 
 const Paragraph = ({ content }) => (

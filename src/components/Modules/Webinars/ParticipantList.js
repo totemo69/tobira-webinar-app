@@ -16,6 +16,8 @@ import Table from '@/components/Elements/Table';
 const { Text } = Typography;
 
 export default function ParticipantList({
+  onSearch,
+  defaultSearch,
   attendeesList,
   onClickDetails,
   displayCount = 10,
@@ -127,6 +129,8 @@ export default function ParticipantList({
           <Div noMargin flexCenterEnd style={{ width: '100%' }}>
             {t(globalMessage.search)}{' '}
             <Search
+              defaultValue={defaultSearch}
+              onSearch={onSearch}
               placeholder={t(globalMessage.searchEmailPlaceholder)}
               allowClear
               marginLeft
@@ -140,12 +144,15 @@ export default function ParticipantList({
         columns={columns}
         pagination={{ pageSize: displayCount }}
         style={{ paddingTop: 20 }}
+        scroll={{ x: 600 }}
       />
     </StyledDiv>
   );
 }
 
 ParticipantList.propTypes = {
+  onSearch: PropTypes.func,
+  defaultSearch: PropTypes.any,
   attendeesList: PropTypes.any,
   onClickDetails: PropTypes.func,
   displayCount: PropTypes.any,
