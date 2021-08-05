@@ -59,6 +59,8 @@ export function Details({
 
   const [isShow, setShow] = useState(false);
 
+  const [defaultSearch, setDefaultSearch] = useState('');
+
   const [tabKey, setTabKey] = useState('1');
 
   const [displayCount, setDisplayCount] = useState(10);
@@ -111,6 +113,11 @@ export function Details({
     doUpdateStatus({ id: webinarId, status });
   };
 
+  const onSearch = (value) => {
+    setDefaultSearch(value);
+    getAttendee({ webinarId: id, email: value });
+  };
+
   return (
     <>
       <Div marginBottomLarge flexTop>
@@ -147,6 +154,8 @@ export function Details({
                 key="2"
               >
                 <Participants
+                  onSearch={onSearch}
+                  defaultSearch={defaultSearch}
                   attendeesList={attendeesList}
                   onClickDetails={onClickDetails}
                   displayCount={displayCount}
