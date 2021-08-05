@@ -47,7 +47,7 @@ const withdrawalValidationSchema = Yup.object({
       is: 'bank',
       then: Yup.string().required('thisFieldIsRequired'),
     }),
-    amount: Yup.string().when('gatewayType', {
+    transferAmount: Yup.string().when('gatewayType', {
       is: 'bank',
       then: Yup.string().required('thisFieldIsRequired'),
     }),
