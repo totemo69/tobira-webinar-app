@@ -19,6 +19,14 @@ const withdrawalValidationSchema = Yup.object({
       is: 'bank',
       then: Yup.string().required('bankName.requiredField'),
     }),
+    branchCode: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('branchCode.requiredField'),
+    }),
+    branchName: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('branchName.requiredField'),
+    }),
     accountName: Yup.string().when('gatewayType', {
       is: 'bank',
       then: Yup.string().required('accountName.requiredField'),
@@ -26,6 +34,22 @@ const withdrawalValidationSchema = Yup.object({
     accountNumber: Yup.string().when('gatewayType', {
       is: 'bank',
       then: Yup.string().required('accountNumber.requiredField'),
+    }),
+    accountType: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('accountType.requiredField'),
+    }),
+    requestorName: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('thisFieldIsRequired'),
+    }),
+    requestorDate: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('thisFieldIsRequired'),
+    }),
+    amount: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('thisFieldIsRequired'),
     }),
     paypal: Yup.string().when('gatewayType', {
       is: 'paypal',
