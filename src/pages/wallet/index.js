@@ -426,8 +426,15 @@ export function Wallet({
               gatewayType: 'paypal',
               paypal: '',
               bankName: '',
+              branchCode: '',
+              branchName: '',
               accountName: '',
               accountNumber: '',
+              accountType: '',
+              requestorName: '',
+              requestorDate: '',
+              includeTax: '',
+              transferAmount: '',
             },
           }}
           onSubmit={onProceed}
@@ -527,7 +534,7 @@ export function Wallet({
                           placeholder={t(globalMessage.branchCode)}
                           component={Input}
                         />
-                        <ErrorMessage name="branchCode" />
+                        <ErrorMessage name="gatewayDetails.branchCode" />
                       </Col>
                       <Col span={13}>
                         <Label marginTop asterisk>
@@ -539,7 +546,7 @@ export function Wallet({
                           placeholder={t(globalMessage.branchName)}
                           component={Input}
                         />
-                        <ErrorMessage name="branchName" />
+                        <ErrorMessage name="gatewayDetails.branchName" />
                       </Col>
                     </Row>
                     <Label marginTop asterisk>
@@ -558,7 +565,10 @@ export function Wallet({
                     </Label>
                     <Radio.Group
                       onChange={(e) =>
-                        setFieldValue('accountType', e.target.value)
+                        setFieldValue(
+                          'gatewayDetails.accountType',
+                          e.target.value,
+                        )
                       }
                     >
                       <Radio value={BANK_ACCOUNT_TYPE.SAVINGS}>
@@ -568,7 +578,7 @@ export function Wallet({
                         {t(globalMessage.current)}
                       </Radio>
                     </Radio.Group>
-                    <ErrorMessage name="accountType" />
+                    <ErrorMessage name="gatewayDetails.accountType" />
                     <Label marginTop asterisk>
                       {t(globalMessage.accountName)}
                     </Label>
@@ -588,7 +598,7 @@ export function Wallet({
                       placeholder={t(globalMessage.transferRequestName)}
                       component={Input}
                     />
-                    <ErrorMessage name="requestorName" />
+                    <ErrorMessage name="gatewayDetails.requestorName" />
                     <Label marginTop asterisk>
                       {t(globalMessage.specifiedTransferDate)}
                     </Label>
@@ -602,7 +612,7 @@ export function Wallet({
                       onChange={(e) => setFieldValue('requestDate', e)}
                       style={{ fontSize: 12 }}
                     />
-                    <ErrorMessage name="requestorDate" />
+                    <ErrorMessage name="gatewayDetails.requestorDate" />
                     <Row>
                       <Label marginTop style={{ marginBottom: 7 }}>
                         {t(globalMessage.withholdingSection)}{' '}
@@ -632,19 +642,20 @@ export function Wallet({
                             {t(globalMessage.no)}
                           </Radio.Button>
                         </Radio.Group>
+                        <ErrorMessage name="gatewayDetails.includeTax" />
                       </Col>
                     </Row>
                     <Label marginTop asterisk>
                       {t(globalMessage.transferAmountMoney)}
                     </Label>
                     <Field
-                      name="amount"
+                      name="transferAmount"
                       type="number"
                       placeholder={t(globalMessage.transferAmountMoney)}
                       autoComplete="off"
                       component={Input}
                     />
-                    <ErrorMessage name="amount" />
+                    <ErrorMessage name="gatewayDetails.transferAmount" />
                     <Row justify="end" style={{ marginTop: 30 }}>
                       <Col span={15} align="end">
                         <StyledText
