@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useTranslation } from 'next-i18next';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { memo, useEffect } from 'react';
 import { compose } from 'redux';
@@ -30,18 +31,29 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
+
 export function Header({
   fetchProfile,
   userDetails,
   withLogo = false,
   withMenu = true,
 }) {
+
+
   const { t } = useTranslation();
   const route = useRouter();
   const { locale } = route;
   useEffect(() => {
     fetchProfile();
   }, []);
+
+  const StyledRow = styled(Row)`
+  width: 40%;
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
 
   const MenuItems = (
     <Menu className="profile-dropdown">
@@ -104,8 +116,13 @@ export function Header({
           )}
           {withMenu && (
             <>
-              <Row type="flex" align="middle">
-                <Col type="flex" align="middle" style={{ marginBottom: '7px' }}>
+              <StyledRow type="flex" align="middle" justify="end">
+                <Col
+                  type="flex"
+                  align="middle"
+                  xs={12}
+                  style={{ marginBottom: '7px' }}
+                >
                   <Image
                     src={userDetails.profileImage ?? '/images/avatar.svg'}
                     userImg
@@ -118,7 +135,7 @@ export function Header({
                 <Col type="flex" align="middle">
                   <Language locale={locale} route={route} />
                 </Col>
-              </Row>
+              </StyledRow>
             </>
           )}
         </Div>
