@@ -26,11 +26,11 @@ const StyledDiv = style.div`
       @media screen and (max-width: 768px) {
         padding: 1rem;
       }
-    `};
-    
+   `};
+
   ${(props) =>
-    props.smallPadding &&
-    css`
+  props.smallPadding &&
+  css`
       padding: 1rem;
     `};
 
