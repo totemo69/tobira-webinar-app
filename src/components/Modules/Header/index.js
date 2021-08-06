@@ -132,7 +132,7 @@ export function Header({
                     items={MenuItems}
                   />
                 </Col>
-                <Col type="flex" align="middle" xs={12}>
+                <Col type="flex" align="middle">
                   <Language locale={locale} route={route} />
                 </Col>
               </StyledRow>

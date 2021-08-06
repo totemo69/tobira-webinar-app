@@ -18,7 +18,8 @@ import {
 } from '@ant-design/icons';
 import { useTranslation } from 'next-i18next';
 import { Row, Col, Dropdown, Menu, message, Spin, Radio } from 'antd';
-
+import moment from 'moment';
+import { disableWeekends } from '@/utils/dateUtils';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -73,6 +74,11 @@ import {
   makeSelectLoadingStatus,
 } from '@/states/global/selector';
 import { clearErrors } from '@/states/global/actions';
+import {
+  calculateTax,
+  calculateTotal,
+  calculateRemainingBalance,
+} from '@/utils/math';
 
 export function Wallet({
   doGetBankList,
@@ -155,7 +161,6 @@ export function Wallet({
     useState(false);
   const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
     useState(false);
-  const [isInputVisible, setIsInputVisible] = useState(false);
   const [isBankAddModalVisible, setIsBankAddModalVisible] = useState(false);
   const [isTransferSuccessModalVisible, setIsTransferSuccessModalVisible] =
     useState(false);
@@ -420,10 +425,10 @@ export function Wallet({
       >
         <Formik
           initialValues={{
-            amount: '',
-            gatewayType: 'paypal',
+            amount: 0,
+            gatewayType: 'bank',
             gatewayDetails: {
-              gatewayType: 'paypal',
+              gatewayType: 'bank',
               paypal: '',
               bankName: '',
               branchCode: '',
@@ -432,17 +437,21 @@ export function Wallet({
               accountNumber: '',
               accountType: '',
               requestorName: '',
-              requestorDate: '',
-              includeTax: '',
-              transferAmount: '',
             },
+            requestDate: moment(),
+            includeTax: 'true',
+            taxAmount: 0,
+            totalAmount: 0,
+            remainingBalance: myWallet.currentBalance,
           }}
           onSubmit={onProceed}
           enableReinitialize
           validationSchema={withdrawalValidationSchema}
         >
-          {({ handleSubmit, setFieldValue, values }) => (
+          {({ handleSubmit, setFieldValue, values, errors }) => (
             <Form>
+              {console.log(values)}
+              {console.log(errors)}
               <StyledDiv header>
                 {t(localMessage.transferFundRequest)}
               </StyledDiv>
@@ -458,8 +467,25 @@ export function Wallet({
                   type="number"
                   name="amount"
                   component={Input}
+                  autoComplete="off"
                   prefix="￥"
                   suffix="JPY"
+                  onChange={(e) => {
+                    const amount = parseInt(e.target.value, 10);
+                    setFieldValue('amount', amount);
+
+                    const tax = calculateTax(amount, values.includeTax);
+                    setFieldValue('taxAmount', tax);
+
+                    const totalAmount = calculateTotal(amount, tax || 0);
+                    setFieldValue('totalAmount', totalAmount);
+
+                    const remainingBalance = calculateRemainingBalance(
+                      myWallet.currentBalance,
+                      totalAmount,
+                    );
+                    setFieldValue('remainingBalance', remainingBalance);
+                  }}
                 />
                 <ErrorMessage name="amount" />
               </StyledDiv>
@@ -478,7 +504,6 @@ export function Wallet({
                       borderColor: 'transparent',
                     }}
                     onClick={() => {
-                      setIsInputVisible(false);
                       setFieldValue('gatewayType', 'paypal');
                       setFieldValue('gatewayDetails.gatewayType', 'paypal');
                     }}
@@ -501,7 +526,6 @@ export function Wallet({
                     }}
                     icon={<BankOutlined style={{ fontSize: '1.5rem' }} />}
                     onClick={() => {
-                      setIsInputVisible(true);
                       setFieldValue('gatewayType', 'bank');
                       setFieldValue('gatewayDetails.gatewayType', 'bank');
                     }}
@@ -510,7 +534,7 @@ export function Wallet({
                   </Button>
                 </Col>
               </Row>
-              {isInputVisible ? (
+              {values.gatewayType === 'bank' ? (
                 <Row style={{ padding: '0 35px' }}>
                   <Col span={24}>
                     <Label marginTop asterisk>
@@ -530,7 +554,7 @@ export function Wallet({
                         </Label>
                         <Field
                           type="text"
-                          name="branchCode"
+                          name="gatewayDetails.branchCode"
                           placeholder={t(globalMessage.branchCode)}
                           component={Input}
                         />
@@ -542,7 +566,7 @@ export function Wallet({
                         </Label>
                         <Field
                           type="text"
-                          name="branchName"
+                          name="gatewayDetails.branchName"
                           placeholder={t(globalMessage.branchName)}
                           component={Input}
                         />
@@ -570,6 +594,7 @@ export function Wallet({
                           e.target.value,
                         )
                       }
+                      value={values.gatewayDetails.accountType}
                     >
                       <Radio value={BANK_ACCOUNT_TYPE.SAVINGS}>
                         {t(globalMessage.usually)}
@@ -594,162 +619,16 @@ export function Wallet({
                     </Label>
                     <Field
                       type="text"
-                      name="requestorName"
+                      name="gatewayDetails.requestorName"
                       placeholder={t(globalMessage.transferRequestName)}
                       component={Input}
                     />
                     <ErrorMessage name="gatewayDetails.requestorName" />
-                    <Label marginTop asterisk>
-                      {t(globalMessage.specifiedTransferDate)}
-                    </Label>
-                    <Field
-                      type="text"
-                      name="requestorDate"
-                      size="large"
-                      placeholder={t(globalMessage.specifiedTransferDate)}
-                      fullWidth
-                      component={DatePicker}
-                      onChange={(e) => setFieldValue('requestDate', e)}
-                      style={{ fontSize: 12 }}
-                    />
-                    <ErrorMessage name="gatewayDetails.requestorDate" />
-                    <Row>
-                      <Label marginTop style={{ marginBottom: 7 }}>
-                        {t(globalMessage.withholdingSection)}{' '}
-                        <InfoCircleFilled
-                          style={{
-                            fontSize: '1.1em',
-                            marginLeft: 11,
-                            opacity: 0.65,
-                          }}
-                        />
-                      </Label>
-                    </Row>
-                    <Row gutter={16}>
-                      <Col span={12}>
-                        <Radio.Group
-                          onChange={(e) =>
-                            setFieldValue('includeTax', e.target.value)
-                          }
-                          value={values.includeTax}
-                          buttonStyle="solid"
-                          style={{ width: '100%' }}
-                        >
-                          <Radio.Button value="true">
-                            {t(globalMessage.ok)}
-                          </Radio.Button>
-                          <Radio.Button value="false">
-                            {t(globalMessage.no)}
-                          </Radio.Button>
-                        </Radio.Group>
-                        <ErrorMessage name="gatewayDetails.includeTax" />
-                      </Col>
-                    </Row>
-                    <Label marginTop asterisk>
-                      {t(globalMessage.transferAmountMoney)}
-                    </Label>
-                    <Field
-                      name="transferAmount"
-                      type="number"
-                      placeholder={t(globalMessage.transferAmountMoney)}
-                      autoComplete="off"
-                      component={Input}
-                    />
-                    <ErrorMessage name="gatewayDetails.transferAmount" />
-                    <Row justify="end" style={{ marginTop: 30 }}>
-                      <Col span={15} align="end">
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.transferAmountMoney)}
-                        />
-                        <InfoCircleFilled
-                          style={{
-                            fontSize: '1.1em',
-                            marginLeft: 11,
-                            opacity: 0.65,
-                          }}
-                        />
-                      </Col>
-                      <Col span={9} align="end">
-                        <StyledText gray strong content="0" />
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.currency)}
-                        />
-                      </Col>
-                    </Row>
-                    <Row justify="end">
-                      <Col span={15} align="end">
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.withholdingAmount)}
-                        />
-                        <InfoCircleFilled
-                          style={{
-                            fontSize: '1.1em',
-                            marginLeft: 11,
-                            opacity: 0.65,
-                          }}
-                        />
-                      </Col>
-                      <Col span={9} align="end">
-                        <StyledText gray strong content="0" />
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.currency)}
-                        />
-                      </Col>
-                    </Row>
-                    <Row justify="end">
-                      <Col span={13} align="end">
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.totalWithdrawalAmount)}
-                        />
-                      </Col>
-                      <Col span={11} align="end">
-                        <StyledText gray strong content="0" />
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.currency)}
-                        />
-                      </Col>
-                    </Row>
-                    <hr />
-                    <Row>
-                      <Col span={13} align="end">
-                        <StyledText
-                          gray
-                          strong
-                          content={t(
-                            globalMessage.accountBalanceAfterWithdrawal,
-                          )}
-                        />
-                      </Col>
-                      <Col span={11} align="end">
-                        <StyledText gray strong content="0" />
-                        <StyledText
-                          gray
-                          strong
-                          content={t(globalMessage.currency)}
-                        />
-                      </Col>
-                    </Row>
-                    <Row style={{ marginTop: 20 }}>
-                      <Checkbox />
-                      <Label>{t(localMessage.saveThisAccountFutureUse)}</Label>
-                    </Row>
                   </Col>
                 </Row>
               ) : (
-                <Row style={{ paddingLeft: 50 }}>
-                  <Col span={20}>
+                <Row style={{ padding: '0 35px' }}>
+                  <Col span={24}>
                     <Label marginTop asterisk>
                       {t(localMessage.enterPaypalAccount)}
                     </Label>
@@ -763,6 +642,162 @@ export function Wallet({
                   </Col>
                 </Row>
               )}
+              <Row style={{ padding: '0 35px' }}>
+                <Col span={24}>
+                  <Label marginTop asterisk>
+                    {t(globalMessage.specifiedTransferDate)}
+                  </Label>
+                  <Field
+                    type="text"
+                    name="requestDate"
+                    size="large"
+                    placeholder={t(globalMessage.specifiedTransferDate)}
+                    fullWidth
+                    component={DatePicker}
+                    onChange={(e) => setFieldValue('requestDate', e)}
+                    style={{ fontSize: 12 }}
+                    disabledDate={disableWeekends}
+                  />
+                  <ErrorMessage name="requestDate" />
+                  <Row>
+                    <Label marginTop style={{ marginBottom: 7 }}>
+                      {t(globalMessage.withholdingSection)}{' '}
+                      <InfoCircleFilled
+                        style={{
+                          fontSize: '1.1em',
+                          marginLeft: 11,
+                          opacity: 0.65,
+                        }}
+                      />
+                    </Label>
+                  </Row>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Radio.Group
+                        onChange={(e) => {
+                          setFieldValue('includeTax', e.target.value);
+                          const amount = parseInt(values.amount, 10);
+                          setFieldValue('amount', amount);
+
+                          const tax = calculateTax(amount, e.target.value);
+                          setFieldValue('taxAmount', tax);
+
+                          const totalAmount = calculateTotal(amount, tax || 0);
+                          setFieldValue('totalAmount', totalAmount);
+
+                          const remainingBalance = calculateRemainingBalance(
+                            myWallet.currentBalance,
+                            totalAmount,
+                          );
+                          setFieldValue('remainingBalance', remainingBalance);
+                        }}
+                        value={values.includeTax}
+                        buttonStyle="solid"
+                        style={{ width: '100%' }}
+                      >
+                        <Radio.Button value="true">
+                          {t(globalMessage.ok)}
+                        </Radio.Button>
+                        <Radio.Button value="false">
+                          {t(globalMessage.no)}
+                        </Radio.Button>
+                      </Radio.Group>
+                      <ErrorMessage name="includeTax" />
+                    </Col>
+                  </Row>
+                  <Row justify="end" style={{ marginTop: 30 }}>
+                    <Col span={15} align="end">
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.transferAmountMoney)}
+                      />
+                      <InfoCircleFilled
+                        style={{
+                          fontSize: '1.1em',
+                          marginLeft: 11,
+                          opacity: 0.65,
+                        }}
+                      />
+                    </Col>
+                    <Col span={9} align="end">
+                      <StyledText gray strong content={values.amount} />
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.currency)}
+                      />
+                    </Col>
+                  </Row>
+                  <Row justify="end">
+                    <Col span={15} align="end">
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.withholdingAmount)}
+                      />
+                      <InfoCircleFilled
+                        style={{
+                          fontSize: '1.1em',
+                          marginLeft: 11,
+                          opacity: 0.65,
+                        }}
+                      />
+                    </Col>
+                    <Col span={9} align="end">
+                      <StyledText gray strong content={values.taxAmount} />
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.currency)}
+                      />
+                    </Col>
+                  </Row>
+                  <Row justify="end">
+                    <Col span={13} align="end">
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.totalWithdrawalAmount)}
+                      />
+                    </Col>
+                    <Col span={11} align="end">
+                      <StyledText gray strong content={values.totalAmount} />
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.currency)}
+                      />
+                    </Col>
+                  </Row>
+                  <hr />
+                  <Row>
+                    <Col span={13} align="end">
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.accountBalanceAfterWithdrawal)}
+                      />
+                    </Col>
+                    <Col span={11} align="end">
+                      <StyledText
+                        gray
+                        strong
+                        content={values.remainingBalance}
+                      />
+                      <StyledText
+                        gray
+                        strong
+                        content={t(globalMessage.currency)}
+                      />
+                    </Col>
+                  </Row>
+                  <Row style={{ marginTop: 20 }}>
+                    <Checkbox />
+                    <Label>{t(localMessage.saveThisAccountFutureUse)}</Label>
+                  </Row>
+                </Col>
+              </Row>
               <StyledDiv
                 style={{ display: 'flex', margin: '0 auto', width: '300px' }}
               >
@@ -808,14 +843,20 @@ export function Wallet({
             <StyledText gray content={t(localMessage.withdrawAmount)} />
           </Col>
           <Col align="middle" justify="center" span={12}>
-            <StyledText content={`${withdraw.amount} ¥`} />
-          </Col>
-          <Col align="middle" justify="center" span={12}>
-            <StyledText gray content={t(localMessage.remainingBalance)} />
+            <StyledText content={`${withdraw.totalAmount} ¥`} />
           </Col>
           <Col align="middle" justify="center" span={12}>
             <StyledText
-              content={`${subtract(myWallet.currentBalance, withdraw.amount)} ¥
+              gray
+              content={t(globalMessage.accountBalanceAfterWithdrawal)}
+            />
+          </Col>
+          <Col align="middle" justify="center" span={12}>
+            <StyledText
+              content={`${subtract(
+                myWallet.currentBalance,
+                withdraw.totalAmount,
+              )} ¥
               `}
             />
           </Col>

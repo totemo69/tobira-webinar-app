@@ -13,6 +13,7 @@ const addBankValidationSchema = Yup.object({
 const withdrawalValidationSchema = Yup.object({
   amount: Yup.string().required('amount.requiredField').min(3, 'amountMin'),
   gatewayType: Yup.string(),
+  requestDate: Yup.string().required('thisFieldIsRequired'),
   gatewayDetails: Yup.object({
     gatewayType: Yup.string(),
     bankName: Yup.string().when('gatewayType', {
@@ -40,14 +41,6 @@ const withdrawalValidationSchema = Yup.object({
       then: Yup.string().required('accountType.requiredField'),
     }),
     requestorName: Yup.string().when('gatewayType', {
-      is: 'bank',
-      then: Yup.string().required('thisFieldIsRequired'),
-    }),
-    requestorDate: Yup.string().when('gatewayType', {
-      is: 'bank',
-      then: Yup.string().required('thisFieldIsRequired'),
-    }),
-    transferAmount: Yup.string().when('gatewayType', {
       is: 'bank',
       then: Yup.string().required('thisFieldIsRequired'),
     }),
