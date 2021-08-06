@@ -170,6 +170,22 @@ const message = {
     key: `${scope}.paypalAccount`,
     default: 'Paypal account',
   }),
+  thisFieldIsRequired: Object.values({
+    key: `${scope}.thisFieldIsRequired`,
+    default: 'This field is required',
+  }),
+  branchCode: Object.values({
+    key: `${scope}.branchCode`,
+    default: 'Branch Code',
+  }),
+  branchName: Object.values({
+    key: `${scope}.branchName`,
+    default: 'Branch Name',
+  }),
+  accountType: Object.values({
+    key: `${scope}.accountType`,
+    default: 'Account Type',
+  }),
 };
 
 export default message;

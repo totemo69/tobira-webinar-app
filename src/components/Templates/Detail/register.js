@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Typography, Row, Col, Spin, Modal, message } from 'antd';
+import { Row, Col, Spin, Modal, message } from 'antd';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import {
@@ -25,14 +25,14 @@ import {
 import { clearErrors } from '@/states/global/actions';
 import { WEBINAR_ROUTE, LOADING_PREFIX } from '@/utils/constants';
 import validationMessage from '@/messages/validation';
-import detailMessage from '@/messages/webinarDetail';
+// import detailMessage from '@/messages/webinarDetail';
 import RegisterStepper from '@/components/Modules/Detail/RegisterStepper';
 import WebinarRegistrationForm from '@/components/Modules/Detail/RegisterForm';
 import TicketSummary from '@/components/Modules/Detail/TicketSummary';
 import ChoosePayment from '@/components/Modules/Detail/ChoosePayment';
-import classNames from './Detail.module.css';
+// import classNames from './Detail.module.css';
 
-const { Title } = Typography;
+// const { Title } = Typography;
 const REGISTER_STEPS = {
   DETAIL: 0,
   SUMMARY: 1,
@@ -136,10 +136,13 @@ export function Register({
       </Row>
       {[REGISTER_STEPS.DETAIL, REGISTER_STEPS.SUMMARY].includes(step) && (
         <Row align="middle" justify="center">
-          <Title level={1} className={classNames.title}>
+          {
+            /* <Title level={1} className={classNames.title}>
             {step === REGISTER_STEPS.DETAIL && t(detailMessage.register)}
             {step === REGISTER_STEPS.SUMMARY && t(detailMessage.ticketSummary)}
-          </Title>
+          </Title> */
+            ' '
+          }
         </Row>
       )}
       <Row align="middle" justify="center">

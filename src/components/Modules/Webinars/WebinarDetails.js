@@ -7,15 +7,23 @@ import { LeftOutlined } from '@ant-design/icons';
 import message from '@/messages/webinar';
 import globalMessage from '@/messages/global';
 import { WEBINAR_ROUTE } from '@/utils/constants';
-import { DateIsBefore, DateIsSame, FormatDate } from '@/utils/dateUtils';
+import { DateIsBefore, FormatDate } from '@/utils/dateUtils';
 import Title from '@/components/Elements/Title';
 import Button from '@/components/Elements/Button';
 
 const { Paragraph, Text, Link } = Typography;
 
-export default function WebinarDetails({ webinarDetails }) {
+export default function WebinarDetails({
+  webinarDetails,
+  changeStatus,
+  isLoading,
+}) {
   const { t } = useTranslation();
   const route = useRouter();
+  let hostname = '';
+  if (typeof window !== 'undefined') {
+    hostname = window.location.origin;
+  }
   const StyledImage = styled(Image)`
     border-radius: 10px;
   `;
@@ -29,16 +37,23 @@ export default function WebinarDetails({ webinarDetails }) {
     route.push(`${WEBINAR_ROUTE.WEBINAR_UPDATE_DETAILS}?id=${id}`);
   };
 
+  const onChangeStatus = () => {
+    const { id, status } = webinarDetails;
+    let newStatus = 0;
+    if (status === 0) {
+      newStatus = 1;
+    }
+    changeStatus(id, newStatus);
+  };
+
   const webinarStatus = (data) => {
-    let returnText = '';
+    let returnText = <Text type="warning">{t(message.hiddenStatusLabel)}</Text>;
     if (webinarDetails.schedules) {
       if (!DateIsBefore(data.schedules[0].dateTime)) {
-        returnText = <Text type="success">{t(message.doneStatusLabel)}</Text>;
-      } else if (DateIsSame(data.schedules[0].dateTime)) {
-        returnText = <Text type="danger">{t(message.notYetStatusLabel)}</Text>;
-      } else {
+        returnText = <Text type="danger">{t(message.doneStatusLabel)}</Text>;
+      } else if (data.status === 0) {
         returnText = (
-          <Text type="warning">{t(message.upcomingStatusLabel)}</Text>
+          <Text type="success">{t(message.publishStatusLabel)}</Text>
         );
       }
     }
@@ -79,14 +94,14 @@ export default function WebinarDetails({ webinarDetails }) {
           href={`${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
           target="_blank"
         >
-          {webinarDetails.slug}
+          {`${hostname}${WEBINAR_ROUTE.WEBINAR_DETAIL}/${webinarDetails.slug}`}
         </Link>
       ),
     },
-    {
-      title: t(message.webinarPlan),
-      description: t(message.oneTimePlan),
-    },
+    // {
+    //   title: t(message.webinarPlan),
+    //   description: t(message.oneTimePlan),
+    // },
   ];
   return (
     <StyledDiv>
@@ -148,6 +163,17 @@ export default function WebinarDetails({ webinarDetails }) {
       </Row>
       <Row align="middle" justify="end" style={{ marginTop: 50 }}>
         <Button
+          loading={isLoading}
+          onClick={onChangeStatus}
+          chooseStandard
+          marginRight
+          type="link"
+        >
+          {webinarDetails.status === 0
+            ? t(message.hiddenStatusLabel)
+            : t(message.publishStatusLabel)}
+        </Button>
+        <Button
           chooseStandard
           marginRight
           type="link"
@@ -167,5 +193,7 @@ export default function WebinarDetails({ webinarDetails }) {
 }
 
 WebinarDetails.propTypes = {
+  isLoading: PropTypes.bool,
   webinarDetails: PropTypes.any,
+  changeStatus: PropTypes.any,
 };

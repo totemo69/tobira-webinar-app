@@ -30,6 +30,7 @@
     "entries":  "entries",
     "search":  "Search",
     "searchPlaceholder":  "Search webinar title",
+    "searchEmailPlaceholder": "Search from email",
     "thankYou":  "Thank You",
     "accountActivated":  "Your account has been successfully activated",
     "goBackPrevious":  "Go back to previous page",
@@ -56,7 +57,21 @@
     "view": "View",
     "english":  "English",
     "japanese":  "Japanese",
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "branchCode": "Branch Code",
+    "branchName": "Branch Name",
+    "usually": "usually",
+    "current": "current",
+    "no": "No",
+    "accountType": "Account Type",
+    "transferRequestName": "Transfer request name",
+    "specifiedTransferDate": "Specified transfer date",
+    "withholdingSection": "Withholding Section Would you like to request payment?",
+    "transferAmountMoney": "Transfer amount of money",
+    "currency": "円",
+    "withholdingAmount": "Withholding amount",
+    "totalWithdrawalAmount": "Total withdrawal amount",
+    "accountBalanceAfterWithdrawal": "Account balance after withdrawal"
   },
 
   "storyBook" : {
@@ -121,6 +136,7 @@
     "number": "No.",
     "emailAddress": "Email Address",
     "paymentStatus": "Payment Status",
+    "paymentAmount": "Amount",
     "registeredParticipants": "Registered Participants",
     "editDetails": "Edit Details",
     "updateWebinar": "UPDATE WEBINAR",
@@ -183,6 +199,8 @@
     "doneStatusLabel": "Done",
     "notYetStatusLabel": "Not yet",
     "upcomingStatusLabel": "Upcoming",
+    "publishStatusLabel": "Published",
+    "hiddenStatusLabel": "Hidden",
     "oneTimePlan": "One-time",
     "pendingPaymentLabel": "Pending",
     "failedPaymentLabel": "Failed",
@@ -360,6 +378,7 @@
     "inValidEmailFormat": "Invalid email format.",
     "resetNotFound": "Your reset token is invalid or already expired.",
     "tokenExpired": "Your reset token is invalid or already expired.",
-    "paypalAccount": "Paypal account"
+    "paypalAccount": "Paypal account",
+    "thisFieldIsRequired": "This field is required"
   }
 }

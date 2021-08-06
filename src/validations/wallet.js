@@ -2,8 +2,12 @@ import * as Yup from 'yup';
 
 const addBankValidationSchema = Yup.object({
   bankName: Yup.string().required('bankName.requiredField'),
+  branchCode: Yup.string().required('branchCode.requiredField'),
+  branchName: Yup.string().required('branchCode.requiredField'),
   accountName: Yup.string().required('accountName.requiredField'),
   accountNumber: Yup.string().required('accountNumber.requiredField'),
+  accountType: Yup.string().required('accountType.requiredField'),
+  requestorName: Yup.string().required('thisFieldIsRequired'),
 });
 
 const withdrawalValidationSchema = Yup.object({
@@ -15,6 +19,14 @@ const withdrawalValidationSchema = Yup.object({
       is: 'bank',
       then: Yup.string().required('bankName.requiredField'),
     }),
+    branchCode: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('branchCode.requiredField'),
+    }),
+    branchName: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('branchName.requiredField'),
+    }),
     accountName: Yup.string().when('gatewayType', {
       is: 'bank',
       then: Yup.string().required('accountName.requiredField'),
@@ -22,6 +34,22 @@ const withdrawalValidationSchema = Yup.object({
     accountNumber: Yup.string().when('gatewayType', {
       is: 'bank',
       then: Yup.string().required('accountNumber.requiredField'),
+    }),
+    accountType: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('accountType.requiredField'),
+    }),
+    requestorName: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('thisFieldIsRequired'),
+    }),
+    requestorDate: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('thisFieldIsRequired'),
+    }),
+    transferAmount: Yup.string().when('gatewayType', {
+      is: 'bank',
+      then: Yup.string().required('thisFieldIsRequired'),
     }),
     paypal: Yup.string().when('gatewayType', {
       is: 'paypal',

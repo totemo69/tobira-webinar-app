@@ -16,6 +16,8 @@ import Table from '@/components/Elements/Table';
 const { Text } = Typography;
 
 export default function ParticipantList({
+  onSearch,
+  defaultSearch,
   attendeesList,
   onClickDetails,
   displayCount = 10,
@@ -83,12 +85,9 @@ export default function ParticipantList({
         }
         return returnText;
       },
-      sorter: {
-        multiple: 3,
-      },
     },
     {
-      title: t(message.action),
+      title: '',
       dataIndex: 'id',
       align: 'center',
       render: (id) => (
@@ -128,9 +127,11 @@ export default function ParticipantList({
         </Col>
         <Col xs={24} lg={12}>
           <Div noMargin flexCenterEnd style={{ width: '100%' }}>
-            {/* {t(globalMessage.search)}{' '} */}
+            {t(globalMessage.search)}{' '}
             <Search
-              placeholder={t(globalMessage.searchPlaceholder)}
+              defaultValue={defaultSearch}
+              onSearch={onSearch}
+              placeholder={t(globalMessage.searchEmailPlaceholder)}
               allowClear
               marginLeft
               widthMedium
@@ -150,6 +151,8 @@ export default function ParticipantList({
 }
 
 ParticipantList.propTypes = {
+  onSearch: PropTypes.func,
+  defaultSearch: PropTypes.any,
   attendeesList: PropTypes.any,
   onClickDetails: PropTypes.func,
   displayCount: PropTypes.any,

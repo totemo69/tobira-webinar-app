@@ -25,6 +25,7 @@ export const DELETE_REQUEST = 'DELETE';
 
 export const API = {
   AUTH_USER_PROFILE: `${Url}/users/profile`,
+  USER_CREDENTIALS: `${Url}/users/change-password`,
   AUTH_PLANS_GET: `${Url}/plans`,
   AUTH_PAYMENTS_GET: `${Url}/payments`,
   WEBINARS: `${Url}/webinars`,
@@ -96,4 +97,9 @@ export const SCHEDULE_TYPE = {
 
 export const PAYMENT_METHOD = {
   PAYPAL: 'paypal',
+};
+
+export const BANK_ACCOUNT_TYPE = {
+  SAVINGS: '0',
+  CHECKING: '1',
 };
