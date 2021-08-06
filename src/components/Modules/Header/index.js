@@ -31,15 +31,12 @@ import {
   LogoutOutlined,
 } from '@ant-design/icons';
 
-
 export function Header({
   fetchProfile,
   userDetails,
   withLogo = false,
   withMenu = true,
 }) {
-
-
   const { t } = useTranslation();
   const route = useRouter();
   const { locale } = route;
@@ -48,12 +45,12 @@ export function Header({
   }, []);
 
   const StyledRow = styled(Row)`
-  width: 40%;
-  
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`;
+    width: 40%;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  `;
 
   const MenuItems = (
     <Menu className="profile-dropdown">

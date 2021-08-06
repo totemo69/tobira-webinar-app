@@ -511,7 +511,7 @@ export function Wallet({
                 </Col>
               </Row>
               {isInputVisible ? (
-                <Row style={{ padding: '0 35px' }}>
+                <Row style={{ padding: '0 25px' }}>
                   <Col span={24}>
                     <Label marginTop asterisk>
                       {t(globalMessage.bankName)}
@@ -530,7 +530,7 @@ export function Wallet({
                         </Label>
                         <Field
                           type="text"
-                          name="branchCode"
+                          name="gatewayDetails.branchCode"
                           placeholder={t(globalMessage.branchCode)}
                           component={Input}
                         />
@@ -542,7 +542,7 @@ export function Wallet({
                         </Label>
                         <Field
                           type="text"
-                          name="branchName"
+                          name="gatewayDetails.branchName"
                           placeholder={t(globalMessage.branchName)}
                           component={Input}
                         />
@@ -594,7 +594,7 @@ export function Wallet({
                     </Label>
                     <Field
                       type="text"
-                      name="requestorName"
+                      name="gatewayDetails.requestorName"
                       placeholder={t(globalMessage.transferRequestName)}
                       component={Input}
                     />
@@ -603,13 +603,13 @@ export function Wallet({
                       {t(globalMessage.specifiedTransferDate)}
                     </Label>
                     <Field
-                      type="text"
-                      name="requestorDate"
+                      type="number"
+                      name="gatewayDetails.requestorDate"
                       size="large"
                       placeholder={t(globalMessage.specifiedTransferDate)}
                       fullWidth
                       component={DatePicker}
-                      onChange={(e) => setFieldValue('requestDate', e)}
+                      onChange={e => setFieldValue('gatewayDetails.requestorDate', e)}
                       style={{ fontSize: 12 }}
                     />
                     <ErrorMessage name="gatewayDetails.requestorDate" />
@@ -649,7 +649,7 @@ export function Wallet({
                       {t(globalMessage.transferAmountMoney)}
                     </Label>
                     <Field
-                      name="transferAmount"
+                      name="gatewayDetails.transferAmount"
                       type="number"
                       placeholder={t(globalMessage.transferAmountMoney)}
                       autoComplete="off"
