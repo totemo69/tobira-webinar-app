@@ -29,3 +29,11 @@ export function FormatDate(date, format = 'YYYY-MM-DD') {
 export function ConvertMoment(date) {
   return moment(date);
 }
+
+export function disableWeekends(current) {
+  return (
+    (current && current < moment().endOf('day')) ||
+    moment(current).day() === 0 ||
+    moment(current).day() === 6
+  );
+}
