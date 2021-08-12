@@ -33,7 +33,6 @@ export function BankModal({
 
   const onSubmit = (values) => {
     doAddBank(values);
-    console.log('ok');
     onOk();
   };
 
