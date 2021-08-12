@@ -27,7 +27,7 @@ const message = {
   }),
   defaultButton: Object.values({
     key: `${scope}.defaultButton`,
-    default: 'Default',
+    default: 'Pending',
   }),
   addAccountButton: Object.values({
     key: `${scope}.addAccountButton`,
@@ -35,7 +35,11 @@ const message = {
   }),
   completedMessage: Object.values({
     key: `${scope}.completedMessage`,
-    default: 'Zoom account has been successfully added.',
+    default: 'Zoom account has been successfully created.',
+  }),
+  completedInstruction: Object.values({
+    key: `${scope}.completedInstruction`,
+    default: 'Please check your email for zoom account activation.',
   }),
   createNewWebinar: Object.values({
     key: `${scope}.createNewWebinar`,

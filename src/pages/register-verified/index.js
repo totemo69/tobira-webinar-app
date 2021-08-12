@@ -26,7 +26,7 @@ export function RegisterVerified({
   doVerifyAccount,
   isLoadingVerification,
   verificationStatus,
-  errorMessage,
+  // errorMessage,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -50,7 +50,6 @@ export function RegisterVerified({
   useEffect(() => {
     if (verificationStatus) {
       setIsLoading(false);
-      console.log(errorMessage);
     }
   }, [isLoadingVerification, verificationStatus]);
 
@@ -91,7 +90,7 @@ RegisterVerified.propTypes = {
   doVerifyAccount: PropTypes.func,
   isLoadingVerification: PropTypes.bool,
   verificationStatus: PropTypes.bool,
-  errorMessage: PropTypes.any,
+  // errorMessage: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({

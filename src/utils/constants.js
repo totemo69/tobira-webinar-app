@@ -98,3 +98,15 @@ export const SCHEDULE_TYPE = {
 export const PAYMENT_METHOD = {
   PAYPAL: 'paypal',
 };
+
+export const BANK_ACCOUNT_TYPE = {
+  SAVINGS: '0',
+  CHECKING: '1',
+};
+
+export const ZOOM_ACCOUNT_STATUS = {
+  PENDING: 'pending',
+  ACTIVATED: 'activated',
+  DEACTIVATED: 'deactivated',
+  UNLINK: 'unlink',
+};

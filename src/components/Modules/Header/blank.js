@@ -7,7 +7,6 @@ import Language from '@/components/Modules/Language';
 export default function BlankHeader() {
   const route = useRouter();
   const { locale } = route;
-  console.log(route);
   return (
     <Hdr noMargin>
       <Div widthFull flexCenterEnd noMargin style={{ 'min-height': '65px;' }}>

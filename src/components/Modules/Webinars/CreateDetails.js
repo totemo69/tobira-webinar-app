@@ -11,7 +11,7 @@ import {
 import { Row, Col } from 'antd';
 import { useDispatch } from 'react-redux';
 
-// import { SCHEDULE_TYPE } from '@/utils/constants';
+import { ZOOM_ACCOUNT_STATUS } from '@/utils/constants';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
@@ -94,7 +94,7 @@ export default function CreateWebinarDetails({
                 justify="start"
                 style={{ width: '100%' }}
               >
-                <Col type="flex" align="left" justify="start" xs={24} lg={18}>
+                <Col type="flex" align="left" justify="start" xs={24} lg={24}>
                   <Labels asterisk>{t(localMessage.zoomAccount)}</Labels>
                   <Field
                     name="webinarAccount"
@@ -108,19 +108,25 @@ export default function CreateWebinarDetails({
                       {t(localMessage.selectZoomAccount)}
                     </Option>
                     {zoomAccounts.map((option) => (
-                      <Option key={option.id} value={option.id}>
+                      <Option
+                        key={option.id}
+                        value={option.id}
+                        disabled={
+                          option.status !== ZOOM_ACCOUNT_STATUS.ACTIVATED
+                        }
+                      >
                         {option.zoomEmail}
                       </Option>
                     ))}
                   </Field>
                   <ErrorMessage name="webinarAccount" />
                 </Col>
-                <Col type="flex" align="middle" justify="start" xs={24} lg={6}>
+                {/* <Col type="flex" align="middle" justify="start" xs={24} lg={6}>
                   <Button addBtn style={{ width: '90%' }}>
                     <PlusSquareFilled />{' '}
                     <a href="/account">{t(localMessage.addAccount)}</a>
                   </Button>
-                </Col>
+                </Col> */}
               </Row>
               <Div marginTop marginBottomLarge>
                 <Labels textBlue bold></Labels>

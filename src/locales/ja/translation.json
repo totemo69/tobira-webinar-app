@@ -56,7 +56,21 @@
     "view": "詳細",
     "english":  "英語",
     "japanese":  "日本語",
-    "minutes": "分"
+    "minutes": "分",
+    "branchCode": "支店コード",
+    "branchName": "支店名",
+    "usually": "普通",
+    "current": "当座",
+    "no": "いいえ",
+    "accountType": "口座種別",
+    "transferRequestName": "振込依頼名",
+    "specifiedTransferDate": "振込指定日",
+    "withholdingSection": "源泉徴収課支払いを依頼しますか？",
+    "transferAmountMoney": "振込金額",
+    "currency": "円",
+    "withholdingAmount": "源泉徴収金額",
+    "totalWithdrawalAmount": "引落合計金額",
+    "accountBalanceAfterWithdrawal": "引出後口座残高"
   },
   "storyBook": {
     "title": "題名"
@@ -307,10 +321,11 @@
     "accountLabel": "メールアドレスまたはあ連絡先番号*",
     "accountStatus": "ステータス",
     "connectedButton": "接続済み",
-    "defaultButton": "デフォルト",
+    "defaultButton": "保留中",
     "addAccountButton": "アカウントを追加",
     "completedTitle": "セットアップ完了",
-    "completedMessage": "Zoomアカウントが正常に追加されました。",
+    "completedMessage": "Zoomアカウントが正常に作成されました。",
+    "completedInstruction": "Zoomアカウントのアクティブ方法については、メールをご確認ください。",
     "createNewWebinar": "今すぐウェビナーを作成する",
     "gotoAccounts" : "アカウント画面に戻る"
   },

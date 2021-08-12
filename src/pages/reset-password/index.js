@@ -45,9 +45,6 @@ export function ResetPassword({
   const { email, token } = route.query;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  console.log(email);
-  console.log(token);
-
   useEffect(() => {
     if (!isLoading) {
       if (resetStatus && !errorMessage) {
