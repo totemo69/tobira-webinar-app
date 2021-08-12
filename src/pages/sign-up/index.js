@@ -58,7 +58,7 @@ export function SignUp({
           message.error(t(validationMessage[msg]));
           clearErrorMessage();
         }
-        setOnsignup(false);
+        // setOnsignup(false);
       }
     }
   }, [isLoading, onSignup]);
