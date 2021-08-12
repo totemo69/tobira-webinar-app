@@ -448,10 +448,8 @@ export function Wallet({
           enableReinitialize
           validationSchema={withdrawalValidationSchema}
         >
-          {({ handleSubmit, setFieldValue, values, errors }) => (
+          {({ handleSubmit, setFieldValue, values }) => (
             <Form>
-              {console.log(values)}
-              {console.log(errors)}
               <StyledDiv header>
                 {t(localMessage.transferFundRequest)}
               </StyledDiv>

@@ -328,10 +328,11 @@
     "accountLabel": "Email Address or Contact Number",
     "accountStatus": "Status",
     "connectedButton": "Connected",
-    "defaultButton": "Default",
+    "defaultButton": "Pending",
     "addAccountButton": "Add account",
     "completedTitle": "Setup Complete!",
-    "completedMessage": "Zoom account has been successfully added.",
+    "completedMessage": "Zoom account has been successfully created.",
+    "completedInstruction": "Please check your email for zoom account activation.",
     "createNewWebinar": "Create a webinar now",
     "gotoAccounts" : "Go to Accounts"
   },

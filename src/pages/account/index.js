@@ -5,14 +5,20 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { Col, List, Row } from 'antd';
-import { LOADING_PREFIX } from '@/utils/constants';
-import { authRequest } from '@/lib/zoom';
-import { getZoomAccount } from '@/states/accounts/actions';
+import { Col, List, Row, message } from 'antd';
+import { useRouter } from 'next/router';
+import {
+  LOADING_PREFIX,
+  WEBINAR_ROUTE,
+  ZOOM_ACCOUNT_STATUS,
+} from '@/utils/constants';
+// import { authRequest } from '@/lib/zoom';
+import { getZoomAccount, createZoomUser } from '@/states/accounts/actions';
+import { clearErrors } from '@/states/global/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
-import { makeSelectLoading } from '@/states/global/selector';
-
-import globalMessage from '@/messages/global';
+import { makeSelectLoading, makeSelectError } from '@/states/global/selector';
+import validationMessage from '@/messages/validation';
+// import globalMessage from '@/messages/global';
 import localMessage from '@/messages/account';
 import Layout from '@/components/Layouts/Home';
 import Card from '@/components/Elements/Card';
@@ -26,15 +32,31 @@ import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
 
-export function Account({ getZoomAccounts, zoomAccountList }) {
+export function Account({
+  getZoomAccounts,
+  zoomAccountList,
+  createAccount,
+  isAccountLoading,
+  errorMessage,
+  clearErrorMessage,
+}) {
   const { t } = useTranslation();
-
+  const route = useRouter();
   useEffect(() => {
     getZoomAccounts();
   }, []);
 
   const connectToZoom = () => {
-    window.location = authRequest();
+    createAccount(
+      () => {
+        route.push(`${WEBINAR_ROUTE.ZOOM_ACCOUNT}/complete`);
+      },
+      () => {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
+      },
+    );
   };
 
   return (
@@ -71,12 +93,16 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                             style={{ paddingTop: 15 }}
                           >
                             <Label>{t(localMessage.accountStatus)}</Label>
-                            <Button connectedButton>
-                              {t(localMessage.connectedButton)}
-                            </Button>
-                            <Button defaultButton>
-                              {t(localMessage.defaultButton)}
-                            </Button>
+                            {item.status === ZOOM_ACCOUNT_STATUS.ACTIVATED && (
+                              <Button connectedButton>
+                                {t(localMessage.connectedButton)}
+                              </Button>
+                            )}
+                            {item.status === ZOOM_ACCOUNT_STATUS.PENDING && (
+                              <Button defaultButton>
+                                {t(localMessage.defaultButton)}
+                              </Button>
+                            )}
                           </Col>
                         </Row>
                       </Div>
@@ -85,7 +111,12 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
                 />
 
                 <Div>
-                  <Button onClick={connectToZoom} addField>
+                  <Button
+                    loading={isAccountLoading}
+                    hidden={zoomAccountList.length > 0}
+                    onClick={connectToZoom}
+                    addField
+                  >
                     <Image
                       style={{
                         width: '20px',
@@ -100,9 +131,9 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
               </TabPane>
             </Tabs>
           </Div>
-          <Button type="primary" NextButton>
+          {/* <Button type="primary" NextButton>
             {t(globalMessage.saveChanges)}
-          </Button>
+          </Button> */}
         </Card>
       </Layout>
     </>
@@ -112,16 +143,22 @@ export function Account({ getZoomAccounts, zoomAccountList }) {
 Account.propTypes = {
   getZoomAccounts: PropTypes.func,
   zoomAccountList: PropTypes.any,
-  // isAccountLoading: PropTypes.bool,
+  createAccount: PropTypes.func,
+  isAccountLoading: PropTypes.bool,
+  errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   isAccountLoading: makeSelectLoading(LOADING_PREFIX.ACCOUNT),
   zoomAccountList: makeSelectAccountList(),
+  errorMessage: makeSelectError(),
 });
 
 const mapToDispatchToProps = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
+  createAccount: (success, error) => dispatch(createZoomUser(success, error)),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapToDispatchToProps);

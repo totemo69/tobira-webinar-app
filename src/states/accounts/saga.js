@@ -8,7 +8,11 @@ import {
 import { request, RequestOptions } from '@/utils/request';
 import { loading, loadErrors } from '@/states/global/actions';
 import { setZoomAccountList, setZoomAccount } from './actions';
-import { GET_ZOOM_ACCOUNT, SUBMIT_ZOOM_CODE } from './types';
+import {
+  GET_ZOOM_ACCOUNT,
+  SUBMIT_ZOOM_CODE,
+  CREATE_ZOOM_ACCOUNT,
+} from './types';
 
 function* zoomAccountSaga() {
   try {
@@ -42,7 +46,27 @@ function* submitZoomCode({ payload }) {
   }
 }
 
+function* createZoomAccount({ successCallback, errCallback }) {
+  try {
+    yield put(loading(LOADING_PREFIX.ACCOUNT));
+    yield call(
+      request,
+      `${API.ZOOM_ACCOUNT}/create-user`,
+      RequestOptions(POST_REQUEST, null, true),
+    );
+    if (successCallback) {
+      successCallback();
+    }
+  } catch (error) {
+    yield put(loadErrors(error));
+    errCallback();
+  } finally {
+    yield put(loading(LOADING_PREFIX.ACCOUNT, false));
+  }
+}
+
 export default function* AccountSaga() {
   yield takeEvery(GET_ZOOM_ACCOUNT, zoomAccountSaga);
   yield takeLatest(SUBMIT_ZOOM_CODE, submitZoomCode);
+  yield takeLatest(CREATE_ZOOM_ACCOUNT, createZoomAccount);
 }

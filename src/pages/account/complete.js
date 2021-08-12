@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
-import { Row, Col } from 'antd';
+import { Row, Col, Space } from 'antd';
 import { useRouter } from 'next/router';
 import { WEBINAR_ROUTE } from '@/utils/constants';
 import message from '@/messages/account';
@@ -50,7 +50,12 @@ export function Complete() {
               <Title level={3}>{t(message.completedTitle)}</Title>
             </Div>
             <Div widthFull paddingYLg center>
-              <Label center>{t(message.completedMessage)}</Label>
+              <Label fullWidth>
+                <Space direction="vertical">
+                  {t(message.completedMessage)}
+                  {t(message.completedInstruction)}
+                </Space>
+              </Label>
             </Div>
             <Div widthFull center>
               <Button

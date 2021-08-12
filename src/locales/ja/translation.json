@@ -321,10 +321,11 @@
     "accountLabel": "メールアドレスまたはあ連絡先番号*",
     "accountStatus": "ステータス",
     "connectedButton": "接続済み",
-    "defaultButton": "デフォルト",
+    "defaultButton": "保留中",
     "addAccountButton": "アカウントを追加",
     "completedTitle": "セットアップ完了",
-    "completedMessage": "Zoomアカウントが正常に追加されました。",
+    "completedMessage": "Zoomアカウントが正常に作成されました。",
+    "completedInstruction": "Zoomアカウントのアクティブ方法については、メールをご確認ください。",
     "createNewWebinar": "今すぐウェビナーを作成する",
     "gotoAccounts" : "アカウント画面に戻る"
   },

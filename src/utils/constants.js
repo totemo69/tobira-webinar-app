@@ -103,3 +103,10 @@ export const BANK_ACCOUNT_TYPE = {
   SAVINGS: '0',
   CHECKING: '1',
 };
+
+export const ZOOM_ACCOUNT_STATUS = {
+  PENDING: 'pending',
+  ACTIVATED: 'activated',
+  DEACTIVATED: 'deactivated',
+  UNLINK: 'unlink',
+};
