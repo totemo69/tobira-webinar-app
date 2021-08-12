@@ -35,6 +35,7 @@ import Image from '@/components/Elements/Image';
 const { Text } = Typography;
 
 export function ListOfWebinar({
+  isAccountLoading,
   isListLoading,
   getZoomAccounts,
   zoomAccountList,
@@ -271,6 +272,7 @@ export function ListOfWebinar({
                       default
                       type="primary"
                       onClick={connectToZoom}
+                      loading={isAccountLoading}
                       style={{ width: 140 }}
                     >
                       {t(localMessage.buttonSetup)}
@@ -309,7 +311,8 @@ const mapStateToProps = createStructuredSelector({
 const mapPropsToDispatch = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
   getWebinarLists: (payload) => dispatch(getWebinarList(payload)),
-  setupZoomAccount: () => dispatch(createZoomUser()),
+  setupZoomAccount: (success, error) =>
+    dispatch(createZoomUser(success, error)),
   clearErrorMessage: () => dispatch(clearErrors()),
 });
 
