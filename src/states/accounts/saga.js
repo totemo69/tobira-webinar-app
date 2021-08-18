@@ -12,6 +12,8 @@ import {
   GET_ZOOM_ACCOUNT,
   SUBMIT_ZOOM_CODE,
   CREATE_ZOOM_ACCOUNT,
+  ZOOM_SUBSCRIPTION,
+  CAPTURE_PURCHASE,
 } from './types';
 
 function* zoomAccountSaga() {
@@ -59,7 +61,45 @@ function* createZoomAccount({ successCallback, errCallback }) {
     }
   } catch (error) {
     yield put(loadErrors(error));
-    errCallback();
+    errCallback(error);
+  } finally {
+    yield put(loading(LOADING_PREFIX.ACCOUNT, false));
+  }
+}
+
+function* subscribeZoom({ payload, successCallback, errCallback }) {
+  try {
+    yield put(loading(LOADING_PREFIX.ACCOUNT));
+    const response = yield call(
+      request,
+      `${API.ZOOM_SUBSCRIPTION}`,
+      RequestOptions(POST_REQUEST, { ...payload }, true),
+    );
+    if (successCallback) {
+      successCallback(response);
+    }
+  } catch (error) {
+    yield put(loadErrors(error));
+    errCallback(error);
+  } finally {
+    yield put(loading(LOADING_PREFIX.ACCOUNT, false));
+  }
+}
+
+function* capturePurchase({ payload, successCallback, errCallback }) {
+  try {
+    yield put(loading(LOADING_PREFIX.ACCOUNT));
+    const response = yield call(
+      request,
+      `${API.ZOOM_SUBSCRIPTION}/capture`,
+      RequestOptions(POST_REQUEST, { ...payload }, true),
+    );
+    if (successCallback) {
+      successCallback(response);
+    }
+  } catch (error) {
+    yield put(loadErrors(error));
+    errCallback(error);
   } finally {
     yield put(loading(LOADING_PREFIX.ACCOUNT, false));
   }
@@ -69,4 +109,6 @@ export default function* AccountSaga() {
   yield takeEvery(GET_ZOOM_ACCOUNT, zoomAccountSaga);
   yield takeLatest(SUBMIT_ZOOM_CODE, submitZoomCode);
   yield takeLatest(CREATE_ZOOM_ACCOUNT, createZoomAccount);
+  yield takeLatest(ZOOM_SUBSCRIPTION, subscribeZoom);
+  yield takeLatest(CAPTURE_PURCHASE, capturePurchase);
 }

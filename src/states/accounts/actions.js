@@ -4,6 +4,8 @@ import {
   SET_ZOOM_ACCOUNT,
   SET_ZOOM_ACCOUNT_LIST,
   CREATE_ZOOM_ACCOUNT,
+  ZOOM_SUBSCRIPTION,
+  CAPTURE_PURCHASE,
 } from './types';
 
 export const getZoomAccount = (payload) => ({
@@ -28,6 +30,24 @@ export const submitZoomCode = (payload) => ({
 
 export const createZoomUser = (successCallback, errCallback) => ({
   type: CREATE_ZOOM_ACCOUNT,
+  successCallback,
+  errCallback,
+});
+
+export const zoomSubscription = (payload, successCallback, errCallback) => ({
+  type: ZOOM_SUBSCRIPTION,
+  payload,
+  successCallback,
+  errCallback,
+});
+
+export const captureLicensePurchase = (
+  payload,
+  successCallback,
+  errCallback,
+) => ({
+  type: CAPTURE_PURCHASE,
+  payload,
   successCallback,
   errCallback,
 });

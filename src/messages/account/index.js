@@ -29,6 +29,18 @@ const message = {
     key: `${scope}.defaultButton`,
     default: 'Pending',
   }),
+  purchaseButton: Object.values({
+    key: `${scope}.purchaseButton`,
+    default: 'Buy License',
+  }),
+  requestedButton: Object.values({
+    key: `${scope}.requestedButton`,
+    default: 'Pending License',
+  }),
+  licenseButton: Object.values({
+    key: `${scope}.licenseButton`,
+    default: 'Licensed',
+  }),
   addAccountButton: Object.values({
     key: `${scope}.addAccountButton`,
     default: 'Add account',
@@ -48,6 +60,18 @@ const message = {
   gotoAccounts: Object.values({
     key: `${scope}.gotoAccounts`,
     default: 'Go to Accounts',
+  }),
+  purchasedTitle: Object.values({
+    key: `${scope}.purchasedTitle`,
+    default: 'Zoom License Purchase',
+  }),
+  purchasedMessage: Object.values({
+    key: `${scope}.purchasedMessage`,
+    default: 'Zoom account has been successfully purchased.',
+  }),
+  purchasedInstruction: Object.values({
+    key: `${scope}.purchasedInstruction`,
+    default: 'Pleae wait for license activation.',
   }),
 };
 
