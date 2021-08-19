@@ -322,12 +322,18 @@
     "accountStatus": "ステータス",
     "connectedButton": "接続済み",
     "defaultButton": "保留中",
+    "purchaseButton": "ライセンス購入",
+    "requestedButton": "保留ライセンス",
+    "licenseButton": "ライセンス購入済み",
     "addAccountButton": "アカウントを追加",
     "completedTitle": "セットアップ完了",
     "completedMessage": "Zoomアカウントが正常に作成されました。",
     "completedInstruction": "Zoomアカウントのアクティブ方法については、メールをご確認ください。",
     "createNewWebinar": "今すぐウェビナーを作成する",
-    "gotoAccounts" : "アカウント画面に戻る"
+    "gotoAccounts" : "アカウント画面に戻る",
+    "purchasedTitle": "Zoom License Purchase",
+    "purchasedMessage": "Zoom account has been successfully purchased.",
+    "purchasedInstruction": "Pleae wait for license activation."
   },
 
   "validation": {
@@ -373,6 +379,7 @@
     "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "paypalAccount": "Paypalアカウント",
-    "thisFieldIsRequired": "必須フィールドです"
+    "thisFieldIsRequired": "必須フィールドです",
+    "internalServerError": "500"
   }
 }

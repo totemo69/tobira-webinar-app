@@ -186,6 +186,10 @@ const message = {
     key: `${scope}.accountType`,
     default: 'Account Type',
   }),
+  internalServerError: Object.values({
+    key: `${scope}.internalServerError`,
+    default: 'Internal Server Error',
+  }),
 };
 
 export default message;
