@@ -22,7 +22,11 @@ export default function PrivacyPolicy() {
     <>
       <Layout>
         <Div widthFull center noMargin marginBottomLarge>
-          <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+          <Image
+            src="/images/tobiracreators_transparent.png"
+            alt="Tobira Logo"
+            logo
+          />
         </Div>
         <Card TermsAndPrivacy>
           <Div doubleDividerBlue withPadding widthFull>

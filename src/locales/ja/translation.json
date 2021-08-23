@@ -24,6 +24,7 @@
     "termsOfService": "利用規約",
     "privacyPolicy": "個人情報保護方針",
     "and": "そして",
+    "copyRight":  "Copyright © 2021 Creators from Tobira Co Ltd. All rights reserved",
     "listWebinar": "ウェビナー一覧",
     "show": "表示",
     "entries": "件",
@@ -331,9 +332,9 @@
     "completedInstruction": "Zoomアカウントのアクティブ方法については、メールをご確認ください。",
     "createNewWebinar": "今すぐウェビナーを作成する",
     "gotoAccounts" : "アカウント画面に戻る",
-    "purchasedTitle": "Zoom License Purchase",
-    "purchasedMessage": "Zoom account has been successfully purchased.",
-    "purchasedInstruction": "Pleae wait for license activation."
+    "purchasedTitle": "Zoomライセンスを購入",
+    "purchasedMessage": "Zoomのライセンス購入が完了しました。",
+    "purchasedInstruction": "ライセンスの有効化までもう少しお待ちください。"
   },
 
   "validation": {
