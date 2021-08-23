@@ -105,8 +105,8 @@ export function Header({
         >
           {withLogo && (
             <NextImage
-              src="/images/logo.svg"
-              alt="Tobira Webinar Logo"
+              src="/images/tobiracreators_transparent.png"
+              alt="Tobira Creator"
               width={200}
               height={36}
             />

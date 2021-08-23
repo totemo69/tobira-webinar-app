@@ -57,7 +57,11 @@ export function RegisterVerified({
     <>
       <Layout>
         <Div widthFull marginTopXLarge center>
-          <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+          <Image
+            src="/images/tobiracreators_transparent.png"
+            alt="Tobira Logo"
+            logo
+          />
         </Div>
         {!isLoading && (
           <Div marginTop widthFull center>
