@@ -108,7 +108,7 @@ const message = {
   copyRight: Object.values({
     key: `${scope}.copyRight`,
     default:
-      'Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved',
+      'Copyright © 2021 Creators from Tobira Co Ltd. All rights reserved',
   }),
   listWebinar: Object.values({
     key: `${scope}.listWebinar`,

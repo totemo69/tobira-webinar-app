@@ -27,9 +27,9 @@ export function Complete() {
     route.push(WEBINAR_ROUTE.ZOOM_ACCOUNT);
   }, []);
 
-  const createAccount = useCallback(() => {
-    route.push(WEBINAR_ROUTE.CREATE_WEBINAR);
-  }, []);
+  // const createAccount = useCallback(() => {
+  //   route.push(WEBINAR_ROUTE.CREATE_WEBINAR);
+  // }, []);
 
   return (
     <>
@@ -37,7 +37,11 @@ export function Complete() {
         <Row>
           <Col span={24}>
             <Div widthFull marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+              <Image
+                src="/images/tobiracreators_transparent.png"
+                alt="Tobira Logo"
+                logo
+              />
             </Div>
             <Div widthFull marginBottom center>
               <Image src="/images/success.svg" alt="Tobira Logo" logo />
@@ -57,7 +61,7 @@ export function Complete() {
                 </Space>
               </Label>
             </Div>
-            <Div widthFull center>
+            {/* <Div widthFull center>
               <Button
                 style={{ width: '50%' }}
                 onClick={createAccount}
@@ -65,7 +69,7 @@ export function Complete() {
               >
                 {t(message.createNewWebinar)}
               </Button>
-            </Div>
+            </Div> */}
             <Div widthFull center>
               <Button
                 style={{
