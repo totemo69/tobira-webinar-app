@@ -35,6 +35,7 @@ export const API = {
   AUTH_RESET: `${Url}/auth/reset-password`,
   AUTH_VERIFY: `${Url}/auth/verify`,
   ZOOM_ACCOUNT: `${Url}/zoom-accounts`,
+  ZOOM_SUBSCRIPTION: `${Url}/zoom-subscriptions`,
   WEBINAR_PUBLIC_DETAIL_PAGE: `${Url}/webinar-page`,
   ATTENDEES: `${Url}/attendees`,
   PAYMENT: `${Url}/payments`,
@@ -97,4 +98,28 @@ export const SCHEDULE_TYPE = {
 
 export const PAYMENT_METHOD = {
   PAYPAL: 'paypal',
+};
+
+export const BANK_ACCOUNT_TYPE = {
+  SAVINGS: '0',
+  CHECKING: '1',
+};
+
+export const ZOOM_ACCOUNT_STATUS = {
+  PENDING: 'pending',
+  ACTIVATED: 'activated',
+  DEACTIVATED: 'deactivated',
+  UNLINK: 'unlink',
+};
+
+export const ZOOM_ACCOUNT_TYPE = {
+  BASIC: 1,
+  LICENSED: 2,
+};
+
+export const ZOOM_SUBSCRIPTION_TYPE = {
+  NEW: 'new',
+  REQUESTED: 'requested',
+  APPROVED: 'approved',
+  CANCELLED: 'cancelled',
 };

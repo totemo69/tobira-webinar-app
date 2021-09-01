@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import 'antd/dist/antd.css';
 import '../styles/globals.css';
 import '../styles/vars.css';
@@ -5,7 +6,7 @@ import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { wrapper } from '../states/configureStore';
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps, err }) {
   return (
     <>
       <Head>
@@ -14,16 +15,23 @@ function App({ Component, pageProps }) {
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         ></script>
-        <title>TOBIRA WEBINAR</title>
-        <meta name="description" content="TOBIRA WEBINAR" />
-        <meta property="og:title" content="TOBIRA WEBINAR" key="title" />
+        <script
+          id="ze-snippet"
+          src="https://static.zdassets.com/ekr/snippet.js?key=fba84574-4b86-4f2f-beb7-a7b6d33cd787"
+        ></script>
+        <script type="text/javascript">
+          zE('webWidget','setLocale', 'ja');
+        </script>
+        <title>TOBIRA CREATORS</title>
+        <meta name="description" content="TOBIRA CREATORS" />
+        <meta property="og:title" content="TOBIRA CREATORS" key="title" />
         <meta
           property="og:description"
-          content="TOBIRA WEBINAR"
+          content="TOBIRA CREATORS"
           key="description"
         />
       </Head>
-      <Component {...pageProps} />
+      <Component {...pageProps} err={err} />
     </>
   );
 }

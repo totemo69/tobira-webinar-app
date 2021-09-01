@@ -24,7 +24,7 @@
     "termsOfService":  "Terms of Service",
     "privacyPolicy":  "Privacy Policy",
     "and":  "and",
-    "copyRight":  "Copyright © 2021 Tobira Webinar Video Communications, Inc. All rights reserved",
+    "copyRight":  "Copyright © 2021 Creators from Tobira Co Ltd. All rights reserved",
     "listWebinar":  "List of Webinar",
     "show":  "Show",
     "entries":  "entries",
@@ -57,7 +57,21 @@
     "view": "View",
     "english":  "English",
     "japanese":  "Japanese",
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "branchCode": "Branch Code",
+    "branchName": "Branch Name",
+    "usually": "usually",
+    "current": "current",
+    "no": "No",
+    "accountType": "Account Type",
+    "transferRequestName": "Transfer request name",
+    "specifiedTransferDate": "Specified transfer date",
+    "withholdingSection": "Withholding Section Would you like to request payment?",
+    "transferAmountMoney": "Transfer amount of money",
+    "currency": "円",
+    "withholdingAmount": "Withholding amount",
+    "totalWithdrawalAmount": "Total withdrawal amount",
+    "accountBalanceAfterWithdrawal": "Account balance after withdrawal"
   },
 
   "storyBook" : {
@@ -314,12 +328,19 @@
     "accountLabel": "Email Address or Contact Number",
     "accountStatus": "Status",
     "connectedButton": "Connected",
-    "defaultButton": "Default",
+    "defaultButton": "Pending",
+    "purchaseButton": "Buy License",
+    "requestedButton": "Pending License",
+    "licenseButton": "Licensed",
     "addAccountButton": "Add account",
     "completedTitle": "Setup Complete!",
-    "completedMessage": "Zoom account has been successfully added.",
+    "completedMessage": "Zoom account has been successfully created.",
+    "completedInstruction": "Please check your email for zoom account activation.",
     "createNewWebinar": "Create a webinar now",
-    "gotoAccounts" : "Go to Accounts"
+    "gotoAccounts" : "Go to Accounts",
+    "purchasedTitle": "Zoom License Purchase",
+    "purchasedMessage": "Zoom account has been successfully purchased.",
+    "purchasedInstruction": "Pleae wait for license activation."
   },
 
   "validation": {
@@ -365,6 +386,7 @@
     "resetNotFound": "Your reset token is invalid or already expired.",
     "tokenExpired": "Your reset token is invalid or already expired.",
     "paypalAccount": "Paypal account",
-    "thisFieldIsRequired": "This field is required"
+    "thisFieldIsRequired": "This field is required",
+    "internalServerError": "Internal Server Error"
   }
 }

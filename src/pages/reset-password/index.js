@@ -45,9 +45,6 @@ export function ResetPassword({
   const { email, token } = route.query;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  console.log(email);
-  console.log(token);
-
   useEffect(() => {
     if (!isLoading) {
       if (resetStatus && !errorMessage) {
@@ -155,7 +152,11 @@ export function ResetPassword({
           </Col>
           <Col span={12}>
             <Div marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+              <Image
+                src="/images/tobiracreators_transparent.png"
+                alt="Tobira Logo"
+                logo
+              />
             </Div>
             <Image
               src="/images/illustration3.svg"

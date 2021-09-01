@@ -7,20 +7,19 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { useEffect, useState } from 'react';
-import { Row, Col, Typography } from 'antd';
+import { Row, Col, Typography, message } from 'antd';
 import { CaretDownFilled, EyeTwoTone } from '@ant-design/icons';
-// import history from '@/utils/history';
 import { FormatDate, DateIsBefore } from '@/utils/dateUtils';
-import { getZoomAccount } from '@/states/accounts/actions';
+import { getZoomAccount, createZoomUser } from '@/states/accounts/actions';
 import { getWebinarList } from '@/states/webinar/actions';
-import { makeSelectLoading } from '@/states/global/selector';
+import { makeSelectLoading, makeSelectError } from '@/states/global/selector';
+import { clearErrors } from '@/states/global/actions';
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import { makeSelectWebinars } from '@/states/webinar/selector';
-import { authRequest } from '@/lib/zoom';
 import { LOADING_PREFIX, WEBINAR_ROUTE } from '@/utils/constants';
 import globalMessage from '@/messages/global';
-import message from '@/messages/webinar';
-
+import localMessage from '@/messages/webinar';
+import validationMessage from '@/messages/validation';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -36,11 +35,15 @@ import Image from '@/components/Elements/Image';
 const { Text } = Typography;
 
 export function ListOfWebinar({
+  isAccountLoading,
   isListLoading,
   getZoomAccounts,
   zoomAccountList,
   getWebinarLists,
   webinarLists,
+  setupZoomAccount,
+  errorMessage,
+  clearErrorMessage,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -57,7 +60,16 @@ export function ListOfWebinar({
   };
 
   const connectToZoom = () => {
-    window.location = authRequest();
+    setupZoomAccount(
+      () => {
+        route.push(`${WEBINAR_ROUTE.ZOOM_ACCOUNT}/complete`);
+      },
+      () => {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
+      },
+    );
   };
 
   const closeModal = () => {
@@ -101,7 +113,7 @@ export function ListOfWebinar({
       ),
     },
     {
-      title: t(message.webinarTitleAdmin),
+      title: t(localMessage.webinarTitleAdmin),
       key: 'managementTitle',
       dataIndex: 'managementTitle',
       sorter: {
@@ -109,7 +121,7 @@ export function ListOfWebinar({
       },
     },
     {
-      title: t(message.schedule),
+      title: t(localMessage.schedule),
       key: 'schedules',
       dataIndex: ['schedules', '0', 'dateTime'],
       render: (date) => FormatDate(date, 'YYYY-MM-DD HH:mm'),
@@ -118,7 +130,7 @@ export function ListOfWebinar({
       },
     },
     {
-      title: t(message.attendees),
+      title: t(localMessage.attendees),
       key: 'attendees',
       dataIndex: 'attendees',
       render: (text, record) =>
@@ -128,20 +140,20 @@ export function ListOfWebinar({
       },
     },
     {
-      title: t(message.status),
+      title: t(localMessage.status),
       key: 'status',
       render: (text, record) => {
         let returnText = (
-          <Text type="warning">{t(message.hiddenStatusLabel)}</Text>
+          <Text type="warning">{t(localMessage.hiddenStatusLabel)}</Text>
         );
         if (record.schedules) {
           if (!DateIsBefore(record.schedules[0].dateTime)) {
             returnText = (
-              <Text type="danger">{t(message.doneStatusLabel)}</Text>
+              <Text type="danger">{t(localMessage.doneStatusLabel)}</Text>
             );
           } else if (record.status === 0) {
             returnText = (
-              <Text type="success">{t(message.publishStatusLabel)}</Text>
+              <Text type="success">{t(localMessage.publishStatusLabel)}</Text>
             );
           }
         }
@@ -161,7 +173,7 @@ export function ListOfWebinar({
           onClick={() => viewDetails(id)}
         >
           <EyeTwoTone />
-          {t(message.viewDetails)}
+          {t(localMessage.viewDetails)}
         </Button>
       ),
     },
@@ -246,13 +258,13 @@ export function ListOfWebinar({
                 </Div>
                 <Div flexColCenter widthFull heightFull>
                   <Div center marginYLarge>
-                    {t(message.setupMessage)}
+                    {t(localMessage.setupMessage)}
                   </Div>
                 </Div>
                 <Row align="middle" justify="center" style={{ padding: 40 }}>
                   <Col align="middle" justify="center" span={12}>
                     <Button onClick={closeModal} defaultButton>
-                      {t(message.buttonLater)}
+                      {t(localMessage.buttonLater)}
                     </Button>
                   </Col>
                   <Col align="middle" justify="center" span={12}>
@@ -260,9 +272,10 @@ export function ListOfWebinar({
                       default
                       type="primary"
                       onClick={connectToZoom}
+                      loading={isAccountLoading}
                       style={{ width: 140 }}
                     >
-                      {t(message.buttonSetup)}
+                      {t(localMessage.buttonSetup)}
                     </Button>
                   </Col>
                 </Row>
@@ -282,6 +295,9 @@ ListOfWebinar.proptTypes = {
   isAccountLoading: PropTypes.bool,
   isListLoading: PropTypes.bool,
   webinarLists: PropTypes.any,
+  setupZoomAccount: PropTypes.func,
+  errorMessage: PropTypes.any,
+  clearErrorMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -289,11 +305,15 @@ const mapStateToProps = createStructuredSelector({
   isListLoading: makeSelectLoading(LOADING_PREFIX.WEBINAR_LIST),
   zoomAccountList: makeSelectAccountList(),
   webinarLists: makeSelectWebinars(),
+  errorMessage: makeSelectError(),
 });
 
 const mapPropsToDispatch = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
   getWebinarLists: (payload) => dispatch(getWebinarList(payload)),
+  setupZoomAccount: (success, error) =>
+    dispatch(createZoomUser(success, error)),
+  clearErrorMessage: () => dispatch(clearErrors()),
 });
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);

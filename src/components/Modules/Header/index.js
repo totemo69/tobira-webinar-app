@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useTranslation } from 'next-i18next';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { memo, useEffect } from 'react';
 import { compose } from 'redux';
@@ -42,6 +43,14 @@ export function Header({
   useEffect(() => {
     fetchProfile();
   }, []);
+
+  const StyledRow = styled(Row)`
+    width: 40%;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  `;
 
   const MenuItems = (
     <Menu className="profile-dropdown">
@@ -96,15 +105,15 @@ export function Header({
         >
           {withLogo && (
             <NextImage
-              src="/images/logo.svg"
-              alt="Tobira Webinar Logo"
+              src="/images/tobiracreators_transparent.png"
+              alt="Tobira Creator"
               width={200}
               height={36}
             />
           )}
           {withMenu && (
             <>
-              <Row type="flex" align="middle">
+              <StyledRow type="flex" align="middle" justify="end">
                 <Col
                   type="flex"
                   align="middle"
@@ -120,10 +129,10 @@ export function Header({
                     items={MenuItems}
                   />
                 </Col>
-                <Col type="flex" align="middle" xs={12}>
+                <Col type="flex" align="middle">
                   <Language locale={locale} route={route} />
                 </Col>
-              </Row>
+              </StyledRow>
             </>
           )}
         </Div>

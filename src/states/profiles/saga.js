@@ -60,7 +60,6 @@ function* updateCredentialsSaga({ payload }) {
   try {
     // Set loading status to true
     yield put(loading(LOADING_PREFIX.UPDATE_PROFILE));
-    console.log(API.USER_CREDENTIALS);
     yield call(
       request,
       API.USER_CREDENTIALS,

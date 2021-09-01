@@ -58,7 +58,7 @@ export function SignUp({
           message.error(t(validationMessage[msg]));
           clearErrorMessage();
         }
-        setOnsignup(false);
+        // setOnsignup(false);
       }
     }
   }, [isLoading, onSignup]);
@@ -169,7 +169,11 @@ export function SignUp({
           </Col>
           <Col xs={24} lg={12}>
             <Div marginBottom center>
-              <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+              <Image
+                src="/images/tobiracreators_transparent.png"
+                alt="Tobira Logo"
+                logo
+              />
             </Div>
             <Image
               hideLogo

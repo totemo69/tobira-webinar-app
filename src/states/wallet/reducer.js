@@ -9,19 +9,22 @@ import {
 
 export const initialState = {
   bankList: [],
-  bank: {
-    bankName: 'mark',
-    accountName: '',
-    accountNumber: '',
-  },
+  bank: {},
   withdraw: {
     amount: '',
     gatewayType: '',
     gatewayDetails: {
+      paypal: '',
       bankName: '',
+      branchCode: '',
+      branchName: '',
       accountName: '',
       accountNumber: '',
-      paypal: '',
+      accountType: '',
+      requestorName: '',
+      requestorDate: '',
+      includeTax: '',
+      transferAmount: '',
     },
   },
   wallet: {},

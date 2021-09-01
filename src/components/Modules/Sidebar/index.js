@@ -18,8 +18,12 @@ export default function Sider() {
   const router = useRouter();
   return (
     <Sidebar width={250} breakpoint="lg" collapsedWidth="0">
-      <Div paddingSmall noMargin widthFull yellowBg>
-        <Image src="/images/logo.svg" alt="Tobira Logo" logoSmall />
+      <Div paddingSmall noMargin widthFull yellowBg withPadding>
+        <Image
+          src="/images/tobiracreators_transparent.png"
+          alt="Tobira Logo"
+          logoSmall
+        />
       </Div>
       <Menu
         defaultSelectedKeys={['/webinars/create-webinar']}

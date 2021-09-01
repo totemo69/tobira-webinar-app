@@ -24,6 +24,7 @@
     "termsOfService": "利用規約",
     "privacyPolicy": "個人情報保護方針",
     "and": "そして",
+    "copyRight":  "Copyright © 2021 Creators from Tobira Co Ltd. All rights reserved",
     "listWebinar": "ウェビナー一覧",
     "show": "表示",
     "entries": "件",
@@ -56,7 +57,21 @@
     "view": "詳細",
     "english":  "英語",
     "japanese":  "日本語",
-    "minutes": "分"
+    "minutes": "分",
+    "branchCode": "支店コード",
+    "branchName": "支店名",
+    "usually": "普通",
+    "current": "当座",
+    "no": "いいえ",
+    "accountType": "口座種別",
+    "transferRequestName": "振込依頼名",
+    "specifiedTransferDate": "振込指定日",
+    "withholdingSection": "源泉徴収課支払いを依頼しますか？",
+    "transferAmountMoney": "振込金額",
+    "currency": "円",
+    "withholdingAmount": "源泉徴収金額",
+    "totalWithdrawalAmount": "引落合計金額",
+    "accountBalanceAfterWithdrawal": "引出後口座残高"
   },
   "storyBook": {
     "title": "題名"
@@ -307,12 +322,19 @@
     "accountLabel": "メールアドレスまたはあ連絡先番号*",
     "accountStatus": "ステータス",
     "connectedButton": "接続済み",
-    "defaultButton": "デフォルト",
+    "defaultButton": "保留中",
+    "purchaseButton": "ライセンス購入",
+    "requestedButton": "保留ライセンス",
+    "licenseButton": "ライセンス購入済み",
     "addAccountButton": "アカウントを追加",
     "completedTitle": "セットアップ完了",
-    "completedMessage": "Zoomアカウントが正常に追加されました。",
+    "completedMessage": "Zoomアカウントが正常に作成されました。",
+    "completedInstruction": "Zoomアカウントのアクティブ方法については、メールをご確認ください。",
     "createNewWebinar": "今すぐウェビナーを作成する",
-    "gotoAccounts" : "アカウント画面に戻る"
+    "gotoAccounts" : "アカウント画面に戻る",
+    "purchasedTitle": "Zoomライセンスを購入",
+    "purchasedMessage": "Zoomのライセンス購入が完了しました。",
+    "purchasedInstruction": "ライセンスの有効化までもう少しお待ちください。"
   },
 
   "validation": {
@@ -358,6 +380,7 @@
     "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "paypalAccount": "Paypalアカウント",
-    "thisFieldIsRequired": "必須フィールドです"
+    "thisFieldIsRequired": "必須フィールドです",
+    "internalServerError": "500"
   }
 }

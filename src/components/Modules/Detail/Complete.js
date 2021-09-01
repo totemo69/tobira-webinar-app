@@ -25,7 +25,7 @@ export function Complete({
   doCapturePayment,
   isCaptureLoading,
   verificationStatus,
-  errorMessage,
+  // errorMessage,
 }) {
   const route = useRouter();
   const { t } = useTranslation();
@@ -51,7 +51,6 @@ export function Complete({
     if (verificationStatus) {
       setIsLoading(false);
     } else {
-      console.log(errorMessage);
       setIsLoading(false);
     }
   }, [isCaptureLoading, verificationStatus]);
@@ -104,7 +103,7 @@ export function Complete({
 Complete.propTypes = {
   gotoDetails: PropTypes.func,
   isCaptureLoading: PropTypes.bool,
-  errorMessage: PropTypes.any,
+  // errorMessage: PropTypes.any,
   doCapturePayment: PropTypes.any,
   verificationStatus: PropTypes.bool,
 };

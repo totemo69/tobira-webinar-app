@@ -11,7 +11,7 @@ import {
 import { Row, Col } from 'antd';
 import { useDispatch } from 'react-redux';
 
-// import { SCHEDULE_TYPE } from '@/utils/constants';
+import { ZOOM_ACCOUNT_STATUS, ZOOM_ACCOUNT_TYPE } from '@/utils/constants';
 import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
@@ -29,6 +29,7 @@ import localMessage from '@/messages/webinar';
 
 import { createWebinar } from '@/validations/webinar';
 import { DisableDates } from '@/utils/dateUtils';
+import { useState } from 'react';
 
 export default function CreateWebinarDetails({
   zoomAccounts = [],
@@ -38,6 +39,10 @@ export default function CreateWebinarDetails({
   isUpdate = false,
 }) {
   const { t } = useTranslation();
+
+  const [zoomAccountType, setZoomAccountType] = useState(
+    ZOOM_ACCOUNT_TYPE.BASIC,
+  );
   const dispatch = useDispatch();
   const onSubmit = (payload) => {
     dispatch(setWebinar(payload));
@@ -94,33 +99,43 @@ export default function CreateWebinarDetails({
                 justify="start"
                 style={{ width: '100%' }}
               >
-                <Col type="flex" align="left" justify="start" xs={24} lg={18}>
+                <Col type="flex" align="left" justify="start" xs={24} lg={24}>
                   <Labels asterisk>{t(localMessage.zoomAccount)}</Labels>
                   <Field
                     name="webinarAccount"
                     component={Select}
                     suffixIcon={<CaretDownFilled />}
                     defaultValue={values.webinarAccount}
-                    onChange={(val) => setFieldValue('webinarAccount', val)}
+                    onChange={(val) => {
+                      setFieldValue('webinarAccount', val);
+                      const zoom = zoomAccounts.find((data) => data.id === val);
+                      setZoomAccountType(zoom.zoomType);
+                    }}
                     disabled={isUpdate}
                   >
                     <Option value="" disabled>
                       {t(localMessage.selectZoomAccount)}
                     </Option>
                     {zoomAccounts.map((option) => (
-                      <Option key={option.id} value={option.id}>
+                      <Option
+                        key={option.id}
+                        value={option.id}
+                        disabled={
+                          option.status !== ZOOM_ACCOUNT_STATUS.ACTIVATED
+                        }
+                      >
                         {option.zoomEmail}
                       </Option>
                     ))}
                   </Field>
                   <ErrorMessage name="webinarAccount" />
                 </Col>
-                <Col type="flex" align="middle" justify="start" xs={24} lg={6}>
+                {/* <Col type="flex" align="middle" justify="start" xs={24} lg={6}>
                   <Button addBtn style={{ width: '90%' }}>
                     <PlusSquareFilled />{' '}
                     <a href="/account">{t(localMessage.addAccount)}</a>
                   </Button>
-                </Col>
+                </Col> */}
               </Row>
               <Div marginTop marginBottomLarge>
                 <Labels textBlue bold></Labels>
@@ -344,7 +359,14 @@ export default function CreateWebinarDetails({
                                   {t(localMessage.hourSelect)}
                                 </Option>
                                 {Array.from(Array(11), (_, i) => (
-                                  <Option key={i} value={i}>
+                                  <Option
+                                    key={i}
+                                    value={i}
+                                    disabled={
+                                      zoomAccountType ===
+                                      ZOOM_ACCOUNT_TYPE.BASIC
+                                    }
+                                  >
                                     {i}
                                   </Option>
                                 ))}

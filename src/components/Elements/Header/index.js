@@ -14,12 +14,14 @@ const StyledHeader = styled(Header).withConfig({
     !['noPadding', 'noMargin', 'frontRegistration'].includes(prop),
 })`
   width: 100%;
+  padding: 0;
   height: 65px;
   background-color: #ffffff;
   box-shadow: 0px 2px 4px #00000029;
 
   @media screen and (max-width: 480px) {
     height: auto;
+    padding: 0;
   }
 
   ${(props) =>

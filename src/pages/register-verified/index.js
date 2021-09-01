@@ -26,7 +26,7 @@ export function RegisterVerified({
   doVerifyAccount,
   isLoadingVerification,
   verificationStatus,
-  errorMessage,
+  // errorMessage,
 }) {
   const { t } = useTranslation();
   const route = useRouter();
@@ -50,7 +50,6 @@ export function RegisterVerified({
   useEffect(() => {
     if (verificationStatus) {
       setIsLoading(false);
-      console.log(errorMessage);
     }
   }, [isLoadingVerification, verificationStatus]);
 
@@ -58,7 +57,11 @@ export function RegisterVerified({
     <>
       <Layout>
         <Div widthFull marginTopXLarge center>
-          <Image src="/images/logo.svg" alt="Tobira Logo" logo />
+          <Image
+            src="/images/tobiracreators_transparent.png"
+            alt="Tobira Logo"
+            logo
+          />
         </Div>
         {!isLoading && (
           <Div marginTop widthFull center>
@@ -91,7 +94,7 @@ RegisterVerified.propTypes = {
   doVerifyAccount: PropTypes.func,
   isLoadingVerification: PropTypes.bool,
   verificationStatus: PropTypes.bool,
-  errorMessage: PropTypes.any,
+  // errorMessage: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
