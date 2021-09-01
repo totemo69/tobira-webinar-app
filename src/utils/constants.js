@@ -113,8 +113,8 @@ export const ZOOM_ACCOUNT_STATUS = {
 };
 
 export const ZOOM_ACCOUNT_TYPE = {
-  BASIC: 1,
-  LICENSED: 2,
+  BASIC: 'basic',
+  LICENSED: 'licensed',
 };
 
 export const ZOOM_SUBSCRIPTION_TYPE = {
