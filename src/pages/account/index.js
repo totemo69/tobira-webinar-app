@@ -194,10 +194,9 @@ export function Account({
                                 {t(localMessage.defaultButton)}
                               </Button>
                             )}
-                            {item.zoomDetails.type ===
-                              ZOOM_ACCOUNT_TYPE.BASIC && buttonLabel(item)}
-                            {item.zoomDetails.type !==
-                              ZOOM_ACCOUNT_TYPE.BASIC && (
+                            {item.zoomType === ZOOM_ACCOUNT_TYPE.BASIC &&
+                              buttonLabel(item)}
+                            {item.zoomType === ZOOM_ACCOUNT_TYPE.LICENSED && (
                               <Button defaultButton>
                                 {t(localMessage.licenseButton)}
                               </Button>
