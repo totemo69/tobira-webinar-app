@@ -358,16 +358,19 @@ export default function CreateWebinarDetails({
                                 <Option key="" value="" disabled>
                                   {t(localMessage.hourSelect)}
                                 </Option>
-                                {Array.from(Array(11), (_, i) => (
+                                <Option key="0" value="0">
+                                  0
+                                </Option>
+                                {Array.from(Array(10), (_, i) => (
                                   <Option
-                                    key={i}
-                                    value={i}
+                                    key={i + 1}
+                                    value={i + 1}
                                     disabled={
                                       zoomAccountType ===
                                       ZOOM_ACCOUNT_TYPE.BASIC
                                     }
                                   >
-                                    {i}
+                                    {i + 1}
                                   </Option>
                                 ))}
                               </Field>{' '}
