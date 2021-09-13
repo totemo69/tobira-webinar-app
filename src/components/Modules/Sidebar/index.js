@@ -18,7 +18,7 @@ export default function Sider() {
   const router = useRouter();
   return (
     <Sidebar width={250} breakpoint="lg" collapsedWidth="0">
-      <Div paddingSmall noMargin widthFull yellowBg withPadding>
+      <Div noMargin widthFull>
         <Image
           src="/images/tobiracreators_transparent.png"
           alt="Tobira Logo"

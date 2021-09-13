@@ -22,14 +22,10 @@ function App({ Component, pageProps, err }) {
         <script type="text/javascript">
           zE('webWidget','setLocale', 'ja');
         </script>
-        <title>TOBIRA CREATORS</title>
-        <meta name="description" content="TOBIRA CREATORS" />
-        <meta property="og:title" content="TOBIRA CREATORS" key="title" />
-        <meta
-          property="og:description"
-          content="TOBIRA CREATORS"
-          key="description"
-        />
+        <title>CREATORS</title>
+        <meta name="description" content="CREATORS" />
+        <meta property="og:title" content="CREATORS" key="title" />
+        <meta property="og:description" content="CREATORS" key="description" />
       </Head>
       <Component {...pageProps} err={err} />
     </>
