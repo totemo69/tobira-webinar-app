@@ -43,7 +43,7 @@ export const API = {
   WALLET: `${Url}/wallets`,
   UPLOAD: `${Url}/files`,
   WITHDRAWS: `${Url}/withdraws`,
-  TRANSACTION: `${Url}/transactions`,
+  TRANSACTION: `${Url}/my-transactions`,
 };
 
 export const WEBINAR_ROUTE = {
