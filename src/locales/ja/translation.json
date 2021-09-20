@@ -359,6 +359,7 @@
     "amount": "額",
     "requiredField": " 必須フィールドです",
     "amountMin": "最低必要額：100円",
+    "balance": "バランスが足りない",
     "fullName": "フルネーム",
     "contactNo": "連絡先番号",
     "manageTitle": "経営者の称号",

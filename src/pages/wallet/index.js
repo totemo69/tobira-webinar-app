@@ -486,6 +486,7 @@ export function Wallet({
                   }}
                 />
                 <ErrorMessage name="amount" />
+                <ErrorMessage name="remainingBalance" />
               </StyledDiv>
               <StyledDiv style={{ padding: '20px' }}>
                 <StyledText

@@ -365,6 +365,7 @@
     "amount": "Amount",
     "requiredField": "is a required field",
     "amountMin": "Minimum required amount: 100 JPY",
+    "balance": "Not enough balance.",
     "fullName": "Full Name",
     "contactNo": "Contact Number",
     "manageTitle": "Management title",
