@@ -86,6 +86,10 @@ const message = {
     key: `${scope}.amountMin`,
     default: 'Minimum required amount: 100 JPY',
   }),
+  balance: Object.values({
+    key: `${scope}.balance`,
+    default: 'Not enough balance',
+  }),
   fullName: Object.values({
     key: `${scope}.fullName`,
     default: 'Full name',

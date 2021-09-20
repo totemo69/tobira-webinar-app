@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const addBankValidationSchema = Yup.object({
   bankName: Yup.string().required('bankName.requiredField'),
   branchCode: Yup.string().required('branchCode.requiredField'),
-  branchName: Yup.string().required('branchCode.requiredField'),
+  branchName: Yup.string().required('branchName.requiredField'),
   accountName: Yup.string().required('accountName.requiredField'),
   accountNumber: Yup.string().required('accountNumber.requiredField'),
   accountType: Yup.string().required('accountType.requiredField'),
@@ -12,6 +12,7 @@ const addBankValidationSchema = Yup.object({
 
 const withdrawalValidationSchema = Yup.object({
   amount: Yup.string().required('amount.requiredField').min(3, 'amountMin'),
+  remainingBalance: Yup.number().positive('balance'),
   gatewayType: Yup.string(),
   requestDate: Yup.string().required('thisFieldIsRequired'),
   gatewayDetails: Yup.object({

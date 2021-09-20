@@ -64,10 +64,9 @@ function TransactionHistoryTable({
   const columns = [
     {
       title: t(message.dateAndTime),
-      dataIndex: 'transactionDate',
+      dataIndex: 'createdAt',
       align: 'center',
-      render: (transactionDate) =>
-        FormatDate(transactionDate, 'YYYY-MM-DD HH:mm'),
+      render: (createdAt) => FormatDate(createdAt, 'YYYY-MM-DD hh:mm'),
     },
     {
       title: t(message.transaction),
