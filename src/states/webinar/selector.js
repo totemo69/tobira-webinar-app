@@ -1,4 +1,4 @@
-import { CombineDateTime, ConvertMoment } from '@/utils/dateUtils';
+import { CombineDateTime, FormatDate } from '@/utils/dateUtils';
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
@@ -20,9 +20,9 @@ const makeSelectWebinarDetails = () =>
 
     if (substate.webinarDetail && substate.webinarDetail.schedules) {
       schedules = substate.webinarDetail.schedules.map((val) => ({
-        scheduleDate: ConvertMoment(val.scheduleDate),
-        scheduleTime: ConvertMoment(val.scheduleTime),
-        dateTime: ConvertMoment(val.dateTime),
+        scheduleDate: FormatDate(val.scheduleDate),
+        scheduleTime: FormatDate(val.scheduleTime, 'HH:mm'),
+        dateTime: FormatDate(val.dateTime, 'YYYY-MM-DDTHH:mm'),
       }));
     }
 

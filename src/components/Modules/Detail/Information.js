@@ -40,9 +40,9 @@ const Information = ({ postDetail }) => {
           <InformationItem
             iconSrc="/images/date_calendar.svg"
             label={t(localMessage.dateLabel)}
-            date={FormatDate(postDetail.schedules[0].scheduleDate)}
+            date={FormatDate(postDetail.schedules[0].dateTime)}
             addendum={`(${FormatDate(
-              postDetail.schedules[0].scheduleDate,
+              postDetail.schedules[0].dateTime,
               'dddd',
             )})`}
           />
@@ -51,7 +51,7 @@ const Information = ({ postDetail }) => {
           <InformationItem
             iconSrc="/images/time_schedule.svg"
             label={t(localMessage.timeLabel)}
-            date={FormatDate(postDetail.schedules[0].scheduleTime, 'HH:mm a')}
+            date={FormatDate(postDetail.schedules[0].dateTime, 'HH:mm a')}
           />
         </Col>
       </Row>
