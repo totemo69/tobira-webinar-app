@@ -68,13 +68,13 @@ export default function WebinarDetails({
     {
       title: t(message.date),
       description: webinarDetails.schedules
-        ? FormatDate(webinarDetails.schedules[0].scheduleDate, 'YYYY-MM-DD')
+        ? FormatDate(webinarDetails.schedules[0].dateTime, 'YYYY-MM-DD')
         : '',
     },
     {
       title: t(message.time),
       description: webinarDetails.schedules
-        ? FormatDate(webinarDetails.schedules[0].scheduleTime, 'HH:mm')
+        ? FormatDate(webinarDetails.schedules[0].dateTime, 'HH:mm')
         : '',
     },
     {
