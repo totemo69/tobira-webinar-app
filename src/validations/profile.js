@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
-  fullName: Yup.string().required('fullName.requiredField'),
+  fullName: Yup.string(),
   contact: Yup.string().required('contactNo.requiredField'),
 });
 

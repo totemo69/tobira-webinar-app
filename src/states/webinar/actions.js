@@ -4,6 +4,7 @@ import {
   CREATE_WEBINAR,
   WEBINAR_DETAILS,
   SET_WEBINAR,
+  SET_UPDATE_WEBINAR,
   SET_WEBINAR_DETAILS,
   SET_WEBINAR_PUBLIC,
   GET_WEBINAR_PUBLIC,
@@ -45,6 +46,11 @@ export const setWebinarDetails = (payload) => ({
 
 export const setWebinar = (payload) => ({
   type: SET_WEBINAR,
+  payload,
+});
+
+export const setUpdateWebinar = (payload) => ({
+  type: SET_UPDATE_WEBINAR,
   payload,
 });
 

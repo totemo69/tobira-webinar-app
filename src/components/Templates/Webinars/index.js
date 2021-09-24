@@ -68,6 +68,7 @@ export function CreateWebinar({
   };
 
   useEffect(() => {
+    cleanWebinar();
     getZoomAccounts();
   }, []);
 
