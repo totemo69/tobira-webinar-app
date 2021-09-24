@@ -78,7 +78,7 @@ export default function CreateWebinarDetails({
         validationSchema={createWebinar}
         enableReinitialize
       >
-        {({ setFieldValue, submitForm, values, errors }) => {
+        {({ setFieldValue, submitForm, values, errors, touched }) => {
           setSubmitForm(submitForm);
           return (
             <Form id="webinar">
@@ -329,7 +329,7 @@ export default function CreateWebinarDetails({
                           }}
                           style={{ height: 50 }}
                         />
-                        {errors.timezone ? (
+                        {errors.timezone && touched.timezone ? (
                           <DisplayError error={errors.timezone.label} />
                         ) : null}
                       </Col>

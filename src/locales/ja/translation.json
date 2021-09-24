@@ -8,19 +8,19 @@
     "enterPassword": "パスワードを入力してください",
     "username": "ユーザー名",
     "enterUsername": "ユーザー名を入力して下さい",
-    "confirmPassword": "パスワードを認証する",
+    "confirmPassword": "パスワード確認",
     "forgotPassword": "パスワードをお忘れですか？",
     "goToLogin": "ログインに戻る",
     "sendEmail": "メールを送る",
     "checkMail": "メールをチェックして下さい",
     "newPassword": "新しいパスワード",
     "success": "成功",
-    "warning": "警告",
+    "warning": "お知らせ",
     "profile": "プロフィール",
     "fullName": "フルネーム",
     "contactNo": "連絡先番号",
     "saveChanges": "変更内容を保存",
-    "emailSent": "送信された電子メール!",
+    "emailSent": "認証メール",
     "termsOfService": "利用規約",
     "privacyPolicy": "個人情報保護方針",
     "and": "そして",
@@ -32,7 +32,7 @@
     "searchPlaceholder": "ウェビナーのタイトルを検索",
     "searchEmailPlaceholder": "メールアドレスを検索",
     "thankYou": "ありがとうございました",
-    "accountActivated": "アカウントが正常にアクティブ化されました",
+    "accountActivated": "アカウントが登録されました。",
     "goBackPrevious": "前のページに戻る",
     "ok": "はい",
     "jpy": "日本円",
@@ -77,16 +77,16 @@
     "title": "題名"
   },
   "signUp": {
-    "signUp": "サインアップ",
+    "signUp": "新規作成",
     "agreeMessage": "サインアップすると、",
-    "haveAccount": "すでにアカウントをお持ちですか？",
-    "loginHere": "ここでログイン",
-    "verificationMsg": "確認メールがメールアカウントに送信されました。 メールを確認し、リンクをクリックして確認してください"
+    "haveAccount": "すでにアカウントをお持ちの方は",
+    "loginHere": "こちら",
+    "verificationMsg": "認証メールをお送りしました。メールをご確認いただき、リンクをクリックしてください。"
   },
   "login": {
     "rememberMe": "ログイン情報を保存する",
-    "createAccount": "アカウントを作成する？",
-    "signHere": "ここでサインアップする"
+    "createAccount": " ",
+    "signHere": "新規アカウント登録はこちら"
   },
   "forgotPassword": {
     "forgotPasswordText": "メールアドレスを入力すると、新しいアドレスを設定する手順が記載されたメールが送信されます",
@@ -98,7 +98,7 @@
     "resetSuccess": "パスワードは正常にリセットされました"
   },
   "profile": {
-    "editProfile": "プロファイル編集",
+    "editProfile": "プロフィール編集",
     "changePassword": "パスワードを変更する"
   },
   "sidebar": {
@@ -127,7 +127,7 @@
     "congrats": "ありがとうございます。",
     "createdSuccess": "ウェビナーの作成が完了しました。",
     "copyMessage": "生成されたチケットリンクをコピーしてください。",
-    "number": "番号",
+    "number": "No",
     "emailAddress": "メールアドレス",
     "paymentStatus": "支払い状況",
     "paymentAmount": "支払い",
@@ -148,8 +148,8 @@
     "enterRegistrationFomrName": "登録フォーム名を入力してください",
     "enterWebinarDescription": "ウェビナーの説明を入力してください",
     "formNamePlaceHolder": "登録フォーム名を入力してください",
-    "formName": "フォーム名",
-    "fieldType": "フィールドタイプ",
+    "formName": "入力項目",
+    "fieldType": "入力内容",
     "fieldNameOrPlaceholder": "フィールド名",
     "hour": "時間",
     "hourSelect": "時間",
@@ -259,8 +259,8 @@
 
   "wallet": {
     "wallet": "財布",
-    "currentWalletBalance": "現在のウォレット残高",
-    "transferFunds": "送金",
+    "currentWalletBalance": "現在の残高",
+    "transferFunds": "出金",
     "bankList": "銀行リスト",
     "addBankAccount": "銀行口座を追加する",
     "allTransactionHistory": "すべての取引履歴",
@@ -319,7 +319,7 @@
     "accountTitle": "アカウント",
     "accountSubTitle": "Zoomアカウント",
     "accountTabTitle": "Zoomアカウント",
-    "accountLabel": "メールアドレスまたはあ連絡先番号*",
+    "accountLabel": "メールアドレスまたは電話番号",
     "accountStatus": "ステータス",
     "connectedButton": "接続済み",
     "defaultButton": "保留中",
@@ -343,7 +343,7 @@
     "username": "ユーザー名",
     "confirmPassword": "パスワード（確認）",
     "required": "は必須項目です。",
-    "validEmail": "無効な電子メールアドレス",
+    "validEmail": "無効なメールアドレスです",
     "invalidLogin": "メールアドレスおよびパスワードをご確認ください。",
     "confirmPassMatch": "『パスワード』と『パスワード確認』の内容が一致していません。",
     "fieldMax": "は {max} 文字以下で入力してください。",
@@ -361,7 +361,7 @@
     "amountMin": "最低必要額：100円",
     "balance": "バランスが足りない",
     "fullName": "フルネーム",
-    "contactNo": "連絡先番号",
+    "contactNo": "電話番号",
     "manageTitle": "経営者の称号",
     "zoomAccount": "ズームアカウント",
     "title": "タイトル",
