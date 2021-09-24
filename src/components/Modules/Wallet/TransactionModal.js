@@ -77,7 +77,7 @@ export default function TransactionModal({
             </div>
             <Text
               blue
-              content={transactionDetails && transactionDetails.title}
+              content={transactionDetails && transactionDetails.webinarTitle}
             />
           </Col>
         )}
