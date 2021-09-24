@@ -1,4 +1,4 @@
-import { CombineDateTime, FormatDate } from '@/utils/dateUtils';
+import { CombineDateTime, ConvertMoment } from '@/utils/dateUtils';
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
@@ -20,9 +20,9 @@ const makeSelectWebinarDetails = () =>
 
     if (substate.webinarDetail && substate.webinarDetail.schedules) {
       schedules = substate.webinarDetail.schedules.map((val) => ({
-        scheduleDate: FormatDate(val.scheduleDate),
-        scheduleTime: FormatDate(val.scheduleTime, 'HH:mm'),
-        dateTime: FormatDate(val.dateTime, 'YYYY-MM-DDTHH:mm'),
+        scheduleDate: val.scheduleDate,
+        scheduleTime: val.scheduleTime,
+        dateTime: val.dateTime,
       }));
     }
 
@@ -52,6 +52,22 @@ const makeSelectWebinarForm = () =>
     };
   });
 
+const makeSelectWebinarUpdateForm = () =>
+  createSelector(selectWebinarsDomain, (substate) => {
+    const duration =
+      substate.updateWebinar.durationHour * 60 +
+      parseInt(substate.updateWebinar.durationMinute, 10);
+    const schedules = substate.updateWebinar.schedules.map((val) => ({
+      scheduleDate: ConvertMoment(val.scheduleDate),
+      scheduleTime: ConvertMoment(val.scheduleTime),
+    }));
+    return {
+      ...substate.updateWebinar,
+      schedules,
+      duration,
+    };
+  });
+
 const makeSelectWebinarPublic = () =>
   createSelector(selectWebinarsDomain, (substate) => substate.webinarPublic);
 
@@ -72,6 +88,7 @@ export {
   makeSelectWebinars,
   makeSelectWebinarDetails,
   makeSelectWebinarForm,
+  makeSelectWebinarUpdateForm,
   makeSelectWebinarPublic,
   makeSelectWebinarRegistration,
   makeSelectWebinarRegistrationForm,

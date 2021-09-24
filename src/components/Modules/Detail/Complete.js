@@ -63,7 +63,7 @@ export function Complete({
             <Col span={12} lg={12} xs={22} className={classNames.completeCol}>
               <NextImage
                 src="/images/success.svg"
-                alt="Tobira Logo"
+                alt="Tobira Creators"
                 layout="fill"
                 loading="lazy"
               />

@@ -246,7 +246,7 @@
     "descriptionLabel": "Description",
     "dateLabel": "Date",
     "timeLabel": "Time",
-    "durationLabel": "Label",
+    "durationLabel": "Duration",
     "timezoneLabel": "Timezone",
     "ticketPriceLabel": "Ticket Price",
     "backButton": "Back",

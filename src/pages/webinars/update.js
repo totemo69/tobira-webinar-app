@@ -26,13 +26,13 @@ import {
 import { makeSelectAccountList } from '@/states/accounts/selector';
 import {
   makeSelectWebinarDetails,
-  makeSelectWebinarForm,
+  makeSelectWebinarUpdateForm,
 } from '@/states/webinar/selector';
 import { getZoomAccount } from '@/states/accounts/actions';
 import {
   updateWebinar,
   getWebinarDetail,
-  setWebinar,
+  setUpdateWebinar,
   clearWebinar,
 } from '@/states/webinar/actions';
 import { connect } from 'react-redux';
@@ -274,7 +274,7 @@ const mapStateToProps = createStructuredSelector({
   submitStatus: makeSelectLoadingStatus(LOADING_PREFIX.UPDATE_WEBINAR),
   zoomAccountList: makeSelectAccountList(),
   errorMessage: makeSelectError(),
-  webinarFormDetails: makeSelectWebinarForm(),
+  webinarFormDetails: makeSelectWebinarUpdateForm(),
   webinarDetails: makeSelectWebinarDetails(),
 });
 
@@ -282,7 +282,7 @@ const mapDispatchProps = (dispatch) => ({
   getZoomAccounts: () => dispatch(getZoomAccount()),
   doUpdateWebinar: () => dispatch(updateWebinar()),
   getWebinar: (payload) => dispatch(getWebinarDetail(payload)),
-  setWebinarForm: (payload) => dispatch(setWebinar(payload)),
+  setWebinarForm: (payload) => dispatch(setUpdateWebinar(payload)),
   cleanWebinar: () => dispatch(clearWebinar()),
 });
 
