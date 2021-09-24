@@ -9,10 +9,6 @@ const { withSentryConfig } = require('@sentry/nextjs');
 
 module.exports = withBundleAnalyzer();
 const moduleExports = withTM({
-  sentry: {
-    disableServerWebpackPlugin: true,
-    disableClientWebpackPlugin: true,
-  },
   webpack5: false,
   i18n,
   images: {

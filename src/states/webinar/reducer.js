@@ -4,6 +4,7 @@ import {
   SET_WEBINAR_LIST,
   WEBINAR_DETAILS,
   SET_WEBINAR,
+  SET_UPDATE_WEBINAR,
   SET_WEBINAR_PUBLIC,
   WEBINAR_REGISTER,
   SET_ATTENDEE,
@@ -27,6 +28,36 @@ export const initialState = {
     price: 0,
   },
   webinar: {
+    managementTitle: '',
+    webinarAccount: '',
+    title: '',
+    description: '',
+    frequency: SCHEDULE_TYPE.ONETIME,
+    timezone: {},
+    durationHour: '',
+    durationMinute: '',
+    duration: '',
+    image: '',
+    schedules: [
+      {
+        scheduleDate: '',
+        scheduleTime: '',
+        dateTime: '',
+      },
+    ],
+    formName: 'Register',
+    formFields: [
+      {
+        fieldName: 'Email',
+        fieldType: 'Email',
+        isRequired: true,
+        options: [],
+      },
+    ],
+    price: 0,
+    paymentModes: PAYMENT_METHOD.PAYPAL,
+  },
+  updateWebinar: {
     managementTitle: '',
     webinarAccount: '',
     title: '',
@@ -83,6 +114,10 @@ const webinarReducer = (state = initialState, action) =>
           ...draft.webinar,
           ...action.payload,
         };
+        break;
+      }
+      case SET_UPDATE_WEBINAR: {
+        draft.updateWebinar = action.payload;
         break;
       }
       case SET_WEBINAR_PUBLIC: {

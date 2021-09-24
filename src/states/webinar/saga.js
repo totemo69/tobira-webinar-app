@@ -30,6 +30,7 @@ import {
 } from './types';
 import {
   makeSelectWebinarForm,
+  makeSelectWebinarUpdateForm,
   makeSelectWebinarRegistrationForm,
 } from './selector';
 
@@ -213,7 +214,7 @@ function* updateWebinar() {
   try {
     yield put(loading(LOADING_PREFIX.UPDATE_WEBINAR));
     const payload = yield select(makeSelectWebinarForm());
-    const { id } = payload;
+    const { id } = yield select(makeSelectWebinarUpdateForm());
     yield call(
       request,
       `${API.WEBINARS}/${id}`,
