@@ -66,7 +66,7 @@ const message = {
     default: 'Schedule',
   }),
   paymentButton: Object.values({
-    key: `${scope}.dateTimeLabel`,
+    key: `${scope}.paymentButton`,
     default: 'Payment',
   }),
   paymentMethodLabel: Object.values({
