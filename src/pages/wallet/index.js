@@ -10,7 +10,6 @@ import {
   EllipsisOutlined,
   PlusSquareFilled,
   CaretDownFilled,
-  BankOutlined,
   MoreOutlined,
   EditFilled,
   CloseCircleFilled,
@@ -79,6 +78,9 @@ import {
   calculateTotal,
   calculateRemainingBalance,
 } from '@/utils/math';
+
+const RadioGroup = Radio.Group;
+const PaymentButton = Radio.Button;
 
 export function Wallet({
   doGetBankList,
@@ -211,10 +213,11 @@ export function Wallet({
     setOnBankEdit(true);
   };
 
-  const onProceed = (payload) => {
+  const onProceed = (payload, { resetForm }) => {
     dispatch(setWithdraw(payload));
     setIsTransferFundVisible(!setIsTransferFundVisible);
     setIsConfirmTransferFundVisible(true);
+    resetForm();
   };
 
   const onConfirm = () => {
@@ -426,9 +429,9 @@ export function Wallet({
         <Formik
           initialValues={{
             amount: 0,
-            gatewayType: 'bank',
+            gatewayType: 'paypal',
             gatewayDetails: {
-              gatewayType: 'bank',
+              gatewayType: 'paypal',
               paypal: '',
               bankName: '',
               branchCode: '',
@@ -439,7 +442,7 @@ export function Wallet({
               requestorName: '',
             },
             requestDate: moment(),
-            includeTax: 'true',
+            includeTax: 'false',
             taxAmount: 0,
             totalAmount: 0,
             remainingBalance: myWallet.currentBalance,
@@ -494,9 +497,21 @@ export function Wallet({
                   content={t(localMessage.selectPaymentGateway)}
                 />
               </StyledDiv>
-              <Row type="flex" align="middle" justify="center">
-                <Col align="middle" justify="center" span={12}>
-                  <Button
+              <Row style={{ padding: '0 35px' }}>
+                <Col align="left" justify="left" span={24}>
+                  <RadioGroup defaultValue="Paypal" name="payment-method">
+                    <PaymentButton value="Paypal">
+                      <Image
+                        style={{ marginLeft: '5em' }}
+                        src="/images/paypal.svg"
+                        alt="paypal image"
+                      />
+                    </PaymentButton>
+                    {/* <PaymentButton value="Other">
+                      <Image src="/images/other-payment.svg" />
+                    </PaymentButton> */}
+                  </RadioGroup>
+                  {/* <Button
                     style={{
                       height: 55,
                       width: 190,
@@ -513,9 +528,9 @@ export function Wallet({
                       width="100"
                       height="50"
                     />
-                  </Button>
+                  </Button> */}
                 </Col>
-                <Col align="middle" justify="center" span={12}>
+                {/* <Col align="middle" justify="center" span={12}>
                   <Button
                     chooseStandard
                     style={{
@@ -531,7 +546,7 @@ export function Wallet({
                   >
                     <StyledText strong blue content={t(globalMessage.bank)} />
                   </Button>
-                </Col>
+                </Col> */}
               </Row>
               {values.gatewayType === 'bank' ? (
                 <Row style={{ padding: '0 35px' }}>
@@ -658,7 +673,7 @@ export function Wallet({
                     disabledDate={disableWeekends}
                   />
                   <ErrorMessage name="requestDate" />
-                  <Row>
+                  {/* <Row>
                     <Label marginTop style={{ marginBottom: 7 }}>
                       {t(globalMessage.withholdingSection)}{' '}
                       <InfoCircleFilled
@@ -669,8 +684,8 @@ export function Wallet({
                         }}
                       />
                     </Label>
-                  </Row>
-                  <Row gutter={16}>
+                  </Row> */}
+                  {/* <Row gutter={16}>
                     <Col span={12}>
                       <Radio.Group
                         onChange={(e) => {
@@ -694,7 +709,7 @@ export function Wallet({
                         buttonStyle="solid"
                         style={{ width: '100%' }}
                       >
-                        <Radio.Button value="true">
+                        <Radio.Button disabled value="true">
                           {t(globalMessage.ok)}
                         </Radio.Button>
                         <Radio.Button value="false">
@@ -703,7 +718,7 @@ export function Wallet({
                       </Radio.Group>
                       <ErrorMessage name="includeTax" />
                     </Col>
-                  </Row>
+                  </Row> */}
                   <Row justify="end" style={{ marginTop: 30 }}>
                     <Col span={15} align="end">
                       <StyledText
@@ -728,7 +743,7 @@ export function Wallet({
                       />
                     </Col>
                   </Row>
-                  <Row justify="end">
+                  {/* <Row justify="end">
                     <Col span={15} align="end">
                       <StyledText
                         gray
@@ -751,7 +766,7 @@ export function Wallet({
                         content={t(globalMessage.currency)}
                       />
                     </Col>
-                  </Row>
+                  </Row> */}
                   <Row justify="end">
                     <Col span={13} align="end">
                       <StyledText
