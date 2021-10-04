@@ -13,6 +13,10 @@ const message = {
     key: `${scope}.required`,
     default: 'is required.',
   }),
+  requiredOnly: Object.values({
+    key: `${scope}.requiredOnly`,
+    default: 'Required',
+  }),
   validEmail: Object.values({
     key: `${scope}.validEmail`,
     default: 'Invalid email address.',

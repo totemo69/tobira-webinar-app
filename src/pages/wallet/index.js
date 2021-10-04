@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
@@ -6,17 +6,9 @@ import { Formik, Field, Form } from 'formik';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { subtract } from 'lodash';
 import { createStructuredSelector } from 'reselect';
-import {
-  EllipsisOutlined,
-  PlusSquareFilled,
-  CaretDownFilled,
-  MoreOutlined,
-  EditFilled,
-  CloseCircleFilled,
-  InfoCircleFilled,
-} from '@ant-design/icons';
+import { CaretDownFilled, InfoCircleFilled } from '@ant-design/icons';
 import { useTranslation } from 'next-i18next';
-import { Row, Col, Dropdown, Menu, message, Spin, Radio } from 'antd';
+import { Row, Col, message, Spin, Radio } from 'antd';
 import moment from 'moment';
 import { disableWeekends } from '@/utils/dateUtils';
 import Layout from '@/components/Layouts/Home';
@@ -37,9 +29,9 @@ import Input from '@/components/Elements/Input';
 import StyledText from '@/components/Elements/Text';
 import Checkbox from '@/components/Elements/Checkbox';
 import SuccessModal from '@/components/Modules/Wallet/SuccessModal';
-import BankModal from '@/components/Modules/Wallet/BankModal';
-import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
-import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
+// import BankModal from '@/components/Modules/Wallet/BankModal';
+// import DeleteModal from '@/components/Modules/Wallet/DeleteModal';
+// import UpdateBankModal from '@/components/Modules/Wallet/UpdateBankModal';
 import ErrorMessage from '@/components/Elements/ErrorMessage';
 import validationMessage from '@/messages/validation';
 import globalMessage from '@/messages/global';
@@ -87,15 +79,15 @@ export function Wallet({
   getTransactionHistory,
   getMyWallet,
   myWallet,
-  bankList,
+  // bankList,
   transactionHistoryList,
-  doRemoveBank,
+  // doRemoveBank,
   doWithdraw,
   withdraw,
   isLoading,
   isWalletLoading,
-  isBankLoading,
-  isBankStatus,
+  // isBankLoading,
+  // isBankStatus,
   getDetails,
   transactionDetails,
   isWithdrawLoading,
@@ -107,10 +99,10 @@ export function Wallet({
   const dispatch = useDispatch();
 
   const [onWithdraw, setOnWithdraw] = useState(false);
-  const [onBank, setOnBank] = useState(false);
-  const [onBankEdit, setOnBankEdit] = useState(false);
-  const [bankId, setBankId] = useState(null);
-  const [bankDetails, setDankDetails] = useState({});
+  // const [onBank, setOnBank] = useState(false);
+  // const [onBankEdit, setOnBankEdit] = useState(false);
+  // const [bankId, setBankId] = useState(null);
+  // const [bankDetails, setDankDetails] = useState({});
 
   useEffect(() => {
     doGetBankList();
@@ -134,36 +126,36 @@ export function Wallet({
     }
   }, [isWithdrawLoading, onWithdraw]);
 
-  useEffect(() => {
-    if (!isBankLoading) {
-      if (onBank) {
-        if (isBankStatus && !errorMessage) {
-          if (onBankEdit) {
-            setIsBankEditModalVisible(false);
-            setIsBankUpdatedSuccessModalVisible(true);
-          } else {
-            setIsBankAddModalVisible(false);
-            setIsBankAddedSuccessModalVisible(true);
-          }
-          doGetBankList();
-        } else {
-          const { message: msg } = errorMessage.error;
-          message.error(t(validationMessage[msg]));
-          clearErrorMessage();
-        }
-        setOnBank(false);
-      }
-    }
-  }, [isBankLoading, onBank]);
+  // useEffect(() => {
+  //   if (!isBankLoading) {
+  //     if (onBank) {
+  //       if (isBankStatus && !errorMessage) {
+  //         // if (onBankEdit) {
+  //         //   setIsBankEditModalVisible(false);
+  //         //   setIsBankUpdatedSuccessModalVisible(true);
+  //         // } else {
+  //         //   setIsBankAddModalVisible(false);
+  //         //   setIsBankAddedSuccessModalVisible(true);
+  //         // }
+  //         doGetBankList();
+  //       } else {
+  //         const { message: msg } = errorMessage.error;
+  //         message.error(t(validationMessage[msg]));
+  //         clearErrorMessage();
+  //       }
+  //       // setOnBank(false);
+  //     }
+  //   }
+  // }, [isBankLoading, onBank]);
 
   const [displayCount, setDisplayCount] = useState(10);
 
   const [isTransferFundVisible, setIsTransferFundVisible] = useState(false);
   const [isConfirmTransferFundVisible, setIsConfirmTransferFundVisible] =
     useState(false);
-  const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
-    useState(false);
-  const [isBankAddModalVisible, setIsBankAddModalVisible] = useState(false);
+  // const [isBankDeleteModalVisible, setIsBankDeleteModalVisible] =
+  //   useState(false);
+  // const [isBankAddModalVisible, setIsBankAddModalVisible] = useState(false);
   const [isTransferSuccessModalVisible, setIsTransferSuccessModalVisible] =
     useState(false);
   const [isBankAddedSuccessModalVisible, setIsBankAddedSuccessModalVisible] =
@@ -176,42 +168,42 @@ export function Wallet({
     isBankDeletedSuccessModalVisible,
     setIsBankDeletedSuccessModalVisible,
   ] = useState(false);
-  const [isBankEditModalVisible, setIsBankEditModalVisible] = useState(false);
+  // const [isBankEditModalVisible, setIsBankEditModalVisible] = useState(false);
 
   const showTransferFundsModal = () => {
     setIsTransferFundVisible(true);
   };
 
-  const onAddBankAccount = () => {
-    setOnBank(true);
-    setOnBankEdit(false);
-  };
+  // const onAddBankAccount = () => {
+  //   setOnBank(true);
+  //   setOnBankEdit(false);
+  // };
 
-  const showRemoveBankModal = (id) => {
-    setBankId(id);
-    setIsBankDeleteModalVisible(true);
-  };
+  // const showRemoveBankModal = (id) => {
+  //   setBankId(id);
+  //   setIsBankDeleteModalVisible(true);
+  // };
 
-  const onRemoveBankAccount = useCallback((id) => {
-    doRemoveBank(id, (success) => {
-      setIsBankDeleteModalVisible(false);
-      if (success) {
-        setIsBankDeletedSuccessModalVisible(true);
-      }
-    });
-  });
+  // const onRemoveBankAccount = useCallback((id) => {
+  //   doRemoveBank(id, (success) => {
+  //     setIsBankDeleteModalVisible(false);
+  //     if (success) {
+  //       setIsBankDeletedSuccessModalVisible(true);
+  //     }
+  //   });
+  // });
 
-  const showUpdateModal = (id) => {
-    const details = bankList.find((item) => item.id === id);
-    setDankDetails(details);
-    setBankId(id);
-    setIsBankEditModalVisible(true);
-  };
+  // const showUpdateModal = (id) => {
+  //   const details = bankList.find((item) => item.id === id);
+  //   setDankDetails(details);
+  //   setBankId(id);
+  //   setIsBankEditModalVisible(true);
+  // };
 
-  const onUpdateBankAccount = () => {
-    setOnBank(true);
-    setOnBankEdit(true);
-  };
+  // const onUpdateBankAccount = () => {
+  //   setOnBank(true);
+  //   setOnBankEdit(true);
+  // };
 
   const onProceed = (payload, { resetForm }) => {
     dispatch(setWithdraw(payload));
@@ -231,41 +223,41 @@ export function Wallet({
 
   const isCanWithdraw = (val1, val2) => val1 > val2;
 
-  const bankItems = bankList.map((bank) => (
-    <Col xs={24} lg={8} key={bank.id}>
-      <Div bankList>
-        <Dropdown.Button
-          style={{ float: 'right' }}
-          overlay={
-            <Menu>
-              <Menu.Item
-                key="1"
-                icon={<EditFilled />}
-                onClick={() => showUpdateModal(bank.id)}
-              >
-                {t(globalMessage.edit)}
-              </Menu.Item>
-              <Menu.Item
-                key="2"
-                icon={<CloseCircleFilled />}
-                style={{ color: '#FF0033' }}
-                onClick={() => showRemoveBankModal(bank.id)}
-              >
-                <StyledText red content={t(globalMessage.delete)} />
-              </Menu.Item>
-            </Menu>
-          }
-          icon={<MoreOutlined />}
-          type="text"
-        />
-        <Title level={5}>{bank.bankName}</Title>
-        <StyledParagraph>{bank.accountName}</StyledParagraph>
-        <Row align="middle">
-          <EllipsisOutlined style={{ fontSize: 35 }} /> {bank.accountNumber}
-        </Row>
-      </Div>
-    </Col>
-  ));
+  // const bankItems = bankList.map((bank) => (
+  //   <Col xs={24} lg={8} key={bank.id}>
+  //     <Div bankList>
+  //       <Dropdown.Button
+  //         style={{ float: 'right' }}
+  //         overlay={
+  //           <Menu>
+  //             <Menu.Item
+  //               key="1"
+  //               icon={<EditFilled />}
+  //               onClick={() => showUpdateModal(bank.id)}
+  //             >
+  //               {t(globalMessage.edit)}
+  //             </Menu.Item>
+  //             <Menu.Item
+  //               key="2"
+  //               icon={<CloseCircleFilled />}
+  //               style={{ color: '#FF0033' }}
+  //               onClick={() => showRemoveBankModal(bank.id)}
+  //             >
+  //               <StyledText red content={t(globalMessage.delete)} />
+  //             </Menu.Item>
+  //           </Menu>
+  //         }
+  //         icon={<MoreOutlined />}
+  //         type="text"
+  //       />
+  //       <Title level={5}>{bank.bankName}</Title>
+  //       <StyledParagraph>{bank.accountName}</StyledParagraph>
+  //       <Row align="middle">
+  //         <EllipsisOutlined style={{ fontSize: 35 }} /> {bank.accountNumber}
+  //       </Row>
+  //     </Div>
+  //   </Col>
+  // ));
 
   return (
     <>
@@ -299,15 +291,15 @@ export function Wallet({
           subTitle={t(localMessage.successfullyDeletedBankAccount)}
         />
         {/* Bank account add modal */}
-        <BankModal
+        {/* <BankModal
           visible={isBankAddModalVisible}
           onClose={() => setIsBankAddModalVisible(false)}
           title={t(localMessage.addBankAccount)}
           onOk={onAddBankAccount}
           okText={t(globalMessage.add)}
-        />
+        /> */}
         {/* Bank account update modal */}
-        <UpdateBankModal
+        {/* <UpdateBankModal
           visible={isBankEditModalVisible}
           onClose={() => setIsBankEditModalVisible(false)}
           title={t(localMessage.editBankAccount)}
@@ -315,15 +307,15 @@ export function Wallet({
           bankId={bankId}
           bank={bankDetails}
           okText={t(localMessage.saveChanges)}
-        />
+        /> */}
         {/* Bank account delete modal */}
-        <DeleteModal
+        {/* <DeleteModal
           visible={isBankDeleteModalVisible}
           onClose={() => setIsBankDeleteModalVisible(false)}
           onOk={() => onRemoveBankAccount(bankId)}
           title={t(localMessage.deleteBankAccount)}
           subTitle={t(localMessage.deleteBankAccountSubTitle)}
-        />
+        /> */}
         <Div marginBottomLarge flexTop>
           <Title secondary marginRight>
             {t(localMessage.wallet)}
@@ -355,13 +347,13 @@ export function Wallet({
               </Button>
             </Div>
           </Div>
-          <Div marginY>
+          {/* <Div marginY>
             <StyledParagraph colorBlue>
               {t(localMessage.bankList)}
             </StyledParagraph>
-          </Div>
+          </Div> */}
 
-          <Div
+          {/* <Div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -386,7 +378,7 @@ export function Wallet({
                 </Div>
               </Div>
             </Col>
-          </Row>
+          </Row> */}
 
           <Div marginY>
             <StyledParagraph colorBlue>
@@ -428,7 +420,7 @@ export function Wallet({
       >
         <Formik
           initialValues={{
-            amount: 0,
+            amount: 100,
             gatewayType: 'paypal',
             gatewayDetails: {
               gatewayType: 'paypal',
@@ -472,7 +464,7 @@ export function Wallet({
                   prefix="￥"
                   suffix="JPY"
                   onChange={(e) => {
-                    const amount = parseInt(e.target.value, 10);
+                    const amount = parseInt(e.target.value || 0, 10);
                     setFieldValue('amount', amount);
 
                     const tax = calculateTax(amount, values.includeTax);
@@ -807,8 +799,37 @@ export function Wallet({
                     </Col>
                   </Row>
                   <Row style={{ marginTop: 20 }}>
-                    <Checkbox />
-                    <Label>{t(localMessage.saveThisAccountFutureUse)}</Label>
+                    <Col align="left">
+                      <InfoCircleFilled
+                        style={{
+                          fontSize: '1.1em',
+                          marginLeft: 5,
+                          opacity: 0.65,
+                        }}
+                      />
+                      <Button
+                        noBoxShadow
+                        type="text"
+                        onClick={() => {
+                          window.open(
+                            'https://www.paypal.com/jp/webapps/mpp/merchant-fees',
+                            '_blank',
+                          );
+                        }}
+                      >
+                        <StyledText
+                          blue
+                          strong
+                          content={t(globalMessage.paypalFees)}
+                        />
+                      </Button>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={24} align="left">
+                      <Checkbox />
+                      <Label>{t(localMessage.saveThisAccountFutureUse)}</Label>
+                    </Col>
                   </Row>
                 </Col>
               </Row>
@@ -912,14 +933,14 @@ export function Wallet({
           </Col>
           <Col>
             <Button
-              NextButton
+              btnNextTFR
               noMargin
               type="primary"
               onClick={onConfirm}
               loading={isWithdrawLoading}
               disabled={isCanWithdraw(withdraw.amount, myWallet.currentBalance)}
             >
-              {t(globalMessage.confirm)}
+              {t(globalMessage.confirmButton)}
             </Button>
           </Col>
         </Row>
@@ -929,19 +950,19 @@ export function Wallet({
 }
 
 Wallet.propTypes = {
-  bankList: PropTypes.any,
+  // bankList: PropTypes.any,
   transactionHistoryList: PropTypes.any,
   withdraw: PropTypes.any,
   getMyWallet: PropTypes.any,
   myWallet: PropTypes.any,
   doGetBankList: PropTypes.func,
   getTransactionHistory: PropTypes.func,
-  doRemoveBank: PropTypes.func,
+  // doRemoveBank: PropTypes.func,
   doWithdraw: PropTypes.func,
   isLoading: PropTypes.bool,
   isWalletLoading: PropTypes.bool,
-  isBankLoading: PropTypes.bool,
-  isBankStatus: PropTypes.bool,
+  // isBankLoading: PropTypes.bool,
+  // isBankStatus: PropTypes.bool,
   getDetails: PropTypes.func,
   transactionDetails: PropTypes.any,
   isWithdrawLoading: PropTypes.bool,

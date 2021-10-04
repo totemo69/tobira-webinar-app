@@ -16,5 +16,5 @@ export function calculateTotal(n1, n2) {
 }
 
 export function calculateRemainingBalance(n1, n2) {
-  return round(subtract(parseInt(n1, 10), n2), 2);
+  return round(subtract(parseInt(n1, 10), n2 || 0), 2);
 }

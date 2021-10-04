@@ -71,7 +71,9 @@
     "currency": "円",
     "withholdingAmount": "Withholding amount",
     "totalWithdrawalAmount": "Total withdrawal amount",
-    "accountBalanceAfterWithdrawal": "Account balance after withdrawal"
+    "accountBalanceAfterWithdrawal": "Account balance after withdrawal",
+    "confirmButton": "Confirm",
+    "paypalFees": "About paypal fess"
   },
 
   "storyBook" : {
@@ -348,6 +350,7 @@
     "password": "Password",
     "username": "Username",
     "confirmPassword": "Confirm Password",
+    "requiredOnly": "Required",
     "required": "is required.",
     "validEmail": "Invalid email address.",
     "invalidLogin": "The email address or password that you have entered is incorrect.",
