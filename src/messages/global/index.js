@@ -206,8 +206,8 @@ const message = {
     key: `${scope}.currencySymbol`,
     default: 'JPY',
   }),
-  confirm: Object.values({
-    key: `${scope}.confirm`,
+  confirmButton: Object.values({
+    key: `${scope}.confirmButton`,
     default: 'Confirm',
   }),
   shareTitle: Object.values({
@@ -293,6 +293,10 @@ const message = {
   accountBalanceAfterWithdrawal: Object.values({
     key: `${scope}.accountBalanceAfterWithdrawal`,
     default: 'Account balance after withdrawal',
+  }),
+  paypalFees: Object.values({
+    key: `${scope}.paypalFees`,
+    default: 'About paypal fees',
   }),
 };
 

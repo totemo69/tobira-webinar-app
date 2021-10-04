@@ -11,7 +11,7 @@ const addBankValidationSchema = Yup.object({
 });
 
 const withdrawalValidationSchema = Yup.object({
-  amount: Yup.string().required('amount.requiredField').min(3, 'amountMin'),
+  amount: Yup.string().required('requiredOnly').min(3, 'amountMin'),
   remainingBalance: Yup.number().positive('balance'),
   gatewayType: Yup.string(),
   requestDate: Yup.string().required('thisFieldIsRequired'),
@@ -47,9 +47,7 @@ const withdrawalValidationSchema = Yup.object({
     }),
     paypal: Yup.string().when('gatewayType', {
       is: 'paypal',
-      then: Yup.string()
-        .required('paypalAccount.requiredField')
-        .email('paypalAccount.validEmail'),
+      then: Yup.string().required('requiredOnly').email('validEmail'),
     }),
   }),
 });
