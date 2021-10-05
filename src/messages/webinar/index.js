@@ -45,6 +45,10 @@ const message = {
     key: `${scope}.createdSuccess`,
     default: 'Your webinar has been successfully created.',
   }),
+  updatedSuccess: Object.values({
+    key: `${scope}.updatedSuccess`,
+    default: 'Your webinar has been succesfully updated.',
+  }),
   copyMessage: Object.values({
     key: `${scope}.copyMessage`,
     default: 'Please copy the generated ticket link.',
@@ -343,7 +347,11 @@ const message = {
   }),
   createWebinarSuccess: Object.values({
     key: `${scope}.createWebinarSuccess`,
-    default: 'Webinar creation completed',
+    default: 'Webinar creation completed!',
+  }),
+  createWebinarUpdate: Object.values({
+    key: `${scope}.createWebinarUpdate`,
+    default: 'Success!',
   }),
 };
 
