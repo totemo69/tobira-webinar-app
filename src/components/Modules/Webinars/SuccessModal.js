@@ -14,7 +14,12 @@ import Input from '@/components/Elements/Input';
 import Labels from '@/components/Elements/Labels';
 import Div from '@/components/Elements/Div';
 
-const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
+const SuccessModal = ({
+  isOpenModal,
+  closeModal,
+  webinarUrl,
+  isUpdate = false,
+}) => {
   const { t } = useTranslation();
   let hostname = '';
   if (typeof window !== 'undefined') {
@@ -44,17 +49,23 @@ const SuccessModal = ({ isOpenModal, closeModal, webinarUrl }) => {
                 alt="success icon"
                 modalIcon
               />
-              <Title modalTitle>{t(localMessage.createWebinarSuccess)}!</Title>
+              <Title modalTitle>
+                {isUpdate
+                  ? t(localMessage.createWebinarUpdate)
+                  : t(localMessage.createWebinarSuccess)}
+              </Title>
             </Div>
             <Div flexColCenter widthFull paddingTop>
               <Div center>
                 <Labels fullWidth center textCenter bold>
-                  {t(localMessage.congrats)}
+                  {!isUpdate ? t(localMessage.congrats) : ''}
                 </Labels>
               </Div>
               <Div center>
                 <Labels fullWidth center textCenter>
-                  {t(localMessage.createdSuccess)}
+                  {isUpdate
+                    ? t(localMessage.createdSuccess)
+                    : t(localMessage.createdSuccess)}
                 </Labels>
               </Div>
             </Div>
