@@ -21,9 +21,17 @@ const message = {
     key: `${scope}.password`,
     default: 'Password',
   }),
+  currentPassword: Object.values({
+    key: `${scope}.currentPassword`,
+    default: 'Current Password',
+  }),
   enterPassword: Object.values({
     key: `${scope}.enterPassword`,
     default: 'Enter your password',
+  }),
+  enterCurrentPassword: Object.values({
+    key: `${scope}.enterCurrentPassword`,
+    default: 'Enter your current password',
   }),
   username: Object.values({
     key: `${scope}.username`,
