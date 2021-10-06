@@ -202,6 +202,10 @@ const message = {
     key: `${scope}.submit`,
     default: 'Submit',
   }),
+  update: Object.values({
+    key: `${scope}.update`,
+    default: 'Update',
+  }),
   currencySymbol: Object.values({
     key: `${scope}.currencySymbol`,
     default: 'JPY',

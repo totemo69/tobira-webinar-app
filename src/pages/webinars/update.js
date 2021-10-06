@@ -232,7 +232,7 @@ export function Update({
                 NextButton
                 type="primary"
               >
-                {t(globalMessage.submit)}
+                {t(globalMessage.update)}
               </Button>
             )}
             {current > 0 && (
@@ -246,6 +246,7 @@ export function Update({
           isOpenModal={successModal}
           closeModal={onCloseModal}
           webinarUrl={webinarDetails && webinarDetails.slug}
+          isUpdate
         />
       </Layout>
     </>

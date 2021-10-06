@@ -48,6 +48,7 @@
     "close": "閉じる",
     "details": "Details",
     "submit": "作成する",
+    "update": "変更する",
     "currencySymbol": "¥",
     "back": "戻る",
     "next": "次",
@@ -128,6 +129,7 @@
     "viewDetails": "詳細を見る",
     "congrats": "ありがとうございます。",
     "createdSuccess": "ウェビナーの作成が完了しました。",
+    "updatedSuccess": "ウェビナーが正常に更新されました。 ",
     "copyMessage": "生成されたチケットリンクをコピーしてください。",
     "number": "No",
     "emailAddress": "メールアドレス",
@@ -202,7 +204,8 @@
     "failedPaymentLabel": "失敗",
     "completedPaymentLabel": "完了",
     "createWebinarTitle": "管理部分",
-    "createWebinarSuccess": "ウェビナー作成完了"
+    "createWebinarSuccess": "ウェビナー作成完了!",
+    "createWebinarUpdate": "ウェビナー編集完了!"
   },
 
   "termsAndPrivacy": {
