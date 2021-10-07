@@ -198,6 +198,14 @@ const message = {
     key: `${scope}.internalServerError`,
     default: 'Internal Server Error',
   }),
+  userNotFound: Object.values({
+    key: `${scope}.userNotFound`,
+    default: 'User not found',
+  }),
+  invalidPassword: Object.values({
+    key: `${scope}.invalidPassword`,
+    default: 'Invalid password',
+  }),
 };
 
 export default message;

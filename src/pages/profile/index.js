@@ -70,15 +70,14 @@ export function Profile({
   };
 
   useEffect(() => {
-    if (!isLoading) {
-      if (onAction) {
-        if (profileUpdateStatus && !errorMessage) {
-          message.success(t(globalMessage.success));
-        } else if (!profileUpdateStatus && errorMessage) {
-          const { message: msg } = errorMessage.error;
-          message.error(t(validationMessage[msg]));
-          clearErrorMessage();
-        }
+    if (!isLoading && onAction) {
+      if (profileUpdateStatus && !errorMessage) {
+        message.success(t(globalMessage.success));
+        setOnAction(false);
+      } else if (!profileUpdateStatus && errorMessage) {
+        const { message: msg } = errorMessage.error;
+        message.error(t(validationMessage[msg]));
+        clearErrorMessage();
         setOnAction(false);
       }
     }
