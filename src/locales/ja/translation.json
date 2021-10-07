@@ -5,7 +5,9 @@
     "email": "メールアドレス",
     "enterEmail": "メールアドレスを入力してください",
     "password": "パスワード",
+    "currentPassword": "現在のパスワード",
     "enterPassword": "パスワードを入力してください",
+    "enterCurrentPassword": "現在のパスワードを入力してくださ",
     "username": "ユーザー名",
     "enterUsername": "ユーザー名を入力して下さい",
     "confirmPassword": "パスワード確認",
@@ -18,7 +20,7 @@
     "warning": "お知らせ",
     "profile": "プロフィール",
     "fullName": "フルネーム",
-    "contactNo": "連絡先番号",
+    "contactNo": "電話番号",
     "saveChanges": "変更内容を保存",
     "emailSent": "認証メール",
     "termsOfService": "利用規約",
@@ -146,7 +148,7 @@
     "details": "基本情報",
     "description": "概要",
     "date": "日付",
-    "duration": "長さ",
+    "duration": "期間",
     "enterWebinarTitle": "ウェビナーのタイトルを入力してください",
     "email": "Eメール",
     "enterRegistrationFomrName": "登録フォーム名を入力してください",
@@ -245,7 +247,7 @@
     "descriptionLabel": "説明",
     "dateLabel": "日付",
     "timeLabel": "時間",
-    "durationLabel": "長さ",
+    "durationLabel": "期間",
     "timezoneLabel": "タイムゾーン",
     "ticketPriceLabel": "価格",
     "backButton": "戻る",
@@ -388,6 +390,8 @@
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "paypalAccount": "Paypalアカウント",
     "thisFieldIsRequired": "必須フィールドです",
-    "internalServerError": "500"
+    "internalServerError": "500",
+    "userNotFound": "メールアドレスおよびパスワードをご確認ください。",
+    "invalidPassword": "無効なパスワード"
   }
 }
