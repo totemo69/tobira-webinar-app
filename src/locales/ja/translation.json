@@ -390,6 +390,8 @@
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "paypalAccount": "Paypalアカウント",
     "thisFieldIsRequired": "必須フィールドです",
-    "internalServerError": "500"
+    "internalServerError": "500",
+    "userNotFound": "メールアドレスおよびパスワードをご確認ください。",
+    "invalidPassword": "無効なパスワード"
   }
 }
