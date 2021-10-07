@@ -436,8 +436,8 @@ export function Wallet({
             requestDate: moment(),
             includeTax: 'false',
             taxAmount: 0,
-            totalAmount: 0,
-            remainingBalance: myWallet.currentBalance,
+            totalAmount: 100,
+            remainingBalance: myWallet.currentBalance - 100,
           }}
           onSubmit={onProceed}
           enableReinitialize

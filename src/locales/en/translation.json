@@ -5,7 +5,9 @@
     "email":  "Email",
     "enterEmail":  "Enter your email",
     "password":  "Password",
+    "currentPassword": "Current Password",
     "enterPassword":  "Enter your password",
+    "enterCurrentPassword": "Enter your current password",
     "username":  "Username",
     "enterUsername":  "Enter your username",
     "confirmPassword":  "Confirm password",
@@ -394,6 +396,8 @@
     "tokenExpired": "Your reset token is invalid or already expired.",
     "paypalAccount": "Paypal account",
     "thisFieldIsRequired": "This field is required",
-    "internalServerError": "Internal Server Error"
+    "internalServerError": "Internal Server Error",
+    "userNotFound": "User not found",
+    "invalidPassword": "Invalid password"
   }
 }
