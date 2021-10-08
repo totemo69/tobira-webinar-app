@@ -32,6 +32,7 @@ import Modal from '@/components/Elements/Modal';
 import ButtonLink from '@/components/Elements/ButtonLink';
 import InputPassword from '@/components/Elements/Input/password';
 import { resetPasswordValidation } from '@/validations/forgot-password';
+import Language from '@/components/Modules/Language';
 
 export function ResetPassword({
   doReset,
@@ -42,6 +43,7 @@ export function ResetPassword({
 }) {
   const { t } = useTranslation();
   const route = useRouter();
+  const { locale } = route;
   const { email, token } = route.query;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -113,6 +115,13 @@ export function ResetPassword({
                 </Form>
               )}
             </Formik>
+            <Row
+              align="middle"
+              justify="center"
+              style={{ paddingLeft: '12vw', marginTop: 8 }}
+            >
+              <Language locale={locale} route={route} />
+            </Row>
             <Modal
               isOpen={isOpenModal}
               onRequestClose={() => setIsOpenModal(false)}

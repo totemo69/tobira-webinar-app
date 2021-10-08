@@ -45,15 +45,18 @@ export function ForgotPassword({
   const route = useRouter();
   const { locale } = route;
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [onReset, setOnReset] = useState(false);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && onReset) {
       if (forgotStatus && !errorMessage) {
         setIsOpenModal(true);
+        setOnReset(false);
       } else if (!forgotStatus && errorMessage) {
         const { message: msg } = errorMessage.error;
         message.error(t(validationMessage[msg]));
         clearErrorMessage();
+        setOnReset(false);
       }
     }
   }, [isLoading, forgotStatus]);
@@ -62,6 +65,7 @@ export function ForgotPassword({
   const onSubmit = useCallback((values, { resetForm }) => {
     doForgot({ ...values, lang: locale });
     resetForm();
+    setOnReset(true);
   });
 
   return (
