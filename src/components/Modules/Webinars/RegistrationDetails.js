@@ -1,7 +1,7 @@
 // import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form } from 'formik';
-import { Row, Col } from 'antd';
+import { Row, Col, Typography, Space } from 'antd';
 // import { DownOutlined, UpOutlined, PlusSquareFilled } from '@ant-design/icons';
 import { useTranslation } from 'next-i18next';
 
@@ -18,6 +18,7 @@ import ErrorMessage from '@/components/Elements/ErrorMessage';
 // import { setWebinar } from '@/states/webinar/actions';
 import { registrationForm } from '@/validations/webinar';
 
+const { Text } = Typography;
 export default function CreateWebinarRegistration({
   webinarForm,
   setSubmitForm,
@@ -109,6 +110,18 @@ export default function CreateWebinarRegistration({
                     setFieldValue('formFields[0].isRequired', val)
                   }
                 />
+              </Col>
+            </Row>
+            <Row gutter={20} style={{ marginTop: 30 }}>
+              <Col span={24}>
+                <Space direction="vertical">
+                  <Text type="secondary">
+                    {t(message.registrationFieldNotes1)}
+                  </Text>
+                  <Text type="secondary">
+                    {t(message.registrationFieldNotes2)}
+                  </Text>
+                </Space>
               </Col>
             </Row>
           </Form>

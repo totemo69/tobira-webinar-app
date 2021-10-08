@@ -213,7 +213,9 @@
     "completedPaymentLabel": "Completed",
     "createWebinarTitle": "Management Section",
     "createWebinarSuccess": "Webinar creation completed!",
-    "createWebinarUpdate": "Success"
+    "createWebinarUpdate": "Success",
+    "registrationFieldNotes1": "Email address is required for registration.",
+    "registrationFieldNotes2": "Click NEXT button to continue"
   },
 
   "termsAndPrivacy": {
