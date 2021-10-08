@@ -207,7 +207,9 @@
     "completedPaymentLabel": "完了",
     "createWebinarTitle": "管理部分",
     "createWebinarSuccess": "ウェビナー作成完了!",
-    "createWebinarUpdate": "ウェビナー編集完了!"
+    "createWebinarUpdate": "ウェビナー編集完了!",
+    "registrationFieldNotes1": "申込時に参加希望者のメールアドレスの入力を必須としています。",
+    "registrationFieldNotes2": "「次へ」をクリックしてください。"
   },
 
   "termsAndPrivacy": {
@@ -365,7 +367,7 @@
     "accountName": "アカウント名",
     "accountNumber": "口座番号",
     "amount": "額",
-    "requiredField": " 必須フィールドです",
+    "requiredField": " 必須項目です",
     "amountMin": "最低額：100円",
     "balance": "残高が足りません。",
     "fullName": "フルネーム",
@@ -389,7 +391,7 @@
     "resetNotFound": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "tokenExpired": "リセットトークンが無効であるか、すでに有効期限が切れています。",
     "paypalAccount": "Paypalアカウント",
-    "thisFieldIsRequired": "必須フィールドです",
+    "thisFieldIsRequired": "必須項目です",
     "internalServerError": "500",
     "userNotFound": "メールアドレスおよびパスワードをご確認ください。",
     "invalidPassword": "無効なパスワード"

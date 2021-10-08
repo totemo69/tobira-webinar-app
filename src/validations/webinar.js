@@ -53,7 +53,7 @@ const registrationForm = Yup.object({
 });
 
 const paymentOptions = Yup.object({
-  price: Yup.number().required('price.requiredField'),
+  price: Yup.number().required('thisFieldIsRequired'),
 });
 
 const webinarRegistration = Yup.object({
