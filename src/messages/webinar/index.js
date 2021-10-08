@@ -353,6 +353,14 @@ const message = {
     key: `${scope}.createWebinarUpdate`,
     default: 'Success!',
   }),
+  registrationFieldNotes1: Object.values({
+    key: `${scope}.registrationFieldNotes1`,
+    default: 'Email address is required for registration.',
+  }),
+  registrationFieldNotes2: Object.values({
+    key: `${scope}.registrationFieldNotes2`,
+    default: 'Click NEXT button to continue',
+  }),
 };
 
 export default message;
