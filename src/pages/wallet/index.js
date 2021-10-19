@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next';
 import { Row, Col, message, Spin, Radio } from 'antd';
 import moment from 'moment';
 import { disableWeekends } from '@/utils/dateUtils';
+import { withAuthSync } from '@/lib/auth';
 import Layout from '@/components/Layouts/Home';
 import Div from '@/components/Elements/Div';
 import Title from '@/components/Elements/Title';
@@ -22,7 +23,7 @@ import { StyledModal } from '@/components/Elements/Modal/SimpleModal';
 import DatePicker from '@/components/Elements/DatePicker/SimpleDatePicker';
 import Select from '@/components/Elements/Select';
 import Option from '@/components/Elements/Option';
-import { StyledParagraph } from '@/components/Elements/SampleParagraph';
+import { StyledParagraph } from '@/components/Elements/Paragraph';
 import Label from '@/components/Elements/Labels';
 import { StyledDiv } from '@/components/Modules/Modals';
 import Input from '@/components/Elements/Input';
@@ -998,7 +999,7 @@ const mapPropsToDispatch = (dispatch) => ({
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);
 
-export default compose(withConnect)(Wallet);
+export default compose(withConnect)(withAuthSync(Wallet));
 
 export const getStaticProps = async ({ locale }) => ({
   props: {

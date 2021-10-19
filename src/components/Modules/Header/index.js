@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useTranslation } from 'next-i18next';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { memo, useEffect } from 'react';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { useRouter } from 'next/router';
 import { Col, Row } from 'antd';
 import Link from 'next/link';
 import NextImage from 'next/image';
@@ -20,7 +18,6 @@ import Div from '@/components/Elements/Div';
 import Image from '@/components/Elements/Image';
 import Dropdown from '@/components/Elements/Dropdown';
 import Menu from '@/components/Elements/Menu';
-import Language from '@/components/Modules/Language';
 import { logout } from '@/lib/auth';
 
 import {
@@ -38,19 +35,9 @@ export function Header({
   withMenu = true,
 }) {
   const { t } = useTranslation();
-  const route = useRouter();
-  const { locale } = route;
   useEffect(() => {
     fetchProfile();
   }, []);
-
-  const StyledRow = styled(Row)`
-    width: 40%;
-
-    @media screen and (max-width: 768px) {
-      width: 100%;
-    }
-  `;
 
   const MenuItems = (
     <Menu className="profile-dropdown">
@@ -95,10 +82,9 @@ export function Header({
 
   return (
     <>
-      <Hdr noMargin>
+      <Hdr hasSider noMargin>
         <Div
           widthFull
-          noMargin
           flexSpaceBetween={withLogo}
           flexCenterEnd={!withLogo}
           style={{ 'min-height': '65px;' }}
@@ -112,28 +98,23 @@ export function Header({
             />
           )}
           {withMenu && (
-            <>
-              <StyledRow type="flex" align="middle" justify="end">
-                <Col
-                  type="flex"
-                  align="middle"
-                  xs={12}
-                  style={{ marginBottom: '7px' }}
-                >
-                  <Image
-                    src={userDetails.profileImage ?? '/images/avatar.svg'}
-                    userImg
-                  />
-                  <Dropdown
-                    username={userDetails && userDetails.username}
-                    items={MenuItems}
-                  />
-                </Col>
-                <Col type="flex" align="middle">
-                  <Language locale={locale} route={route} />
-                </Col>
-              </StyledRow>
-            </>
+            <Row
+              type="flex"
+              align="middle"
+              justify="end"
+              style={{ marginRight: '5px' }}
+            >
+              <Col type="flex" align="middle" md={24} lg={24} xl={24}>
+                <Image
+                  src={userDetails.profileImage ?? '/images/avatar.svg'}
+                  userImg
+                />
+                <Dropdown
+                  username={userDetails && userDetails.username}
+                  items={MenuItems}
+                />
+              </Col>
+            </Row>
           )}
         </Div>
       </Hdr>
