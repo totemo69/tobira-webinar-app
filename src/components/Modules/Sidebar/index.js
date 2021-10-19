@@ -17,7 +17,7 @@ export default function Sider() {
   const { t } = useTranslation();
   const router = useRouter();
   return (
-    <Sidebar width={250} breakpoint="lg" collapsedWidth="0">
+    <Sidebar width={250} breakpoint="md" collapsedWidth="0">
       <Div noMargin widthFull>
         <Image
           src="/images/tobiracreators_transparent.png"

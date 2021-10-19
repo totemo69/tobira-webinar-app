@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Formik, Field, Form } from 'formik';
 import RadioImage from '@/components/Elements/RadioImage';
 import message from '@/messages/webinar';
-import { StyledParagraph } from '@/components/Elements/SampleParagraph';
+import { StyledParagraph } from '@/components/Elements/Paragraph';
 // import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import Div from '@/components/Elements/Div';

@@ -25,7 +25,6 @@ import Div from '@/components/Elements/Div';
 import Labels from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 import InputPassword from '@/components/Elements/Input/password';
-import Checkbox from '@/components/Elements/Checkbox';
 import Link from '@/components/Elements/Link';
 import Button from '@/components/Elements/Button';
 import Image from '@/components/Elements/Image';
@@ -94,7 +93,7 @@ export function Login({
                     <ErrorMessage name="password" />
                   </Div>
                   <Div marginY betweenCenter>
-                    <Checkbox content={t(localMessage.rememberMe)} />
+                    {/* <Checkbox content={t(localMessage.rememberMe)} /> */}
                     <Link
                       href="/forgot-password"
                       name={t(globalMessage.forgotPassword)}
