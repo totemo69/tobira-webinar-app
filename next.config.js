@@ -37,6 +37,15 @@ const moduleExports = withTM({
     }
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/webinars/list-webinar',
+        permanent: true,
+      },
+    ];
+  },
 });
 
 const SentryWebpackPluginOptions = {
