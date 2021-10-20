@@ -20,7 +20,6 @@ import {
   makeSelectWebinarForm,
   makeSelectWebinarDetails,
 } from '@/states/webinar/selector';
-import { withAuthSync } from '@/lib/auth';
 
 import localMessage from '@/messages/webinar';
 import globaMessage from '@/messages/global';
@@ -181,7 +180,7 @@ export function CreateWebinar({
       </Div>
       <Div widthFull>
         <Card webinarRegistrationCard>
-          <StyledSteps current={current}>
+          <StyledSteps labelPlacement="vertical" current={current}>
             {step.map((item) => (
               <StyledStep key={item.title} title={item.title} />
             ))}
@@ -250,4 +249,4 @@ const mapDispatchProps = (dispatch) => ({
 
 const withConnect = connect(mapStateToProps, mapDispatchProps);
 
-export default compose(withConnect, memo)(withAuthSync(CreateWebinar));
+export default compose(withConnect, memo)(CreateWebinar);
