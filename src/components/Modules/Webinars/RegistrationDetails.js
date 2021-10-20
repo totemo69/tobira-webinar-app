@@ -7,7 +7,6 @@ import { useTranslation } from 'next-i18next';
 
 import message from '@/messages/webinar';
 import globalMessage from '@/messages/global';
-// import { StyledParagraph } from '@/components/Elements/SampleParagraph';
 import Label from '@/components/Elements/Labels';
 import Input from '@/components/Elements/Input';
 // import Button from '@/components/Elements/Button';

@@ -152,3 +152,7 @@ h2.ant-typography,
   border: 1px solid #b0b0b0;
   font-size: 12px;
 }
+
+.ant-layout-sider-zero-width-trigger {
+  top: 10px !important;
+}
