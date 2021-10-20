@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { Row, Col, Typography, message } from 'antd';
 import { CaretDownFilled, EyeTwoTone } from '@ant-design/icons';
 import { FormatDate, DateIsBefore } from '@/utils/dateUtils';
+import { withAuthSync } from '@/lib/auth';
 import { getZoomAccount, createZoomUser } from '@/states/accounts/actions';
 import { getWebinarList } from '@/states/webinar/actions';
 import { makeSelectLoading, makeSelectError } from '@/states/global/selector';
@@ -318,7 +319,7 @@ const mapPropsToDispatch = (dispatch) => ({
 
 const withConnect = connect(mapStateToProps, mapPropsToDispatch);
 
-export default compose(withConnect)(ListOfWebinar);
+export default compose(withConnect)(withAuthSync(ListOfWebinar));
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
