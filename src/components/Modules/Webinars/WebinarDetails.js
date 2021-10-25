@@ -161,32 +161,48 @@ export default function WebinarDetails({
           <Paragraph>{webinarDetails.description}</Paragraph>
         </Space>
       </Row>
-      <Row align="middle" justify="end" style={{ marginTop: 50 }}>
-        <Button
-          loading={isLoading}
-          onClick={onChangeStatus}
-          chooseStandard
-          marginRight
-          type="link"
-        >
-          {webinarDetails.status === 0
-            ? t(message.hiddenStatusLabel)
-            : t(message.publishStatusLabel)}
-        </Button>
-        <Button
-          chooseStandard
-          marginRight
-          type="link"
-          onClick={() => {
-            route.push(`${WEBINAR_ROUTE.LIST_WEBINAR}`);
-          }}
-        >
-          <LeftOutlined />
-          {t(message.back)}
-        </Button>
-        <Button chooseProfessional noMargin type="primary" onClick={onUpdate}>
-          {t(message.editDetails)}
-        </Button>
+      <Row
+        gutter={[2, 4]}
+        align="middle"
+        justify="end"
+        style={{ marginTop: 50 }}
+      >
+        <Col xs={24} sm={24} md={24} lg={6} xl={4}>
+          <Button
+            loading={isLoading}
+            onClick={onChangeStatus}
+            chooseStandard
+            marginRight
+            type="link"
+          >
+            {webinarDetails.status === 0
+              ? t(message.hiddenStatusLabel)
+              : t(message.publishStatusLabel)}
+          </Button>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={6} xl={4}>
+          <Button
+            chooseStandard
+            marginRight
+            type="link"
+            onClick={() => {
+              route.push(`${WEBINAR_ROUTE.LIST_WEBINAR}`);
+            }}
+          >
+            <LeftOutlined />
+            {t(message.back)}
+          </Button>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={6} xl={4}>
+          <Button
+            chooseProfessional
+            marginRight
+            type="primary"
+            onClick={onUpdate}
+          >
+            {t(message.editDetails)}
+          </Button>
+        </Col>
       </Row>
     </StyledDiv>
   );
