@@ -14,6 +14,10 @@ export const ZOOM_URL = process.env.NEXT_PUBLIC_ZOOM_URL
   ? process.env.NEXT_PUBLIC_ZOOM_URL
   : 'https://zoom.us/';
 
+export const GOOGLE_ANALYTICS = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
+  ? process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
+  : 'G-MYFDLHJRCJ';
+
 export const COOKIE_PREFIX = 'tobira_webinar_';
 export const COOKIE_EXPIRES_DAYS = 7;
 
